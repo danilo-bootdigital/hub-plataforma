@@ -1,0 +1,1 @@
+SELECT q.id, q.numero, q.contato_id, q.lead_id, l.nome as lead_nome, c.nome as contato_nome FROM quotes q LEFT JOIN leads l ON q.lead_id = l.id LEFT JOIN contacts c ON q.contato_id = c.id WHERE q.id = '04a4497e-5512-47aa-b226-1f085fc9b36c'

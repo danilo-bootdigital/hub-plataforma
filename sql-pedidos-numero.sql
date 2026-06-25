@@ -1,0 +1,1 @@
+SELECT * FROM orders WHERE numero IN (42, 41, 40, 39, 38) ORDER BY numero DESC

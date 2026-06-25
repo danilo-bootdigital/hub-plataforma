@@ -1,0 +1,26 @@
+
+> boot-crm@0.1.0 dev
+> next dev
+
+⚠ Port 3000 is in use by process 59032, using available port 3001 instead.
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://192.168.15.8:3001
+- Environments: .env.local, .env
+✓ Ready in 848ms
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /Users/danilo/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /Users/danilo/Documents/BOOT-CRM/package-lock.json
+
+⨯ Another next dev server is already running.
+
+- Local:        http://localhost:3000
+- PID:          59032
+- Dir:          /Users/danilo/Documents/BOOT-CRM
+- Log:          .next/dev/logs/next-development.log
+
+Run kill 59032 to stop it.
+[?25h

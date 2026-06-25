@@ -1,0 +1,1 @@
+SELECT q.id, q.numero, o.id as pedido_id, o.numero as pedido_numero, o.status as pedido_status, q.status as status_orcamento FROM quotes q LEFT JOIN orders o ON q.id = o.quote_id WHERE q.organization_id = 'boot-digital' AND q.status = 'aprovado_pelo_cliente' ORDER BY q.criado_em DESC LIMIT 10;

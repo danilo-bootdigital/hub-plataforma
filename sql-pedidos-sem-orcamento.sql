@@ -1,0 +1,1 @@
+SELECT o.id, o.numero, o.status, o.quote_id, q.numero as quote_numero FROM orders o LEFT JOIN quotes q ON o.quote_id = q.id WHERE o.quote_id IS NOT NULL AND q.status IS NULL ORDER BY o.criado_em DESC LIMIT 10

@@ -1,0 +1,1 @@
+ALTER TABLE quotes ADD COLUMN IF NOT EXISTS frete numeric(12,2) DEFAULT 0;

@@ -1,0 +1,1 @@
+SELECT q.id, q.numero, o.id as pedido_id, o.numero as pedido_numero FROM quotes q LEFT JOIN orders o ON q.id = o.quote_id WHERE q.id IN ('04a4497e-5512-47aa-b226-1f085fc9b36c', '8841ab48-0ca3-462c-a218-e876a2594d39', '9db7e84f-71d9-478c-ae16-c6bbc7a94924')

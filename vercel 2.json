@@ -1,0 +1,32 @@
+{
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/webhook/evolution",
+      "dest": "/api/webhook/evolution"
+    },
+    {
+      "src": "/api/whatsapp/(.*)",
+      "dest": "/api/whatsapp/$1"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_SUPABASE_URL": "@supabase_url",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase_anon_key",
+    "EVOLUTION_API_URL": "@evolution_api_url",
+    "EVOLUTION_API_KEY": "@evolution_api_key",
+    "EVOLUTION_WEBHOOK_SECRET": "@evolution_webhook_secret",
+    "NEXT_PUBLIC_APP_URL": "@next_public_app_url"
+  },
+  "crons": [
+    {
+      "path": "/api/cleanup-whatsapp-cache",
+      "schedule": "0 */6 * * *"
+    }
+  ]
+}

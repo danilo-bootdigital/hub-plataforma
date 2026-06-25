@@ -1,0 +1,29 @@
+# Code-only graphify build (no LLM / no API cost).
+# These file types are classified as "document"/"image" and would otherwise
+# require semantic (LLM) extraction. Excluding them keeps the corpus code-only.
+
+# Markdown docs & generated reports
+*.md
+
+# Static assets / images
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.ico
+
+# YAML configs picked up as documents (deploy.yml, docker-compose.yml)
+*.yml
+*.yaml
+
+# Project dirs from .gitignore (this file overrides the .gitignore fallback)
+.superpowers/
+.vercel/
+.claude/
+.serena/
+supabase/.temp/
+/out/
+/build/
+/coverage/

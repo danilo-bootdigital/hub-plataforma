@@ -1,0 +1,1 @@
+ALTER TABLE quotes ADD COLUMN IF NOT EXISTS forma_pagamento text DEFAULT NULL;
