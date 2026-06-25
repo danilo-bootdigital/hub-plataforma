@@ -17,13 +17,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BOOT CRM",
-  description: "Sistema de CRM Comercial — Boot Digital",
+  title: "Hub Plataforma",
+  description: "Sistema de CRM Comercial — Hub Plataforma",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "BOOT CRM",
+    title: "Hub Plataforma",
   },
   icons: {
     icon: "/icons/icon-192.png",

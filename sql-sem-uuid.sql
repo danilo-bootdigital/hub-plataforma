@@ -1,1 +1,0 @@
-SELECT id, numero, status FROM quotes WHERE status = 'aprovado_pelo_cliente' ORDER BY criado_em DESC LIMIT 10;

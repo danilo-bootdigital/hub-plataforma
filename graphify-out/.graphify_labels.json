@@ -65,6 +65,7 @@
   "63": "Community 63",
   "64": "Community 64",
   "65": "Ações de Detalhe de Orçamento",
+  "66": "Community 66",
   "67": "Community 67",
   "68": "Arquivamento de Conversas",
   "69": "Error Boundary",
@@ -72,6 +73,7 @@
   "71": "Metadados do Pacote",
   "72": "Script de Verificação de Instâncias",
   "73": "Configuração Vercel",
+  "74": "Community 74",
   "75": "Middleware",
   "76": "Script de Setup do Webhook",
   "77": "Rota de API",
@@ -91,7 +93,7 @@
   "91": "Configuração PostCSS",
   "92": "Loading de Relatórios",
   "93": "Script de Diagnóstico WhatsApp",
-  "94": "Script de Setup de Ambiente",
+  "94": "Community 94",
   "95": "Script de Teste Evolution API",
   "96": "Script de Teste WhatsApp",
   "97": "Script de Verificação de Deploy",
@@ -101,5 +103,6 @@
   "101": "Script de Validação de Estrutura",
   "102": "Configuração ESLint",
   "103": "Tipos de Ambiente Next.js",
-  "104": "Tipos de Servidor"
+  "104": "Tipos de Servidor",
+  "105": "Community 105"
 }

@@ -1,7 +1,7 @@
 {
-  "name": "BOOT CRM",
-  "short_name": "BOOT CRM",
-  "description": "Sistema de CRM Comercial — Boot Digital",
+  "name": "Hub Plataforma",
+  "short_name": "Hub Plataforma",
+  "description": "Sistema de CRM Comercial — Hub Plataforma",
   "start_url": "/painel",
   "display": "standalone",
   "background_color": "#f8fafc",

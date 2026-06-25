@@ -7,8 +7,8 @@ echo "🔧 Configurando webhook na Evolution API..."
 echo ""
 
 # Configurações
-PROJECT_URL="https://crm.dprimerepresentacao.com.br"
-WEBHOOK_SECRET="webhook-secret-dprime-2024"
+PROJECT_URL="${NEXT_PUBLIC_APP_URL:-http://localhost:3000}"
+WEBHOOK_SECRET="${EVOLUTION_WEBHOOK_SECRET:?defina EVOLUTION_WEBHOOK_SECRET no ambiente}"
 WEBHOOK_URL="$PROJECT_URL/api/webhook/evolution?secret=$WEBHOOK_SECRET"
 
 # Função para fazer requisição à Evolution API
@@ -35,13 +35,13 @@ make_request() {
 if [ -z "$EVOLUTION_API_KEY" ]; then
   echo "❌ EVOLUTION_API_KEY não configurado no ambiente"
   echo "Por favor, configure a variável de ambiente:"
-  echo "  export EVOLUTION_API_KEY=DprimeEvo2024BootKey"
+  echo "  export EVOLUTION_API_KEY=<sua-chave-evolution>"
   exit 1
 fi
 
 # 1. Verificar se a Evolution API está acessível
 echo "1. Verificando conexão com a Evolution API..."
-EVOLUTION_BASE_URL="https://evolution.dprimerepresentacao.com.br"
+EVOLUTION_BASE_URL="${EVOLUTION_API_URL:?defina EVOLUTION_API_URL no ambiente}"
 STATUS_URL="$EVOLUTION_BASE_URL/api/status"
 
 if make_request "$STATUS_URL" '{}' "GET"; then
@@ -58,7 +58,7 @@ INSTANCES_URL="$EVOLUTION_BASE_URL/api/instances"
 instances=$(make_request "$INSTANCES_URL" '{}' "GET")
 
 # 3. Criar instância se não existir
-INSTANCE_ID="boot-crm-$(date +%s)"
+INSTANCE_ID="hub-plataforma-$(date +%s)"
 
 echo "3. Verificando se instância '$INSTANCE_ID' já existe..."
 if echo "$instances" | grep -q "$INSTANCE_ID"; then

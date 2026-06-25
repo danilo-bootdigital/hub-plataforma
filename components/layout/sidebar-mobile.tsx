@@ -33,7 +33,7 @@ export function SidebarMobile({ logoUrl }: Props) {
           {logoUrl ? (
             <img src={logoUrl} alt="Logo" className="h-9 w-auto object-contain" />
           ) : (
-            <SheetTitle className="text-xl font-bold text-slate-900">BOOT CRM</SheetTitle>
+            <SheetTitle className="text-xl font-bold text-slate-900">Hub Plataforma</SheetTitle>
           )}
         </SheetHeader>
         <nav className="overflow-y-auto p-4">

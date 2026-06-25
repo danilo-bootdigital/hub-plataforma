@@ -1,1 +1,0 @@
-SELECT * FROM pedido_audit_logs WHERE order_id IN (SELECT id FROM orders WHERE numero IN (42, 41, 40, 39, 38)) LIMIT 10

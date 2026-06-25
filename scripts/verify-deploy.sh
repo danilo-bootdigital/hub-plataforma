@@ -7,7 +7,7 @@ echo "🔍 Verificando deploy no Vercel..."
 echo ""
 
 # Obter URL do projeto do Vercel
-PROJECT_URL="https://crm.dprimerepresentacao.com.br"
+PROJECT_URL="${NEXT_PUBLIC_APP_URL:-http://localhost:3000}"
 
 echo "🌐 Verificando se o site está acessível..."
 if curl -s -o /dev/null -w "%{http_code}" "$PROJECT_URL" | grep -q "200\|301\|302"; then

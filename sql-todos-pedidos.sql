@@ -1,1 +1,0 @@
-SELECT id, numero, status, quote_id FROM orders ORDER BY criado_em DESC LIMIT 10

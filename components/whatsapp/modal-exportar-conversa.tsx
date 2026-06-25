@@ -48,7 +48,7 @@ export function ModalExportarConversa({
     const agora = format(new Date(), "dd/MM/yyyy 'às' HH:mm", { locale: ptBR })
     const cabecalho = [
       '========================================',
-      'BOOT-CRM — Exportação de Conversa',
+      'Hub Plataforma — Exportação de Conversa',
       '========================================',
       `Contato: ${nomeContato}`,
       `Número: ${telefone}`,
@@ -154,7 +154,7 @@ export function ModalExportarConversa({
           className="absolute -left-[9999px] top-0 w-[600px] bg-slate-50 p-6 font-sans text-sm"
         >
           <div className="mb-4 border-b pb-3">
-            <p className="font-bold text-slate-900">BOOT-CRM — Exportação de Conversa</p>
+            <p className="font-bold text-slate-900">Hub Plataforma — Exportação de Conversa</p>
             <p className="text-xs text-slate-500">
               Contato: {nomeContato} · {telefone}
             </p>

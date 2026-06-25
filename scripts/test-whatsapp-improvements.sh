@@ -11,7 +11,7 @@ echo "1. Testando webhook security..."
 PAYLOAD='{"event":"messages.upsert","instance":"test","data":{"key":{"remoteJid":"5511999999999@c.us","fromMe":false,"id":"BAEIDFg="},"pushName":"Test User","messageTimestamp":1642675200,"messageType":"conversation","message":{"conversation":"Test message"}}}'
 
 # Gerar HMAC signature
-SECRET="webhook-secret-dprime-2024"
+SECRET="${EVOLUTION_WEBHOOK_SECRET:-changeme}"
 SIGNATURE=$(echo -n "$PAYLOAD" | openssl dgst -sha256 -hmac "$SECRET" | sed 's/^.* //')
 
 echo "✅ HMAC signature gerada: $SIGNATURE"

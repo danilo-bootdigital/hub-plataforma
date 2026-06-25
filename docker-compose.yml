@@ -1,5 +1,5 @@
 # ============================================================
-# BOOT-CRM — Docker Compose
+# HUB-PLATAFORMA — Docker Compose
 # ============================================================
 # Uso:
 #   cp .env.example .env   (preencher variáveis)

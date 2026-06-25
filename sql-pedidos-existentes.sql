@@ -1,1 +1,0 @@
-SELECT * FROM orders WHERE numero IN (52, 49, 44)

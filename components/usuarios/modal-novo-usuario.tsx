@@ -57,7 +57,7 @@ export function ModalNovoUsuario() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="email">E-mail</Label>
-            <Input id="email" name="email" type="email" placeholder="joao@bootdigital.com" required />
+            <Input id="email" name="email" type="email" placeholder="joao@exemplo.com" required />
           </div>
           <div className="space-y-2">
             <Label htmlFor="telefone">Telefone</Label>

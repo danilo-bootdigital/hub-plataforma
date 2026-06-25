@@ -67,10 +67,10 @@ fi
 if [ "$1" == "docker" ]; then
   echo "🐳 Build da imagem Docker..."
 
-  docker build -t boot-crm-whatsapp .
+  docker build -t hub-plataforma-whatsapp .
 
   echo "✅ Imagem Docker criada"
-  echo "Para rodar: docker run -p 3000:3000 --env-file .env.local boot-crm-whatsapp"
+  echo "Para rodar: docker run -p 3000:3000 --env-file .env.local hub-plataforma-whatsapp"
 fi
 
 # 7. Mensagem final

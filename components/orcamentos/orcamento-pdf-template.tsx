@@ -215,9 +215,9 @@ function Cabecalho({ data }: { data: OrcamentoTemplateData }) {
           />
         ) : (
           <div className="text-2xl font-extrabold text-slate-800">
-            {(org?.nome_fantasia || org?.nome || 'DPRIME').split(' ')[0]}
+            {(org?.nome_fantasia || org?.nome || 'Hub Plataforma').split(' ')[0]}
             <span className="text-slate-800">
-              {(org?.nome_fantasia || org?.nome || 'DPRIME').split(' ').slice(1).join(' ')}
+              {(org?.nome_fantasia || org?.nome || 'Hub Plataforma').split(' ').slice(1).join(' ')}
             </span>
           </div>
         )}

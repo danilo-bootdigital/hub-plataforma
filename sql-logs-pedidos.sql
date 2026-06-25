@@ -1,1 +1,0 @@
-SELECT * FROM activities WHERE organization_id = 'b787db1e-f6be-4fa7-9ae8-c4fdfa3a30fd' AND tipo = 'pedido_gerado' ORDER BY criado_em DESC LIMIT 5

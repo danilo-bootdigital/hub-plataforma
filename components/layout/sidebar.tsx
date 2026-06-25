@@ -19,7 +19,7 @@ export function Sidebar({ logoUrl }: Props) {
         {logoUrl ? (
           <img src={logoUrl} alt="Logo" className="h-9 w-auto object-contain" />
         ) : (
-          <span className="text-xl font-bold text-slate-800">BOOT CRM</span>
+          <span className="text-xl font-bold text-slate-800">Hub Plataforma</span>
         )}
       </div>
 
@@ -70,7 +70,7 @@ export function Sidebar({ logoUrl }: Props) {
       {/* Footer */}
       <div className="border-t p-4">
         <p className="text-xs text-slate-400 text-center">
-          DPRIME Premium CRM
+          Hub Plataforma
         </p>
       </div>
     </aside>

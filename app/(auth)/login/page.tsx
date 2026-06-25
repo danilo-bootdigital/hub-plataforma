@@ -17,7 +17,7 @@ export default function LoginPage({
   return (
     <Card className="w-full max-w-md shadow-lg">
       <CardHeader className="space-y-1 text-center">
-        <CardTitle className="text-2xl font-bold">BOOT CRM</CardTitle>
+        <CardTitle className="text-2xl font-bold">Hub Plataforma</CardTitle>
         <CardDescription>
           Entre com seu e-mail e senha para acessar o sistema
         </CardDescription>

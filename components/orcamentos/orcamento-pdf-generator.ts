@@ -1,6 +1,6 @@
 import { formatarMoeda } from '@/lib/utils'
 
-// Paleta verde suave DPRIME
+// Paleta verde suave Hub Plataforma
 const GREEN = [47, 143, 70] as const
 const GREEN_LIGHT = [234, 244, 236] as const
 const GREEN_LIGHT2 = [240, 247, 242] as const
@@ -167,7 +167,7 @@ export async function gerarPdf(orcamento: OrcamentoData) {
   setText(DARK_TEXT)
   doc.setFontSize(12)
   doc.setFont('helvetica', 'bold')
-  doc.text(org?.nome_fantasia || org?.nome || 'DPRIME', margin, headerY + 26)
+  doc.text(org?.nome_fantasia || org?.nome || 'Hub Plataforma', margin, headerY + 26)
 
   // Subtítulo
   setText(GREEN)
@@ -909,7 +909,7 @@ export async function gerarPdf(orcamento: OrcamentoData) {
   // Disclaimer
   doc.setFontSize(6)
   doc.setFont('helvetica', 'italic')
-  const disclaimer = 'Medicamentos requerem prescricao medica. DPRIME - Representacao Farmaceutica.'
+  const disclaimer = 'Medicamentos requerem prescricao medica. Hub Plataforma - Representacao Farmaceutica.'
   doc.text(disclaimer, margin, footerY + 3)
 
   return Buffer.from(doc.output('arraybuffer'))
