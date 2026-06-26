@@ -1,5 +1,5 @@
 -- ============================================================
--- BOOT-CRM — Schema Completo V1
+-- Hub Plataforma — Schema Completo V1
 -- Executar no Supabase SQL Editor
 -- ============================================================
 
@@ -19,8 +19,8 @@ create table organizations (
   atualizado_em timestamptz not null default now()
 );
 
--- Inserir a Boot Digital como organização padrão
-insert into organizations (nome, slug) values ('Boot Digital', 'boot-digital');
+-- Inserir a Master Representação como organização padrão
+insert into organizations (nome, slug) values ('Master Representação', 'master-representacao');
 
 -- ============================================================
 -- PERFIS DE USUÁRIO
@@ -510,11 +510,11 @@ as $$
 declare
   org_id uuid;
 begin
-  -- Pegar a organização padrão (Boot Digital)
-  select id into org_id from organizations where slug = 'boot-digital' limit 1;
+  -- Pegar a organização padrão (Master Representação)
+  select id into org_id from organizations where slug = 'master-representacao' limit 1;
 
   if org_id is null then
-    raise exception 'Organização padrão (boot-digital) não encontrada. Execute o INSERT em organizations primeiro.';
+    raise exception 'Organização padrão (master-representacao) não encontrada. Execute o INSERT em organizations primeiro.';
   end if;
 
   insert into profiles (id, organization_id, nome, email, cargo)
@@ -543,7 +543,7 @@ create trigger on_auth_user_created
 
 -- Pipeline padrão com as 7 etapas
 insert into pipelines (organization_id, nome, padrao)
-select id, 'Principal', true from organizations where slug = 'boot-digital';
+select id, 'Principal', true from organizations where slug = 'master-representacao';
 
 insert into pipeline_stages (organization_id, pipeline_id, nome, ordem, cor)
 select
@@ -566,7 +566,7 @@ where p.padrao = true;
 
 -- Configuração padrão de distribuição
 insert into lead_distribution_config (organization_id, modo)
-select id, 'manual' from organizations where slug = 'boot-digital';
+select id, 'manual' from organizations where slug = 'master-representacao';
 
 -- Configurações iniciais do sistema
 insert into system_config (organization_id, chave, valor, tipo_valor, descricao)
@@ -582,4 +582,4 @@ cross join (values
   ('alerta_offline_minutos', '30', 'numero', 'Minutos offline para disparar alerta ao gestor'),
   ('dias_alerta_sem_interacao', '7', 'numero', 'Dias sem interação para destacar lead em vermelho')
 ) as cfg(chave, valor, tipo, descricao)
-where o.slug = 'boot-digital';
+where o.slug = 'master-representacao';

@@ -1420,9 +1420,9 @@
     "semantic_hash": "2d517865f39d606cc8bd694755b4cad8"
   },
   "supabase/migrations/001_schema_completo.sql": {
-    "mtime": 1778462141.0,
-    "ast_hash": "0a9b2d8bb63faa8016b9950a4b7cff6a",
-    "semantic_hash": "0a9b2d8bb63faa8016b9950a4b7cff6a"
+    "mtime": 1782433427.1574168,
+    "ast_hash": "1ef5455ec9dc678d3a9ab6ce35234261",
+    "semantic_hash": ""
   },
   "supabase/migrations/002_pipeline_tipo_etapa.sql": {
     "mtime": 1778504904.0,
@@ -1554,11 +1554,6 @@
     "ast_hash": "0a90694fe628f81f01d76d0311e0e33c",
     "semantic_hash": "0a90694fe628f81f01d76d0311e0e33c"
   },
-  "supabase/migrations/028_reimportar_medsate.sql": {
-    "mtime": 1778789644.0,
-    "ast_hash": "7694a6ae90c6ece474bb44e83a8f4fda",
-    "semantic_hash": "7694a6ae90c6ece474bb44e83a8f4fda"
-  },
   "supabase/migrations/029_organization_site_instagram.sql": {
     "mtime": 1778818598.0,
     "ast_hash": "3681cbd23fc4f6292cbeacf0ca23d80c",
@@ -1578,11 +1573,6 @@
     "mtime": 1779895734.0,
     "ast_hash": "2b92246af000407a9849c3a84832b74d",
     "semantic_hash": "2b92246af000407a9849c3a84832b74d"
-  },
-  "supabase/migrations/032_fix_juliane_foreze.sql": {
-    "mtime": 1778870970.0,
-    "ast_hash": "bea499f8bf10043a756174d97d4602af",
-    "semantic_hash": "bea499f8bf10043a756174d97d4602af"
   },
   "supabase/migrations/032_messages_urgencia.sql": {
     "mtime": 1779896135.0,
@@ -1650,9 +1640,9 @@
     "semantic_hash": "c8550bec30ee4026a34ebaffebf62a01"
   },
   "supabase/migrations/045_whatsapp_central_atendimento.sql": {
-    "mtime": 1781114062.0,
-    "ast_hash": "c6faefeeef9b1109590ebe65ee036753",
-    "semantic_hash": "c6faefeeef9b1109590ebe65ee036753"
+    "mtime": 1782433436.5553505,
+    "ast_hash": "24d69098f354db69a854ded656eb87d5",
+    "semantic_hash": ""
   },
   "supabase/migrations/046_backfill_nome_contato.sql": {
     "mtime": 1781123282.0,

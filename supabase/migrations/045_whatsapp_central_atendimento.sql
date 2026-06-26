@@ -1,5 +1,5 @@
 -- ============================================================
--- Migração 045: Central de Atendimento WhatsApp - DPRIME
+-- Migração 045: Central de Atendimento WhatsApp - Hub Plataforma
 -- Suporte ao redesign 3 colunas (KPIs, filtros, painel, soft archive)
 -- ============================================================
 -- Itens validados no banco real em 2026-06-XX:
