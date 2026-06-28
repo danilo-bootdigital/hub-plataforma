@@ -366,3 +366,51 @@
 .font-label { font-weight: 500; }
 .font-body { font-weight: 400; }
 .font-kpi { font-weight: 700; }
+
+/* ============================================
+   IMPRESSÃO — Fatia 13C (visualização do Orçamento)
+   Esconde toda a interface (sidebar/header/ações) e imprime
+   apenas a área do Orçamento. NÃO gera PDF.
+   ============================================ */
+@media print {
+  /* Esconde tudo, depois revela somente a área imprimível */
+  body * {
+    visibility: hidden;
+  }
+  .area-impressao,
+  .area-impressao * {
+    visibility: visible;
+  }
+  .area-impressao {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  /* Elementos marcados como não-imprimíveis (botões, navegação) */
+  .no-print {
+    display: none !important;
+  }
+  /* Cores fiéis na impressão */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  /* Margens de página */
+  @page {
+    margin: 16mm;
+  }
+  /* Quebra de página adequada */
+  .break-inside-avoid {
+    break-inside: avoid;
+  }
+  table {
+    page-break-inside: auto;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr {
+    page-break-inside: avoid;
+  }
+}

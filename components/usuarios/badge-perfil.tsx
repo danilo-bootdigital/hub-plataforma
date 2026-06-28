@@ -8,6 +8,8 @@ const configuracoes: Record<UserRole, { label: string; variant: 'default' | 'sec
   atendimento: { label: 'Atendimento', variant: 'outline' },
   financeiro: { label: 'Financeiro', variant: 'secondary' },
   suporte: { label: 'Suporte', variant: 'outline' },
+  proprietario_hub: { label: 'Proprietário do Hub', variant: 'default' },
+  assistente: { label: 'Assistente de Venda', variant: 'secondary' },
 }
 
 export function BadgePerfil({ perfil }: { perfil: UserRole }) {

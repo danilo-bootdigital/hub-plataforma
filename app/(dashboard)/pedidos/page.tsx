@@ -67,6 +67,7 @@ export default async function PedidosPage({
       quote:quotes!quote_id${fornecedorFiltro ? '!inner' : ''}(contato_id, supplier_id, fornecedor:suppliers!supplier_id(nome), lead:leads!lead_id(nome, telefone), contato_quote:contacts!contato_id(nome, telefone))
     `)
     .eq('organization_id', perfil.organization_id)
+    .eq('tipo', 'PEDIDO')
     .order('criado_em', { ascending: false })
     .limit(nomeBusca ? 1000 : 100)
 

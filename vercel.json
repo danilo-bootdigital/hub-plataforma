@@ -1,20 +1,4 @@
 {
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/webhook/evolution",
-      "dest": "/api/webhook/evolution"
-    },
-    {
-      "src": "/api/whatsapp/(.*)",
-      "dest": "/api/whatsapp/$1"
-    }
-  ],
   "crons": [
     {
       "path": "/api/cleanup-whatsapp-cache",

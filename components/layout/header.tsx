@@ -25,7 +25,7 @@ export async function Header({ logoUrl }: { logoUrl?: string | null }) {
 
   return (
     <header className="flex h-16 items-center justify-between border-b bg-white px-4 md:px-6">
-      <SidebarMobile logoUrl={logoUrl} />
+      <SidebarMobile logoUrl={logoUrl} cargo={profile?.cargo} />
 
       <div className="flex items-center gap-3 md:gap-4">
         {profile?.cargo && (

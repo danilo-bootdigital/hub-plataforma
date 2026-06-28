@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import { Users, GitBranch, MessageCircle, Package, Truck, Building2, Heart } from 'lucide-react'
+import { Users, GitBranch, MessageCircle, Package, Truck, Building2, Heart, Network, Wallet } from 'lucide-react'
 
 export default async function ConfiguracoesPage() {
   const supabase = await createClient()
@@ -43,6 +43,36 @@ export default async function ConfiguracoesPage() {
             <div className="font-medium text-slate-900">Minha Empresa</div>
             <div className="mt-0.5 text-sm text-slate-500">
               Nome fantasia, logotipo e dados para documentos.
+            </div>
+          </div>
+        </Link>
+
+        <Link
+          href="/configuracoes/hubs"
+          className="flex items-start gap-4 rounded-lg border bg-white p-5 transition-colors hover:bg-slate-50"
+        >
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-100">
+            <Network className="h-5 w-5 text-emerald-600" />
+          </div>
+          <div>
+            <div className="font-medium text-slate-900">Hubs</div>
+            <div className="mt-0.5 text-sm text-slate-500">
+              Cadastre e controle o ciclo de vida dos Hubs da Indústria.
+            </div>
+          </div>
+        </Link>
+
+        <Link
+          href="/configuracoes/carteiras"
+          className="flex items-start gap-4 rounded-lg border bg-white p-5 transition-colors hover:bg-slate-50"
+        >
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-100">
+            <Wallet className="h-5 w-5 text-emerald-600" />
+          </div>
+          <div>
+            <div className="font-medium text-slate-900">Carteiras</div>
+            <div className="mt-0.5 text-sm text-slate-500">
+              Cadastre as Carteiras da Indústria (agrupamento de Clientes).
             </div>
           </div>
         </Link>

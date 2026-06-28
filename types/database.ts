@@ -1,7 +1,7 @@
 // Tipos que espelham o schema do Supabase (001_schema_completo.sql)
 // Para regenerar via CLI: npx supabase gen types typescript --project-id SEU-ID > types/database.ts
 
-export type UserRole = 'admin' | 'gestor' | 'vendedor' | 'atendimento' | 'financeiro' | 'suporte'
+export type UserRole = 'admin' | 'gestor' | 'vendedor' | 'atendimento' | 'financeiro' | 'suporte' | 'proprietario_hub' | 'assistente'
 export type LeadOrigem = 'whatsapp' | 'instagram_lead_ad' | 'facebook_lead_ad' | 'site' | 'indicacao' | 'evento' | 'manual'
 export type LeadStatus = 'novo' | 'em_atendimento' | 'qualificado' | 'descartado'
 export type TaskTipo = 'ligacao' | 'email' | 'reuniao' | 'whatsapp'
@@ -28,6 +28,32 @@ export type OrderStatus =
   | 'entregue'
   | 'concluido'
   | 'cancelado'
+
+export type HubStatus = 'ATIVO' | 'INATIVO' | 'SUSPENSO' | 'BLOQUEADO'
+
+export type Hub = {
+  id: string
+  organization_id: string
+  nome: string
+  descricao: string | null
+  status: HubStatus
+  ativo: boolean
+  criado_em: string
+  atualizado_em: string
+}
+
+export type Carteira = {
+  id: string
+  organization_id: string
+  nome: string
+  descricao: string | null
+  observacoes: string | null
+  ordem: number
+  ativo: boolean
+  hub_id: string | null
+  criado_em: string
+  atualizado_em: string
+}
 
 export type Organization = {
   id: string

@@ -7,15 +7,17 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { Button } from '@/components/ui/button'
 import { Menu } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { navegacao } from '@/lib/navegacao'
+import { navegacaoParaPerfil } from '@/lib/navegacao'
 
 type Props = {
   logoUrl?: string | null
+  cargo?: string | null
 }
 
-export function SidebarMobile({ logoUrl }: Props) {
+export function SidebarMobile({ logoUrl, cargo }: Props) {
   const [aberto, setAberto] = useState(false)
   const pathname = usePathname()
+  const itens = navegacaoParaPerfil(cargo)
 
   return (
     <Sheet open={aberto} onOpenChange={setAberto}>
@@ -38,7 +40,7 @@ export function SidebarMobile({ logoUrl }: Props) {
         </SheetHeader>
         <nav className="overflow-y-auto p-4">
           <ul className="space-y-1">
-            {navegacao.map((item) => {
+            {itens.map((item) => {
               const Icone = item.icone
               const ativo = pathname === item.href || pathname.startsWith(item.href + '/')
               return (

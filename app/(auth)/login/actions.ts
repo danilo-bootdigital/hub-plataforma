@@ -18,5 +18,18 @@ export async function entrar(formData: FormData) {
     redirect('/login?erro=erro-inesperado')
   }
 
+  // Roteia o usuário para sua área inicial conforme o perfil (Fatia 03).
+  // Papéis legados continuam indo para /painel (comportamento inalterado).
+  const { data: { user } } = await supabase.auth.getUser()
+  if (user) {
+    const { data: perfil } = await supabase
+      .from('profiles')
+      .select('cargo')
+      .eq('id', user.id)
+      .single()
+    if (perfil?.cargo === 'proprietario_hub') redirect('/hub')
+    if (perfil?.cargo === 'assistente') redirect('/assistente')
+  }
+
   redirect('/painel')
 }

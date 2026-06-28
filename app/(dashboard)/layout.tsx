@@ -47,7 +47,7 @@ export default async function DashboardLayout({
 
   return (
     <div className="flex h-screen bg-slate-50">
-      <Sidebar logoUrl={logoUrl} />
+      <Sidebar logoUrl={logoUrl} cargo={profile?.cargo} />
       <div className="flex flex-1 flex-col overflow-hidden min-w-0">
         <Header logoUrl={logoUrl} />
         <main className="flex-1 overflow-y-auto p-5 md:p-6">

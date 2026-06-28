@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
+    "dev:hubdev": "dotenv -e .env.local.hubdev -- next dev",
     "build": "next build",
+    "build:hubdev": "dotenv -e .env.local.hubdev -- next build",
     "start": "next start",
     "lint": "eslint .",
     "deploy:verify": "./scripts/verify-deploy-env.sh",
@@ -45,6 +47,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv-cli": "^11.0.0",
     "eslint": "^9",
     "eslint-config-next": "^16.2.6",
     "postcss": "^8",

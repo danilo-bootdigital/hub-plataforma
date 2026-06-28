@@ -3,14 +3,16 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
-import { navegacao } from '@/lib/navegacao'
+import { navegacaoParaPerfil } from '@/lib/navegacao'
 
 type Props = {
   logoUrl?: string | null
+  cargo?: string | null
 }
 
-export function Sidebar({ logoUrl }: Props) {
+export function Sidebar({ logoUrl, cargo }: Props) {
   const pathname = usePathname()
+  const itens = navegacaoParaPerfil(cargo)
 
   return (
     <aside className="hidden md:flex h-screen w-[248px] flex-col border-r bg-white shrink-0">
@@ -26,7 +28,7 @@ export function Sidebar({ logoUrl }: Props) {
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto p-3">
         <ul className="space-y-1">
-          {navegacao.map((item) => {
+          {itens.map((item) => {
             const Icone = item.icone
             const ativo = pathname === item.href || pathname.startsWith(item.href + '/')
             return (

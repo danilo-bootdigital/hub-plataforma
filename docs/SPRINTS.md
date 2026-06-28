@@ -1,0 +1,81 @@
+# SPRINTS — Hub Plataforma
+
+> Registro único de todas as Sprints do projeto. Sem duplicação.
+> Cada Sprint segue **exatamente** esta estrutura:
+> Identificador · Objetivo · Escopo · Dependências · Critérios de Aceite · Resultado · Checkpoint Relacionado · Changelog Relacionado.
+
+---
+
+## Sprint E1
+
+- **Identificador:** E1 (FASE 0 — Fundação)
+- **Objetivo:** conectar a Aplicação Web ao HUB DEV / Homologação e validar login, dashboard e dados de seed.
+- **Escopo:** `dotenv-cli`; scripts `dev:hubdev`/`build:hubdev`; chaves do HUB DEV em `.env.local.hubdev`; schema de compatibilidade + seeds mínimos no HUB DEV; execução via build + start.
+- **Dependências:** Fundação (Bootstrap, HUB DEV, Supabase).
+- **Critérios de Aceite:** schema de compatibilidade aplicado; seeds presentes; login funcional; `/painel` carregando; dashboard exibindo seed; sem `next dev`.
+- **Resultado:** ✔ Concluída/aprovada — login (`dev@bootdigital.com.br`) → `/painel` → dashboard → seed (7 etapas).
+- **Checkpoint Relacionado:** Checkpoint 002.
+- **Changelog Relacionado:** 2026-06-26 — Sprint E1.
+
+## Sprint Expand E1
+
+- **Identificador:** Expand E1 (FASE 1 — Expand)
+- **Objetivo:** introduzir, de forma exclusivamente aditiva, o núcleo de domínio Hub + Carteira, com vínculo opcional de Cliente à Carteira.
+- **Escopo:** criar `hubs` e `carteiras`; relacionamento `carteiras.hub_id → hubs`; `contacts.carteira_id` (nullable); índices. Sem migração de dados, sem alterar código/RLS, sem tocar em `leads`/`deals`/`companies`/`quotes`/`orders`/`tasks`.
+- **Dependências:** Sprint E1; DEC-001 (Lead fora de escopo — `leads` não recebe `carteira_id`).
+- **Critérios de Aceite:** AC1 tabelas criadas · AC2 `contacts.carteira_id` nullable · AC3 FKs `uuid`↔`uuid` · AC4 índices (SQL Editor) · AC5 tabelas proibidas intocadas · AC6 RLS inalterado (SQL Editor) · AC7 código inalterado · AC8 smoke test · AC9 verificação objetiva · (extra) sem migração de dados.
+- **Resultado:** ✔ Concluída 100% — aplicada via SQL Editor no HUB DEV (`pnkgwfgjhijksfmofiot`); aditivo puro; sem regressão.
+- **Checkpoint Relacionado:** Checkpoint 003.
+- **Changelog Relacionado:** 2026-06-26 — Sprint Expand E1.
+
+## Sprint G0
+
+- **Identificador:** G0 (Governança — transversal)
+- **Objetivo:** consolidar o conhecimento aprovado em documentação oficial versionada (`docs/`).
+- **Escopo:** criar os documentos oficiais; registrar DEC-001…DEC-010. Sem alterar código/banco/arquitetura/regra.
+- **Dependências:** Sprints E1 e Expand E1; decisões DEC-001…DEC-006.
+- **Critérios de Aceite:** documentos oficiais criados; reflexo exato do estado aprovado; nenhuma decisão nova/inventada.
+- **Resultado:** ✔ Concluída — documentação oficial criada em `docs/`.
+- **Checkpoint Relacionado:** Checkpoint 004.
+- **Changelog Relacionado:** — (Sprint de documentação; não consta no Changelog por política).
+
+## Sprint G1
+
+- **Identificador:** G1 (Governança — transversal)
+- **Objetivo:** elevar a documentação a um padrão definitivo de governança.
+- **Escopo:** Constituição + "Como evoluir" em `ARQUITETURA_OFICIAL.md`; regra de imutabilidade/sequência em `DECISIONS.md`; padronização de `SPRINTS.md` e `CHECKPOINTS.md`; separação Changelog × Decisões; estados no `ROADMAP.md`; criação de `CONTRIBUINDO.md`.
+- **Dependências:** Sprint G0.
+- **Critérios de Aceite:** ajustes aplicados; `CONTRIBUINDO.md` criado; documentação consistente entre si.
+- **Resultado:** ✔ Concluída — padrão de governança estabelecido.
+- **Checkpoint Relacionado:** Checkpoint 005.
+- **Changelog Relacionado:** — (Sprint de documentação; não consta no Changelog por política).
+
+## Sprint G2
+
+- **Identificador:** G2 (Governança — transversal)
+- **Objetivo:** consolidação documental eliminando duplicações e padronizando estrutura de Sprints/Checkpoints/Changelog/Roadmap.
+- **Escopo:** reconstrução de `SPRINTS.md`; campos completos em `CHECKPOINTS.md`; `CHANGELOG.md` apenas com implementações; `ROADMAP.md` visual vertical; reescrita de `CONTRIBUINDO.md`. Sem código/banco/arquitetura/regra.
+- **Dependências:** Sprints G0 e G1.
+- **Critérios de Aceite:** documentos reconstruídos sem duplicação; estrutura padronizada.
+- **Resultado:** ✔ Concluída — documentação padronizada.
+- **Checkpoint Relacionado:** Checkpoint 006.
+- **Changelog Relacionado:** — (Sprint de documentação; não consta no Changelog por política).
+
+## Sprint G3
+
+- **Identificador:** G3 (Governança — transversal)
+- **Objetivo:** adotar o padrão de manutenção "reconstrução integral, não patch incremental" e reescrever do zero todos os documentos de `docs/`, com auditoria de duplicações/inconsistências.
+- **Escopo:** reconstrução integral dos 8 documentos de `docs/`; auditoria (títulos/seções/campos/Sprints/DEC/Checkpoints duplicados, formatação, referências quebradas); registro do padrão de manutenção em `CONTRIBUINDO.md`. Sem código/banco/arquitetura/regra; sem alterar/criar decisões.
+- **Dependências:** Sprints G0, G1 e G2.
+- **Critérios de Aceite:** 8 documentos reconstruídos; auditoria executada; nenhuma duplicação estrutural remanescente; referências íntegras.
+- **Resultado:** ✔ Concluída — documentação limpa, única e definitiva.
+- **Checkpoint Relacionado:** Checkpoint 007.
+- **Changelog Relacionado:** — (Sprint de documentação; não consta no Changelog por política).
+
+---
+
+## Convenção de identificadores
+
+- **E#** — fundação/infraestrutura.
+- **Expand E# / M# / C#** — fases Expand / Migrate / Contract.
+- **G#** — governança (transversais; não constam no Changelog).
