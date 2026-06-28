@@ -7,7 +7,26 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Pencil, Check, X } from 'lucide-react'
 import { editarHub, alterarStatusHub, definirProprietarioHub } from '@/app/(dashboard)/configuracoes/hubs/actions'
-import type { Hub, HubStatus } from '@/types/database'
+import type { HubStatus } from '@/types/database'
+
+// Linha de Hub para a listagem (cadastro orientado ao representante).
+// `nome` guarda o "Nome do representante". `descricao` é mantido apenas para
+// preservar o dado existente na edição (campo legado, fora do formulário novo).
+export type HubRow = {
+  id: string
+  nome: string
+  nome_representante: string | null
+  email: string | null
+  telefone: string | null
+  cnpj: string | null
+  nome_fantasia: string | null
+  razao_social: string | null
+  observacoes: string | null
+  descricao: string | null
+  status: HubStatus
+  criado_em: string
+  atualizado_em: string
+}
 
 type ProprietarioOpcao = { id: string; nome: string; email: string | null; hub_id: string | null }
 
@@ -26,27 +45,26 @@ function formatarData(iso: string) {
   }
 }
 
-export function TabelaHubs({ hubs, proprietarios }: { hubs: Hub[]; proprietarios: ProprietarioOpcao[] }) {
+export function TabelaHubs({ hubs, proprietarios }: { hubs: HubRow[]; proprietarios: ProprietarioOpcao[] }) {
   const [isPending, startTransition] = useTransition()
   const [editandoId, setEditandoId] = useState<string | null>(null)
   const [editNome, setEditNome] = useState('')
-  const [editDescricao, setEditDescricao] = useState('')
   const router = useRouter()
 
-  function iniciarEdicao(h: Hub) {
+  function iniciarEdicao(h: HubRow) {
     setEditandoId(h.id)
     setEditNome(h.nome)
-    setEditDescricao(h.descricao ?? '')
   }
 
-  function salvarEdicao(id: string) {
+  function salvarEdicao(id: string, descricaoAtual: string | null) {
     if (!editNome.trim()) {
-      toast.error('Nome é obrigatório.')
+      toast.error('Nome do Hub é obrigatório.')
       return
     }
     startTransition(async () => {
       try {
-        await editarHub(id, editNome.trim(), editDescricao.trim() || null)
+        // Preserva a descrição existente (campo legado não exibido).
+        await editarHub(id, editNome.trim(), descricaoAtual)
         toast.success('Hub atualizado.')
         setEditandoId(null)
         router.refresh()
@@ -85,8 +103,11 @@ export function TabelaHubs({ hubs, proprietarios }: { hubs: Hub[]; proprietarios
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b bg-slate-50 text-left">
-            <th className="px-4 py-3 font-medium text-slate-600">Nome</th>
-            <th className="px-4 py-3 font-medium text-slate-600">Descrição</th>
+            <th className="px-4 py-3 font-medium text-slate-600">Nome do Hub</th>
+            <th className="px-4 py-3 font-medium text-slate-600">Nome do representante</th>
+            <th className="px-4 py-3 font-medium text-slate-600">E-mail</th>
+            <th className="px-4 py-3 font-medium text-slate-600">Telefone</th>
+            <th className="px-4 py-3 font-medium text-slate-600">CNPJ</th>
             <th className="px-4 py-3 font-medium text-slate-600">Status</th>
             <th className="px-4 py-3 font-medium text-slate-600">Proprietário</th>
             <th className="px-4 py-3 font-medium text-slate-600">Criado em</th>
@@ -97,7 +118,7 @@ export function TabelaHubs({ hubs, proprietarios }: { hubs: Hub[]; proprietarios
         <tbody>
           {hubs.length === 0 && (
             <tr>
-              <td colSpan={7} className="px-4 py-8 text-center text-slate-400">
+              <td colSpan={10} className="px-4 py-8 text-center text-slate-400">
                 Nenhum Hub cadastrado.
               </td>
             </tr>
@@ -113,13 +134,10 @@ export function TabelaHubs({ hubs, proprietarios }: { hubs: Hub[]; proprietarios
                     <span className="font-medium text-slate-800">{h.nome}</span>
                   )}
                 </td>
-                <td className="px-4 py-3 text-slate-600">
-                  {emEdicao ? (
-                    <Input value={editDescricao} onChange={(e) => setEditDescricao(e.target.value)} className="h-8" />
-                  ) : (
-                    h.descricao || '—'
-                  )}
-                </td>
+                <td className="px-4 py-3 text-slate-600">{h.nome_representante || '—'}</td>
+                <td className="px-4 py-3 text-slate-600">{h.email || '—'}</td>
+                <td className="px-4 py-3 text-slate-600">{h.telefone || '—'}</td>
+                <td className="px-4 py-3 text-slate-600">{h.cnpj || '—'}</td>
                 <td className="px-4 py-3">
                   <select
                     value={h.status}
@@ -156,7 +174,7 @@ export function TabelaHubs({ hubs, proprietarios }: { hubs: Hub[]; proprietarios
                 <td className="px-4 py-3">
                   {emEdicao ? (
                     <div className="flex gap-1">
-                      <Button size="icon" variant="ghost" disabled={isPending} onClick={() => salvarEdicao(h.id)}>
+                      <Button size="icon" variant="ghost" disabled={isPending} onClick={() => salvarEdicao(h.id, h.descricao)}>
                         <Check className="h-4 w-4 text-emerald-600" />
                       </Button>
                       <Button size="icon" variant="ghost" disabled={isPending} onClick={() => setEditandoId(null)}>

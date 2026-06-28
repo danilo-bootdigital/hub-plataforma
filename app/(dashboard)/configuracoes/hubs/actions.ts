@@ -44,24 +44,56 @@ async function registrarAuditoria(
   })
 }
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+// Cadastro de Hub. Hub e Representante são entidades distintas:
+//   - hubs.nome           = "Nome do Hub" (unidade operacional, perene)
+//   - hubs.nome_representante = responsável atual (substituível sem trocar o Hub)
+// Hub nasce automaticamente como ATIVO. email/telefone/cnpj já existem na tabela;
+// nome_representante/nome_fantasia/razao_social/observacoes vêm da migration aditiva.
 export async function criarHub(formData: FormData) {
   const { supabase, perfil } = await getAdminOuGestor()
 
   const nome = (formData.get('nome') as string)?.trim()
-  if (!nome) throw new Error('Nome é obrigatório.')
+  const nomeRepresentante = (formData.get('nome_representante') as string)?.trim()
+  const email = (formData.get('email') as string)?.trim()
+  const telefone = (formData.get('telefone') as string)?.trim()
+  const cnpj = (formData.get('cnpj') as string)?.trim()
+  const nomeFantasia = (formData.get('nome_fantasia') as string)?.trim() || null
+  const razaoSocial = (formData.get('razao_social') as string)?.trim() || null
+  const observacoes = (formData.get('observacoes') as string)?.trim() || null
 
-  const descricao = (formData.get('descricao') as string)?.trim() || null
-  const statusRaw = (formData.get('status') as string) || 'ATIVO'
-  const status = (STATUS_VALIDOS as readonly string[]).includes(statusRaw) ? statusRaw : 'ATIVO'
+  // Validações (obrigatórios + e-mail válido + limite de observações).
+  if (!nome) throw new Error('Nome do Hub é obrigatório.')
+  if (!nomeRepresentante) throw new Error('Nome do representante é obrigatório.')
+  if (!email) throw new Error('E-mail é obrigatório.')
+  if (!EMAIL_RE.test(email)) throw new Error('E-mail inválido.')
+  if (!telefone) throw new Error('Telefone é obrigatório.')
+  if (!cnpj) throw new Error('CNPJ da empresa é obrigatório.')
+  if (observacoes && observacoes.length > 3000) throw new Error('Observações: máximo de 3.000 caracteres.')
 
   const { data, error } = await supabase
     .from('hubs')
-    .insert({ organization_id: perfil.organization_id, nome, descricao, status })
+    .insert({
+      organization_id: perfil.organization_id,
+      nome,
+      nome_representante: nomeRepresentante,
+      email,
+      telefone,
+      cnpj,
+      nome_fantasia: nomeFantasia,
+      razao_social: razaoSocial,
+      observacoes,
+      status: 'ATIVO',
+    })
     .select('id')
     .single()
 
   if (error) throw new Error(`Erro ao criar Hub: ${error.message}`)
-  await registrarAuditoria(supabase, perfil, 'CRIACAO_HUB', data.id, null, { nome, descricao, status })
+  await registrarAuditoria(supabase, perfil, 'CRIACAO_HUB', data.id, null, {
+    nome, nome_representante: nomeRepresentante, email, telefone, cnpj,
+    nome_fantasia: nomeFantasia, razao_social: razaoSocial, status: 'ATIVO',
+  })
   revalidatePath('/configuracoes/hubs')
 }
 

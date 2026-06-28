@@ -3,9 +3,8 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
-import { TabelaHubs } from '@/components/hubs/tabela-hubs'
+import { TabelaHubs, type HubRow } from '@/components/hubs/tabela-hubs'
 import { ModalNovoHub } from '@/components/hubs/modal-novo-hub'
-import type { Hub } from '@/types/database'
 
 export default async function HubsPage() {
   const supabase = await createClient()
@@ -23,7 +22,7 @@ export default async function HubsPage() {
 
   const { data: hubs } = await supabase
     .from('hubs')
-    .select('id, organization_id, nome, descricao, status, ativo, criado_em, atualizado_em')
+    .select('id, nome, nome_representante, email, telefone, cnpj, nome_fantasia, razao_social, observacoes, descricao, status, criado_em, atualizado_em')
     .eq('organization_id', perfil.organization_id)
     .order('nome')
 
@@ -55,7 +54,7 @@ export default async function HubsPage() {
         <ModalNovoHub />
       </div>
       <TabelaHubs
-        hubs={(hubs ?? []) as Hub[]}
+        hubs={(hubs ?? []) as HubRow[]}
         proprietarios={(proprietarios ?? []) as { id: string; nome: string; email: string | null; hub_id: string | null }[]}
       />
     </div>
