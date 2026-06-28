@@ -9,17 +9,23 @@ import { Label } from '@/components/ui/label'
 import { toast } from 'sonner'
 import { Plus } from 'lucide-react'
 import { criarHub } from '@/app/(dashboard)/configuracoes/hubs/actions'
+import { CampoSenha } from '@/components/hubs/campo-senha'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export function ModalNovoHub() {
   const [aberto, setAberto] = useState(false)
   const [isPending, startTransition] = useTransition()
+  const [senha, setSenha] = useState('')
+  const [senha2, setSenha2] = useState('')
   const [obs, setObs] = useState('')
   const router = useRouter()
 
+  function reset() {
+    setSenha(''); setSenha2(''); setObs('')
+  }
+
   function handleSubmit(formData: FormData) {
-    // Validação amigável no cliente (a action revalida no servidor).
     const nome = (formData.get('nome') as string)?.trim()
     const nomeRepresentante = (formData.get('nome_representante') as string)?.trim()
     const email = (formData.get('email') as string)?.trim()
@@ -32,13 +38,15 @@ export function ModalNovoHub() {
     if (!EMAIL_RE.test(email)) { toast.error('Informe um e-mail válido.'); return }
     if (!telefone) { toast.error('Informe o telefone.'); return }
     if (!cnpj) { toast.error('Informe o CNPJ da empresa.'); return }
+    if (senha.length < 8) { toast.error('A senha deve ter no mínimo 8 caracteres.'); return }
+    if (senha !== senha2) { toast.error('As senhas não coincidem.'); return }
     if (obs.length > 3000) { toast.error('Observações: máximo de 3.000 caracteres.'); return }
 
     startTransition(async () => {
       try {
         await criarHub(formData)
-        toast.success('Hub criado com sucesso.')
-        setObs('')
+        toast.success('Hub e proprietário criados com sucesso.')
+        reset()
         setAberto(false)
         router.refresh()
       } catch (e: unknown) {
@@ -48,12 +56,12 @@ export function ModalNovoHub() {
   }
 
   return (
-    <Dialog open={aberto} onOpenChange={setAberto}>
+    <Dialog open={aberto} onOpenChange={(v) => { setAberto(v); if (!v) reset() }}>
       <DialogTrigger render={<Button size="sm" className="gap-1.5" />}>
         <Plus className="h-4 w-4" />
         Novo Hub
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md max-h-[85vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Novo Hub</DialogTitle>
         </DialogHeader>
@@ -77,6 +85,14 @@ export function ModalNovoHub() {
           <div>
             <Label htmlFor="cnpj">CNPJ da empresa *</Label>
             <Input id="cnpj" name="cnpj" required autoComplete="off" />
+          </div>
+          <div>
+            <Label htmlFor="senha">Senha *</Label>
+            <CampoSenha id="senha" name="senha" value={senha} onChange={setSenha} placeholder="Mínimo de 8 caracteres" />
+          </div>
+          <div>
+            <Label htmlFor="senha_confirmacao">Confirmar senha *</Label>
+            <CampoSenha id="senha_confirmacao" name="senha_confirmacao" value={senha2} onChange={setSenha2} placeholder="Repita a senha" />
           </div>
           <div>
             <Label htmlFor="nome_fantasia">Nome Fantasia</Label>

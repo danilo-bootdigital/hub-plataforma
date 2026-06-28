@@ -46,11 +46,14 @@ async function registrarAuditoria(
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-// Cadastro de Hub. Hub e Representante são entidades distintas:
-//   - hubs.nome           = "Nome do Hub" (unidade operacional, perene)
-//   - hubs.nome_representante = responsável atual (substituível sem trocar o Hub)
-// Hub nasce automaticamente como ATIVO. email/telefone/cnpj já existem na tabela;
-// nome_representante/nome_fantasia/razao_social/observacoes vêm da migration aditiva.
+// Cadastro de Hub + criação do usuário proprietário numa ÚNICA operação lógica.
+// Não existe Hub sem proprietário, nem proprietário sem Hub.
+//   - hubs.nome               = "Nome do Hub" (unidade operacional, perene)
+//   - hubs.nome_representante  = responsável atual (substituível sem trocar o Hub)
+//   - usuário proprietário     = Supabase Auth + Profile (cargo proprietario_hub),
+//                                vinculado via profiles.hub_id.
+// A SENHA é usada exclusivamente para criar o usuário no Auth: nunca é gravada em
+// tabela, auditoria ou log. Em qualquer falha, faz rollback dos registros criados.
 export async function criarHub(formData: FormData) {
   const { supabase, perfil } = await getAdminOuGestor()
 
@@ -62,38 +65,117 @@ export async function criarHub(formData: FormData) {
   const nomeFantasia = (formData.get('nome_fantasia') as string)?.trim() || null
   const razaoSocial = (formData.get('razao_social') as string)?.trim() || null
   const observacoes = (formData.get('observacoes') as string)?.trim() || null
+  const senha = (formData.get('senha') as string) || ''
+  const senhaConfirmacao = (formData.get('senha_confirmacao') as string) || ''
 
-  // Validações (obrigatórios + e-mail válido + limite de observações).
+  // Validações (obrigatórios + e-mail válido + senha + limite de observações).
   if (!nome) throw new Error('Nome do Hub é obrigatório.')
   if (!nomeRepresentante) throw new Error('Nome do representante é obrigatório.')
   if (!email) throw new Error('E-mail é obrigatório.')
   if (!EMAIL_RE.test(email)) throw new Error('E-mail inválido.')
   if (!telefone) throw new Error('Telefone é obrigatório.')
   if (!cnpj) throw new Error('CNPJ da empresa é obrigatório.')
+  if (senha.length < 8) throw new Error('A senha deve ter no mínimo 8 caracteres.')
+  if (senha !== senhaConfirmacao) throw new Error('As senhas não coincidem.')
   if (observacoes && observacoes.length > 3000) throw new Error('Observações: máximo de 3.000 caracteres.')
 
-  const { data, error } = await supabase
-    .from('hubs')
-    .insert({
-      organization_id: perfil.organization_id,
-      nome,
-      nome_representante: nomeRepresentante,
-      email,
-      telefone,
-      cnpj,
-      nome_fantasia: nomeFantasia,
-      razao_social: razaoSocial,
-      observacoes,
-      status: 'ATIVO',
-    })
-    .select('id')
-    .single()
+  const admin = createAdminClient()
+  let ownerId: string | null = null
+  let hubId: string | null = null
 
-  if (error) throw new Error(`Erro ao criar Hub: ${error.message}`)
-  await registrarAuditoria(supabase, perfil, 'CRIACAO_HUB', data.id, null, {
-    nome, nome_representante: nomeRepresentante, email, telefone, cnpj,
-    nome_fantasia: nomeFantasia, razao_social: razaoSocial, status: 'ATIVO',
-  })
+  try {
+    // 1) Usuário proprietário no Auth (e-mail confirmado). O trigger cria o
+    //    Profile (cargo proprietario_hub, organization_id correto, hub_id null).
+    const { data: criado, error: authErr } = await admin.auth.admin.createUser({
+      email,
+      password: senha,
+      email_confirm: true,
+      user_metadata: { nome: nomeRepresentante, cargo: 'proprietario_hub' },
+    })
+    if (authErr || !criado?.user) {
+      const msg = authErr?.message ?? ''
+      if (/already|registered|exist/i.test(msg)) throw new Error('E-mail já cadastrado.')
+      throw new Error('Não foi possível criar o usuário do proprietário.')
+    }
+    ownerId = criado.user.id
+
+    // 2) Hub.
+    const { data: hub, error: hubErr } = await supabase
+      .from('hubs')
+      .insert({
+        organization_id: perfil.organization_id,
+        nome,
+        nome_representante: nomeRepresentante,
+        email,
+        telefone,
+        cnpj,
+        nome_fantasia: nomeFantasia,
+        razao_social: razaoSocial,
+        observacoes,
+        status: 'ATIVO',
+      })
+      .select('id')
+      .single()
+    if (hubErr || !hub) throw new Error(`Erro ao criar Hub: ${hubErr?.message ?? 'desconhecido'}`)
+    hubId = hub.id
+
+    // 3) Vincula o proprietário ao Hub (hub_id + telefone no Profile) e desfaz
+    //    qualquer auto-vínculo indevido (trigger) de outro profile a este Hub.
+    const { error: linkErr } = await admin
+      .from('profiles')
+      .update({ hub_id: hubId, telefone, atualizado_em: new Date().toISOString() })
+      .eq('id', ownerId)
+    if (linkErr) throw new Error('Erro ao vincular o proprietário ao Hub.')
+
+    await admin
+      .from('profiles')
+      .update({ hub_id: null, atualizado_em: new Date().toISOString() })
+      .eq('hub_id', hubId)
+      .neq('id', ownerId)
+
+    // 4) Auditoria — SEM senha.
+    await registrarAuditoria(supabase, perfil, 'CRIACAO_HUB', hub.id, null, {
+      nome, nome_representante: nomeRepresentante, email, telefone, cnpj,
+      nome_fantasia: nomeFantasia, razao_social: razaoSocial, status: 'ATIVO',
+    })
+    await registrarAuditoria(supabase, perfil, 'VINCULO_PROPRIETARIO_HUB', hub.id, null, { proprietario_id: ownerId })
+
+    revalidatePath('/configuracoes/hubs')
+  } catch (e) {
+    // Rollback (compensação): limpa vínculos, remove o Hub e o usuário criados.
+    if (hubId) {
+      await admin.from('profiles').update({ hub_id: null }).eq('hub_id', hubId)
+      await supabase.from('hubs').delete().eq('id', hubId)
+    }
+    if (ownerId) {
+      await admin.auth.admin.deleteUser(ownerId) // remove também o Profile (cascade)
+    }
+    throw e instanceof Error ? e : new Error('Falha ao criar Hub e proprietário.')
+  }
+}
+
+// Alteração de senha do proprietário do Hub (ação administrativa).
+// Atualiza apenas no Supabase Auth; senha nunca vai para banco/auditoria/log.
+export async function alterarSenhaProprietario(hubId: string, novaSenha: string) {
+  const { supabase, perfil } = await getAdminOuGestor()
+
+  if (!novaSenha || novaSenha.length < 8) throw new Error('A senha deve ter no mínimo 8 caracteres.')
+
+  const { data: owner } = await supabase
+    .from('profiles')
+    .select('id')
+    .eq('organization_id', perfil.organization_id)
+    .eq('cargo', 'proprietario_hub')
+    .eq('hub_id', hubId)
+    .maybeSingle()
+  if (!owner) throw new Error('Este Hub não possui proprietário vinculado.')
+
+  const admin = createAdminClient()
+  const { error } = await admin.auth.admin.updateUserById(owner.id, { password: novaSenha })
+  if (error) throw new Error('Não foi possível alterar a senha.')
+
+  // Auditoria sem expor a senha.
+  await registrarAuditoria(supabase, perfil, 'ALTERACAO_SENHA_PROPRIETARIO', hubId, null, { proprietario_id: owner.id })
   revalidatePath('/configuracoes/hubs')
 }
 

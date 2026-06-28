@@ -1950,8 +1950,8 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/assistente/orcamentos/actions.ts": {
-    "mtime": 1782668460.7057998,
-    "ast_hash": "84c7d9e96fcf1e2a4d644c117abc2fea",
+    "mtime": 1782668928.2403116,
+    "ast_hash": "8e08cba4d7c1b9c2cac793a2eb32cde3",
     "semantic_hash": ""
   },
   "app/(dashboard)/assistente/orcamentos/page.tsx": {
@@ -2020,8 +2020,8 @@
     "semantic_hash": ""
   },
   "components/prepedidos/tabela-prepedidos.tsx": {
-    "mtime": 1782661282.077373,
-    "ast_hash": "94a56fe19b791e4399d0bdb0c23745b7",
+    "mtime": 1782668965.1591828,
+    "ast_hash": "9c1e2100fde821814cfa08d1666c3b23",
     "semantic_hash": ""
   },
   "hubdev/bootstrap/migrate_orders_tipo.sql": {
@@ -2032,6 +2032,11 @@
   "hubdev/bootstrap/migrate_orders_tipo_rollback.sql": {
     "mtime": 1782665564.6428833,
     "ast_hash": "2a14ac160e08988f0a2850d3a5d03ded",
+    "semantic_hash": ""
+  },
+  "components/prepedidos/botao-gerar-pedido.tsx": {
+    "mtime": 1782668937.1524777,
+    "ast_hash": "07a771244216c5e3d04f42df1dff4304",
     "semantic_hash": ""
   }
 }

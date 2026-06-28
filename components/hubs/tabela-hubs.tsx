@@ -5,8 +5,9 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Pencil, Check, X } from 'lucide-react'
+import { Pencil, Check, X, KeyRound } from 'lucide-react'
 import { editarHub, alterarStatusHub, definirProprietarioHub } from '@/app/(dashboard)/configuracoes/hubs/actions'
+import { ModalAlterarSenha } from '@/components/hubs/modal-alterar-senha'
 import type { HubStatus } from '@/types/database'
 
 // Linha de Hub para a listagem (cadastro orientado ao representante).
@@ -49,6 +50,7 @@ export function TabelaHubs({ hubs, proprietarios }: { hubs: HubRow[]; proprietar
   const [isPending, startTransition] = useTransition()
   const [editandoId, setEditandoId] = useState<string | null>(null)
   const [editNome, setEditNome] = useState('')
+  const [senhaHubId, setSenhaHubId] = useState<string | null>(null)
   const router = useRouter()
 
   function iniciarEdicao(h: HubRow) {
@@ -99,6 +101,7 @@ export function TabelaHubs({ hubs, proprietarios }: { hubs: HubRow[]; proprietar
   }
 
   return (
+    <>
     <div className="overflow-x-auto rounded-lg border bg-white">
       <table className="w-full text-sm">
         <thead>
@@ -182,9 +185,14 @@ export function TabelaHubs({ hubs, proprietarios }: { hubs: HubRow[]; proprietar
                       </Button>
                     </div>
                   ) : (
-                    <Button size="icon" variant="ghost" onClick={() => iniciarEdicao(h)}>
-                      <Pencil className="h-4 w-4 text-slate-500" />
-                    </Button>
+                    <div className="flex gap-1">
+                      <Button size="icon" variant="ghost" title="Editar nome do Hub" onClick={() => iniciarEdicao(h)}>
+                        <Pencil className="h-4 w-4 text-slate-500" />
+                      </Button>
+                      <Button size="icon" variant="ghost" title="Alterar senha do proprietário" onClick={() => setSenhaHubId(h.id)}>
+                        <KeyRound className="h-4 w-4 text-slate-500" />
+                      </Button>
+                    </div>
                   )}
                 </td>
               </tr>
@@ -193,5 +201,13 @@ export function TabelaHubs({ hubs, proprietarios }: { hubs: HubRow[]; proprietar
         </tbody>
       </table>
     </div>
+    {senhaHubId && (
+      <ModalAlterarSenha
+        hubId={senhaHubId}
+        aberto={true}
+        onOpenChange={(v) => { if (!v) setSenhaHubId(null) }}
+      />
+    )}
+    </>
   )
 }

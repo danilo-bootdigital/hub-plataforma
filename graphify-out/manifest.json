@@ -1725,9 +1725,9 @@
     "semantic_hash": "c82621755bb339573967c3d90dec8d79"
   },
   "vercel.json": {
-    "mtime": 1780590468.0,
-    "ast_hash": "588908713f2dc7351ef91078cccc8b9f",
-    "semantic_hash": "588908713f2dc7351ef91078cccc8b9f"
+    "mtime": 1782671845.9009845,
+    "ast_hash": "e1c856d29c0831667384eec3a08579bf",
+    "semantic_hash": ""
   },
   "lib/pdf/download-pdf.ts": {
     "mtime": 1781562324.0,
@@ -1830,23 +1830,23 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/hubs/actions.ts": {
-    "mtime": 1782646328.953249,
-    "ast_hash": "e3403296011a7eebbeae56993bc85a46",
+    "mtime": 1782681835.3826396,
+    "ast_hash": "e38f22245c6c34e39787694b943e38da",
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/hubs/page.tsx": {
-    "mtime": 1782646342.2846115,
-    "ast_hash": "0cf4558008d009ec01d9054bddb8a76c",
+    "mtime": 1782678891.978198,
+    "ast_hash": "41c2c5affddbdbfabfce27b4b1f158c6",
     "semantic_hash": ""
   },
   "components/hubs/modal-novo-hub.tsx": {
-    "mtime": 1782533586.917111,
-    "ast_hash": "5e1a5185f6e4a03139872b22ab6e9e96",
+    "mtime": 1782681520.0844505,
+    "ast_hash": "d18865d6e41be74537b7cefd6bb3e3af",
     "semantic_hash": ""
   },
   "components/hubs/tabela-hubs.tsx": {
-    "mtime": 1782646397.2369812,
-    "ast_hash": "d5d884863eea3afbaa9e33c49a5646e0",
+    "mtime": 1782681615.0690496,
+    "ast_hash": "5a476185f28cbe843ab521679dcc17b0",
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/carteiras/actions.ts": {
@@ -2037,6 +2037,26 @@
   "components/prepedidos/botao-gerar-pedido.tsx": {
     "mtime": 1782668937.1524777,
     "ast_hash": "07a771244216c5e3d04f42df1dff4304",
+    "semantic_hash": ""
+  },
+  "components/hubs/campo-senha.tsx": {
+    "mtime": 1782681498.279939,
+    "ast_hash": "86e47d5d20334f6ff5a25b1ea7e6a64e",
+    "semantic_hash": ""
+  },
+  "components/hubs/modal-alterar-senha.tsx": {
+    "mtime": 1782681572.5419555,
+    "ast_hash": "b9fa17e2d3fac2148f90935715b17db5",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/migrate_hubs_representante.sql": {
+    "mtime": 1782678830.4449592,
+    "ast_hash": "bf59d281dd9f37b994a628dbd89ee8ea",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/migrate_hubs_representante_rollback.sql": {
+    "mtime": 1782678835.4798615,
+    "ast_hash": "47f379774bdd1c404301c53ba1acf24f",
     "semantic_hash": ""
   }
 }
