@@ -339,6 +339,46 @@ export type Product = {
   atualizado_em: string
 }
 
+// Catálogo oficial (DEC-012): Indústria → Portfólio → Categoria → Subcategoria → Produto
+export type Portfolio = {
+  id: string
+  organization_id: string
+  nome: string
+  descricao: string | null
+  ativo: boolean
+  criado_em: string
+  atualizado_em: string
+}
+
+export type Categoria = {
+  id: string
+  organization_id: string
+  portfolio_id: string
+  nome: string
+  ativo: boolean
+  criado_em: string
+}
+
+export type Subcategoria = {
+  id: string
+  organization_id: string
+  categoria_id: string
+  nome: string
+  ativo: boolean
+  criado_em: string
+}
+
+// Autorização operacional Hub ↔ Portfólio (regra separada — DEC-012)
+export type HubPortfolio = {
+  id: string
+  organization_id: string
+  hub_id: string
+  portfolio_id: string
+  status: string // 'ativo' | 'revogado'
+  criado_em: string
+  atualizado_em: string
+}
+
 export type Quote = {
   id: string
   organization_id: string

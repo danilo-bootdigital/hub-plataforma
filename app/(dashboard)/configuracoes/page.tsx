@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import { Users, GitBranch, MessageCircle, Package, Truck, Building2, Heart, Network, Wallet } from 'lucide-react'
+import { Users, GitBranch, MessageCircle, Package, Truck, Building2, Heart, Network, Wallet, Layers } from 'lucide-react'
 
 export default async function ConfiguracoesPage() {
   const supabase = await createClient()
@@ -105,6 +105,21 @@ export default async function ConfiguracoesPage() {
             <div className="font-medium text-slate-900">Distribuição de Leads</div>
             <div className="mt-0.5 text-sm text-slate-500">
               Configure o modo de atribuição automática de leads.
+            </div>
+          </div>
+        </Link>
+
+        <Link
+          href="/configuracoes/portfolios"
+          className="flex items-start gap-4 rounded-lg border bg-white p-5 transition-colors hover:bg-slate-50"
+        >
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-100">
+            <Layers className="h-5 w-5 text-emerald-600" />
+          </div>
+          <div>
+            <div className="font-medium text-slate-900">Portfólios</div>
+            <div className="mt-0.5 text-sm text-slate-500">
+              Agrupamentos comerciais de produtos da Indústria (catálogo).
             </div>
           </div>
         </Link>

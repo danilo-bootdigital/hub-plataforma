@@ -1,7 +1,7 @@
 import {
   LayoutDashboard, Users, TrendingUp, UserCheck,
   MessageCircle, CheckSquare, FileText, Inbox,
-  BarChart3, Settings, Package, Building2, Briefcase, Network, Wallet, Contact, ClipboardList, PackageCheck, type LucideIcon
+  BarChart3, Settings, Package, Building2, Briefcase, Network, Wallet, Contact, ClipboardList, PackageCheck, Layers, type LucideIcon
 } from 'lucide-react'
 import type { UserRole } from '@/types/database'
 
@@ -33,6 +33,8 @@ export const navegacao: ItemNavegacao[] = [
   { label: 'Hubs', href: '/configuracoes/hubs', icone: Network, perfis: ['admin', 'gestor'] },
   // Carteiras — gestão pela Indústria (Fatia 05)
   { label: 'Carteiras', href: '/configuracoes/carteiras', icone: Wallet, perfis: ['admin', 'gestor'] },
+  // Portfólios — catálogo da Indústria (DEC-012 / Expand E4)
+  { label: 'Portfólios', href: '/configuracoes/portfolios', icone: Layers, perfis: ['admin', 'gestor'] },
   // Áreas iniciais dos novos perfis (placeholder — Fatia 03)
   { label: 'Área do Hub', href: '/hub', icone: Building2, perfis: ['proprietario_hub'] },
   { label: 'Assistentes', href: '/hub/assistentes', icone: Users, perfis: ['proprietario_hub'] },
