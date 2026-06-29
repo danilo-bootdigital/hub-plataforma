@@ -116,3 +116,149 @@ export async function excluirPortfolio(portfolioId: string) {
   if (error) throw new Error(`Erro ao excluir portfólio: ${error.message}`)
   revalidatePath('/configuracoes/portfolios')
 }
+
+// ── Categorias (dentro de um Portfólio) ──────────────────────────────────
+
+export async function criarCategoria(portfolioId: string, nome: string) {
+  const { supabase, perfil } = await getAdminOuGestor()
+  if (!nome?.trim()) throw new Error('Nome da categoria é obrigatório.')
+
+  // Garantir que o Portfólio pertence à Indústria do usuário.
+  const { data: pf } = await supabase
+    .from('portfolios')
+    .select('id')
+    .eq('id', portfolioId)
+    .eq('organization_id', perfil.organization_id)
+    .single()
+  if (!pf) throw new Error('Portfólio não encontrado.')
+
+  const { error } = await supabase.from('categorias').insert({
+    organization_id: perfil.organization_id,
+    portfolio_id: portfolioId,
+    nome: nome.trim(),
+  })
+  if (error) throw new Error(`Erro ao criar categoria: ${error.message}`)
+  revalidatePath(`/configuracoes/portfolios/${portfolioId}`)
+}
+
+export async function editarCategoria(categoriaId: string, portfolioId: string, nome: string) {
+  const { supabase, perfil } = await getAdminOuGestor()
+  if (!nome?.trim()) throw new Error('Nome da categoria é obrigatório.')
+
+  const { error } = await supabase
+    .from('categorias')
+    .update({ nome: nome.trim() })
+    .eq('id', categoriaId)
+    .eq('organization_id', perfil.organization_id)
+  if (error) throw new Error(`Erro ao editar categoria: ${error.message}`)
+  revalidatePath(`/configuracoes/portfolios/${portfolioId}`)
+}
+
+export async function alternarAtivoCategoria(categoriaId: string, portfolioId: string, ativo: boolean) {
+  const { supabase, perfil } = await getAdminOuGestor()
+  const { error } = await supabase
+    .from('categorias')
+    .update({ ativo })
+    .eq('id', categoriaId)
+    .eq('organization_id', perfil.organization_id)
+  if (error) throw new Error(`Erro ao alterar status: ${error.message}`)
+  revalidatePath(`/configuracoes/portfolios/${portfolioId}`)
+}
+
+export async function excluirCategoria(categoriaId: string, portfolioId: string) {
+  const { supabase, perfil } = await getAdminOuGestor()
+
+  const { count: subs } = await supabase
+    .from('subcategorias')
+    .select('id', { count: 'exact', head: true })
+    .eq('categoria_id', categoriaId)
+    .eq('organization_id', perfil.organization_id)
+  if (subs && subs > 0) {
+    throw new Error(`Não é possível excluir: ${subs} subcategoria(s) vinculada(s).`)
+  }
+
+  const { count: produtos } = await supabase
+    .from('products')
+    .select('id', { count: 'exact', head: true })
+    .eq('categoria_id', categoriaId)
+    .eq('organization_id', perfil.organization_id)
+  if (produtos && produtos > 0) {
+    throw new Error(`Não é possível excluir: ${produtos} produto(s) vinculado(s).`)
+  }
+
+  const { error } = await supabase
+    .from('categorias')
+    .delete()
+    .eq('id', categoriaId)
+    .eq('organization_id', perfil.organization_id)
+  if (error) throw new Error(`Erro ao excluir categoria: ${error.message}`)
+  revalidatePath(`/configuracoes/portfolios/${portfolioId}`)
+}
+
+// ── Subcategorias (dentro de uma Categoria) ──────────────────────────────
+
+export async function criarSubcategoria(categoriaId: string, portfolioId: string, nome: string) {
+  const { supabase, perfil } = await getAdminOuGestor()
+  if (!nome?.trim()) throw new Error('Nome da subcategoria é obrigatório.')
+
+  const { data: cat } = await supabase
+    .from('categorias')
+    .select('id')
+    .eq('id', categoriaId)
+    .eq('organization_id', perfil.organization_id)
+    .single()
+  if (!cat) throw new Error('Categoria não encontrada.')
+
+  const { error } = await supabase.from('subcategorias').insert({
+    organization_id: perfil.organization_id,
+    categoria_id: categoriaId,
+    nome: nome.trim(),
+  })
+  if (error) throw new Error(`Erro ao criar subcategoria: ${error.message}`)
+  revalidatePath(`/configuracoes/portfolios/${portfolioId}`)
+}
+
+export async function editarSubcategoria(subcategoriaId: string, portfolioId: string, nome: string) {
+  const { supabase, perfil } = await getAdminOuGestor()
+  if (!nome?.trim()) throw new Error('Nome da subcategoria é obrigatório.')
+
+  const { error } = await supabase
+    .from('subcategorias')
+    .update({ nome: nome.trim() })
+    .eq('id', subcategoriaId)
+    .eq('organization_id', perfil.organization_id)
+  if (error) throw new Error(`Erro ao editar subcategoria: ${error.message}`)
+  revalidatePath(`/configuracoes/portfolios/${portfolioId}`)
+}
+
+export async function alternarAtivoSubcategoria(subcategoriaId: string, portfolioId: string, ativo: boolean) {
+  const { supabase, perfil } = await getAdminOuGestor()
+  const { error } = await supabase
+    .from('subcategorias')
+    .update({ ativo })
+    .eq('id', subcategoriaId)
+    .eq('organization_id', perfil.organization_id)
+  if (error) throw new Error(`Erro ao alterar status: ${error.message}`)
+  revalidatePath(`/configuracoes/portfolios/${portfolioId}`)
+}
+
+export async function excluirSubcategoria(subcategoriaId: string, portfolioId: string) {
+  const { supabase, perfil } = await getAdminOuGestor()
+
+  const { count: produtos } = await supabase
+    .from('products')
+    .select('id', { count: 'exact', head: true })
+    .eq('subcategoria_id', subcategoriaId)
+    .eq('organization_id', perfil.organization_id)
+  if (produtos && produtos > 0) {
+    throw new Error(`Não é possível excluir: ${produtos} produto(s) vinculado(s).`)
+  }
+
+  const { error } = await supabase
+    .from('subcategorias')
+    .delete()
+    .eq('id', subcategoriaId)
+    .eq('organization_id', perfil.organization_id)
+  if (error) throw new Error(`Erro ao excluir subcategoria: ${error.message}`)
+  revalidatePath(`/configuracoes/portfolios/${portfolioId}`)
+}

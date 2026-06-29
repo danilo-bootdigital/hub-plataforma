@@ -2,12 +2,13 @@
 
 import { useState, useMemo, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { toast } from 'sonner'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { ModalNovoPortfolio } from './modal-novo-portfolio'
 import { alternarAtivoPortfolio, excluirPortfolio } from '@/app/(dashboard)/configuracoes/portfolios/actions'
-import { Trash2, Search } from 'lucide-react'
+import { Trash2, Search, FolderTree } from 'lucide-react'
 import type { Portfolio } from '@/types/database'
 
 type Props = {
@@ -81,7 +82,11 @@ export function TabelaPortfolios({ portfolios }: Props) {
             )}
             {filtrados.map((p) => (
               <tr key={p.id} className="border-b last:border-0">
-                <td className="px-4 py-3 font-medium text-slate-900">{p.nome}</td>
+                <td className="px-4 py-3 font-medium text-slate-900">
+                  <Link href={`/configuracoes/portfolios/${p.id}`} className="hover:text-emerald-600 hover:underline">
+                    {p.nome}
+                  </Link>
+                </td>
                 <td className="px-4 py-3 text-slate-600">{p.descricao ?? '—'}</td>
                 <td className="px-4 py-3">
                   <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${p.ativo ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-500'}`}>
@@ -90,6 +95,11 @@ export function TabelaPortfolios({ portfolios }: Props) {
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-1">
+                    <Link href={`/configuracoes/portfolios/${p.id}`}>
+                      <Button variant="ghost" size="sm" className="gap-1 text-xs">
+                        <FolderTree className="h-3.5 w-3.5" /> Categorias
+                      </Button>
+                    </Link>
                     <ModalNovoPortfolio portfolio={p} />
                     <Button
                       variant="ghost"
