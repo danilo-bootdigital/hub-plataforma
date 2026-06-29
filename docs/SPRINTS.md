@@ -83,6 +83,21 @@
 - **Checkpoint Relacionado:** Checkpoint 008.
 - **Changelog Relacionado:** 2026-06-29 — Sprint Expand E4.
 
+## Sprint Expand E4-app
+
+- **Identificador:** Expand E4-app (FASE 1 — Expand · Aplicação Web)
+- **Objetivo:** materializar na Aplicação Web o catálogo da DEC-012, em 3 fatias aditivas, restritas à Indústria (admin/gestor).
+- **Escopo:**
+  - **Fatia A** — CRUD de Portfólio (`configuracoes/portfolios`).
+  - **Fatia B** — Categoria/Subcategoria por Portfólio (`configuracoes/portfolios/[id]`).
+  - **Fatia C** — Autorização Hub↔Portfólio em duas visões (`portfolios/[id]` → Hubs; `hubs/[id]` → Portfólios), usando `hub_portfolios` (revogar preserva status).
+  - Tipos `Portfolio/Categoria/Subcategoria/HubPortfolio`; itens de menu e card em Configurações. Sem RLS por Hub (fica para Migrate); fluxo legado de produtos/fornecedores intocado.
+- **Dependências:** Sprint Expand E4 (banco); DEC-012.
+- **Critérios de Aceite:** AC1 build OK (build:hubdev) · AC2 rotas geradas · AC3 gating admin/gestor (307 sem sessão) · AC4 CRUD validado no HUB DEV · AC5 aditivo (sem tocar legado) · AC6 deploy Vercel alinhado.
+- **Resultado:** ✔ Concluída — Fatias A–C implementadas, build OK, commits `9efefc5`/`7cbd9ea`/`203d991`, deploy em `hub-plataforma-dev.vercel.app`. (Validação visual da Fatia C pelo usuário pendente.)
+- **Checkpoint Relacionado:** Checkpoint 009.
+- **Changelog Relacionado:** 2026-06-29 — Catálogo/Portfólio (Aplicação Web).
+
 ---
 
 ## Convenção de identificadores

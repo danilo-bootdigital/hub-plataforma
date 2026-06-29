@@ -6,6 +6,20 @@
 
 ---
 
+## 2026-06-29 — Catálogo / Portfólio na Aplicação Web (Sprint Expand E4-app — DEC-012)
+
+- **Objetivo:** materializar o catálogo da DEC-012 na Aplicação Web (telas restritas à Indústria), em 3 fatias aditivas.
+- **Alterações:** código Next.js; build via `build:hubdev`; deploy de produção no Vercel.
+- **Estruturas criadas:**
+  - tipos `Portfolio`, `Categoria`, `Subcategoria`, `HubPortfolio` (`types/database.ts`)
+  - rota `configuracoes/portfolios` (lista/CRUD) + `components/portfolios/{tabela,modal}-…`
+  - rota `configuracoes/portfolios/[id]` (Categoria/Subcategoria + Hubs autorizados) + `gerenciar-categorias`, `autorizacao-portfolios`
+  - rota `configuracoes/hubs/[id]` (Portfólios autorizados do Hub)
+  - server actions de Portfólio, Categoria, Subcategoria e Autorização Hub↔Portfólio
+  - item de menu e card em Configurações
+- **Estruturas preservadas:** fluxo legado de produtos/fornecedores intocado.
+- **Observações:** gating admin/gestor; sem RLS por Hub (Migrate). Commits `9efefc5`/`7cbd9ea`/`203d991`. Deploy alinhado ao local em `https://hub-plataforma-dev.vercel.app`.
+
 ## 2026-06-29 — Sprint Expand E4 (Catálogo / Portfólio — DEC-012)
 
 - **Objetivo:** materializar, de forma aditiva, o catálogo oficial da DEC-012 (Portfólio → Categoria → Subcategoria → Produto) e a autorização operacional Hub↔Portfólio no HUB DEV (`pnkgwfgjhijksfmofiot`).

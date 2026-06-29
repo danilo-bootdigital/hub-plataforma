@@ -92,3 +92,14 @@
 - **Banco:** criadas `portfolios`, `categorias`, `subcategorias`, `hub_portfolios` + colunas `products.portfolio_id/categoria_id/subcategoria_id` + índices (aditivo puro); legado (`suppliers*`, `freight_carriers`, `health_hubs`) intocado
 - **Situação:** ✔ Concluído
 - **Observações:** aplicado via SQL Editor após barrar uma tentativa em projeto errado (pré-check `tem_hubs=0`); reaplicado no projeto correto (`tem_hubs=1`). Verificação: 4 tabelas + 3 colunas confirmadas. RLS e backfill ficam para Migrate (DEC-012). Smoke descartável OK (cria/limpa `ZZ_SMOKE_*`: Portfólio→Categoria→Subcategoria + autorização Hub↔Portfólio; sem erro de FK).
+
+## Checkpoint 009 — Sprint Expand E4-app (Catálogo/Portfólio na Aplicação Web)
+
+- **Data:** 2026-06-29
+- **Git Commit:** `9efefc5` (Fatia A) · `7cbd9ea` (Fatia B) · `203d991` (Fatia C) — pushados em `origin/main`
+- **Git Branch:** main
+- **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV / Homologação)
+- **Ambiente:** Aplicação Web (local build+start e Vercel `hub-plataforma-dev`)
+- **Banco:** inalterado (consome as estruturas da Expand E4)
+- **Situação:** ✔ Concluído
+- **Observações:** Fatias A–C (CRUD Portfólio, Categoria/Subcategoria, autorização Hub↔Portfólio nas duas visões). Build OK; deploy de produção alinhado ao local em `https://hub-plataforma-dev.vercel.app`. Gating admin/gestor. Sem RLS por Hub (Migrate). Validação visual da Fatia C pendente.
