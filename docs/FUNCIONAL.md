@@ -1,7 +1,7 @@
 # FUNCIONAL — Hub Plataforma
 
 > Modelo **funcional** (de negócio) da Plataforma. Não trata de banco, código, telas, APIs ou arquitetura técnica.
-> Subordinado à Constituição ([`ARQUITETURA_OFICIAL.md`](ARQUITETURA_OFICIAL.md)); usa as entidades de [`DOMINIO.md`](DOMINIO.md) e as decisões de [`DECISIONS.md`](DECISIONS.md) (em especial **DEC-011**).
+> Subordinado à Constituição ([`ARQUITETURA_OFICIAL.md`](ARQUITETURA_OFICIAL.md)); usa as entidades de [`DOMINIO.md`](DOMINIO.md) e as decisões de [`DECISIONS.md`](DECISIONS.md) (em especial **DEC-011** e **DEC-012**).
 > As **definições de negócio** das entidades vivem em `DOMINIO.md` (fonte única); aqui modela-se **acesso, ciclo de vida operacional, estados, permissões e eventos**.
 
 ---
@@ -50,9 +50,11 @@
 | Pré-pedido **(H)** | Assistente (**converte**) | Assistente; Proprietário (qualquer) | Administrador | Hub, Gestor, Financeiro | conversão pelo Assistente; acompanha até o Pedido |
 | Pedido **(H)** | Hub | Gestor (comercial), Financeiro (financeiro) | Administrador (cancelar) | Hub, Gestor, Financeiro | — |
 | Pipeline **(I)** | Indústria/Gestor | Gestor | Administrador | Indústria, Hubs | etapas |
-| Produto **(I)** | **Indústria** | Indústria | Administrador | Indústria, Hubs | pertence à Indústria |
-| Categoria / Subcategoria **(I)** | **Indústria** | Indústria | Administrador | Indústria, Hubs | pertence à Indústria |
-| Fornecedor / Transportadora **(I)** | Indústria | Indústria | Administrador | Indústria, logística, Financeiro | apoio |
+| Portfólio **(I)** | **Indústria** | Indústria | Administrador | Indústria; Hub (autorizados) | agrupamento comercial (DEC-012) |
+| Autorização Hub↔Portfólio **(I)** | **Indústria** (concede) | Indústria (revoga) | Indústria (revoga) | Indústria; Hub (efeito) | regra operacional separada; por Portfólio; Assistente herda (DEC-012) |
+| Produto **(I)** | **Indústria** | Indústria | Administrador | Indústria; Hub (Portfólios autorizados) | pertence à Indústria e a um Portfólio (DEC-012); Hub só utiliza |
+| Categoria / Subcategoria **(I)** | **Indústria** | Indústria | Administrador | Indústria, Hubs | classificação dentro do Portfólio (DEC-012) |
+| Fornecedor / Transportadora | Indústria | Indústria | Administrador | Indústria, logística, Financeiro | **legado/compat até Contract** (DEC-012) |
 
 ---
 
@@ -117,8 +119,9 @@ Atendimento Comercial → Orçamento → Pré-pedido → Pedido → Financeiro �
 ### 4.7 Pedido
 - **Estados:** Pendente → Em produção → Pronto → Enviado → Entregue → **Concluído** | Cancelado.
 
-### 4.8 Cadastros (Cliente / Produto / Categoria / Subcategoria / Pipeline / Usuário)
+### 4.8 Cadastros (Cliente / Portfólio / Produto / Categoria / Subcategoria / Pipeline / Usuário)
 - **Estados:** Ativo ↔ Inativo (preferir inativar a excluir).
+- **Catálogo (DEC-012):** árvore **Indústria → Portfólio → Categoria → Subcategoria → Produto**. Portfólio é **agrupamento comercial**; a **autorização Hub↔Portfólio** é regra operacional separada (Indústria concede/revoga; auditável; por Portfólio; Assistente herda do Hub). O **Hub não cria/edita/importa/exclui** Produtos — apenas visualiza/utiliza os de Portfólios autorizados. **Fornecedor** é legado/compat até Contract.
 
 ---
 
@@ -139,9 +142,11 @@ Atendimento Comercial → Orçamento → Pré-pedido → Pedido → Financeiro �
 | Orçamento | V,Au | V | V | A,V (qualquer do Hub) | C,A,V,**Emite** (próprio; só leitura após conversão) |
 | Pré-pedido | V,Au | V | V | A,V (qualquer do Hub) | C,A,V,**converte** (próprio) |
 | Pedido | E,V,Au | Ap,A,V | A(financeiro),V | **A**,V (qualquer do Hub) | C,V (próprio) |
-| Produto / Categoria / Subcategoria | E,V,Au | C,A,V | V | V | V |
+| Portfólio | E,V,Au | C,A,V | — | V (autorizados) | V (autorizados) |
+| Autorização Hub↔Portfólio | C,A(revoga),V,Au | C,A(revoga),V | — | V (próprio Hub) | V (efeito) |
+| Produto / Categoria / Subcategoria | E,V,Au | C,A,V | V | V (Portfólios autorizados) | V (Portfólios autorizados) |
 | Pipeline | E,V,Au | C,A,V | — | V | V |
-| Fornecedor / Transportadora | E,V,Au | C,A,V | V | — | — |
+| Fornecedor / Transportadora *(legado, DEC-012)* | E,V,Au | C,A,V | V | — | — |
 | Usuário (Indústria) | C,A,E,V,Au | V | — | — | — |
 | Assistente (usuário do Hub) | V,Au | — | — | **C,A,E,V** | V (próprio) |
 
@@ -190,7 +195,8 @@ Ver/editar **todos os Orçamentos** do Hub · ver/editar **todos os Pedidos** do
 ## Capítulo 8 — Pontos resolvidos e observações
 
 - ✅ **Perfis × papéis:** resolvido pela **DEC-011** — Indústria (`administrador/gestor/financeiro`), Hub (`proprietario_hub/assistente`); "Atendimento" vira função por permissão; **Suporte removido**; **Representante** é empresa de negócio (não perfil).
-- **Entidades Planejadas** (Representante, Proprietário do Hub, Assistente de Venda, Equipe, Categoria, Subcategoria, Pré-pedido, Atendimento Comercial, Solicitação): baseline funcional pronta; materialização em Sprints Expand (enums de modo de Carteira e estados do Hub inclusos).
+- **Entidades Planejadas** (Representante, Proprietário do Hub, Assistente de Venda, Equipe, **Portfólio**, **Autorização Hub↔Portfólio**, Categoria, Subcategoria, Pré-pedido, Atendimento Comercial, Solicitação): baseline funcional pronta; materialização em Sprints Expand (enums de modo de Carteira e estados do Hub inclusos).
+- **Catálogo/Portfólio (DEC-012):** árvore Indústria → Portfólio → Categoria → Subcategoria → Produto; Portfólio = agrupamento comercial; autorização Hub↔Portfólio = regra operacional separada; Fornecedor = legado/compat até Contract. Materialização na Sprint Expand de Catálogo.
 - Token `vendedor` permanece como **compatibilidade temporária até o Contract** → `assistente`.
 - ✅ **Autonomia do Assistente:** o Assistente cria/edita/**Emite (Finalizar e Enviar)** os próprios Orçamentos e **converte** o Orçamento aceito em Pré-pedido (sem aprovação hierárquica). **Não existe "aprovação" interna** — a aprovação comercial é do **Cliente**. O **Proprietário do Hub** é gerencial (vê/edita qualquer Orçamento, assume Atendimento, redistribui, concede permissões, intervém). Após conversão, o Orçamento é **somente leitura** (regra de auditoria).
 

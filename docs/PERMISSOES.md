@@ -268,11 +268,46 @@ Visualizar · Criar · Editar · Excluir · Transferir · Bloquear · Reativar �
 
 > **Cancelar** = Bloquear (ADM/GES). Etapa **financeira** do Pedido é editável pelo **FIN**.
 
-## 12. Produto
+## 12. Portfólio *(DEC-012)*
 
 | Ação | ADM | GES | FIN | PROP | ASS |
 |---|---|---|---|---|---|
-| Visualizar | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Visualizar | ✓ | ✓ | — | ✓ (autorizados) | ✓ (autorizados) |
+| Criar | ✓ | ✓ | — | — | — |
+| Editar | ✓ | ✓ | — | — | — |
+| Excluir | ✓ | — | — | — | — |
+| Transferir | N/A | N/A | N/A | N/A | N/A |
+| Bloquear | ✓ | ✓ | — | — | — |
+| Reativar | ✓ | ✓ | — | — | — |
+| Exportar | ✓ | ✓ | — | — | — |
+| Importar | ✓ | ✓ | — | — | — |
+| Alterar responsável | N/A | N/A | N/A | N/A | N/A |
+| Alterar Hub | N/A | N/A | N/A | N/A | N/A |
+| Alterar Carteira | N/A | N/A | N/A | N/A | N/A |
+| Aprovar | N/A | N/A | N/A | N/A | N/A |
+| Reprovar | N/A | N/A | N/A | N/A | N/A |
+| Recebe auditoria | ✓ | ✓ | — | — | — |
+| Recebe notificações | — | ✓ | — | — | — |
+
+> **Portfólio é agrupamento comercial, propriedade da Indústria** (DEC-012). PROP/ASS apenas **visualizam** os Portfólios **autorizados** ao seu Hub; não criam/editam/excluem.
+
+## 13. Autorização de Portfólio (Hub ↔ Portfólio) *(DEC-012)*
+
+| Ação | ADM | GES | FIN | PROP | ASS |
+|---|---|---|---|---|---|
+| Visualizar | ✓ | ✓ | — | ✓ (do próprio Hub) | ✓ (efeito) |
+| Conceder (autorizar) | ✓ | ✓ | — | — | — |
+| Revogar | ✓ | ✓ | — | — | — |
+| Recebe auditoria | ✓ | ✓ | — | — | — |
+| Recebe notificações | — | ✓ | — | — | — |
+
+> **Autorização Hub ↔ Portfólio é regra operacional separada** (DEC-012), **exclusiva da Indústria (ADM/GES)** e **auditável**. Granularidade **por Portfólio** (não por Produto). O **Assistente herda** a autorização do seu Hub. Revogar não apaga Produtos nem Orçamentos emitidos.
+
+## 14. Produto
+
+| Ação | ADM | GES | FIN | PROP | ASS |
+|---|---|---|---|---|---|
+| Visualizar | ✓ | ✓ | ✓ | ✓ (Portfólios autorizados) | ✓ (Portfólios autorizados) |
 | Criar | ✓ | ✓ | — | — | — |
 | Editar | ✓ | ✓ | — | — | — |
 | Excluir | ✓ | — | — | — | — |
@@ -289,30 +324,9 @@ Visualizar · Criar · Editar · Excluir · Transferir · Bloquear · Reativar �
 | Recebe auditoria | ✓ | ✓ | — | — | — |
 | Recebe notificações | — | ✓ | — | — | — |
 
-> **Produto pertence à Indústria** (ativar/desativar = Bloquear/Reativar pela Indústria).
+> **Produto pertence à Indústria** (ativar/desativar = Bloquear/Reativar pela Indústria). **Pertence a um Portfólio** (DEC-012). O **Hub/Assistente não cria, não edita, não importa, não exclui** Produtos — apenas **visualiza e utiliza** (no Orçamento) os Produtos dos **Portfólios autorizados**.
 
-## 13. Categoria
-
-| Ação | ADM | GES | FIN | PROP | ASS |
-|---|---|---|---|---|---|
-| Visualizar | ✓ | ✓ | — | ✓ | ✓ |
-| Criar | ✓ | ✓ | — | — | — |
-| Editar | ✓ | ✓ | — | — | — |
-| Excluir | ✓ | — | — | — | — |
-| Transferir | N/A | N/A | N/A | N/A | N/A |
-| Bloquear | ✓ | ✓ | — | — | — |
-| Reativar | ✓ | ✓ | — | — | — |
-| Exportar | ✓ | ✓ | — | — | — |
-| Importar | ✓ | ✓ | — | — | — |
-| Alterar responsável | N/A | N/A | N/A | N/A | N/A |
-| Alterar Hub | N/A | N/A | N/A | N/A | N/A |
-| Alterar Carteira | N/A | N/A | N/A | N/A | N/A |
-| Aprovar | N/A | N/A | N/A | N/A | N/A |
-| Reprovar | N/A | N/A | N/A | N/A | N/A |
-| Recebe auditoria | ✓ | ✓ | — | — | — |
-| Recebe notificações | — | ✓ | — | — | — |
-
-## 14. Subcategoria
+## 15. Categoria
 
 | Ação | ADM | GES | FIN | PROP | ASS |
 |---|---|---|---|---|---|
@@ -333,7 +347,28 @@ Visualizar · Criar · Editar · Excluir · Transferir · Bloquear · Reativar �
 | Recebe auditoria | ✓ | ✓ | — | — | — |
 | Recebe notificações | — | ✓ | — | — | — |
 
-## 15. Financeiro
+## 16. Subcategoria
+
+| Ação | ADM | GES | FIN | PROP | ASS |
+|---|---|---|---|---|---|
+| Visualizar | ✓ | ✓ | — | ✓ | ✓ |
+| Criar | ✓ | ✓ | — | — | — |
+| Editar | ✓ | ✓ | — | — | — |
+| Excluir | ✓ | — | — | — | — |
+| Transferir | N/A | N/A | N/A | N/A | N/A |
+| Bloquear | ✓ | ✓ | — | — | — |
+| Reativar | ✓ | ✓ | — | — | — |
+| Exportar | ✓ | ✓ | — | — | — |
+| Importar | ✓ | ✓ | — | — | — |
+| Alterar responsável | N/A | N/A | N/A | N/A | N/A |
+| Alterar Hub | N/A | N/A | N/A | N/A | N/A |
+| Alterar Carteira | N/A | N/A | N/A | N/A | N/A |
+| Aprovar | N/A | N/A | N/A | N/A | N/A |
+| Reprovar | N/A | N/A | N/A | N/A | N/A |
+| Recebe auditoria | ✓ | ✓ | — | — | — |
+| Recebe notificações | — | ✓ | — | — | — |
+
+## 17. Financeiro
 
 | Ação | ADM | GES | FIN | PROP | ASS |
 |---|---|---|---|---|---|
@@ -356,7 +391,7 @@ Visualizar · Criar · Editar · Excluir · Transferir · Bloquear · Reativar �
 
 > **Financeiro** aqui é a etapa financeira do Pedido (faturamento/baixa), operada pelo perfil FIN; o Hub **não** acessa o Financeiro. *(Ver dúvida nº 1 — "Financeiro como entidade".)*
 
-## 16. Transportadora
+## 18. Transportadora
 
 | Ação | ADM | GES | FIN | PROP | ASS |
 |---|---|---|---|---|---|
@@ -377,7 +412,7 @@ Visualizar · Criar · Editar · Excluir · Transferir · Bloquear · Reativar �
 | Recebe auditoria | ✓ | ✓ | — | — | — |
 | Recebe notificações | — | ✓ | — | — | — |
 
-## 17. Fornecedor
+## 19. Fornecedor *(Legado/compatibilidade — DEC-012)*
 
 | Ação | ADM | GES | FIN | PROP | ASS |
 |---|---|---|---|---|---|
@@ -398,7 +433,9 @@ Visualizar · Criar · Editar · Excluir · Transferir · Bloquear · Reativar �
 | Recebe auditoria | ✓ | ✓ | — | — | — |
 | Recebe notificações | — | ✓ | — | — | — |
 
-## 18. Usuário
+> **Fornecedor é legado/compatibilidade** (DEC-012), **não é entidade oficial** — substituído por **Portfólio**. Mantido apenas até Migrate/Contract; sem evolução de domínio.
+
+## 20. Usuário
 
 | Ação | ADM | GES | FIN | PROP | ASS |
 |---|---|---|---|---|---|
@@ -447,4 +484,4 @@ Recebem trilha de auditoria: **ADM** (governança da Indústria) e **PROP** (no 
 ---
 
 ## Documentos relacionados
-- [`ARQUITETURA_OFICIAL.md`](ARQUITETURA_OFICIAL.md) · [`DECISIONS.md`](DECISIONS.md) (DEC-011) · [`DOMINIO.md`](DOMINIO.md) · [`FUNCIONAL.md`](FUNCIONAL.md)
+- [`ARQUITETURA_OFICIAL.md`](ARQUITETURA_OFICIAL.md) · [`DECISIONS.md`](DECISIONS.md) (DEC-011, **DEC-012**) · [`DOMINIO.md`](DOMINIO.md) · [`FUNCIONAL.md`](FUNCIONAL.md)

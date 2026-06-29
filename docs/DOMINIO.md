@@ -17,7 +17,9 @@
 Indústria → Representante (empresa) → Hub → Proprietário do Hub → Assistentes
 ```
 
-A **Indústria** é dona dos dados (Clientes, Produtos, Categorias, Subcategorias, Carteiras) e **cria/governa** Hubs e Carteiras. O **Representante** é a empresa parceira que contém o **Hub** operacional. O **Hub** apenas **opera** as Carteiras autorizadas pela Indústria.
+A **Indústria** é dona dos dados (Clientes, Portfólios, Produtos, Categorias, Subcategorias, Carteiras) e **cria/governa** Hubs e Carteiras. O **Representante** é a empresa parceira que contém o **Hub** operacional. O **Hub** apenas **opera** as Carteiras e os **Portfólios** autorizados pela Indústria.
+
+> **Catálogo (DEC-012):** a árvore oficial é **Indústria → Portfólio → Categoria → Subcategoria → Produto**. **Portfólio** é o **agrupamento comercial de produtos** da Indústria; a **autorização Hub ↔ Portfólio** é uma **relação operacional separada** (a Indústria autoriza um Hub a operar um Portfólio). Portfólio **não é** mecanismo de autorização.
 
 ---
 
@@ -222,6 +224,34 @@ A **Indústria** é dona dos dados (Clientes, Produtos, Categorias, Subcategoria
 - **Ciclo de vida:** Pendente → Em produção → Pronto → Enviado → Entregue → Concluído/Cancelado.
 - **Observações:** Situação: Implementada.
 
+## Portfólio  ·  *Núcleo (DEC-012)*
+
+- **Nome oficial:** Portfólio
+- **Objetivo:** **agrupamento comercial de Produtos** da Indústria (ex.: o grupo de produtos X compõe o Portfólio Y).
+- **Responsabilidade:** organizar comercialmente o catálogo e servir de unidade autorizável ao Hub.
+- **Quem cria:** **Indústria** (cadastro).
+- **Quem edita / ativa-desativa:** Indústria.
+- **Quem exclui:** Administrador (inativação preferencial).
+- **Quem visualiza:** Indústria; Hub apenas os Portfólios **autorizados**.
+- **Quando nasce:** na organização comercial do catálogo.
+- **Quando deixa de existir:** inativação pela Indústria.
+- **Relacionamentos:** pertence à Indústria; **contém Produtos** (organizados por Categoria → Subcategoria); é **autorizado a Hubs** por relação operacional separada (`hub_portfolios`).
+- **Ciclo de vida:** criado/ajustado/inativado pela Indústria; existe **independentemente** de haver Hub autorizado.
+- **Observações:** Portfólio **não é** mecanismo de autorização — é agrupamento comercial; a **autorização Hub ↔ Portfólio** é regra separada (DEC-012). Não confundir com a camada "Catálogo" removida pela DEC-003. Técnico (futuro): `portfolios`. Situação: Planejada.
+
+## Autorização de Portfólio (Hub ↔ Portfólio)  ·  *Apoio (DEC-012)*
+
+- **Nome oficial:** Autorização de Portfólio
+- **Objetivo:** registrar que um Hub está **autorizado a operar** um Portfólio da Indústria.
+- **Responsabilidade:** delimitar quais Produtos o Hub pode visualizar e utilizar (via Portfólio).
+- **Quem cria / concede / revoga:** **Indústria** (ADM/GES), com **auditoria** (DEC-011).
+- **Quem visualiza:** Indústria; o próprio Hub (efeito da autorização).
+- **Quando nasce:** quando a Indústria autoriza um Portfólio a um Hub.
+- **Quando deixa de existir:** quando a Indústria revoga (não apaga Produtos nem Orçamentos já emitidos).
+- **Relacionamentos:** liga **Hub** (tabela oficial `hubs`) a **Portfólio**, **N:N**; o Assistente **herda** a autorização do seu Hub.
+- **Ciclo de vida:** concedida ↔ revogada pela Indústria.
+- **Observações:** é **relação operacional separada** do Portfólio; granularidade por Portfólio (não por Produto). Técnico (futuro): `hub_portfolios`. Situação: Planejada.
+
 ## Produto  ·  *Núcleo (DEC-006)*
 
 - **Nome oficial:** Produto
@@ -230,57 +260,53 @@ A **Indústria** é dona dos dados (Clientes, Produtos, Categorias, Subcategoria
 - **Quem cria:** **Indústria** (cadastro).
 - **Quem edita / ativa-desativa:** Indústria.
 - **Quem exclui:** Administrador (inativação preferencial).
-- **Quem visualiza:** Indústria e Hubs (catálogo).
+- **Quem visualiza:** Indústria (todos); Hub/Assistente apenas Produtos de **Portfólios autorizados** e ativos.
 - **Quando nasce:** no cadastro de catálogo.
 - **Quando deixa de existir:** inativação.
-- **Relacionamentos:** classificado por Categoria → Subcategoria; pode ter Fornecedor.
+- **Relacionamentos:** **pertence a um Portfólio** (DEC-012); classificado (opcional) por Categoria → Subcategoria. *(Legado: vínculo com Fornecedor até Contract.)*
 - **Ciclo de vida:** cadastrado → ativo/inativo.
-- **Observações:** **pertence à Indústria** (DEC-011); árvore Indústria → Categorias → Subcategorias → Produtos (DEC-003). Situação: Implementada.
+- **Observações:** **pertence à Indústria** (DEC-011); árvore Indústria → **Portfólio** → Categorias → Subcategorias → Produtos (DEC-012, complementa DEC-003). O **Hub não cria/edita/importa/exclui** Produtos; apenas utiliza no Orçamento. Situação: Implementada (vínculo a Portfólio: Planejada).
 
 ## Categoria  ·  *Núcleo (DEC-006)*
 
 - **Nome oficial:** Categoria
-- **Objetivo:** 1º nível de classificação do catálogo.
-- **Responsabilidade:** agrupar Produtos.
+- **Objetivo:** 1º nível de **classificação/tipificação** dos Produtos **dentro do Portfólio**.
+- **Responsabilidade:** organizar Produtos no Portfólio (não autoriza).
 - **Quem cria:** **Indústria** (cadastro).
 - **Quem edita:** Indústria.
 - **Quem exclui:** Administrador.
 - **Quem visualiza:** Indústria e Hubs.
 - **Quando nasce:** na organização do catálogo.
 - **Quando deixa de existir:** inativação sem Produtos.
-- **Relacionamentos:** pertence à Indústria; contém Subcategorias.
+- **Relacionamentos:** pertence à Indústria; **dentro de um Portfólio** (DEC-012); contém Subcategorias.
 - **Ciclo de vida:** criada/ajustada pela Indústria.
-- **Observações:** **pertence à Indústria** (DEC-011); não confundir com `supplier_categories`. Situação: Planejada.
+- **Observações:** **pertence à Indústria** (DEC-011); **classifica, não autoriza** (DEC-012); não confundir com `supplier_categories` (legado). Situação: Planejada.
 
 ## Subcategoria  ·  *Núcleo (DEC-006)*
 
 - **Nome oficial:** Subcategoria
-- **Objetivo:** 2º nível de classificação, dentro de uma Categoria.
-- **Responsabilidade:** detalhar o agrupamento de Produtos.
+- **Objetivo:** 2º nível de **classificação/tipificação**, dentro de uma Categoria.
+- **Responsabilidade:** detalhar o agrupamento de Produtos (não autoriza).
 - **Quem cria:** **Indústria** (cadastro).
 - **Quem edita:** Indústria.
 - **Quem exclui:** Administrador.
 - **Quem visualiza:** Indústria e Hubs.
 - **Quando nasce:** na organização do catálogo.
 - **Quando deixa de existir:** inativação sem Produtos.
-- **Relacionamentos:** pertence a uma Categoria; agrupa Produtos.
+- **Relacionamentos:** pertence a uma Categoria (dentro do Portfólio); agrupa Produtos.
 - **Ciclo de vida:** criada/ajustada pela Indústria.
-- **Observações:** **pertence à Indústria** (DEC-011). Situação: Planejada.
+- **Observações:** **pertence à Indústria** (DEC-011); **classifica, não autoriza** (DEC-012). Situação: Planejada.
 
-## Fornecedor  ·  *Apoio*
+## Fornecedor  ·  *Legado / Compatibilidade (DEC-012)*
 
-- **Nome oficial:** Fornecedor
-- **Objetivo:** parte que fornece Produtos/insumos à Indústria.
-- **Responsabilidade:** prover Produtos e condições de fornecimento.
-- **Quem cria:** Indústria (cadastro).
-- **Quem edita:** Indústria.
-- **Quem exclui:** Administrador.
+- **Nome oficial:** Fornecedor *(legado — **não é entidade oficial**)*
+- **Objetivo:** estrutura herdada do sistema antigo que associava Produtos a um fornecedor.
+- **Responsabilidade:** apenas manter compatibilidade até Migrate/Contract; **sem evolução de domínio**.
+- **Quem cria/edita/exclui:** mantido como está (Indústria) somente para não quebrar telas/dados legados.
 - **Quem visualiza:** Indústria.
-- **Quando nasce:** no cadastro de fornecimento.
-- **Quando deixa de existir:** inativação.
-- **Relacionamentos:** associado a Produtos; pode ter Transportadoras.
-- **Ciclo de vida:** cadastrado → ativo.
-- **Observações:** apoio; técnico `suppliers`. Situação: Implementada.
+- **Relacionamentos:** legado com Produtos e Transportadoras; legado `suppliers.hub_id → health_hubs` **congelado**.
+- **Ciclo de vida:** legado → removido fisicamente no **Contract**.
+- **Observações:** **substituído por Portfólio** (DEC-012). Técnico legado: `suppliers`, `supplier_categories`, `supplier_freight`, `freight_carriers`. Espelha o tratamento de `leads`/`deals` (DEC-001/002). Situação: Legado/compat até Contract.
 
 ## Transportadora  ·  *Apoio*
 
@@ -316,23 +342,25 @@ Indústria  (dona dos dados; implementação técnica: Organização)
 │           └── Orçamento
 │               └── Pré-pedido
 │                   └── Pedido             (entrega via Transportadora)
-├── Catálogo de Produtos (da Indústria)
-│   └── Categoria
-│       └── Subcategoria
-│           └── Produto
+├── Catálogo de Produtos (da Indústria) — DEC-012
+│   └── Portfólio  (agrupamento comercial)
+│       └── Categoria
+│           └── Subcategoria
+│               └── Produto
+│   └── Autorização Hub ↔ Portfólio (relação operacional separada; N:N → hub_portfolios)
 ├── Pipeline  (define as etapas do Atendimento Comercial)
-└── Suprimentos
-    └── Fornecedor
-        ├── Produto (fornecimento)
+└── [LEGADO até Contract] Suprimentos
+    └── Fornecedor  (legado — substituído por Portfólio, DEC-012)
+        ├── Produto (vínculo legado)
         └── Transportadora (frete/entrega)
 ```
 
-> Propriedade × operação (DEC-011): **Indústria possui** Clientes, Produtos, Categorias, Subcategorias e Carteiras; **cria e governa** Hubs e Carteiras. O **Hub opera** as Carteiras autorizadas (modo OPEN/DISTRIBUTED) — **não é proprietário**. Entidades *Planejadas* ainda não têm estrutura própria implementada.
+> Propriedade × operação (DEC-011/DEC-012): **Indústria possui** Clientes, **Portfólios**, Produtos, Categorias, Subcategorias e Carteiras; **cria e governa** Hubs, Carteiras e **autorizações de Portfólio**. O **Hub opera** as Carteiras autorizadas (modo OPEN/DISTRIBUTED) e os **Portfólios autorizados** — **não é proprietário**. Portfólio é **agrupamento comercial**; a **autorização Hub↔Portfólio é regra separada**. Entidades *Planejadas* ainda não têm estrutura própria implementada.
 
 ---
 
 ## Documentos relacionados
 
 - [`ARQUITETURA_OFICIAL.md`](ARQUITETURA_OFICIAL.md) — Constituição (entidades §5, isolamento §8).
-- [`DECISIONS.md`](DECISIONS.md) — DEC-001, DEC-002, DEC-003, DEC-006, DEC-008, **DEC-011**.
+- [`DECISIONS.md`](DECISIONS.md) — DEC-001, DEC-002, DEC-003, DEC-006, DEC-008, **DEC-011**, **DEC-012**.
 - [`FUNCIONAL.md`](FUNCIONAL.md) — papéis, permissões, estados e fluxo operacional.

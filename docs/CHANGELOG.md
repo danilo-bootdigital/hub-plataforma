@@ -6,6 +6,21 @@
 
 ---
 
+## 2026-06-29 — Sprint Expand E4 (Catálogo / Portfólio — DEC-012)
+
+- **Objetivo:** materializar, de forma aditiva, o catálogo oficial da DEC-012 (Portfólio → Categoria → Subcategoria → Produto) e a autorização operacional Hub↔Portfólio no HUB DEV (`pnkgwfgjhijksfmofiot`).
+- **Alterações:** DDL aditivo aplicado via SQL Editor do HUB DEV.
+- **Estruturas criadas:**
+  - tabela `portfolios` (`id, organization_id, nome, descricao, ativo, criado_em, atualizado_em`; unique `organization_id+nome`)
+  - tabela `categorias` (`id, organization_id, portfolio_id→portfolios, nome, ativo, criado_em`)
+  - tabela `subcategorias` (`id, organization_id, categoria_id→categorias, nome, ativo, criado_em`)
+  - tabela `hub_portfolios` (`id, organization_id, hub_id→hubs, portfolio_id→portfolios, status, criado_em, atualizado_em`; unique `hub_id+portfolio_id`)
+  - colunas `products.portfolio_id`, `products.categoria_id`, `products.subcategoria_id` (uuid, nullable)
+  - índices `idx_portfolios_org`, `idx_categorias_portfolio`, `idx_subcategorias_categ`, `idx_hubport_hub`, `idx_hubport_portfolio`, `idx_products_portfolio/categoria/subcategoria`
+  - artefatos `hubdev/bootstrap/expand_catalogo.sql`, `hubdev/bootstrap/expand_catalogo_rollback.sql`
+- **Estruturas preservadas:** `suppliers`, `supplier_categories`, `supplier_freight`, `freight_carriers`, `health_hubs` e demais — intocadas (legado/compat até Contract).
+- **Observações:** aditivo puro; sem migração de dados; sem alteração de código/RLS. `hub_portfolios` referencia a tabela oficial `hubs` (nunca `health_hubs`). RLS por Hub e backfill ficam para Migrate.
+
 ## 2026-06-26 — Sprint Expand E1 (núcleo Hub + Carteiras)
 
 - **Objetivo:** introduzir, de forma aditiva, o núcleo de domínio Hub + Carteira no HUB DEV (`pnkgwfgjhijksfmofiot`).

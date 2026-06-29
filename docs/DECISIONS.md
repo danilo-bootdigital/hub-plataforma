@@ -13,7 +13,7 @@
 3. **Identificador sequencial.** Toda decisão futura recebe o próximo identificador sequencial (**DEC-011, DEC-012, …**). Identificadores nunca são reutilizados nem reaproveitados.
 4. **Status possíveis:** `Aprovada / vigente` · `Substituída por DEC-XXX` · `Revogada`.
 
-> A próxima decisão a ser registrada será a **DEC-012**.
+> A próxima decisão a ser registrada será a **DEC-013**.
 
 ---
 
@@ -124,4 +124,30 @@
 - **Motivo:** resolver a dúvida funcional do `FUNCIONAL.md` Cap. 8 e fixar fronteiras claras de propriedade (Indústria) × operação (Hub).
 - **Impacto:** base oficial para permissões, menu, criação de usuários, escopo de acesso, RLS e auditoria. Enum técnico `user_role` receberá (de forma **aditiva**, fase Expand) `proprietario_hub` e `assistente`; `vendedor` permanece **compatibilidade temporária até o Contract**; `admin`/`gestor`/`financeiro` mantidos; `atendimento` deixa de ser perfil e `suporte` é removido (limpeza física no **Contract**). Modo de Carteira e estados do Hub serão materializados como enums em Expand. **Esta DEC não implementa nada** (sem banco/código/RLS/migration agora). Exige atualização de `DOMINIO.md` e `FUNCIONAL.md`.
 - **Data:** 2026-06-26
+- **Status:** Aprovada / vigente
+
+---
+
+## DEC-012 — Modelo Oficial de Portfólio e Catálogo
+
+- **Descrição:** oficializa a hierarquia de catálogo do Hub Plataforma como **Indústria → Portfólio → Categoria → Subcategoria → Produto** e define a **autorização operacional Hub ↔ Portfólio** como **regra separada**, que incide sobre Portfólios sem alterar a natureza deles. Fornecedor deixa de ser entidade de domínio e passa a legado/compatibilidade.
+  - **Conceito-base:** **Portfólio é a unidade comercial de agrupamento de produtos da Indústria. A autorização de operação do Hub ocorre sobre Portfólios.** Portfólio **não é** um mecanismo de autorização — é um agrupamento comercial; a autorização é uma **relação operacional distinta**.
+  - **Portfólio:** agrupamento comercial de produtos da Indústria (ex.: o grupo de produtos X compõe o Portfólio Y). Pertence à Indústria (escopo `organization_id`); só a Indústria cria, edita, ativa, inativa e exclui. Não é a camada "Catálogo" removida pela DEC-003.
+  - **Hierarquia e classificação:** Produto **pertence a um Portfólio** (`produto.portfolio_id`); **Categoria e Subcategoria são classificação/tipificação** dos Produtos **dentro do Portfólio** (organizam, não autorizam). Produto pode estar classificado em Categoria/Subcategoria (opcional).
+  - **Propriedade:** Portfólio, Categoria, Subcategoria e Produto **pertencem à Indústria** (coerente com DEC-011). O Hub **não possui** Portfólio.
+  - **Autorização Hub ↔ Portfólio (regra separada):** relação operacional distinta do Portfólio, **N:N**, materializada por tabela própria (`hub_portfolios`, referenciando a tabela oficial `hubs`). Conceder/revogar é **exclusivo da Indústria (ADM/GES)** e **auditável** (DEC-011). O Portfólio **existe independentemente** de haver autorização; revogar **não apaga** Produtos nem Orçamentos emitidos.
+  - **Granularidade por Portfólio (não por Produto):** característica **da regra de autorização** — por governança, estabilidade (Produtos novos em Portfólio autorizado ficam disponíveis sem reautorização), clareza operacional (espelha Carteira↔Hub da DEC-008) e performance/RLS. Não define a natureza do Portfólio.
+  - **Operação do Hub:** o Hub **vê apenas** Produtos de Portfólios autorizados ao seu Hub e ativos; **utiliza** como consumo (montar Orçamento) e **não cria, não edita, não importa, não exclui** Produtos (DEC-011). O **Assistente herda** a autorização do seu Hub (`assistente → hub → hub_portfolios → portfolios → produtos`); sem autorização de catálogo por Assistente individual.
+  - **Produto no Orçamento + congelamento (snapshot):** o Produto entra como item (`quote_items`) referenciando opcionalmente o Produto de origem (`product_id`, referência histórica). Só Produtos de Portfólios autorizados/ativos para o Hub do emissor. Os dados são **congelados na emissão** (snapshot **completo**: descrição, preço unitário, unidade, nome/SKU, composição, apresentação e `portfolio_id` de origem) e **não mudam** se o Produto for alterado depois. Hoje já há congelamento parcial (`quote_items.descricao`, `preco_unitario`, `subtotal`); esta DEC oficializa e completa.
+  - **Fornecedor = legado:** `suppliers`, `supplier_categories`, `supplier_freight`, `freight_carriers` e `suppliers.hub_id` passam a **compatibilidade temporária**, sem evolução de domínio; **não são entidade oficial**. Remoção física **somente no Contract** (espelha DEC-001/002).
+  - **Tabela de hub oficial:** `hubs` (DEC-008). `health_hubs` é **legado** — a autorização nunca o referencia; reconciliação `health_hubs → hubs` é trabalho de Migrate.
+  - **Relação com DEC-003:** **complementa** a DEC-003 (acrescenta a camada Portfólio acima de Categoria); a DEC-003 **permanece vigente**. Portfólio **não é** o "Catálogo" removido.
+  - **Nomenclatura oficial (futuras tabelas, em português):** `portfolios`, `categorias`, `subcategorias`, `hub_portfolios`; coluna `products.portfolio_id`.
+  - **Faseamento (Expand → Migrate → Contract):**
+    - **Expand (aditivo puro):** criar `portfolios`, `categorias`, `subcategorias`, `hub_portfolios`; adicionar `products.portfolio_id` e classificação oficial — tudo nullable/idempotente, sem tocar em dado existente.
+    - **Migrate:** backfill do catálogo em Portfólios; popular `products.portfolio_id`/classificação; reconciliar `health_hubs → hubs` e converter `suppliers.hub_id` em `hub_portfolios` quando aplicável; ativar **RLS por Hub** sobre o catálogo; completar congelamento de `quote_items`; migrar telas de Produtos para o modelo Portfólio.
+    - **Contract:** remover fisicamente `suppliers`, `supplier_categories`, `supplier_freight`, `freight_carriers`, `suppliers.hub_id` e `health_hubs`; remover telas/colunas de Fornecedor e caminhos de criação de Produto pelo Hub; tornar `products.portfolio_id` **NOT NULL**.
+- **Motivo:** alinhar o catálogo à arquitetura oficial (DEC-003/006/011), oficializar **Portfólio como agrupamento comercial** da Indústria e estabelecer a **autorização operacional Hub↔Portfólio como regra separada**, substituindo Fornecedor (legado herdado do sistema antigo).
+- **Impacto:** base oficial para o módulo de Catálogo/Portfólio, autorização Hub↔Portfólio, RLS por Hub e congelamento de Orçamento. Fornecedor e `health_hubs` viram legado até Contract. **Esta DEC não implementa nada** (sem banco/código/RLS/migration/tela/deploy). Exige atualização posterior de `DOMINIO.md`, `FUNCIONAL.md` e `PERMISSOES.md`. **Riscos principais:** convivência `hubs`×`health_hubs` (padronizar em `hubs`); duplicidade Categoria legado×oficial; introdução de RLS por Hub sobre base hoje só-Indústria (ativar só em Migrate, com testes); fidelidade de Orçamentos legados (garantida pelo snapshot); preservar o Hub real "Pharma1" nos testes; manter telas atuais funcionando durante Expand.
+- **Data:** 28/06/2026
 - **Status:** Aprovada / vigente

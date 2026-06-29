@@ -72,6 +72,17 @@
 - **Checkpoint Relacionado:** Checkpoint 007.
 - **Changelog Relacionado:** — (Sprint de documentação; não consta no Changelog por política).
 
+## Sprint Expand E4
+
+- **Identificador:** Expand E4 (FASE 1 — Expand)
+- **Objetivo:** materializar, de forma exclusivamente aditiva, o catálogo oficial da DEC-012 (Indústria → Portfólio → Categoria → Subcategoria → Produto) e a autorização operacional Hub↔Portfólio.
+- **Escopo:** criar `portfolios`, `categorias`, `subcategorias` e `hub_portfolios` (autorização N:N referenciando `hubs`); adicionar `products.portfolio_id`/`categoria_id`/`subcategoria_id` (nullable); índices. Sem migração de dados, sem alterar código/RLS, sem tocar nas estruturas legadas (`suppliers*`, `freight_carriers`, `health_hubs`). Arquivos: `hubdev/bootstrap/expand_catalogo.sql` (+ rollback).
+- **Dependências:** Sprint Expand E1 (`hubs`); DEC-012; DEC-008. (E3 — Equipes — reservada conforme nota da Expand E2.)
+- **Critérios de Aceite:** AC1 tabelas criadas · AC2 colunas em `products` nullable · AC3 `hub_portfolios` referencia `hubs` (nunca `health_hubs`) · AC4 índices · AC5 legado intocado · AC6 RLS inalterado · AC7 código inalterado · AC8 smoke test descartável (Portfólio/Hub fictícios; não tocar "Pharma1") · AC9 verificação objetiva · (extra) sem migração de dados.
+- **Resultado:** ✔ Concluída — DDL aplicado via SQL Editor no HUB DEV (`pnkgwfgjhijksfmofiot`); 4 tabelas + 3 colunas em `products` verificadas; aditivo puro, sem regressão. Smoke descartável OK (FKs Portfólio→Categoria→Subcategoria e Hub↔Portfólio validadas).
+- **Checkpoint Relacionado:** Checkpoint 008.
+- **Changelog Relacionado:** 2026-06-29 — Sprint Expand E4.
+
 ---
 
 ## Convenção de identificadores

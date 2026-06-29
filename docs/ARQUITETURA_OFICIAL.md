@@ -36,11 +36,13 @@ A **Baseline 001** definitiva só será gerada ao fim do Contract (squash do est
 
 ## 5. Entidades oficiais
 
-Árvore oficial de **catálogo** (DEC-003 — não existe mais camada "Catálogo"):
+Árvore oficial de **catálogo** (DEC-012, que complementa a DEC-003 — não existe a antiga camada "Catálogo"):
 
 ```
-Indústria → Categorias → Subcategorias → Produtos
+Indústria → Portfólio → Categoria → Subcategoria → Produto
 ```
+
+> **Portfólio** (DEC-012) é o **agrupamento comercial de produtos** da Indústria. A **autorização Hub ↔ Portfólio** é uma **relação operacional separada** (a Indústria autoriza um Hub a operar um Portfólio; o Assistente herda do Hub). Portfólio **não é** mecanismo de autorização. Categoria/Subcategoria **classificam** os Produtos dentro do Portfólio.
 
 Árvore oficial **comercial**:
 
@@ -55,7 +57,9 @@ Entidades oficiais do domínio (DEC-006) e situação atual:
 | Indústria | Implementada (`organizations`) |
 | Hub | Implementada (`hubs` — Expand E1) |
 | Carteira | Implementada (`carteiras` — Expand E1) |
-| Categoria | Planejada (não confundir com `supplier_categories` legado) |
+| Portfólio | Planejada (DEC-012 — futuro `portfolios`) |
+| Autorização Hub↔Portfólio | Planejada (DEC-012 — futuro `hub_portfolios`) |
+| Categoria | Planejada (DEC-012 — dentro do Portfólio; não confundir com `supplier_categories` legado) |
 | Subcategoria | Planejada |
 | Produto | Implementada (`products`) |
 | Cliente | Implementada (`contacts`) |
@@ -70,10 +74,11 @@ Entidades oficiais do domínio (DEC-006) e situação atual:
 - **Lead** — removida do domínio (DEC-001). Ponto de entrada passa a ser **Solicitação de Novo Cliente**.
 - **Deal** — removida como conceito (DEC-002). Substituída por **Atendimento Comercial**.
 - **Catálogo** — removida como camada (DEC-003).
+- **Fornecedor** — deixa de ser entidade oficial (DEC-012); substituído por **Portfólio**. Tratado como legado/compatibilidade até Contract.
 
-**Estruturas temporárias de compatibilidade** (DEC-006) — permanecem **apenas** para viabilizar Expand → Migrate → Contract e **devem desaparecer na fase Contract**:
+**Estruturas temporárias de compatibilidade** (DEC-006/DEC-012) — permanecem **apenas** para viabilizar Expand → Migrate → Contract e **devem desaparecer na fase Contract**:
 
-`leads` · `deals` · `health_hubs` · `supplier_categories`
+`leads` · `deals` · `health_hubs` · `suppliers` · `supplier_categories` · `supplier_freight` · `freight_carriers` · `suppliers.hub_id`
 
 > Observação: o código atual da Aplicação Web ainda consome essas estruturas legadas. Isso é esperado durante Expand/Migrate e **não** é uma inconsistência.
 
@@ -81,7 +86,8 @@ Entidades oficiais do domínio (DEC-006) e situação atual:
 
 - **Solicitação de Novo Cliente** é o ponto de entrada do funil (substitui Lead).
 - **Atendimento Comercial** é o conceito comercial em andamento (substitui Deal).
-- O catálogo é estritamente **Categoria → Subcategoria → Produto**, sem camada "Catálogo".
+- O catálogo é estritamente **Portfólio → Categoria → Subcategoria → Produto** (DEC-012), sem camada "Catálogo". O Produto **pertence a um Portfólio**; o Hub apenas **visualiza/utiliza** Produtos de Portfólios **autorizados** pela Indústria.
+- A **autorização Hub ↔ Portfólio** é regra operacional separada, **exclusiva da Indústria**, **auditável** e **por Portfólio** (não por Produto).
 - Toda remoção de entidade legada ocorre **somente na fase Contract**.
 
 ## 8. Isolamento entre Indústria, Hub e Carteiras

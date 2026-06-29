@@ -81,3 +81,14 @@
 - **Banco:** inalterado
 - **Situação:** ✔ Concluído
 - **Observações:** reconstrução integral dos 8 documentos + auditoria; padrão "reconstruir, não patch" adotado em `CONTRIBUINDO.md`; sem duplicações estruturais.
+
+## Checkpoint 008 — Sprint Expand E4 (Catálogo / Portfólio — DEC-012)
+
+- **Data:** 2026-06-29
+- **Git Commit:** — (DDL aplicado via SQL Editor; artefatos `hubdev/bootstrap/expand_catalogo*.sql` não commitados)
+- **Git Branch:** main
+- **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV / Homologação)
+- **Ambiente:** HUB DEV / Homologação
+- **Banco:** criadas `portfolios`, `categorias`, `subcategorias`, `hub_portfolios` + colunas `products.portfolio_id/categoria_id/subcategoria_id` + índices (aditivo puro); legado (`suppliers*`, `freight_carriers`, `health_hubs`) intocado
+- **Situação:** ✔ Concluído
+- **Observações:** aplicado via SQL Editor após barrar uma tentativa em projeto errado (pré-check `tem_hubs=0`); reaplicado no projeto correto (`tem_hubs=1`). Verificação: 4 tabelas + 3 colunas confirmadas. RLS e backfill ficam para Migrate (DEC-012). Smoke descartável OK (cria/limpa `ZZ_SMOKE_*`: Portfólio→Categoria→Subcategoria + autorização Hub↔Portfólio; sem erro de FK).
