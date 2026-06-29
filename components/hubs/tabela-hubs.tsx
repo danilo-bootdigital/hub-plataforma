@@ -2,10 +2,11 @@
 
 import { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Pencil, Check, X, KeyRound } from 'lucide-react'
+import { Pencil, Check, X, KeyRound, Layers } from 'lucide-react'
 import { editarHub, alterarStatusHub, definirProprietarioHub } from '@/app/(dashboard)/configuracoes/hubs/actions'
 import { ModalAlterarSenha } from '@/components/hubs/modal-alterar-senha'
 import type { HubStatus } from '@/types/database'
@@ -189,6 +190,11 @@ export function TabelaHubs({ hubs, proprietarios }: { hubs: HubRow[]; proprietar
                       <Button size="icon" variant="ghost" title="Editar nome do Hub" onClick={() => iniciarEdicao(h)}>
                         <Pencil className="h-4 w-4 text-slate-500" />
                       </Button>
+                      <Link href={`/configuracoes/hubs/${h.id}`}>
+                        <Button size="icon" variant="ghost" title="Portfólios autorizados">
+                          <Layers className="h-4 w-4 text-slate-500" />
+                        </Button>
+                      </Link>
                       <Button size="icon" variant="ghost" title="Alterar senha do proprietário" onClick={() => setSenhaHubId(h.id)}>
                         <KeyRound className="h-4 w-4 text-slate-500" />
                       </Button>

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import { GerenciarCategorias, type CategoriaComSubs } from '@/components/portfolios/gerenciar-categorias'
+import { AutorizacaoPortfolios } from '@/components/portfolios/autorizacao-portfolios'
 import type { Portfolio } from '@/types/database'
 
 export default async function PortfolioDetalhePage({ params }: { params: Promise<{ id: string }> }) {
@@ -52,6 +53,22 @@ export default async function PortfolioDetalhePage({ params }: { params: Promise
     subcategorias: (subcategorias ?? []).filter((s) => s.categoria_id === c.id),
   }))
 
+  // Hubs da Indústria + autorizações ativas deste Portfólio (Fatia C).
+  const { data: hubs } = await supabase
+    .from('hubs')
+    .select('id, nome')
+    .eq('organization_id', perfil.organization_id)
+    .order('nome')
+
+  const { data: autorizacoes } = await supabase
+    .from('hub_portfolios')
+    .select('hub_id')
+    .eq('portfolio_id', id)
+    .eq('organization_id', perfil.organization_id)
+    .eq('status', 'ativo')
+
+  const hubsAutorizados = (autorizacoes ?? []).map((a) => a.hub_id)
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
@@ -68,7 +85,28 @@ export default async function PortfolioDetalhePage({ params }: { params: Promise
         </div>
       </div>
 
-      <GerenciarCategorias portfolioId={portfolio.id} categorias={categoriasComSubs} />
+      <section className="space-y-3">
+        <div>
+          <h2 className="text-lg font-semibold text-slate-900">Classificação</h2>
+          <p className="text-sm text-slate-500">Categorias e subcategorias dos produtos deste portfólio.</p>
+        </div>
+        <GerenciarCategorias portfolioId={portfolio.id} categorias={categoriasComSubs} />
+      </section>
+
+      <section className="space-y-3">
+        <div>
+          <h2 className="text-lg font-semibold text-slate-900">Hubs autorizados</h2>
+          <p className="text-sm text-slate-500">
+            Hubs autorizados a operar este portfólio. A autorização é concedida pela Indústria; o Assistente herda do Hub.
+          </p>
+        </div>
+        <AutorizacaoPortfolios
+          eixo="porPortfolio"
+          fixedId={portfolio.id}
+          itens={(hubs ?? []) as { id: string; nome: string }[]}
+          autorizados={hubsAutorizados}
+        />
+      </section>
     </div>
   )
 }

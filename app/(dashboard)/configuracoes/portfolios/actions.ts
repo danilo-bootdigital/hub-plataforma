@@ -262,3 +262,49 @@ export async function excluirSubcategoria(subcategoriaId: string, portfolioId: s
   if (error) throw new Error(`Erro ao excluir subcategoria: ${error.message}`)
   revalidatePath(`/configuracoes/portfolios/${portfolioId}`)
 }
+
+// ── Autorização Hub ↔ Portfólio (regra operacional separada — DEC-012) ───
+// Concedida/revogada apenas pela Indústria (admin/gestor). Por Portfólio (não por Produto).
+
+export async function autorizarHubPortfolio(hubId: string, portfolioId: string) {
+  const { supabase, perfil } = await getAdminOuGestor()
+
+  const { data: hub } = await supabase
+    .from('hubs').select('id').eq('id', hubId).eq('organization_id', perfil.organization_id).single()
+  if (!hub) throw new Error('Hub não encontrado.')
+
+  const { data: pf } = await supabase
+    .from('portfolios').select('id').eq('id', portfolioId).eq('organization_id', perfil.organization_id).single()
+  if (!pf) throw new Error('Portfólio não encontrado.')
+
+  const { error } = await supabase
+    .from('hub_portfolios')
+    .upsert(
+      {
+        organization_id: perfil.organization_id,
+        hub_id: hubId,
+        portfolio_id: portfolioId,
+        status: 'ativo',
+        atualizado_em: new Date().toISOString(),
+      },
+      { onConflict: 'hub_id,portfolio_id' }
+    )
+  if (error) throw new Error(`Erro ao autorizar: ${error.message}`)
+  revalidatePath(`/configuracoes/portfolios/${portfolioId}`)
+  revalidatePath(`/configuracoes/hubs/${hubId}`)
+}
+
+export async function revogarHubPortfolio(hubId: string, portfolioId: string) {
+  const { supabase, perfil } = await getAdminOuGestor()
+
+  // Revogar preserva o registro (status), não apaga (DEC-012).
+  const { error } = await supabase
+    .from('hub_portfolios')
+    .update({ status: 'revogado', atualizado_em: new Date().toISOString() })
+    .eq('hub_id', hubId)
+    .eq('portfolio_id', portfolioId)
+    .eq('organization_id', perfil.organization_id)
+  if (error) throw new Error(`Erro ao revogar: ${error.message}`)
+  revalidatePath(`/configuracoes/portfolios/${portfolioId}`)
+  revalidatePath(`/configuracoes/hubs/${hubId}`)
+}
