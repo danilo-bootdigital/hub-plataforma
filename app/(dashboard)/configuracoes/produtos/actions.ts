@@ -31,6 +31,10 @@ export async function criarProduto(formData: FormData) {
   const category_id = (formData.get('category_id') as string)?.trim() || null
   const mg = (formData.get('mg') as string)?.trim() || null
   const ml = (formData.get('ml') as string)?.trim() || null
+  // Catálogo oficial (DEC-012) — aditivo; legado supplier_id/category_id preservado.
+  const portfolio_id = (formData.get('portfolio_id') as string)?.trim() || null
+  const categoria_id = (formData.get('categoria_id') as string)?.trim() || null
+  const subcategoria_id = (formData.get('subcategoria_id') as string)?.trim() || null
 
   if (!nome) throw new Error('Nome é obrigatório.')
   if (preco_unitario < 0) throw new Error('Preço não pode ser negativo.')
@@ -43,6 +47,9 @@ export async function criarProduto(formData: FormData) {
     unidade,
     supplier_id: supplier_id || null,
     category_id: category_id === '__none__' ? null : category_id,
+    portfolio_id: portfolio_id === '__none__' ? null : portfolio_id,
+    categoria_id: categoria_id === '__none__' ? null : categoria_id,
+    subcategoria_id: subcategoria_id === '__none__' ? null : subcategoria_id,
     composicao: mg,
     apresentacao: ml,
   })
@@ -62,6 +69,10 @@ export async function editarProduto(produtoId: string, formData: FormData) {
   const category_id = (formData.get('category_id') as string)?.trim() || null
   const mg = (formData.get('mg') as string)?.trim() || null
   const ml = (formData.get('ml') as string)?.trim() || null
+  // Catálogo oficial (DEC-012) — aditivo; legado supplier_id/category_id preservado.
+  const portfolio_id = (formData.get('portfolio_id') as string)?.trim() || null
+  const categoria_id = (formData.get('categoria_id') as string)?.trim() || null
+  const subcategoria_id = (formData.get('subcategoria_id') as string)?.trim() || null
 
   if (!nome) throw new Error('Nome é obrigatório.')
   if (preco_unitario < 0) throw new Error('Preço não pode ser negativo.')
@@ -75,6 +86,9 @@ export async function editarProduto(produtoId: string, formData: FormData) {
       unidade,
       supplier_id: supplier_id || null,
       category_id: category_id === '__none__' ? null : category_id,
+      portfolio_id: portfolio_id === '__none__' ? null : portfolio_id,
+      categoria_id: categoria_id === '__none__' ? null : categoria_id,
+      subcategoria_id: subcategoria_id === '__none__' ? null : subcategoria_id,
       composicao: mg,
       apresentacao: ml,
       atualizado_em: new Date().toISOString(),

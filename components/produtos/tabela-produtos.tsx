@@ -16,9 +16,12 @@ type Props = {
   produtos: Product[]
   fornecedores: { id: string; nome: string }[]
   categorias: { id: string; nome: string; supplier_id: string }[]
+  portfolios: { id: string; nome: string }[]
+  categoriasCatalogo: { id: string; nome: string; portfolio_id: string }[]
+  subcategorias: { id: string; nome: string; categoria_id: string }[]
 }
 
-export function TabelaProdutos({ produtos, fornecedores, categorias }: Props) {
+export function TabelaProdutos({ produtos, fornecedores, categorias, portfolios, categoriasCatalogo, subcategorias }: Props) {
   const [isPending, startTransition] = useTransition()
   const [selecionados, setSelecionados] = useState<Set<string>>(new Set())
   const [busca, setBusca] = useState('')
@@ -212,7 +215,7 @@ export function TabelaProdutos({ produtos, fornecedores, categorias }: Props) {
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-1">
-                    <ModalNovoProduto produto={p} fornecedores={fornecedores} categorias={categorias} />
+                    <ModalNovoProduto produto={p} fornecedores={fornecedores} categorias={categorias} portfolios={portfolios} categoriasCatalogo={categoriasCatalogo} subcategorias={subcategorias} />
                     <Button
                       variant="ghost"
                       size="sm"

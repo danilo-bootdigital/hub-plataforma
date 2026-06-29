@@ -36,6 +36,26 @@ export default async function ProdutosPage() {
     .eq('organization_id', perfil.organization_id)
     .order('nome')
 
+  // Catálogo oficial (DEC-012): Portfólio → Categoria → Subcategoria
+  const { data: portfolios } = await supabase
+    .from('portfolios')
+    .select('id, nome')
+    .eq('organization_id', perfil.organization_id)
+    .eq('ativo', true)
+    .order('nome')
+
+  const { data: categoriasCatalogo } = await supabase
+    .from('categorias')
+    .select('id, nome, portfolio_id')
+    .eq('organization_id', perfil.organization_id)
+    .order('nome')
+
+  const { data: subcategorias } = await supabase
+    .from('subcategorias')
+    .select('id, nome, categoria_id')
+    .eq('organization_id', perfil.organization_id)
+    .order('nome')
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -48,12 +68,18 @@ export default async function ProdutosPage() {
         <ModalNovoProduto
           fornecedores={(fornecedores ?? []) as { id: string; nome: string }[]}
           categorias={(categorias ?? []) as { id: string; nome: string; supplier_id: string }[]}
+          portfolios={(portfolios ?? []) as { id: string; nome: string }[]}
+          categoriasCatalogo={(categoriasCatalogo ?? []) as { id: string; nome: string; portfolio_id: string }[]}
+          subcategorias={(subcategorias ?? []) as { id: string; nome: string; categoria_id: string }[]}
         />
       </div>
       <TabelaProdutos
         produtos={produtos ?? []}
         fornecedores={(fornecedores ?? []) as { id: string; nome: string }[]}
         categorias={(categorias ?? []) as { id: string; nome: string; supplier_id: string }[]}
+        portfolios={(portfolios ?? []) as { id: string; nome: string }[]}
+        categoriasCatalogo={(categoriasCatalogo ?? []) as { id: string; nome: string; portfolio_id: string }[]}
+        subcategorias={(subcategorias ?? []) as { id: string; nome: string; categoria_id: string }[]}
       />
     </div>
   )

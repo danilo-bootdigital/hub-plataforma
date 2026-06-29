@@ -328,6 +328,10 @@ export type Product = {
   organization_id: string
   supplier_id: string | null
   category_id: string | null
+  // Catálogo oficial (DEC-012) — aditivo; legado supplier_id/category_id preservado.
+  portfolio_id: string | null
+  categoria_id: string | null
+  subcategoria_id: string | null
   nome: string
   descricao: string | null
   composicao: string | null
