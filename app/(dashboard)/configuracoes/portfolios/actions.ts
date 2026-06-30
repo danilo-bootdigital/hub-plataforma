@@ -308,3 +308,82 @@ export async function revogarHubPortfolio(hubId: string, portfolioId: string) {
   revalidatePath(`/configuracoes/portfolios/${portfolioId}`)
   revalidatePath(`/configuracoes/hubs/${hubId}`)
 }
+
+// ── Importação de Produtos para um Portfólio (DEC-013 / DEC-014) ──────────
+// Acesso ao vínculo N:N só via RPC `importar_produtos_portfolio` (SECURITY
+// DEFINER). A RPC é atômica (100% ou 0%), cria Produtos por dedup de nome, mas
+// NÃO cria Categorias/Subcategorias (citação inexistente vira pendência) e
+// NÃO usa products.portfolio_id.
+
+// Uma linha da planilha já mapeada (parser do browser normaliza os dados).
+export type LinhaImportacaoPortfolio = {
+  nome: string
+  preco: string | number
+  descricao?: string
+  categoria?: string
+  subcategoria?: string
+  valor_caixa?: string | number
+  unidade?: string
+  volume?: string
+  quantidade_por_caixa?: string | number
+  apresentacao?: string
+  via_administracao?: string
+  via_apresentacao?: string
+  aplicadores?: string
+  exige_receita?: string | boolean
+  observacoes_receita?: string
+}
+
+export type ModoImportacao = 'atualizar' | 'preservar'
+type MapaResolucao = Record<string, string>
+
+async function chamarRpcImportacao(
+  portfolioId: string,
+  linhas: LinhaImportacaoPortfolio[],
+  modo: ModoImportacao,
+  dryRun: boolean,
+  mapaCategorias: MapaResolucao,
+  mapaSubcategorias: MapaResolucao
+) {
+  const { supabase } = await getAdminOuGestor()
+
+  if (!linhas || linhas.length === 0) throw new Error('Nenhuma linha para importar.')
+  if (linhas.length > 5000) throw new Error('Máximo de 5000 linhas por importação.')
+
+  const { data, error } = await supabase.rpc('importar_produtos_portfolio', {
+    p_portfolio_id: portfolioId,
+    p_linhas: linhas,
+    p_modo: modo,
+    p_dry_run: dryRun,
+    p_mapa_categorias: mapaCategorias,
+    p_mapa_subcategorias: mapaSubcategorias,
+  })
+
+  if (error) throw new Error(`Erro na importação: ${error.message}`)
+  return data
+}
+
+// Preview (dry-run): valida tudo, classifica e reporta erros/pendências; não persiste.
+export async function previewImportacaoPortfolio(
+  portfolioId: string,
+  linhas: LinhaImportacaoPortfolio[],
+  modo: ModoImportacao = 'atualizar',
+  mapaCategorias: MapaResolucao = {},
+  mapaSubcategorias: MapaResolucao = {}
+) {
+  return chamarRpcImportacao(portfolioId, linhas, modo, true, mapaCategorias, mapaSubcategorias)
+}
+
+// Aplicar: importação atômica (só executa se não houver erro nem pendência).
+export async function importarProdutosParaPortfolio(
+  portfolioId: string,
+  linhas: LinhaImportacaoPortfolio[],
+  modo: ModoImportacao = 'atualizar',
+  mapaCategorias: MapaResolucao = {},
+  mapaSubcategorias: MapaResolucao = {}
+) {
+  const resultado = await chamarRpcImportacao(portfolioId, linhas, modo, false, mapaCategorias, mapaSubcategorias)
+  revalidatePath(`/configuracoes/portfolios/${portfolioId}`)
+  revalidatePath('/configuracoes/produtos')
+  return resultado
+}

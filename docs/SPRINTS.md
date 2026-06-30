@@ -98,6 +98,26 @@
 - **Checkpoint Relacionado:** Checkpoint 009.
 - **Changelog Relacionado:** 2026-06-29 — Catálogo/Portfólio (Aplicação Web).
 
+## Sprint Expand E5 — Importação para Portfólio
+
+- **Identificador:** Expand E5 (FASE 1 — Expand)
+- **Objetivo:** importar Produtos por planilha (XLSX/CSV) **para um Portfólio**, materializando o vínculo N:N `product_portfolios` (DEC-013) e respeitando a descontinuação de Fornecedor (DEC-014).
+- **Escopo:**
+  - **Banco (Expand):** RPC `importar_produtos_portfolio` (`SECURITY DEFINER`, validação interna de autorização) + índice de apoio ao dedup. Arquivos: `hubdev/bootstrap/expand_rpc_importar_produtos_portfolio.sql` (+ rollback). Sem novas policies (acesso ao vínculo só via RPC nesta fase); sem alterar tabelas/RLS/Fornecedor.
+  - **Backend:** server actions `previewImportacaoPortfolio` e `importarProdutosParaPortfolio` em `portfolios/actions.ts` (chamam a RPC com `createClient()`); reuso de `criarCategoria`/`criarSubcategoria` para resolução manual de pendências.
+  - **Frontend:** rota `configuracoes/portfolios/[id]/importar`; componente de upload + mapeamento de colunas + preview classificado (novo/vincular/atualizar/ignorado/erro) + painel de pendências de Categoria/Subcategoria; botão "Importar produtos" na página do Portfólio; "Baixar modelo".
+- **Regras de negócio fixadas:**
+  - Importação **atômica**: ou importa 100% das linhas, ou 0% (sem escrita parcial).
+  - **Produtos** podem ser criados automaticamente (dedup por **nome normalizado** dentro da Indústria); nome repetido na mesma planilha é erro.
+  - **Categorias/Subcategorias NÃO** são criadas automaticamente — citação inexistente vira **pendência** que bloqueia a importação (admin resolve: selecionar existente, criar manual ou cancelar).
+  - **Preço obrigatório** (preço comercial vive no vínculo); `products.preco_unitario` só como fallback na criação.
+  - **`products.portfolio_id` não é usado** (vínculo exclusivamente em `product_portfolios`).
+- **Dependências:** Expand E4/E4-app (Portfólio/Categoria/Subcategoria); vínculo `product_portfolios` (Expand DEC-013); DEC-013; DEC-014.
+- **Critérios de Aceite:** AC1 SQL aplicado no HUB DEV (função + índice) · AC2 build OK (build:hubdev) · AC3 gating admin/gestor · AC4 preview reporta erros e pendências sem persistir · AC5 importação atômica (smoke: erro/pendência ⇒ 0 gravações) · AC6 dedup N:N (mesmo produto reusado em 2 Portfólios) · AC7 idempotência (reimportar não duplica) · AC8 nenhuma escrita em `products.portfolio_id`; nenhuma criação automática de Categoria/Subcategoria · AC9 Fornecedor intocado (DEC-014).
+- **Resultado:** ✔ Implementada e validada por smoke (44/44) no HUB DEV; RPC aplicada via SQL Editor; build OK. **Commit e deploy aguardando aprovação.**
+- **Checkpoint Relacionado:** Checkpoint 012.
+- **Changelog Relacionado:** 2026-06-30 — Importação para Portfólio (Expand E5).
+
 ---
 
 ## Convenção de identificadores

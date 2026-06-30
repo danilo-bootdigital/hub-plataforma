@@ -125,3 +125,14 @@
 - **Banco:** `products` — `p_products` substituída por `products_sel/ins/upd/del` (Hub vê só Portfólios autorizados; Indústria/legado livre; Hub não escreve)
 - **Situação:** ✔ Concluído
 - **Observações:** modal de Produto sem origem legada (Fornecedor); selects de Catálogo empilhados; listagem por Portfólio. Estratégia por `get_user_role()` (há 1 assistente sem hub). Validado pelo usuário em produção. **Migrate do catálogo concluído** (backfill N/A — base vazia).
+
+## Checkpoint 012 — Importação para Portfólio (Sprint Expand E5 — DEC-013/DEC-014)
+
+- **Data:** 2026-06-30
+- **Git Commit:** — (aguardando aprovação; sem commit/deploy)
+- **Git Branch:** main
+- **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV / Homologação)
+- **Ambiente:** HUB DEV (banco — RPC aplicada via SQL Editor) + build local `build:hubdev` (sem deploy)
+- **Banco:** RPC `importar_produtos_portfolio` (`security definer`, atômica, autorização interna) + índice `idx_products_org_nome_norm`. Artefatos `hubdev/bootstrap/expand_rpc_importar_produtos_portfolio.sql` (+ rollback).
+- **Situação:** ✔ Smoke concluído · commit/deploy aguardando aprovação
+- **Observações:** smoke funcional **44/44** — 30 asserts da RPC autenticada end-to-end no HUB DEV (preview/aplicar, idempotência, atomicidade 0%/100%, pendência de Categoria/Subcategoria, N:N com preço por Portfólio, sem `supplier`) + 14 do modelo Excel e do parser/normalização. Dados `ZZ_SMOKE_*` com teardown e ambiente limpo confirmado; "Pharma1"/dados reais intocados. `products.portfolio_id` **não** utilizado; Categorias/Subcategorias **não** criadas automaticamente (viram pendência). Fornecedor intocado (DEC-014). Sem policies novas (acesso ao vínculo só via RPC nesta fase).

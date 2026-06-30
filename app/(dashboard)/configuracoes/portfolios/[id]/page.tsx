@@ -2,7 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Upload } from 'lucide-react'
 import { GerenciarCategorias, type CategoriaComSubs } from '@/components/portfolios/gerenciar-categorias'
 import { AutorizacaoPortfolios } from '@/components/portfolios/autorizacao-portfolios'
 import type { Portfolio } from '@/types/database'
@@ -71,18 +71,25 @@ export default async function PortfolioDetalhePage({ params }: { params: Promise
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4">
-        <Link href="/configuracoes/portfolios">
-          <Button variant="ghost" size="icon">
-            <ArrowLeft className="h-4 w-4" />
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <Link href="/configuracoes/portfolios">
+            <Button variant="ghost" size="icon">
+              <ArrowLeft className="h-4 w-4" />
+            </Button>
+          </Link>
+          <div>
+            <h1 className="text-2xl font-bold text-slate-900">{portfolio.nome}</h1>
+            <p className="mt-1 text-sm text-slate-500">
+              {portfolio.descricao || 'Categorias e subcategorias deste portfólio.'}
+            </p>
+          </div>
+        </div>
+        <Link href={`/configuracoes/portfolios/${portfolio.id}/importar`}>
+          <Button variant="outline" className="gap-1.5">
+            <Upload className="h-4 w-4" /> Importar produtos
           </Button>
         </Link>
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900">{portfolio.nome}</h1>
-          <p className="mt-1 text-sm text-slate-500">
-            {portfolio.descricao || 'Categorias e subcategorias deste portfólio.'}
-          </p>
-        </div>
       </div>
 
       <section className="space-y-3">
