@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { TabelaProdutos } from '@/components/produtos/tabela-produtos'
@@ -35,6 +36,22 @@ export default async function ProdutosPage() {
     .eq('ativo', true)
     .order('nome')
 
+  // Vínculo N:N Produto↔Portfólio (DEC-013/014): products.portfolio_id NÃO é mais
+  // usado. Lemos product_portfolios via admin client (RLS sem policies p/ app),
+  // com escopo na organização. Mapa product_id -> [{id, nome}].
+  const admin = createAdminClient()
+  const { data: vinculos } = await admin
+    .from('product_portfolios')
+    .select('product_id, portfolio:portfolios(id, nome)')
+    .eq('organization_id', perfil.organization_id)
+    .eq('ativo', true)
+
+  const vinculosPorProduto: Record<string, { id: string; nome: string }[]> = {}
+  for (const v of (vinculos ?? []) as unknown as { product_id: string; portfolio: { id: string; nome: string } | null }[]) {
+    if (!v.portfolio) continue
+    ;(vinculosPorProduto[v.product_id] ??= []).push({ id: v.portfolio.id, nome: v.portfolio.nome })
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -52,6 +69,7 @@ export default async function ProdutosPage() {
       <TabelaProdutos
         produtos={produtos ?? []}
         portfolios={(portfolios ?? []) as { id: string; nome: string }[]}
+        vinculosPorProduto={vinculosPorProduto}
       />
     </div>
   )

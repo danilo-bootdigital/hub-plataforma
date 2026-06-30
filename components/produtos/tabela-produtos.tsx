@@ -18,9 +18,11 @@ import type { Product } from '@/types/database'
 type Props = {
   produtos: Product[]
   portfolios: { id: string; nome: string }[]
+  // Vínculo N:N Produto↔Portfólio (DEC-013/014). products.portfolio_id não é usado.
+  vinculosPorProduto: Record<string, { id: string; nome: string }[]>
 }
 
-export function TabelaProdutos({ produtos, portfolios }: Props) {
+export function TabelaProdutos({ produtos, portfolios, vinculosPorProduto }: Props) {
   const [isPending, startTransition] = useTransition()
   const [selecionados, setSelecionados] = useState<Set<string>>(new Set())
   const [busca, setBusca] = useState('')
@@ -29,18 +31,15 @@ export function TabelaProdutos({ produtos, portfolios }: Props) {
   const [pfAlvo, setPfAlvo] = useState('')
   const router = useRouter()
 
-  const nomePortfolio = useMemo(() => {
-    const m = new Map(portfolios.map((p) => [p.id, p.nome]))
-    return (id: string | null) => (id ? m.get(id) ?? '—' : '—')
-  }, [portfolios])
+  const portfoliosDoProduto = (id: string) => vinculosPorProduto[id] ?? []
 
   const produtosFiltrados = useMemo(() => {
     return produtos.filter((p) => {
       if (busca && !p.nome.toLowerCase().includes(busca.toLowerCase())) return false
-      if (filtroPortfolio && p.portfolio_id !== filtroPortfolio) return false
+      if (filtroPortfolio && !(vinculosPorProduto[p.id] ?? []).some((v) => v.id === filtroPortfolio)) return false
       return true
     })
-  }, [produtos, busca, filtroPortfolio])
+  }, [produtos, busca, filtroPortfolio, vinculosPorProduto])
 
   function handleAlternarAtivo(id: string, ativoAtual: boolean) {
     startTransition(async () => {
@@ -253,7 +252,11 @@ export function TabelaProdutos({ produtos, portfolios }: Props) {
                     )}
                   </span>
                 </td>
-                <td className="px-4 py-3 text-slate-600">{nomePortfolio(p.portfolio_id)}</td>
+                <td className="px-4 py-3 text-slate-600">
+                  {portfoliosDoProduto(p.id).length === 0
+                    ? '—'
+                    : portfoliosDoProduto(p.id).map((v) => v.nome).join(', ')}
+                </td>
                 <td className="px-4 py-3 text-slate-600">{p.volume ?? '—'}</td>
                 <td className="px-4 py-3 text-slate-600">{p.apresentacao ?? '—'}</td>
                 <td className="px-4 py-3 text-slate-700">{formatarMoeda(p.preco_unitario)}</td>
