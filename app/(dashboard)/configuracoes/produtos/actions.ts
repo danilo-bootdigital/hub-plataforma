@@ -29,8 +29,20 @@ export async function criarProduto(formData: FormData) {
   const unidade = (formData.get('unidade') as string)?.trim() || 'un'
   const supplier_id = (formData.get('supplier_id') as string)?.trim() || null
   const category_id = (formData.get('category_id') as string)?.trim() || null
-  const mg = (formData.get('mg') as string)?.trim() || null
-  const ml = (formData.get('ml') as string)?.trim() || null
+  // Ficha de Produto StinPharma (todos opcionais; vazio => null)
+  const apresentacao = (formData.get('apresentacao') as string)?.trim() || null
+  const via_administracao = (formData.get('via_administracao') as string)?.trim() || null
+  const via_apresentacao = (formData.get('via_apresentacao') as string)?.trim() || null
+  const volume = (formData.get('volume') as string)?.trim() || null
+  const aplicadores = (formData.get('aplicadores') as string)?.trim() || null
+  const observacoes_receita = (formData.get('observacoes_receita') as string)?.trim() || null
+  const exige_receita = formData.get('exige_receita') === 'on'
+  const qtdRaw = (formData.get('quantidade_por_caixa') as string)?.trim()
+  const qtdNum = qtdRaw ? parseInt(qtdRaw, 10) : NaN
+  const quantidade_por_caixa = Number.isInteger(qtdNum) && qtdNum > 0 ? qtdNum : null
+  const valorCaixaRaw = (formData.get('valor_caixa') as string)?.trim()
+  const valorCaixaNum = valorCaixaRaw ? parseFloat(valorCaixaRaw) : NaN
+  const valor_caixa = Number.isFinite(valorCaixaNum) && valorCaixaNum >= 0 ? valorCaixaNum : null
   // Catálogo oficial (DEC-012) — aditivo; legado supplier_id/category_id preservado.
   const portfolio_id = (formData.get('portfolio_id') as string)?.trim() || null
   const categoria_id = (formData.get('categoria_id') as string)?.trim() || null
@@ -50,8 +62,15 @@ export async function criarProduto(formData: FormData) {
     portfolio_id: portfolio_id === '__none__' ? null : portfolio_id,
     categoria_id: categoria_id === '__none__' ? null : categoria_id,
     subcategoria_id: subcategoria_id === '__none__' ? null : subcategoria_id,
-    composicao: mg,
-    apresentacao: ml,
+    apresentacao,
+    via_administracao,
+    via_apresentacao,
+    volume,
+    quantidade_por_caixa,
+    valor_caixa,
+    aplicadores,
+    exige_receita,
+    observacoes_receita,
   })
 
   if (error) throw new Error(`Erro ao criar produto: ${error.message}`)
@@ -67,8 +86,20 @@ export async function editarProduto(produtoId: string, formData: FormData) {
   const unidade = (formData.get('unidade') as string)?.trim() || 'un'
   const supplier_id = (formData.get('supplier_id') as string)?.trim() || null
   const category_id = (formData.get('category_id') as string)?.trim() || null
-  const mg = (formData.get('mg') as string)?.trim() || null
-  const ml = (formData.get('ml') as string)?.trim() || null
+  // Ficha de Produto StinPharma (todos opcionais; vazio => null)
+  const apresentacao = (formData.get('apresentacao') as string)?.trim() || null
+  const via_administracao = (formData.get('via_administracao') as string)?.trim() || null
+  const via_apresentacao = (formData.get('via_apresentacao') as string)?.trim() || null
+  const volume = (formData.get('volume') as string)?.trim() || null
+  const aplicadores = (formData.get('aplicadores') as string)?.trim() || null
+  const observacoes_receita = (formData.get('observacoes_receita') as string)?.trim() || null
+  const exige_receita = formData.get('exige_receita') === 'on'
+  const qtdRaw = (formData.get('quantidade_por_caixa') as string)?.trim()
+  const qtdNum = qtdRaw ? parseInt(qtdRaw, 10) : NaN
+  const quantidade_por_caixa = Number.isInteger(qtdNum) && qtdNum > 0 ? qtdNum : null
+  const valorCaixaRaw = (formData.get('valor_caixa') as string)?.trim()
+  const valorCaixaNum = valorCaixaRaw ? parseFloat(valorCaixaRaw) : NaN
+  const valor_caixa = Number.isFinite(valorCaixaNum) && valorCaixaNum >= 0 ? valorCaixaNum : null
   // Catálogo oficial (DEC-012) — aditivo; legado supplier_id/category_id preservado.
   const portfolio_id = (formData.get('portfolio_id') as string)?.trim() || null
   const categoria_id = (formData.get('categoria_id') as string)?.trim() || null
@@ -89,8 +120,15 @@ export async function editarProduto(produtoId: string, formData: FormData) {
       portfolio_id: portfolio_id === '__none__' ? null : portfolio_id,
       categoria_id: categoria_id === '__none__' ? null : categoria_id,
       subcategoria_id: subcategoria_id === '__none__' ? null : subcategoria_id,
-      composicao: mg,
-      apresentacao: ml,
+      apresentacao,
+      via_administracao,
+      via_apresentacao,
+      volume,
+      quantidade_por_caixa,
+      valor_caixa,
+      aplicadores,
+      exige_receita,
+      observacoes_receita,
       atualizado_em: new Date().toISOString(),
     })
     .eq('id', produtoId)

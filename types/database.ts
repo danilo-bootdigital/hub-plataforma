@@ -336,9 +336,18 @@ export type Product = {
   descricao: string | null
   composicao: string | null
   apresentacao: string | null
+  via_administracao: string | null
   preco_unitario: number
   unidade: string
   ativo: boolean
+  // Ficha de Produto StinPharma (Expand — versão de apresentação, nullable)
+  volume: string | null
+  quantidade_por_caixa: number | null
+  valor_caixa: number | null
+  aplicadores: string | null
+  via_apresentacao: string | null
+  exige_receita: boolean | null
+  observacoes_receita: string | null
   criado_em: string
   atualizado_em: string
 }

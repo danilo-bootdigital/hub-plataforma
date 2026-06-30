@@ -156,7 +156,7 @@ export function ModalNovoProduto({ produto, portfolios, categoriasCatalogo, subc
 
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">
-                <Label htmlFor="preco_unitario">Preço (R$)</Label>
+                <Label htmlFor="preco_unitario">Preço / Valor unitário (R$) *</Label>
                 <Input
                   id="preco_unitario"
                   name="preco_unitario"
@@ -171,13 +171,58 @@ export function ModalNovoProduto({ produto, portfolios, categoriasCatalogo, subc
                 <Label htmlFor="unidade">Unidade</Label>
                 <Input id="unidade" name="unidade" defaultValue={produto?.unidade ?? 'un'} placeholder="un, cx..." />
               </div>
-              <div className="space-y-1">
-                <Label htmlFor="mg">MG</Label>
-                <Input id="mg" name="mg" defaultValue={produto?.composicao ?? ''} placeholder="ex: 500" />
+            </div>
+
+            {/* Ficha StinPharma — campos do portfólio (opcionais; vazio é permitido) */}
+            <div className="space-y-3 rounded-md border border-slate-200 p-3">
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Ficha StinPharma</p>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1">
+                  <Label htmlFor="volume">Volume</Label>
+                  <Input id="volume" name="volume" defaultValue={produto?.volume ?? ''} placeholder="10 ml, 60 mg, 1 frasco..." />
+                </div>
+                <div className="space-y-1">
+                  <Label htmlFor="apresentacao">Apresentação</Label>
+                  <Input id="apresentacao" name="apresentacao" defaultValue={produto?.apresentacao ?? ''} placeholder="ex: frasco-ampola" />
+                </div>
+                <div className="space-y-1">
+                  <Label htmlFor="via_administracao">Via de administração</Label>
+                  <Input id="via_administracao" name="via_administracao" defaultValue={produto?.via_administracao ?? ''} placeholder="ex: intramuscular" />
+                </div>
+                <div className="space-y-1">
+                  <Label htmlFor="via_apresentacao">Via de apresentação</Label>
+                  <Input id="via_apresentacao" name="via_apresentacao" defaultValue={produto?.via_apresentacao ?? ''} placeholder="ex: subcutânea" />
+                </div>
+                <div className="space-y-1">
+                  <Label htmlFor="quantidade_por_caixa">Quantidade por caixa</Label>
+                  <Input id="quantidade_por_caixa" name="quantidade_por_caixa" type="number" min="0" step="1" defaultValue={produto?.quantidade_por_caixa ?? ''} placeholder="ex: 10" />
+                </div>
+                <div className="space-y-1">
+                  <Label htmlFor="valor_caixa">Valor da caixa (R$)</Label>
+                  <Input id="valor_caixa" name="valor_caixa" type="number" step="0.01" min="0" defaultValue={produto?.valor_caixa ?? ''} placeholder="ex: 250.00" />
+                </div>
+                <div className="space-y-1 col-span-2">
+                  <Label htmlFor="aplicadores">Aplicadores</Label>
+                  <Input id="aplicadores" name="aplicadores" defaultValue={produto?.aplicadores ?? ''} placeholder="número, texto ou descrição" />
+                </div>
               </div>
+            </div>
+
+            {/* Receita (apoio à futura prescrição) */}
+            <div className="space-y-3 rounded-md border border-slate-200 p-3">
+              <label className="flex items-center gap-2 text-sm font-medium text-slate-700">
+                <input
+                  type="checkbox"
+                  name="exige_receita"
+                  defaultChecked={!!produto?.exige_receita}
+                  className="rounded border-slate-300"
+                />
+                Exige receita
+              </label>
               <div className="space-y-1">
-                <Label htmlFor="ml">ML</Label>
-                <Input id="ml" name="ml" defaultValue={produto?.apresentacao ?? ''} placeholder="ex: 30" />
+                <Label htmlFor="observacoes_receita">Observações da receita</Label>
+                <Textarea id="observacoes_receita" name="observacoes_receita" defaultValue={produto?.observacoes_receita ?? ''} rows={2} placeholder="Tipo de receita, tarja, restrições..." />
               </div>
             </div>
 

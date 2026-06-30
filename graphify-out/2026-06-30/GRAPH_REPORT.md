@@ -1,16 +1,16 @@
 # Graph Report - plataforma-hub  (2026-06-30)
 
 ## Corpus Check
-- 428 files · ~183,333 words
+- 426 files · ~182,465 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1641 nodes · 4182 edges · 116 communities (93 shown, 23 thin omitted)
+- 1641 nodes · 4182 edges · 117 communities (93 shown, 24 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 21 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f4077b91`
+- Built from commit: `dc46407d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -114,6 +114,7 @@
 - [[_COMMUNITY_Community 112|Community 112]]
 - [[_COMMUNITY_Community 113|Community 113]]
 - [[_COMMUNITY_Community 114|Community 114]]
+- [[_COMMUNITY_Community 115|Community 115]]
 - [[_COMMUNITY_Community 116|Community 116]]
 
 ## God Nodes (most connected - your core abstractions)
@@ -143,7 +144,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (116 total, 23 thin omitted)
+## Communities (117 total, 24 thin omitted)
 
 ### Community 0 - "Ações de Usuários e Contatos"
 Cohesion: 0.19
@@ -282,8 +283,8 @@ Cohesion: 0.15
 Nodes (12): ICONES_COR, ItemAtividadeRecente(), Props, ItemMensagemPendente(), Props, ItemTarefaPendente(), Props, AtividadeRecente (+4 more)
 
 ### Community 35 - "Detalhe de Contato e Timeline"
-Cohesion: 0.15
-Nodes (13): Props, Props, Props, Button(), buttonVariants, Textarea(), AdicionarInstanciaButton(), Props (+5 more)
+Cohesion: 0.14
+Nodes (14): Props, Props, Props, Button(), buttonVariants, Textarea(), AdicionarInstanciaButton(), Props (+6 more)
 
 ### Community 36 - "Gerenciador de Instâncias WhatsApp"
 Cohesion: 0.19
@@ -310,8 +311,8 @@ Cohesion: 0.17
 Nodes (5): FormImportacaoProdutos(), Fornecedor, MAPEAMENTO, ProdutoImportado, Props
 
 ### Community 42 - "Community 42"
-Cohesion: 0.11
-Nodes (19): ContatoCompleto, FormularioEditarContatoProps, Props, Props, mensagensErro, AcoesOrcamentoDetalhe(), Props, AcoesWrapperProps (+11 more)
+Cohesion: 0.13
+Nodes (17): ContatoCompleto, FormularioEditarContatoProps, Props, Props, mensagensErro, Props, BadgeStatusPedido(), STATUS_CONFIG (+9 more)
 
 ### Community 43 - "Community 43"
 Cohesion: 0.15
@@ -354,16 +355,16 @@ Cohesion: 0.15
 Nodes (13): devDependencies, dotenv-cli, eslint, eslint-config-next, @eslint/eslintrc, postcss, tailwindcss, @tailwindcss/postcss (+5 more)
 
 ### Community 53 - "Community 53"
-Cohesion: 0.14
-Nodes (26): MODOS, Props, ORIGENS, Props, PERIODOS, Props, PERIODOS, Props (+18 more)
+Cohesion: 0.16
+Nodes (23): MODOS, Props, ORIGENS, Props, PERIODOS, Props, PERIODOS, Props (+15 more)
 
 ### Community 54 - "Community 54"
 Cohesion: 0.25
 Nodes (7): registrarAuditoria(), definirModoCarteira(), getProprietario(), MODOS, AssistenteOpcao, CarteiraHub, TabelaConfigCarteiras()
 
 ### Community 55 - "Community 55"
-Cohesion: 0.18
-Nodes (9): DialogDescription(), EditarNome(), EditarNomeProps, Conversa, ConversaSelecionada, ItemConversaRow, ListaConversas(), Props (+1 more)
+Cohesion: 0.14
+Nodes (11): DialogDescription(), EditarNome(), EditarNomeProps, Conversa, ConversaSelecionada, ItemConversaRow, ListaConversas(), Props (+3 more)
 
 ### Community 56 - "Manifesto PWA"
 Cohesion: 0.20
@@ -456,7 +457,7 @@ Nodes (3): PROXIMO_LABEL, STATUS_LABELS, TRANSICOES_CORRECAO
 ## Knowledge Gaps
 - **486 isolated node(s):** `mensagensErro`, `STATUS_LABEL`, `STATUS_LABEL`, `SupabaseSrv`, `PerfilMin` (+481 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **23 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **24 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_

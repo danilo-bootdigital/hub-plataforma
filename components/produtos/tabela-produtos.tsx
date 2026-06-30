@@ -160,6 +160,8 @@ export function TabelaProdutos({ produtos, portfolios, categoriasCatalogo, subca
               </th>
               <th className="px-4 py-3 font-medium text-slate-600">Nome</th>
               <th className="px-4 py-3 font-medium text-slate-600">Portfólio</th>
+              <th className="px-4 py-3 font-medium text-slate-600">Volume</th>
+              <th className="px-4 py-3 font-medium text-slate-600">Apresentação</th>
               <th className="px-4 py-3 font-medium text-slate-600">Preço</th>
               <th className="px-4 py-3 font-medium text-slate-600">Unidade</th>
               <th className="px-4 py-3 font-medium text-slate-600">Status</th>
@@ -169,7 +171,7 @@ export function TabelaProdutos({ produtos, portfolios, categoriasCatalogo, subca
           <tbody>
             {produtosFiltrados.length === 0 && (
               <tr>
-                <td colSpan={7} className="px-4 py-8 text-center text-slate-400">
+                <td colSpan={9} className="px-4 py-8 text-center text-slate-400">
                   Nenhum produto encontrado.
                 </td>
               </tr>
@@ -184,8 +186,17 @@ export function TabelaProdutos({ produtos, portfolios, categoriasCatalogo, subca
                     className="rounded border-slate-300"
                   />
                 </td>
-                <td className="px-4 py-3 font-medium text-slate-900">{p.nome}</td>
+                <td className="px-4 py-3 font-medium text-slate-900">
+                  <span className="flex items-center gap-2">
+                    {p.nome}
+                    {p.exige_receita && (
+                      <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-medium text-amber-700">Receita</span>
+                    )}
+                  </span>
+                </td>
                 <td className="px-4 py-3 text-slate-600">{nomePortfolio(p.portfolio_id)}</td>
+                <td className="px-4 py-3 text-slate-600">{p.volume ?? '—'}</td>
+                <td className="px-4 py-3 text-slate-600">{p.apresentacao ?? '—'}</td>
                 <td className="px-4 py-3 text-slate-700">{formatarMoeda(p.preco_unitario)}</td>
                 <td className="px-4 py-3 text-slate-600">{p.unidade}</td>
                 <td className="px-4 py-3">

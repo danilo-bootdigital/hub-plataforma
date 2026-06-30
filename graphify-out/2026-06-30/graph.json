@@ -1537,7 +1537,7 @@
       "label": "editarProduto()",
       "file_type": "code",
       "source_file": "app/(dashboard)/configuracoes/produtos/actions.ts",
-      "source_location": "L80",
+      "source_location": "L61",
       "_origin": "ast",
       "id": "produtos_actions_editarproduto",
       "community": 12,
@@ -1547,7 +1547,7 @@
       "label": "alternarAtivoProduto()",
       "file_type": "code",
       "source_file": "app/(dashboard)/configuracoes/produtos/actions.ts",
-      "source_location": "L141",
+      "source_location": "L103",
       "_origin": "ast",
       "id": "produtos_actions_alternarativoproduto",
       "community": 12,
@@ -1557,7 +1557,7 @@
       "label": "excluirProduto()",
       "file_type": "code",
       "source_file": "app/(dashboard)/configuracoes/produtos/actions.ts",
-      "source_location": "L154",
+      "source_location": "L116",
       "_origin": "ast",
       "id": "produtos_actions_excluirproduto",
       "community": 12,
@@ -1567,7 +1567,7 @@
       "label": "excluirProdutosEmLote()",
       "file_type": "code",
       "source_file": "app/(dashboard)/configuracoes/produtos/actions.ts",
-      "source_location": "L181",
+      "source_location": "L143",
       "_origin": "ast",
       "id": "produtos_actions_excluirprodutosemlote",
       "community": 12,
@@ -7478,7 +7478,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "orcamentos_acoes_orcamento_detalhe_acoesorcamentodetalhe",
-      "community": 42,
+      "community": 115,
       "norm_label": "acoesorcamentodetalhe()"
     },
     {
@@ -7518,7 +7518,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_acoes_wrapper",
-      "community": 42,
+      "community": 115,
       "norm_label": "acoes-wrapper.tsx"
     },
     {
@@ -7528,7 +7528,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "orcamentos_acoes_wrapper_acoeswrapperprops",
-      "community": 42,
+      "community": 115,
       "norm_label": "acoeswrapperprops"
     },
     {
@@ -7538,7 +7538,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "orcamentos_acoes_wrapper_acoeswrapper",
-      "community": 42,
+      "community": 115,
       "norm_label": "acoeswrapper()"
     },
     {
@@ -12118,7 +12118,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_modal_nova_conversa",
-      "community": 53,
+      "community": 35,
       "norm_label": "modal-nova-conversa.tsx"
     },
     {
@@ -12128,7 +12128,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "whatsapp_modal_nova_conversa_instancia",
-      "community": 53,
+      "community": 35,
       "norm_label": "instancia"
     },
     {
@@ -12138,7 +12138,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "whatsapp_modal_nova_conversa_resultadobusca",
-      "community": 53,
+      "community": 35,
       "norm_label": "resultadobusca"
     },
     {
@@ -12148,7 +12148,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "whatsapp_modal_nova_conversa_props",
-      "community": 53,
+      "community": 35,
       "norm_label": "props"
     },
     {
@@ -12788,7 +12788,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_instance_manager",
-      "community": 35,
+      "community": 55,
       "norm_label": "whatsapp-instance-manager.tsx"
     },
     {
@@ -12798,7 +12798,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_instance_manager_whatsappinstance",
-      "community": 35,
+      "community": 55,
       "norm_label": "whatsappinstance"
     },
     {
@@ -12808,7 +12808,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_instance_manager_props",
-      "community": 35,
+      "community": 55,
       "norm_label": "props"
     },
     {
@@ -16239,7 +16239,7 @@
       "label": "Portfolio",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L356",
+      "source_location": "L347",
       "_origin": "ast",
       "id": "types_database_portfolio",
       "community": 48,
@@ -16249,7 +16249,7 @@
       "label": "Categoria",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L366",
+      "source_location": "L357",
       "_origin": "ast",
       "id": "types_database_categoria",
       "community": 27,
@@ -16259,7 +16259,7 @@
       "label": "Subcategoria",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L375",
+      "source_location": "L366",
       "_origin": "ast",
       "id": "types_database_subcategoria",
       "community": 27,
@@ -16269,7 +16269,7 @@
       "label": "HubPortfolio",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L385",
+      "source_location": "L376",
       "_origin": "ast",
       "id": "types_database_hubportfolio",
       "community": 27,
@@ -16279,7 +16279,7 @@
       "label": "Quote",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L395",
+      "source_location": "L386",
       "_origin": "ast",
       "id": "types_database_quote",
       "community": 15,
@@ -16289,7 +16289,7 @@
       "label": "QuoteItem",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L435",
+      "source_location": "L426",
       "_origin": "ast",
       "id": "types_database_quoteitem",
       "community": 7,
@@ -16299,7 +16299,7 @@
       "label": "Order",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L447",
+      "source_location": "L438",
       "_origin": "ast",
       "id": "types_database_order",
       "community": 27,
@@ -16309,7 +16309,7 @@
       "label": "OrderItem",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L471",
+      "source_location": "L462",
       "_origin": "ast",
       "id": "types_database_orderitem",
       "community": 27,
@@ -16319,7 +16319,7 @@
       "label": "LeadDistributionConfig",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L482",
+      "source_location": "L473",
       "_origin": "ast",
       "id": "types_database_leaddistributionconfig",
       "community": 27,
@@ -16329,7 +16329,7 @@
       "label": "SystemConfig",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L493",
+      "source_location": "L484",
       "_origin": "ast",
       "id": "types_database_systemconfig",
       "community": 27,
@@ -16339,7 +16339,7 @@
       "label": "AuditLog",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L504",
+      "source_location": "L495",
       "_origin": "ast",
       "id": "types_database_auditlog",
       "community": 27,
@@ -16349,7 +16349,7 @@
       "label": "DealStageLog",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L517",
+      "source_location": "L508",
       "_origin": "ast",
       "id": "types_database_dealstagelog",
       "community": 27,
@@ -16359,7 +16359,7 @@
       "label": "QuoteToken",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L527",
+      "source_location": "L518",
       "_origin": "ast",
       "id": "types_database_quotetoken",
       "community": 27,
@@ -16369,7 +16369,7 @@
       "label": "KPIWhatsApp",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L548",
+      "source_location": "L539",
       "_origin": "ast",
       "id": "types_database_kpiwhatsapp",
       "community": 4,
@@ -16379,7 +16379,7 @@
       "label": "TotaisCliente",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L560",
+      "source_location": "L551",
       "_origin": "ast",
       "id": "types_database_totaiscliente",
       "community": 4,
@@ -16389,7 +16389,7 @@
       "label": "FiltrosConversa",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L573",
+      "source_location": "L564",
       "_origin": "ast",
       "id": "types_database_filtrosconversa",
       "community": 27,
@@ -61224,5 +61224,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "f4077b915adbe5fae5bc1e3ee6e3f1d988e54506"
+  "built_at_commit": "dc46407d863213e9c12784d958cb446dfb3b3511"
 }
