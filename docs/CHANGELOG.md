@@ -13,7 +13,7 @@
 - **Aplicação Web:** rota `configuracoes/portfolios/[id]/importar`; `components/portfolios/form-importacao-portfolio.tsx` (upload, detecção/normalização de colunas, preview classificado, **painel de pendências** de Categoria/Subcategoria, "Baixar modelo"); server actions `previewImportacaoPortfolio`/`importarProdutosParaPortfolio`; botão "Importar produtos" na página do Portfólio. Build `build:hubdev` OK.
 - **Estruturas preservadas:** Fornecedor intocado (DEC-014); `products.portfolio_id` **não** utilizado (vínculo só em `product_portfolios`).
 - **Regras:** atômica (sem importação parcial); Produtos criados por **dedup de nome normalizado** (nome repetido na planilha = erro); **Categorias/Subcategorias não são criadas automaticamente** (citação inexistente vira pendência que bloqueia); **preço obrigatório** (lar do preço é o vínculo).
-- **Observações:** smoke funcional **44/44** (30 RPC autenticada end-to-end no HUB DEV + 14 modelo/parser); dados `ZZ_SMOKE_*` com teardown e ambiente limpo. **Commit e deploy aguardando aprovação.**
+- **Observações:** smoke funcional **44/44** (30 RPC autenticada end-to-end no HUB DEV + 14 modelo/parser); dados `ZZ_SMOKE_*` com teardown e ambiente limpo. Commit `0170912`; deploy de produção alinhado em `https://hub-plataforma-dev.vercel.app`.
 
 ## 2026-06-30 — RLS de products + remoção do legado no cadastro (DEC-012, Frente 4 final)
 

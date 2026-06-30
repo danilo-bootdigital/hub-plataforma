@@ -114,7 +114,7 @@
   - **`products.portfolio_id` não é usado** (vínculo exclusivamente em `product_portfolios`).
 - **Dependências:** Expand E4/E4-app (Portfólio/Categoria/Subcategoria); vínculo `product_portfolios` (Expand DEC-013); DEC-013; DEC-014.
 - **Critérios de Aceite:** AC1 SQL aplicado no HUB DEV (função + índice) · AC2 build OK (build:hubdev) · AC3 gating admin/gestor · AC4 preview reporta erros e pendências sem persistir · AC5 importação atômica (smoke: erro/pendência ⇒ 0 gravações) · AC6 dedup N:N (mesmo produto reusado em 2 Portfólios) · AC7 idempotência (reimportar não duplica) · AC8 nenhuma escrita em `products.portfolio_id`; nenhuma criação automática de Categoria/Subcategoria · AC9 Fornecedor intocado (DEC-014).
-- **Resultado:** ✔ Implementada e validada por smoke (44/44) no HUB DEV; RPC aplicada via SQL Editor; build OK. **Commit e deploy aguardando aprovação.**
+- **Resultado:** ✔ Concluída — implementada e validada por smoke (44/44) no HUB DEV; RPC aplicada via SQL Editor; commit `0170912`; deploy em `https://hub-plataforma-dev.vercel.app`.
 - **Checkpoint Relacionado:** Checkpoint 012.
 - **Changelog Relacionado:** 2026-06-30 — Importação para Portfólio (Expand E5).
 
