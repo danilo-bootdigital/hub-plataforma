@@ -14,37 +14,30 @@ import type { Product } from '@/types/database'
 
 type Props = {
   produtos: Product[]
-  fornecedores: { id: string; nome: string }[]
-  categorias: { id: string; nome: string; supplier_id: string }[]
   portfolios: { id: string; nome: string }[]
   categoriasCatalogo: { id: string; nome: string; portfolio_id: string }[]
   subcategorias: { id: string; nome: string; categoria_id: string }[]
 }
 
-export function TabelaProdutos({ produtos, fornecedores, categorias, portfolios, categoriasCatalogo, subcategorias }: Props) {
+export function TabelaProdutos({ produtos, portfolios, categoriasCatalogo, subcategorias }: Props) {
   const [isPending, startTransition] = useTransition()
   const [selecionados, setSelecionados] = useState<Set<string>>(new Set())
   const [busca, setBusca] = useState('')
-  const [filtroFornecedor, setFiltroFornecedor] = useState('')
-  const [filtroCategoria, setFiltroCategoria] = useState('')
+  const [filtroPortfolio, setFiltroPortfolio] = useState('')
   const router = useRouter()
 
-  const categoriasFiltradas = useMemo(() => {
-    if (!filtroFornecedor) return categorias
-    return categorias.filter((c) => c.supplier_id === filtroFornecedor)
-  }, [categorias, filtroFornecedor])
+  const nomePortfolio = useMemo(() => {
+    const m = new Map(portfolios.map((p) => [p.id, p.nome]))
+    return (id: string | null) => (id ? m.get(id) ?? '—' : '—')
+  }, [portfolios])
 
   const produtosFiltrados = useMemo(() => {
     return produtos.filter((p) => {
-      if (busca) {
-        const termo = busca.toLowerCase()
-        if (!p.nome.toLowerCase().includes(termo)) return false
-      }
-      if (filtroFornecedor && p.supplier_id !== filtroFornecedor) return false
-      if (filtroCategoria && p.category_id !== filtroCategoria) return false
+      if (busca && !p.nome.toLowerCase().includes(busca.toLowerCase())) return false
+      if (filtroPortfolio && p.portfolio_id !== filtroPortfolio) return false
       return true
     })
-  }, [produtos, busca, filtroFornecedor, filtroCategoria])
+  }, [produtos, busca, filtroPortfolio])
 
   function handleAlternarAtivo(id: string, ativoAtual: boolean) {
     startTransition(async () => {
@@ -117,30 +110,17 @@ export function TabelaProdutos({ produtos, fornecedores, categorias, portfolios,
             className="pl-9"
           />
         </div>
-        <Select value={filtroFornecedor || '__all__'} onValueChange={(v) => { setFiltroFornecedor(v === '__all__' ? '' : (v ?? '')); setFiltroCategoria('') }}>
-          <SelectTrigger className="w-48">
-            <span className="truncate">{filtroFornecedor ? fornecedores.find(f => f.id === filtroFornecedor)?.nome : 'Todos fornecedores'}</span>
+        <Select value={filtroPortfolio || '__all__'} onValueChange={(v) => setFiltroPortfolio(v === '__all__' ? '' : (v ?? ''))}>
+          <SelectTrigger className="w-56">
+            <span className="truncate">{filtroPortfolio ? portfolios.find(p => p.id === filtroPortfolio)?.nome : 'Todos os portfólios'}</span>
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="__all__">Todos fornecedores</SelectItem>
-            {fornecedores.map((f) => (
-              <SelectItem key={f.id} value={f.id}>{f.nome}</SelectItem>
+            <SelectItem value="__all__">Todos os portfólios</SelectItem>
+            {portfolios.map((p) => (
+              <SelectItem key={p.id} value={p.id}>{p.nome}</SelectItem>
             ))}
           </SelectContent>
         </Select>
-        {categoriasFiltradas.length > 0 && (
-          <Select value={filtroCategoria || '__all__'} onValueChange={(v) => setFiltroCategoria(v === '__all__' ? '' : (v ?? ''))}>
-            <SelectTrigger className="w-48">
-              <span className="truncate">{filtroCategoria ? categoriasFiltradas.find(c => c.id === filtroCategoria)?.nome : 'Todas categorias'}</span>
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="__all__">Todas categorias</SelectItem>
-              {categoriasFiltradas.map((c) => (
-                <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        )}
       </div>
 
       {selecionados.size > 0 && (
@@ -179,7 +159,7 @@ export function TabelaProdutos({ produtos, fornecedores, categorias, portfolios,
                 />
               </th>
               <th className="px-4 py-3 font-medium text-slate-600">Nome</th>
-              <th className="px-4 py-3 font-medium text-slate-600">Descrição</th>
+              <th className="px-4 py-3 font-medium text-slate-600">Portfólio</th>
               <th className="px-4 py-3 font-medium text-slate-600">Preço</th>
               <th className="px-4 py-3 font-medium text-slate-600">Unidade</th>
               <th className="px-4 py-3 font-medium text-slate-600">Status</th>
@@ -205,7 +185,7 @@ export function TabelaProdutos({ produtos, fornecedores, categorias, portfolios,
                   />
                 </td>
                 <td className="px-4 py-3 font-medium text-slate-900">{p.nome}</td>
-                <td className="px-4 py-3 text-slate-600">{p.descricao ?? '—'}</td>
+                <td className="px-4 py-3 text-slate-600">{nomePortfolio(p.portfolio_id)}</td>
                 <td className="px-4 py-3 text-slate-700">{formatarMoeda(p.preco_unitario)}</td>
                 <td className="px-4 py-3 text-slate-600">{p.unidade}</td>
                 <td className="px-4 py-3">
@@ -215,7 +195,7 @@ export function TabelaProdutos({ produtos, fornecedores, categorias, portfolios,
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-1">
-                    <ModalNovoProduto produto={p} fornecedores={fornecedores} categorias={categorias} portfolios={portfolios} categoriasCatalogo={categoriasCatalogo} subcategorias={subcategorias} />
+                    <ModalNovoProduto produto={p} portfolios={portfolios} categoriasCatalogo={categoriasCatalogo} subcategorias={subcategorias} />
                     <Button
                       variant="ghost"
                       size="sm"

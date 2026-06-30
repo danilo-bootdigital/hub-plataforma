@@ -24,18 +24,6 @@ export default async function ProdutosPage() {
     .eq('organization_id', perfil.organization_id)
     .order('nome') as unknown as { data: Product[] | null }
 
-  const { data: fornecedores } = await supabase
-    .from('suppliers')
-    .select('id, nome')
-    .eq('organization_id', perfil.organization_id)
-    .order('nome')
-
-  const { data: categorias } = await supabase
-    .from('supplier_categories')
-    .select('id, nome, supplier_id')
-    .eq('organization_id', perfil.organization_id)
-    .order('nome')
-
   // Catálogo oficial (DEC-012): Portfólio → Categoria → Subcategoria
   const { data: portfolios } = await supabase
     .from('portfolios')
@@ -66,8 +54,6 @@ export default async function ProdutosPage() {
           </p>
         </div>
         <ModalNovoProduto
-          fornecedores={(fornecedores ?? []) as { id: string; nome: string }[]}
-          categorias={(categorias ?? []) as { id: string; nome: string; supplier_id: string }[]}
           portfolios={(portfolios ?? []) as { id: string; nome: string }[]}
           categoriasCatalogo={(categoriasCatalogo ?? []) as { id: string; nome: string; portfolio_id: string }[]}
           subcategorias={(subcategorias ?? []) as { id: string; nome: string; categoria_id: string }[]}
@@ -75,8 +61,6 @@ export default async function ProdutosPage() {
       </div>
       <TabelaProdutos
         produtos={produtos ?? []}
-        fornecedores={(fornecedores ?? []) as { id: string; nome: string }[]}
-        categorias={(categorias ?? []) as { id: string; nome: string; supplier_id: string }[]}
         portfolios={(portfolios ?? []) as { id: string; nome: string }[]}
         categoriasCatalogo={(categoriasCatalogo ?? []) as { id: string; nome: string; portfolio_id: string }[]}
         subcategorias={(subcategorias ?? []) as { id: string; nome: string; categoria_id: string }[]}

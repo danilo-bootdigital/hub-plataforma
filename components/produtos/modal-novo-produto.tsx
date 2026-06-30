@@ -15,27 +15,19 @@ import type { Product } from '@/types/database'
 
 type Props = {
   produto?: Product
-  fornecedores: { id: string; nome: string }[]
-  categorias: { id: string; nome: string; supplier_id: string }[]
   portfolios: { id: string; nome: string }[]
   categoriasCatalogo: { id: string; nome: string; portfolio_id: string }[]
   subcategorias: { id: string; nome: string; categoria_id: string }[]
 }
 
-export function ModalNovoProduto({ produto, fornecedores, categorias, portfolios, categoriasCatalogo, subcategorias }: Props) {
+export function ModalNovoProduto({ produto, portfolios, categoriasCatalogo, subcategorias }: Props) {
   const [aberto, setAberto] = useState(false)
   const [isPending, startTransition] = useTransition()
-  const [supplierId, setSupplierId] = useState(produto?.supplier_id ?? '')
-  const [categoryId, setCategoryId] = useState(produto?.category_id ?? '')
   const [portfolioId, setPortfolioId] = useState(produto?.portfolio_id ?? '')
   const [categoriaId, setCategoriaId] = useState(produto?.categoria_id ?? '')
   const [subcategoriaId, setSubcategoriaId] = useState(produto?.subcategoria_id ?? '')
   const router = useRouter()
   const editando = !!produto
-
-  const categoriasFiltradas = supplierId
-    ? categorias.filter(c => c.supplier_id === supplierId)
-    : categorias
 
   const catCatalogoFiltradas = portfolioId
     ? categoriasCatalogo.filter((c) => c.portfolio_id === portfolioId)
@@ -44,12 +36,6 @@ export function ModalNovoProduto({ produto, fornecedores, categorias, portfolios
     ? subcategorias.filter((s) => s.categoria_id === categoriaId)
     : []
 
-  function handleFornecedorChange(v: string | null) {
-    const val = v === '__none__' ? '' : (v ?? '')
-    setSupplierId(val)
-    setCategoryId('')
-  }
-
   function handlePortfolioChange(v: string | null) {
     const val = v === '__none__' ? '' : (v ?? '')
     setPortfolioId(val)
@@ -57,15 +43,13 @@ export function ModalNovoProduto({ produto, fornecedores, categorias, portfolios
     setSubcategoriaId('')
   }
 
-  function handleCategoriaCatalogoChange(v: string | null) {
+  function handleCategoriaChange(v: string | null) {
     const val = v === '__none__' ? '' : (v ?? '')
     setCategoriaId(val)
     setSubcategoriaId('')
   }
 
   function handleSubmit(formData: FormData) {
-    formData.set('supplier_id', supplierId)
-    formData.set('category_id', categoryId || '__none__')
     formData.set('portfolio_id', portfolioId || '__none__')
     formData.set('categoria_id', categoriaId || '__none__')
     formData.set('subcategoria_id', subcategoriaId || '__none__')
@@ -103,31 +87,39 @@ export function ModalNovoProduto({ produto, fornecedores, categorias, portfolios
             <DialogTitle>{editando ? 'Editar produto' : 'Novo produto'}</DialogTitle>
           </DialogHeader>
           <form action={handleSubmit} className="space-y-4">
-            <div className="space-y-3 rounded-md border border-emerald-100 bg-emerald-50/40 p-3">
-              <p className="text-xs font-medium text-emerald-700">Catálogo (Portfólio)</p>
-              <div className="grid grid-cols-3 gap-3">
-                <div className="space-y-1">
-                  <Label>Portfólio</Label>
-                  <Select value={portfolioId || '__none__'} onValueChange={handlePortfolioChange}>
-                    <SelectTrigger>
-                      <span className="flex flex-1 text-left truncate">
-                        {portfolioId ? portfolios.find(p => p.id === portfolioId)?.nome ?? 'Selecionar' : 'Sem portfólio'}
-                      </span>
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="__none__">Sem portfólio</SelectItem>
-                      {portfolios.map((p) => (
-                        <SelectItem key={p.id} value={p.id}>{p.nome}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+            <div className="space-y-1">
+              <Label htmlFor="nome">Nome do produto *</Label>
+              <Input id="nome" name="nome" defaultValue={produto?.nome ?? ''} required autoFocus />
+            </div>
+
+            {/* Catálogo (DEC-012): Portfólio → Categoria → Subcategoria */}
+            <div className="space-y-3 rounded-md border border-slate-200 p-3">
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Catálogo</p>
+
+              <div className="space-y-1">
+                <Label>Portfólio</Label>
+                <Select value={portfolioId || '__none__'} onValueChange={handlePortfolioChange}>
+                  <SelectTrigger className="w-full">
+                    <span className="flex-1 truncate text-left">
+                      {portfolioId ? portfolios.find(p => p.id === portfolioId)?.nome ?? 'Selecionar' : 'Sem portfólio'}
+                    </span>
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="__none__">Sem portfólio</SelectItem>
+                    {portfolios.map((p) => (
+                      <SelectItem key={p.id} value={p.id}>{p.nome}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
                   <Label>Categoria</Label>
-                  <Select value={categoriaId || '__none__'} onValueChange={handleCategoriaCatalogoChange}>
-                    <SelectTrigger>
-                      <span className="flex flex-1 text-left truncate">
-                        {categoriaId ? catCatalogoFiltradas.find(c => c.id === categoriaId)?.nome ?? 'Selecionar' : (portfolioId ? 'Sem categoria' : 'Escolha o portfólio')}
+                  <Select value={categoriaId || '__none__'} onValueChange={handleCategoriaChange} disabled={!portfolioId}>
+                    <SelectTrigger className="w-full">
+                      <span className="flex-1 truncate text-left">
+                        {categoriaId ? catCatalogoFiltradas.find(c => c.id === categoriaId)?.nome ?? 'Selecionar' : (portfolioId ? 'Sem categoria' : '—')}
                       </span>
                     </SelectTrigger>
                     <SelectContent>
@@ -140,10 +132,10 @@ export function ModalNovoProduto({ produto, fornecedores, categorias, portfolios
                 </div>
                 <div className="space-y-1">
                   <Label>Subcategoria</Label>
-                  <Select value={subcategoriaId || '__none__'} onValueChange={(v) => setSubcategoriaId(v === '__none__' ? '' : (v ?? ''))}>
-                    <SelectTrigger>
-                      <span className="flex flex-1 text-left truncate">
-                        {subcategoriaId ? subsFiltradas.find(s => s.id === subcategoriaId)?.nome ?? 'Selecionar' : (categoriaId ? 'Sem subcategoria' : 'Escolha a categoria')}
+                  <Select value={subcategoriaId || '__none__'} onValueChange={(v) => setSubcategoriaId(v === '__none__' ? '' : (v ?? ''))} disabled={!categoriaId}>
+                    <SelectTrigger className="w-full">
+                      <span className="flex-1 truncate text-left">
+                        {subcategoriaId ? subsFiltradas.find(s => s.id === subcategoriaId)?.nome ?? 'Selecionar' : (categoriaId ? 'Sem subcategoria' : '—')}
                       </span>
                     </SelectTrigger>
                     <SelectContent>
@@ -157,61 +149,12 @@ export function ModalNovoProduto({ produto, fornecedores, categorias, portfolios
               </div>
             </div>
 
-            <p className="text-xs font-medium text-slate-400">Origem (legado — em desuso)</p>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="space-y-1">
-                <Label>Fornecedor</Label>
-                <Select value={supplierId || '__none__'} onValueChange={handleFornecedorChange}>
-                  <SelectTrigger>
-                    <span className="flex flex-1 text-left truncate">
-                      {supplierId ? fornecedores.find(f => f.id === supplierId)?.nome ?? 'Selecionar' : 'Selecionar fornecedor'}
-                    </span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="__none__">Sem fornecedor</SelectItem>
-                    {fornecedores.map((f) => (
-                      <SelectItem key={f.id} value={f.id}>{f.nome}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-1">
-                <Label>Categoria</Label>
-                <Select value={categoryId || '__none__'} onValueChange={(v) => setCategoryId(v === '__none__' ? '' : (v ?? ''))}>
-                  <SelectTrigger>
-                    <span className="flex flex-1 text-left truncate">
-                      {categoryId ? categoriasFiltradas.find(c => c.id === categoryId)?.nome ?? 'Selecionar' : 'Selecionar categoria'}
-                    </span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="__none__">Sem categoria</SelectItem>
-                    {categoriasFiltradas.map((c) => (
-                      <SelectItem key={c.id} value={c.id}>{c.nome}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-
-            <div className="space-y-1">
-              <Label htmlFor="nome">Nome do produto *</Label>
-              <Input id="nome" name="nome" defaultValue={produto?.nome ?? ''} required />
-            </div>
-
             <div className="space-y-1">
               <Label htmlFor="descricao">Descrição</Label>
               <Textarea id="descricao" name="descricao" defaultValue={produto?.descricao ?? ''} rows={2} placeholder="Descrição ou composição do produto" />
             </div>
 
-            <div className="grid grid-cols-4 gap-3">
-              <div className="space-y-1">
-                <Label htmlFor="mg">MG</Label>
-                <Input id="mg" name="mg" defaultValue={produto?.composicao ?? ''} placeholder="ex: 500" />
-              </div>
-              <div className="space-y-1">
-                <Label htmlFor="ml">ML</Label>
-                <Input id="ml" name="ml" defaultValue={produto?.apresentacao ?? ''} placeholder="ex: 30" />
-              </div>
+            <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">
                 <Label htmlFor="preco_unitario">Preço (R$)</Label>
                 <Input
@@ -227,6 +170,14 @@ export function ModalNovoProduto({ produto, fornecedores, categorias, portfolios
               <div className="space-y-1">
                 <Label htmlFor="unidade">Unidade</Label>
                 <Input id="unidade" name="unidade" defaultValue={produto?.unidade ?? 'un'} placeholder="un, cx..." />
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="mg">MG</Label>
+                <Input id="mg" name="mg" defaultValue={produto?.composicao ?? ''} placeholder="ex: 500" />
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="ml">ML</Label>
+                <Input id="ml" name="ml" defaultValue={produto?.apresentacao ?? ''} placeholder="ex: 30" />
               </div>
             </div>
 
