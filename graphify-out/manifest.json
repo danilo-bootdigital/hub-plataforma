@@ -90,8 +90,8 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/produtos/page.tsx": {
-    "mtime": 1782836753.0330062,
-    "ast_hash": "7db55eec388495c4fc84b0ed053ce423",
+    "mtime": 1782860974.5742195,
+    "ast_hash": "e7c4764acd502ee60851d1fdb69369d2",
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/usuarios/actions.ts": {
@@ -855,8 +855,8 @@
     "semantic_hash": "be7389cd56e39b026ee045e9e982320e"
   },
   "components/produtos/tabela-produtos.tsx": {
-    "mtime": 1782860274.6076465,
-    "ast_hash": "beb6f95b216ccd2a6178483d29e53d98",
+    "mtime": 1782860992.0554342,
+    "ast_hash": "b4e6f4d2a8e572dfea1e4a3cbf8657c6",
     "semantic_hash": ""
   },
   "components/relatorios/botoes-exportar.tsx": {

@@ -855,8 +855,8 @@
     "semantic_hash": "be7389cd56e39b026ee045e9e982320e"
   },
   "components/produtos/tabela-produtos.tsx": {
-    "mtime": 1782836770.2005475,
-    "ast_hash": "8417b5399330853830606e800051782d",
+    "mtime": 1782860274.6076465,
+    "ast_hash": "beb6f95b216ccd2a6178483d29e53d98",
     "semantic_hash": ""
   },
   "components/relatorios/botoes-exportar.tsx": {
@@ -2055,8 +2055,8 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/portfolios/actions.ts": {
-    "mtime": 1782853252.053226,
-    "ast_hash": "a30f77ea13f4511fea50d8c99fa81179",
+    "mtime": 1782860144.7078104,
+    "ast_hash": "a3f2ec343d4a687ecd4dd24580bcd258",
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/portfolios/page.tsx": {
@@ -2085,8 +2085,8 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/portfolios/[id]/page.tsx": {
-    "mtime": 1782853599.3098433,
-    "ast_hash": "11c9ee52151d01414bccb17b864221ef",
+    "mtime": 1782860226.118631,
+    "ast_hash": "8664fc47de8f391cd2e313bd82fd6d83",
     "semantic_hash": ""
   },
   "components/portfolios/gerenciar-categorias.tsx": {
@@ -2187,6 +2187,21 @@
   "hubdev/bootstrap/expand_rpc_importar_produtos_portfolio_rollback.sql": {
     "mtime": 1782853188.694216,
     "ast_hash": "84c8b002149b5c10bea77787ca129b9b",
+    "semantic_hash": ""
+  },
+  "components/portfolios/vincular-produtos.tsx": {
+    "mtime": 1782860183.1956432,
+    "ast_hash": "0201075d5ddda1ec07d179cf0f926000",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/expand_rpc_vincular_produtos_portfolio.sql": {
+    "mtime": 1782860204.3344557,
+    "ast_hash": "86aa79ee2ed172f8a900d6f099fce114",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/expand_rpc_vincular_produtos_portfolio_rollback.sql": {
+    "mtime": 1782860134.6357377,
+    "ast_hash": "40ba6fe6c78406b2e960a200604615dd",
     "semantic_hash": ""
   }
 }
