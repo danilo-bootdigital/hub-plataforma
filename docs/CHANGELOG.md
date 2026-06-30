@@ -6,6 +6,13 @@
 
 ---
 
+## 2026-06-30 — RLS de products + remoção do legado no cadastro (DEC-012, Frente 4 final)
+
+- **Objetivo:** isolar produtos por Portfólio autorizado (Hub) e remover a "origem legada" (Fornecedor) da tela de Produtos.
+- **Banco (SQL Editor, HUB DEV):** substituída a policy `p_products` (FOR ALL por organização) por `products_sel/ins/upd/del`. Hub (`proprietario_hub`/`assistente`) só lê produtos de Portfólios autorizados (via `get_hub_id()`); Indústria e papéis legados leem/escrevem tudo; Hub não escreve. Artefatos `hubdev/bootstrap/rls_products.sql` (+ rollback que recria `p_products`).
+- **Aplicação Web:** modal de Produto sem a seção "Origem (legado)" (Fornecedor/Categoria de fornecedor); selects de Catálogo (Portfólio→Categoria→Subcategoria) empilhados e encadeados; Preço/Unidade/MG/ML em 2×2. Listagem com filtro e coluna por Portfólio (substitui filtros legados). Commit `cbf4c05`, deploy em `hub-plataforma-dev.vercel.app`.
+- **Observações:** estratégia por `get_user_role()` (não `hub_id is null`), pois há 1 `assistente` sem hub — que corretamente não vê produtos. Validado em produção.
+
 ## 2026-06-30 — RLS do Catálogo (correção do 500 ao criar Portfólio — DEC-012)
 
 - **Objetivo:** corrigir falha em produção ("An error occurred in the Server Components render") ao criar Portfólio e antecipar a RLS por Hub do catálogo.

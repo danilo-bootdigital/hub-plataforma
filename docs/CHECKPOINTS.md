@@ -114,3 +114,14 @@
 - **Banco:** habilitado RLS + 4 policies em `portfolios`/`categorias`/`subcategorias`/`hub_portfolios`; criada `get_hub_id()`
 - **Situação:** ✔ Concluído
 - **Observações:** corrige `new row violates row-level security policy` (RLS ligado sem policies). Diagnóstico via logs Vercel (digest `1290974233`). Antecipa a RLS por Hub do catálogo (era Frente 4 do Migrate). `products` legado não alterado. Criação de Portfólio validada em produção.
+
+## Checkpoint 011 — RLS de products + cadastro sem legado (Frente 4 final)
+
+- **Data:** 2026-06-30
+- **Git Commit:** `cbf4c05` (UI + artefatos `rls_products*.sql`)
+- **Git Branch:** main
+- **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV / Homologação)
+- **Ambiente:** HUB DEV (banco) + produção Vercel (`hub-plataforma-dev`)
+- **Banco:** `products` — `p_products` substituída por `products_sel/ins/upd/del` (Hub vê só Portfólios autorizados; Indústria/legado livre; Hub não escreve)
+- **Situação:** ✔ Concluído
+- **Observações:** modal de Produto sem origem legada (Fornecedor); selects de Catálogo empilhados; listagem por Portfólio. Estratégia por `get_user_role()` (há 1 assistente sem hub). Validado pelo usuário em produção. **Migrate do catálogo concluído** (backfill N/A — base vazia).
