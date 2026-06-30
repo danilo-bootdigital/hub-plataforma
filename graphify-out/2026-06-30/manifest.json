@@ -85,13 +85,13 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/produtos/actions.ts": {
-    "mtime": 1782835200.5030494,
-    "ast_hash": "57a4685715ba3e67ed71438294e1bd4d",
+    "mtime": 1782837868.564443,
+    "ast_hash": "267d4308ff781e7e3ac9ed527dc2c113",
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/produtos/page.tsx": {
-    "mtime": 1782830595.4749289,
-    "ast_hash": "40cb18a52f91d6ef359bce90e78755b3",
+    "mtime": 1782836753.0330062,
+    "ast_hash": "7db55eec388495c4fc84b0ed053ce423",
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/usuarios/actions.ts": {
@@ -854,14 +854,9 @@
     "ast_hash": "be7389cd56e39b026ee045e9e982320e",
     "semantic_hash": "be7389cd56e39b026ee045e9e982320e"
   },
-  "components/produtos/modal-novo-produto.tsx": {
-    "mtime": 1782835224.0626585,
-    "ast_hash": "785ddebb0d3074a7f91e20b50311887a",
-    "semantic_hash": ""
-  },
   "components/produtos/tabela-produtos.tsx": {
-    "mtime": 1782835243.5984967,
-    "ast_hash": "cff7e09ee3e7cfc7674542ae9c9a799b",
+    "mtime": 1782836770.2005475,
+    "ast_hash": "8417b5399330853830606e800051782d",
     "semantic_hash": ""
   },
   "components/relatorios/botoes-exportar.tsx": {
@@ -2137,6 +2132,21 @@
   "hubdev/bootstrap/expand_produto_stinpharma_rollback.sql": {
     "mtime": 1782835149.7691004,
     "ast_hash": "765b6bc15f39306920c14bf3157e68fa",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/configuracoes/produtos/[id]/editar/page.tsx": {
+    "mtime": 1782836691.0114584,
+    "ast_hash": "1b4705f2bdd8893f85d881941f9c484c",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/configuracoes/produtos/novo/page.tsx": {
+    "mtime": 1782836682.6695902,
+    "ast_hash": "41ae38996b130f742a6740650a1a9d37",
+    "semantic_hash": ""
+  },
+  "components/produtos/form-produto.tsx": {
+    "mtime": 1782836673.1017306,
+    "ast_hash": "d8801f6a3092e699911179449f9c17aa",
     "semantic_hash": ""
   }
 }

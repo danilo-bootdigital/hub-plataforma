@@ -13,7 +13,7 @@
 3. **Identificador sequencial.** Toda decisão futura recebe o próximo identificador sequencial (**DEC-011, DEC-012, …**). Identificadores nunca são reutilizados nem reaproveitados.
 4. **Status possíveis:** `Aprovada / vigente` · `Substituída por DEC-XXX` · `Revogada`.
 
-> A próxima decisão a ser registrada será a **DEC-013**.
+> A próxima decisão a ser registrada será a **DEC-014**.
 
 ---
 
@@ -150,4 +150,23 @@
 - **Motivo:** alinhar o catálogo à arquitetura oficial (DEC-003/006/011), oficializar **Portfólio como agrupamento comercial** da Indústria e estabelecer a **autorização operacional Hub↔Portfólio como regra separada**, substituindo Fornecedor (legado herdado do sistema antigo).
 - **Impacto:** base oficial para o módulo de Catálogo/Portfólio, autorização Hub↔Portfólio, RLS por Hub e congelamento de Orçamento. Fornecedor e `health_hubs` viram legado até Contract. **Esta DEC não implementa nada** (sem banco/código/RLS/migration/tela/deploy). Exige atualização posterior de `DOMINIO.md`, `FUNCIONAL.md` e `PERMISSOES.md`. **Riscos principais:** convivência `hubs`×`health_hubs` (padronizar em `hubs`); duplicidade Categoria legado×oficial; introdução de RLS por Hub sobre base hoje só-Indústria (ativar só em Migrate, com testes); fidelidade de Orçamentos legados (garantida pelo snapshot); preservar o Hub real "Pharma1" nos testes; manter telas atuais funcionando durante Expand.
 - **Data:** 28/06/2026
+- **Status:** Aprovada / vigente
+
+## DEC-013 — Relação Produto ↔ Portfólio (N:N) e lar do Preço
+
+- **Descrição:** estabelece que a relação **Produto ↔ Portfólio é N:N** e define que o **preço comercial vive no vínculo Produto↔Portfólio**. **Emenda a DEC-012** nas cláusulas de cardinalidade (§136) e nomenclatura (§145): onde a DEC-012 dizia "Produto **pertence a um** Portfólio (`produto.portfolio_id`)", passa a valer **Produto ↔ Portfólio N:N**. As demais cláusulas da DEC-012 (Portfólio = agrupamento comercial; autorização Hub↔Portfólio como regra separada; Fornecedor e `health_hubs` legados; faseamento) **permanecem vigentes**. A DEC-012 segue **Aprovada / vigente**, emendada apenas nos pontos acima.
+  - **Produto é único na Indústria:** identidade canônica única; **não se duplica** o Produto para colocá-lo em outro Portfólio.
+  - **Cardinalidade N:N:** o mesmo Produto pode compor **vários Portfólios**; um Portfólio reúne **vários Produtos**. Materializada por tabela de vínculo própria (técnico futuro: `product_portfolios`) com **unicidade `(produto, portfólio)`** — um Portfólio **não duplica** o mesmo Produto.
+  - **Classificação por vínculo:** Categoria e Subcategoria classificam o Produto **dentro de cada Portfólio**; portanto a classificação pertence ao **vínculo** (Produto×Portfólio), não ao Produto isolado. O mesmo Produto pode ter Categoria/Subcategoria diferentes em Portfólios diferentes.
+  - **Lar do Preço (decisão central):** o **preço comercial** (preço unitário e valor da caixa) **vive no vínculo Produto↔Portfólio**, pois o Portfólio é a **unidade comercial** (DEC-012 §134). Durante a transição mantém-se **fallback** em `products.preco_unitario`/`products.valor_caixa`; o preço efetivo = **`COALESCE(vínculo, produto)`**. No **Contract**, o preço **autoritativo** é o do vínculo (o do Produto vira referência/seed ou é removido).
+  - **Snapshot do Orçamento:** o item do Orçamento congela o preço **resolvido no contexto do Portfólio** na emissão (+ `portfolio_id` de origem), conforme DEC-012 §141. Revogar/alterar Portfólio ou preço **não muda** Orçamentos já emitidos.
+  - **Autorização Hub↔Portfólio inalterada:** `hub_portfolios` continua N:N por Portfólio. Muda apenas o **critério de visibilidade do Produto pelo Hub**: o Hub vê o Produto se ele estiver em **algum Portfólio autorizado e ativo**, avaliado **pelo vínculo** (não por coluna única do Produto).
+  - **Faseamento (Expand → Migrate → Contract):**
+    - **Expand (aditivo puro):** criar o vínculo `product_portfolios` (produto, portfólio, categoria, subcategoria, preço unitário, valor da caixa, ativo; unicidade `(produto, portfólio)`) **sem remover** `products.portfolio_id`/classificação/preço.
+    - **Migrate:** backfill 1→N (cada `products.portfolio_id` atual vira uma linha de vínculo, copiando preço e classificação); trocar a **RLS de `products`** para avaliar pelo vínculo; ajustar cadastro (seleção de **múltiplos** Portfólios), importação e orçamento.
+    - **Contract:** remover de `products` as colunas `portfolio_id`, `categoria_id`, `subcategoria_id` e consolidar o preço **autoritativo** no vínculo.
+- **Motivo:** a regra de negócio aprovada exige o **mesmo Produto em mais de um Portfólio sem duplicação**, e o preço precisa de **contexto comercial (Portfólio)** para não quebrar importação, orçamento e autorização por Hub. O modelo `portfolio_id` único da DEC-012 impede ambos.
+- **Impacto:** base oficial para o vínculo N:N, preço por Portfólio (com fallback transitório via `COALESCE`), RLS por vínculo, importação para Portfólio e congelamento do Orçamento. **Esta DEC não implementa nada** (sem banco/código/RLS/migration/tela/deploy). Já refletida em `DOMINIO.md`; exige atualização posterior de `FUNCIONAL.md` e `PERMISSOES.md` quando o vínculo for implementado.
+- **Riscos principais:** dupla fonte de preço durante a transição (mitigado por `COALESCE` e por tornar o vínculo autoritativo no Contract); migração da RLS de `products` de coluna única para o vínculo (ativar com testes, preservando o Hub real "Pharma1"); consistência do backfill 1→N; manter telas, importação e orçamento funcionando durante o Expand.
+- **Data:** 2026-06-30
 - **Status:** Aprovada / vigente

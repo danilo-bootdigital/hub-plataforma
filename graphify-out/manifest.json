@@ -1705,8 +1705,8 @@
     "semantic_hash": "02fc19ad21338c2ab820a70136310db4"
   },
   "types/database.ts": {
-    "mtime": 1782835157.121303,
-    "ast_hash": "e0110b2b6f909c0762576523d202679a",
+    "mtime": 1782839518.9423337,
+    "ast_hash": "fb04e3273170c452c37b7f50541f8ce9",
     "semantic_hash": ""
   },
   "types/whatsapp-central.ts": {
@@ -2147,6 +2147,26 @@
   "components/produtos/form-produto.tsx": {
     "mtime": 1782836673.1017306,
     "ast_hash": "d8801f6a3092e699911179449f9c17aa",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/expand_product_portfolios.sql": {
+    "mtime": 1782839256.363705,
+    "ast_hash": "79b7dd63987c6dfef110c1ab56f919ef",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/expand_product_portfolios_rollback.sql": {
+    "mtime": 1782839262.084932,
+    "ast_hash": "4d801a3021dc6c5f400307e333e631bd",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/migrate_product_portfolios_backfill.sql": {
+    "mtime": 1782840674.6692123,
+    "ast_hash": "c64d710422e5c369f6c87a76eb8d0250",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/migrate_product_portfolios_backfill_rollback.sql": {
+    "mtime": 1782840680.6799698,
+    "ast_hash": "010faa0c13b95103732087bfffc75b0b",
     "semantic_hash": ""
   }
 }

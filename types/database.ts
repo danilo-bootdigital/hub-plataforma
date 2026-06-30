@@ -392,6 +392,23 @@ export type HubPortfolio = {
   atualizado_em: string
 }
 
+// Vínculo N:N Produto ↔ Portfólio (DEC-013): o mesmo Produto pode compor vários
+// Portfólios; classificação e preço comercial vivem AQUI (por Portfólio).
+// Durante a transição, preço efetivo = COALESCE(preco_unitario do vínculo, products.preco_unitario).
+export type ProductPortfolio = {
+  id: string
+  organization_id: string
+  product_id: string
+  portfolio_id: string
+  categoria_id: string | null
+  subcategoria_id: string | null
+  preco_unitario: number | null
+  valor_caixa: number | null
+  ativo: boolean
+  criado_em: string
+  atualizado_em: string
+}
+
 export type Quote = {
   id: string
   organization_id: string
