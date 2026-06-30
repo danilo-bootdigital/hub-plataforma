@@ -13,7 +13,7 @@
 - **Aplicação Web:** seção "Produtos do portfólio" na página do Portfólio com **modal de multi-seleção** (busca, classificação opcional, lista de já vinculados) — `components/portfolios/vincular-produtos.tsx`; ação em lote **"Vincular ao portfólio"** na lista de Produtos (`components/produtos/tabela-produtos.tsx`); action `vincularProdutosAoPortfolio`.
 - **Estruturas preservadas:** Fornecedor intocado (DEC-014); `products.portfolio_id` não utilizado.
 - **Regras:** preço do vínculo herda do produto; classificação opcional aplicada ao lote; idempotente (já vinculado é ignorado).
-- **Observações:** smoke funcional **13/13** no HUB DEV (vínculo em massa, idempotência, N:N, classificação, atomicidade do erro), dados `ZZ_SMOKE_E6_*` com teardown e ambiente limpo. Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+- **Observações:** smoke funcional **13/13** no HUB DEV (vínculo em massa, idempotência, N:N, classificação, atomicidade do erro), dados `ZZ_SMOKE_E6_*` com teardown e ambiente limpo. Commit `350c0f7`; deploy em `https://hub-plataforma-dev.vercel.app`.
 
 ## 2026-06-30 — Importação para Portfólio (Sprint Expand E5 — DEC-013/DEC-014)
 

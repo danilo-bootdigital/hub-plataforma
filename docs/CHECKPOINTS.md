@@ -140,7 +140,7 @@
 ## Checkpoint 013 — Vínculo em massa Produto↔Portfólio (Sprint Expand E6 — DEC-013/DEC-014)
 
 - **Data:** 2026-06-30
-- **Git Commit:** `__HASH__`
+- **Git Commit:** `350c0f7`
 - **Git Branch:** main
 - **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV / Homologação)
 - **Ambiente:** HUB DEV (banco — RPCs aplicadas via SQL Editor) + produção Vercel (`hub-plataforma-dev`)
