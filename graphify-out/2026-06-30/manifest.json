@@ -85,8 +85,8 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/produtos/actions.ts": {
-    "mtime": 1782745203.1651893,
-    "ast_hash": "fa563071216224720f8c5c14e1e14a13",
+    "mtime": 1782835200.5030494,
+    "ast_hash": "57a4685715ba3e67ed71438294e1bd4d",
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/produtos/page.tsx": {
@@ -855,13 +855,13 @@
     "semantic_hash": "be7389cd56e39b026ee045e9e982320e"
   },
   "components/produtos/modal-novo-produto.tsx": {
-    "mtime": 1782830525.197848,
-    "ast_hash": "178eec65146c2379b670e32644e78cd7",
+    "mtime": 1782835224.0626585,
+    "ast_hash": "785ddebb0d3074a7f91e20b50311887a",
     "semantic_hash": ""
   },
   "components/produtos/tabela-produtos.tsx": {
-    "mtime": 1782830578.1994436,
-    "ast_hash": "b229f0ab9e0dfe71cdafe61a7474cdbb",
+    "mtime": 1782835243.5984967,
+    "ast_hash": "cff7e09ee3e7cfc7674542ae9c9a799b",
     "semantic_hash": ""
   },
   "components/relatorios/botoes-exportar.tsx": {
@@ -1710,8 +1710,8 @@
     "semantic_hash": "02fc19ad21338c2ab820a70136310db4"
   },
   "types/database.ts": {
-    "mtime": 1782745213.84896,
-    "ast_hash": "897c5dfad206e2ef2e78faf2d7052691",
+    "mtime": 1782835157.121303,
+    "ast_hash": "e0110b2b6f909c0762576523d202679a",
     "semantic_hash": ""
   },
   "types/whatsapp-central.ts": {
@@ -2127,6 +2127,16 @@
   "hubdev/bootstrap/rls_products_rollback.sql": {
     "mtime": 1782830099.893918,
     "ast_hash": "8c9f7cdde2317640798604664de0642d",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/expand_produto_stinpharma.sql": {
+    "mtime": 1782835149.7163663,
+    "ast_hash": "1606e0d9d05c327a12606fb42eb7aab7",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/expand_produto_stinpharma_rollback.sql": {
+    "mtime": 1782835149.7691004,
+    "ast_hash": "765b6bc15f39306920c14bf3157e68fa",
     "semantic_hash": ""
   }
 }

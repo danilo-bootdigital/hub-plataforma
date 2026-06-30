@@ -29,7 +29,7 @@ export async function criarProduto(formData: FormData) {
   const unidade = (formData.get('unidade') as string)?.trim() || 'un'
   const supplier_id = (formData.get('supplier_id') as string)?.trim() || null
   const category_id = (formData.get('category_id') as string)?.trim() || null
-  // Ficha de Produto StinPharma (todos opcionais; vazio => null)
+  // Características do Produto (todos opcionais; vazio => null)
   const apresentacao = (formData.get('apresentacao') as string)?.trim() || null
   const via_administracao = (formData.get('via_administracao') as string)?.trim() || null
   const via_apresentacao = (formData.get('via_apresentacao') as string)?.trim() || null
@@ -86,7 +86,7 @@ export async function editarProduto(produtoId: string, formData: FormData) {
   const unidade = (formData.get('unidade') as string)?.trim() || 'un'
   const supplier_id = (formData.get('supplier_id') as string)?.trim() || null
   const category_id = (formData.get('category_id') as string)?.trim() || null
-  // Ficha de Produto StinPharma (todos opcionais; vazio => null)
+  // Características do Produto (todos opcionais; vazio => null)
   const apresentacao = (formData.get('apresentacao') as string)?.trim() || null
   const via_administracao = (formData.get('via_administracao') as string)?.trim() || null
   const via_apresentacao = (formData.get('via_apresentacao') as string)?.trim() || null

@@ -3,23 +3,21 @@
 import { useState, useMemo, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
-import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select'
-import { ModalNovoProduto } from './modal-novo-produto'
 import { alternarAtivoProduto, excluirProduto, excluirProdutosEmLote } from '@/app/(dashboard)/configuracoes/produtos/actions'
-import { formatarMoeda } from '@/lib/utils'
-import { Trash2, Search } from 'lucide-react'
+import { cn, formatarMoeda } from '@/lib/utils'
+import { Trash2, Search, Pencil } from 'lucide-react'
 import type { Product } from '@/types/database'
 
 type Props = {
   produtos: Product[]
   portfolios: { id: string; nome: string }[]
-  categoriasCatalogo: { id: string; nome: string; portfolio_id: string }[]
-  subcategorias: { id: string; nome: string; categoria_id: string }[]
 }
 
-export function TabelaProdutos({ produtos, portfolios, categoriasCatalogo, subcategorias }: Props) {
+export function TabelaProdutos({ produtos, portfolios }: Props) {
   const [isPending, startTransition] = useTransition()
   const [selecionados, setSelecionados] = useState<Set<string>>(new Set())
   const [busca, setBusca] = useState('')
@@ -206,7 +204,13 @@ export function TabelaProdutos({ produtos, portfolios, categoriasCatalogo, subca
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-1">
-                    <ModalNovoProduto produto={p} portfolios={portfolios} categoriasCatalogo={categoriasCatalogo} subcategorias={subcategorias} />
+                    <Link
+                      href={`/configuracoes/produtos/${p.id}/editar`}
+                      className={cn(buttonVariants({ variant: 'ghost', size: 'icon-xs' }))}
+                      aria-label={`Editar ${p.nome}`}
+                    >
+                      <Pencil className="h-3.5 w-3.5" />
+                    </Link>
                     <Button
                       variant="ghost"
                       size="sm"

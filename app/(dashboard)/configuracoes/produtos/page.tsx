@@ -1,7 +1,10 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
+import Link from 'next/link'
 import { TabelaProdutos } from '@/components/produtos/tabela-produtos'
-import { ModalNovoProduto } from '@/components/produtos/modal-novo-produto'
+import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import { Plus } from 'lucide-react'
 import type { Product } from '@/types/database'
 
 export default async function ProdutosPage() {
@@ -32,18 +35,6 @@ export default async function ProdutosPage() {
     .eq('ativo', true)
     .order('nome')
 
-  const { data: categoriasCatalogo } = await supabase
-    .from('categorias')
-    .select('id, nome, portfolio_id')
-    .eq('organization_id', perfil.organization_id)
-    .order('nome')
-
-  const { data: subcategorias } = await supabase
-    .from('subcategorias')
-    .select('id, nome, categoria_id')
-    .eq('organization_id', perfil.organization_id)
-    .order('nome')
-
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -53,17 +44,14 @@ export default async function ProdutosPage() {
             Catálogo de produtos para uso nos orçamentos.
           </p>
         </div>
-        <ModalNovoProduto
-          portfolios={(portfolios ?? []) as { id: string; nome: string }[]}
-          categoriasCatalogo={(categoriasCatalogo ?? []) as { id: string; nome: string; portfolio_id: string }[]}
-          subcategorias={(subcategorias ?? []) as { id: string; nome: string; categoria_id: string }[]}
-        />
+        <Link href="/configuracoes/produtos/novo" className={cn(buttonVariants({ size: 'sm' }), 'gap-1.5')}>
+          <Plus className="h-4 w-4" />
+          Novo Produto
+        </Link>
       </div>
       <TabelaProdutos
         produtos={produtos ?? []}
         portfolios={(portfolios ?? []) as { id: string; nome: string }[]}
-        categoriasCatalogo={(categoriasCatalogo ?? []) as { id: string; nome: string; portfolio_id: string }[]}
-        subcategorias={(subcategorias ?? []) as { id: string; nome: string; categoria_id: string }[]}
       />
     </div>
   )
