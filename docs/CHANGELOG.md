@@ -10,7 +10,7 @@
 
 - **Objetivo:** a lista de Produtos mostrava "—" no Portfólio (e filtrava errado) porque lia `products.portfolio_id` (legado, não mais preenchido).
 - **Aplicação Web:** `configuracoes/produtos/page.tsx` lê `product_portfolios` (join `portfolios`) via **admin client** com escopo na organização (RLS sem policies p/ app) e monta `vinculosPorProduto`; `tabela-produtos.tsx` passa a exibir e filtrar pelos Portfólios do vínculo N:N (um produto pode aparecer em vários). Sem novo SQL.
-- **Observações:** corrige o sintoma reportado; alinhado à DEC-014 (não usar `products.portfolio_id`). Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+- **Observações:** corrige o sintoma reportado; alinhado à DEC-014 (não usar `products.portfolio_id`). Commit `8d46862`; deploy em `https://hub-plataforma-dev.vercel.app`.
 
 ## 2026-06-30 — Vínculo em massa Produto↔Portfólio (Sprint Expand E6 — DEC-013/DEC-014)
 
