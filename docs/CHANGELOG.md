@@ -6,6 +6,18 @@
 
 ---
 
+## 2026-06-30 — RLS do Catálogo (correção do 500 ao criar Portfólio — DEC-012)
+
+- **Objetivo:** corrigir falha em produção ("An error occurred in the Server Components render") ao criar Portfólio e antecipar a RLS por Hub do catálogo.
+- **Causa raiz (diagnóstico):** tabela `portfolios` (e `categorias`/`subcategorias`/`hub_portfolios`) estava com **RLS habilitado e 0 policies** → `new row violates row-level security policy for table "portfolios"` no `insert` da Server Action `criarPortfolio`. SELECT retornava vazio; INSERT era negado.
+- **Alterações:** aplicadas via SQL Editor no HUB DEV (`pnkgwfgjhijksfmofiot`).
+- **Estruturas criadas:**
+  - função `get_hub_id()` (`security definer`, padrão das helpers de RLS)
+  - 4 policies por tabela (select/insert/update/delete) em `portfolios`, `categorias`, `subcategorias`, `hub_portfolios`
+  - artefatos `hubdev/bootstrap/rls_catalogo.sql` (+ rollback)
+- **Regra aplicada:** Indústria (admin/gestor/financeiro) vê tudo; admin/gestor escrevem; Hub/Assistente leem apenas Portfólios autorizados (`hub_portfolios.status='ativo'` via `get_hub_id()`).
+- **Observações:** `products` (legado) não alterado. RLS por Hub do catálogo (era Frente 4 do Migrate) antecipada para as 4 tabelas novas. Validado: criação de Portfólio OK em produção.
+
 ## 2026-06-29 — Catálogo / Portfólio na Aplicação Web (Sprint Expand E4-app — DEC-012)
 
 - **Objetivo:** materializar o catálogo da DEC-012 na Aplicação Web (telas restritas à Indústria), em 3 fatias aditivas.

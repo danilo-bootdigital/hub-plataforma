@@ -103,3 +103,14 @@
 - **Banco:** inalterado (consome as estruturas da Expand E4)
 - **Situação:** ✔ Concluído
 - **Observações:** Fatias A–C (CRUD Portfólio, Categoria/Subcategoria, autorização Hub↔Portfólio nas duas visões). Build OK; deploy de produção alinhado ao local em `https://hub-plataforma-dev.vercel.app`. Gating admin/gestor. Sem RLS por Hub (Migrate). Validação visual da Fatia C pendente.
+
+## Checkpoint 010 — RLS do Catálogo (correção do 500 ao criar Portfólio)
+
+- **Data:** 2026-06-30
+- **Git Commit:** artefatos `hubdev/bootstrap/rls_catalogo*.sql` + docs (ver Changelog 2026-06-30)
+- **Git Branch:** main
+- **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV / Homologação)
+- **Ambiente:** HUB DEV / Homologação (banco) + produção Vercel (validação)
+- **Banco:** habilitado RLS + 4 policies em `portfolios`/`categorias`/`subcategorias`/`hub_portfolios`; criada `get_hub_id()`
+- **Situação:** ✔ Concluído
+- **Observações:** corrige `new row violates row-level security policy` (RLS ligado sem policies). Diagnóstico via logs Vercel (digest `1290974233`). Antecipa a RLS por Hub do catálogo (era Frente 4 do Migrate). `products` legado não alterado. Criação de Portfólio validada em produção.
