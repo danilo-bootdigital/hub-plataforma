@@ -136,3 +136,14 @@
 - **Banco:** RPC `importar_produtos_portfolio` (`security definer`, atômica, autorização interna) + índice `idx_products_org_nome_norm`. Artefatos `hubdev/bootstrap/expand_rpc_importar_produtos_portfolio.sql` (+ rollback).
 - **Situação:** ✔ Concluído — smoke 44/44; commit `0170912`; deploy em `https://hub-plataforma-dev.vercel.app`
 - **Observações:** smoke funcional **44/44** — 30 asserts da RPC autenticada end-to-end no HUB DEV (preview/aplicar, idempotência, atomicidade 0%/100%, pendência de Categoria/Subcategoria, N:N com preço por Portfólio, sem `supplier`) + 14 do modelo Excel e do parser/normalização. Dados `ZZ_SMOKE_*` com teardown e ambiente limpo confirmado; "Pharma1"/dados reais intocados. `products.portfolio_id` **não** utilizado; Categorias/Subcategorias **não** criadas automaticamente (viram pendência). Fornecedor intocado (DEC-014). Sem policies novas (acesso ao vínculo só via RPC nesta fase).
+
+## Checkpoint 013 — Vínculo em massa Produto↔Portfólio (Sprint Expand E6 — DEC-013/DEC-014)
+
+- **Data:** 2026-06-30
+- **Git Commit:** `__HASH__`
+- **Git Branch:** main
+- **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV / Homologação)
+- **Ambiente:** HUB DEV (banco — RPCs aplicadas via SQL Editor) + produção Vercel (`hub-plataforma-dev`)
+- **Banco:** RPC `vincular_produtos_portfolio` (`security definer`, atômica, idempotente, preço herdado) + helper `produtos_vinculados_portfolio` → `uuid[]`. Artefatos `hubdev/bootstrap/expand_rpc_vincular_produtos_portfolio.sql` (+ rollback).
+- **Situação:** ✔ Concluído — smoke 13/13; deploy em `https://hub-plataforma-dev.vercel.app`
+- **Observações:** vínculo em massa de produtos existentes em **2 pontos de entrada** (modal na página do Portfólio + ação em lote na lista de Produtos). Idempotente (já vinculado ignorado), classificação opcional aplicada ao lote, N:N validado. `products.portfolio_id` não utilizado; Fornecedor intocado (DEC-014). Sem policies novas (acesso só via RPC).

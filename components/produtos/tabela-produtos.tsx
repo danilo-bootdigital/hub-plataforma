@@ -6,10 +6,13 @@ import { toast } from 'sonner'
 import Link from 'next/link'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { Label } from '@/components/ui/label'
 import { alternarAtivoProduto, excluirProduto, excluirProdutosEmLote } from '@/app/(dashboard)/configuracoes/produtos/actions'
+import { vincularProdutosAoPortfolio } from '@/app/(dashboard)/configuracoes/portfolios/actions'
 import { cn, formatarMoeda } from '@/lib/utils'
-import { Trash2, Search, Pencil } from 'lucide-react'
+import { Trash2, Search, Pencil, FolderPlus } from 'lucide-react'
 import type { Product } from '@/types/database'
 
 type Props = {
@@ -22,6 +25,8 @@ export function TabelaProdutos({ produtos, portfolios }: Props) {
   const [selecionados, setSelecionados] = useState<Set<string>>(new Set())
   const [busca, setBusca] = useState('')
   const [filtroPortfolio, setFiltroPortfolio] = useState('')
+  const [vincularAberto, setVincularAberto] = useState(false)
+  const [pfAlvo, setPfAlvo] = useState('')
   const router = useRouter()
 
   const nomePortfolio = useMemo(() => {
@@ -78,6 +83,23 @@ export function TabelaProdutos({ produtos, portfolios }: Props) {
     })
   }
 
+  function handleVincular() {
+    const ids = Array.from(selecionados)
+    if (ids.length === 0 || !pfAlvo) return
+    startTransition(async () => {
+      try {
+        const r = await vincularProdutosAoPortfolio(pfAlvo, ids) as { vinculados: number; ignorados: number }
+        toast.success(`${r.vinculados} vinculado(s)${r.ignorados ? ` · ${r.ignorados} já existia(m)` : ''}.`)
+        setVincularAberto(false)
+        setPfAlvo('')
+        setSelecionados(new Set())
+        router.refresh()
+      } catch (e: unknown) {
+        toast.error(e instanceof Error ? e.message : 'Erro ao vincular.')
+      }
+    })
+  }
+
   function toggleSelecionado(id: string) {
     setSelecionados((prev) => {
       const n = new Set(prev)
@@ -122,8 +144,18 @@ export function TabelaProdutos({ produtos, portfolios }: Props) {
       </div>
 
       {selecionados.size > 0 && (
-        <div className="flex items-center gap-3 rounded-lg border border-red-200 bg-red-50 px-4 py-2">
-          <span className="text-sm text-red-700 font-medium">{selecionados.size} selecionado(s)</span>
+        <div className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-2">
+          <span className="text-sm font-medium text-slate-700">{selecionados.size} selecionado(s)</span>
+          <Button
+            variant="outline"
+            size="sm"
+            className="gap-1.5"
+            onClick={() => setVincularAberto(true)}
+            disabled={isPending || portfolios.length === 0}
+          >
+            <FolderPlus className="h-3.5 w-3.5" />
+            Vincular ao portfólio
+          </Button>
           <Button
             variant="destructive"
             size="sm"
@@ -137,12 +169,41 @@ export function TabelaProdutos({ produtos, portfolios }: Props) {
           <button
             type="button"
             onClick={() => setSelecionados(new Set())}
-            className="text-xs text-red-500 hover:text-red-700 ml-auto"
+            className="text-xs text-slate-500 hover:text-slate-700 ml-auto"
           >
             Limpar seleção
           </button>
         </div>
       )}
+
+      <Dialog open={vincularAberto} onOpenChange={(o) => { if (!o) { setVincularAberto(false); setPfAlvo('') } }}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Vincular {selecionados.size} produto(s) a um portfólio</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <p className="text-xs text-slate-500">
+              O preço do vínculo herda o valor unitário de cada produto. Produtos já vinculados são ignorados.
+            </p>
+            <div className="space-y-1">
+              <Label>Portfólio de destino</Label>
+              <Select value={pfAlvo || '__none__'} onValueChange={(v: string | null) => setPfAlvo(v === '__none__' ? '' : (v ?? ''))}>
+                <SelectTrigger className="w-full"><SelectValue placeholder="Selecionar portfólio..." /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="__none__" disabled>Selecionar...</SelectItem>
+                  {portfolios.map((p) => <SelectItem key={p.id} value={p.id}>{p.nome}</SelectItem>)}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex justify-end gap-2">
+              <Button type="button" variant="outline" onClick={() => { setVincularAberto(false); setPfAlvo('') }} disabled={isPending}>Cancelar</Button>
+              <Button type="button" onClick={handleVincular} disabled={isPending || !pfAlvo}>
+                {isPending ? 'Vinculando...' : 'Vincular'}
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <div className="overflow-x-auto rounded-lg border bg-white">
         <table className="w-full text-sm">

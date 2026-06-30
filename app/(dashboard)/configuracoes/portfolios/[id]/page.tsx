@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { ArrowLeft, Upload } from 'lucide-react'
 import { GerenciarCategorias, type CategoriaComSubs } from '@/components/portfolios/gerenciar-categorias'
 import { AutorizacaoPortfolios } from '@/components/portfolios/autorizacao-portfolios'
+import { VincularProdutos } from '@/components/portfolios/vincular-produtos'
 import type { Portfolio } from '@/types/database'
 
 export default async function PortfolioDetalhePage({ params }: { params: Promise<{ id: string }> }) {
@@ -69,6 +70,16 @@ export default async function PortfolioDetalhePage({ params }: { params: Promise
 
   const hubsAutorizados = (autorizacoes ?? []).map((a) => a.hub_id)
 
+  // Produtos da Indústria + ids já vinculados a este Portfólio (via RPC, pois o
+  // vínculo product_portfolios tem RLS sem policies). DEC-013/014.
+  const { data: produtos } = await supabase
+    .from('products')
+    .select('id, nome, preco_unitario')
+    .eq('organization_id', perfil.organization_id)
+    .order('nome')
+
+  const { data: vinculadosIds } = await supabase.rpc('produtos_vinculados_portfolio', { p_portfolio_id: id })
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between gap-4">
@@ -98,6 +109,19 @@ export default async function PortfolioDetalhePage({ params }: { params: Promise
           <p className="text-sm text-slate-500">Categorias e subcategorias dos produtos deste portfólio.</p>
         </div>
         <GerenciarCategorias portfolioId={portfolio.id} categorias={categoriasComSubs} />
+      </section>
+
+      <section className="space-y-3">
+        <div>
+          <h2 className="text-lg font-semibold text-slate-900">Produtos do portfólio</h2>
+          <p className="text-sm text-slate-500">Vincule produtos existentes a este portfólio em massa, ou importe por planilha.</p>
+        </div>
+        <VincularProdutos
+          portfolioId={portfolio.id}
+          produtos={(produtos ?? []) as { id: string; nome: string; preco_unitario: number }[]}
+          vinculadosIds={(vinculadosIds ?? []) as string[]}
+          categorias={categoriasComSubs}
+        />
       </section>
 
       <section className="space-y-3">

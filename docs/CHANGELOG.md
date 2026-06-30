@@ -6,6 +6,15 @@
 
 ---
 
+## 2026-06-30 — Vínculo em massa Produto↔Portfólio (Sprint Expand E6 — DEC-013/DEC-014)
+
+- **Objetivo:** vincular **produtos já existentes** a um Portfólio **em massa** (sem ser um a um), além da importação por planilha.
+- **Banco (SQL Editor, HUB DEV):** RPC `vincular_produtos_portfolio(portfolio, product_ids[], categoria?, subcategoria?)` (`security definer`, atômica, **idempotente** — `on conflict do nothing`, preço **herdado** do produto) + helper `produtos_vinculados_portfolio(portfolio) → uuid[]`. Artefatos `hubdev/bootstrap/expand_rpc_vincular_produtos_portfolio.sql` (+ rollback). Sem novas policies.
+- **Aplicação Web:** seção "Produtos do portfólio" na página do Portfólio com **modal de multi-seleção** (busca, classificação opcional, lista de já vinculados) — `components/portfolios/vincular-produtos.tsx`; ação em lote **"Vincular ao portfólio"** na lista de Produtos (`components/produtos/tabela-produtos.tsx`); action `vincularProdutosAoPortfolio`.
+- **Estruturas preservadas:** Fornecedor intocado (DEC-014); `products.portfolio_id` não utilizado.
+- **Regras:** preço do vínculo herda do produto; classificação opcional aplicada ao lote; idempotente (já vinculado é ignorado).
+- **Observações:** smoke funcional **13/13** no HUB DEV (vínculo em massa, idempotência, N:N, classificação, atomicidade do erro), dados `ZZ_SMOKE_E6_*` com teardown e ambiente limpo. Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+
 ## 2026-06-30 — Importação para Portfólio (Sprint Expand E5 — DEC-013/DEC-014)
 
 - **Objetivo:** importar Produtos por planilha (XLSX/CSV) **para um Portfólio**, materializando o vínculo N:N `product_portfolios` (preço/classificação por Portfólio).

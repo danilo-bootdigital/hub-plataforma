@@ -387,3 +387,30 @@ export async function importarProdutosParaPortfolio(
   revalidatePath('/configuracoes/produtos')
   return resultado
 }
+
+// ── Vínculo em massa de Produtos existentes a um Portfólio (DEC-013/014) ──
+// Via RPC `vincular_produtos_portfolio` (SECURITY DEFINER, atômica, idempotente).
+// Preço do vínculo herda do produto; classificação opcional aplicada ao lote.
+
+export async function vincularProdutosAoPortfolio(
+  portfolioId: string,
+  productIds: string[],
+  categoriaId: string | null = null,
+  subcategoriaId: string | null = null
+) {
+  const { supabase } = await getAdminOuGestor()
+  if (!productIds || productIds.length === 0) throw new Error('Nenhum produto selecionado.')
+  if (productIds.length > 5000) throw new Error('Máximo de 5000 produtos por operação.')
+
+  const { data, error } = await supabase.rpc('vincular_produtos_portfolio', {
+    p_portfolio_id: portfolioId,
+    p_product_ids: productIds,
+    p_categoria_id: categoriaId,
+    p_subcategoria_id: subcategoriaId,
+  })
+  if (error) throw new Error(`Erro ao vincular: ${error.message}`)
+
+  revalidatePath(`/configuracoes/portfolios/${portfolioId}`)
+  revalidatePath('/configuracoes/produtos')
+  return data
+}

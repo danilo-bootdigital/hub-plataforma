@@ -118,6 +118,21 @@
 - **Checkpoint Relacionado:** Checkpoint 012.
 - **Changelog Relacionado:** 2026-06-30 — Importação para Portfólio (Expand E5).
 
+## Sprint Expand E6 — Vínculo em massa Produto↔Portfólio
+
+- **Identificador:** Expand E6 (FASE 1 — Expand)
+- **Objetivo:** vincular **produtos existentes** a um Portfólio **em massa** (sem ser um a um), materializando `product_portfolios` (DEC-013), sem Fornecedor (DEC-014).
+- **Escopo:**
+  - **Banco (Expand):** RPC `vincular_produtos_portfolio(portfolio, product_ids[], categoria?, subcategoria?)` (`SECURITY DEFINER`, atômica, idempotente — `on conflict do nothing`, preço herdado do produto) + helper `produtos_vinculados_portfolio(portfolio) → uuid[]`. Arquivos `hubdev/bootstrap/expand_rpc_vincular_produtos_portfolio.sql` (+ rollback). Sem policies novas.
+  - **Backend:** action `vincularProdutosAoPortfolio` em `portfolios/actions.ts`.
+  - **Frontend (2 pontos de entrada):** (a) seção "Produtos do portfólio" na página do Portfólio com modal multi-seleção (busca, classificação opcional, lista de já vinculados) — `components/portfolios/vincular-produtos.tsx`; (b) ação em lote "Vincular ao portfólio" na lista de Produtos (`tabela-produtos.tsx`).
+- **Regras:** preço do vínculo herda do produto; classificação opcional aplicada ao lote; idempotente (já vinculado ignorado); `products.portfolio_id` não usado.
+- **Dependências:** Expand E5 (importação/vínculo); DEC-013; DEC-014.
+- **Critérios de Aceite:** AC1 SQL aplicado no HUB DEV (2 funções) · AC2 build OK · AC3 gating admin/gestor · AC4 vínculo em massa cria N vínculos · AC5 idempotência (rerodar ignora) · AC6 N:N (mesmo produto em ≥2 portfólios) · AC7 classificação opcional aplicada · AC8 sem `products.portfolio_id`; sem Fornecedor.
+- **Resultado:** ✔ Concluída — smoke 13/13 no HUB DEV; RPC aplicada via SQL Editor; build OK.
+- **Checkpoint Relacionado:** Checkpoint 013.
+- **Changelog Relacionado:** 2026-06-30 — Vínculo em massa Produto↔Portfólio (Expand E6).
+
 ---
 
 ## Convenção de identificadores
