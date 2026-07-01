@@ -85,8 +85,8 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/usuarios/actions.ts": {
-    "mtime": 1782870314.3281279,
-    "ast_hash": "749b1926bc4aab715bc176b85c5b890f",
+    "mtime": 1782891999.2372322,
+    "ast_hash": "e7c17da4ab9e5cc59c0f2fcba7c5f33a",
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/usuarios/page.tsx": {
@@ -995,8 +995,8 @@
     "semantic_hash": "45a34c680181dae15ac712a3c1e67871"
   },
   "components/usuarios/modal-novo-usuario.tsx": {
-    "mtime": 1782425044.9466937,
-    "ast_hash": "b090a8de45169eafb2e0b84d2d50a97a",
+    "mtime": 1782891988.5263183,
+    "ast_hash": "de589e27a1afd16731cb43f4ae212dfd",
     "semantic_hash": ""
   },
   "components/whatsapp/adicionar-instancia-button.tsx": {

@@ -1,16 +1,16 @@
 # Graph Report - plataforma-hub  (2026-07-01)
 
 ## Corpus Check
-- 448 files · ~194,775 words
+- 448 files · ~194,815 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1694 nodes · 4327 edges · 119 communities (99 shown, 20 thin omitted)
+- 1694 nodes · 4327 edges · 119 communities (98 shown, 21 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 22 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f0c0c430`
+- Built from commit: `55d6aee7`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -146,7 +146,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (119 total, 20 thin omitted)
+## Communities (119 total, 21 thin omitted)
 
 ### Community 0 - "Ações de Usuários e Contatos"
 Cohesion: 0.14
@@ -285,8 +285,8 @@ Cohesion: 0.15
 Nodes (12): ICONES_COR, ItemAtividadeRecente(), Props, ItemMensagemPendente(), Props, ItemTarefaPendente(), Props, AtividadeRecente (+4 more)
 
 ### Community 35 - "Detalhe de Contato e Timeline"
-Cohesion: 0.11
-Nodes (7): getNovoStatus(), POST(), GET(), calcularPeriodo(), NovoOrcamentoContent(), FormOrcamento(), FormProduto()
+Cohesion: 0.10
+Nodes (9): GET(), calcularPeriodo(), NovoOrcamentoContent(), FormOrcamento(), BotaoExcluirPedido(), FiltrosPedidos(), calcularPeriodo(), PedidosPage() (+1 more)
 
 ### Community 36 - "Gerenciador de Instâncias WhatsApp"
 Cohesion: 0.15
@@ -452,10 +452,6 @@ Nodes (4): OrcamentoRow, STATUS_CLASSE, STATUS_LABEL, TabelaOrcamentos()
 Cohesion: 0.29
 Nodes (11): Props, adicionarObservacaoContato(), ContatoImportado, converterContatoEmLead(), criarContato(), editarContato(), excluirContato(), excluirContatosEmLote() (+3 more)
 
-### Community 111 - "Community 111"
-Cohesion: 0.50
-Nodes (4): BotaoExcluirPedido(), FiltrosPedidos(), calcularPeriodo(), PedidosPage()
-
 ### Community 112 - "Community 112"
 Cohesion: 0.19
 Nodes (13): adicionarObservacaoDeal(), criarDeal(), getVendedorOuSuperior(), moverDeal(), Autor, BadgeOrigemTipo, buscarObservacoesDeal(), Estagio (+5 more)
@@ -483,7 +479,7 @@ Nodes (5): KPIWhatsApp, HeaderKPIs(), KPI_CONFIG, KpiConfig, Props
 ## Knowledge Gaps
 - **505 isolated node(s):** `mensagensErro`, `STATUS_LABEL`, `STATUS_LABEL`, `SupabaseSrv`, `PerfilMin` (+500 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **20 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **21 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_

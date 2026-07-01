@@ -1617,7 +1617,7 @@
       "label": "alterarSenhaUsuario()",
       "file_type": "code",
       "source_file": "app/(dashboard)/configuracoes/usuarios/actions.ts",
-      "source_location": "L59",
+      "source_location": "L63",
       "_origin": "ast",
       "id": "usuarios_actions_alterarsenhausuario",
       "community": 108,
@@ -1627,7 +1627,7 @@
       "label": "atribuirFuncao()",
       "file_type": "code",
       "source_file": "app/(dashboard)/configuracoes/usuarios/actions.ts",
-      "source_location": "L100",
+      "source_location": "L104",
       "_origin": "ast",
       "id": "usuarios_actions_atribuirfuncao",
       "community": 108,
@@ -1637,7 +1637,7 @@
       "label": "alternarStatusUsuario()",
       "file_type": "code",
       "source_file": "app/(dashboard)/configuracoes/usuarios/actions.ts",
-      "source_location": "L129",
+      "source_location": "L133",
       "_origin": "ast",
       "id": "usuarios_actions_alternarstatususuario",
       "community": 108,
@@ -3470,7 +3470,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pedidos_page",
-      "community": 111,
+      "community": 35,
       "norm_label": "page.tsx"
     },
     {
@@ -3480,7 +3480,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "pedidos_page_calcularperiodo",
-      "community": 111,
+      "community": 35,
       "norm_label": "calcularperiodo()"
     },
     {
@@ -3490,7 +3490,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "pedidos_page_pedidospage",
-      "community": 111,
+      "community": 35,
       "norm_label": "pedidospage()"
     },
     {
@@ -4640,7 +4640,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "acao_route",
-      "community": 35,
+      "community": 111,
       "norm_label": "route.ts"
     },
     {
@@ -4650,7 +4650,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "acao_route_post",
-      "community": 35,
+      "community": 111,
       "norm_label": "post()"
     },
     {
@@ -4660,7 +4660,7 @@
       "source_location": "L130",
       "_origin": "ast",
       "id": "acao_route_getnovostatus",
-      "community": 35,
+      "community": 111,
       "norm_label": "getnovostatus()"
     },
     {
@@ -9038,7 +9038,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "pedidos_botao_excluir_pedido_botaoexcluirpedido",
-      "community": 111,
+      "community": 35,
       "norm_label": "botaoexcluirpedido()"
     },
     {
@@ -9128,7 +9128,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "pedidos_filtros_pedidos_filtrospedidos",
-      "community": 111,
+      "community": 35,
       "norm_label": "filtrospedidos()"
     },
     {
@@ -11705,7 +11705,7 @@
       "label": "perfis",
       "file_type": "code",
       "source_file": "components/usuarios/modal-novo-usuario.tsx",
-      "source_location": "L12",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "usuarios_modal_novo_usuario_perfis",
       "community": 7,
@@ -11715,7 +11715,7 @@
       "label": "ModalNovoUsuario()",
       "file_type": "code",
       "source_file": "components/usuarios/modal-novo-usuario.tsx",
-      "source_location": "L21",
+      "source_location": "L20",
       "_origin": "ast",
       "id": "usuarios_modal_novo_usuario_modalnovousuario",
       "community": 108,
@@ -63302,5 +63302,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "f0c0c43011fe589c882ff068bc63bc2659777fb6"
+  "built_at_commit": "55d6aee7b98e31542f547e04dc20fff00db2b906"
 }
