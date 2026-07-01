@@ -10,7 +10,7 @@
 
 - **Objetivo:** coerência total com "a plataforma só trabalha com Clientes" — não só o rótulo do menu, mas a **rota e o código**.
 - **Alterações:** pasta de rota `app/(dashboard)/contatos` → `app/(dashboard)/clientes` (URL `/clientes`, `/clientes/[id]`, `/clientes/importar`, `/clientes/exportar`); pasta `components/contatos` → `components/clientes`; ~19 referências `/contatos` → `/clientes` (redirects, `router.push`, `revalidatePath`, links, imports) em leads/tarefas/whatsapp/clientes. **Redirect** em `next.config.ts`: `/contatos` e `/contatos/:path*` → `/clientes` (mantém links/bookmarks antigos).
-- **Observações:** menu já exibia "Clientes"; agora a URL e o código também. Nomes internos de variáveis (`contato`/`contatos`) mantidos por ora (sem impacto de rota). Build OK; sem SQL. Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+- **Observações:** menu já exibia "Clientes"; agora a URL e o código também. Nomes internos de variáveis (`contato`/`contatos`) mantidos por ora (sem impacto de rota). Build OK; sem SQL. Commit `b6ba083`; deploy em `https://hub-plataforma-dev.vercel.app`.
 
 ## 2026-07-01 — Consolidação do módulo Clientes e Carteiras (DEC-017)
 
