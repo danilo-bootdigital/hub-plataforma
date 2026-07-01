@@ -1,7 +1,7 @@
 import {
   LayoutDashboard, Users, TrendingUp, UserCheck,
   MessageCircle, CheckSquare, FileText, Inbox,
-  BarChart3, Settings, Package, Building2, Briefcase, Network, Wallet, Contact, ClipboardList, PackageCheck, Layers, type LucideIcon
+  BarChart3, Settings, Package, Building2, Briefcase, Network, Wallet, Contact, ClipboardList, PackageCheck, Layers, ShieldCheck, type LucideIcon
 } from 'lucide-react'
 import type { UserRole } from '@/types/database'
 
@@ -46,6 +46,7 @@ export const navegacao: ItemNavegacao[] = [
   // Consulta operacional de Produtos (Hub) — DEC-013/014; sem CRUD
   { label: 'Produtos', href: '/hub/produtos', icone: Package, perfis: ['proprietario_hub', 'assistente'], modulo: 'produtos' },
   { label: 'Assistentes', href: '/hub/assistentes', icone: Users, perfis: ['proprietario_hub'] },
+  { label: 'Funções', href: '/hub/funcoes', icone: ShieldCheck, perfis: ['proprietario_hub'] },
   { label: 'Carteiras', href: '/hub/carteiras', icone: Wallet, perfis: ['proprietario_hub'] },
   { label: 'Clientes', href: '/hub/clientes', icone: Contact, perfis: ['proprietario_hub'] },
   { label: 'Minha Área', href: '/assistente', icone: Briefcase, perfis: ['assistente'], modulo: 'dashboard' },
