@@ -170,8 +170,8 @@
     "semantic_hash": "963eea8a4156261b217516eef8f471ec"
   },
   "app/(dashboard)/layout.tsx": {
-    "mtime": 1782532356.687505,
-    "ast_hash": "d951f6eac4ec63a71792d28ebba325d1",
+    "mtime": 1782869015.261805,
+    "ast_hash": "d09da5a8d03619934fdece6dbb3326c8",
     "semantic_hash": ""
   },
   "app/(dashboard)/leads/[id]/page.tsx": {
@@ -630,18 +630,18 @@
     "semantic_hash": "f42ed6bd5c6b388e743ec09f287fe177"
   },
   "components/layout/header.tsx": {
-    "mtime": 1782532361.578511,
-    "ast_hash": "385b58018cda20b4037340cd74a1272f",
+    "mtime": 1782869042.7103174,
+    "ast_hash": "b2262b09594b27476bb42e5978ca6595",
     "semantic_hash": ""
   },
   "components/layout/sidebar-mobile.tsx": {
-    "mtime": 1782532352.1610734,
-    "ast_hash": "e5ab0a5d5601d39e91ab0adf5727f44f",
+    "mtime": 1782869034.097595,
+    "ast_hash": "91e2db2c6fc4db6a1213a5aeb41b101b",
     "semantic_hash": ""
   },
   "components/layout/sidebar.tsx": {
-    "mtime": 1782532341.6733181,
-    "ast_hash": "99071003bc8152fcf5ae469fac606583",
+    "mtime": 1782869028.3274128,
+    "ast_hash": "0ac9a30e7ccf77dfd0d9bd7ffa29055a",
     "semantic_hash": ""
   },
   "components/leads/badge-origem.tsx": {
@@ -1235,8 +1235,8 @@
     "semantic_hash": "35ac2dad0755e14c603fb7ceb00a8aa6"
   },
   "lib/navegacao.ts": {
-    "mtime": 1782865497.742596,
-    "ast_hash": "f6af877afc2452baca0e9512e08f9678",
+    "mtime": 1782868992.813803,
+    "ast_hash": "30580a2bba7d6d84d3dd17d207da401b",
     "semantic_hash": ""
   },
   "lib/nome-contato.ts": {
@@ -2227,6 +2227,26 @@
   "hubdev/bootstrap/expand_hub_produtos_rollback.sql": {
     "mtime": 1782865380.31797,
     "ast_hash": "46c2b0fd55b4d56ca76d62e30189ba55",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/expand_rbac_funcoes.sql": {
+    "mtime": 1782868247.367377,
+    "ast_hash": "68049f91b4fb4d547d3f3e0ad2b73a5b",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/expand_rbac_funcoes_rollback.sql": {
+    "mtime": 1782868253.6472743,
+    "ast_hash": "934f082f104cbf83f1b58101dec2d870",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/migrate_rbac_funcao_padrao.sql": {
+    "mtime": 1782868626.9431074,
+    "ast_hash": "252b225a0cdff8fa1fd3b49cc3eb956b",
+    "semantic_hash": ""
+  },
+  "lib/rbac.ts": {
+    "mtime": 1782868956.6438963,
+    "ast_hash": "d55f80f1234e349273ac7197432706ec",
     "semantic_hash": ""
   }
 }
