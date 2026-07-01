@@ -1,7 +1,7 @@
-# Graph Report - plataforma-hub  (2026-06-30)
+# Graph Report - plataforma-hub  (2026-07-01)
 
 ## Corpus Check
-- 448 files · ~194,679 words
+- 448 files · ~194,775 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `09e81c22`
+- Built from commit: `f0c0c430`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -177,8 +177,8 @@ Cohesion: 0.16
 Nodes (17): criarCategoria(), criarFornecedor(), DadosTransportadora, editarFornecedor(), excluirCategoria(), excluirFornecedor(), getAdminOuGestor(), importarProdutosComFornecedor() (+9 more)
 
 ### Community 7 - "Login e Formulário de Contato"
-Cohesion: 0.20
-Nodes (20): CampoSenha(), Props, Props, Props, Props, Dialog(), DialogContent(), DialogHeader() (+12 more)
+Cohesion: 0.19
+Nodes (20): ACAO_LABEL, EditState, MODULOS, CampoSenha(), Props, Props, Props, Props (+12 more)
 
 ### Community 8 - "Ações de Orçamento"
 Cohesion: 0.17
@@ -237,8 +237,8 @@ Cohesion: 0.19
 Nodes (16): ConversaPage(), formatarTelefone(), iniciais(), nomeExibicao(), pareceTelefone(), ChatArea(), ChatHeaderInfo, MensagemInicial (+8 more)
 
 ### Community 22 - "Listagem de Leads e Orçamentos"
-Cohesion: 0.12
-Nodes (16): ACAO_LABEL, EditState, MODULOS, PROXIMO_LABEL, STATUS_LABELS, TRANSICOES_CORRECAO, EditarPedidoProps, ModalEditarPedido() (+8 more)
+Cohesion: 0.13
+Nodes (16): PROXIMO_LABEL, STATUS_LABELS, TRANSICOES_CORRECAO, EditarPedidoProps, ModalEditarPedido(), Props, Button(), buttonVariants (+8 more)
 
 ### Community 23 - "Rota de Exportação CSV"
 Cohesion: 0.10

@@ -1315,9 +1315,9 @@
     "semantic_hash": "992263d64f6c1f3fa6505cc36c4d7900"
   },
   "middleware.ts": {
-    "mtime": 1780702346.0,
-    "ast_hash": "ac5813eeb307de16429e9730607f5988",
-    "semantic_hash": "ac5813eeb307de16429e9730607f5988"
+    "mtime": 1782871513.694864,
+    "ast_hash": "9fa2f92fa823fce59c0c073b91c9259f",
+    "semantic_hash": ""
   },
   "next-env.d.ts": {
     "mtime": 1782497772.596013,
