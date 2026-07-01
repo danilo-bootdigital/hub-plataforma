@@ -46,6 +46,10 @@ async function resolverEmpresa(
 
 export async function criarContato(formData: FormData) {
   const { supabase, perfil } = await getUsuarioEOrg()
+  // DEC-017: cadastro de cliente é governança da Indústria (admin/gestor).
+  if (perfil.cargo !== 'admin' && perfil.cargo !== 'gestor') {
+    throw new Error('Apenas a Indústria (Administrador/Gestor) cadastra clientes.')
+  }
 
   const nome = formData.get('nome') as string
   if (!nome?.trim()) throw new Error('O nome do contato é obrigatório.')
@@ -89,6 +93,12 @@ export async function criarContato(formData: FormData) {
     .single()
 
   if (error) throw new Error(`Erro ao criar contato: ${error.message}`)
+
+  await supabase.from('audit_logs').insert({
+    organization_id: perfil.organization_id, usuario_id: perfil.id,
+    acao: 'CRIACAO_CLIENTE', tabela_afetada: 'contacts', registro_id: contato.id,
+    dados_anteriores: null, dados_novos: { nome },
+  })
 
   await supabase.from('activities').insert({
     organization_id: perfil.organization_id,
@@ -376,6 +386,15 @@ type ContatoImportado = {
 
 export async function importarContatos(contatos: ContatoImportado[], modo: 'pular' | 'atualizar' = 'pular') {
   const { supabase, perfil } = await getUsuarioEOrg()
+  // DEC-017: importação de clientes é exclusiva da Indústria (admin/gestor).
+  if (perfil.cargo !== 'admin' && perfil.cargo !== 'gestor') {
+    throw new Error('Apenas a Indústria (Administrador/Gestor) importa clientes.')
+  }
+  await supabase.from('audit_logs').insert({
+    organization_id: perfil.organization_id, usuario_id: perfil.id,
+    acao: 'IMPORTACAO_CLIENTES', tabela_afetada: 'contacts', registro_id: perfil.id,
+    dados_anteriores: null, dados_novos: { total: contatos?.length ?? 0, modo },
+  })
 
   if (!contatos || contatos.length === 0) {
     throw new Error('Nenhum contato para importar.')

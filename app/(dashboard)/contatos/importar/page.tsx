@@ -2,8 +2,17 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import { FormImportacao } from '@/components/contatos/form-importacao'
+import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
 
-export default function ImportarContatosPage() {
+export default async function ImportarContatosPage() {
+  // DEC-017: importação de clientes é exclusiva da Indústria (admin/gestor).
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect('/login')
+  const { data: perfil } = await supabase.from('profiles').select('cargo').eq('id', user.id).single()
+  if (perfil?.cargo !== 'admin' && perfil?.cargo !== 'gestor') redirect('/painel')
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
