@@ -52,7 +52,7 @@ export default async function NovoOrcamentoPage() {
   const { data: h } = await admin.from('hubs').select('nome').eq('id', hub).single()
 
   return (
-    <div className="mx-auto w-full max-w-4xl space-y-6">
+    <div className="mx-auto w-full max-w-[1600px] space-y-4">
       <div>
         <h1 className="text-2xl font-bold text-slate-900">Novo Orçamento</h1>
         <p className="mt-1 text-sm text-slate-500">Hub: <span className="font-medium text-slate-700">{h?.nome ?? '—'}</span></p>

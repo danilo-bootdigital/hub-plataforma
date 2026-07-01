@@ -80,7 +80,7 @@ function FichaProduto({ p }: { p: LinhaProdutoHub }) {
   const preenchidos = campos.filter(([, v]) => v != null && String(v).trim() !== '')
   if (!preenchidos.length) return null
   return (
-    <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs sm:grid-cols-3">
+    <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs sm:grid-cols-3 lg:grid-cols-4">
       {preenchidos.map(([k, v]) => (
         <div key={k}>
           <p className="text-slate-400">{k}</p>
@@ -280,9 +280,10 @@ export function FormOrcamentoHub({
   )
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 items-start gap-4 lg:grid-cols-12">
       {/* Bloco 1 — Cliente */}
-      <Card>
+      <Card className="lg:col-span-8">
         <CardHeader>
           <CardTitle>1. Cliente</CardTitle>
         </CardHeader>
@@ -355,7 +356,7 @@ export function FormOrcamentoHub({
       </Card>
 
       {/* Bloco 2 — Portfólio */}
-      <Card>
+      <Card className="lg:col-span-4">
         <CardHeader>
           <CardTitle>2. Portfólio</CardTitle>
         </CardHeader>
@@ -385,7 +386,7 @@ export function FormOrcamentoHub({
       </Card>
 
       {/* Bloco 3 — Produtos */}
-      <Card>
+      <Card className="lg:col-span-8">
         <CardHeader>
           <CardTitle>3. Produtos</CardTitle>
         </CardHeader>
@@ -502,11 +503,11 @@ export function FormOrcamentoHub({
       </Card>
 
       {/* Bloco 4 — Dados comerciais */}
-      <Card>
+      <Card className="lg:col-span-4">
         <CardHeader>
           <CardTitle>4. Dados comerciais</CardTitle>
         </CardHeader>
-        <CardContent className="grid gap-4 sm:grid-cols-2">
+        <CardContent className="grid gap-3 sm:grid-cols-2">
           <div className="space-y-1.5">
             <Label htmlFor="forma">Forma de pagamento</Label>
             <Input id="forma" value={formaPagamento} onChange={(e) => setFormaPagamento(e.target.value)} />
@@ -543,12 +544,12 @@ export function FormOrcamentoHub({
       </Card>
 
       {/* Bloco 5 — Resumo */}
-      <Card>
+      <Card className="lg:col-span-12">
         <CardHeader>
           <CardTitle>5. Resumo</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid gap-2 text-sm sm:grid-cols-2">
+        <CardContent className="space-y-3">
+          <div className="grid gap-2 text-sm sm:grid-cols-4">
             <p className="text-slate-500">Cliente: <span className="text-slate-800">{cliente?.nome ?? '—'}</span></p>
             <p className="text-slate-500">Portfólio: <span className="text-slate-800">{portfolio?.nome ?? '—'}</span></p>
             <p className="text-slate-500">Hub: <span className="text-slate-800">{hubNome || '—'}</span></p>
@@ -581,6 +582,7 @@ export function FormOrcamentoHub({
           </p>
         </CardContent>
       </Card>
+      </div>
 
       {/* Ações */}
       <div className="flex flex-wrap items-center justify-end gap-2">
