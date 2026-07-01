@@ -50,7 +50,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "login_page",
-      "community": 19,
+      "community": 38,
       "norm_label": "page.tsx"
     },
     {
@@ -60,7 +60,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "login_page_mensagenserro",
-      "community": 19,
+      "community": 38,
       "norm_label": "mensagenserro"
     },
     {
@@ -70,7 +70,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "login_page_loginpage",
-      "community": 19,
+      "community": 38,
       "norm_label": "loginpage()"
     },
     {
@@ -80,7 +80,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "login_page_errologin",
-      "community": 19,
+      "community": 38,
       "norm_label": "errologin()"
     },
     {
@@ -460,7 +460,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "prepedidos_page",
-      "community": 57,
+      "community": 26,
       "norm_label": "page.tsx"
     },
     {
@@ -470,7 +470,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "prepedidos_page_assistenteprepedidospage",
-      "community": 57,
+      "community": 26,
       "norm_label": "assistenteprepedidospage()"
     },
     {
@@ -512,6 +512,326 @@
       "id": "caixa_de_entrada_page_caixadeentradapage",
       "community": 5,
       "norm_label": "caixadeentradapage()"
+    },
+    {
+      "label": "formulario-editar-contato.tsx",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "editar_formulario_editar_contato",
+      "community": 14,
+      "norm_label": "formulario-editar-contato.tsx"
+    },
+    {
+      "label": "ContatoCompleto",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "editar_formulario_editar_contato_contatocompleto",
+      "community": 14,
+      "norm_label": "contatocompleto"
+    },
+    {
+      "label": "FormularioEditarContatoProps",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "editar_formulario_editar_contato_formularioeditarcontatoprops",
+      "community": 14,
+      "norm_label": "formularioeditarcontatoprops"
+    },
+    {
+      "label": "FormularioEditarContato()",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "editar_formulario_editar_contato_formularioeditarcontato",
+      "community": 14,
+      "norm_label": "formularioeditarcontato()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/page.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_dashboard_clientes_id_editar_page_tsx_editar_page",
+      "community": 14,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "ContatoCompleto",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/page.tsx",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "editar_page_contatocompleto",
+      "community": 14,
+      "norm_label": "contatocompleto"
+    },
+    {
+      "label": "EditarContatoPage()",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/page.tsx",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "editar_page_editarcontatopage",
+      "community": 14,
+      "norm_label": "editarcontatopage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_dashboard_clientes_id_page_tsx_id_page",
+      "community": 44,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "ContatoCompleto",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "id_page_contatocompleto",
+      "community": 44,
+      "norm_label": "contatocompleto"
+    },
+    {
+      "label": "CampoExibicao()",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "id_page_campoexibicao",
+      "community": 44,
+      "norm_label": "campoexibicao()"
+    },
+    {
+      "label": "BlocoDados()",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "id_page_blocodados",
+      "community": 44,
+      "norm_label": "blocodados()"
+    },
+    {
+      "label": "ContatoDetalhePage()",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L45",
+      "_origin": "ast",
+      "id": "id_page_contatodetalhepage",
+      "community": 44,
+      "norm_label": "contatodetalhepage()"
+    },
+    {
+      "label": "actions.ts",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_dashboard_clientes_actions_ts_clientes_actions",
+      "community": 14,
+      "norm_label": "actions.ts"
+    },
+    {
+      "label": "getUsuarioEOrg()",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "clientes_actions_getusuarioeorg",
+      "community": 14,
+      "norm_label": "getusuarioeorg()"
+    },
+    {
+      "label": "resolverEmpresa()",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "clientes_actions_resolverempresa",
+      "community": 14,
+      "norm_label": "resolverempresa()"
+    },
+    {
+      "label": "criarContato()",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L47",
+      "_origin": "ast",
+      "id": "clientes_actions_criarcontato",
+      "community": 14,
+      "norm_label": "criarcontato()"
+    },
+    {
+      "label": "editarContato()",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L119",
+      "_origin": "ast",
+      "id": "clientes_actions_editarcontato",
+      "community": 14,
+      "norm_label": "editarcontato()"
+    },
+    {
+      "label": "adicionarObservacaoContato()",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L218",
+      "_origin": "ast",
+      "id": "clientes_actions_adicionarobservacaocontato",
+      "community": 14,
+      "norm_label": "adicionarobservacaocontato()"
+    },
+    {
+      "label": "excluirContato()",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L242",
+      "_origin": "ast",
+      "id": "clientes_actions_excluircontato",
+      "community": 14,
+      "norm_label": "excluircontato()"
+    },
+    {
+      "label": "excluirContatosEmLote()",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L272",
+      "_origin": "ast",
+      "id": "clientes_actions_excluircontatosemlote",
+      "community": 14,
+      "norm_label": "excluircontatosemlote()"
+    },
+    {
+      "label": "converterContatoEmLead()",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L311",
+      "_origin": "ast",
+      "id": "clientes_actions_convertercontatoemlead",
+      "community": 14,
+      "norm_label": "convertercontatoemlead()"
+    },
+    {
+      "label": "ContatoImportado",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L396",
+      "_origin": "ast",
+      "id": "clientes_actions_contatoimportado",
+      "community": 14,
+      "norm_label": "contatoimportado"
+    },
+    {
+      "label": "importarContatos()",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L404",
+      "_origin": "ast",
+      "id": "clientes_actions_importarcontatos",
+      "community": 14,
+      "norm_label": "importarcontatos()"
+    },
+    {
+      "label": "route.ts",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/exportar/route.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_dashboard_clientes_exportar_route_ts_exportar_route",
+      "community": 74,
+      "norm_label": "route.ts"
+    },
+    {
+      "label": "escapeCsv()",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/exportar/route.ts",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "app_dashboard_clientes_exportar_route_ts_exportar_route_escapecsv",
+      "community": 74,
+      "norm_label": "escapecsv()"
+    },
+    {
+      "label": "GET()",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/exportar/route.ts",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "app_dashboard_clientes_exportar_route_ts_exportar_route_get",
+      "community": 74,
+      "norm_label": "get()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/importar/page.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_dashboard_clientes_importar_page_tsx_importar_page",
+      "community": 74,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "ImportarContatosPage()",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/importar/page.tsx",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "importar_page_importarcontatospage",
+      "community": 74,
+      "norm_label": "importarcontatospage()"
+    },
+    {
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_dashboard_clientes_page_tsx_clientes_page",
+      "community": 14,
+      "norm_label": "page.tsx"
+    },
+    {
+      "label": "ContatoComEmpresa",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "clientes_page_contatocomempresa",
+      "community": 14,
+      "norm_label": "contatocomempresa"
+    },
+    {
+      "label": "SearchParams",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "clientes_page_searchparams",
+      "community": 14,
+      "norm_label": "searchparams"
+    },
+    {
+      "label": "ContatosPage()",
+      "file_type": "code",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "clientes_page_contatospage",
+      "community": 14,
+      "norm_label": "contatospage()"
     },
     {
       "label": "page.tsx",
@@ -560,7 +880,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "configuracoes_whatsapp_page_errorboundary",
-      "community": 32,
+      "community": 66,
       "norm_label": "errorboundary"
     },
     {
@@ -570,7 +890,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "configuracoes_whatsapp_page_errorboundary_constructor",
-      "community": 32,
+      "community": 66,
       "norm_label": ".constructor()"
     },
     {
@@ -580,7 +900,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "configuracoes_whatsapp_page_errorboundary_getderivedstatefromerror",
-      "community": 32,
+      "community": 66,
       "norm_label": ".getderivedstatefromerror()"
     },
     {
@@ -590,7 +910,7 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "configuracoes_whatsapp_page_errorboundary_componentdidcatch",
-      "community": 32,
+      "community": 66,
       "norm_label": ".componentdidcatch()"
     },
     {
@@ -600,7 +920,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "configuracoes_whatsapp_page_errorboundary_render",
-      "community": 32,
+      "community": 66,
       "norm_label": ".render()"
     },
     {
@@ -820,7 +1140,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "empresa_page",
-      "community": 74,
+      "community": 5,
       "norm_label": "page.tsx"
     },
     {
@@ -830,7 +1150,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "empresa_page_empresapage",
-      "community": 74,
+      "community": 5,
       "norm_label": "empresapage()"
     },
     {
@@ -1140,7 +1460,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hubs_page",
-      "community": 40,
+      "community": 16,
       "norm_label": "page.tsx"
     },
     {
@@ -1150,7 +1470,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "hubs_page_hubspage",
-      "community": 40,
+      "community": 16,
       "norm_label": "hubspage()"
     },
     {
@@ -1874,333 +2194,13 @@
       "norm_label": "whatsappconfigpage()"
     },
     {
-      "label": "formulario-editar-contato.tsx",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "editar_formulario_editar_contato",
-      "community": 14,
-      "norm_label": "formulario-editar-contato.tsx"
-    },
-    {
-      "label": "ContatoCompleto",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L14",
-      "_origin": "ast",
-      "id": "editar_formulario_editar_contato_contatocompleto",
-      "community": 14,
-      "norm_label": "contatocompleto"
-    },
-    {
-      "label": "FormularioEditarContatoProps",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L18",
-      "_origin": "ast",
-      "id": "editar_formulario_editar_contato_formularioeditarcontatoprops",
-      "community": 14,
-      "norm_label": "formularioeditarcontatoprops"
-    },
-    {
-      "label": "FormularioEditarContato()",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L23",
-      "_origin": "ast",
-      "id": "editar_formulario_editar_contato_formularioeditarcontato",
-      "community": 14,
-      "norm_label": "formularioeditarcontato()"
-    },
-    {
-      "label": "page.tsx",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/page.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "app_dashboard_contatos_id_editar_page_tsx_editar_page",
-      "community": 14,
-      "norm_label": "page.tsx"
-    },
-    {
-      "label": "ContatoCompleto",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/page.tsx",
-      "source_location": "L9",
-      "_origin": "ast",
-      "id": "editar_page_contatocompleto",
-      "community": 14,
-      "norm_label": "contatocompleto"
-    },
-    {
-      "label": "EditarContatoPage()",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/page.tsx",
-      "source_location": "L13",
-      "_origin": "ast",
-      "id": "editar_page_editarcontatopage",
-      "community": 14,
-      "norm_label": "editarcontatopage()"
-    },
-    {
-      "label": "page.tsx",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "app_dashboard_contatos_id_page_tsx_id_page",
-      "community": 44,
-      "norm_label": "page.tsx"
-    },
-    {
-      "label": "ContatoCompleto",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L15",
-      "_origin": "ast",
-      "id": "id_page_contatocompleto",
-      "community": 44,
-      "norm_label": "contatocompleto"
-    },
-    {
-      "label": "CampoExibicao()",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L20",
-      "_origin": "ast",
-      "id": "id_page_campoexibicao",
-      "community": 44,
-      "norm_label": "campoexibicao()"
-    },
-    {
-      "label": "BlocoDados()",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L29",
-      "_origin": "ast",
-      "id": "id_page_blocodados",
-      "community": 44,
-      "norm_label": "blocodados()"
-    },
-    {
-      "label": "ContatoDetalhePage()",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L45",
-      "_origin": "ast",
-      "id": "id_page_contatodetalhepage",
-      "community": 44,
-      "norm_label": "contatodetalhepage()"
-    },
-    {
-      "label": "actions.ts",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "contatos_actions",
-      "community": 14,
-      "norm_label": "actions.ts"
-    },
-    {
-      "label": "getUsuarioEOrg()",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L8",
-      "_origin": "ast",
-      "id": "contatos_actions_getusuarioeorg",
-      "community": 14,
-      "norm_label": "getusuarioeorg()"
-    },
-    {
-      "label": "resolverEmpresa()",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L21",
-      "_origin": "ast",
-      "id": "contatos_actions_resolverempresa",
-      "community": 14,
-      "norm_label": "resolverempresa()"
-    },
-    {
-      "label": "criarContato()",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L47",
-      "_origin": "ast",
-      "id": "contatos_actions_criarcontato",
-      "community": 14,
-      "norm_label": "criarcontato()"
-    },
-    {
-      "label": "editarContato()",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L119",
-      "_origin": "ast",
-      "id": "contatos_actions_editarcontato",
-      "community": 14,
-      "norm_label": "editarcontato()"
-    },
-    {
-      "label": "adicionarObservacaoContato()",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L218",
-      "_origin": "ast",
-      "id": "contatos_actions_adicionarobservacaocontato",
-      "community": 14,
-      "norm_label": "adicionarobservacaocontato()"
-    },
-    {
-      "label": "excluirContato()",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L242",
-      "_origin": "ast",
-      "id": "contatos_actions_excluircontato",
-      "community": 14,
-      "norm_label": "excluircontato()"
-    },
-    {
-      "label": "excluirContatosEmLote()",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L272",
-      "_origin": "ast",
-      "id": "contatos_actions_excluircontatosemlote",
-      "community": 14,
-      "norm_label": "excluircontatosemlote()"
-    },
-    {
-      "label": "converterContatoEmLead()",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L311",
-      "_origin": "ast",
-      "id": "contatos_actions_convertercontatoemlead",
-      "community": 14,
-      "norm_label": "convertercontatoemlead()"
-    },
-    {
-      "label": "ContatoImportado",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L396",
-      "_origin": "ast",
-      "id": "contatos_actions_contatoimportado",
-      "community": 14,
-      "norm_label": "contatoimportado"
-    },
-    {
-      "label": "importarContatos()",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L404",
-      "_origin": "ast",
-      "id": "contatos_actions_importarcontatos",
-      "community": 14,
-      "norm_label": "importarcontatos()"
-    },
-    {
-      "label": "route.ts",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/exportar/route.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "app_dashboard_contatos_exportar_route_ts_exportar_route",
-      "community": 74,
-      "norm_label": "route.ts"
-    },
-    {
-      "label": "escapeCsv()",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/exportar/route.ts",
-      "source_location": "L4",
-      "_origin": "ast",
-      "id": "app_dashboard_contatos_exportar_route_ts_exportar_route_escapecsv",
-      "community": 74,
-      "norm_label": "escapecsv()"
-    },
-    {
-      "label": "GET()",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/exportar/route.ts",
-      "source_location": "L12",
-      "_origin": "ast",
-      "id": "app_dashboard_contatos_exportar_route_ts_exportar_route_get",
-      "community": 74,
-      "norm_label": "get()"
-    },
-    {
-      "label": "page.tsx",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/importar/page.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "app_dashboard_contatos_importar_page_tsx_importar_page",
-      "community": 74,
-      "norm_label": "page.tsx"
-    },
-    {
-      "label": "ImportarContatosPage()",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/importar/page.tsx",
-      "source_location": "L8",
-      "_origin": "ast",
-      "id": "importar_page_importarcontatospage",
-      "community": 74,
-      "norm_label": "importarcontatospage()"
-    },
-    {
-      "label": "page.tsx",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "contatos_page",
-      "community": 14,
-      "norm_label": "page.tsx"
-    },
-    {
-      "label": "ContatoComEmpresa",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L10",
-      "_origin": "ast",
-      "id": "contatos_page_contatocomempresa",
-      "community": 14,
-      "norm_label": "contatocomempresa"
-    },
-    {
-      "label": "SearchParams",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L15",
-      "_origin": "ast",
-      "id": "contatos_page_searchparams",
-      "community": 14,
-      "norm_label": "searchparams"
-    },
-    {
-      "label": "ContatosPage()",
-      "file_type": "code",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L22",
-      "_origin": "ast",
-      "id": "contatos_page_contatospage",
-      "community": 14,
-      "norm_label": "contatospage()"
-    },
-    {
       "label": "page.tsx",
       "file_type": "code",
       "source_file": "app/(dashboard)/debug-whatsapp/page.tsx",
       "source_location": "L1",
       "_origin": "ast",
       "id": "debug_whatsapp_page",
-      "community": 30,
+      "community": 38,
       "norm_label": "page.tsx"
     },
     {
@@ -2210,7 +2210,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "debug_whatsapp_page_debugwhatsapppage",
-      "community": 30,
+      "community": 38,
       "norm_label": "debugwhatsapppage()"
     },
     {
@@ -2220,7 +2220,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "dashboard_error",
-      "community": 19,
+      "community": 4,
       "norm_label": "error.tsx"
     },
     {
@@ -2230,7 +2230,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "dashboard_error_dashboarderror",
-      "community": 19,
+      "community": 4,
       "norm_label": "dashboarderror()"
     },
     {
@@ -2409,8 +2409,8 @@
       "source_file": "app/(dashboard)/hub/clientes/actions.ts",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "clientes_actions",
-      "community": 29,
+      "id": "app_dashboard_hub_clientes_actions_ts_clientes_actions",
+      "community": 113,
       "norm_label": "actions.ts"
     },
     {
@@ -2420,7 +2420,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "clientes_actions_getproprietario",
-      "community": 29,
+      "community": 113,
       "norm_label": "getproprietario()"
     },
     {
@@ -2430,7 +2430,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "clientes_actions_definirresponsaveloperacional",
-      "community": 29,
+      "community": 113,
       "norm_label": "definirresponsaveloperacional()"
     },
     {
@@ -2670,7 +2670,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_leads_id_page_tsx_id_page",
-      "community": 44,
+      "community": 86,
       "norm_label": "page.tsx"
     },
     {
@@ -2680,7 +2680,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "id_page_leadcomresponsavel",
-      "community": 44,
+      "community": 86,
       "norm_label": "leadcomresponsavel"
     },
     {
@@ -2690,7 +2690,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "id_page_leaddetalhepage",
-      "community": 44,
+      "community": 86,
       "norm_label": "leaddetalhepage()"
     },
     {
@@ -2940,7 +2940,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_orcamentos_id_page_backup_tsx_id_page_backup",
-      "community": 38,
+      "community": 25,
       "norm_label": "page.backup.tsx"
     },
     {
@@ -2950,7 +2950,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "app_dashboard_orcamentos_id_page_backup_tsx_id_page_backup_orcamentodetalhepage",
-      "community": 38,
+      "community": 25,
       "norm_label": "orcamentodetalhepage()"
     },
     {
@@ -4470,7 +4470,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_whatsapp_page_tsx_whatsapp_page",
-      "community": 6,
+      "community": 65,
       "norm_label": "page.tsx"
     },
     {
@@ -4480,7 +4480,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "whatsapp_page_formatardataserver",
-      "community": 6,
+      "community": 65,
       "norm_label": "formatardataserver()"
     },
     {
@@ -4490,7 +4490,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "whatsapp_page_carregarconversaativa",
-      "community": 6,
+      "community": 65,
       "norm_label": "carregarconversaativa()"
     },
     {
@@ -4500,7 +4500,7 @@
       "source_location": "L194",
       "_origin": "ast",
       "id": "whatsapp_page_buscarultimasmensagens",
-      "community": 6,
+      "community": 65,
       "norm_label": "buscarultimasmensagens()"
     },
     {
@@ -4510,7 +4510,7 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "whatsapp_page_whatsapppage",
-      "community": 6,
+      "community": 65,
       "norm_label": "whatsapppage()"
     },
     {
@@ -4540,7 +4540,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "test_page",
-      "community": 30,
+      "community": 38,
       "norm_label": "page.tsx"
     },
     {
@@ -4550,7 +4550,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "test_page_whatsapptestpage",
-      "community": 30,
+      "community": 38,
       "norm_label": "whatsapptestpage()"
     },
     {
@@ -4560,7 +4560,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "preview_pdf_page",
-      "community": 5,
+      "community": 33,
       "norm_label": "page.tsx"
     },
     {
@@ -4570,7 +4570,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "preview_pdf_page_previewpdfpage",
-      "community": 5,
+      "community": 33,
       "norm_label": "previewpdfpage()"
     },
     {
@@ -4690,7 +4690,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "acao_route",
-      "community": 113,
+      "community": 74,
       "norm_label": "route.ts"
     },
     {
@@ -4700,7 +4700,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "acao_route_post",
-      "community": 113,
+      "community": 74,
       "norm_label": "post()"
     },
     {
@@ -4710,7 +4710,7 @@
       "source_location": "L130",
       "_origin": "ast",
       "id": "acao_route_getnovostatus",
-      "community": 113,
+      "community": 74,
       "norm_label": "getnovostatus()"
     },
     {
@@ -4960,7 +4960,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "send_route",
-      "community": 10,
+      "community": 5,
       "norm_label": "route.ts"
     },
     {
@@ -4970,7 +4970,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "send_route_sendmessagerequest",
-      "community": 10,
+      "community": 5,
       "norm_label": "sendmessagerequest"
     },
     {
@@ -4980,7 +4980,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "send_route_post",
-      "community": 10,
+      "community": 5,
       "norm_label": "post()"
     },
     {
@@ -5678,7 +5678,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "auth_auth_provider",
-      "community": 37,
+      "community": 40,
       "norm_label": "auth-provider.tsx"
     },
     {
@@ -5688,7 +5688,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "auth_auth_provider_user",
-      "community": 37,
+      "community": 40,
       "norm_label": "user"
     },
     {
@@ -5698,7 +5698,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "auth_auth_provider_profile",
-      "community": 37,
+      "community": 40,
       "norm_label": "profile"
     },
     {
@@ -5708,7 +5708,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "auth_auth_provider_authcontexttype",
-      "community": 37,
+      "community": 40,
       "norm_label": "authcontexttype"
     },
     {
@@ -5718,7 +5718,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "auth_auth_provider_authcontext",
-      "community": 37,
+      "community": 40,
       "norm_label": "authcontext"
     },
     {
@@ -5728,7 +5728,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "auth_auth_provider_authproviderprops",
-      "community": 37,
+      "community": 40,
       "norm_label": "authproviderprops"
     },
     {
@@ -5748,7 +5748,7 @@
       "source_location": "L159",
       "_origin": "ast",
       "id": "auth_auth_provider_useauth",
-      "community": 37,
+      "community": 40,
       "norm_label": "useauth()"
     },
     {
@@ -6004,230 +6004,230 @@
     {
       "label": "acoes-contato.tsx",
       "file_type": "code",
-      "source_file": "components/contatos/acoes-contato.tsx",
+      "source_file": "components/clientes/acoes-contato.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "contatos_acoes_contato",
+      "id": "clientes_acoes_contato",
       "community": 14,
       "norm_label": "acoes-contato.tsx"
     },
     {
       "label": "Props",
       "file_type": "code",
-      "source_file": "components/contatos/acoes-contato.tsx",
+      "source_file": "components/clientes/acoes-contato.tsx",
       "source_location": "L11",
       "_origin": "ast",
-      "id": "contatos_acoes_contato_props",
+      "id": "clientes_acoes_contato_props",
       "community": 14,
       "norm_label": "props"
     },
     {
       "label": "AcoesContato()",
       "file_type": "code",
-      "source_file": "components/contatos/acoes-contato.tsx",
+      "source_file": "components/clientes/acoes-contato.tsx",
       "source_location": "L16",
       "_origin": "ast",
-      "id": "contatos_acoes_contato_acoescontato",
-      "community": 44,
+      "id": "clientes_acoes_contato_acoescontato",
+      "community": 14,
       "norm_label": "acoescontato()"
     },
     {
       "label": "botao-importar-exportar.tsx",
       "file_type": "code",
-      "source_file": "components/contatos/botao-importar-exportar.tsx",
+      "source_file": "components/clientes/botao-importar-exportar.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "contatos_botao_importar_exportar",
+      "id": "clientes_botao_importar_exportar",
       "community": 14,
       "norm_label": "botao-importar-exportar.tsx"
     },
     {
       "label": "BotaoImportarExportar()",
       "file_type": "code",
-      "source_file": "components/contatos/botao-importar-exportar.tsx",
+      "source_file": "components/clientes/botao-importar-exportar.tsx",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "contatos_botao_importar_exportar_botaoimportarexportar",
+      "id": "clientes_botao_importar_exportar_botaoimportarexportar",
       "community": 14,
       "norm_label": "botaoimportarexportar()"
     },
     {
       "label": "busca-contatos.tsx",
       "file_type": "code",
-      "source_file": "components/contatos/busca-contatos.tsx",
+      "source_file": "components/clientes/busca-contatos.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "contatos_busca_contatos",
+      "id": "clientes_busca_contatos",
       "community": 14,
       "norm_label": "busca-contatos.tsx"
     },
     {
       "label": "BuscaContatos()",
       "file_type": "code",
-      "source_file": "components/contatos/busca-contatos.tsx",
+      "source_file": "components/clientes/busca-contatos.tsx",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "contatos_busca_contatos_buscacontatos",
+      "id": "clientes_busca_contatos_buscacontatos",
       "community": 14,
       "norm_label": "buscacontatos()"
     },
     {
       "label": "form-importacao.tsx",
       "file_type": "code",
-      "source_file": "components/contatos/form-importacao.tsx",
+      "source_file": "components/clientes/form-importacao.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "contatos_form_importacao",
-      "community": 50,
+      "id": "clientes_form_importacao",
+      "community": 38,
       "norm_label": "form-importacao.tsx"
     },
     {
       "label": "ContatoImportado",
       "file_type": "code",
-      "source_file": "components/contatos/form-importacao.tsx",
+      "source_file": "components/clientes/form-importacao.tsx",
       "source_location": "L11",
       "_origin": "ast",
-      "id": "contatos_form_importacao_contatoimportado",
-      "community": 50,
+      "id": "clientes_form_importacao_contatoimportado",
+      "community": 38,
       "norm_label": "contatoimportado"
     },
     {
       "label": "MAPEAMENTO_NOME",
       "file_type": "code",
-      "source_file": "components/contatos/form-importacao.tsx",
+      "source_file": "components/clientes/form-importacao.tsx",
       "source_location": "L19",
       "_origin": "ast",
-      "id": "contatos_form_importacao_mapeamento_nome",
-      "community": 50,
+      "id": "clientes_form_importacao_mapeamento_nome",
+      "community": 38,
       "norm_label": "mapeamento_nome"
     },
     {
       "label": "detectarColuna()",
       "file_type": "code",
-      "source_file": "components/contatos/form-importacao.tsx",
+      "source_file": "components/clientes/form-importacao.tsx",
       "source_location": "L42",
       "_origin": "ast",
-      "id": "contatos_form_importacao_detectarcoluna",
-      "community": 50,
+      "id": "clientes_form_importacao_detectarcoluna",
+      "community": 38,
       "norm_label": "detectarcoluna()"
     },
     {
       "label": "parsearPlanilha()",
       "file_type": "code",
-      "source_file": "components/contatos/form-importacao.tsx",
+      "source_file": "components/clientes/form-importacao.tsx",
       "source_location": "L47",
       "_origin": "ast",
-      "id": "contatos_form_importacao_parsearplanilha",
-      "community": 50,
+      "id": "clientes_form_importacao_parsearplanilha",
+      "community": 38,
       "norm_label": "parsearplanilha()"
     },
     {
       "label": "mapearContatos()",
       "file_type": "code",
-      "source_file": "components/contatos/form-importacao.tsx",
+      "source_file": "components/clientes/form-importacao.tsx",
       "source_location": "L59",
       "_origin": "ast",
-      "id": "contatos_form_importacao_mapearcontatos",
-      "community": 50,
+      "id": "clientes_form_importacao_mapearcontatos",
+      "community": 38,
       "norm_label": "mapearcontatos()"
     },
     {
       "label": "ModoImportacao",
       "file_type": "code",
-      "source_file": "components/contatos/form-importacao.tsx",
+      "source_file": "components/clientes/form-importacao.tsx",
       "source_location": "L93",
       "_origin": "ast",
-      "id": "contatos_form_importacao_modoimportacao",
-      "community": 50,
+      "id": "clientes_form_importacao_modoimportacao",
+      "community": 38,
       "norm_label": "modoimportacao"
     },
     {
       "label": "FormImportacao()",
       "file_type": "code",
-      "source_file": "components/contatos/form-importacao.tsx",
+      "source_file": "components/clientes/form-importacao.tsx",
       "source_location": "L95",
       "_origin": "ast",
-      "id": "contatos_form_importacao_formimportacao",
+      "id": "clientes_form_importacao_formimportacao",
       "community": 74,
       "norm_label": "formimportacao()"
     },
     {
       "label": "form-observacao-contato.tsx",
       "file_type": "code",
-      "source_file": "components/contatos/form-observacao-contato.tsx",
+      "source_file": "components/clientes/form-observacao-contato.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "contatos_form_observacao_contato",
+      "id": "clientes_form_observacao_contato",
       "community": 4,
       "norm_label": "form-observacao-contato.tsx"
     },
     {
       "label": "FormObservacaoContato()",
       "file_type": "code",
-      "source_file": "components/contatos/form-observacao-contato.tsx",
+      "source_file": "components/clientes/form-observacao-contato.tsx",
       "source_location": "L8",
       "_origin": "ast",
-      "id": "contatos_form_observacao_contato_formobservacaocontato",
+      "id": "clientes_form_observacao_contato_formobservacaocontato",
       "community": 44,
       "norm_label": "formobservacaocontato()"
     },
     {
       "label": "modal-novo-contato.tsx",
       "file_type": "code",
-      "source_file": "components/contatos/modal-novo-contato.tsx",
+      "source_file": "components/clientes/modal-novo-contato.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "contatos_modal_novo_contato",
+      "id": "clientes_modal_novo_contato",
       "community": 7,
       "norm_label": "modal-novo-contato.tsx"
     },
     {
       "label": "ModalNovoContato()",
       "file_type": "code",
-      "source_file": "components/contatos/modal-novo-contato.tsx",
+      "source_file": "components/clientes/modal-novo-contato.tsx",
       "source_location": "L11",
       "_origin": "ast",
-      "id": "contatos_modal_novo_contato_modalnovocontato",
+      "id": "clientes_modal_novo_contato_modalnovocontato",
       "community": 14,
       "norm_label": "modalnovocontato()"
     },
     {
       "label": "tabela-contatos.tsx",
       "file_type": "code",
-      "source_file": "components/contatos/tabela-contatos.tsx",
+      "source_file": "components/clientes/tabela-contatos.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "contatos_tabela_contatos",
+      "id": "clientes_tabela_contatos",
       "community": 14,
       "norm_label": "tabela-contatos.tsx"
     },
     {
       "label": "ContatoComEmpresa",
       "file_type": "code",
-      "source_file": "components/contatos/tabela-contatos.tsx",
+      "source_file": "components/clientes/tabela-contatos.tsx",
       "source_location": "L13",
       "_origin": "ast",
-      "id": "contatos_tabela_contatos_contatocomempresa",
+      "id": "clientes_tabela_contatos_contatocomempresa",
       "community": 14,
       "norm_label": "contatocomempresa"
     },
     {
       "label": "Props",
       "file_type": "code",
-      "source_file": "components/contatos/tabela-contatos.tsx",
+      "source_file": "components/clientes/tabela-contatos.tsx",
       "source_location": "L18",
       "_origin": "ast",
-      "id": "contatos_tabela_contatos_props",
+      "id": "clientes_tabela_contatos_props",
       "community": 14,
       "norm_label": "props"
     },
     {
       "label": "TabelaContatos()",
       "file_type": "code",
-      "source_file": "components/contatos/tabela-contatos.tsx",
+      "source_file": "components/clientes/tabela-contatos.tsx",
       "source_location": "L23",
       "_origin": "ast",
-      "id": "contatos_tabela_contatos_tabelacontatos",
+      "id": "clientes_tabela_contatos_tabelacontatos",
       "community": 14,
       "norm_label": "tabelacontatos()"
     },
@@ -6348,7 +6348,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "empresa_form_empresa_formempresa",
-      "community": 74,
+      "community": 5,
       "norm_label": "formempresa()"
     },
     {
@@ -6718,7 +6718,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hooks_use_orcamento_data",
-      "community": 37,
+      "community": 40,
       "norm_label": "use-orcamento-data.tsx"
     },
     {
@@ -6728,7 +6728,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "hooks_use_orcamento_data_useorcamentodata",
-      "community": 37,
+      "community": 40,
       "norm_label": "useorcamentodata()"
     },
     {
@@ -7108,7 +7108,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "hubs_modal_alterar_senha_modalalterarsenha",
-      "community": 40,
+      "community": 16,
       "norm_label": "modalalterarsenha()"
     },
     {
@@ -7138,7 +7138,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "hubs_modal_novo_hub_modalnovohub",
-      "community": 40,
+      "community": 16,
       "norm_label": "modalnovohub()"
     },
     {
@@ -7148,7 +7148,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hubs_tabela_hubs",
-      "community": 40,
+      "community": 16,
       "norm_label": "tabela-hubs.tsx"
     },
     {
@@ -7158,7 +7158,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "hubs_tabela_hubs_hubrow",
-      "community": 40,
+      "community": 16,
       "norm_label": "hubrow"
     },
     {
@@ -7168,7 +7168,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "hubs_tabela_hubs_proprietarioopcao",
-      "community": 40,
+      "community": 16,
       "norm_label": "proprietarioopcao"
     },
     {
@@ -7178,7 +7178,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "hubs_tabela_hubs_status",
-      "community": 40,
+      "community": 16,
       "norm_label": "status"
     },
     {
@@ -7188,7 +7188,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "hubs_tabela_hubs_formatardata",
-      "community": 40,
+      "community": 16,
       "norm_label": "formatardata()"
     },
     {
@@ -7198,7 +7198,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "hubs_tabela_hubs_tabelahubs",
-      "community": 40,
+      "community": 16,
       "norm_label": "tabelahubs()"
     },
     {
@@ -7208,7 +7208,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "layout_botao_sair",
-      "community": 35,
+      "community": 40,
       "norm_label": "botao-sair.tsx"
     },
     {
@@ -7218,7 +7218,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "layout_botao_sair_botaosair",
-      "community": 35,
+      "community": 40,
       "norm_label": "botaosair()"
     },
     {
@@ -7248,7 +7248,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "layout_header_header",
-      "community": 35,
+      "community": 45,
       "norm_label": "header()"
     },
     {
@@ -7288,7 +7288,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "layout_sidebar_mobile_sidebarmobile",
-      "community": 35,
+      "community": 108,
       "norm_label": "sidebarmobile()"
     },
     {
@@ -7338,7 +7338,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "leads_badge_origem",
-      "community": 3,
+      "community": 86,
       "norm_label": "badge-origem.tsx"
     },
     {
@@ -7348,7 +7348,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "leads_badge_origem_config",
-      "community": 3,
+      "community": 86,
       "norm_label": "config"
     },
     {
@@ -7358,7 +7358,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "leads_badge_origem_badgeorigem",
-      "community": 3,
+      "community": 86,
       "norm_label": "badgeorigem()"
     },
     {
@@ -7398,7 +7398,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "leads_botao_descartar_lead",
-      "community": 44,
+      "community": 86,
       "norm_label": "botao-descartar-lead.tsx"
     },
     {
@@ -7408,7 +7408,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "leads_botao_descartar_lead_props",
-      "community": 44,
+      "community": 86,
       "norm_label": "props"
     },
     {
@@ -7418,7 +7418,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "leads_botao_descartar_lead_botaodescartarlead",
-      "community": 44,
+      "community": 86,
       "norm_label": "botaodescartarlead()"
     },
     {
@@ -7438,7 +7438,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "leads_form_observacao_formobservacao",
-      "community": 44,
+      "community": 86,
       "norm_label": "formobservacao()"
     },
     {
@@ -7468,7 +7468,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "leads_modal_converter_lead_modalconverterlead",
-      "community": 44,
+      "community": 86,
       "norm_label": "modalconverterlead()"
     },
     {
@@ -7478,7 +7478,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "leads_modal_novo_lead",
-      "community": 7,
+      "community": 53,
       "norm_label": "modal-novo-lead.tsx"
     },
     {
@@ -7488,7 +7488,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "leads_modal_novo_lead_origens",
-      "community": 7,
+      "community": 53,
       "norm_label": "origens"
     },
     {
@@ -7498,7 +7498,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "leads_modal_novo_lead_props",
-      "community": 7,
+      "community": 53,
       "norm_label": "props"
     },
     {
@@ -7838,7 +7838,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_acoes_orcamento_detalhe",
-      "community": 38,
+      "community": 114,
       "norm_label": "acoes-orcamento-detalhe.tsx"
     },
     {
@@ -7848,7 +7848,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "orcamentos_acoes_orcamento_detalhe_props",
-      "community": 38,
+      "community": 114,
       "norm_label": "props"
     },
     {
@@ -7858,7 +7858,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "orcamentos_acoes_orcamento_detalhe_acoesorcamentodetalhe",
-      "community": 38,
+      "community": 114,
       "norm_label": "acoesorcamentodetalhe()"
     },
     {
@@ -7928,7 +7928,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_badge_status_orcamento",
-      "community": 38,
+      "community": 25,
       "norm_label": "badge-status-orcamento.tsx"
     },
     {
@@ -7938,7 +7938,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "orcamentos_badge_status_orcamento_config",
-      "community": 38,
+      "community": 25,
       "norm_label": "config"
     },
     {
@@ -7948,7 +7948,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "orcamentos_badge_status_orcamento_badgestatusorcamento",
-      "community": 38,
+      "community": 25,
       "norm_label": "badgestatusorcamento()"
     },
     {
@@ -7978,7 +7978,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_botao_baixar_pdf",
-      "community": 63,
+      "community": 33,
       "norm_label": "botao-baixar-pdf.tsx"
     },
     {
@@ -7988,7 +7988,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "orcamentos_botao_baixar_pdf_props",
-      "community": 63,
+      "community": 33,
       "norm_label": "props"
     },
     {
@@ -7998,7 +7998,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "orcamentos_botao_baixar_pdf_botaobaixarpdf",
-      "community": 63,
+      "community": 33,
       "norm_label": "botaobaixarpdf()"
     },
     {
@@ -8178,7 +8178,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_exportar_pdf_button",
-      "community": 63,
+      "community": 33,
       "norm_label": "exportar-pdf-button.tsx"
     },
     {
@@ -8188,7 +8188,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "orcamentos_exportar_pdf_button_props",
-      "community": 63,
+      "community": 33,
       "norm_label": "props"
     },
     {
@@ -8198,7 +8198,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "orcamentos_exportar_pdf_button_exportarpdfbutton",
-      "community": 63,
+      "community": 33,
       "norm_label": "exportarpdfbutton()"
     },
     {
@@ -8378,7 +8378,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_orcamento_detalhe",
-      "community": 38,
+      "community": 25,
       "norm_label": "orcamento-detalhe.tsx"
     },
     {
@@ -8388,7 +8388,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "orcamentos_orcamento_detalhe_orcamentodetalheprops",
-      "community": 38,
+      "community": 25,
       "norm_label": "orcamentodetalheprops"
     },
     {
@@ -8518,7 +8518,7 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_generator_gerarpdf",
-      "community": 20,
+      "community": 64,
       "norm_label": "gerarpdf()"
     },
     {
@@ -8818,7 +8818,7 @@
       "source_location": "L568",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_template_orcamentopdftemplate",
-      "community": 5,
+      "community": 33,
       "norm_label": "orcamentopdftemplate()"
     },
     {
@@ -8828,7 +8828,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_orcamento_simplificado",
-      "community": 38,
+      "community": 25,
       "norm_label": "orcamento-simplificado.tsx"
     },
     {
@@ -8838,7 +8838,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "orcamentos_orcamento_simplificado_orcamentosimplificadoprops",
-      "community": 38,
+      "community": 25,
       "norm_label": "orcamentosimplificadoprops"
     },
     {
@@ -8848,7 +8848,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "orcamentos_orcamento_simplificado_orcamentosimplificado",
-      "community": 20,
+      "community": 25,
       "norm_label": "orcamentosimplificado()"
     },
     {
@@ -8858,7 +8858,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_tabela_orcamentos",
-      "community": 19,
+      "community": 25,
       "norm_label": "tabela-orcamentos.tsx"
     },
     {
@@ -8868,7 +8868,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "orcamentos_tabela_orcamentos_orcamentolista",
-      "community": 19,
+      "community": 25,
       "norm_label": "orcamentolista"
     },
     {
@@ -8878,7 +8878,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "orcamentos_tabela_orcamentos_props",
-      "community": 19,
+      "community": 25,
       "norm_label": "props"
     },
     {
@@ -9028,7 +9028,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "painel_grafico_vendas_mensal",
-      "community": 20,
+      "community": 112,
       "norm_label": "grafico-vendas-mensal.tsx"
     },
     {
@@ -9038,7 +9038,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "painel_grafico_vendas_mensal_dadomensal",
-      "community": 20,
+      "community": 112,
       "norm_label": "dadomensal"
     },
     {
@@ -9048,7 +9048,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "painel_grafico_vendas_mensal_props",
-      "community": 20,
+      "community": 112,
       "norm_label": "props"
     },
     {
@@ -9058,7 +9058,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "painel_grafico_vendas_mensal_graficovendasmensal",
-      "community": 20,
+      "community": 112,
       "norm_label": "graficovendasmensal()"
     },
     {
@@ -9068,7 +9068,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "painel_tabela_desempenho",
-      "community": 20,
+      "community": 112,
       "norm_label": "tabela-desempenho.tsx"
     },
     {
@@ -9078,7 +9078,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "painel_tabela_desempenho_vendedordesempenho",
-      "community": 20,
+      "community": 112,
       "norm_label": "vendedordesempenho"
     },
     {
@@ -9088,7 +9088,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "painel_tabela_desempenho_props",
-      "community": 20,
+      "community": 112,
       "norm_label": "props"
     },
     {
@@ -9098,7 +9098,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "painel_tabela_desempenho_tabeladesempenho",
-      "community": 20,
+      "community": 112,
       "norm_label": "tabeladesempenho()"
     },
     {
@@ -9108,7 +9108,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pedidos_badge_status_pedido",
-      "community": 22,
+      "community": 38,
       "norm_label": "badge-status-pedido.tsx"
     },
     {
@@ -9118,7 +9118,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "pedidos_badge_status_pedido_status_config",
-      "community": 22,
+      "community": 38,
       "norm_label": "status_config"
     },
     {
@@ -9128,7 +9128,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "pedidos_badge_status_pedido_badgestatuspedido",
-      "community": 22,
+      "community": 38,
       "norm_label": "badgestatuspedido()"
     },
     {
@@ -9278,7 +9278,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pedidos_timeline_status",
-      "community": 115,
+      "community": 38,
       "norm_label": "timeline-status.tsx"
     },
     {
@@ -9288,7 +9288,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "pedidos_timeline_status_etapas",
-      "community": 115,
+      "community": 38,
       "norm_label": "etapas"
     },
     {
@@ -9298,7 +9298,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "pedidos_timeline_status_timelinestatus",
-      "community": 115,
+      "community": 38,
       "norm_label": "timelinestatus()"
     },
     {
@@ -9308,7 +9308,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pipeline_form_etapas",
-      "community": 49,
+      "community": 53,
       "norm_label": "form-etapas.tsx"
     },
     {
@@ -9318,7 +9318,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "pipeline_form_etapas_etapa",
-      "community": 49,
+      "community": 53,
       "norm_label": "etapa"
     },
     {
@@ -9328,7 +9328,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "pipeline_form_etapas_props",
-      "community": 49,
+      "community": 53,
       "norm_label": "props"
     },
     {
@@ -9668,7 +9668,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pipeline_modal_nova_negociacao",
-      "community": 7,
+      "community": 4,
       "norm_label": "modal-nova-negociacao.tsx"
     },
     {
@@ -9678,7 +9678,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "pipeline_modal_nova_negociacao_props",
-      "community": 7,
+      "community": 4,
       "norm_label": "props"
     },
     {
@@ -10028,7 +10028,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "prepedidos_botao_gerar_pedido",
-      "community": 57,
+      "community": 26,
       "norm_label": "botao-gerar-pedido.tsx"
     },
     {
@@ -10038,7 +10038,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "prepedidos_botao_gerar_pedido_botaogerarpedido",
-      "community": 57,
+      "community": 26,
       "norm_label": "botaogerarpedido()"
     },
     {
@@ -10048,7 +10048,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "prepedidos_tabela_prepedidos",
-      "community": 57,
+      "community": 26,
       "norm_label": "tabela-prepedidos.tsx"
     },
     {
@@ -10058,7 +10058,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "prepedidos_tabela_prepedidos_prepedidorow",
-      "community": 57,
+      "community": 26,
       "norm_label": "prepedidorow"
     },
     {
@@ -10068,7 +10068,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "prepedidos_tabela_prepedidos_status_label",
-      "community": 57,
+      "community": 26,
       "norm_label": "status_label"
     },
     {
@@ -10078,7 +10078,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "prepedidos_tabela_prepedidos_formatardata",
-      "community": 57,
+      "community": 26,
       "norm_label": "formatardata()"
     },
     {
@@ -10088,7 +10088,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "prepedidos_tabela_prepedidos_tabelaprepedidos",
-      "community": 57,
+      "community": 26,
       "norm_label": "tabelaprepedidos()"
     },
     {
@@ -10098,7 +10098,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "produtos_form_produto",
-      "community": 53,
+      "community": 4,
       "norm_label": "form-produto.tsx"
     },
     {
@@ -10108,7 +10108,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "produtos_form_produto_props",
-      "community": 53,
+      "community": 4,
       "norm_label": "props"
     },
     {
@@ -10158,7 +10158,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "relatorios_botoes_exportar",
-      "community": 66,
+      "community": 1,
       "norm_label": "botoes-exportar.tsx"
     },
     {
@@ -10168,7 +10168,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "relatorios_botoes_exportar_dadosfunil",
-      "community": 66,
+      "community": 1,
       "norm_label": "dadosfunil"
     },
     {
@@ -10178,7 +10178,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "relatorios_botoes_exportar_dadosleadssemana",
-      "community": 66,
+      "community": 1,
       "norm_label": "dadosleadssemana"
     },
     {
@@ -10188,7 +10188,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "relatorios_botoes_exportar_dadosvendas",
-      "community": 66,
+      "community": 1,
       "norm_label": "dadosvendas"
     },
     {
@@ -10198,7 +10198,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "relatorios_botoes_exportar_dadosprodutos",
-      "community": 66,
+      "community": 1,
       "norm_label": "dadosprodutos"
     },
     {
@@ -10208,7 +10208,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "relatorios_botoes_exportar_dadosfornecedor",
-      "community": 66,
+      "community": 1,
       "norm_label": "dadosfornecedor"
     },
     {
@@ -10218,7 +10218,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "relatorios_botoes_exportar_props",
-      "community": 66,
+      "community": 1,
       "norm_label": "props"
     },
     {
@@ -10228,7 +10228,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "relatorios_botoes_exportar_botoesexportar",
-      "community": 66,
+      "community": 1,
       "norm_label": "botoesexportar()"
     },
     {
@@ -10238,7 +10238,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "relatorios_card_metrica",
-      "community": 38,
+      "community": 1,
       "norm_label": "card-metrica.tsx"
     },
     {
@@ -10248,7 +10248,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "relatorios_card_metrica_props",
-      "community": 38,
+      "community": 1,
       "norm_label": "props"
     },
     {
@@ -10428,7 +10428,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "relatorios_tabela_resumo_vendas",
-      "community": 20,
+      "community": 25,
       "norm_label": "tabela-resumo-vendas.tsx"
     },
     {
@@ -10438,7 +10438,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "relatorios_tabela_resumo_vendas_dadovendedor",
-      "community": 20,
+      "community": 25,
       "norm_label": "dadovendedor"
     },
     {
@@ -10448,7 +10448,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "relatorios_tabela_resumo_vendas_props",
-      "community": 20,
+      "community": 25,
       "norm_label": "props"
     },
     {
@@ -10458,7 +10458,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "relatorios_tabela_resumo_vendas_tabelaresumovendas",
-      "community": 20,
+      "community": 25,
       "norm_label": "tabelaresumovendas()"
     },
     {
@@ -10928,7 +10928,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "ui_button_button",
-      "community": 19,
+      "community": 4,
       "norm_label": "button()"
     },
     {
@@ -11098,7 +11098,7 @@
       "source_location": "L93",
       "_origin": "ast",
       "id": "ui_dialog_dialogfooter",
-      "community": 41,
+      "community": 7,
       "norm_label": "dialogfooter()"
     },
     {
@@ -11118,7 +11118,7 @@
       "source_location": "L133",
       "_origin": "ast",
       "id": "ui_dialog_dialogdescription",
-      "community": 41,
+      "community": 7,
       "norm_label": "dialogdescription()"
     },
     {
@@ -11128,7 +11128,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_dropdown_menu",
-      "community": 11,
+      "community": 20,
       "norm_label": "dropdown-menu.tsx"
     },
     {
@@ -11138,7 +11138,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "ui_dropdown_menu_dropdownmenu",
-      "community": 11,
+      "community": 20,
       "norm_label": "dropdownmenu()"
     },
     {
@@ -11148,7 +11148,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "ui_dropdown_menu_dropdownmenuportal",
-      "community": 11,
+      "community": 20,
       "norm_label": "dropdownmenuportal()"
     },
     {
@@ -11158,7 +11158,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "ui_dropdown_menu_dropdownmenutrigger",
-      "community": 11,
+      "community": 20,
       "norm_label": "dropdownmenutrigger()"
     },
     {
@@ -11168,7 +11168,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "ui_dropdown_menu_dropdownmenucontent",
-      "community": 11,
+      "community": 20,
       "norm_label": "dropdownmenucontent()"
     },
     {
@@ -11178,7 +11178,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "ui_dropdown_menu_dropdownmenugroup",
-      "community": 11,
+      "community": 20,
       "norm_label": "dropdownmenugroup()"
     },
     {
@@ -11188,7 +11188,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "ui_dropdown_menu_dropdownmenulabel",
-      "community": 11,
+      "community": 20,
       "norm_label": "dropdownmenulabel()"
     },
     {
@@ -11198,7 +11198,7 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "ui_dropdown_menu_dropdownmenuitem",
-      "community": 11,
+      "community": 20,
       "norm_label": "dropdownmenuitem()"
     },
     {
@@ -11208,7 +11208,7 @@
       "source_location": "L99",
       "_origin": "ast",
       "id": "ui_dropdown_menu_dropdownmenusub",
-      "community": 11,
+      "community": 20,
       "norm_label": "dropdownmenusub()"
     },
     {
@@ -11218,7 +11218,7 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "ui_dropdown_menu_dropdownmenusubtrigger",
-      "community": 11,
+      "community": 20,
       "norm_label": "dropdownmenusubtrigger()"
     },
     {
@@ -11228,7 +11228,7 @@
       "source_location": "L127",
       "_origin": "ast",
       "id": "ui_dropdown_menu_dropdownmenusubcontent",
-      "community": 11,
+      "community": 20,
       "norm_label": "dropdownmenusubcontent()"
     },
     {
@@ -11238,7 +11238,7 @@
       "source_location": "L148",
       "_origin": "ast",
       "id": "ui_dropdown_menu_dropdownmenucheckboxitem",
-      "community": 11,
+      "community": 20,
       "norm_label": "dropdownmenucheckboxitem()"
     },
     {
@@ -11248,7 +11248,7 @@
       "source_location": "L182",
       "_origin": "ast",
       "id": "ui_dropdown_menu_dropdownmenuradiogroup",
-      "community": 11,
+      "community": 20,
       "norm_label": "dropdownmenuradiogroup()"
     },
     {
@@ -11258,7 +11258,7 @@
       "source_location": "L191",
       "_origin": "ast",
       "id": "ui_dropdown_menu_dropdownmenuradioitem",
-      "community": 11,
+      "community": 20,
       "norm_label": "dropdownmenuradioitem()"
     },
     {
@@ -11268,7 +11268,7 @@
       "source_location": "L223",
       "_origin": "ast",
       "id": "ui_dropdown_menu_dropdownmenuseparator",
-      "community": 11,
+      "community": 20,
       "norm_label": "dropdownmenuseparator()"
     },
     {
@@ -11278,7 +11278,7 @@
       "source_location": "L236",
       "_origin": "ast",
       "id": "ui_dropdown_menu_dropdownmenushortcut",
-      "community": 11,
+      "community": 20,
       "norm_label": "dropdownmenushortcut()"
     },
     {
@@ -11808,7 +11808,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "usuarios_modal_novo_usuario",
-      "community": 53,
+      "community": 7,
       "norm_label": "modal-novo-usuario.tsx"
     },
     {
@@ -11818,7 +11818,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "usuarios_modal_novo_usuario_perfis",
-      "community": 53,
+      "community": 7,
       "norm_label": "perfis"
     },
     {
@@ -11838,7 +11838,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_adicionar_instancia_button",
-      "community": 19,
+      "community": 32,
       "norm_label": "adicionar-instancia-button.tsx"
     },
     {
@@ -11848,7 +11848,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "whatsapp_adicionar_instancia_button_props",
-      "community": 19,
+      "community": 32,
       "norm_label": "props"
     },
     {
@@ -11858,7 +11858,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "whatsapp_adicionar_instancia_button_adicionarinstanciabutton",
-      "community": 19,
+      "community": 32,
       "norm_label": "adicionarinstanciabutton()"
     },
     {
@@ -11908,7 +11908,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_card_instancia",
-      "community": 10,
+      "community": 50,
       "norm_label": "card-instancia.tsx"
     },
     {
@@ -11918,7 +11918,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "whatsapp_card_instancia_whatsappstatus",
-      "community": 10,
+      "community": 50,
       "norm_label": "whatsappstatus"
     },
     {
@@ -11928,7 +11928,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "whatsapp_card_instancia_props",
-      "community": 10,
+      "community": 50,
       "norm_label": "props"
     },
     {
@@ -11938,7 +11938,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "whatsapp_card_instancia_status_config",
-      "community": 10,
+      "community": 50,
       "norm_label": "status_config"
     },
     {
@@ -11948,7 +11948,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "whatsapp_card_instancia_normalizarstatus",
-      "community": 10,
+      "community": 50,
       "norm_label": "normalizarstatus()"
     },
     {
@@ -11958,7 +11958,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "whatsapp_card_instancia_extrairnomevendedor",
-      "community": 10,
+      "community": 50,
       "norm_label": "extrairnomevendedor()"
     },
     {
@@ -11968,7 +11968,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "whatsapp_card_instancia_cardinstancia",
-      "community": 10,
+      "community": 50,
       "norm_label": "cardinstancia()"
     },
     {
@@ -12318,7 +12318,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_header_kpis",
-      "community": 65,
+      "community": 63,
       "norm_label": "header-kpis.tsx"
     },
     {
@@ -12328,7 +12328,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "whatsapp_header_kpis_kpiconfig",
-      "community": 65,
+      "community": 63,
       "norm_label": "kpiconfig"
     },
     {
@@ -12338,7 +12338,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "whatsapp_header_kpis_kpi_config",
-      "community": 65,
+      "community": 63,
       "norm_label": "kpi_config"
     },
     {
@@ -12348,7 +12348,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "whatsapp_header_kpis_props",
-      "community": 65,
+      "community": 63,
       "norm_label": "props"
     },
     {
@@ -12358,7 +12358,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "whatsapp_header_kpis_headerkpis",
-      "community": 65,
+      "community": 63,
       "norm_label": "headerkpis()"
     },
     {
@@ -12538,7 +12538,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_modal_excluir_instancia",
-      "community": 41,
+      "community": 7,
       "norm_label": "modal-excluir-instancia.tsx"
     },
     {
@@ -12548,7 +12548,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "whatsapp_modal_excluir_instancia_props",
-      "community": 41,
+      "community": 7,
       "norm_label": "props"
     },
     {
@@ -12558,7 +12558,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "whatsapp_modal_excluir_instancia_modalexcluirinstancia",
-      "community": 10,
+      "community": 50,
       "norm_label": "modalexcluirinstancia()"
     },
     {
@@ -12658,7 +12658,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_modal_modelo",
-      "community": 7,
+      "community": 4,
       "norm_label": "modal-modelo.tsx"
     },
     {
@@ -12668,7 +12668,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "whatsapp_modal_modelo_props",
-      "community": 7,
+      "community": 4,
       "norm_label": "props"
     },
     {
@@ -12688,7 +12688,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_modal_nova_conversa",
-      "community": 4,
+      "community": 53,
       "norm_label": "modal-nova-conversa.tsx"
     },
     {
@@ -12698,7 +12698,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "whatsapp_modal_nova_conversa_instancia",
-      "community": 4,
+      "community": 53,
       "norm_label": "instancia"
     },
     {
@@ -12708,7 +12708,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "whatsapp_modal_nova_conversa_resultadobusca",
-      "community": 4,
+      "community": 53,
       "norm_label": "resultadobusca"
     },
     {
@@ -12718,7 +12718,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "whatsapp_modal_nova_conversa_props",
-      "community": 4,
+      "community": 53,
       "norm_label": "props"
     },
     {
@@ -12758,7 +12758,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "whatsapp_modal_nova_instancia_modalnovainstancia",
-      "community": 19,
+      "community": 32,
       "norm_label": "modalnovainstancia()"
     },
     {
@@ -12948,7 +12948,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "whatsapp_qr_code_dialog_qrcodedialog",
-      "community": 10,
+      "community": 50,
       "norm_label": "qrcodedialog()"
     },
     {
@@ -13358,7 +13358,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_instance_manager",
-      "community": 30,
+      "community": 7,
       "norm_label": "whatsapp-instance-manager.tsx"
     },
     {
@@ -13368,7 +13368,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_instance_manager_whatsappinstance",
-      "community": 30,
+      "community": 7,
       "norm_label": "whatsappinstance"
     },
     {
@@ -13378,7 +13378,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_instance_manager_props",
-      "community": 30,
+      "community": 7,
       "norm_label": "props"
     },
     {
@@ -13388,7 +13388,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_instance_manager_whatsappinstancemanager",
-      "community": 30,
+      "community": 40,
       "norm_label": "whatsappinstancemanager()"
     },
     {
@@ -13518,7 +13518,7 @@
       "source_location": "L122",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_shell_filtrochip",
-      "community": 11,
+      "community": 65,
       "norm_label": "filtrochip()"
     },
     {
@@ -13894,7 +13894,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_evolution_retry",
-      "community": 31,
+      "community": 74,
       "norm_label": "evolution-retry.ts"
     },
     {
@@ -13904,7 +13904,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "lib_evolution_retry_retryconfig",
-      "community": 31,
+      "community": 74,
       "norm_label": "retryconfig"
     },
     {
@@ -13914,7 +13914,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "lib_evolution_retry_evolutionresponse",
-      "community": 31,
+      "community": 74,
       "norm_label": "evolutionresponse"
     },
     {
@@ -13924,7 +13924,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "lib_evolution_retry_evolutionretry",
-      "community": 31,
+      "community": 57,
       "norm_label": "evolutionretry"
     },
     {
@@ -13934,7 +13934,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "lib_evolution_retry_evolutionretry_withretry",
-      "community": 31,
+      "community": 57,
       "norm_label": ".withretry()"
     },
     {
@@ -13944,7 +13944,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "lib_evolution_retry_evolutionretry_sendmessage",
-      "community": 31,
+      "community": 57,
       "norm_label": ".sendmessage()"
     },
     {
@@ -13954,7 +13954,7 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "lib_evolution_retry_evolutionretry_sendmedia",
-      "community": 31,
+      "community": 57,
       "norm_label": ".sendmedia()"
     },
     {
@@ -13964,7 +13964,7 @@
       "source_location": "L157",
       "_origin": "ast",
       "id": "lib_evolution_retry_evolutionretry_getconnectionstate",
-      "community": 31,
+      "community": 57,
       "norm_label": ".getconnectionstate()"
     },
     {
@@ -13974,7 +13974,7 @@
       "source_location": "L179",
       "_origin": "ast",
       "id": "lib_evolution_retry_evolutionretry_createinstance",
-      "community": 31,
+      "community": 57,
       "norm_label": ".createinstance()"
     },
     {
@@ -13984,7 +13984,7 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "lib_evolution_retry_evolutionretry_deleteinstance",
-      "community": 31,
+      "community": 57,
       "norm_label": ".deleteinstance()"
     },
     {
@@ -14064,7 +14064,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "lib_evolution_obterestadoconexao",
-      "community": 30,
+      "community": 10,
       "norm_label": "obterestadoconexao()"
     },
     {
@@ -14324,7 +14324,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pdf_download_pdf",
-      "community": 63,
+      "community": 33,
       "norm_label": "download-pdf.ts"
     },
     {
@@ -14334,7 +14334,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "pdf_download_pdf_baixarorcamentopdf",
-      "community": 63,
+      "community": 33,
       "norm_label": "baixarorcamentopdf()"
     },
     {
@@ -14474,7 +14474,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "queries_kpis_whatsapp",
-      "community": 6,
+      "community": 65,
       "norm_label": "kpis-whatsapp.ts"
     },
     {
@@ -14484,7 +14484,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "queries_kpis_whatsapp_kpiwhatsapp",
-      "community": 6,
+      "community": 65,
       "norm_label": "kpiwhatsapp"
     },
     {
@@ -14494,7 +14494,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "queries_kpis_whatsapp_buscarkpiswhatsapp",
-      "community": 6,
+      "community": 65,
       "norm_label": "buscarkpiswhatsapp()"
     },
     {
@@ -14504,7 +14504,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "queries_totais_cliente",
-      "community": 6,
+      "community": 65,
       "norm_label": "totais-cliente.ts"
     },
     {
@@ -14514,7 +14514,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "queries_totais_cliente_totaiscliente",
-      "community": 6,
+      "community": 65,
       "norm_label": "totaiscliente"
     },
     {
@@ -14524,7 +14524,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "queries_totais_cliente_buscartotaiscliente",
-      "community": 6,
+      "community": 65,
       "norm_label": "buscartotaiscliente()"
     },
     {
@@ -14624,7 +14624,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "supabase_client",
-      "community": 30,
+      "community": 40,
       "norm_label": "client.ts"
     },
     {
@@ -14634,7 +14634,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "supabase_client_getenv",
-      "community": 30,
+      "community": 40,
       "norm_label": "getenv()"
     },
     {
@@ -14644,7 +14644,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "supabase_client_createclient",
-      "community": 30,
+      "community": 40,
       "norm_label": "createclient()"
     },
     {
@@ -14774,7 +14774,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_utils",
-      "community": 20,
+      "community": 25,
       "norm_label": "utils.ts"
     },
     {
@@ -14794,7 +14794,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "lib_utils_formatarmoeda",
-      "community": 20,
+      "community": 25,
       "norm_label": "formatarmoeda()"
     },
     {
@@ -16582,7 +16582,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "types_database_whatsappstatus",
-      "community": 36,
+      "community": 65,
       "norm_label": "whatsappstatus"
     },
     {
@@ -16632,7 +16632,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "types_database_quotestatus",
-      "community": 38,
+      "community": 25,
       "norm_label": "quotestatus"
     },
     {
@@ -16652,7 +16652,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "types_database_hubstatus",
-      "community": 27,
+      "community": 16,
       "norm_label": "hubstatus"
     },
     {
@@ -16662,7 +16662,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "types_database_hub",
-      "community": 40,
+      "community": 16,
       "norm_label": "hub"
     },
     {
@@ -16692,7 +16692,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "types_database_profile",
-      "community": 86,
+      "community": 44,
       "norm_label": "profile"
     },
     {
@@ -16792,7 +16792,7 @@
       "source_location": "L244",
       "_origin": "ast",
       "id": "types_database_conversastatus",
-      "community": 6,
+      "community": 65,
       "norm_label": "conversastatus"
     },
     {
@@ -16932,7 +16932,7 @@
       "source_location": "L455",
       "_origin": "ast",
       "id": "types_database_quoteitem",
-      "community": 38,
+      "community": 25,
       "norm_label": "quoteitem"
     },
     {
@@ -17012,7 +17012,7 @@
       "source_location": "L568",
       "_origin": "ast",
       "id": "types_database_kpiwhatsapp",
-      "community": 65,
+      "community": 63,
       "norm_label": "kpiwhatsapp"
     },
     {
@@ -17042,7 +17042,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "types_whatsapp_central",
-      "community": 36,
+      "community": 65,
       "norm_label": "whatsapp-central.ts"
     },
     {
@@ -17052,7 +17052,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "types_whatsapp_central_whatsappinstanciaresumo",
-      "community": 36,
+      "community": 65,
       "norm_label": "whatsappinstanciaresumo"
     },
     {
@@ -17072,7 +17072,7 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "types_whatsapp_central_perfilcentral",
-      "community": 36,
+      "community": 65,
       "norm_label": "perfilcentral"
     },
     {
@@ -17102,7 +17102,7 @@
       "source_location": "L90",
       "_origin": "ast",
       "id": "types_whatsapp_central_centralsearchparams",
-      "community": 36,
+      "community": 65,
       "norm_label": "centralsearchparams"
     },
     {
@@ -18954,6 +18954,1224 @@
       "weight": 1.0,
       "source": "caixa_de_entrada_page_caixadeentradapage",
       "target": "supabase_server_createclient"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_editar_page_tsx_editar_page",
+      "target": "editar_formulario_editar_contato",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "editar_formulario_editar_contato",
+      "target": "clientes_actions_editarcontato",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "editar_formulario_editar_contato",
+      "target": "editar_formulario_editar_contato_contatocompleto"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "editar_formulario_editar_contato",
+      "target": "editar_formulario_editar_contato_formularioeditarcontato"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "editar_formulario_editar_contato",
+      "target": "editar_formulario_editar_contato_formularioeditarcontatoprops"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "editar_formulario_editar_contato",
+      "target": "types_database"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "editar_formulario_editar_contato",
+      "target": "types_database_company"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "editar_formulario_editar_contato",
+      "target": "types_database_contact"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "editar_formulario_editar_contato",
+      "target": "ui_button"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "editar_formulario_editar_contato",
+      "target": "ui_button_button"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "editar_formulario_editar_contato",
+      "target": "ui_card"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "editar_formulario_editar_contato",
+      "target": "ui_card_card"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "editar_formulario_editar_contato",
+      "target": "ui_card_cardcontent"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "editar_formulario_editar_contato",
+      "target": "ui_card_cardheader"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "editar_formulario_editar_contato",
+      "target": "ui_card_cardtitle"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "editar_formulario_editar_contato",
+      "target": "ui_input"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "editar_formulario_editar_contato",
+      "target": "ui_input_input"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "editar_formulario_editar_contato",
+      "target": "ui_label"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "editar_formulario_editar_contato",
+      "target": "ui_label_label"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_editar_page_tsx_editar_page",
+      "target": "editar_formulario_editar_contato_formularioeditarcontato",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/page.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_editar_page_tsx_editar_page",
+      "target": "editar_page_contatocompleto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/page.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_editar_page_tsx_editar_page",
+      "target": "editar_page_editarcontatopage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_editar_page_tsx_editar_page",
+      "target": "supabase_server",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_editar_page_tsx_editar_page",
+      "target": "supabase_server_createclient",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_editar_page_tsx_editar_page",
+      "target": "types_database",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_editar_page_tsx_editar_page",
+      "target": "types_database_company",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_editar_page_tsx_editar_page",
+      "target": "types_database_contact",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_editar_page_tsx_editar_page",
+      "target": "ui_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/editar/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_editar_page_tsx_editar_page",
+      "target": "ui_button_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "clientes_acoes_contato",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "clientes_acoes_contato_acoescontato",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "clientes_form_observacao_contato",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "clientes_form_observacao_contato_formobservacaocontato",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "id_page_blocodados",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "id_page_campoexibicao",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "id_page_contatocompleto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "id_page_contatodetalhepage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "shared_timeline_atividades",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "shared_timeline_atividades_timelineatividades",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "supabase_server",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "supabase_server_createclient",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "types_database",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "types_database_company",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "types_database_contact",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "types_database_profile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "ui_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "ui_button_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "ui_card",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "ui_card_card",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "ui_card_cardcontent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "ui_card_cardheader",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "ui_card_cardtitle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "whatsapp_modal_chamar_whatsapp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/[id]/page.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_id_page_tsx_id_page",
+      "target": "whatsapp_modal_chamar_whatsapp_modalchamarwhatsapp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L218",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_actions_ts_clientes_actions",
+      "target": "clientes_actions_adicionarobservacaocontato",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L396",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_actions_ts_clientes_actions",
+      "target": "clientes_actions_contatoimportado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L311",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_actions_ts_clientes_actions",
+      "target": "clientes_actions_convertercontatoemlead",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_actions_ts_clientes_actions",
+      "target": "clientes_actions_criarcontato",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L119",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_actions_ts_clientes_actions",
+      "target": "clientes_actions_editarcontato",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L242",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_actions_ts_clientes_actions",
+      "target": "clientes_actions_excluircontato",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L272",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_actions_ts_clientes_actions",
+      "target": "clientes_actions_excluircontatosemlote",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_actions_ts_clientes_actions",
+      "target": "clientes_actions_getusuarioeorg",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L404",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_actions_ts_clientes_actions",
+      "target": "clientes_actions_importarcontatos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_actions_ts_clientes_actions",
+      "target": "clientes_actions_resolverempresa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_actions_ts_clientes_actions",
+      "target": "supabase_admin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_actions_ts_clientes_actions",
+      "target": "supabase_admin_createadminclient",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_actions_ts_clientes_actions",
+      "target": "supabase_server",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_actions_ts_clientes_actions",
+      "target": "supabase_server_createclient",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L219",
+      "weight": 1.0,
+      "source": "clientes_actions_adicionarobservacaocontato",
+      "target": "clientes_actions_getusuarioeorg",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L312",
+      "weight": 1.0,
+      "source": "clientes_actions_convertercontatoemlead",
+      "target": "clientes_actions_getusuarioeorg",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "clientes_actions_criarcontato",
+      "target": "clientes_actions_getusuarioeorg",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L120",
+      "weight": 1.0,
+      "source": "clientes_actions_editarcontato",
+      "target": "clientes_actions_getusuarioeorg",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L243",
+      "weight": 1.0,
+      "source": "clientes_actions_excluircontato",
+      "target": "clientes_actions_getusuarioeorg",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L273",
+      "weight": 1.0,
+      "source": "clientes_actions_excluircontatosemlote",
+      "target": "clientes_actions_getusuarioeorg",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "clientes_actions_getusuarioeorg",
+      "target": "supabase_server_createclient",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L405",
+      "weight": 1.0,
+      "source": "clientes_actions_importarcontatos",
+      "target": "clientes_actions_getusuarioeorg",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "clientes_actions_criarcontato",
+      "target": "clientes_actions_resolverempresa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/actions.ts",
+      "source_location": "L164",
+      "weight": 1.0,
+      "source": "clientes_actions_editarcontato",
+      "target": "clientes_actions_resolverempresa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/clientes/modal-novo-contato.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "clientes_modal_novo_contato",
+      "target": "clientes_actions_criarcontato",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/clientes/form-observacao-contato.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "clientes_form_observacao_contato",
+      "target": "clientes_actions_adicionarobservacaocontato",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/clientes/acoes-contato.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "clientes_acoes_contato",
+      "target": "clientes_actions_excluircontato",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/clientes/tabela-contatos.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "clientes_tabela_contatos",
+      "target": "clientes_actions_excluircontatosemlote",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/clientes/acoes-contato.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "clientes_acoes_contato",
+      "target": "clientes_actions_convertercontatoemlead",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/clientes/form-importacao.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "clientes_form_importacao",
+      "target": "clientes_actions_importarcontatos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/exportar/route.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_exportar_route_ts_exportar_route",
+      "target": "app_dashboard_clientes_exportar_route_ts_exportar_route_escapecsv",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/exportar/route.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_exportar_route_ts_exportar_route",
+      "target": "app_dashboard_clientes_exportar_route_ts_exportar_route_get",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/exportar/route.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_exportar_route_ts_exportar_route",
+      "target": "supabase_server",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/exportar/route.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_exportar_route_ts_exportar_route",
+      "target": "supabase_server_createclient",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/importar/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_importar_page_tsx_importar_page",
+      "target": "clientes_form_importacao",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/importar/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_importar_page_tsx_importar_page",
+      "target": "clientes_form_importacao_formimportacao",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/importar/page.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_importar_page_tsx_importar_page",
+      "target": "importar_page_importarcontatospage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/importar/page.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_importar_page_tsx_importar_page",
+      "target": "supabase_server",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/importar/page.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_importar_page_tsx_importar_page",
+      "target": "supabase_server_createclient",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/importar/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_importar_page_tsx_importar_page",
+      "target": "ui_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/importar/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_importar_page_tsx_importar_page",
+      "target": "ui_button_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_page_tsx_clientes_page",
+      "target": "clientes_botao_importar_exportar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_page_tsx_clientes_page",
+      "target": "clientes_botao_importar_exportar_botaoimportarexportar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_page_tsx_clientes_page",
+      "target": "clientes_busca_contatos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_page_tsx_clientes_page",
+      "target": "clientes_busca_contatos_buscacontatos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_page_tsx_clientes_page",
+      "target": "clientes_modal_novo_contato",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_page_tsx_clientes_page",
+      "target": "clientes_modal_novo_contato_modalnovocontato",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_page_tsx_clientes_page",
+      "target": "clientes_page_contatocomempresa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_page_tsx_clientes_page",
+      "target": "clientes_page_contatospage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_page_tsx_clientes_page",
+      "target": "clientes_page_searchparams",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_page_tsx_clientes_page",
+      "target": "clientes_tabela_contatos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_page_tsx_clientes_page",
+      "target": "clientes_tabela_contatos_tabelacontatos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_page_tsx_clientes_page",
+      "target": "supabase_server",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_page_tsx_clientes_page",
+      "target": "supabase_server_createclient",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_page_tsx_clientes_page",
+      "target": "types_database",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_page_tsx_clientes_page",
+      "target": "types_database_company",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_page_tsx_clientes_page",
+      "target": "types_database_contact",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_page_tsx_clientes_page",
+      "target": "ui_paginacao",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/clientes/page.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "app_dashboard_clientes_page_tsx_clientes_page",
+      "target": "ui_paginacao_paginacao",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -24568,1323 +25786,6 @@
       "target": "supabase_client_createclient"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/page.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_editar_page_tsx_editar_page",
-      "target": "editar_formulario_editar_contato"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "contatos_actions"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "contatos_actions_editarcontato"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L14",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "editar_formulario_editar_contato_contatocompleto"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L22",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "editar_formulario_editar_contato_formularioeditarcontato"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "editar_formulario_editar_contato_formularioeditarcontatoprops"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "types_database"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "types_database_company"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "types_database_contact"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "ui_button"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "ui_button_button"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "ui_card"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "ui_card_card"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "ui_card_cardcontent"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "ui_card_cardheader"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "ui_card_cardtitle"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "ui_input"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "ui_input_input"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "ui_label"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "editar_formulario_editar_contato",
-      "target": "ui_label_label"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/page.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_editar_page_tsx_editar_page",
-      "target": "editar_formulario_editar_contato_formularioeditarcontato"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/page.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_editar_page_tsx_editar_page",
-      "target": "editar_page_contatocompleto"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/page.tsx",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_editar_page_tsx_editar_page",
-      "target": "editar_page_editarcontatopage"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/page.tsx",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_editar_page_tsx_editar_page",
-      "target": "supabase_server"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/page.tsx",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_editar_page_tsx_editar_page",
-      "target": "supabase_server_createclient"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/page.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_editar_page_tsx_editar_page",
-      "target": "types_database"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/page.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_editar_page_tsx_editar_page",
-      "target": "types_database_company"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/page.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_editar_page_tsx_editar_page",
-      "target": "types_database_contact"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/page.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_editar_page_tsx_editar_page",
-      "target": "ui_button"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/editar/page.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_editar_page_tsx_editar_page",
-      "target": "ui_button_button"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "contatos_acoes_contato"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "contatos_acoes_contato_acoescontato"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "contatos_form_observacao_contato"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "contatos_form_observacao_contato_formobservacaocontato"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L29",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "id_page_blocodados"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L20",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "id_page_campoexibicao"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "id_page_contatocompleto"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L45",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "id_page_contatodetalhepage"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "shared_timeline_atividades"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "shared_timeline_atividades_timelineatividades"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "supabase_server"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "supabase_server_createclient"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "types_database"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "types_database_company"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "types_database_contact"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "types_database_profile"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "ui_button"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "ui_button_button"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "ui_card"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "ui_card_card"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "ui_card_cardcontent"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "ui_card_cardheader"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "ui_card_cardtitle"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "whatsapp_modal_chamar_whatsapp"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/[id]/page.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_id_page_tsx_id_page",
-      "target": "whatsapp_modal_chamar_whatsapp_modalchamarwhatsapp"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "components/contatos/acoes-contato.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_acoes_contato",
-      "target": "contatos_actions"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L191",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions",
-      "target": "contatos_actions_adicionarobservacaocontato"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L369",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions",
-      "target": "contatos_actions_contatoimportado"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L284",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions",
-      "target": "contatos_actions_convertercontatoemlead"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L47",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions",
-      "target": "contatos_actions_criarcontato"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L105",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions",
-      "target": "contatos_actions_editarcontato"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L215",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions",
-      "target": "contatos_actions_excluircontato"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L245",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions",
-      "target": "contatos_actions_excluircontatosemlote"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions",
-      "target": "contatos_actions_getusuarioeorg"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L377",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions",
-      "target": "contatos_actions_importarcontatos"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L21",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions",
-      "target": "contatos_actions_resolverempresa"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions",
-      "target": "supabase_admin"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions",
-      "target": "supabase_admin_createadminclient"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions",
-      "target": "supabase_server"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions",
-      "target": "supabase_server_createclient"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-importacao.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_importacao",
-      "target": "contatos_actions"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-observacao-contato.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_observacao_contato",
-      "target": "contatos_actions"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "components/contatos/modal-novo-contato.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_modal_novo_contato",
-      "target": "contatos_actions"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "components/contatos/tabela-contatos.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_tabela_contatos",
-      "target": "contatos_actions"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L192",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions_adicionarobservacaocontato",
-      "target": "contatos_actions_getusuarioeorg"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L285",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions_convertercontatoemlead",
-      "target": "contatos_actions_getusuarioeorg"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L48",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions_criarcontato",
-      "target": "contatos_actions_getusuarioeorg"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L106",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions_editarcontato",
-      "target": "contatos_actions_getusuarioeorg"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L216",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions_excluircontato",
-      "target": "contatos_actions_getusuarioeorg"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L246",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions_excluircontatosemlote",
-      "target": "contatos_actions_getusuarioeorg"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions_getusuarioeorg",
-      "target": "supabase_server_createclient"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L378",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions_importarcontatos",
-      "target": "contatos_actions_getusuarioeorg"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L66",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions_criarcontato",
-      "target": "contatos_actions_resolverempresa"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L147",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_actions_editarcontato",
-      "target": "contatos_actions_resolverempresa"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "components/contatos/modal-novo-contato.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_modal_novo_contato",
-      "target": "contatos_actions_criarcontato"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-observacao-contato.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_observacao_contato",
-      "target": "contatos_actions_adicionarobservacaocontato"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "components/contatos/acoes-contato.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_acoes_contato",
-      "target": "contatos_actions_excluircontato"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L229",
-      "weight": 1.0,
-      "source": "contatos_actions_excluircontato",
-      "target": "supabase_admin_createadminclient"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L262",
-      "weight": 1.0,
-      "source": "contatos_actions_excluircontatosemlote",
-      "target": "supabase_admin_createadminclient"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "components/contatos/tabela-contatos.tsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_tabela_contatos",
-      "target": "contatos_actions_excluircontatosemlote"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "components/contatos/acoes-contato.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_acoes_contato",
-      "target": "contatos_actions_convertercontatoemlead"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-importacao.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_importacao",
-      "target": "contatos_actions_importarcontatos"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/exportar/route.ts",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_exportar_route_ts_exportar_route",
-      "target": "app_dashboard_contatos_exportar_route_ts_exportar_route_escapecsv"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/exportar/route.ts",
-      "source_location": "L12",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_exportar_route_ts_exportar_route",
-      "target": "app_dashboard_contatos_exportar_route_ts_exportar_route_get"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/exportar/route.ts",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_exportar_route_ts_exportar_route",
-      "target": "supabase_server"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/exportar/route.ts",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_exportar_route_ts_exportar_route",
-      "target": "supabase_server_createclient"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/importar/page.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_importar_page_tsx_importar_page",
-      "target": "contatos_form_importacao"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/importar/page.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_importar_page_tsx_importar_page",
-      "target": "contatos_form_importacao_formimportacao"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/importar/page.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_importar_page_tsx_importar_page",
-      "target": "importar_page_importarcontatospage"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/importar/page.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_importar_page_tsx_importar_page",
-      "target": "supabase_server"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/importar/page.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_importar_page_tsx_importar_page",
-      "target": "supabase_server_createclient"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/importar/page.tsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_importar_page_tsx_importar_page",
-      "target": "ui_button"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/importar/page.tsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "app_dashboard_contatos_importar_page_tsx_importar_page",
-      "target": "ui_button_button"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_page",
-      "target": "contatos_botao_importar_exportar"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_page",
-      "target": "contatos_botao_importar_exportar_botaoimportarexportar"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_page",
-      "target": "contatos_busca_contatos"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_page",
-      "target": "contatos_busca_contatos_buscacontatos"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_page",
-      "target": "contatos_modal_novo_contato"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_page",
-      "target": "contatos_modal_novo_contato_modalnovocontato"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_page",
-      "target": "contatos_page_contatocomempresa"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L17",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_page",
-      "target": "contatos_page_contatospage"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_page",
-      "target": "contatos_page_searchparams"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_page",
-      "target": "contatos_tabela_contatos"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_page",
-      "target": "contatos_tabela_contatos_tabelacontatos"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_page",
-      "target": "supabase_server"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_page",
-      "target": "supabase_server_createclient"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_page",
-      "target": "types_database"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_page",
-      "target": "types_database_company"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_page",
-      "target": "types_database_contact"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_page",
-      "target": "ui_paginacao"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_page",
-      "target": "ui_paginacao_paginacao"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "app/(dashboard)/contatos/page.tsx",
-      "source_location": "L18",
-      "weight": 1.0,
-      "source": "contatos_page_contatospage",
-      "target": "supabase_server_createclient"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/(dashboard)/debug-whatsapp/page.tsx",
@@ -26722,9 +26623,9 @@
       "source_file": "app/(dashboard)/hub/clientes/actions.ts",
       "source_location": "L22",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "clientes_actions",
-      "target": "clientes_actions_definirresponsaveloperacional"
+      "source": "app_dashboard_hub_clientes_actions_ts_clientes_actions",
+      "target": "clientes_actions_definirresponsaveloperacional",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -26732,9 +26633,9 @@
       "source_file": "app/(dashboard)/hub/clientes/actions.ts",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "clientes_actions",
-      "target": "clientes_actions_getproprietario"
+      "source": "app_dashboard_hub_clientes_actions_ts_clientes_actions",
+      "target": "clientes_actions_getproprietario",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -26743,9 +26644,9 @@
       "source_file": "app/(dashboard)/hub/clientes/actions.ts",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "clientes_actions",
-      "target": "supabase_admin"
+      "source": "app_dashboard_hub_clientes_actions_ts_clientes_actions",
+      "target": "supabase_admin",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -26754,9 +26655,9 @@
       "source_file": "app/(dashboard)/hub/clientes/actions.ts",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "clientes_actions",
-      "target": "supabase_admin_createadminclient"
+      "source": "app_dashboard_hub_clientes_actions_ts_clientes_actions",
+      "target": "supabase_admin_createadminclient",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -26765,9 +26666,9 @@
       "source_file": "app/(dashboard)/hub/clientes/actions.ts",
       "source_location": "L3",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "clientes_actions",
-      "target": "supabase_server"
+      "source": "app_dashboard_hub_clientes_actions_ts_clientes_actions",
+      "target": "supabase_server",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -26776,20 +26677,9 @@
       "source_file": "app/(dashboard)/hub/clientes/actions.ts",
       "source_location": "L3",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "clientes_actions",
-      "target": "supabase_server_createclient"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "components/hub-clientes/distribuir-clientes.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "hub_clientes_distribuir_clientes",
-      "target": "clientes_actions"
+      "source": "app_dashboard_hub_clientes_actions_ts_clientes_actions",
+      "target": "supabase_server_createclient",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -38929,514 +38819,514 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/acoes-contato.tsx",
+      "source_file": "components/clientes/acoes-contato.tsx",
       "source_location": "L16",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_acoes_contato",
-      "target": "contatos_acoes_contato_acoescontato"
+      "source": "clientes_acoes_contato",
+      "target": "clientes_acoes_contato_acoescontato",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/acoes-contato.tsx",
+      "source_file": "components/clientes/acoes-contato.tsx",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_acoes_contato",
-      "target": "contatos_acoes_contato_props"
+      "source": "clientes_acoes_contato",
+      "target": "clientes_acoes_contato_props",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/acoes-contato.tsx",
+      "source_file": "components/clientes/acoes-contato.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_acoes_contato",
-      "target": "ui_button"
+      "source": "clientes_acoes_contato",
+      "target": "ui_button",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/acoes-contato.tsx",
+      "source_file": "components/clientes/acoes-contato.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_acoes_contato",
-      "target": "ui_button_button"
+      "source": "clientes_acoes_contato",
+      "target": "ui_button_button",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/botao-importar-exportar.tsx",
+      "source_file": "components/clientes/botao-importar-exportar.tsx",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_botao_importar_exportar",
-      "target": "contatos_botao_importar_exportar_botaoimportarexportar"
+      "source": "clientes_botao_importar_exportar",
+      "target": "clientes_botao_importar_exportar_botaoimportarexportar",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/botao-importar-exportar.tsx",
+      "source_file": "components/clientes/botao-importar-exportar.tsx",
       "source_location": "L2",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_botao_importar_exportar",
-      "target": "ui_button"
+      "source": "clientes_botao_importar_exportar",
+      "target": "ui_button",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/botao-importar-exportar.tsx",
+      "source_file": "components/clientes/botao-importar-exportar.tsx",
       "source_location": "L2",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_botao_importar_exportar",
-      "target": "ui_button_button"
+      "source": "clientes_botao_importar_exportar",
+      "target": "ui_button_button",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/busca-contatos.tsx",
+      "source_file": "components/clientes/busca-contatos.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_busca_contatos",
-      "target": "contatos_busca_contatos_buscacontatos"
+      "source": "clientes_busca_contatos",
+      "target": "clientes_busca_contatos_buscacontatos",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-importacao.tsx",
-      "source_location": "L12",
+      "source_file": "components/clientes/form-importacao.tsx",
+      "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_importacao",
-      "target": "contatos_form_importacao_contatoimportado"
+      "source": "clientes_form_importacao",
+      "target": "clientes_form_importacao_contatoimportado",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-importacao.tsx",
-      "source_location": "L43",
+      "source_file": "components/clientes/form-importacao.tsx",
+      "source_location": "L42",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_importacao",
-      "target": "contatos_form_importacao_detectarcoluna"
+      "source": "clientes_form_importacao",
+      "target": "clientes_form_importacao_detectarcoluna",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-importacao.tsx",
+      "source_file": "components/clientes/form-importacao.tsx",
+      "source_location": "L95",
+      "weight": 1.0,
+      "source": "clientes_form_importacao",
+      "target": "clientes_form_importacao_formimportacao",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/clientes/form-importacao.tsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "clientes_form_importacao",
+      "target": "clientes_form_importacao_mapeamento_nome",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/clientes/form-importacao.tsx",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "clientes_form_importacao",
+      "target": "clientes_form_importacao_mapearcontatos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/clientes/form-importacao.tsx",
       "source_location": "L93",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_importacao",
-      "target": "contatos_form_importacao_formimportacao"
+      "source": "clientes_form_importacao",
+      "target": "clientes_form_importacao_modoimportacao",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-importacao.tsx",
-      "source_location": "L20",
+      "source_file": "components/clientes/form-importacao.tsx",
+      "source_location": "L47",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_importacao",
-      "target": "contatos_form_importacao_mapeamento_nome"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-importacao.tsx",
-      "source_location": "L57",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_importacao",
-      "target": "contatos_form_importacao_mapearcontatos"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-importacao.tsx",
-      "source_location": "L91",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_importacao",
-      "target": "contatos_form_importacao_modoimportacao"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-importacao.tsx",
-      "source_location": "L48",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_importacao",
-      "target": "contatos_form_importacao_parsearplanilha"
+      "source": "clientes_form_importacao",
+      "target": "clientes_form_importacao_parsearplanilha",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-importacao.tsx",
+      "source_file": "components/clientes/form-importacao.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "clientes_form_importacao",
+      "target": "ui_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/clientes/form-importacao.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "clientes_form_importacao",
+      "target": "ui_button_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/clientes/form-importacao.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_importacao",
-      "target": "ui_button"
+      "source": "clientes_form_importacao",
+      "target": "ui_card",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-importacao.tsx",
+      "source_file": "components/clientes/form-importacao.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_importacao",
-      "target": "ui_button_button"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-importacao.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_importacao",
-      "target": "ui_card"
+      "source": "clientes_form_importacao",
+      "target": "ui_card_card",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-importacao.tsx",
-      "source_location": "L8",
+      "source_file": "components/clientes/form-importacao.tsx",
+      "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_importacao",
-      "target": "ui_card_card"
+      "source": "clientes_form_importacao",
+      "target": "ui_card_cardcontent",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-importacao.tsx",
-      "source_location": "L8",
+      "source_file": "components/clientes/form-importacao.tsx",
+      "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_importacao",
-      "target": "ui_card_cardcontent"
+      "source": "clientes_form_importacao",
+      "target": "ui_card_cardheader",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-importacao.tsx",
-      "source_location": "L8",
+      "source_file": "components/clientes/form-importacao.tsx",
+      "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_importacao",
-      "target": "ui_card_cardheader"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-importacao.tsx",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_importacao",
-      "target": "ui_card_cardtitle"
+      "source": "clientes_form_importacao",
+      "target": "ui_card_cardtitle",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-observacao-contato.tsx",
+      "source_file": "components/clientes/form-observacao-contato.tsx",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_observacao_contato",
-      "target": "contatos_form_observacao_contato_formobservacaocontato"
+      "source": "clientes_form_observacao_contato",
+      "target": "clientes_form_observacao_contato_formobservacaocontato",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-observacao-contato.tsx",
+      "source_file": "components/clientes/form-observacao-contato.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_observacao_contato",
-      "target": "ui_button"
+      "source": "clientes_form_observacao_contato",
+      "target": "ui_button",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-observacao-contato.tsx",
+      "source_file": "components/clientes/form-observacao-contato.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_observacao_contato",
-      "target": "ui_button_button"
+      "source": "clientes_form_observacao_contato",
+      "target": "ui_button_button",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-observacao-contato.tsx",
+      "source_file": "components/clientes/form-observacao-contato.tsx",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_observacao_contato",
-      "target": "ui_textarea"
+      "source": "clientes_form_observacao_contato",
+      "target": "ui_textarea",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/form-observacao-contato.tsx",
+      "source_file": "components/clientes/form-observacao-contato.tsx",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_form_observacao_contato",
-      "target": "ui_textarea_textarea"
+      "source": "clientes_form_observacao_contato",
+      "target": "ui_textarea_textarea",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/modal-novo-contato.tsx",
+      "source_file": "components/clientes/modal-novo-contato.tsx",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_modal_novo_contato",
-      "target": "contatos_modal_novo_contato_modalnovocontato"
+      "source": "clientes_modal_novo_contato",
+      "target": "clientes_modal_novo_contato_modalnovocontato",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/modal-novo-contato.tsx",
+      "source_file": "components/clientes/modal-novo-contato.tsx",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_modal_novo_contato",
-      "target": "ui_button"
+      "source": "clientes_modal_novo_contato",
+      "target": "ui_button",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/modal-novo-contato.tsx",
+      "source_file": "components/clientes/modal-novo-contato.tsx",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_modal_novo_contato",
-      "target": "ui_button_button"
+      "source": "clientes_modal_novo_contato",
+      "target": "ui_button_button",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/modal-novo-contato.tsx",
+      "source_file": "components/clientes/modal-novo-contato.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_modal_novo_contato",
-      "target": "ui_dialog"
+      "source": "clientes_modal_novo_contato",
+      "target": "ui_dialog",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/modal-novo-contato.tsx",
+      "source_file": "components/clientes/modal-novo-contato.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_modal_novo_contato",
-      "target": "ui_dialog_dialog"
+      "source": "clientes_modal_novo_contato",
+      "target": "ui_dialog_dialog",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/modal-novo-contato.tsx",
+      "source_file": "components/clientes/modal-novo-contato.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_modal_novo_contato",
-      "target": "ui_dialog_dialogcontent"
+      "source": "clientes_modal_novo_contato",
+      "target": "ui_dialog_dialogcontent",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/modal-novo-contato.tsx",
+      "source_file": "components/clientes/modal-novo-contato.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_modal_novo_contato",
-      "target": "ui_dialog_dialogheader"
+      "source": "clientes_modal_novo_contato",
+      "target": "ui_dialog_dialogheader",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/modal-novo-contato.tsx",
+      "source_file": "components/clientes/modal-novo-contato.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_modal_novo_contato",
-      "target": "ui_dialog_dialogtitle"
+      "source": "clientes_modal_novo_contato",
+      "target": "ui_dialog_dialogtitle",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/modal-novo-contato.tsx",
+      "source_file": "components/clientes/modal-novo-contato.tsx",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_modal_novo_contato",
-      "target": "ui_dialog_dialogtrigger"
+      "source": "clientes_modal_novo_contato",
+      "target": "ui_dialog_dialogtrigger",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/modal-novo-contato.tsx",
+      "source_file": "components/clientes/modal-novo-contato.tsx",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_modal_novo_contato",
-      "target": "ui_input"
+      "source": "clientes_modal_novo_contato",
+      "target": "ui_input",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/modal-novo-contato.tsx",
+      "source_file": "components/clientes/modal-novo-contato.tsx",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_modal_novo_contato",
-      "target": "ui_input_input"
+      "source": "clientes_modal_novo_contato",
+      "target": "ui_input_input",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/modal-novo-contato.tsx",
+      "source_file": "components/clientes/modal-novo-contato.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_modal_novo_contato",
-      "target": "ui_label"
+      "source": "clientes_modal_novo_contato",
+      "target": "ui_label",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/modal-novo-contato.tsx",
+      "source_file": "components/clientes/modal-novo-contato.tsx",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_modal_novo_contato",
-      "target": "ui_label_label"
+      "source": "clientes_modal_novo_contato",
+      "target": "ui_label_label",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/tabela-contatos.tsx",
+      "source_file": "components/clientes/tabela-contatos.tsx",
       "source_location": "L13",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_tabela_contatos",
-      "target": "contatos_tabela_contatos_contatocomempresa"
+      "source": "clientes_tabela_contatos",
+      "target": "clientes_tabela_contatos_contatocomempresa",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/tabela-contatos.tsx",
-      "source_location": "L15",
+      "source_file": "components/clientes/tabela-contatos.tsx",
+      "source_location": "L18",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_tabela_contatos",
-      "target": "contatos_tabela_contatos_props"
+      "source": "clientes_tabela_contatos",
+      "target": "clientes_tabela_contatos_props",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/tabela-contatos.tsx",
-      "source_location": "L20",
+      "source_file": "components/clientes/tabela-contatos.tsx",
+      "source_location": "L23",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_tabela_contatos",
-      "target": "contatos_tabela_contatos_tabelacontatos"
+      "source": "clientes_tabela_contatos",
+      "target": "clientes_tabela_contatos_tabelacontatos",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/tabela-contatos.tsx",
+      "source_file": "components/clientes/tabela-contatos.tsx",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_tabela_contatos",
-      "target": "types_database"
+      "source": "clientes_tabela_contatos",
+      "target": "types_database",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/tabela-contatos.tsx",
+      "source_file": "components/clientes/tabela-contatos.tsx",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_tabela_contatos",
-      "target": "types_database_company"
+      "source": "clientes_tabela_contatos",
+      "target": "types_database_company",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/tabela-contatos.tsx",
+      "source_file": "components/clientes/tabela-contatos.tsx",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_tabela_contatos",
-      "target": "types_database_contact"
+      "source": "clientes_tabela_contatos",
+      "target": "types_database_contact",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/tabela-contatos.tsx",
+      "source_file": "components/clientes/tabela-contatos.tsx",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_tabela_contatos",
-      "target": "ui_button"
+      "source": "clientes_tabela_contatos",
+      "target": "ui_button",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/contatos/tabela-contatos.tsx",
+      "source_file": "components/clientes/tabela-contatos.tsx",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "contatos_tabela_contatos",
-      "target": "ui_button_button"
+      "source": "clientes_tabela_contatos",
+      "target": "ui_button_button",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -63788,5 +63678,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "4de9e23cab9169f2abb7f1060c64c49519117fe0"
+  "built_at_commit": "0dee6b917372e15b79e3497ceb4ca0a1d18d2c86"
 }
