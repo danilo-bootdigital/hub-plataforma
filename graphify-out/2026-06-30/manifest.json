@@ -1235,8 +1235,8 @@
     "semantic_hash": "35ac2dad0755e14c603fb7ceb00a8aa6"
   },
   "lib/navegacao.ts": {
-    "mtime": 1782868992.813803,
-    "ast_hash": "30580a2bba7d6d84d3dd17d207da401b",
+    "mtime": 1782869437.499966,
+    "ast_hash": "496dd210f1c2381644e37d7497ab80d2",
     "semantic_hash": ""
   },
   "lib/nome-contato.ts": {
@@ -2247,6 +2247,26 @@
   "lib/rbac.ts": {
     "mtime": 1782868956.6438963,
     "ast_hash": "d55f80f1234e349273ac7197432706ec",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/funcoes/actions.ts": {
+    "mtime": 1782869379.7399676,
+    "ast_hash": "85dc7c1191131d970d486dadf3907bd3",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/funcoes/page.tsx": {
+    "mtime": 1782869390.2912185,
+    "ast_hash": "7c6c6926ffbca91ff57ee41552e8309c",
+    "semantic_hash": ""
+  },
+  "components/hub/funcoes-gerenciar.tsx": {
+    "mtime": 1782869424.680631,
+    "ast_hash": "3807b6e236b1048b05b63f59244a50de",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/migrate_rbac_funcoes_crud.sql": {
+    "mtime": 1782869365.7385292,
+    "ast_hash": "2a83cba83e3fde9b9417e6d0a2932d8c",
     "semantic_hash": ""
   }
 }

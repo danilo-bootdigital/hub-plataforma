@@ -95,14 +95,14 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/usuarios/actions.ts": {
-    "mtime": 1779656333.0,
-    "ast_hash": "ac5dbbb3b43664629e07d868fca43c92",
-    "semantic_hash": "ac5dbbb3b43664629e07d868fca43c92"
+    "mtime": 1782870314.3281279,
+    "ast_hash": "749b1926bc4aab715bc176b85c5b890f",
+    "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/usuarios/page.tsx": {
-    "mtime": 1779656333.0,
-    "ast_hash": "238175f0c6daeb6acb217e61bf8accd8",
-    "semantic_hash": "238175f0c6daeb6acb217e61bf8accd8"
+    "mtime": 1782870338.9287817,
+    "ast_hash": "823f6142435986e82f842008b6a06a18",
+    "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/whatsapp/actions-seguras.ts": {
     "mtime": 1780453240.0,
@@ -1010,14 +1010,14 @@
     "semantic_hash": "d448d2a90e48542e51b93a1189127bf2"
   },
   "components/usuarios/badge-perfil.tsx": {
-    "mtime": 1782531152.2132294,
-    "ast_hash": "750f975ba2b2d7abea9e8bd3942f50d7",
+    "mtime": 1782870324.83188,
+    "ast_hash": "96086c0d7bf414faed09333868a0faa2",
     "semantic_hash": ""
   },
   "components/usuarios/lista-usuarios.tsx": {
-    "mtime": 1779115667.0,
-    "ast_hash": "45331a607e840d749a35a39eba147179",
-    "semantic_hash": "45331a607e840d749a35a39eba147179"
+    "mtime": 1782870381.7775002,
+    "ast_hash": "6c2ab7abba33c60fcf0177f452e57abd",
+    "semantic_hash": ""
   },
   "components/usuarios/modal-alterar-senha.tsx": {
     "mtime": 1779115625.0,
