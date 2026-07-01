@@ -14401,7 +14401,7 @@
       "label": "navegacaoParaPerfil()",
       "file_type": "code",
       "source_file": "lib/navegacao.ts",
-      "source_location": "L65",
+      "source_location": "L66",
       "_origin": "ast",
       "id": "lib_navegacao_navegacaoparaperfil",
       "community": 108,
@@ -27322,9 +27322,9 @@
       "source_file": "app/(dashboard)/hub/orcamentos/page.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_orcamentos_page_tsx_orcamentos_page",
-      "target": "orcamentos_hub_tabela_orcamentos_hub",
-      "confidence_score": 1.0
+      "target": "orcamentos_hub_tabela_orcamentos_hub"
     },
     {
       "relation": "imports",
@@ -27333,9 +27333,9 @@
       "source_file": "app/(dashboard)/hub/orcamentos/page.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_orcamentos_page_tsx_orcamentos_page",
-      "target": "orcamentos_hub_tabela_orcamentos_hub_orcamentohubrow",
-      "confidence_score": 1.0
+      "target": "orcamentos_hub_tabela_orcamentos_hub_orcamentohubrow"
     },
     {
       "relation": "imports",
@@ -27344,9 +27344,9 @@
       "source_file": "app/(dashboard)/hub/orcamentos/page.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_orcamentos_page_tsx_orcamentos_page",
-      "target": "orcamentos_hub_tabela_orcamentos_hub_tabelaorcamentoshub",
-      "confidence_score": 1.0
+      "target": "orcamentos_hub_tabela_orcamentos_hub_tabelaorcamentoshub"
     },
     {
       "relation": "contains",
@@ -27354,9 +27354,9 @@
       "source_file": "app/(dashboard)/hub/orcamentos/page.tsx",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_orcamentos_page_tsx_orcamentos_page",
-      "target": "orcamentos_page_huborcamentospage",
-      "confidence_score": 1.0
+      "target": "orcamentos_page_huborcamentospage"
     },
     {
       "relation": "imports_from",
@@ -27365,9 +27365,9 @@
       "source_file": "app/(dashboard)/hub/orcamentos/page.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_orcamentos_page_tsx_orcamentos_page",
-      "target": "supabase_admin",
-      "confidence_score": 1.0
+      "target": "supabase_admin"
     },
     {
       "relation": "imports",
@@ -27376,9 +27376,9 @@
       "source_file": "app/(dashboard)/hub/orcamentos/page.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_orcamentos_page_tsx_orcamentos_page",
-      "target": "supabase_admin_createadminclient",
-      "confidence_score": 1.0
+      "target": "supabase_admin_createadminclient"
     },
     {
       "relation": "imports_from",
@@ -27387,9 +27387,9 @@
       "source_file": "app/(dashboard)/hub/orcamentos/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_orcamentos_page_tsx_orcamentos_page",
-      "target": "supabase_server",
-      "confidence_score": 1.0
+      "target": "supabase_server"
     },
     {
       "relation": "imports",
@@ -27398,9 +27398,9 @@
       "source_file": "app/(dashboard)/hub/orcamentos/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_orcamentos_page_tsx_orcamentos_page",
-      "target": "supabase_server_createclient",
-      "confidence_score": 1.0
+      "target": "supabase_server_createclient"
     },
     {
       "relation": "imports_from",
@@ -27409,9 +27409,9 @@
       "source_file": "app/(dashboard)/hub/orcamentos/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_orcamentos_page_tsx_orcamentos_page",
-      "target": "ui_button",
-      "confidence_score": 1.0
+      "target": "ui_button"
     },
     {
       "relation": "imports",
@@ -27420,9 +27420,9 @@
       "source_file": "app/(dashboard)/hub/orcamentos/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_orcamentos_page_tsx_orcamentos_page",
-      "target": "ui_button_button",
-      "confidence_score": 1.0
+      "target": "ui_button_button"
     },
     {
       "relation": "contains",
@@ -44418,9 +44418,9 @@
       "source_file": "components/orcamentos-hub/tabela-orcamentos-hub.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_hub_tabela_orcamentos_hub",
-      "target": "lib_utils",
-      "confidence_score": 1.0
+      "target": "lib_utils"
     },
     {
       "relation": "imports",
@@ -44429,9 +44429,9 @@
       "source_file": "components/orcamentos-hub/tabela-orcamentos-hub.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_hub_tabela_orcamentos_hub",
-      "target": "lib_utils_formatarmoeda",
-      "confidence_score": 1.0
+      "target": "lib_utils_formatarmoeda"
     },
     {
       "relation": "contains",
@@ -44439,9 +44439,9 @@
       "source_file": "components/orcamentos-hub/tabela-orcamentos-hub.tsx",
       "source_location": "L38",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_hub_tabela_orcamentos_hub",
-      "target": "orcamentos_hub_tabela_orcamentos_hub_formatardata",
-      "confidence_score": 1.0
+      "target": "orcamentos_hub_tabela_orcamentos_hub_formatardata"
     },
     {
       "relation": "contains",
@@ -44449,9 +44449,9 @@
       "source_file": "components/orcamentos-hub/tabela-orcamentos-hub.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_hub_tabela_orcamentos_hub",
-      "target": "orcamentos_hub_tabela_orcamentos_hub_orcamentohubrow",
-      "confidence_score": 1.0
+      "target": "orcamentos_hub_tabela_orcamentos_hub_orcamentohubrow"
     },
     {
       "relation": "contains",
@@ -44459,9 +44459,9 @@
       "source_file": "components/orcamentos-hub/tabela-orcamentos-hub.tsx",
       "source_location": "L28",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_hub_tabela_orcamentos_hub",
-      "target": "orcamentos_hub_tabela_orcamentos_hub_status_classe",
-      "confidence_score": 1.0
+      "target": "orcamentos_hub_tabela_orcamentos_hub_status_classe"
     },
     {
       "relation": "contains",
@@ -44469,9 +44469,9 @@
       "source_file": "components/orcamentos-hub/tabela-orcamentos-hub.tsx",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_hub_tabela_orcamentos_hub",
-      "target": "orcamentos_hub_tabela_orcamentos_hub_status_label",
-      "confidence_score": 1.0
+      "target": "orcamentos_hub_tabela_orcamentos_hub_status_label"
     },
     {
       "relation": "contains",
@@ -44479,9 +44479,9 @@
       "source_file": "components/orcamentos-hub/tabela-orcamentos-hub.tsx",
       "source_location": "L46",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_hub_tabela_orcamentos_hub",
-      "target": "orcamentos_hub_tabela_orcamentos_hub_tabelaorcamentoshub",
-      "confidence_score": 1.0
+      "target": "orcamentos_hub_tabela_orcamentos_hub_tabelaorcamentoshub"
     },
     {
       "relation": "contains",
@@ -64559,5 +64559,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "1b886439189bfa722c41cb886ecb0d2a13d973f8"
+  "built_at_commit": "bee3b5ca2a507cf763af1c465c31302e243fc954"
 }

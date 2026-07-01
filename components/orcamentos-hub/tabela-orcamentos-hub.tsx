@@ -25,6 +25,9 @@ const STATUS_LABEL: Record<string, string> = {
   recusado_pelo_cliente: 'Recusado pelo cliente',
 }
 
+// Status em que o orçamento do Hub ainda pode ser editado (espelha o backend).
+const STATUS_EDITAVEIS = new Set(['rascunho', 'rejeitado_internamente'])
+
 const STATUS_CLASSE: Record<string, string> = {
   rascunho: 'bg-slate-100 text-slate-600',
   aguardando_aprovacao_interna: 'bg-amber-100 text-amber-700',
@@ -56,7 +59,7 @@ export function TabelaOrcamentosHub({ orcamentos }: { orcamentos: OrcamentoHubRo
             <th className="px-4 py-3 text-right font-medium text-slate-600">Valor</th>
             <th className="px-4 py-3 font-medium text-slate-600">Criado em</th>
             <th className="px-4 py-3 font-medium text-slate-600">Responsável</th>
-            <th className="w-20 px-4 py-3">Ações</th>
+            <th className="w-32 px-4 py-3">Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -81,9 +84,16 @@ export function TabelaOrcamentosHub({ orcamentos }: { orcamentos: OrcamentoHubRo
               <td className="px-4 py-3 text-slate-500">{formatarData(o.criado_em)}</td>
               <td className="px-4 py-3 text-slate-600">{o.responsavel_nome}</td>
               <td className="px-4 py-3">
-                <Link href={`/orcamentos/${o.id}`} className="text-emerald-700 hover:underline">
-                  Abrir
-                </Link>
+                <div className="flex items-center gap-3">
+                  <Link href={`/orcamentos/${o.id}`} className="text-emerald-700 hover:underline">
+                    Abrir
+                  </Link>
+                  {STATUS_EDITAVEIS.has(o.status) && (
+                    <Link href={`/hub/orcamentos/${o.id}/editar`} className="text-slate-500 hover:underline">
+                      Editar
+                    </Link>
+                  )}
+                </div>
               </td>
             </tr>
           ))}

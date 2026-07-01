@@ -26,6 +26,11 @@ export type DadosOrcamentoHub = {
   finalizar?: boolean // true = "Gerar orçamento"; false/undefined = "Salvar rascunho"
 }
 
+// Status em que o orçamento do Hub ainda pode ser editado.
+const STATUS_EDITAVEIS: QuoteStatus[] = ['rascunho', 'rejeitado_internamente']
+
+type AdminClient = ReturnType<typeof createAdminClient>
+
 async function getHubUser() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
@@ -40,12 +45,9 @@ async function getHubUser() {
   return { perfil: perfil as { id: string; organization_id: string; cargo: string; hub_id: string } }
 }
 
-export async function criarOrcamentoHub(dados: DadosOrcamentoHub): Promise<string> {
-  const { perfil } = await getHubUser()
-  const admin = createAdminClient()
-  const org = perfil.organization_id
-  const hub = perfil.hub_id
-
+// Valida a cadeia (Cliente→Carteira→Hub, Portfólio autorizado, produtos do Portfólio)
+// e recalcula itens/totais SEMPRE no servidor, com o preço vindo do vínculo.
+async function validarECalcular(admin: AdminClient, org: string, hub: string, dados: DadosOrcamentoHub) {
   if (!dados.contato_id) throw new Error('Selecione o Cliente.')
   if (!dados.portfolio_id) throw new Error('Selecione o Portfólio.')
   if (!dados.itens?.length) throw new Error('Adicione ao menos um item.')
@@ -94,6 +96,16 @@ export async function criarOrcamentoHub(dados: DadosOrcamentoHub): Promise<strin
 
   const valorSubtotal = itens.reduce((s, i) => s + i.subtotal, 0)
   const valorTotal = Math.max(0, valorSubtotal * (1 - descontoGeral / 100) + frete)
+  return { itens, valorSubtotal, valorTotal, descontoGeral, frete }
+}
+
+export async function criarOrcamentoHub(dados: DadosOrcamentoHub): Promise<string> {
+  const { perfil } = await getHubUser()
+  const admin = createAdminClient()
+  const org = perfil.organization_id
+  const hub = perfil.hub_id
+
+  const { itens, valorSubtotal, valorTotal, descontoGeral, frete } = await validarECalcular(admin, org, hub, dados)
   const status: QuoteStatus = dados.finalizar ? 'aguardando_aprovacao_interna' : 'rascunho'
 
   const { data: orc, error } = await admin
@@ -139,6 +151,74 @@ export async function criarOrcamentoHub(dados: DadosOrcamentoHub): Promise<strin
     dados_novos: { hub_id: hub, portfolio_id: dados.portfolio_id, contato_id: dados.contato_id, itens: itens.length, valor_total: valorTotal },
   })
 
+  revalidatePath('/hub/orcamentos')
   revalidatePath('/orcamentos')
   return orc.id
+}
+
+export async function editarOrcamentoHub(orcamentoId: string, dados: DadosOrcamentoHub): Promise<string> {
+  const { perfil } = await getHubUser()
+  const admin = createAdminClient()
+  const org = perfil.organization_id
+  const hub = perfil.hub_id
+
+  if (!orcamentoId) throw new Error('Orçamento inválido.')
+
+  // 0) O orçamento existe, é do MESMO Hub e está em status editável (não confia no front).
+  const { data: atual } = await admin
+    .from('quotes')
+    .select('id, hub_id, status')
+    .eq('id', orcamentoId).eq('organization_id', org).maybeSingle() as unknown as
+    { data: { id: string; hub_id: string | null; status: QuoteStatus } | null }
+  if (!atual || atual.hub_id !== hub) throw new Error('Orçamento não pertence ao seu Hub.')
+  if (!STATUS_EDITAVEIS.includes(atual.status)) {
+    throw new Error('Este orçamento não pode mais ser editado no status atual.')
+  }
+
+  const { itens, valorSubtotal, valorTotal, descontoGeral, frete } = await validarECalcular(admin, org, hub, dados)
+  const status: QuoteStatus = dados.finalizar ? 'aguardando_aprovacao_interna' : 'rascunho'
+
+  const { error: eUpd } = await admin
+    .from('quotes')
+    .update({
+      portfolio_id: dados.portfolio_id,
+      contato_id: dados.contato_id,
+      forma_pagamento: dados.forma_pagamento?.trim() || null,
+      prazo_entrega: dados.prazo_entrega?.trim() || null,
+      transportadora: dados.transportadora?.trim() || null,
+      endereco_entrega: dados.endereco_entrega?.trim() || null,
+      observacoes: dados.observacoes?.trim() || null,
+      observacoes_cliente: dados.observacoes_cliente?.trim() || null,
+      desconto_geral: descontoGeral,
+      frete,
+      valor_subtotal: valorSubtotal,
+      valor_total: valorTotal,
+      status,
+    })
+    .eq('id', orcamentoId).eq('organization_id', org).eq('hub_id', hub)
+  if (eUpd) throw new Error(`Erro ao atualizar orçamento: ${eUpd.message}`)
+
+  // Substitui os itens (remove os antigos e insere os recalculados).
+  const { error: eDel } = await admin.from('quote_items').delete().eq('quote_id', orcamentoId)
+  if (eDel) throw new Error(`Erro ao atualizar itens: ${eDel.message}`)
+  const { error: eItens } = await admin.from('quote_items').insert(
+    itens.map((i) => ({
+      quote_id: orcamentoId, product_id: i.product_id, descricao: i.descricao,
+      quantidade: i.quantidade, preco_unitario: i.preco_unitario, desconto_item: i.desconto_item, subtotal: i.subtotal,
+    }))
+  )
+  if (eItens) throw new Error(`Erro ao inserir itens: ${eItens.message}`)
+
+  await admin.from('audit_logs').insert({
+    organization_id: org, usuario_id: perfil.id,
+    acao: 'EDICAO_ORCAMENTO_HUB',
+    tabela_afetada: 'quotes', registro_id: orcamentoId,
+    dados_anteriores: { status: atual.status },
+    dados_novos: { hub_id: hub, portfolio_id: dados.portfolio_id, contato_id: dados.contato_id, itens: itens.length, valor_total: valorTotal, status },
+  })
+
+  revalidatePath('/hub/orcamentos')
+  revalidatePath(`/orcamentos/${orcamentoId}`)
+  revalidatePath('/orcamentos')
+  return orcamentoId
 }

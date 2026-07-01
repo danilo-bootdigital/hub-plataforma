@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useTransition } from 'react'
+import { useState, useMemo, useEffect, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { formatarMoeda } from '@/lib/utils'
 import { listarProdutosHub, type LinhaProdutoHub } from '@/app/(dashboard)/hub/produtos/actions'
-import { criarOrcamentoHub, type DadosOrcamentoHub } from '@/app/(dashboard)/orcamentos/actions-hub'
+import { criarOrcamentoHub, editarOrcamentoHub, type DadosOrcamentoHub } from '@/app/(dashboard)/orcamentos/actions-hub'
 import { Search, Plus, Trash2, User, Check } from 'lucide-react'
 
 export type ClienteOpc = {
@@ -23,6 +23,28 @@ export type ClienteOpc = {
   responsavel_nome: string | null
 }
 export type PortfolioOpc = { id: string; nome: string }
+
+// Valores iniciais para o modo edição.
+export type InicialOrcamentoHub = {
+  contato_id: string | null
+  portfolio_id: string | null
+  itens: {
+    product_id: string
+    nome: string
+    apresentacao: string | null
+    preco_unitario: number
+    quantidade: number
+    desconto_item: number
+  }[]
+  forma_pagamento: string
+  prazo_entrega: string
+  transportadora: string
+  frete: string
+  endereco_entrega: string
+  observacoes: string
+  observacoes_cliente: string
+  desconto_geral: string
+}
 
 type ItemState = {
   product_id: string
@@ -41,17 +63,22 @@ export function FormOrcamentoHub({
   clientes,
   portfolios,
   hubNome,
+  orcamentoId,
+  inicial,
 }: {
   clientes: ClienteOpc[]
   portfolios: PortfolioOpc[]
   hubNome: string
+  orcamentoId?: string
+  inicial?: InicialOrcamentoHub
 }) {
   const router = useRouter()
   const [saving, startSaving] = useTransition()
+  const editando = !!orcamentoId
 
   // Bloco 1 — Cliente
   const [buscaCli, setBuscaCli] = useState('')
-  const [clienteId, setClienteId] = useState<string | null>(null)
+  const [clienteId, setClienteId] = useState<string | null>(inicial?.contato_id ?? null)
   const cliente = clientes.find((c) => c.id === clienteId) ?? null
   const clientesFiltrados = useMemo(() => {
     const q = normalizar(buscaCli.trim())
@@ -66,40 +93,58 @@ export function FormOrcamentoHub({
   }, [buscaCli, clientes])
 
   // Bloco 2 — Portfólio
-  const [portfolioId, setPortfolioId] = useState<string | null>(null)
+  const [portfolioId, setPortfolioId] = useState<string | null>(inicial?.portfolio_id ?? null)
   const portfolio = portfolios.find((p) => p.id === portfolioId) ?? null
   const [produtosPf, setProdutosPf] = useState<LinhaProdutoHub[]>([])
   const [carregandoPf, setCarregandoPf] = useState(false)
 
   // Bloco 3 — Itens
-  const [itens, setItens] = useState<ItemState[]>([])
+  const [itens, setItens] = useState<ItemState[]>(
+    inicial?.itens.map((i) => ({
+      product_id: i.product_id,
+      nome: i.nome,
+      apresentacao: i.apresentacao,
+      preco_unitario: i.preco_unitario,
+      quantidade: i.quantidade,
+      desconto_item: i.desconto_item,
+    })) ?? []
+  )
   const [addProdId, setAddProdId] = useState<string | null>(null)
 
   // Bloco 4 — Dados comerciais
-  const [formaPagamento, setFormaPagamento] = useState('')
-  const [prazoEntrega, setPrazoEntrega] = useState('')
-  const [transportadora, setTransportadora] = useState('')
-  const [frete, setFrete] = useState('')
-  const [enderecoEntrega, setEnderecoEntrega] = useState('')
-  const [observacoes, setObservacoes] = useState('')
-  const [observacoesCliente, setObservacoesCliente] = useState('')
-  const [descontoGeral, setDescontoGeral] = useState('')
+  const [formaPagamento, setFormaPagamento] = useState(inicial?.forma_pagamento ?? '')
+  const [prazoEntrega, setPrazoEntrega] = useState(inicial?.prazo_entrega ?? '')
+  const [transportadora, setTransportadora] = useState(inicial?.transportadora ?? '')
+  const [frete, setFrete] = useState(inicial?.frete ?? '')
+  const [enderecoEntrega, setEnderecoEntrega] = useState(inicial?.endereco_entrega ?? '')
+  const [observacoes, setObservacoes] = useState(inicial?.observacoes ?? '')
+  const [observacoesCliente, setObservacoesCliente] = useState(inicial?.observacoes_cliente ?? '')
+  const [descontoGeral, setDescontoGeral] = useState(inicial?.desconto_geral ?? '')
 
-  async function onPortfolioChange(v: string | null) {
-    setPortfolioId(v)
-    setItens([])
-    setAddProdId(null)
-    setProdutosPf([])
-    if (!v) return
+  async function carregarProdutos(portfolioIdArg: string) {
     setCarregandoPf(true)
     try {
-      const { rows } = await listarProdutosHub({ portfolioId: v, status: 'ativo', limit: 1000 })
+      const { rows } = await listarProdutosHub({ portfolioId: portfolioIdArg, status: 'ativo', limit: 1000 })
       setProdutosPf(rows)
     } catch (e) {
       toast.error(e instanceof Error ? e.message : 'Erro ao carregar produtos do portfólio.')
     } finally {
       setCarregandoPf(false)
     }
+  }
+
+  // Modo edição: carrega os produtos do portfólio já selecionado (sem limpar itens).
+  useEffect(() => {
+    if (inicial?.portfolio_id) carregarProdutos(inicial.portfolio_id)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  async function onPortfolioChange(v: string | null) {
+    setPortfolioId(v)
+    setItens([])
+    setAddProdId(null)
+    setProdutosPf([])
+    if (v) await carregarProdutos(v)
   }
 
   function adicionarItem() {
@@ -179,8 +224,18 @@ export function FormOrcamentoHub({
     if (!dados) return
     startSaving(async () => {
       try {
-        const id = await criarOrcamentoHub(dados)
-        toast.success(finalizar ? 'Orçamento gerado.' : 'Rascunho salvo.')
+        const id = editando
+          ? await editarOrcamentoHub(orcamentoId!, dados)
+          : await criarOrcamentoHub(dados)
+        toast.success(
+          editando
+            ? finalizar
+              ? 'Orçamento atualizado e enviado para aprovação.'
+              : 'Alterações salvas.'
+            : finalizar
+              ? 'Orçamento gerado.'
+              : 'Rascunho salvo.'
+        )
         router.push(`/orcamentos/${id}`)
       } catch (e) {
         toast.error(e instanceof Error ? e.message : 'Erro ao salvar o orçamento.')
@@ -288,6 +343,11 @@ export function FormOrcamentoHub({
           </Select>
           {portfolios.length === 0 && (
             <p className="text-sm text-slate-500">Nenhum portfólio autorizado ao seu Hub.</p>
+          )}
+          {editando && (
+            <p className="text-xs text-slate-400">
+              Trocar o portfólio limpa os produtos já adicionados.
+            </p>
           )}
         </CardContent>
       </Card>
@@ -495,11 +555,16 @@ export function FormOrcamentoHub({
 
       {/* Ações */}
       <div className="flex flex-wrap items-center justify-end gap-2">
-        <Button type="button" variant="ghost" disabled={saving} onClick={() => router.push('/orcamentos')}>
+        <Button
+          type="button"
+          variant="ghost"
+          disabled={saving}
+          onClick={() => router.push(editando ? `/orcamentos/${orcamentoId}` : '/hub/orcamentos')}
+        >
           Cancelar
         </Button>
         <Button type="button" variant="outline" disabled={saving} onClick={() => salvar(false)}>
-          Salvar rascunho
+          {editando ? 'Salvar alterações' : 'Salvar rascunho'}
         </Button>
         <Button type="button" disabled={saving} onClick={() => salvar(true)}>
           <Check className="size-4" /> Gerar orçamento
