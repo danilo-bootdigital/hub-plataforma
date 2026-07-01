@@ -6,9 +6,10 @@ import { toast } from 'sonner'
 import { BadgePerfil } from './badge-perfil'
 import { ModalAlterarSenha } from './modal-alterar-senha'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { X, Pencil } from 'lucide-react'
-import { alternarStatusUsuario, atribuirFuncao } from '@/app/(dashboard)/configuracoes/usuarios/actions'
+import { alternarStatusUsuario, atribuirFuncao, excluirUsuarioDefinitivo } from '@/app/(dashboard)/configuracoes/usuarios/actions'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import type { UserRole } from '@/types/database'
@@ -38,13 +39,28 @@ const NOTA_PERFIL: Partial<Record<UserRole, string>> = {
   assistente: 'Permissões definidas pela Função atribuída.',
 }
 
-export function ListaUsuarios({ usuarios, funcoes }: { usuarios: UsuarioLinha[]; funcoes: FuncaoOpcao[] }) {
+export function ListaUsuarios({ usuarios, funcoes, usuarioAtualId }: { usuarios: UsuarioLinha[]; funcoes: FuncaoOpcao[]; usuarioAtualId: string }) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [sel, setSel] = useState<UsuarioLinha | null>(null)
   const [funcaoSel, setFuncaoSel] = useState<string>('')
+  const [confirmaExcluir, setConfirmaExcluir] = useState('')
 
-  useEffect(() => { setFuncaoSel(sel?.funcao_id ?? '') }, [sel])
+  useEffect(() => { setFuncaoSel(sel?.funcao_id ?? ''); setConfirmaExcluir('') }, [sel])
+
+  function excluirDefinitivo() {
+    if (!sel) return
+    startTransition(async () => {
+      try {
+        await excluirUsuarioDefinitivo(sel.id, confirmaExcluir)
+        toast.success('Usuário excluído definitivamente.')
+        setSel(null)
+        router.refresh()
+      } catch (e: unknown) {
+        toast.error(e instanceof Error ? e.message : 'Erro ao excluir usuário.')
+      }
+    })
+  }
 
   const fechar = useCallback(() => setSel(null), [])
   useEffect(() => {
@@ -201,6 +217,27 @@ export function ListaUsuarios({ usuarios, funcoes }: { usuarios: UsuarioLinha[];
                     </Button>
                   </div>
                 </div>
+              </section>
+
+              {/* Zona de perigo — exclusão definitiva (exceção DEV) */}
+              <section className="mt-2 rounded-lg border border-red-200 bg-red-50/40 p-3">
+                <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-red-500">Zona de perigo</h3>
+                {sel.id === usuarioAtualId ? (
+                  <p className="text-xs text-slate-500">Você não pode excluir a si mesmo.</p>
+                ) : (
+                  <>
+                    <p className="text-xs text-slate-500">
+                      Exclusão <strong>definitiva</strong> — exceção para DEV/limpeza. Em produção, o padrão é <strong>Desativar</strong>. Só é permitida se o usuário não tiver vínculos operacionais.
+                    </p>
+                    <p className="mt-2 text-xs text-slate-600">Digite <span className="font-mono font-semibold">EXCLUIR USUÁRIO</span> para confirmar:</p>
+                    <div className="mt-1 flex items-center gap-2">
+                      <Input value={confirmaExcluir} onChange={(e) => setConfirmaExcluir(e.target.value)} placeholder="EXCLUIR USUÁRIO" className="h-8" />
+                      <Button variant="destructive" size="sm" disabled={isPending || confirmaExcluir !== 'EXCLUIR USUÁRIO'} onClick={excluirDefinitivo}>
+                        Excluir
+                      </Button>
+                    </div>
+                  </>
+                )}
               </section>
             </div>
           </aside>

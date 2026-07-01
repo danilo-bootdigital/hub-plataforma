@@ -130,6 +130,50 @@ export async function atribuirFuncao(usuarioId: string, funcaoId: string | null)
   revalidatePath('/configuracoes/usuarios')
 }
 
+// EXCLUSÃO DEFINITIVA — exceção para DEV/limpeza. Em produção o padrão é Desativar.
+// Só Administrador da Indústria; confirmação forte; bloqueia se houver vínculo
+// operacional ou se o usuário for Proprietário de Hub. Remove o usuário do Auth
+// (cascade do profile → hub_id/funcao_id) e registra auditoria.
+export async function excluirUsuarioDefinitivo(usuarioId: string, confirmacao: string) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  const { data: perfilAtual } = await supabase
+    .from('profiles').select('id, cargo, organization_id').eq('id', user?.id ?? '').single()
+  if (perfilAtual?.cargo !== 'admin') throw new Error('Apenas administradores podem excluir usuários.')
+  if (usuarioId === perfilAtual.id) throw new Error('Você não pode excluir a si mesmo.')
+  if (confirmacao !== 'EXCLUIR USUÁRIO') {
+    throw new Error('Confirmação inválida. Digite exatamente: EXCLUIR USUÁRIO')
+  }
+
+  // Vínculos operacionais (verificação dinâmica de FKs → profiles).
+  const { data: vinc, error: eVinc } = await supabase.rpc('contar_vinculos_usuario', { p_user_id: usuarioId })
+  if (eVinc) throw new Error(eVinc.message)
+  const v = vinc as { total: number; itens: { tabela: string; qtd: number }[]; proprietario_de_hub: boolean }
+  if (v.proprietario_de_hub) {
+    throw new Error('Este usuário é Proprietário de um Hub. Reatribua o Hub a outro Proprietário antes de excluir — ou use Desativar.')
+  }
+  if (v.total > 0) {
+    const resumo = (v.itens ?? []).map((i) => `${i.tabela} (${i.qtd})`).join(', ')
+    throw new Error(`Não é possível excluir: há vínculos operacionais — ${resumo}. Use Desativar.`)
+  }
+
+  const admin = createAdminClient()
+  const { data: alvo } = await admin.from('profiles').select('nome, email, cargo').eq('id', usuarioId).single()
+  const { error: eDel } = await admin.auth.admin.deleteUser(usuarioId) // remove o profile (cascade)
+  if (eDel) throw new Error(`Não foi possível excluir: ${eDel.message}`)
+
+  await admin.from('audit_logs').insert({
+    organization_id: perfilAtual.organization_id,
+    usuario_id: perfilAtual.id,
+    acao: 'EXCLUSAO_DEFINITIVA_USUARIO',
+    tabela_afetada: 'profiles',
+    registro_id: usuarioId,
+    dados_anteriores: alvo ?? null,
+    dados_novos: null,
+  })
+  revalidatePath('/configuracoes/usuarios')
+}
+
 export async function alternarStatusUsuario(usuarioId: string, ativo: boolean) {
   const supabase = await createClient()
 

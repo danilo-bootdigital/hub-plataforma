@@ -61,7 +61,7 @@ export default async function UsuariosPage() {
         <ModalNovoUsuario />
       </div>
 
-      <ListaUsuarios usuarios={linhas} funcoes={(funcoes ?? []) as FuncaoOpcao[]} />
+      <ListaUsuarios usuarios={linhas} funcoes={(funcoes ?? []) as FuncaoOpcao[]} usuarioAtualId={user.id} />
     </div>
   )
 }
