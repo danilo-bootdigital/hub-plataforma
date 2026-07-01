@@ -1140,8 +1140,8 @@
     "semantic_hash": "35ac2dad0755e14c603fb7ceb00a8aa6"
   },
   "lib/navegacao.ts": {
-    "mtime": 1782909687.9505572,
-    "ast_hash": "4cd9e3fe41f0533b75f593d60e8df5ba",
+    "mtime": 1782922004.5525172,
+    "ast_hash": "1eb1f98ac871284484075916b1c16e84",
     "semantic_hash": ""
   },
   "lib/nome-contato.ts": {
@@ -2272,6 +2272,16 @@
   "hubdev/bootstrap/expand_orcamento_hub.sql": {
     "mtime": 1782913595.2055964,
     "ast_hash": "5c990c48abc92131f4e81a285ef069b2",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/orcamentos/page.tsx": {
+    "mtime": 1782921998.9772248,
+    "ast_hash": "627850fb0d2f679de1949e4bc7a44319",
+    "semantic_hash": ""
+  },
+  "components/orcamentos-hub/tabela-orcamentos-hub.tsx": {
+    "mtime": 1782921972.4876065,
+    "ast_hash": "77a869f381fd6b45e63750e928785070",
     "semantic_hash": ""
   }
 }

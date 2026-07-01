@@ -190,9 +190,9 @@
     "semantic_hash": "67d877bfe3b07bbd89dc010e0aab2812"
   },
   "app/(dashboard)/orcamentos/novo/page.tsx": {
-    "mtime": 1782909688.1233006,
-    "ast_hash": "f7a81f980921373f6ff5773290f44aac",
-    "semantic_hash": "f7a81f980921373f6ff5773290f44aac"
+    "mtime": 1782914100.7035058,
+    "ast_hash": "23c15a6bb23118c776c808ebf4662679",
+    "semantic_hash": ""
   },
   "app/(dashboard)/orcamentos/page.tsx": {
     "mtime": 1782909688.0998876,
@@ -2257,6 +2257,21 @@
   "components/clientes/tabela-contatos.tsx": {
     "mtime": 1782909687.9864795,
     "ast_hash": "84d64b2b2af549610c46464490aee09a",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/orcamentos/actions-hub.ts": {
+    "mtime": 1782914003.4047446,
+    "ast_hash": "a15f2138ef7abeff044c46e0c2874b37",
+    "semantic_hash": ""
+  },
+  "components/orcamentos/form-orcamento-hub.tsx": {
+    "mtime": 1782914793.3794389,
+    "ast_hash": "8b8b9236448267ee2517fca7abcf47f2",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/expand_orcamento_hub.sql": {
+    "mtime": 1782913595.2055964,
+    "ast_hash": "5c990c48abc92131f4e81a285ef069b2",
     "semantic_hash": ""
   }
 }

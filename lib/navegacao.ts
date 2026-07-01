@@ -54,7 +54,8 @@ export const navegacao: ItemNavegacao[] = [
   { label: 'Minha Área', href: '/assistente', icone: Briefcase, perfis: ['assistente'], modulo: 'dashboard' },
   { label: 'Clientes', href: '/assistente/clientes', icone: Contact, perfis: ['assistente'], modulo: 'clientes' },
   { label: 'Atendimentos', href: '/assistente/atendimentos', icone: ClipboardList, perfis: ['assistente'] },
-  { label: 'Orçamentos', href: '/assistente/orcamentos', icone: FileText, perfis: ['assistente'], modulo: 'orcamentos' },
+  // Orçamentos do assistente agora vivem em /hub/orcamentos (fluxo por Portfólio).
+  // A rota legada /assistente/orcamentos permanece acessível por URL, fora do menu.
   { label: 'Pré-pedidos', href: '/assistente/prepedidos', icone: PackageCheck, perfis: ['assistente'], modulo: 'pedidos' },
 ]
 
