@@ -2260,13 +2260,13 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/orcamentos/actions-hub.ts": {
-    "mtime": 1782914003.4047446,
-    "ast_hash": "a15f2138ef7abeff044c46e0c2874b37",
+    "mtime": 1782922798.285855,
+    "ast_hash": "dff6022429ccd760a7fd77acee02e395",
     "semantic_hash": ""
   },
   "components/orcamentos/form-orcamento-hub.tsx": {
-    "mtime": 1782914793.3794389,
-    "ast_hash": "8b8b9236448267ee2517fca7abcf47f2",
+    "mtime": 1782922884.3938694,
+    "ast_hash": "e6d5945e19d2ca7bd12a0629507a64ed",
     "semantic_hash": ""
   },
   "hubdev/bootstrap/expand_orcamento_hub.sql": {
@@ -2280,8 +2280,13 @@
     "semantic_hash": ""
   },
   "components/orcamentos-hub/tabela-orcamentos-hub.tsx": {
-    "mtime": 1782921972.4876065,
-    "ast_hash": "77a869f381fd6b45e63750e928785070",
+    "mtime": 1782922934.4298677,
+    "ast_hash": "cd525ef5fe272cca1d2c9e69f9367456",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/orcamentos/[id]/editar/page.tsx": {
+    "mtime": 1782922918.6059194,
+    "ast_hash": "769909b517fce6a0e6ba7932d801b10a",
     "semantic_hash": ""
   }
 }

@@ -80,7 +80,7 @@ export default async function OrcamentoDetalhePage({ params }: { params: Promise
 
   const { data: perfil } = await supabase
     .from('profiles')
-    .select('id, cargo')
+    .select('id, cargo, hub_id')
     .eq('id', user.id)
     .single()
 
@@ -92,6 +92,18 @@ export default async function OrcamentoDetalhePage({ params }: { params: Promise
     currentUserId: user.id,
     hasOrder: !!pedidoExistente,
   }) : false
+
+  // Edição pelo fluxo do HUB (DEC-017): proprietario_hub/assistente do MESMO Hub,
+  // enquanto o orçamento estiver em rascunho/rejeitado_internamente e sem pedido.
+  // Aponta para a rota da área do Hub (não para o editor legado de Fornecedor).
+  const podeEditarHub = !!(
+    perfil &&
+    (perfil.cargo === 'proprietario_hub' || perfil.cargo === 'assistente') &&
+    orcamento.hub_id &&
+    perfil.hub_id === orcamento.hub_id &&
+    !pedidoExistente &&
+    (orcamento.status === 'rascunho' || orcamento.status === 'rejeitado_internamente')
+  )
 
   // Dados do cliente para exibir no header
   const cliente = orcamento.lead ?? orcamento.contato
@@ -151,6 +163,14 @@ export default async function OrcamentoDetalhePage({ params }: { params: Promise
           <BotaoPreviewPdfNovo orcamentoId={id} />
           {podeEditar && (
             <Link href={`/orcamentos/${id}/editar`}>
+              <Button variant="default" size="sm" className="gap-1.5 h-9">
+                <Edit className="h-4 w-4" />
+                <span className="hidden sm:inline">Editar</span>
+              </Button>
+            </Link>
+          )}
+          {podeEditarHub && !podeEditar && (
+            <Link href={`/hub/orcamentos/${id}/editar`}>
               <Button variant="default" size="sm" className="gap-1.5 h-9">
                 <Edit className="h-4 w-4" />
                 <span className="hidden sm:inline">Editar</span>
