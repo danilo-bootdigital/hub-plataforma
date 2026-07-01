@@ -14,7 +14,7 @@
 - **Gates:** `/hub/assistentes` continua exclusivo do Proprietário (actions gate `proprietario_hub`; página redireciona). A Indústria não opera equipe do Hub.
 - **Auditoria:** criação de Hub, definição/alteração de Proprietário, criação/edição/status de Assistente e atribuição de Função já registram em `audit_logs`.
 - **Adiado (Ajuste 1 — enhancement):** "selecionar Proprietário existente" na criação de Hub (hoje cria novo; o invariante Proprietário-obrigatório já é atendido). Próxima fatia.
-- **Observações:** DEC-016 (emenda DEC-015). Sem novo SQL; build OK. Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+- **Observações:** DEC-016 (emenda DEC-015). Sem novo SQL; build OK. Commit `10d6f6e`; deploy em `https://hub-plataforma-dev.vercel.app`.
 
 ## 2026-07-01 — DEV: exclusão definitiva de usuário (limpeza de ambiente)
 
