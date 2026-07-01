@@ -63,6 +63,16 @@ type OrcamentoItem = {
   marca?: string | null
   codigo?: string | null
   unidade?: string | null
+  // Ficha completa do produto (preenchida para orçamentos do Hub — DEC-013).
+  produto_nome?: string | null
+  apresentacao?: string | null
+  composicao?: string | null
+  via_administracao?: string | null
+  via_apresentacao?: string | null
+  volume?: string | null
+  quantidade_por_caixa?: number | null
+  aplicadores?: string | null
+  exige_receita?: boolean | null
 }
 
 type OrcamentoTemplateData = {
@@ -133,6 +143,11 @@ type OrcamentoTemplateData = {
   forma_pagamento: string | null
   valor_total: number
   observacoes: string | null
+  // Fluxo do Hub (DEC-017): portfólio + campos comerciais próprios.
+  portfolio_id?: string | null
+  prazo_entrega?: string | null
+  transportadora?: string | null
+  observacoes_cliente?: string | null
   nota_tipo_pessoa: string | null
   nota_nome: string | null
   nota_documento: string | null
@@ -184,6 +199,22 @@ const laboratorioItem = (
   if (item.marca && item.marca.trim()) return item.marca
   if (fornecedor?.nome) return fornecedor.nome
   return '—'
+}
+
+// Linha técnica compacta com TODOS os campos da ficha (só os preenchidos).
+const fichaLinha = (item: OrcamentoItem): string => {
+  const partes: (string | false | null | undefined)[] = [
+    item.apresentacao && `Apresentação: ${item.apresentacao}`,
+    item.composicao && `Composição: ${item.composicao}`,
+    item.via_administracao && `Via adm.: ${item.via_administracao}`,
+    item.via_apresentacao && `Via apres.: ${item.via_apresentacao}`,
+    item.volume && `Volume: ${item.volume}`,
+    item.unidade && `Unid.: ${item.unidade}`,
+    item.quantidade_por_caixa != null && `Qtd/caixa: ${item.quantidade_por_caixa}`,
+    item.aplicadores && `Aplicadores: ${item.aplicadores}`,
+    item.exige_receita ? 'Exige receita' : null,
+  ]
+  return partes.filter(Boolean).join('  •  ')
 }
 
 function CampoRotulo({ rotulo, valor, valorNegrito = true }: { rotulo: string; valor?: string | null; valorNegrito?: boolean }) {
@@ -406,6 +437,57 @@ function SecaoCards({ data }: { data: OrcamentoTemplateData }) {
   )
 }
 
+function SecaoProdutosHub({ itens }: { itens: OrcamentoItem[] }) {
+  return (
+    <section data-pdf-products className="flex flex-col gap-0">
+      <div className="bg-[#e8f5e8] text-slate-700 px-4 py-2.5 rounded-t-md flex items-center gap-2 shadow-sm">
+        <IconeCarrinho />
+        <h2 className="text-[14px] font-extrabold tracking-wide">PRODUTOS</h2>
+      </div>
+      <div className="border border-t-0 border-slate-200 rounded-b-md overflow-hidden bg-white">
+        <table className="w-full text-[12.5px] border-collapse">
+          <thead>
+            <tr className="bg-white text-slate-700">
+              <th className="px-2 py-2 text-center w-8 font-bold text-[12px]">#</th>
+              <th className="px-3 py-2 text-left font-bold text-[12px]">PRODUTO</th>
+              <th className="px-2 py-2 text-center w-12 font-bold text-[12px]">QTD</th>
+              <th className="px-3 py-2 text-right w-24 font-bold text-[12px]">VALOR UNIT.</th>
+              <th className="px-2 py-2 text-center w-14 font-bold text-[12px]">DESC.</th>
+              <th className="px-3 py-2 text-right w-28 font-bold text-[12px]">VALOR TOTAL</th>
+            </tr>
+          </thead>
+          <tbody>
+            {itens.map((item, idx) => {
+              const ficha = fichaLinha(item)
+              return (
+                <tr key={item.id} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
+                  <td className="px-2 py-2 text-center align-top font-bold border-t border-slate-200">{idx + 1}</td>
+                  <td className="px-3 py-2 align-top border-t border-slate-200">
+                    <div className="font-bold text-slate-800 leading-snug">{item.produto_nome || item.descricao}</div>
+                    {ficha && <div className="text-[10.5px] text-slate-600 mt-0.5 leading-snug">{ficha}</div>}
+                  </td>
+                  <td className="px-2 py-2 text-center align-top text-slate-700 border-t border-slate-200 font-semibold">
+                    {item.quantidade}
+                  </td>
+                  <td className="px-3 py-2 text-right align-top text-slate-700 border-t border-slate-200">
+                    {formatBRL(item.preco_unitario)}
+                  </td>
+                  <td className="px-2 py-2 text-center align-top text-slate-700 border-t border-slate-200">
+                    {item.desconto_item > 0 ? `${item.desconto_item}%` : '—'}
+                  </td>
+                  <td className="px-3 py-2 text-right align-top font-bold text-slate-800 border-t border-slate-200">
+                    {formatBRL(item.subtotal)}
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )
+}
+
 function SecaoProdutos({ itens, fornecedor }: { itens: OrcamentoItem[]; fornecedor: OrcamentoTemplateData['fornecedor'] }) {
   return (
     <section data-pdf-products className="flex flex-col gap-0">
@@ -489,16 +571,26 @@ function SecaoTotais({ data }: { data: OrcamentoTemplateData }) {
   )
 }
 
-function SecaoComercial({ data }: { data: OrcamentoTemplateData }) {
+function SecaoComercial({ data, isHub }: { data: OrcamentoTemplateData; isHub: boolean }) {
   const hub = data.fornecedor?.health_hubs
   const linhas: { rotulo: string; valor: string }[] = []
-  if (data.fornecedor?.nome) linhas.push({ rotulo: 'Fornecedor / Laboratório', valor: data.fornecedor.nome })
-  if (hub?.nome) linhas.push({ rotulo: 'Hub de Saúde', valor: hub.nome })
-  if (data.carrier?.nome) linhas.push({ rotulo: 'Transportadora', valor: data.carrier.nome })
-  if (data.frete_regiao) linhas.push({ rotulo: 'Região do frete', valor: data.frete_regiao })
-  if (data.forma_pagamento) linhas.push({ rotulo: 'Forma de pagamento', valor: data.forma_pagamento })
+  if (isHub) {
+    // Orçamento do Hub: dados comerciais próprios; sem Fornecedor/Laboratório.
+    if (data.forma_pagamento) linhas.push({ rotulo: 'Forma de pagamento', valor: data.forma_pagamento })
+    if (data.prazo_entrega) linhas.push({ rotulo: 'Prazo de entrega', valor: data.prazo_entrega })
+    if (data.transportadora) linhas.push({ rotulo: 'Transportadora', valor: data.transportadora })
+  } else {
+    if (data.fornecedor?.nome) linhas.push({ rotulo: 'Fornecedor / Laboratório', valor: data.fornecedor.nome })
+    if (hub?.nome) linhas.push({ rotulo: 'Hub de Saúde', valor: hub.nome })
+    if (data.carrier?.nome) linhas.push({ rotulo: 'Transportadora', valor: data.carrier.nome })
+    if (data.frete_regiao) linhas.push({ rotulo: 'Região do frete', valor: data.frete_regiao })
+    if (data.forma_pagamento) linhas.push({ rotulo: 'Forma de pagamento', valor: data.forma_pagamento })
+  }
 
-  const temLogoHub = !!hub?.logo_url
+  // Cliente-facing: no Hub mostra as observações destinadas ao cliente (nunca as internas).
+  const observacoes = isHub ? data.observacoes_cliente : data.observacoes
+
+  const temLogoHub = !isHub && !!hub?.logo_url
   const temComercial = linhas.length > 0 || temLogoHub
 
   return (
@@ -529,14 +621,14 @@ function SecaoComercial({ data }: { data: OrcamentoTemplateData }) {
           </div>
         </article>
       )}
-      {data.observacoes && data.observacoes.trim() && (
+      {observacoes && observacoes.trim() && (
         <article className="border border-slate-200 shadow-sm rounded-md bg-white">
           <div className="bg-[#e8f5e8] text-slate-700 px-3 py-2.5 flex items-center gap-2">
             <IconeBalao />
             <h2 className="text-[12px] font-bold tracking-wide">OBSERVAÇÕES</h2>
           </div>
           <div className="p-4 text-[12px] text-slate-800 whitespace-pre-wrap break-words leading-relaxed">
-            {data.observacoes}
+            {observacoes}
           </div>
         </article>
       )}
@@ -566,6 +658,8 @@ function Rodape({ org }: { org: OrcamentoTemplateData['organizacao'] }) {
 }
 
 export function OrcamentoPdfTemplate({ data }: { data: OrcamentoTemplateData }) {
+  // Orçamento do Hub (DEC-017): tem Portfólio e não usa Fornecedor.
+  const isHub = !!data.portfolio_id
   return (
     <article
       data-pdf-template="ready"
@@ -573,9 +667,13 @@ export function OrcamentoPdfTemplate({ data }: { data: OrcamentoTemplateData }) 
     >
       <Cabecalho data={data} />
       <SecaoCards data={data} />
-      <SecaoProdutos itens={data.itens} fornecedor={data.fornecedor} />
+      {isHub ? (
+        <SecaoProdutosHub itens={data.itens} />
+      ) : (
+        <SecaoProdutos itens={data.itens} fornecedor={data.fornecedor} />
+      )}
       <SecaoTotais data={data} />
-      <SecaoComercial data={data} />
+      <SecaoComercial data={data} isHub={isHub} />
       <Rodape org={data.organizacao} />
     </article>
   )

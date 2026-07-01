@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { notFound, redirect } from 'next/navigation'
 import { OrcamentoPdfTemplate } from '@/components/orcamentos/orcamento-pdf-template'
 import { BotaoBaixarPdf } from '@/components/orcamentos/botao-baixar-pdf'
@@ -77,6 +78,46 @@ export default async function PreviewPdfPage({
 
   if (error || !orcamento) notFound()
 
+  // Orçamento do Hub (DEC-017): enriquece cada item com a FICHA COMPLETA do
+  // produto. Produtos têm RLS admin/gestor; o Hub não lê direto, então a ficha
+  // é buscada via admin client — o acesso ao orçamento já foi validado acima
+  // pela query com RLS + escopo de organização.
+  let dadosTemplate = orcamento
+  const ehHub = !!orcamento.portfolio_id
+  const itensQuote: Array<Record<string, unknown> & { product_id: string | null }> =
+    Array.isArray(orcamento.itens) ? orcamento.itens : []
+  if (ehHub && itensQuote.length > 0) {
+    const productIds = [...new Set(itensQuote.map((i) => i.product_id).filter(Boolean))] as string[]
+    if (productIds.length > 0) {
+      const admin = createAdminClient()
+      const { data: produtos } = await admin
+        .from('products')
+        .select('id, nome, descricao, composicao, apresentacao, via_administracao, via_apresentacao, volume, unidade, quantidade_por_caixa, aplicadores, exige_receita')
+        .in('id', productIds)
+      const pmap = new Map((produtos ?? []).map((p) => [p.id, p]))
+      const itensEnriquecidos = itensQuote.map((i) => {
+        const p = i.product_id ? pmap.get(i.product_id) : null
+        return p
+          ? {
+              ...i,
+              produto_nome: p.nome,
+              descricao_ficha: p.descricao,
+              composicao: p.composicao,
+              apresentacao: p.apresentacao,
+              via_administracao: p.via_administracao,
+              via_apresentacao: p.via_apresentacao,
+              volume: p.volume,
+              unidade: p.unidade,
+              quantidade_por_caixa: p.quantidade_por_caixa,
+              aplicadores: p.aplicadores,
+              exige_receita: p.exige_receita,
+            }
+          : i
+      })
+      dadosTemplate = { ...orcamento, itens: itensEnriquecidos }
+    }
+  }
+
   return (
     <>
       <link rel="stylesheet" href="./print.css" />
@@ -85,7 +126,7 @@ export default async function PreviewPdfPage({
           data-pdf-page="true"
           className="mx-auto w-[794px] max-w-full bg-white shadow-lg print:shadow-none print:w-[210mm] print:max-w-none"
         >
-          <OrcamentoPdfTemplate data={orcamento} />
+          <OrcamentoPdfTemplate data={dadosTemplate} />
         </div>
         {!isPrint && (
           <div className="mx-auto mt-4 w-[794px] max-w-full flex justify-end print:hidden">
