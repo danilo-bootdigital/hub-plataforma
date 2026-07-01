@@ -6,6 +6,14 @@
 
 ---
 
+## 2026-07-01 — Orçamento do Hub por Portfólio (substitui fluxo Fornecedor) — DEC-013/014/016/017
+
+- **Objetivo:** a criação de orçamento passa a ser **fluxo do Hub, por Portfólio autorizado**, substituindo o fluxo antigo baseado em Fornecedor (DEC-014). Acesso restrito a **`proprietario_hub` e `assistente`** (Indústria e Cliente não criam).
+- **Expand (`hubdev/bootstrap/expand_orcamento_hub.sql`, aditivo/idempotente):** `quotes.portfolio_id` (→ `portfolios`), `quotes.hub_id` (→ `hubs`), `quotes.prazo_entrega`, `quotes.observacoes_cliente`, `quotes.transportadora` (texto livre); `quotes.supplier_id` vira **nullable/legado**; índices em `portfolio_id`/`hub_id`.
+- **Backend (`app/(dashboard)/orcamentos/actions-hub.ts` — `criarOrcamentoHub`):** valida **tudo no server** — cargo/hub do usuário, Cliente pertence a uma Carteira operada pelo Hub, Portfólio ativo **e** autorizado (`hub_portfolios` status `ativo`), produtos pertencem ao Portfólio (`product_portfolios` ativo). **Preço vem do vínculo `product_portfolios`** (ignora preço do front — não confia em IDs/valores enviados). Insere em `quotes` (+`quote_items` com rollback); status `rascunho` ou `aguardando_aprovacao_interna` conforme "Salvar rascunho"/"Gerar orçamento"; auditoria `CRIACAO_ORCAMENTO_HUB`/`RASCUNHO_ORCAMENTO_HUB`.
+- **Frontend (`components/orcamentos/form-orcamento-hub.tsx`, `/orcamentos/novo` gated ao Hub):** 5 blocos — **Cliente** (busca por nome/telefone/CPF-CNPJ/carteira, só Clientes do Hub), **Portfólio** (só autorizados/ativos; 1 orçamento = 1 Portfólio), **Produtos** (do Portfólio; preço read-only do vínculo), **Dados comerciais**, **Resumo**; largura ~65% (`max-w-4xl`). Envia só `product_id/quantidade/desconto_item` — o servidor recalcula. Ações: Cancelar, Salvar rascunho, Gerar orçamento.
+- **Observações:** fluxo legado (Fornecedor) mantido em paralelo; sem Contract (nada removido). Nome "Stin Pharma" não aparece na UI do Hub. Build OK. Commit em `main`; deploy em `https://hub-plataforma-dev.vercel.app`.
+
 ## 2026-07-01 — Renomeação Contatos → Clientes (rota + código) — DEC-017
 
 - **Objetivo:** coerência total com "a plataforma só trabalha com Clientes" — não só o rótulo do menu, mas a **rota e o código**.
