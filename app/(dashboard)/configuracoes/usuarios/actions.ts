@@ -27,6 +27,10 @@ export async function criarUsuario(formData: FormData) {
   if (!email?.trim()) throw new Error('E-mail é obrigatório.')
   if (!senha || senha.length < 6) throw new Error('Senha deve ter no mínimo 6 caracteres.')
   if (!cargo?.trim()) throw new Error('Cargo é obrigatório.')
+  // DEC-015: só perfis oficiais aqui (Proprietário é criado pelo fluxo de Hub).
+  if (!['admin', 'gestor', 'assistente'].includes(cargo)) {
+    throw new Error('Perfil inválido. Perfis permitidos: Administrador da Indústria, Gestor da Indústria, Assistente.')
+  }
 
   const adminClient = createAdminClient()
   const { data, error } = await adminClient.auth.admin.createUser({

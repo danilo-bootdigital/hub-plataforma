@@ -9,13 +9,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { criarUsuario } from '@/app/(dashboard)/configuracoes/usuarios/actions'
 import { Plus } from 'lucide-react'
 
+// Perfis oficiais criáveis aqui (DEC-015). Proprietário do Hub é criado pelo
+// fluxo de criação de Hub (invariante Hub↔Proprietário) — não aqui.
 const perfis = [
-  { valor: 'admin', label: 'Administrador' },
-  { valor: 'gestor', label: 'Gestor Comercial' },
-  { valor: 'vendedor', label: 'Vendedor' },
-  { valor: 'atendimento', label: 'Atendimento' },
-  { valor: 'financeiro', label: 'Financeiro' },
-  { valor: 'suporte', label: 'Suporte' },
+  { valor: 'admin', label: 'Administrador da Indústria' },
+  { valor: 'gestor', label: 'Gestor da Indústria' },
+  { valor: 'assistente', label: 'Assistente' },
 ]
 
 export function ModalNovoUsuario() {

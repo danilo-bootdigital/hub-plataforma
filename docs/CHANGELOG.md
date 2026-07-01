@@ -6,6 +6,13 @@
 
 ---
 
+## 2026-07-01 — RBAC Contract (parte segura): criação de usuário só com perfis oficiais (DEC-015)
+
+- **Objetivo:** impedir a criação de novos usuários com perfis legados, sem o risco de reescrever a lógica de negócio legada.
+- **Aplicação Web:** `modal-novo-usuario` oferece apenas **Administrador da Indústria / Gestor da Indústria / Assistente** (Proprietário é criado pelo fluxo de Hub); `criarUsuario` valida o cargo por whitelist. Sem novo SQL.
+- **Adiado (Contract completo — risco alto):** remoção física dos valores do enum `user_role` (`vendedor/atendimento/financeiro/suporte`) exige recriar o tipo + reescrever `profiles.cargo`; e há ~40 pontos de código com lógica de negócio ramificando nesses perfis (leads/pipeline/orçamentos/tarefas/whatsapp/relatórios). Como há **0 usuários** legados, são ramos/valores mortos e inofensivos; a remoção fica para um esforço dedicado e testado.
+- **Observações:** com isso, nenhum novo usuário legado é criado. Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+
 ## 2026-06-30 — RBAC Migrate-B (resto): guard de rota (middleware) + flip vendedor→assistente (DEC-015)
 
 - **Objetivo:** aplicar permissões também nas rotas (middleware) e concluir a migração de perfis legados operacionais.
