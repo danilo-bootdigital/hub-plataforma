@@ -38,7 +38,7 @@ export default async function EditarContatoPage({ params }: { params: Promise<{ 
   const podeEditar = perfil.cargo === 'admin' || perfil.cargo === 'gestor' || contato.responsavel_id === perfil.id
 
   if (!podeEditar) {
-    redirect(`/contatos/${id}`)
+    redirect(`/clientes/${id}`)
   }
 
   // Carteiras ativas (Carteira é obrigatória no Cliente — DEC-017).
@@ -52,7 +52,7 @@ export default async function EditarContatoPage({ params }: { params: Promise<{ 
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <Link href={`/contatos/${id}`}>
+        <Link href={`/clientes/${id}`}>
           <Button variant="ghost" size="sm" className="gap-1 pl-0 text-slate-600">
             <ChevronLeft className="h-4 w-4" />
             Voltar para o contato

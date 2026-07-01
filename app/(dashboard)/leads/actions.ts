@@ -288,6 +288,6 @@ export async function converterLeadEmContato(leadId: string, formData: FormData)
   })
 
   revalidatePath('/leads')
-  revalidatePath('/contatos')
-  redirect(`/contatos/${contato.id}`)
+  revalidatePath('/clientes')
+  redirect(`/clientes/${contato.id}`)
 }

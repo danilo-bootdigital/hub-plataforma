@@ -112,8 +112,8 @@ export async function criarContato(formData: FormData) {
     contato_id: contato.id,
   })
 
-  revalidatePath('/contatos')
-  redirect(`/contatos/${contato.id}`)
+  revalidatePath('/clientes')
+  redirect(`/clientes/${contato.id}`)
 }
 
 export async function editarContato(contatoId: string, formData: FormData) {
@@ -211,8 +211,8 @@ export async function editarContato(contatoId: string, formData: FormData) {
     contato_id: contatoId,
   })
 
-  revalidatePath('/contatos')
-  revalidatePath(`/contatos/${contatoId}`)
+  revalidatePath('/clientes')
+  revalidatePath(`/clientes/${contatoId}`)
 }
 
 export async function adicionarObservacaoContato(contatoId: string, texto: string) {
@@ -236,7 +236,7 @@ export async function adicionarObservacaoContato(contatoId: string, texto: strin
   })
   if (errAtividade) throw new Error(`Erro ao registrar observação: ${errAtividade.message}`)
 
-  revalidatePath(`/contatos/${contatoId}`)
+  revalidatePath(`/clientes/${contatoId}`)
 }
 
 export async function excluirContato(contatoId: string) {
@@ -266,7 +266,7 @@ export async function excluirContato(contatoId: string) {
     .eq('organization_id', perfil.organization_id)
 
   if (error) throw new Error(`Erro ao excluir contato: ${error.message}`)
-  revalidatePath('/contatos')
+  revalidatePath('/clientes')
 }
 
 export async function excluirContatosEmLote(ids: string[]) {
@@ -305,7 +305,7 @@ export async function excluirContatosEmLote(ids: string[]) {
 
     if (error) throw new Error(`Erro ao excluir contatos: ${error.message}`)
   }
-  revalidatePath('/contatos')
+  revalidatePath('/clientes')
 }
 
 export async function converterContatoEmLead(contatoId: string) {
@@ -387,7 +387,7 @@ export async function converterContatoEmLead(contatoId: string) {
     contato_id: contatoId,
   })
 
-  revalidatePath('/contatos')
+  revalidatePath('/clientes')
   revalidatePath('/leads')
   revalidatePath('/pipeline')
   redirect('/leads')
@@ -504,6 +504,6 @@ export async function importarContatos(contatos: ContatoImportado[], carteiraId:
     pulados = duplicados.length
   }
 
-  revalidatePath('/contatos')
+  revalidatePath('/clientes')
   return { importados, atualizados, pulados }
 }

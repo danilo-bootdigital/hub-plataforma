@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { criarContato } from '@/app/(dashboard)/contatos/actions'
+import { criarContato } from '@/app/(dashboard)/clientes/actions'
 import { Plus } from 'lucide-react'
 
 export function ModalNovoContato({ carteiras }: { carteiras: { id: string; nome: string }[] }) {

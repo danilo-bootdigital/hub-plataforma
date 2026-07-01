@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ChevronLeft, Loader2 } from 'lucide-react'
-import { editarContato } from '@/app/(dashboard)/contatos/actions'
+import { editarContato } from '@/app/(dashboard)/clientes/actions'
 import type { Contact, Company } from '@/types/database'
 
 type ContatoCompleto = Contact & {
@@ -30,7 +30,7 @@ export function FormularioEditarContato({ contato, carteiras }: FormularioEditar
     setErro(null)
     try {
       await editarContato(contato.id, formData)
-      router.push(`/contatos/${contato.id}`)
+      router.push(`/clientes/${contato.id}`)
     } catch (e: unknown) {
       if (e instanceof Error && (e as { digest?: string }).digest?.startsWith('NEXT_REDIRECT')) throw e
       setErro(e instanceof Error ? e.message : 'Erro ao editar contato.')
@@ -239,7 +239,7 @@ export function FormularioEditarContato({ contato, carteiras }: FormularioEditar
       )}
 
       <div className="flex justify-end gap-3">
-        <Link href={`/contatos/${contato.id}`}>
+        <Link href={`/clientes/${contato.id}`}>
           <Button type="button" variant="outline">
             Cancelar
           </Button>

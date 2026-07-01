@@ -437,7 +437,7 @@ export async function buscarInstanciasAutorizadas() {
   return (data ?? []) as { id: string; nome: string; numero: string | null; status_conexao: string }[]
 }
 
-// ── Buscar leads/contatos para nova conversa ───────────────────
+// ── Buscar leads/clientes para nova conversa ───────────────────
 
 export async function buscarContatosParaConversa(busca: string) {
   const supabase = await createClient()

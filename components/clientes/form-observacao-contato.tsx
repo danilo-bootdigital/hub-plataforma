@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
-import { adicionarObservacaoContato } from '@/app/(dashboard)/contatos/actions'
+import { adicionarObservacaoContato } from '@/app/(dashboard)/clientes/actions'
 
 export function FormObservacaoContato({ contatoId }: { contatoId: string }) {
   const [texto, setTexto] = useState('')

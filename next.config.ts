@@ -28,6 +28,14 @@ const nextConfig: NextConfig = {
     ],
   },
   serverExternalPackages: ['@sparticuz/chromium', 'puppeteer-core'],
+
+  // Rota renomeada: Contatos → Clientes (DEC-017). Mantém links/bookmarks antigos.
+  async redirects() {
+    return [
+      { source: '/contatos', destination: '/clientes', permanent: false },
+      { source: '/contatos/:path*', destination: '/clientes/:path*', permanent: false },
+    ]
+  },
 }
 
 export default nextConfig

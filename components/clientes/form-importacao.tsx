@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { importarContatos } from '@/app/(dashboard)/contatos/actions'
+import { importarContatos } from '@/app/(dashboard)/clientes/actions'
 import { Upload, FileSpreadsheet, Check, AlertTriangle } from 'lucide-react'
 
 type ContatoImportado = {
@@ -126,7 +126,7 @@ export function FormImportacao({ carteiras }: { carteiras: { id: string; nome: s
           ? `${resultado.importados} novos, ${resultado.atualizados} atualizados.`
           : `${resultado.importados} importados, ${resultado.pulados} duplicados ignorados.`
         toast.success(msg)
-        router.push('/contatos')
+        router.push('/clientes')
       } catch (e: unknown) {
         toast.error(e instanceof Error ? e.message : 'Erro ao importar.')
       }

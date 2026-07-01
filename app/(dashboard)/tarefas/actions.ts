@@ -78,7 +78,7 @@ export async function criarTarefa(formData: FormData) {
 
   revalidatePath('/tarefas')
   if (lead_id) revalidatePath(`/leads/${lead_id}`)
-  if (contato_id) revalidatePath(`/contatos/${contato_id}`)
+  if (contato_id) revalidatePath(`/clientes/${contato_id}`)
   if (deal_id) revalidatePath('/pipeline')
 }
 
@@ -118,7 +118,7 @@ export async function concluirTarefa(tarefaId: string) {
 
   revalidatePath('/tarefas')
   if (tarefa.lead_id) revalidatePath(`/leads/${tarefa.lead_id}`)
-  if (tarefa.contato_id) revalidatePath(`/contatos/${tarefa.contato_id}`)
+  if (tarefa.contato_id) revalidatePath(`/clientes/${tarefa.contato_id}`)
   if (tarefa.deal_id) revalidatePath('/pipeline')
 }
 
@@ -148,7 +148,7 @@ export async function reabrirTarefa(tarefaId: string) {
 
   revalidatePath('/tarefas')
   if (tarefa.lead_id) revalidatePath(`/leads/${tarefa.lead_id}`)
-  if (tarefa.contato_id) revalidatePath(`/contatos/${tarefa.contato_id}`)
+  if (tarefa.contato_id) revalidatePath(`/clientes/${tarefa.contato_id}`)
   if (tarefa.deal_id) revalidatePath('/pipeline')
 }
 
@@ -179,6 +179,6 @@ export async function excluirTarefa(tarefaId: string) {
 
   revalidatePath('/tarefas')
   if (tarefa.lead_id) revalidatePath(`/leads/${tarefa.lead_id}`)
-  if (tarefa.contato_id) revalidatePath(`/contatos/${tarefa.contato_id}`)
+  if (tarefa.contato_id) revalidatePath(`/clientes/${tarefa.contato_id}`)
   if (tarefa.deal_id) revalidatePath('/pipeline')
 }

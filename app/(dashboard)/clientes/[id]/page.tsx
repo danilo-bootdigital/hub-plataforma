@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { TimelineAtividades } from '@/components/shared/timeline-atividades'
-import { FormObservacaoContato } from '@/components/contatos/form-observacao-contato'
-import { AcoesContato } from '@/components/contatos/acoes-contato'
+import { FormObservacaoContato } from '@/components/clientes/form-observacao-contato'
+import { AcoesContato } from '@/components/clientes/acoes-contato'
 import { ModalChamarWhatsapp } from '@/components/whatsapp/modal-chamar-whatsapp'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -89,7 +89,7 @@ export default async function ContatoDetalhePage({ params }: { params: Promise<{
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Link href="/contatos">
+          <Link href="/clientes">
             <Button variant="ghost" size="sm" className="gap-1 pl-0 text-slate-600">
               <ChevronLeft className="h-4 w-4" />
               Contatos
@@ -97,7 +97,7 @@ export default async function ContatoDetalhePage({ params }: { params: Promise<{
           </Link>
         </div>
         {podeEditar && (
-          <Link href={`/contatos/${id}/editar`}>
+          <Link href={`/clientes/${id}/editar`}>
             <Button variant="outline" size="sm" className="gap-1">
               <Edit className="h-4 w-4" />
               Editar contato

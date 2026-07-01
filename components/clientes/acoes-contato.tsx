@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { isRedirectError } from 'next/dist/client/components/redirect-error'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
-import { excluirContato, converterContatoEmLead } from '@/app/(dashboard)/contatos/actions'
+import { excluirContato, converterContatoEmLead } from '@/app/(dashboard)/clientes/actions'
 import { Trash2, UserPlus } from 'lucide-react'
 
 type Props = {
@@ -28,7 +28,7 @@ export function AcoesContato({ contatoId, contatoNome }: Props) {
       try {
         await excluirContato(contatoId)
         toast.success('Contato excluído.')
-        router.push('/contatos')
+        router.push('/clientes')
       } catch (e: unknown) {
         if (isRedirectError(e)) throw e
         toast.error(e instanceof Error ? e.message : 'Erro ao excluir.')

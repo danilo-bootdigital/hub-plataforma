@@ -7,7 +7,7 @@ import { ptBR } from 'date-fns/locale'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Trash2 } from 'lucide-react'
-import { excluirContatosEmLote } from '@/app/(dashboard)/contatos/actions'
+import { excluirContatosEmLote } from '@/app/(dashboard)/clientes/actions'
 import type { Contact, Company } from '@/types/database'
 
 type ContatoComEmpresa = Contact & {
@@ -138,7 +138,7 @@ export function TabelaContatos({ contatos, isAdmin }: Props) {
               <tr
                 key={contato.id}
                 className="border-b last:border-0 hover:bg-slate-50 cursor-pointer"
-                onClick={() => router.push(`/contatos/${contato.id}`)}
+                onClick={() => router.push(`/clientes/${contato.id}`)}
               >
                 {isAdmin && (
                   <td className="px-3 py-3 w-10">

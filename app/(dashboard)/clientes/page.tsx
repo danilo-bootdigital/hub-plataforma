@@ -1,9 +1,9 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
-import { TabelaContatos } from '@/components/contatos/tabela-contatos'
-import { ModalNovoContato } from '@/components/contatos/modal-novo-contato'
-import { BotaoImportarExportar } from '@/components/contatos/botao-importar-exportar'
-import { BuscaContatos } from '@/components/contatos/busca-contatos'
+import { TabelaContatos } from '@/components/clientes/tabela-contatos'
+import { ModalNovoContato } from '@/components/clientes/modal-novo-contato'
+import { BotaoImportarExportar } from '@/components/clientes/botao-importar-exportar'
+import { BuscaContatos } from '@/components/clientes/busca-contatos'
 import { Paginacao } from '@/components/ui/paginacao'
 import type { Contact, Company } from '@/types/database'
 
@@ -89,7 +89,7 @@ export default async function ContatosPage({ searchParams }: { searchParams: Sea
         paginaAtual={pagina}
         totalRegistros={count ?? 0}
         porPagina={POR_PAGINA}
-        baseUrl="/contatos"
+        baseUrl="/clientes"
         searchParams={params as Record<string, string | undefined>}
       />
     </div>
