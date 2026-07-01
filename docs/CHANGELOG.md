@@ -11,7 +11,7 @@
 - **Objetivo:** dar ao Proprietário do Hub a UI para criar/editar Funções e marcar permissões por módulo/ação.
 - **Banco (SQL Editor, HUB DEV):** RPCs `SECURITY DEFINER` `funcoes_listar` / `funcao_salvar` (upsert + substitui permissões, atômico) / `funcao_excluir` (bloqueia se houver usuários). Só `proprietario_hub`, escopo do próprio Hub. `hubdev/bootstrap/migrate_rbac_funcoes_crud.sql`.
 - **Aplicação Web:** rota `/hub/funcoes` (gate Proprietário) + item de menu **Funções**; `components/hub/funcoes-gerenciar.tsx` (lista + editor com **matriz módulos × ações** Ver/Criar/Editar/Excluir); actions `listarFuncoes`/`salvarFuncao`/`excluirFuncao`.
-- **Observações:** smoke **12/12** no HUB DEV (criar/listar/editar/excluir, bloqueio de exclusão com usuários, negação a não-Proprietário), dados `ZZ_SMOKE_E9_*` limpos. Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+- **Observações:** smoke **12/12** no HUB DEV (criar/listar/editar/excluir, bloqueio de exclusão com usuários, negação a não-Proprietário), dados `ZZ_SMOKE_E9_*` limpos. Commit `3d2021e`; deploy em `https://hub-plataforma-dev.vercel.app`.
 
 ## 2026-06-30 — RBAC Migrate (parcial): Função padrão + menu por permissões (DEC-015)
 
