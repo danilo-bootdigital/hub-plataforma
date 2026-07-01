@@ -6,6 +6,14 @@
 
 ---
 
+## 2026-07-01 — Consolidação do módulo Clientes e Carteiras (DEC-017)
+
+- **Objetivo:** tornar a cadeia Cliente → Carteira → Hub autorizado → Responsável Operacional visível e operacional nas telas da Indústria (sem Contract — modelagem validada; enforcement segue na aplicação).
+- **Clientes (`/contatos`):** lista ganha coluna **Carteira** (badge; "Sem carteira" em âmbar quando ausente) — query com join `carteiras`. Chain visível por cliente.
+- **Carteiras (`/configuracoes/carteiras`):** lista ganha coluna **Clientes** (contagem por Carteira) + subtítulo atualizado ("aqui você autoriza qual Hub opera cada Carteira"). A coluna **Hub autorizado** já existia (`autorizarCarteiraHub`).
+- **Modelagem validada (sem alterações de schema):** `contacts.carteira_id` (Carteira, obrigatória na app), `carteiras.hub_id` (Hub autorizado — 1 Hub por Carteira), `contacts.responsavel_operacional_id` (Responsável Operacional, por Cliente).
+- **Observações:** sem novo SQL; sem Contract (NOT NULL/enum/drops adiados para a estabilização). Build OK. Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+
 ## 2026-07-01 — Cliente com Carteira obrigatória; plataforma só Clientes (DEC-017)
 
 - **Decisão:** a plataforma trabalha apenas com **Clientes** (sem entidade "Contatos" separada — `contacts` é o Cliente). **Carteira passa a ser obrigatória** no Cliente, desde o cadastro/importação. Não existirão Clientes sem Carteira.

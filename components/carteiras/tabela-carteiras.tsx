@@ -19,7 +19,7 @@ function formatarData(iso: string) {
   }
 }
 
-export function TabelaCarteiras({ carteiras, hubs }: { carteiras: Carteira[]; hubs: HubOpcao[] }) {
+export function TabelaCarteiras({ carteiras, hubs, contagens = {} }: { carteiras: Carteira[]; hubs: HubOpcao[]; contagens?: Record<string, number> }) {
   const [isPending, startTransition] = useTransition()
   const [editandoId, setEditandoId] = useState<string | null>(null)
   const [editNome, setEditNome] = useState('')
@@ -81,6 +81,7 @@ export function TabelaCarteiras({ carteiras, hubs }: { carteiras: Carteira[]; hu
         <thead>
           <tr className="border-b bg-slate-50 text-left">
             <th className="px-4 py-3 font-medium text-slate-600">Nome</th>
+            <th className="px-4 py-3 font-medium text-slate-600">Clientes</th>
             <th className="px-4 py-3 font-medium text-slate-600">Descrição</th>
             <th className="px-4 py-3 font-medium text-slate-600">Observações</th>
             <th className="px-4 py-3 font-medium text-slate-600">Ordem</th>
@@ -94,7 +95,7 @@ export function TabelaCarteiras({ carteiras, hubs }: { carteiras: Carteira[]; hu
         <tbody>
           {carteiras.length === 0 && (
             <tr>
-              <td colSpan={9} className="px-4 py-8 text-center text-slate-400">
+              <td colSpan={10} className="px-4 py-8 text-center text-slate-400">
                 Nenhuma Carteira cadastrada.
               </td>
             </tr>
@@ -110,6 +111,7 @@ export function TabelaCarteiras({ carteiras, hubs }: { carteiras: Carteira[]; hu
                     <span className="font-medium text-slate-800">{c.nome}</span>
                   )}
                 </td>
+                <td className="px-4 py-3 text-slate-600">{contagens[c.id] ?? 0}</td>
                 <td className="px-4 py-3 text-slate-600">
                   {emEdicao ? (
                     <Input value={editDescricao} onChange={(e) => setEditDescricao(e.target.value)} className="h-8" />

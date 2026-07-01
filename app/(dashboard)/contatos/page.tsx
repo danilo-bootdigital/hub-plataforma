@@ -7,7 +7,10 @@ import { BuscaContatos } from '@/components/contatos/busca-contatos'
 import { Paginacao } from '@/components/ui/paginacao'
 import type { Contact, Company } from '@/types/database'
 
-type ContatoComEmpresa = Contact & { empresa: Pick<Company, 'id' | 'nome'> | null }
+type ContatoComEmpresa = Contact & {
+  empresa: Pick<Company, 'id' | 'nome'> | null
+  carteira: { id: string; nome: string } | null
+}
 
 type SearchParams = Promise<{
   pagina?: string
@@ -41,7 +44,7 @@ export default async function ContatosPage({ searchParams }: { searchParams: Sea
 
   let query = supabase
     .from('contacts')
-    .select('*, empresa:companies!empresa_id(id, nome)', { count: 'exact' })
+    .select('*, empresa:companies!empresa_id(id, nome), carteira:carteiras!carteira_id(id, nome)', { count: 'exact' })
     .eq('organization_id', perfil.organization_id)
 
   if (termo) {

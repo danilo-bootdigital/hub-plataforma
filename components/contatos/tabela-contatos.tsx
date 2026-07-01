@@ -10,7 +10,10 @@ import { Trash2 } from 'lucide-react'
 import { excluirContatosEmLote } from '@/app/(dashboard)/contatos/actions'
 import type { Contact, Company } from '@/types/database'
 
-type ContatoComEmpresa = Contact & { empresa: Pick<Company, 'id' | 'nome'> | null }
+type ContatoComEmpresa = Contact & {
+  empresa: Pick<Company, 'id' | 'nome'> | null
+  carteira: { id: string; nome: string } | null
+}
 
 type Props = {
   contatos: ContatoComEmpresa[]
@@ -115,6 +118,7 @@ export function TabelaContatos({ contatos, isAdmin }: Props) {
                 </th>
               )}
               <th className="px-4 py-3 font-medium text-slate-600">Nome</th>
+              <th className="px-4 py-3 font-medium text-slate-600">Carteira</th>
               <th className="px-4 py-3 font-medium text-slate-600">Empresa</th>
               <th className="px-4 py-3 font-medium text-slate-600">Telefone</th>
               <th className="px-4 py-3 font-medium text-slate-600">E-mail</th>
@@ -125,8 +129,8 @@ export function TabelaContatos({ contatos, isAdmin }: Props) {
           <tbody>
             {contatos.length === 0 && (
               <tr>
-                <td colSpan={isAdmin ? 7 : 6} className="px-4 py-8 text-center text-slate-400">
-                  Nenhum contato encontrado.
+                <td colSpan={isAdmin ? 8 : 7} className="px-4 py-8 text-center text-slate-400">
+                  Nenhum cliente encontrado.
                 </td>
               </tr>
             )}
@@ -148,6 +152,11 @@ export function TabelaContatos({ contatos, isAdmin }: Props) {
                   </td>
                 )}
                 <td className="px-4 py-3 font-medium text-slate-900">{contato.nome}</td>
+                <td className="px-4 py-3 text-slate-600">
+                  {contato.carteira?.nome
+                    ? <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700">{contato.carteira.nome}</span>
+                    : <span className="text-xs text-amber-600">Sem carteira</span>}
+                </td>
                 <td className="px-4 py-3 text-slate-600">{contato.empresa?.nome ?? '—'}</td>
                 <td className="px-4 py-3 text-slate-600">{contato.telefone ?? '—'}</td>
                 <td className="px-4 py-3 text-slate-600">{contato.email ?? '—'}</td>

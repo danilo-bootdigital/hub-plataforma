@@ -34,6 +34,17 @@ export default async function CarteirasPage() {
     .eq('organization_id', perfil.organization_id)
     .order('nome')
 
+  // Nº de Clientes por Carteira (visão operacional do módulo).
+  const { data: clientesCart } = await supabase
+    .from('contacts')
+    .select('carteira_id')
+    .eq('organization_id', perfil.organization_id)
+    .not('carteira_id', 'is', null)
+  const contagens: Record<string, number> = {}
+  for (const c of (clientesCart ?? []) as { carteira_id: string | null }[]) {
+    if (c.carteira_id) contagens[c.carteira_id] = (contagens[c.carteira_id] ?? 0) + 1
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -55,6 +66,7 @@ export default async function CarteirasPage() {
       <TabelaCarteiras
         carteiras={(carteiras ?? []) as Carteira[]}
         hubs={(hubs ?? []) as { id: string; nome: string }[]}
+        contagens={contagens}
       />
     </div>
   )
