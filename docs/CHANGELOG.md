@@ -11,7 +11,7 @@
 - **Objetivo:** ação administrativa para excluir usuários em DEV/organização inicial. **Exceção** — em produção o padrão é **Desativar** (mantido).
 - **Banco (SQL Editor, HUB DEV):** RPC `SECURITY DEFINER` `contar_vinculos_usuario` (só admin) — varre **dinamicamente todos os FKs que referenciam `profiles(id)`** (leads, clientes, orçamentos, pedidos, conversas/mensagens, carteiras e quaisquer outros; exclui `audit_logs`) e sinaliza se é Proprietário de Hub. `hubdev/bootstrap/dev_excluir_usuario.sql`.
 - **Aplicação Web:** action `excluirUsuarioDefinitivo` (só admin; confirmação forte **"EXCLUIR USUÁRIO"**; sem auto-exclusão; bloqueia se houver vínculo ou for Proprietário de Hub; remove do Auth com cascade do profile; registra `audit_logs`). Seção **"Zona de perigo"** no drawer de Usuários. Desativar/Reativar mantido.
-- **Observações:** smoke **8/8** no HUB DEV (usuário limpo total 0; flag de Proprietário; negação a não-admin; deleção com cascade do profile e remoção do Auth), dado `zz_smoke_del` removido. Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+- **Observações:** smoke **8/8** no HUB DEV (usuário limpo total 0; flag de Proprietário; negação a não-admin; deleção com cascade do profile e remoção do Auth), dado `zz_smoke_del` removido. Commit `9d85827`; deploy em `https://hub-plataforma-dev.vercel.app`.
 
 ## 2026-07-01 — RBAC Contract (parte segura): criação de usuário só com perfis oficiais (DEC-015)
 
