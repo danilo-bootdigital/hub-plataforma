@@ -10,7 +10,7 @@
 
 - **Objetivo:** fechar a brecha em que o Hub podia importar/cadastrar clientes; a base é governança da Indústria.
 - **Aplicação Web:** `criarContato` e `importarContatos` passam a exigir **admin/gestor** (server-side); a página `/contatos/importar` redireciona quem não for Indústria. Auditoria `CRIACAO_CLIENTE` e `IMPORTACAO_CLIENTES` em `audit_logs`. Confirmado: nada fora de `/contatos` usa essas actions (Hub opera na própria área). Sem novo SQL.
-- **Observações:** troca de Carteira do cliente já é Indústria-side (editar contato em `/contatos`, inacessível ao Hub). Próximas fatias: consolidar visão Indústria "Clientes e Carteiras" (mover cliente/ver Hub operante) e **responsável operacional por cliente no Hub** (distribuição). Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+- **Observações:** troca de Carteira do cliente já é Indústria-side (editar contato em `/contatos`, inacessível ao Hub). Próximas fatias: consolidar visão Indústria "Clientes e Carteiras" (mover cliente/ver Hub operante) e **responsável operacional por cliente no Hub** (distribuição). Commit `20f9af3`; deploy em `https://hub-plataforma-dev.vercel.app`.
 
 ## 2026-07-01 — Criar Hub: selecionar Proprietário existente ou criar novo (DEC-016, Ajuste 1)
 
