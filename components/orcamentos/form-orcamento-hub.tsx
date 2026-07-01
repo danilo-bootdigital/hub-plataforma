@@ -59,6 +59,38 @@ function normalizar(s: string) {
   return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
 }
 
+// Ficha read-only com TODOS os campos que compõem o produto (do vínculo/portfólio).
+function FichaProduto({ p }: { p: LinhaProdutoHub }) {
+  const campos: [string, string | null][] = [
+    ['Categoria', p.categoria],
+    ['Subcategoria', p.subcategoria],
+    ['Apresentação', p.apresentacao],
+    ['Composição', p.composicao],
+    ['Via de administração', p.via_administracao],
+    ['Via de apresentação', p.via_apresentacao],
+    ['Volume', p.volume],
+    ['Unidade', p.unidade],
+    ['Qtd por caixa', p.quantidade_por_caixa != null ? String(p.quantidade_por_caixa) : null],
+    ['Aplicadores', p.aplicadores],
+    ['Valor da caixa', p.valor_caixa != null ? formatarMoeda(p.valor_caixa) : null],
+    ['Exige receita', p.exige_receita == null ? null : p.exige_receita ? 'Sim' : 'Não'],
+    ['Descrição', p.descricao],
+    ['Observações da receita', p.observacoes_receita],
+  ]
+  const preenchidos = campos.filter(([, v]) => v != null && String(v).trim() !== '')
+  if (!preenchidos.length) return null
+  return (
+    <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs sm:grid-cols-3">
+      {preenchidos.map(([k, v]) => (
+        <div key={k}>
+          <p className="text-slate-400">{k}</p>
+          <p className="text-slate-700">{v}</p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export function FormOrcamentoHub({
   clientes,
   portfolios,
@@ -389,82 +421,79 @@ export function FormOrcamentoHub({
               {itens.length === 0 ? (
                 <p className="text-sm text-slate-500">Nenhum produto adicionado.</p>
               ) : (
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="border-b border-slate-200 text-left text-xs text-slate-500">
-                        <th className="py-2 pr-2 font-medium">Produto</th>
-                        <th className="w-20 py-2 px-2 font-medium">Qtd</th>
-                        <th className="w-28 py-2 px-2 font-medium">Unitário</th>
-                        <th className="w-24 py-2 px-2 font-medium">Desc. %</th>
-                        <th className="w-28 py-2 px-2 text-right font-medium">Subtotal</th>
-                        <th className="w-10 py-2" />
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100">
-                      {itens.map((i) => {
-                        const sub = i.quantidade * i.preco_unitario * (1 - i.desconto_item / 100)
-                        return (
-                          <tr key={i.product_id}>
-                            <td className="py-2 pr-2">
-                              <p className="font-medium text-slate-900">{i.nome}</p>
-                              {i.apresentacao && (
-                                <p className="text-xs text-slate-500">{i.apresentacao}</p>
-                              )}
-                            </td>
-                            <td className="px-2 py-2">
-                              <Input
-                                type="number"
-                                min={1}
-                                step={1}
-                                value={i.quantidade}
-                                onChange={(e) =>
-                                  atualizarItem(i.product_id, {
-                                    quantidade: Math.max(1, Math.floor(Number(e.target.value) || 1)),
-                                  })
-                                }
-                                className="h-8"
-                              />
-                            </td>
-                            <td className="px-2 py-2 text-slate-600">
+                <div className="space-y-3">
+                  {itens.map((i) => {
+                    const p = produtosPf.find((r) => r.product_id === i.product_id)
+                    const sub = i.quantidade * i.preco_unitario * (1 - i.desconto_item / 100)
+                    return (
+                      <div key={i.product_id} className="space-y-3 rounded-lg border border-slate-200 p-3">
+                        <div className="flex items-start justify-between gap-2">
+                          <div>
+                            <p className="font-medium text-slate-900">{p?.nome ?? i.nome}</p>
+                            {(p?.apresentacao ?? i.apresentacao) && (
+                              <p className="text-xs text-slate-500">{p?.apresentacao ?? i.apresentacao}</p>
+                            )}
+                          </div>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => removerItem(i.product_id)}
+                          >
+                            <Trash2 className="size-4 text-slate-400" />
+                          </Button>
+                        </div>
+
+                        {p && <FichaProduto p={p} />}
+
+                        <div className="grid grid-cols-2 gap-3 border-t border-slate-100 pt-3 sm:grid-cols-4">
+                          <div className="space-y-1">
+                            <Label className="text-xs">Quantidade</Label>
+                            <Input
+                              type="number"
+                              min={1}
+                              step={1}
+                              value={i.quantidade}
+                              onChange={(e) =>
+                                atualizarItem(i.product_id, {
+                                  quantidade: Math.max(1, Math.floor(Number(e.target.value) || 1)),
+                                })
+                              }
+                              className="h-8"
+                            />
+                          </div>
+                          <div className="space-y-1">
+                            <Label className="text-xs">Unitário</Label>
+                            <p className="flex h-8 items-center text-sm text-slate-600">
                               {formatarMoeda(i.preco_unitario)}
-                            </td>
-                            <td className="px-2 py-2">
-                              <Input
-                                type="number"
-                                min={0}
-                                max={100}
-                                step={1}
-                                value={i.desconto_item}
-                                onChange={(e) =>
-                                  atualizarItem(i.product_id, {
-                                    desconto_item: Math.min(
-                                      100,
-                                      Math.max(0, Number(e.target.value) || 0)
-                                    ),
-                                  })
-                                }
-                                className="h-8"
-                              />
-                            </td>
-                            <td className="px-2 py-2 text-right font-medium text-slate-900">
+                            </p>
+                          </div>
+                          <div className="space-y-1">
+                            <Label className="text-xs">Desconto %</Label>
+                            <Input
+                              type="number"
+                              min={0}
+                              max={100}
+                              step={1}
+                              value={i.desconto_item}
+                              onChange={(e) =>
+                                atualizarItem(i.product_id, {
+                                  desconto_item: Math.min(100, Math.max(0, Number(e.target.value) || 0)),
+                                })
+                              }
+                              className="h-8"
+                            />
+                          </div>
+                          <div className="space-y-1">
+                            <Label className="text-xs">Subtotal</Label>
+                            <p className="flex h-8 items-center text-sm font-medium text-slate-900">
                               {formatarMoeda(sub)}
-                            </td>
-                            <td className="py-2 text-right">
-                              <Button
-                                type="button"
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => removerItem(i.product_id)}
-                              >
-                                <Trash2 className="size-4 text-slate-400" />
-                              </Button>
-                            </td>
-                          </tr>
-                        )
-                      })}
-                    </tbody>
-                  </table>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               )}
             </>

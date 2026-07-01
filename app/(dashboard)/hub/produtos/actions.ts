@@ -22,13 +22,22 @@ export type LinhaProdutoHub = {
   product_id: string
   portfolio_id: string
   nome: string
+  descricao: string | null
+  composicao: string | null
   categoria: string | null
+  subcategoria: string | null
   portfolio: string
   apresentacao: string | null
   via_administracao: string | null
+  via_apresentacao: string | null
   volume: string | null
   unidade: string | null
+  quantidade_por_caixa: number | null
+  aplicadores: string | null
   preco: number | null
+  valor_caixa: number | null
+  exige_receita: boolean | null
+  observacoes_receita: string | null
   ativo: boolean
 }
 
