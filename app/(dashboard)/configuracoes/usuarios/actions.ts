@@ -94,6 +94,38 @@ export async function alterarSenhaUsuario(usuarioId: string, novaSenha: string) 
   }
 }
 
+// Atribui/remove a Função (Role) de um Assistente (DEC-015). Admin da Indústria.
+// A Função precisa pertencer ao Hub do próprio usuário. Usa admin client porque
+// funcoes tem RLS sem policies.
+export async function atribuirFuncao(usuarioId: string, funcaoId: string | null) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  const { data: perfilAtual } = await supabase
+    .from('profiles').select('cargo, organization_id').eq('id', user?.id ?? '').single()
+  if (perfilAtual?.cargo !== 'admin') throw new Error('Apenas administradores podem atribuir funções.')
+
+  const admin = createAdminClient()
+  const { data: alvo } = await admin
+    .from('profiles').select('id, organization_id, cargo, hub_id').eq('id', usuarioId).single()
+  if (!alvo || alvo.organization_id !== perfilAtual.organization_id) {
+    throw new Error('Usuário não pertence à sua organização.')
+  }
+  if (alvo.cargo !== 'assistente') throw new Error('Apenas Assistentes recebem Função.')
+
+  if (funcaoId) {
+    const { data: f } = await admin.from('funcoes').select('id, hub_id').eq('id', funcaoId).single()
+    if (!f) throw new Error('Função não encontrada.')
+    if (f.hub_id !== alvo.hub_id) throw new Error('A Função pertence a outro Hub.')
+  }
+
+  const { error } = await admin
+    .from('profiles')
+    .update({ funcao_id: funcaoId, atualizado_em: new Date().toISOString() })
+    .eq('id', usuarioId)
+  if (error) throw new Error(`Erro ao atribuir função: ${error.message}`)
+  revalidatePath('/configuracoes/usuarios')
+}
+
 export async function alternarStatusUsuario(usuarioId: string, ativo: boolean) {
   const supabase = await createClient()
 
