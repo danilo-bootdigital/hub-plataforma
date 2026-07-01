@@ -6788,7 +6788,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hub_funcoes_gerenciar",
-      "community": 7,
+      "community": 22,
       "norm_label": "funcoes-gerenciar.tsx"
     },
     {
@@ -6798,7 +6798,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "hub_funcoes_gerenciar_modulos",
-      "community": 7,
+      "community": 22,
       "norm_label": "modulos"
     },
     {
@@ -6808,7 +6808,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "hub_funcoes_gerenciar_acao_label",
-      "community": 7,
+      "community": 22,
       "norm_label": "acao_label"
     },
     {
@@ -6818,7 +6818,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "hub_funcoes_gerenciar_editstate",
-      "community": 7,
+      "community": 22,
       "norm_label": "editstate"
     },
     {
@@ -6828,7 +6828,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "hub_funcoes_gerenciar_chave",
-      "community": 7,
+      "community": 22,
       "norm_label": "chave()"
     },
     {
@@ -12578,7 +12578,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_modal_nova_conversa",
-      "community": 22,
+      "community": 7,
       "norm_label": "modal-nova-conversa.tsx"
     },
     {
@@ -12588,7 +12588,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "whatsapp_modal_nova_conversa_instancia",
-      "community": 22,
+      "community": 7,
       "norm_label": "instancia"
     },
     {
@@ -12598,7 +12598,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "whatsapp_modal_nova_conversa_resultadobusca",
-      "community": 22,
+      "community": 7,
       "norm_label": "resultadobusca"
     },
     {
@@ -12608,7 +12608,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "whatsapp_modal_nova_conversa_props",
-      "community": 22,
+      "community": 7,
       "norm_label": "props"
     },
     {
@@ -15211,7 +15211,7 @@
       "label": "config",
       "file_type": "code",
       "source_file": "middleware.ts",
-      "source_location": "L95",
+      "source_location": "L73",
       "_origin": "ast",
       "id": "middleware_config",
       "community": 75,
@@ -63302,5 +63302,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "f0c0c43011fe589c882ff068bc63bc2659777fb6"
+  "built_at_commit": "09e81c22ccb46444e04c5920b0901d4d98d668e0"
 }
