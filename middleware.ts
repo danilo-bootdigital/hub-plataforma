@@ -61,6 +61,28 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(url)
     }
 
+    // RBAC (DEC-015): guard de rota por permissão da Função — SÓ Assistente.
+    // Fail-open: erro/sem dado não bloqueia; rotas não mapeadas passam.
+    const path = request.nextUrl.pathname
+    const ROTA_MODULO: Array<[string, string]> = [
+      ['/assistente/clientes', 'clientes'],
+      ['/assistente/orcamentos', 'orcamentos'],
+      ['/assistente/prepedidos', 'pedidos'],
+      ['/hub/produtos', 'produtos'],
+    ]
+    const alvo = ROTA_MODULO.find(([p]) => path === p || path.startsWith(p + '/'))
+    if (alvo) {
+      const { data: perm } = await supabase.rpc('minhas_permissoes')
+      if (perm && perm.perfil === 'assistente' && !perm.total) {
+        const acoes: string[] = perm.permissoes?.[alvo[1]] ?? []
+        if (!acoes.includes('visualizar')) {
+          const url = request.nextUrl.clone()
+          url.pathname = '/assistente'
+          return NextResponse.redirect(url)
+        }
+      }
+    }
+
     return supabaseResponse
   } catch (error) {
     console.error('Middleware error:', error)

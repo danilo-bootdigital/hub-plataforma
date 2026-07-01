@@ -6,6 +6,14 @@
 
 ---
 
+## 2026-06-30 — RBAC Migrate-B (resto): guard de rota (middleware) + flip vendedor→assistente (DEC-015)
+
+- **Objetivo:** aplicar permissões também nas rotas (middleware) e concluir a migração de perfis legados operacionais.
+- **Aplicação Web:** `middleware.ts` ganha guard por permissão **só para Assistente** — rotas mapeadas (`/assistente/clientes|orcamentos|prepedidos`, `/hub/produtos`) exigem `visualizar` no módulo da Função; sem permissão → redireciona a `/assistente`. Fail-open (erro/sem dado não bloqueia); rotas não mapeadas e demais perfis passam.
+- **Banco (dados):** `vendedor → assistente` (1 usuário, `mo@pharma1.com.br`); distribuição final `admin 1 / proprietario_hub 3 / assistente 5`; 0 vendedores. O usuário migrado está sem Hub/Função (admin deve atribuir na tela de Usuários para operar).
+- **Estruturas preservadas:** enum `user_role` ainda contém os legados (removidos só no Contract); RLS por Perfil+Hub inalterada.
+- **Observações:** com isso o RBAC (DEC-015) está aplicado em **menu + middleware + (server actions via RLS/gates existentes)**. Falta o Contract (limpeza do enum). Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+
 ## 2026-06-30 — Remoção da UI do Hub legado (Hubs de Saúde / health_hubs)
 
 - **Objetivo:** remover o "hub legado" (Hubs de Saúde) da plataforma — telas, menu (card) e código.
