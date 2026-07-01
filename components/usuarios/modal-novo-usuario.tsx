@@ -9,12 +9,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { criarUsuario } from '@/app/(dashboard)/configuracoes/usuarios/actions'
 import { Plus } from 'lucide-react'
 
-// Perfis oficiais criáveis aqui (DEC-015). Proprietário do Hub é criado pelo
-// fluxo de criação de Hub (invariante Hub↔Proprietário) — não aqui.
+// DEC-016: a Indústria cria apenas usuários da Indústria. Proprietário é criado
+// pelo fluxo de Hub; Assistente é criado/convidado pelo Proprietário (área do Hub).
 const perfis = [
   { valor: 'admin', label: 'Administrador da Indústria' },
   { valor: 'gestor', label: 'Gestor da Indústria' },
-  { valor: 'assistente', label: 'Assistente' },
 ]
 
 export function ModalNovoUsuario() {

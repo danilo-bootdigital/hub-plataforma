@@ -17,10 +17,13 @@ export default async function UsuariosPage() {
 
   const org = perfil.organization_id
 
+  // DEC-016: a tela da Indústria mostra apenas usuários da Indústria e
+  // Proprietários de Hub — NÃO Assistentes (equipe interna do Hub é do Proprietário).
   const { data: usuarios } = await supabase
     .from('profiles')
     .select('id, nome, email, telefone, cargo, ativo, criado_em, hub_id, funcao_id')
     .eq('organization_id', org)
+    .neq('cargo', 'assistente')
     .order('nome')
 
   const { data: hubs } = await supabase

@@ -118,6 +118,26 @@ export async function editarAssistente(id: string, nome: string, telefone: strin
   revalidatePath('/hub/assistentes')
 }
 
+// Proprietário atribui/remove a Função do Assistente do seu Hub (DEC-015/016).
+export async function atribuirFuncaoAssistente(id: string, funcaoId: string | null) {
+  const { supabase, perfil } = await getProprietario()
+  await assistenteDoHub(supabase, perfil, id) // valida assistente do próprio Hub
+
+  const adminClient = createAdminClient()
+  if (funcaoId) {
+    const { data: f } = await adminClient.from('funcoes').select('id, hub_id').eq('id', funcaoId).single()
+    if (!f || f.hub_id !== perfil.hub_id) throw new Error('Função não pertence ao seu Hub.')
+  }
+  const { error } = await adminClient
+    .from('profiles')
+    .update({ funcao_id: funcaoId, atualizado_em: new Date().toISOString() })
+    .eq('id', id)
+  if (error) throw new Error(`Erro ao atribuir função: ${error.message}`)
+
+  await registrarAuditoria(perfil, 'ATRIBUICAO_FUNCAO_ASSISTENTE', id, null, { funcao_id: funcaoId })
+  revalidatePath('/hub/assistentes')
+}
+
 export async function alterarStatusAssistente(id: string, ativo: boolean) {
   const { supabase, perfil } = await getProprietario()
 

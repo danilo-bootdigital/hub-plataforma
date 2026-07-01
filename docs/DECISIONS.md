@@ -215,3 +215,15 @@
 - **Riscos principais:** área de auth/permissões é a mais sensível (risco de lockout/exposição) — mitigado por faseamento, aplicação primeiro fora da RLS e smoke a cada fatia; migração de `vendedor` e atribuição de Função padrão sem perda de acesso; mudança de enum `user_role` (aditiva no Expand, remoção só no Contract); "Criar Hub" passa a exigir Proprietário (validar fluxos existentes de criação de Hub).
 - **Data:** 2026-06-30
 - **Status:** Aprovada / vigente
+
+## DEC-016 — Fronteira de governança: Indústria governa o Hub, Proprietário opera o Hub
+
+- **Descrição:** **emenda a DEC-015** fixando a separação entre **governança** (Indústria) e **operação** (Hub). A **Indústria não administra a equipe operacional do Hub**.
+  - **Administrador da Indústria** — governa: cria Hub; edita dados administrativos do Hub; define/troca Proprietário; ativa/desativa Hub; autoriza/remove Portfólios; visualiza Hubs. **Não**: cria Assistentes; gerencia equipe interna do Hub; distribui clientes/carteiras; opera a rotina comercial do Hub.
+  - **Proprietário do Hub** — opera o **seu** Hub com **todas** as permissões: cria/convida/edita/desativa Assistentes; cria Funções/Roles; atribui Função aos Assistentes; configura permissões da Função; gerencia clientes, carteiras, distribuição, WhatsApp, produtos, orçamentos, pré-pedidos e demais módulos. Todo Hub tem obrigatoriamente um Proprietário (invariante DEC-015).
+  - **Assistente** — criado/convidado **somente pelo Proprietário**; pertence a um Hub; recebe uma Função e herda as permissões; não administra o Hub salvo o que a Função permitir.
+  - **Ajustes:** (1) Criar Hub obriga Proprietário — selecionar existente **ou** criar novo; não salva sem. (2) Tela de Usuários da Indústria mostra **apenas** usuários da Indústria e Proprietários de Hub — **não** cria/edita Assistentes. (3) Tela de equipe do Hub (`/hub/assistentes`) é exclusiva do Proprietário — criar/convidar Assistentes, atribuir Função, ativar/desativar. (4) RBAC: Indústria acessa a área da Indústria; Proprietário e Assistente a área do Hub (Assistente conforme Função); a Indústria **não** opera a equipe interna do Hub. (5) Auditoria: registrar criação de Hub, definição/alteração de Proprietário, criação de Assistente, alteração de Função e desativação de usuário.
+- **Motivo:** evitar mistura entre gestão da Indústria e gestão operacional do Hub; a Indústria **governa** o Hub, o Proprietário **opera** o Hub.
+- **Impacto:** move a gestão de Assistentes/Funções para o Proprietário; a tela de Usuários da Indústria deixa de listar/criar Assistentes. Não altera enum/RLS; aplicação em telas + gates + auditoria.
+- **Data:** 2026-07-01
+- **Status:** Aprovada / vigente

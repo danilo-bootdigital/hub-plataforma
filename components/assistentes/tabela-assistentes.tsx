@@ -6,7 +6,7 @@ import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Pencil, Check, X } from 'lucide-react'
-import { editarAssistente, alterarStatusAssistente } from '@/app/(dashboard)/hub/assistentes/actions'
+import { editarAssistente, alterarStatusAssistente, atribuirFuncaoAssistente } from '@/app/(dashboard)/hub/assistentes/actions'
 
 export type AssistenteRow = {
   id: string
@@ -15,7 +15,9 @@ export type AssistenteRow = {
   telefone: string | null
   ativo: boolean
   criado_em: string
+  funcao_id: string | null
 }
+type FuncaoOpcao = { id: string; nome: string }
 
 function formatarData(iso: string) {
   try {
@@ -25,7 +27,7 @@ function formatarData(iso: string) {
   }
 }
 
-export function TabelaAssistentes({ assistentes }: { assistentes: AssistenteRow[] }) {
+export function TabelaAssistentes({ assistentes, funcoes }: { assistentes: AssistenteRow[]; funcoes: FuncaoOpcao[] }) {
   const [isPending, startTransition] = useTransition()
   const [editandoId, setEditandoId] = useState<string | null>(null)
   const [editNome, setEditNome] = useState('')
@@ -55,6 +57,18 @@ export function TabelaAssistentes({ assistentes }: { assistentes: AssistenteRow[
     })
   }
 
+  function trocarFuncao(id: string, funcaoId: string) {
+    startTransition(async () => {
+      try {
+        await atribuirFuncaoAssistente(id, funcaoId || null)
+        toast.success('Função atualizada.')
+        router.refresh()
+      } catch (err: unknown) {
+        toast.error(err instanceof Error ? err.message : 'Erro ao atribuir função.')
+      }
+    })
+  }
+
   function trocarStatus(id: string, ativo: boolean) {
     startTransition(async () => {
       try {
@@ -75,6 +89,7 @@ export function TabelaAssistentes({ assistentes }: { assistentes: AssistenteRow[
             <th className="px-4 py-3 font-medium text-slate-600">Nome</th>
             <th className="px-4 py-3 font-medium text-slate-600">E-mail</th>
             <th className="px-4 py-3 font-medium text-slate-600">Telefone</th>
+            <th className="px-4 py-3 font-medium text-slate-600">Função</th>
             <th className="px-4 py-3 font-medium text-slate-600">Status</th>
             <th className="px-4 py-3 font-medium text-slate-600">Criado em</th>
             <th className="px-4 py-3 w-20">Ações</th>
@@ -83,7 +98,7 @@ export function TabelaAssistentes({ assistentes }: { assistentes: AssistenteRow[
         <tbody>
           {assistentes.length === 0 && (
             <tr>
-              <td colSpan={6} className="px-4 py-8 text-center text-slate-400">
+              <td colSpan={7} className="px-4 py-8 text-center text-slate-400">
                 Nenhum Assistente cadastrado.
               </td>
             </tr>
@@ -106,6 +121,19 @@ export function TabelaAssistentes({ assistentes }: { assistentes: AssistenteRow[
                   ) : (
                     a.telefone || '—'
                   )}
+                </td>
+                <td className="px-4 py-3">
+                  <select
+                    value={a.funcao_id ?? ''}
+                    disabled={isPending || funcoes.length === 0}
+                    onChange={(e) => trocarFuncao(a.id, e.target.value)}
+                    className="h-8 rounded-md border border-input bg-transparent px-2 text-xs"
+                  >
+                    <option value="">Sem função</option>
+                    {funcoes.map((f) => (
+                      <option key={f.id} value={f.id}>{f.nome}</option>
+                    ))}
+                  </select>
                 </td>
                 <td className="px-4 py-3">
                   <select

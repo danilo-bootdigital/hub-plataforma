@@ -6,6 +6,16 @@
 
 ---
 
+## 2026-07-01 — Governança Indústria×Hub: separação de gestão (DEC-016)
+
+- **Objetivo:** a Indústria **governa** o Hub; o Proprietário **opera** o Hub. A Indústria não gerencia a equipe interna do Hub.
+- **Indústria (Usuários):** a lista mostra **apenas** usuários da Indústria e Proprietários — **Assistentes excluídos** (`neq cargo assistente`); criação restrita a **Administrador/Gestor da Indústria** (`modal-novo-usuario` + whitelist em `criarUsuario`). Proprietário é criado pelo fluxo de Hub; Assistente pelo Proprietário.
+- **Hub (equipe — Proprietário):** nova action `atribuirFuncaoAssistente` (gate Proprietário; Função e Assistente do próprio Hub; auditoria `ATRIBUICAO_FUNCAO_ASSISTENTE`); `tabela-assistentes` ganha **seletor de Função** por Assistente; a página carrega as Funções do Hub via `funcoes_listar`. Criar/editar/ativar-desativar Assistente já existiam (Proprietário).
+- **Gates:** `/hub/assistentes` continua exclusivo do Proprietário (actions gate `proprietario_hub`; página redireciona). A Indústria não opera equipe do Hub.
+- **Auditoria:** criação de Hub, definição/alteração de Proprietário, criação/edição/status de Assistente e atribuição de Função já registram em `audit_logs`.
+- **Adiado (Ajuste 1 — enhancement):** "selecionar Proprietário existente" na criação de Hub (hoje cria novo; o invariante Proprietário-obrigatório já é atendido). Próxima fatia.
+- **Observações:** DEC-016 (emenda DEC-015). Sem novo SQL; build OK. Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+
 ## 2026-07-01 — DEV: exclusão definitiva de usuário (limpeza de ambiente)
 
 - **Objetivo:** ação administrativa para excluir usuários em DEV/organização inicial. **Exceção** — em produção o padrão é **Desativar** (mantido).

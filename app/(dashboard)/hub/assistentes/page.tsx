@@ -36,11 +36,15 @@ export default async function AssistentesPage() {
   // Isolamento por Hub (nível de aplicação): apenas Assistentes do próprio Hub.
   const { data: assistentes } = await supabase
     .from('profiles')
-    .select('id, nome, email, telefone, ativo, criado_em')
+    .select('id, nome, email, telefone, ativo, criado_em, funcao_id')
     .eq('organization_id', perfil.organization_id)
     .eq('cargo', 'assistente')
     .eq('hub_id', perfil.hub_id)
     .order('nome')
+
+  // Funções do Hub (para atribuição) — via RPC (RLS bloqueia leitura direta).
+  const { data: funcoesRaw } = await supabase.rpc('funcoes_listar')
+  const funcoes = ((funcoesRaw ?? []) as { id: string; nome: string }[]).map((f) => ({ id: f.id, nome: f.nome }))
 
   return (
     <div className="space-y-6">
@@ -54,13 +58,13 @@ export default async function AssistentesPage() {
           <div>
             <h1 className="text-2xl font-bold text-slate-900">Assistentes</h1>
             <p className="mt-1 text-sm text-slate-500">
-              Gerencie os Assistentes de Venda do seu Hub.
+              Gerencie os Assistentes do seu Hub e as Funções que definem o acesso de cada um.
             </p>
           </div>
         </div>
         <ModalNovoAssistente />
       </div>
-      <TabelaAssistentes assistentes={(assistentes ?? []) as AssistenteRow[]} />
+      <TabelaAssistentes assistentes={(assistentes ?? []) as AssistenteRow[]} funcoes={funcoes} />
     </div>
   )
 }
