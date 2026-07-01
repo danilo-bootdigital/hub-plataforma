@@ -227,3 +227,18 @@
 - **Impacto:** move a gestão de Assistentes/Funções para o Proprietário; a tela de Usuários da Indústria deixa de listar/criar Assistentes. Não altera enum/RLS; aplicação em telas + gates + auditoria.
 - **Data:** 2026-07-01
 - **Status:** Aprovada / vigente
+
+## DEC-017 — Governança de Clientes e Carteiras: Indústria governa a base, Hub opera
+
+- **Descrição:** estende DEC-008 (Carteiras) e DEC-016 (governança). A **Indústria detém e organiza a base** (Clientes + Carteiras); o **Hub apenas opera** o que lhe foi autorizado. Distingue dois conceitos que **nunca** se confundem:
+  - **Carteira (Indústria)** — organização comercial **oficial** da base de clientes (ex.: "Região Campinas"). Pertence à Indústria.
+  - **Responsável operacional (Hub)** — quem, **dentro do Hub**, atende aquele cliente (ex.: Assistente Ana). Não altera a Carteira do cliente.
+  - **Indústria pode:** cadastrar cliente manual; importar clientes por planilha; criar/editar Carteira; definir/mover cliente entre Carteiras; vincular Carteira ao Hub; visualizar qual Hub opera cada Carteira.
+  - **Hub NÃO:** cria a carteira-mãe da Indústria; importa a base geral; move cliente entre Carteiras globais da Indústria.
+  - **Proprietário do Hub (operação):** vê clientes das Carteiras autorizadas; **distribui clientes entre Assistentes** (define responsável operacional); acompanha atendimento; opera WhatsApp/orçamentos/pré-pedidos.
+  - **Assistente:** acessa clientes/carteiras conforme a sua Função (DEC-015).
+- **Ajustes:** (1) módulo Indústria "Clientes e Carteiras" (listar/cadastrar/importar clientes, criar/editar Carteira, mover cliente de Carteira, vincular Carteira↔Hub, ver Hub operante); (2) no Hub, exibir só clientes/carteiras autorizados; distribuição de **responsável operacional** (novo — por cliente, distinto de `carteiras.responsavel_id`); (3) import + cadastro manual + troca de Carteira **apenas na Indústria** (página + server actions com gate admin/gestor); (4) middleware/RBAC bloqueia essas ações ao Hub; (5) auditoria de importação, criação, edição e troca de Carteira.
+- **Motivo:** separar a **governança da base** (Indústria) da **operação** (Hub); impedir que o Hub altere a base oficial; não confundir Carteira com responsável operacional.
+- **Impacto:** gating de import/cadastro/troca-de-Carteira para a Indústria; introdução do **responsável operacional por cliente** no Hub (distribuição); consolidação da visão Indústria "Clientes e Carteiras". Aplicação em telas + gates + auditoria (sem alterar a natureza de `carteiras`).
+- **Data:** 2026-07-01
+- **Status:** Aprovada / vigente
