@@ -11,7 +11,7 @@
 - **Objetivo:** impedir a criação de novos usuários com perfis legados, sem o risco de reescrever a lógica de negócio legada.
 - **Aplicação Web:** `modal-novo-usuario` oferece apenas **Administrador da Indústria / Gestor da Indústria / Assistente** (Proprietário é criado pelo fluxo de Hub); `criarUsuario` valida o cargo por whitelist. Sem novo SQL.
 - **Adiado (Contract completo — risco alto):** remoção física dos valores do enum `user_role` (`vendedor/atendimento/financeiro/suporte`) exige recriar o tipo + reescrever `profiles.cargo`; e há ~40 pontos de código com lógica de negócio ramificando nesses perfis (leads/pipeline/orçamentos/tarefas/whatsapp/relatórios). Como há **0 usuários** legados, são ramos/valores mortos e inofensivos; a remoção fica para um esforço dedicado e testado.
-- **Observações:** com isso, nenhum novo usuário legado é criado. Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+- **Observações:** com isso, nenhum novo usuário legado é criado. Commit `81eb211`; deploy em `https://hub-plataforma-dev.vercel.app`.
 
 ## 2026-06-30 — RBAC Migrate-B (resto): guard de rota (middleware) + flip vendedor→assistente (DEC-015)
 
