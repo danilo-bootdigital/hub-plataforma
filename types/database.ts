@@ -132,6 +132,9 @@ export type Contact = {
   cpf_cnpj: string | null
   empresa_id: string | null
   responsavel_id: string | null
+  // Carteira oficial da Indústria (obrigatória — DEC-017) e responsável operacional no Hub.
+  carteira_id: string | null
+  responsavel_operacional_id: string | null
   foto_perfil_url: string | null
   endereco: string | null
   endereco_numero: string | null

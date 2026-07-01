@@ -6,6 +6,15 @@
 
 ---
 
+## 2026-07-01 — Cliente com Carteira obrigatória; plataforma só Clientes (DEC-017)
+
+- **Decisão:** a plataforma trabalha apenas com **Clientes** (sem entidade "Contatos" separada — `contacts` é o Cliente). **Carteira passa a ser obrigatória** no Cliente, desde o cadastro/importação. Não existirão Clientes sem Carteira.
+- **Cadastro manual:** `criarContato` exige `carteira_id`; `modal-novo-contato` ganha seletor **Carteira \*** (obrigatório). Rótulos "Contato"→"Cliente".
+- **Importação (Cenário 1):** `importarContatos(contatos, carteiraId, modo)` exige **Carteira destino** (valida org+ativa); grava `carteira_id` em todos os importados (novos e, no modo atualizar, duplicados). `form-importacao` ganha "Carteira destino \*" (botões bloqueados sem seleção). **Cenário 2** (coluna Carteira na planilha) deixado preparado, não implementado.
+- **Edição:** `editarContato` exige `carteira_id`; o form de edição ganha o seletor; **auditoria `ALTERACAO_CARTEIRA_CLIENTE`** quando a Carteira muda.
+- **Menu/labels:** item de menu "Contatos" → **"Clientes"**; títulos das telas de Clientes/Importar atualizados. Tipo `Contact` ganha `carteira_id`/`responsavel_operacional_id`.
+- **Observações:** enforcement em nível de aplicação (colunas já existem; `carteira_id` continua nullable no banco — `NOT NULL` fica para o Contract, após backfill dos legados). Área do Hub inalterada (não cadastra/importa/troca Carteira). Build OK; sem novo SQL. Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+
 ## 2026-07-01 — Responsável operacional no Hub: distribuição de clientes (DEC-017, Fatia 3)
 
 - **Objetivo:** o Proprietário distribui clientes entre Assistentes (define responsável operacional) **sem** alterar a Carteira oficial da Indústria — separando os dois conceitos.

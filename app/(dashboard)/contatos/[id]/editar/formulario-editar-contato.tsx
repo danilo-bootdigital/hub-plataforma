@@ -17,9 +17,10 @@ type ContatoCompleto = Contact & {
 
 interface FormularioEditarContatoProps {
   contato: ContatoCompleto
+  carteiras: { id: string; nome: string }[]
 }
 
-export function FormularioEditarContato({ contato }: FormularioEditarContatoProps) {
+export function FormularioEditarContato({ contato, carteiras }: FormularioEditarContatoProps) {
   const router = useRouter()
   const [erro, setErro] = useState<string | null>(null)
   const [carregando, setCarregando] = useState(false)
@@ -49,6 +50,14 @@ export function FormularioEditarContato({ contato }: FormularioEditarContatoProp
           <div className="space-y-2">
             <Label htmlFor="nome">Nome completo *</Label>
             <Input id="nome" name="nome" defaultValue={contato.nome} placeholder="João Silva" required />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="carteira_id">Carteira *</Label>
+            <select id="carteira_id" name="carteira_id" required defaultValue={contato.carteira_id ?? ''}
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+              <option value="">Selecionar carteira…</option>
+              {carteiras.map((c) => <option key={c.id} value={c.id}>{c.nome}</option>)}
+            </select>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-2">

@@ -41,6 +41,14 @@ export default async function EditarContatoPage({ params }: { params: Promise<{ 
     redirect(`/contatos/${id}`)
   }
 
+  // Carteiras ativas (Carteira é obrigatória no Cliente — DEC-017).
+  const { data: carteiras } = await supabase
+    .from('carteiras')
+    .select('id, nome')
+    .eq('organization_id', perfil.organization_id)
+    .eq('ativo', true)
+    .order('nome')
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-2">
@@ -53,11 +61,11 @@ export default async function EditarContatoPage({ params }: { params: Promise<{ 
       </div>
 
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Editar Contato</h1>
-        <p className="text-sm text-slate-500">Altere os dados do contato abaixo.</p>
+        <h1 className="text-2xl font-bold tracking-tight">Editar Cliente</h1>
+        <p className="text-sm text-slate-500">Altere os dados do cliente abaixo.</p>
       </div>
 
-      <FormularioEditarContato contato={contato} />
+      <FormularioEditarContato contato={contato} carteiras={(carteiras ?? []) as { id: string; nome: string }[]} />
     </div>
   )
 }

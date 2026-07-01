@@ -55,18 +55,26 @@ export default async function ContatosPage({ searchParams }: { searchParams: Sea
     .order('nome')
     .range(from, to) as { data: ContatoComEmpresa[] | null; count: number | null }
 
+  // Carteiras ativas da Indústria (Carteira é obrigatória no Cliente — DEC-017).
+  const { data: carteiras } = await supabase
+    .from('carteiras')
+    .select('id, nome')
+    .eq('organization_id', perfil.organization_id)
+    .eq('ativo', true)
+    .order('nome')
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Contatos</h1>
+          <h1 className="text-2xl font-bold text-slate-900">Clientes</h1>
           <p className="mt-1 text-sm text-slate-500">
-            Contatos qualificados vinculados a negociações.
+            Base de clientes da Indústria, organizada por Carteira.
           </p>
         </div>
         <div className="flex items-center gap-3">
           <BotaoImportarExportar />
-          <ModalNovoContato />
+          <ModalNovoContato carteiras={(carteiras ?? []) as { id: string; nome: string }[]} />
         </div>
       </div>
 

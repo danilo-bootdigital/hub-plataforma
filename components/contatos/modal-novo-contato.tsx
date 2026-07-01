@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label'
 import { criarContato } from '@/app/(dashboard)/contatos/actions'
 import { Plus } from 'lucide-react'
 
-export function ModalNovoContato() {
+export function ModalNovoContato({ carteiras }: { carteiras: { id: string; nome: string }[] }) {
   const [aberto, setAberto] = useState(false)
   const [erro, setErro] = useState<string | null>(null)
   const [carregando, setCarregando] = useState(false)
@@ -21,7 +21,7 @@ export function ModalNovoContato() {
       setAberto(false)
     } catch (e: unknown) {
       if (e instanceof Error && (e as { digest?: string }).digest?.startsWith('NEXT_REDIRECT')) throw e
-      setErro(e instanceof Error ? e.message : 'Erro ao criar contato.')
+      setErro(e instanceof Error ? e.message : 'Erro ao criar cliente.')
     } finally {
       setCarregando(false)
     }
@@ -29,15 +29,23 @@ export function ModalNovoContato() {
 
   return (
     <Dialog open={aberto} onOpenChange={setAberto}>
-      <DialogTrigger render={<Button><Plus className="mr-2 h-4 w-4" />Novo Contato</Button>} />
+      <DialogTrigger render={<Button><Plus className="mr-2 h-4 w-4" />Novo Cliente</Button>} />
       <DialogContent className="sm:max-w-lg max-h-[85vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Cadastrar Novo Contato</DialogTitle>
+          <DialogTitle>Cadastrar Novo Cliente</DialogTitle>
         </DialogHeader>
         <form action={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="nome">Nome completo *</Label>
             <Input id="nome" name="nome" placeholder="João Silva" required />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="carteira_id">Carteira *</Label>
+            <select id="carteira_id" name="carteira_id" required
+              className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm">
+              <option value="">Selecionar carteira…</option>
+              {carteiras.map((c) => <option key={c.id} value={c.id}>{c.nome}</option>)}
+            </select>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-2">
@@ -115,7 +123,7 @@ export function ModalNovoContato() {
               Cancelar
             </Button>
             <Button type="submit" disabled={carregando}>
-              {carregando ? 'Criando...' : 'Criar Contato'}
+              {carregando ? 'Criando...' : 'Criar Cliente'}
             </Button>
           </div>
         </form>

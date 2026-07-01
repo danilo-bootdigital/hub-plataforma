@@ -10,8 +10,15 @@ export default async function ImportarContatosPage() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
-  const { data: perfil } = await supabase.from('profiles').select('cargo').eq('id', user.id).single()
+  const { data: perfil } = await supabase.from('profiles').select('cargo, organization_id').eq('id', user.id).single()
   if (perfil?.cargo !== 'admin' && perfil?.cargo !== 'gestor') redirect('/painel')
+
+  const { data: carteiras } = await supabase
+    .from('carteiras')
+    .select('id, nome')
+    .eq('organization_id', perfil.organization_id)
+    .eq('ativo', true)
+    .order('nome')
 
   return (
     <div className="space-y-6">
@@ -22,13 +29,13 @@ export default async function ImportarContatosPage() {
           </Button>
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Importar Contatos</h1>
+          <h1 className="text-2xl font-bold text-slate-900">Importar Clientes</h1>
           <p className="mt-1 text-sm text-slate-500">
-            Faça upload de uma planilha XLSX ou CSV para importar contatos em lote.
+            Selecione a Carteira destino e faça upload de uma planilha XLSX ou CSV.
           </p>
         </div>
       </div>
-      <FormImportacao />
+      <FormImportacao carteiras={(carteiras ?? []) as { id: string; nome: string }[]} />
     </div>
   )
 }

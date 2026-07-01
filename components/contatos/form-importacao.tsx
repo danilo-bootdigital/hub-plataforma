@@ -92,11 +92,12 @@ function mapearContatos(headers: string[], rows: string[][]): ContatoImportado[]
 
 type ModoImportacao = 'pular' | 'atualizar'
 
-export function FormImportacao() {
+export function FormImportacao({ carteiras }: { carteiras: { id: string; nome: string }[] }) {
   const [arquivo, setArquivo] = useState<File | null>(null)
   const [contatos, setContatos] = useState<ContatoImportado[]>([])
   const [totalLinhas, setTotalLinhas] = useState(0)
   const [modoDuplicados, setModoDuplicados] = useState<ModoImportacao | null>(null)
+  const [carteiraId, setCarteiraId] = useState('')
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
 
@@ -115,11 +116,12 @@ export function FormImportacao() {
 
   function handleConfirmar(modo: ModoImportacao) {
     if (contatos.length === 0) return
+    if (!carteiraId) { toast.error('Selecione a Carteira destino da importação.'); return }
     setModoDuplicados(modo)
 
     startTransition(async () => {
       try {
-        const resultado = await importarContatos(contatos, modo)
+        const resultado = await importarContatos(contatos, carteiraId, modo)
         const msg = modo === 'atualizar'
           ? `${resultado.importados} novos, ${resultado.atualizados} atualizados.`
           : `${resultado.importados} importados, ${resultado.pulados} duplicados ignorados.`
@@ -133,6 +135,24 @@ export function FormImportacao() {
 
   return (
     <div className="space-y-6">
+      {/* DEC-017: Carteira destino obrigatória (Cenário 1). Futuro: mapear coluna Carteira da planilha (Cenário 2). */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">Carteira destino *</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <select
+            value={carteiraId}
+            onChange={(e) => setCarteiraId(e.target.value)}
+            className="flex h-9 w-full max-w-sm rounded-md border border-input bg-transparent px-3 text-sm"
+          >
+            <option value="">Selecionar carteira…</option>
+            {carteiras.map((c) => <option key={c.id} value={c.id}>{c.nome}</option>)}
+          </select>
+          <p className="mt-2 text-xs text-slate-500">Todos os clientes desta planilha serão importados para esta Carteira.</p>
+        </CardContent>
+      </Card>
+
       <Card>
         <CardHeader>
           <CardTitle className="text-base">Upload do arquivo</CardTitle>
@@ -209,7 +229,7 @@ export function FormImportacao() {
               <div className="flex flex-wrap gap-3">
                 <Button
                   onClick={() => handleConfirmar('pular')}
-                  disabled={isPending}
+                  disabled={isPending || !carteiraId}
                   variant="outline"
                   className="gap-1.5"
                 >
@@ -218,7 +238,7 @@ export function FormImportacao() {
                 </Button>
                 <Button
                   onClick={() => handleConfirmar('atualizar')}
-                  disabled={isPending}
+                  disabled={isPending || !carteiraId}
                   className="gap-1.5"
                 >
                   <Check className="h-4 w-4" />

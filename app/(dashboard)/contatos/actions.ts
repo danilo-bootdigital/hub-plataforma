@@ -52,7 +52,10 @@ export async function criarContato(formData: FormData) {
   }
 
   const nome = formData.get('nome') as string
-  if (!nome?.trim()) throw new Error('O nome do contato é obrigatório.')
+  if (!nome?.trim()) throw new Error('O nome do cliente é obrigatório.')
+  // DEC-017: Carteira é obrigatória — todo Cliente pertence a uma Carteira.
+  const carteira_id = (formData.get('carteira_id') as string)?.trim() || null
+  if (!carteira_id) throw new Error('A Carteira é obrigatória.')
   const email = formData.get('email') as string | null
   const telefone = formData.get('telefone') as string | null
   const cargo = formData.get('cargo') as string | null
@@ -79,6 +82,7 @@ export async function criarContato(formData: FormData) {
       cargo: cargo || null,
       cpf_cnpj: cpf_cnpj || null,
       empresa_id,
+      carteira_id,
       responsavel_id: perfil.id,
       endereco: endereco || null,
       endereco_numero: endereco_numero || null,
@@ -118,12 +122,12 @@ export async function editarContato(contatoId: string, formData: FormData) {
   // Buscar contato para verificar permissão
   const { data: contato } = await supabase
     .from('contacts')
-    .select('id, nome, responsavel_id')
+    .select('id, nome, responsavel_id, carteira_id')
     .eq('id', contatoId)
     .eq('organization_id', perfil.organization_id)
     .single()
 
-  if (!contato) throw new Error('Contato não encontrado.')
+  if (!contato) throw new Error('Cliente não encontrado.')
 
   // RBAC: vendedor/atendimento só pode editar seus próprios contatos
   if (perfil.cargo !== 'admin' && perfil.cargo !== 'gestor') {
@@ -133,7 +137,10 @@ export async function editarContato(contatoId: string, formData: FormData) {
   }
 
   const nome = formData.get('nome') as string
-  if (!nome?.trim()) throw new Error('O nome do contato é obrigatório.')
+  if (!nome?.trim()) throw new Error('O nome do cliente é obrigatório.')
+  // DEC-017: Carteira obrigatória; alteração de Carteira é permitida na edição (Indústria).
+  const carteira_id = (formData.get('carteira_id') as string)?.trim() || null
+  if (!carteira_id) throw new Error('A Carteira é obrigatória.')
   const email = formData.get('email') as string | null
   const telefone = formData.get('telefone') as string | null
   const cargo = formData.get('cargo') as string | null
@@ -165,6 +172,7 @@ export async function editarContato(contatoId: string, formData: FormData) {
       cargo: cargo || null,
       cpf_cnpj: cpf_cnpj || null,
       empresa_id,
+      carteira_id,
       observacoes: observacoes || null,
       tipo_pessoa: tipo_pessoa || null,
       categoria_cliente: categoria_cliente || null,
@@ -184,6 +192,15 @@ export async function editarContato(contatoId: string, formData: FormData) {
     .eq('id', contatoId).eq('organization_id', perfil.organization_id)
 
   if (error) throw new Error(`Erro ao editar contato: ${error.message}`)
+
+  // Auditoria de troca de Carteira (DEC-017).
+  if (contato.carteira_id !== carteira_id) {
+    await supabase.from('audit_logs').insert({
+      organization_id: perfil.organization_id, usuario_id: perfil.id,
+      acao: 'ALTERACAO_CARTEIRA_CLIENTE', tabela_afetada: 'contacts', registro_id: contatoId,
+      dados_anteriores: { carteira_id: contato.carteira_id }, dados_novos: { carteira_id },
+    })
+  }
 
   // Registrar atividade na timeline
   await supabase.from('activities').insert({
@@ -384,16 +401,22 @@ type ContatoImportado = {
   cpf_cnpj: string | null
 }
 
-export async function importarContatos(contatos: ContatoImportado[], modo: 'pular' | 'atualizar' = 'pular') {
+export async function importarContatos(contatos: ContatoImportado[], carteiraId: string, modo: 'pular' | 'atualizar' = 'pular') {
   const { supabase, perfil } = await getUsuarioEOrg()
   // DEC-017: importação de clientes é exclusiva da Indústria (admin/gestor).
   if (perfil.cargo !== 'admin' && perfil.cargo !== 'gestor') {
     throw new Error('Apenas a Indústria (Administrador/Gestor) importa clientes.')
   }
+  // DEC-017: Carteira destino obrigatória (Cenário 1). Cenário 2 (coluna na planilha) = evolução futura.
+  if (!carteiraId) throw new Error('Selecione a Carteira destino da importação.')
+  const { data: cartDestino } = await supabase
+    .from('carteiras').select('id').eq('id', carteiraId)
+    .eq('organization_id', perfil.organization_id).eq('ativo', true).single()
+  if (!cartDestino) throw new Error('Carteira destino inválida.')
   await supabase.from('audit_logs').insert({
     organization_id: perfil.organization_id, usuario_id: perfil.id,
-    acao: 'IMPORTACAO_CLIENTES', tabela_afetada: 'contacts', registro_id: perfil.id,
-    dados_anteriores: null, dados_novos: { total: contatos?.length ?? 0, modo },
+    acao: 'IMPORTACAO_CLIENTES', tabela_afetada: 'contacts', registro_id: carteiraId,
+    dados_anteriores: null, dados_novos: { total: contatos?.length ?? 0, modo, carteira_id: carteiraId },
   })
 
   if (!contatos || contatos.length === 0) {
@@ -446,6 +469,7 @@ export async function importarContatos(contatos: ContatoImportado[], modo: 'pula
   for (let i = 0; i < novos.length; i += BATCH_SIZE) {
     const lote = novos.slice(i, i + BATCH_SIZE).map((c) => ({
       organization_id: perfil.organization_id,
+      carteira_id: carteiraId,
       nome: c.nome.trim(),
       telefone: c.telefone?.trim() || null,
       email: c.email?.trim() || null,
@@ -469,6 +493,7 @@ export async function importarContatos(contatos: ContatoImportado[], modo: 'pula
           email: dup.dados.email?.trim() || null,
           endereco: dup.dados.endereco || null,
           cpf_cnpj: dup.dados.cpf_cnpj || null,
+          carteira_id: carteiraId,
           atualizado_em: new Date().toISOString(),
         })
         .eq('id', dup.id)
