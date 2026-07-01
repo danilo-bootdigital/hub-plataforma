@@ -12,7 +12,7 @@
 - **Banco (SQL Editor, HUB DEV):** colunas `products.metadata` e `product_portfolios.metadata` (jsonb, flexível por Portfólio); RPCs `SECURITY DEFINER` `hub_produtos_listar` (busca/filtros/ordenação/paginação server-side), `hub_produto_detalhe`, `hub_produtos_filtros` + helper `_hub_ctx`. Autorização por Hub via `hub_portfolios` ativos (Indústria vê tudo da org). Artefatos `hubdev/bootstrap/expand_hub_produtos.sql` (+ rollback).
 - **Aplicação Web:** rota `app/(dashboard)/hub/produtos` (gate proprietario_hub/assistente; admin/gestor/financeiro pré-visualizam) + `components/hub/produtos-consulta.tsx` (DataTable ordenável, paginação, contagem, busca instantânea, filtros Categoria/Portfólio/Status, drawer 500px dinâmico com Esc/click-fora, responsivo → lista no mobile); item de menu "Produtos" para Hub/Assistente. Sem imagens/cards; drawer exibe só campos preenchidos + `metadata`.
 - **Estruturas preservadas:** Fornecedor intocado (DEC-014); sem CRUD de produtos no Hub.
-- **Observações:** smoke funcional **16/16** no HUB DEV (listar/filtros/paginação/ordenação/detalhe+metadata/filtros), dados `ZZ_SMOKE_E7_*` com teardown e ambiente limpo. Orçamento/pré-pedido fora desta etapa. Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+- **Observações:** smoke funcional **16/16** no HUB DEV (listar/filtros/paginação/ordenação/detalhe+metadata/filtros), dados `ZZ_SMOKE_E7_*` com teardown e ambiente limpo. Orçamento/pré-pedido fora desta etapa. Commit `d24c485`; deploy em `https://hub-plataforma-dev.vercel.app`.
 
 ## 2026-06-30 — Fix: coluna/filtro de Portfólio na lista de Produtos lê o vínculo N:N (DEC-013/014)
 

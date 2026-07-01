@@ -151,7 +151,7 @@
 ## Checkpoint 014 — Página HUB "Produtos" (consulta operacional — Sprint Expand E7)
 
 - **Data:** 2026-06-30
-- **Git Commit:** `__HASH__`
+- **Git Commit:** `d24c485`
 - **Git Branch:** main
 - **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV / Homologação)
 - **Ambiente:** HUB DEV (banco — RPCs + metadata via SQL Editor) + produção Vercel (`hub-plataforma-dev`)
