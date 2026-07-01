@@ -46,7 +46,7 @@ export default async function CarteirasPage() {
           <div>
             <h1 className="text-2xl font-bold text-slate-900">Carteiras</h1>
             <p className="mt-1 text-sm text-slate-500">
-              A Carteira pertence à Indústria. O vínculo com Hub é tratado em outra etapa.
+              A Carteira pertence à Indústria. Aqui você cria, edita e autoriza qual Hub opera cada Carteira.
             </p>
           </div>
         </div>
