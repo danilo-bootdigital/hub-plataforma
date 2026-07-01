@@ -820,7 +820,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "empresa_page",
-      "community": 74,
+      "community": 5,
       "norm_label": "page.tsx"
     },
     {
@@ -830,7 +830,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "empresa_page_empresapage",
-      "community": 74,
+      "community": 5,
       "norm_label": "empresapage()"
     },
     {
@@ -1907,7 +1907,7 @@
       "label": "FormularioEditarContato()",
       "file_type": "code",
       "source_file": "app/(dashboard)/contatos/[id]/editar/formulario-editar-contato.tsx",
-      "source_location": "L22",
+      "source_location": "L23",
       "_origin": "ast",
       "id": "editar_formulario_editar_contato_formularioeditarcontato",
       "community": 14,
@@ -2037,7 +2037,7 @@
       "label": "editarContato()",
       "file_type": "code",
       "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L115",
+      "source_location": "L119",
       "_origin": "ast",
       "id": "contatos_actions_editarcontato",
       "community": 14,
@@ -2047,7 +2047,7 @@
       "label": "adicionarObservacaoContato()",
       "file_type": "code",
       "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L201",
+      "source_location": "L218",
       "_origin": "ast",
       "id": "contatos_actions_adicionarobservacaocontato",
       "community": 14,
@@ -2057,7 +2057,7 @@
       "label": "excluirContato()",
       "file_type": "code",
       "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L225",
+      "source_location": "L242",
       "_origin": "ast",
       "id": "contatos_actions_excluircontato",
       "community": 14,
@@ -2067,7 +2067,7 @@
       "label": "excluirContatosEmLote()",
       "file_type": "code",
       "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L255",
+      "source_location": "L272",
       "_origin": "ast",
       "id": "contatos_actions_excluircontatosemlote",
       "community": 14,
@@ -2077,7 +2077,7 @@
       "label": "converterContatoEmLead()",
       "file_type": "code",
       "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L294",
+      "source_location": "L311",
       "_origin": "ast",
       "id": "contatos_actions_convertercontatoemlead",
       "community": 14,
@@ -2087,7 +2087,7 @@
       "label": "ContatoImportado",
       "file_type": "code",
       "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L379",
+      "source_location": "L396",
       "_origin": "ast",
       "id": "contatos_actions_contatoimportado",
       "community": 14,
@@ -2097,7 +2097,7 @@
       "label": "importarContatos()",
       "file_type": "code",
       "source_file": "app/(dashboard)/contatos/actions.ts",
-      "source_location": "L387",
+      "source_location": "L404",
       "_origin": "ast",
       "id": "contatos_actions_importarcontatos",
       "community": 14,
@@ -3280,7 +3280,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "painel_page",
-      "community": 50,
+      "community": 112,
       "norm_label": "page.tsx"
     },
     {
@@ -3290,7 +3290,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "painel_page_iniciomes",
-      "community": 50,
+      "community": 112,
       "norm_label": "iniciomes()"
     },
     {
@@ -3300,7 +3300,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "painel_page_seismesesatras",
-      "community": 50,
+      "community": 112,
       "norm_label": "seismesesatras()"
     },
     {
@@ -3310,7 +3310,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "painel_page_meses_pt",
-      "community": 50,
+      "community": 112,
       "norm_label": "meses_pt"
     },
     {
@@ -3320,7 +3320,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "painel_page_painelpage",
-      "community": 50,
+      "community": 112,
       "norm_label": "painelpage()"
     },
     {
@@ -3360,7 +3360,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_pedidos_id_page_tsx_id_page",
-      "community": 25,
+      "community": 50,
       "norm_label": "page.tsx"
     },
     {
@@ -3370,7 +3370,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "id_page_pedidodetalhepage",
-      "community": 25,
+      "community": 50,
       "norm_label": "pedidodetalhepage()"
     },
     {
@@ -3730,7 +3730,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_relatorios_exportar_route_ts_exportar_route",
-      "community": 43,
+      "community": 74,
       "norm_label": "route.ts"
     },
     {
@@ -3740,7 +3740,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "exportar_route_calcularperiodo",
-      "community": 43,
+      "community": 74,
       "norm_label": "calcularperiodo()"
     },
     {
@@ -3750,7 +3750,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "app_dashboard_relatorios_exportar_route_ts_exportar_route_escapecsv",
-      "community": 43,
+      "community": 74,
       "norm_label": "escapecsv()"
     },
     {
@@ -3760,7 +3760,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "app_dashboard_relatorios_exportar_route_ts_exportar_route_get",
-      "community": 43,
+      "community": 74,
       "norm_label": "get()"
     },
     {
@@ -4560,7 +4560,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "preview_pdf_page",
-      "community": 5,
+      "community": 74,
       "norm_label": "page.tsx"
     },
     {
@@ -4570,7 +4570,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "preview_pdf_page_previewpdfpage",
-      "community": 5,
+      "community": 74,
       "norm_label": "previewpdfpage()"
     },
     {
@@ -6348,7 +6348,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "empresa_form_empresa_formempresa",
-      "community": 74,
+      "community": 5,
       "norm_label": "formempresa()"
     },
     {
@@ -8818,7 +8818,7 @@
       "source_location": "L568",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_template_orcamentopdftemplate",
-      "community": 5,
+      "community": 74,
       "norm_label": "orcamentopdftemplate()"
     },
     {
@@ -8898,7 +8898,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "painel_card_kpi",
-      "community": 50,
+      "community": 112,
       "norm_label": "card-kpi.tsx"
     },
     {
@@ -8908,7 +8908,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "painel_card_kpi_props",
-      "community": 50,
+      "community": 112,
       "norm_label": "props"
     },
     {
@@ -8918,7 +8918,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "painel_card_kpi_cardkpi",
-      "community": 50,
+      "community": 112,
       "norm_label": "cardkpi()"
     },
     {
@@ -8928,7 +8928,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "painel_grafico_deals_por_etapa",
-      "community": 50,
+      "community": 112,
       "norm_label": "grafico-deals-por-etapa.tsx"
     },
     {
@@ -8938,7 +8938,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "painel_grafico_deals_por_etapa_dadoetapa",
-      "community": 50,
+      "community": 112,
       "norm_label": "dadoetapa"
     },
     {
@@ -8948,7 +8948,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "painel_grafico_deals_por_etapa_props",
-      "community": 50,
+      "community": 112,
       "norm_label": "props"
     },
     {
@@ -8958,7 +8958,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "painel_grafico_deals_por_etapa_graficodealsporetapa",
-      "community": 50,
+      "community": 112,
       "norm_label": "graficodealsporetapa()"
     },
     {
@@ -9198,7 +9198,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "pedidos_botoes_pedido_botoespedido",
-      "community": 25,
+      "community": 50,
       "norm_label": "botoespedido()"
     },
     {
@@ -9278,7 +9278,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pedidos_timeline_status",
-      "community": 25,
+      "community": 50,
       "norm_label": "timeline-status.tsx"
     },
     {
@@ -9288,7 +9288,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "pedidos_timeline_status_etapas",
-      "community": 25,
+      "community": 50,
       "norm_label": "etapas"
     },
     {
@@ -9298,7 +9298,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "pedidos_timeline_status_timelinestatus",
-      "community": 25,
+      "community": 50,
       "norm_label": "timelinestatus()"
     },
     {
@@ -10948,7 +10948,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "ui_card_card",
-      "community": 50,
+      "community": 112,
       "norm_label": "card()"
     },
     {
@@ -16729,7 +16729,7 @@
       "label": "Pipeline",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L155",
+      "source_location": "L158",
       "_origin": "ast",
       "id": "types_database_pipeline",
       "community": 27,
@@ -16739,7 +16739,7 @@
       "label": "PipelineStage",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L166",
+      "source_location": "L169",
       "_origin": "ast",
       "id": "types_database_pipelinestage",
       "community": 27,
@@ -16749,7 +16749,7 @@
       "label": "Deal",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L179",
+      "source_location": "L182",
       "_origin": "ast",
       "id": "types_database_deal",
       "community": 27,
@@ -16759,7 +16759,7 @@
       "label": "Task",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L198",
+      "source_location": "L201",
       "_origin": "ast",
       "id": "types_database_task",
       "community": 27,
@@ -16769,7 +16769,7 @@
       "label": "Activity",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L216",
+      "source_location": "L219",
       "_origin": "ast",
       "id": "types_database_activity",
       "community": 44,
@@ -16779,7 +16779,7 @@
       "label": "WhatsappInstance",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L228",
+      "source_location": "L231",
       "_origin": "ast",
       "id": "types_database_whatsappinstance",
       "community": 6,
@@ -16789,7 +16789,7 @@
       "label": "ConversaStatus",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L241",
+      "source_location": "L244",
       "_origin": "ast",
       "id": "types_database_conversastatus",
       "community": 6,
@@ -16799,7 +16799,7 @@
       "label": "Conversation",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L243",
+      "source_location": "L246",
       "_origin": "ast",
       "id": "types_database_conversation",
       "community": 6,
@@ -16809,7 +16809,7 @@
       "label": "Message",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L265",
+      "source_location": "L268",
       "_origin": "ast",
       "id": "types_database_message",
       "community": 27,
@@ -16819,7 +16819,7 @@
       "label": "MessageTemplate",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L283",
+      "source_location": "L286",
       "_origin": "ast",
       "id": "types_database_messagetemplate",
       "community": 46,
@@ -16829,7 +16829,7 @@
       "label": "ConversationExport",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L294",
+      "source_location": "L297",
       "_origin": "ast",
       "id": "types_database_conversationexport",
       "community": 27,
@@ -16839,7 +16839,7 @@
       "label": "Supplier",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L307",
+      "source_location": "L310",
       "_origin": "ast",
       "id": "types_database_supplier",
       "community": 12,
@@ -16849,7 +16849,7 @@
       "label": "SupplierCategory",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L318",
+      "source_location": "L321",
       "_origin": "ast",
       "id": "types_database_suppliercategory",
       "community": 12,
@@ -16859,7 +16859,7 @@
       "label": "Product",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L326",
+      "source_location": "L329",
       "_origin": "ast",
       "id": "types_database_product",
       "community": 28,
@@ -16869,7 +16869,7 @@
       "label": "Portfolio",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L356",
+      "source_location": "L359",
       "_origin": "ast",
       "id": "types_database_portfolio",
       "community": 19,
@@ -16879,7 +16879,7 @@
       "label": "Categoria",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L366",
+      "source_location": "L369",
       "_origin": "ast",
       "id": "types_database_categoria",
       "community": 27,
@@ -16889,7 +16889,7 @@
       "label": "Subcategoria",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L375",
+      "source_location": "L378",
       "_origin": "ast",
       "id": "types_database_subcategoria",
       "community": 27,
@@ -16899,7 +16899,7 @@
       "label": "HubPortfolio",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L385",
+      "source_location": "L388",
       "_origin": "ast",
       "id": "types_database_hubportfolio",
       "community": 27,
@@ -16909,7 +16909,7 @@
       "label": "ProductPortfolio",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L398",
+      "source_location": "L401",
       "_origin": "ast",
       "id": "types_database_productportfolio",
       "community": 27,
@@ -16919,7 +16919,7 @@
       "label": "Quote",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L412",
+      "source_location": "L415",
       "_origin": "ast",
       "id": "types_database_quote",
       "community": 15,
@@ -16929,7 +16929,7 @@
       "label": "QuoteItem",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L452",
+      "source_location": "L455",
       "_origin": "ast",
       "id": "types_database_quoteitem",
       "community": 38,
@@ -16939,7 +16939,7 @@
       "label": "Order",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L464",
+      "source_location": "L467",
       "_origin": "ast",
       "id": "types_database_order",
       "community": 27,
@@ -16949,7 +16949,7 @@
       "label": "OrderItem",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L488",
+      "source_location": "L491",
       "_origin": "ast",
       "id": "types_database_orderitem",
       "community": 27,
@@ -16959,7 +16959,7 @@
       "label": "LeadDistributionConfig",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L499",
+      "source_location": "L502",
       "_origin": "ast",
       "id": "types_database_leaddistributionconfig",
       "community": 27,
@@ -16969,7 +16969,7 @@
       "label": "SystemConfig",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L510",
+      "source_location": "L513",
       "_origin": "ast",
       "id": "types_database_systemconfig",
       "community": 27,
@@ -16979,7 +16979,7 @@
       "label": "AuditLog",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L521",
+      "source_location": "L524",
       "_origin": "ast",
       "id": "types_database_auditlog",
       "community": 27,
@@ -16989,7 +16989,7 @@
       "label": "DealStageLog",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L534",
+      "source_location": "L537",
       "_origin": "ast",
       "id": "types_database_dealstagelog",
       "community": 27,
@@ -16999,7 +16999,7 @@
       "label": "QuoteToken",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L544",
+      "source_location": "L547",
       "_origin": "ast",
       "id": "types_database_quotetoken",
       "community": 27,
@@ -17009,7 +17009,7 @@
       "label": "KPIWhatsApp",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L565",
+      "source_location": "L568",
       "_origin": "ast",
       "id": "types_database_kpiwhatsapp",
       "community": 65,
@@ -17019,7 +17019,7 @@
       "label": "TotaisCliente",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L577",
+      "source_location": "L580",
       "_origin": "ast",
       "id": "types_database_totaiscliente",
       "community": 65,
@@ -17029,7 +17029,7 @@
       "label": "FiltrosConversa",
       "file_type": "code",
       "source_file": "types/database.ts",
-      "source_location": "L590",
+      "source_location": "L593",
       "_origin": "ast",
       "id": "types_database_filtrosconversa",
       "community": 27,
@@ -26722,9 +26722,9 @@
       "source_file": "app/(dashboard)/hub/clientes/actions.ts",
       "source_location": "L22",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "clientes_actions",
-      "target": "clientes_actions_definirresponsaveloperacional",
-      "confidence_score": 1.0
+      "target": "clientes_actions_definirresponsaveloperacional"
     },
     {
       "relation": "contains",
@@ -26732,9 +26732,9 @@
       "source_file": "app/(dashboard)/hub/clientes/actions.ts",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "clientes_actions",
-      "target": "clientes_actions_getproprietario",
-      "confidence_score": 1.0
+      "target": "clientes_actions_getproprietario"
     },
     {
       "relation": "imports_from",
@@ -26743,9 +26743,9 @@
       "source_file": "app/(dashboard)/hub/clientes/actions.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "clientes_actions",
-      "target": "supabase_admin",
-      "confidence_score": 1.0
+      "target": "supabase_admin"
     },
     {
       "relation": "imports",
@@ -26754,9 +26754,9 @@
       "source_file": "app/(dashboard)/hub/clientes/actions.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "clientes_actions",
-      "target": "supabase_admin_createadminclient",
-      "confidence_score": 1.0
+      "target": "supabase_admin_createadminclient"
     },
     {
       "relation": "imports_from",
@@ -26765,9 +26765,9 @@
       "source_file": "app/(dashboard)/hub/clientes/actions.ts",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "clientes_actions",
-      "target": "supabase_server",
-      "confidence_score": 1.0
+      "target": "supabase_server"
     },
     {
       "relation": "imports",
@@ -26776,9 +26776,9 @@
       "source_file": "app/(dashboard)/hub/clientes/actions.ts",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "clientes_actions",
-      "target": "supabase_server_createclient",
-      "confidence_score": 1.0
+      "target": "supabase_server_createclient"
     },
     {
       "relation": "imports_from",
@@ -26787,9 +26787,9 @@
       "source_file": "components/hub-clientes/distribuir-clientes.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hub_clientes_distribuir_clientes",
-      "target": "clientes_actions",
-      "confidence_score": 1.0
+      "target": "clientes_actions"
     },
     {
       "relation": "calls",
@@ -26798,9 +26798,9 @@
       "source_file": "app/(dashboard)/hub/clientes/actions.ts",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "clientes_actions_definirresponsaveloperacional",
-      "target": "clientes_actions_getproprietario",
-      "confidence_score": 1.0
+      "target": "clientes_actions_getproprietario"
     },
     {
       "relation": "calls",
@@ -26809,9 +26809,9 @@
       "source_file": "app/(dashboard)/hub/clientes/actions.ts",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "clientes_actions_getproprietario",
-      "target": "supabase_server_createclient",
-      "confidence_score": 1.0
+      "target": "supabase_server_createclient"
     },
     {
       "relation": "calls",
@@ -26831,9 +26831,9 @@
       "source_file": "components/hub-clientes/distribuir-clientes.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hub_clientes_distribuir_clientes",
-      "target": "clientes_actions_definirresponsaveloperacional",
-      "confidence_score": 1.0
+      "target": "clientes_actions_definirresponsaveloperacional"
     },
     {
       "relation": "contains",
@@ -26852,9 +26852,9 @@
       "source_file": "app/(dashboard)/hub/clientes/page.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_clientes_page_tsx_clientes_page",
-      "target": "hub_clientes_distribuir_clientes",
-      "confidence_score": 1.0
+      "target": "hub_clientes_distribuir_clientes"
     },
     {
       "relation": "imports",
@@ -26863,9 +26863,9 @@
       "source_file": "app/(dashboard)/hub/clientes/page.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_clientes_page_tsx_clientes_page",
-      "target": "hub_clientes_distribuir_clientes_clientehub",
-      "confidence_score": 1.0
+      "target": "hub_clientes_distribuir_clientes_clientehub"
     },
     {
       "relation": "imports",
@@ -26874,9 +26874,9 @@
       "source_file": "app/(dashboard)/hub/clientes/page.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_clientes_page_tsx_clientes_page",
-      "target": "hub_clientes_distribuir_clientes_distribuirclientes",
-      "confidence_score": 1.0
+      "target": "hub_clientes_distribuir_clientes_distribuirclientes"
     },
     {
       "relation": "imports_from",
@@ -41017,9 +41017,9 @@
       "source_file": "components/hub-clientes/distribuir-clientes.tsx",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hub_clientes_distribuir_clientes",
-      "target": "hub_clientes_distribuir_clientes_assistente",
-      "confidence_score": 1.0
+      "target": "hub_clientes_distribuir_clientes_assistente"
     },
     {
       "relation": "contains",
@@ -41027,9 +41027,9 @@
       "source_file": "components/hub-clientes/distribuir-clientes.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hub_clientes_distribuir_clientes",
-      "target": "hub_clientes_distribuir_clientes_clientehub",
-      "confidence_score": 1.0
+      "target": "hub_clientes_distribuir_clientes_clientehub"
     },
     {
       "relation": "contains",
@@ -41037,9 +41037,9 @@
       "source_file": "components/hub-clientes/distribuir-clientes.tsx",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hub_clientes_distribuir_clientes",
-      "target": "hub_clientes_distribuir_clientes_distribuirclientes",
-      "confidence_score": 1.0
+      "target": "hub_clientes_distribuir_clientes_distribuirclientes"
     },
     {
       "relation": "imports_from",
@@ -41048,9 +41048,9 @@
       "source_file": "components/hub-clientes/distribuir-clientes.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hub_clientes_distribuir_clientes",
-      "target": "ui_input",
-      "confidence_score": 1.0
+      "target": "ui_input"
     },
     {
       "relation": "imports",
@@ -41059,9 +41059,9 @@
       "source_file": "components/hub-clientes/distribuir-clientes.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hub_clientes_distribuir_clientes",
-      "target": "ui_input_input",
-      "confidence_score": 1.0
+      "target": "ui_input_input"
     },
     {
       "relation": "contains",
@@ -63788,5 +63788,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "b0f5649fba601819f7c9b31ae36f8ad0fb8615da"
+  "built_at_commit": "44ac84de57fe7899b1206746217ec208d8d82ab4"
 }

@@ -145,8 +145,8 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/contatos/page.tsx": {
-    "mtime": 1782898973.4077508,
-    "ast_hash": "b617db38c8ef766edeedd9f8ea0cc620",
+    "mtime": 1782900156.3823714,
+    "ast_hash": "25410068184500dcda1e2cfce6f808ab",
     "semantic_hash": ""
   },
   "app/(dashboard)/debug-whatsapp/page.tsx": {
@@ -535,8 +535,8 @@
     "semantic_hash": ""
   },
   "components/contatos/tabela-contatos.tsx": {
-    "mtime": 1781879063.0,
-    "ast_hash": "b8ed5a8f46fdb0c0ec171ec2df88828f",
+    "mtime": 1782900141.13766,
+    "ast_hash": "ba33f30c6a9343f6c24f6aa8957e77c4",
     "semantic_hash": ""
   },
   "components/distribuicao/botao-disponibilidade.tsx": {
@@ -1820,8 +1820,8 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/carteiras/page.tsx": {
-    "mtime": 1782643799.9333467,
-    "ast_hash": "f1c249e28135afdb34b1550393859146",
+    "mtime": 1782900225.4139798,
+    "ast_hash": "81733f8f11a0599898ca072bfb44f8bd",
     "semantic_hash": ""
   },
   "components/carteiras/modal-nova-carteira.tsx": {
@@ -1830,8 +1830,8 @@
     "semantic_hash": ""
   },
   "components/carteiras/tabela-carteiras.tsx": {
-    "mtime": 1782643843.1630847,
-    "ast_hash": "d45f0f87d6bada0e7933224aacb1c99d",
+    "mtime": 1782900207.0595634,
+    "ast_hash": "4031951f1a602e29f544913ed6b74748",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/assistentes/actions.ts": {
