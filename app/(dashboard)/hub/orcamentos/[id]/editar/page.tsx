@@ -13,7 +13,7 @@ import type { QuoteStatus } from '@/types/database'
 
 // Edição de orçamento do HUB (DEC-017). Só proprietario_hub/assistente, escopo por hub_id.
 // Editável apenas em rascunho/rejeitado_internamente (validado também no server action).
-const STATUS_EDITAVEIS: QuoteStatus[] = ['rascunho', 'rejeitado_internamente']
+const STATUS_EDITAVEIS: QuoteStatus[] = ['rascunho', 'rejeitado_internamente', 'aguardando_aprovacao_interna']
 
 function num(v: unknown): string {
   const n = Number(v)

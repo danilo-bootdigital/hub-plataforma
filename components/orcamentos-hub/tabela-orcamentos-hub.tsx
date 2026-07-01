@@ -26,7 +26,7 @@ const STATUS_LABEL: Record<string, string> = {
 }
 
 // Status em que o orçamento do Hub ainda pode ser editado (espelha o backend).
-const STATUS_EDITAVEIS = new Set(['rascunho', 'rejeitado_internamente'])
+const STATUS_EDITAVEIS = new Set(['rascunho', 'rejeitado_internamente', 'aguardando_aprovacao_interna'])
 
 const STATUS_CLASSE: Record<string, string> = {
   rascunho: 'bg-slate-100 text-slate-600',

@@ -102,7 +102,9 @@ export default async function OrcamentoDetalhePage({ params }: { params: Promise
     orcamento.hub_id &&
     perfil.hub_id === orcamento.hub_id &&
     !pedidoExistente &&
-    (orcamento.status === 'rascunho' || orcamento.status === 'rejeitado_internamente')
+    (orcamento.status === 'rascunho' ||
+      orcamento.status === 'rejeitado_internamente' ||
+      orcamento.status === 'aguardando_aprovacao_interna')
   )
 
   // Dados do cliente para exibir no header

@@ -26,8 +26,8 @@ export type DadosOrcamentoHub = {
   finalizar?: boolean // true = "Gerar orçamento"; false/undefined = "Salvar rascunho"
 }
 
-// Status em que o orçamento do Hub ainda pode ser editado.
-const STATUS_EDITAVEIS: QuoteStatus[] = ['rascunho', 'rejeitado_internamente']
+// Status em que o orçamento do Hub ainda pode ser editado (até ser aprovado/enviado).
+const STATUS_EDITAVEIS: QuoteStatus[] = ['rascunho', 'rejeitado_internamente', 'aguardando_aprovacao_interna']
 
 type AdminClient = ReturnType<typeof createAdminClient>
 
@@ -176,7 +176,8 @@ export async function editarOrcamentoHub(orcamentoId: string, dados: DadosOrcame
   }
 
   const { itens, valorSubtotal, valorTotal, descontoGeral, frete } = await validarECalcular(admin, org, hub, dados)
-  const status: QuoteStatus = dados.finalizar ? 'aguardando_aprovacao_interna' : 'rascunho'
+  // "Gerar orçamento" (re)envia para aprovação; "Salvar alterações" mantém o status atual.
+  const status: QuoteStatus = dados.finalizar ? 'aguardando_aprovacao_interna' : atual.status
 
   const { error: eUpd } = await admin
     .from('quotes')
