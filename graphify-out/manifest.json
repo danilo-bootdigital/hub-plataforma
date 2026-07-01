@@ -325,8 +325,8 @@
     "semantic_hash": "e710d9a6203bedfa5b41c9526aab555a"
   },
   "app/(pdf)/orcamentos/[id]/preview-pdf/page.tsx": {
-    "mtime": 1782937186.0902293,
-    "ast_hash": "a8e97c6c378e2148795d001ea978132b",
+    "mtime": 1782943522.8575802,
+    "ast_hash": "688a4512186847860c4a3c8343982101",
     "semantic_hash": ""
   },
   "app/actions/proposta-publica.ts": {
@@ -655,8 +655,8 @@
     "semantic_hash": ""
   },
   "components/orcamentos/orcamento-pdf-template.tsx": {
-    "mtime": 1782937106.7652497,
-    "ast_hash": "baefce720ccab410f892774d6d635870",
+    "mtime": 1782940660.8624132,
+    "ast_hash": "10b838c275fccc763414a53883dcc343",
     "semantic_hash": ""
   },
   "components/orcamentos/orcamento-simplificado.tsx": {
@@ -1140,8 +1140,8 @@
     "semantic_hash": "35ac2dad0755e14c603fb7ceb00a8aa6"
   },
   "lib/navegacao.ts": {
-    "mtime": 1782922451.4607308,
-    "ast_hash": "0943eff378d443186cf57e1e2146b7a1",
+    "mtime": 1782940574.3869157,
+    "ast_hash": "d7e5cbe6737021bcee3380b7d3698740",
     "semantic_hash": ""
   },
   "lib/nome-contato.ts": {
@@ -1610,8 +1610,8 @@
     "semantic_hash": "02fc19ad21338c2ab820a70136310db4"
   },
   "types/database.ts": {
-    "mtime": 1782899083.3228314,
-    "ast_hash": "598b03c0d8f47405ec7f9026b23faf38",
+    "mtime": 1782940527.517776,
+    "ast_hash": "f4080912a3b06a68782a102b95013beb",
     "semantic_hash": ""
   },
   "types/whatsapp-central.ts": {
@@ -2292,6 +2292,26 @@
   "hubdev/bootstrap/expand_hub_produtos_ficha.sql": {
     "mtime": 1782924520.9205449,
     "ast_hash": "7b4e190ac44ba6a6fa7355eaf6ffa311",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/identidade/actions.ts": {
+    "mtime": 1782940539.9400702,
+    "ast_hash": "3f8f468f173442862c991c45eee13d0a",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/identidade/page.tsx": {
+    "mtime": 1782940568.6226912,
+    "ast_hash": "d4dcf3a5576fbac75e6b09f993caa72b",
+    "semantic_hash": ""
+  },
+  "components/hub/form-identidade-hub.tsx": {
+    "mtime": 1782940558.0063758,
+    "ast_hash": "ba2b0619bf4cdda3ace18f08175a5c9d",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/expand_hub_identidade.sql": {
+    "mtime": 1782940520.0445216,
+    "ast_hash": "545e7125fb1af3568fc05769a6c1abb1",
     "semantic_hash": ""
   }
 }

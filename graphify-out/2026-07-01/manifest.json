@@ -325,8 +325,8 @@
     "semantic_hash": "e710d9a6203bedfa5b41c9526aab555a"
   },
   "app/(pdf)/orcamentos/[id]/preview-pdf/page.tsx": {
-    "mtime": 1782909688.0959876,
-    "ast_hash": "7f93e5a4d2e8f0c43cf87f0861bdd31e",
+    "mtime": 1782937186.0902293,
+    "ast_hash": "a8e97c6c378e2148795d001ea978132b",
     "semantic_hash": ""
   },
   "app/actions/proposta-publica.ts": {
@@ -655,8 +655,8 @@
     "semantic_hash": ""
   },
   "components/orcamentos/orcamento-pdf-template.tsx": {
-    "mtime": 1782909688.03948,
-    "ast_hash": "09b72c472b9cce4f4ba950b48bddbeb9",
+    "mtime": 1782937106.7652497,
+    "ast_hash": "baefce720ccab410f892774d6d635870",
     "semantic_hash": ""
   },
   "components/orcamentos/orcamento-simplificado.tsx": {

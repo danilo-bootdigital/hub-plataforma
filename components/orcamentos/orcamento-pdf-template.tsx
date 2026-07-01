@@ -595,8 +595,12 @@ function SecaoTotais({ data }: { data: OrcamentoTemplateData }) {
 function SecaoComercial({ data, isHub }: { data: OrcamentoTemplateData; isHub: boolean }) {
   const hub = data.fornecedor?.health_hubs
   const linhas: { rotulo: string; valor: string }[] = []
+  // Laboratório (fabricante) = a Indústria/organização (DEC-017), fixo no orçamento.
+  const lab = data.organizacao
+  const labNome = lab?.nome_fantasia || lab?.nome || null
   if (isHub) {
-    // Orçamento do Hub: dados comerciais próprios; sem Fornecedor/Laboratório.
+    // Orçamento do Hub: dados comerciais próprios + Laboratório (Indústria).
+    if (labNome) linhas.push({ rotulo: 'Laboratório', valor: labNome })
     if (data.forma_pagamento) linhas.push({ rotulo: 'Forma de pagamento', valor: data.forma_pagamento })
     if (data.prazo_entrega) linhas.push({ rotulo: 'Prazo de entrega', valor: data.prazo_entrega })
     if (data.transportadora) linhas.push({ rotulo: 'Transportadora', valor: data.transportadora })
@@ -611,8 +615,11 @@ function SecaoComercial({ data, isHub }: { data: OrcamentoTemplateData; isHub: b
   // Cliente-facing: no Hub mostra as observações destinadas ao cliente (nunca as internas).
   const observacoes = isHub ? data.observacoes_cliente : data.observacoes
 
-  const temLogoHub = !isHub && !!hub?.logo_url
-  const temComercial = linhas.length > 0 || temLogoHub
+  // Logo do bloco: no Hub é o do Laboratório (organização); no legado, o do Hub de Saúde.
+  const logoUrl = isHub ? lab?.logo_url ?? null : hub?.logo_url ?? null
+  const logoAlt = isHub ? labNome || 'Laboratório' : hub?.nome || 'Hub de Saúde'
+  const temLogo = !!logoUrl
+  const temComercial = linhas.length > 0 || temLogo
 
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 gap-4 print:break-inside-avoid">
@@ -631,11 +638,11 @@ function SecaoComercial({ data, isHub }: { data: OrcamentoTemplateData; isHub: b
                 </div>
               ))}
             </div>
-            {temLogoHub && (
+            {temLogo && (
               /* eslint-disable-next-line @next/next/no-img-element */
               <img
-                src={hub?.logo_url as string}
-                alt={hub?.nome || 'Hub de Saúde'}
+                src={logoUrl as string}
+                alt={logoAlt}
                 className="h-12 w-auto max-w-[120px] object-contain shrink-0 self-start"
               />
             )}

@@ -460,7 +460,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "prepedidos_page",
-      "community": 26,
+      "community": 50,
       "norm_label": "page.tsx"
     },
     {
@@ -470,7 +470,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "prepedidos_page_assistenteprepedidospage",
-      "community": 26,
+      "community": 50,
       "norm_label": "assistenteprepedidospage()"
     },
     {
@@ -520,7 +520,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "editar_formulario_editar_contato",
-      "community": 38,
+      "community": 7,
       "norm_label": "formulario-editar-contato.tsx"
     },
     {
@@ -530,7 +530,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "editar_formulario_editar_contato_contatocompleto",
-      "community": 38,
+      "community": 7,
       "norm_label": "contatocompleto"
     },
     {
@@ -540,7 +540,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "editar_formulario_editar_contato_formularioeditarcontatoprops",
-      "community": 38,
+      "community": 7,
       "norm_label": "formularioeditarcontatoprops"
     },
     {
@@ -750,7 +750,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_clientes_exportar_route_ts_exportar_route",
-      "community": 74,
+      "community": 5,
       "norm_label": "route.ts"
     },
     {
@@ -760,7 +760,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "app_dashboard_clientes_exportar_route_ts_exportar_route_escapecsv",
-      "community": 74,
+      "community": 5,
       "norm_label": "escapecsv()"
     },
     {
@@ -770,7 +770,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "app_dashboard_clientes_exportar_route_ts_exportar_route_get",
-      "community": 74,
+      "community": 5,
       "norm_label": "get()"
     },
     {
@@ -840,7 +840,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_configuracoes_whatsapp_page_tsx_whatsapp_page",
-      "community": 4,
+      "community": 30,
       "norm_label": "page.tsx"
     },
     {
@@ -850,7 +850,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "configuracoes_whatsapp_page_whatsappinstancemanager",
-      "community": 4,
+      "community": 30,
       "norm_label": "whatsappinstancemanager"
     },
     {
@@ -860,7 +860,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "configuracoes_whatsapp_page_whatsappmonitor",
-      "community": 4,
+      "community": 30,
       "norm_label": "whatsappmonitor"
     },
     {
@@ -870,7 +870,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "configuracoes_whatsapp_page_errorboundarystate",
-      "community": 4,
+      "community": 30,
       "norm_label": "errorboundarystate"
     },
     {
@@ -930,7 +930,7 @@
       "source_location": "L96",
       "_origin": "ast",
       "id": "configuracoes_whatsapp_page_whatsappsettingspage",
-      "community": 4,
+      "community": 30,
       "norm_label": "whatsappsettingspage()"
     },
     {
@@ -1140,7 +1140,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "empresa_page",
-      "community": 74,
+      "community": 5,
       "norm_label": "page.tsx"
     },
     {
@@ -1150,7 +1150,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "empresa_page_empresapage",
-      "community": 74,
+      "community": 5,
       "norm_label": "empresapage()"
     },
     {
@@ -1770,7 +1770,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "portfolios_page",
-      "community": 36,
+      "community": 48,
       "norm_label": "page.tsx"
     },
     {
@@ -1780,7 +1780,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "portfolios_page_portfoliospage",
-      "community": 5,
+      "community": 48,
       "norm_label": "portfoliospage()"
     },
     {
@@ -1880,7 +1880,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_configuracoes_produtos_novo_page_tsx_novo_page",
-      "community": 74,
+      "community": 120,
       "norm_label": "page.tsx"
     },
     {
@@ -1890,7 +1890,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "novo_page_novoprodutopage",
-      "community": 74,
+      "community": 120,
       "norm_label": "novoprodutopage()"
     },
     {
@@ -1920,7 +1920,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "usuarios_actions",
-      "community": 115,
+      "community": 118,
       "norm_label": "actions.ts"
     },
     {
@@ -1930,7 +1930,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "usuarios_actions_criarusuario",
-      "community": 115,
+      "community": 118,
       "norm_label": "criarusuario()"
     },
     {
@@ -1940,7 +1940,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "usuarios_actions_alterarsenhausuario",
-      "community": 115,
+      "community": 118,
       "norm_label": "alterarsenhausuario()"
     },
     {
@@ -1950,7 +1950,7 @@
       "source_location": "L105",
       "_origin": "ast",
       "id": "usuarios_actions_atribuirfuncao",
-      "community": 115,
+      "community": 118,
       "norm_label": "atribuirfuncao()"
     },
     {
@@ -1960,7 +1960,7 @@
       "source_location": "L138",
       "_origin": "ast",
       "id": "usuarios_actions_excluirusuariodefinitivo",
-      "community": 115,
+      "community": 118,
       "norm_label": "excluirusuariodefinitivo()"
     },
     {
@@ -2000,7 +2000,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_actions_seguras",
-      "community": 10,
+      "community": 35,
       "norm_label": "actions-seguras.ts"
     },
     {
@@ -2010,7 +2010,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "whatsapp_actions_seguras_getsoadmin",
-      "community": 10,
+      "community": 35,
       "norm_label": "getsoadmin()"
     },
     {
@@ -2020,7 +2020,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "whatsapp_actions_seguras_excluirinstanciasegura",
-      "community": 10,
+      "community": 35,
       "norm_label": "excluirinstanciasegura()"
     },
     {
@@ -2030,7 +2030,7 @@
       "source_location": "L111",
       "_origin": "ast",
       "id": "whatsapp_actions_seguras_marcarinstanciainativa",
-      "community": 10,
+      "community": 35,
       "norm_label": "marcarinstanciainativa()"
     },
     {
@@ -2140,7 +2140,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "whatsapp_config_avancada_configuracaoavancada",
-      "community": 41,
+      "community": 30,
       "norm_label": "configuracaoavancada()"
     },
     {
@@ -2150,7 +2150,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "whatsapp_page_instancia",
-      "community": 4,
+      "community": 30,
       "norm_label": "instancia"
     },
     {
@@ -2160,7 +2160,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "whatsapp_page_vendedor",
-      "community": 4,
+      "community": 30,
       "norm_label": "vendedor"
     },
     {
@@ -2170,7 +2170,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "whatsapp_page_errorfallback",
-      "community": 4,
+      "community": 30,
       "norm_label": "errorfallback()"
     },
     {
@@ -2180,7 +2180,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "whatsapp_page_whatsappconfigcontent",
-      "community": 4,
+      "community": 30,
       "norm_label": "whatsappconfigcontent()"
     },
     {
@@ -2190,7 +2190,7 @@
       "source_location": "L176",
       "_origin": "ast",
       "id": "whatsapp_page_whatsappconfigpage",
-      "community": 4,
+      "community": 30,
       "norm_label": "whatsappconfigpage()"
     },
     {
@@ -2220,7 +2220,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "dashboard_error",
-      "community": 7,
+      "community": 36,
       "norm_label": "error.tsx"
     },
     {
@@ -2230,7 +2230,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "dashboard_error_dashboarderror",
-      "community": 7,
+      "community": 36,
       "norm_label": "dashboarderror()"
     },
     {
@@ -2900,7 +2900,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "monitoramento_whatsapp_page",
-      "community": 38,
+      "community": 30,
       "norm_label": "page.tsx"
     },
     {
@@ -2910,7 +2910,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "monitoramento_whatsapp_page_whatsappmonitoringpage",
-      "community": 38,
+      "community": 30,
       "norm_label": "whatsappmonitoringpage()"
     },
     {
@@ -2940,7 +2940,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "id_acoes_orcamento_acoesorcamento",
-      "community": 25,
+      "community": 8,
       "norm_label": "acoesorcamento()"
     },
     {
@@ -2980,7 +2980,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_orcamentos_id_editar_page_tsx_editar_page",
-      "community": 25,
+      "community": 8,
       "norm_label": "page.tsx"
     },
     {
@@ -2990,7 +2990,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "editar_page_editarorcamentopage",
-      "community": 25,
+      "community": 8,
       "norm_label": "editarorcamentopage()"
     },
     {
@@ -3000,7 +3000,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_orcamentos_id_page_backup_tsx_id_page_backup",
-      "community": 25,
+      "community": 38,
       "norm_label": "page.backup.tsx"
     },
     {
@@ -3010,7 +3010,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "app_dashboard_orcamentos_id_page_backup_tsx_id_page_backup_orcamentodetalhepage",
-      "community": 25,
+      "community": 38,
       "norm_label": "orcamentodetalhepage()"
     },
     {
@@ -3020,7 +3020,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_orcamentos_id_page_tsx_id_page",
-      "community": 25,
+      "community": 8,
       "norm_label": "page.tsx"
     },
     {
@@ -3030,7 +3030,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "id_page_orcamentodetalhepage",
-      "community": 25,
+      "community": 8,
       "norm_label": "orcamentodetalhepage()"
     },
     {
@@ -3370,7 +3370,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_orcamentos_page_tsx_orcamentos_page",
-      "community": 25,
+      "community": 57,
       "norm_label": "page.tsx"
     },
     {
@@ -3380,7 +3380,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "orcamentos_page_searchparams",
-      "community": 25,
+      "community": 57,
       "norm_label": "searchparams"
     },
     {
@@ -3390,7 +3390,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "orcamentos_page_orcamentospage",
-      "community": 25,
+      "community": 57,
       "norm_label": "orcamentospage()"
     },
     {
@@ -3470,7 +3470,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_pedidos_id_editar_page_tsx_editar_page",
-      "community": 38,
+      "community": 36,
       "norm_label": "page.tsx"
     },
     {
@@ -3480,7 +3480,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "editar_page_props",
-      "community": 38,
+      "community": 36,
       "norm_label": "props"
     },
     {
@@ -3490,7 +3490,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "editar_page_editarpedidopage",
-      "community": 38,
+      "community": 36,
       "norm_label": "editarpedidopage()"
     },
     {
@@ -3690,7 +3690,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pipeline_actions",
-      "community": 3,
+      "community": 25,
       "norm_label": "actions.ts"
     },
     {
@@ -3700,7 +3700,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "pipeline_actions_getvendedorousuperior",
-      "community": 3,
+      "community": 25,
       "norm_label": "getvendedorousuperior()"
     },
     {
@@ -3710,7 +3710,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "pipeline_actions_criardeal",
-      "community": 3,
+      "community": 25,
       "norm_label": "criardeal()"
     },
     {
@@ -3720,7 +3720,7 @@
       "source_location": "L84",
       "_origin": "ast",
       "id": "pipeline_actions_moverdeal",
-      "community": 3,
+      "community": 25,
       "norm_label": "moverdeal()"
     },
     {
@@ -3730,7 +3730,7 @@
       "source_location": "L198",
       "_origin": "ast",
       "id": "pipeline_actions_adicionarobservacaodeal",
-      "community": 3,
+      "community": 25,
       "norm_label": "adicionarobservacaodeal()"
     },
     {
@@ -3830,7 +3830,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "configurar_page",
-      "community": 74,
+      "community": 5,
       "norm_label": "page.tsx"
     },
     {
@@ -3840,7 +3840,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "configurar_page_configurarpipelinepage",
-      "community": 74,
+      "community": 5,
       "norm_label": "configurarpipelinepage()"
     },
     {
@@ -4020,7 +4020,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tarefas_page",
-      "community": 74,
+      "community": 24,
       "norm_label": "page.tsx"
     },
     {
@@ -4030,7 +4030,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "tarefas_page_tarefaspage",
-      "community": 74,
+      "community": 24,
       "norm_label": "tarefaspage()"
     },
     {
@@ -4700,17 +4700,17 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "preview_pdf_page",
-      "community": 5,
+      "community": 118,
       "norm_label": "page.tsx"
     },
     {
       "label": "PreviewPdfPage()",
       "file_type": "code",
       "source_file": "app/(pdf)/orcamentos/[id]/preview-pdf/page.tsx",
-      "source_location": "L10",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "preview_pdf_page_previewpdfpage",
-      "community": 5,
+      "community": 118,
       "norm_label": "previewpdfpage()"
     },
     {
@@ -4750,7 +4750,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backfill_nomes_conversas_route",
-      "community": 5,
+      "community": 11,
       "norm_label": "route.ts"
     },
     {
@@ -4760,7 +4760,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backfill_nomes_conversas_route_post",
-      "community": 5,
+      "community": 11,
       "norm_label": "post()"
     },
     {
@@ -4830,7 +4830,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "acao_route",
-      "community": 114,
+      "community": 5,
       "norm_label": "route.ts"
     },
     {
@@ -4840,7 +4840,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "acao_route_post",
-      "community": 114,
+      "community": 5,
       "norm_label": "post()"
     },
     {
@@ -4850,7 +4850,7 @@
       "source_location": "L130",
       "_origin": "ast",
       "id": "acao_route_getnovostatus",
-      "community": 114,
+      "community": 5,
       "norm_label": "getnovostatus()"
     },
     {
@@ -5020,7 +5020,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_whatsapp_debug_env_route_ts_debug_env_route",
-      "community": 74,
+      "community": 5,
       "norm_label": "route.ts"
     },
     {
@@ -5030,7 +5030,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "app_api_whatsapp_debug_env_route_ts_debug_env_route_get",
-      "community": 74,
+      "community": 5,
       "norm_label": "get()"
     },
     {
@@ -5100,7 +5100,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "send_route",
-      "community": 5,
+      "community": 10,
       "norm_label": "route.ts"
     },
     {
@@ -5110,7 +5110,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "send_route_sendmessagerequest",
-      "community": 5,
+      "community": 10,
       "norm_label": "sendmessagerequest"
     },
     {
@@ -5120,7 +5120,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "send_route_post",
-      "community": 5,
+      "community": 10,
       "norm_label": "post()"
     },
     {
@@ -5818,7 +5818,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "auth_auth_provider",
-      "community": 35,
+      "community": 37,
       "norm_label": "auth-provider.tsx"
     },
     {
@@ -5828,7 +5828,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "auth_auth_provider_user",
-      "community": 35,
+      "community": 37,
       "norm_label": "user"
     },
     {
@@ -5838,7 +5838,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "auth_auth_provider_profile",
-      "community": 35,
+      "community": 37,
       "norm_label": "profile"
     },
     {
@@ -5848,7 +5848,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "auth_auth_provider_authcontexttype",
-      "community": 35,
+      "community": 37,
       "norm_label": "authcontexttype"
     },
     {
@@ -5858,7 +5858,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "auth_auth_provider_authcontext",
-      "community": 35,
+      "community": 37,
       "norm_label": "authcontext"
     },
     {
@@ -5868,7 +5868,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "auth_auth_provider_authproviderprops",
-      "community": 35,
+      "community": 37,
       "norm_label": "authproviderprops"
     },
     {
@@ -5888,7 +5888,7 @@
       "source_location": "L159",
       "_origin": "ast",
       "id": "auth_auth_provider_useauth",
-      "community": 35,
+      "community": 37,
       "norm_label": "useauth()"
     },
     {
@@ -6298,7 +6298,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "clientes_form_observacao_contato",
-      "community": 44,
+      "community": 36,
       "norm_label": "form-observacao-contato.tsx"
     },
     {
@@ -6488,7 +6488,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "empresa_form_empresa_formempresa",
-      "community": 74,
+      "community": 5,
       "norm_label": "formempresa()"
     },
     {
@@ -6858,7 +6858,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hooks_use_orcamento_data",
-      "community": 35,
+      "community": 37,
       "norm_label": "use-orcamento-data.tsx"
     },
     {
@@ -6868,7 +6868,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "hooks_use_orcamento_data_useorcamentodata",
-      "community": 35,
+      "community": 37,
       "norm_label": "useorcamentodata()"
     },
     {
@@ -6878,7 +6878,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hooks_use_user_role",
-      "community": 27,
+      "community": 8,
       "norm_label": "use-user-role.tsx"
     },
     {
@@ -6888,7 +6888,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "hooks_use_user_role_useuserrole",
-      "community": 27,
+      "community": 8,
       "norm_label": "useuserrole()"
     },
     {
@@ -7218,7 +7218,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hubs_campo_senha",
-      "community": 36,
+      "community": 7,
       "norm_label": "campo-senha.tsx"
     },
     {
@@ -7348,7 +7348,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "layout_botao_sair",
-      "community": 41,
+      "community": 30,
       "norm_label": "botao-sair.tsx"
     },
     {
@@ -7358,7 +7358,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "layout_botao_sair_botaosair",
-      "community": 41,
+      "community": 30,
       "norm_label": "botaosair()"
     },
     {
@@ -7478,7 +7478,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "leads_badge_origem",
-      "community": 3,
+      "community": 40,
       "norm_label": "badge-origem.tsx"
     },
     {
@@ -7488,7 +7488,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "leads_badge_origem_config",
-      "community": 3,
+      "community": 40,
       "norm_label": "config"
     },
     {
@@ -7498,7 +7498,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "leads_badge_origem_badgeorigem",
-      "community": 3,
+      "community": 40,
       "norm_label": "badgeorigem()"
     },
     {
@@ -7508,7 +7508,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "leads_badge_status_lead",
-      "community": 57,
+      "community": 40,
       "norm_label": "badge-status-lead.tsx"
     },
     {
@@ -7518,7 +7518,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "leads_badge_status_lead_config",
-      "community": 57,
+      "community": 40,
       "norm_label": "config"
     },
     {
@@ -7528,7 +7528,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "leads_badge_status_lead_badgestatuslead",
-      "community": 57,
+      "community": 40,
       "norm_label": "badgestatuslead()"
     },
     {
@@ -7538,7 +7538,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "leads_botao_descartar_lead",
-      "community": 44,
+      "community": 10,
       "norm_label": "botao-descartar-lead.tsx"
     },
     {
@@ -7548,7 +7548,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "leads_botao_descartar_lead_props",
-      "community": 44,
+      "community": 10,
       "norm_label": "props"
     },
     {
@@ -7558,7 +7558,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "leads_botao_descartar_lead_botaodescartarlead",
-      "community": 44,
+      "community": 10,
       "norm_label": "botaodescartarlead()"
     },
     {
@@ -7568,7 +7568,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "leads_form_observacao",
-      "community": 44,
+      "community": 36,
       "norm_label": "form-observacao.tsx"
     },
     {
@@ -7658,7 +7658,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "leads_tabela_leads",
-      "community": 57,
+      "community": 40,
       "norm_label": "tabela-leads.tsx"
     },
     {
@@ -7668,7 +7668,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "leads_tabela_leads_leadcomresponsavel",
-      "community": 57,
+      "community": 40,
       "norm_label": "leadcomresponsavel"
     },
     {
@@ -7678,7 +7678,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "leads_tabela_leads_props",
-      "community": 57,
+      "community": 40,
       "norm_label": "props"
     },
     {
@@ -7688,7 +7688,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "leads_tabela_leads_status_options",
-      "community": 57,
+      "community": 40,
       "norm_label": "status_options"
     },
     {
@@ -7698,7 +7698,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "leads_tabela_leads_origem_options",
-      "community": 57,
+      "community": 40,
       "norm_label": "origem_options"
     },
     {
@@ -8138,7 +8138,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_badge_status_orcamento",
-      "community": 25,
+      "community": 38,
       "norm_label": "badge-status-orcamento.tsx"
     },
     {
@@ -8148,7 +8148,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "orcamentos_badge_status_orcamento_config",
-      "community": 25,
+      "community": 38,
       "norm_label": "config"
     },
     {
@@ -8158,7 +8158,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "orcamentos_badge_status_orcamento_badgestatusorcamento",
-      "community": 25,
+      "community": 38,
       "norm_label": "badgestatusorcamento()"
     },
     {
@@ -8188,7 +8188,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_botao_baixar_pdf",
-      "community": 50,
+      "community": 8,
       "norm_label": "botao-baixar-pdf.tsx"
     },
     {
@@ -8198,7 +8198,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "orcamentos_botao_baixar_pdf_props",
-      "community": 50,
+      "community": 8,
       "norm_label": "props"
     },
     {
@@ -8208,7 +8208,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "orcamentos_botao_baixar_pdf_botaobaixarpdf",
-      "community": 50,
+      "community": 8,
       "norm_label": "botaobaixarpdf()"
     },
     {
@@ -8318,7 +8318,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_botaoexportarpdf",
-      "community": 25,
+      "community": 67,
       "norm_label": "botaoexportarpdf()"
     },
     {
@@ -8328,7 +8328,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_botao_preview_pdf_novo",
-      "community": 25,
+      "community": 8,
       "norm_label": "botao-preview-pdf-novo.tsx"
     },
     {
@@ -8338,7 +8338,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "orcamentos_botao_preview_pdf_novo_props",
-      "community": 25,
+      "community": 8,
       "norm_label": "props"
     },
     {
@@ -8348,7 +8348,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "orcamentos_botao_preview_pdf_novo_botaopreviewpdfnovo",
-      "community": 25,
+      "community": 8,
       "norm_label": "botaopreviewpdfnovo()"
     },
     {
@@ -8388,7 +8388,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_exportar_pdf_button",
-      "community": 50,
+      "community": 8,
       "norm_label": "exportar-pdf-button.tsx"
     },
     {
@@ -8398,7 +8398,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "orcamentos_exportar_pdf_button_props",
-      "community": 50,
+      "community": 8,
       "norm_label": "props"
     },
     {
@@ -8408,7 +8408,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "orcamentos_exportar_pdf_button_exportarpdfbutton",
-      "community": 50,
+      "community": 8,
       "norm_label": "exportarpdfbutton()"
     },
     {
@@ -8478,7 +8478,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "orcamentos_form_orcamento_hub_fichaproduto",
-      "community": 1,
+      "community": 47,
       "norm_label": "fichaproduto()"
     },
     {
@@ -8668,7 +8668,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_orcamento_detalhe",
-      "community": 25,
+      "community": 38,
       "norm_label": "orcamento-detalhe.tsx"
     },
     {
@@ -8678,7 +8678,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "orcamentos_orcamento_detalhe_orcamentodetalheprops",
-      "community": 25,
+      "community": 38,
       "norm_label": "orcamentodetalheprops"
     },
     {
@@ -8688,7 +8688,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "orcamentos_orcamento_detalhe_orcamentodetalhe",
-      "community": 25,
+      "community": 8,
       "norm_label": "orcamentodetalhe()"
     },
     {
@@ -8808,7 +8808,7 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_generator_gerarpdf",
-      "community": 64,
+      "community": 47,
       "norm_label": "gerarpdf()"
     },
     {
@@ -8965,7 +8965,7 @@
       "label": "OrcamentoTemplateData",
       "file_type": "code",
       "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
-      "source_location": "L68",
+      "source_location": "L78",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_template_orcamentotemplatedata",
       "community": 33,
@@ -8975,7 +8975,7 @@
       "label": "formatBRL()",
       "file_type": "code",
       "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
-      "source_location": "L146",
+      "source_location": "L161",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_template_formatbrl",
       "community": 33,
@@ -8985,7 +8985,7 @@
       "label": "formatDate()",
       "file_type": "code",
       "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
-      "source_location": "L149",
+      "source_location": "L164",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_template_formatdate",
       "community": 33,
@@ -8995,7 +8995,7 @@
       "label": "formatDocumento()",
       "file_type": "code",
       "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
-      "source_location": "L157",
+      "source_location": "L172",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_template_formatdocumento",
       "community": 33,
@@ -9005,7 +9005,7 @@
       "label": "formatPhone()",
       "file_type": "code",
       "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
-      "source_location": "L165",
+      "source_location": "L180",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_template_formatphone",
       "community": 33,
@@ -9015,7 +9015,7 @@
       "label": "formatCEP()",
       "file_type": "code",
       "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
-      "source_location": "L173",
+      "source_location": "L188",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_template_formatcep",
       "community": 33,
@@ -9025,17 +9025,27 @@
       "label": "laboratorioItem()",
       "file_type": "code",
       "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
-      "source_location": "L180",
+      "source_location": "L195",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_template_laboratorioitem",
       "community": 33,
       "norm_label": "laboratorioitem()"
     },
     {
+      "label": "fichaLinha()",
+      "file_type": "code",
+      "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
+      "source_location": "L205",
+      "_origin": "ast",
+      "id": "orcamentos_orcamento_pdf_template_fichalinha",
+      "community": 33,
+      "norm_label": "fichalinha()"
+    },
+    {
       "label": "CampoRotulo()",
       "file_type": "code",
       "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
-      "source_location": "L189",
+      "source_location": "L220",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_template_camporotulo",
       "community": 33,
@@ -9045,7 +9055,7 @@
       "label": "Cabecalho()",
       "file_type": "code",
       "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
-      "source_location": "L203",
+      "source_location": "L234",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_template_cabecalho",
       "community": 33,
@@ -9055,17 +9065,27 @@
       "label": "SecaoCards()",
       "file_type": "code",
       "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
-      "source_location": "L284",
+      "source_location": "L315",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_template_secaocards",
       "community": 33,
       "norm_label": "secaocards()"
     },
     {
+      "label": "SecaoProdutosHub()",
+      "file_type": "code",
+      "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
+      "source_location": "L440",
+      "_origin": "ast",
+      "id": "orcamentos_orcamento_pdf_template_secaoprodutoshub",
+      "community": 33,
+      "norm_label": "secaoprodutoshub()"
+    },
+    {
       "label": "SecaoProdutos()",
       "file_type": "code",
       "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
-      "source_location": "L409",
+      "source_location": "L491",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_template_secaoprodutos",
       "community": 33,
@@ -9075,7 +9095,7 @@
       "label": "SecaoTotais()",
       "file_type": "code",
       "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
-      "source_location": "L461",
+      "source_location": "L543",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_template_secaototais",
       "community": 33,
@@ -9085,7 +9105,7 @@
       "label": "SecaoComercial()",
       "file_type": "code",
       "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
-      "source_location": "L492",
+      "source_location": "L574",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_template_secaocomercial",
       "community": 33,
@@ -9095,7 +9115,7 @@
       "label": "Rodape()",
       "file_type": "code",
       "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
-      "source_location": "L547",
+      "source_location": "L639",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_template_rodape",
       "community": 33,
@@ -9105,10 +9125,10 @@
       "label": "OrcamentoPdfTemplate()",
       "file_type": "code",
       "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
-      "source_location": "L568",
+      "source_location": "L660",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_template_orcamentopdftemplate",
-      "community": 5,
+      "community": 118,
       "norm_label": "orcamentopdftemplate()"
     },
     {
@@ -9118,7 +9138,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_orcamento_simplificado",
-      "community": 25,
+      "community": 38,
       "norm_label": "orcamento-simplificado.tsx"
     },
     {
@@ -9128,7 +9148,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "orcamentos_orcamento_simplificado_orcamentosimplificadoprops",
-      "community": 25,
+      "community": 38,
       "norm_label": "orcamentosimplificadoprops"
     },
     {
@@ -9138,7 +9158,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "orcamentos_orcamento_simplificado_orcamentosimplificado",
-      "community": 25,
+      "community": 47,
       "norm_label": "orcamentosimplificado()"
     },
     {
@@ -9148,7 +9168,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_tabela_orcamentos",
-      "community": 25,
+      "community": 36,
       "norm_label": "tabela-orcamentos.tsx"
     },
     {
@@ -9158,7 +9178,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "orcamentos_tabela_orcamentos_orcamentolista",
-      "community": 25,
+      "community": 36,
       "norm_label": "orcamentolista"
     },
     {
@@ -9168,7 +9188,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "orcamentos_tabela_orcamentos_props",
-      "community": 25,
+      "community": 36,
       "norm_label": "props"
     },
     {
@@ -9178,7 +9198,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "orcamentos_tabela_orcamentos_tabelaorcamentos",
-      "community": 25,
+      "community": 57,
       "norm_label": "tabelaorcamentos()"
     },
     {
@@ -9258,7 +9278,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "painel_grafico_leads_por_origem",
-      "community": 112,
+      "community": 114,
       "norm_label": "grafico-leads-por-origem.tsx"
     },
     {
@@ -9268,7 +9288,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "painel_grafico_leads_por_origem_dadoorigem",
-      "community": 112,
+      "community": 114,
       "norm_label": "dadoorigem"
     },
     {
@@ -9278,7 +9298,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "painel_grafico_leads_por_origem_props",
-      "community": 112,
+      "community": 114,
       "norm_label": "props"
     },
     {
@@ -9288,7 +9308,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "painel_grafico_leads_por_origem_cores",
-      "community": 112,
+      "community": 114,
       "norm_label": "cores"
     },
     {
@@ -9298,7 +9318,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "painel_grafico_leads_por_origem_labels",
-      "community": 112,
+      "community": 114,
       "norm_label": "labels"
     },
     {
@@ -9308,7 +9328,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "painel_grafico_leads_por_origem_graficoleadspororigem",
-      "community": 112,
+      "community": 114,
       "norm_label": "graficoleadspororigem()"
     },
     {
@@ -9448,7 +9468,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pedidos_botoes_pedido",
-      "community": 53,
+      "community": 36,
       "norm_label": "botoes-pedido.tsx"
     },
     {
@@ -9458,7 +9478,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "pedidos_botoes_pedido_proximo_label",
-      "community": 53,
+      "community": 36,
       "norm_label": "proximo_label"
     },
     {
@@ -9468,7 +9488,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "pedidos_botoes_pedido_status_labels",
-      "community": 53,
+      "community": 36,
       "norm_label": "status_labels"
     },
     {
@@ -9478,7 +9498,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "pedidos_botoes_pedido_transicoes_correcao",
-      "community": 53,
+      "community": 36,
       "norm_label": "transicoes_correcao"
     },
     {
@@ -9488,7 +9508,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "pedidos_botoes_pedido_botoespedido",
-      "community": 53,
+      "community": 38,
       "norm_label": "botoespedido()"
     },
     {
@@ -9538,7 +9558,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pedidos_modal_editar_pedido",
-      "community": 53,
+      "community": 36,
       "norm_label": "modal-editar-pedido.tsx"
     },
     {
@@ -9548,7 +9568,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "pedidos_modal_editar_pedido_editarpedidoprops",
-      "community": 53,
+      "community": 36,
       "norm_label": "editarpedidoprops"
     },
     {
@@ -9558,7 +9578,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "pedidos_modal_editar_pedido_modaleditarpedido",
-      "community": 53,
+      "community": 36,
       "norm_label": "modaleditarpedido()"
     },
     {
@@ -9628,7 +9648,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "pipeline_form_etapas_formetapas",
-      "community": 74,
+      "community": 5,
       "norm_label": "formetapas()"
     },
     {
@@ -9828,7 +9848,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal",
-      "community": 3,
+      "community": 25,
       "norm_label": "modal-detalhe-deal.tsx"
     },
     {
@@ -9838,7 +9858,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal_autor",
-      "community": 3,
+      "community": 25,
       "norm_label": "autor"
     },
     {
@@ -9848,7 +9868,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal_observacaosupabase",
-      "community": 3,
+      "community": 25,
       "norm_label": "observacaosupabase"
     },
     {
@@ -9858,7 +9878,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal_observacao",
-      "community": 3,
+      "community": 25,
       "norm_label": "observacao"
     },
     {
@@ -9868,7 +9888,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal_estagio",
-      "community": 3,
+      "community": 25,
       "norm_label": "estagio"
     },
     {
@@ -9878,7 +9898,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal_props",
-      "community": 3,
+      "community": 25,
       "norm_label": "props"
     },
     {
@@ -9888,7 +9908,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal_badgeorigemtipo",
-      "community": 3,
+      "community": 25,
       "norm_label": "badgeorigemtipo"
     },
     {
@@ -9898,7 +9918,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal_normalizarobservacoes",
-      "community": 3,
+      "community": 25,
       "norm_label": "normalizarobservacoes()"
     },
     {
@@ -9908,7 +9928,7 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal_buscarobservacoesdeal",
-      "community": 3,
+      "community": 25,
       "norm_label": "buscarobservacoesdeal()"
     },
     {
@@ -9918,7 +9938,7 @@
       "source_location": "L90",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal_modaldetalhedeal",
-      "community": 3,
+      "community": 25,
       "norm_label": "modaldetalhedeal()"
     },
     {
@@ -9958,7 +9978,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pipeline_modal_nova_negociacao",
-      "community": 7,
+      "community": 36,
       "norm_label": "modal-nova-negociacao.tsx"
     },
     {
@@ -9968,7 +9988,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "pipeline_modal_nova_negociacao_props",
-      "community": 7,
+      "community": 36,
       "norm_label": "props"
     },
     {
@@ -9988,7 +10008,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pipeline_modal_perdido",
-      "community": 7,
+      "community": 36,
       "norm_label": "modal-perdido.tsx"
     },
     {
@@ -9998,7 +10018,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "pipeline_modal_perdido_props",
-      "community": 7,
+      "community": 36,
       "norm_label": "props"
     },
     {
@@ -10238,7 +10258,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "portfolios_modal_novo_portfolio_modalnovoportfolio",
-      "community": 36,
+      "community": 48,
       "norm_label": "modalnovoportfolio()"
     },
     {
@@ -10248,7 +10268,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "portfolios_tabela_portfolios",
-      "community": 36,
+      "community": 48,
       "norm_label": "tabela-portfolios.tsx"
     },
     {
@@ -10258,7 +10278,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "portfolios_tabela_portfolios_props",
-      "community": 36,
+      "community": 48,
       "norm_label": "props"
     },
     {
@@ -10268,7 +10288,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "portfolios_tabela_portfolios_tabelaportfolios",
-      "community": 36,
+      "community": 48,
       "norm_label": "tabelaportfolios()"
     },
     {
@@ -10278,7 +10298,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "portfolios_vincular_produtos",
-      "community": 48,
+      "community": 53,
       "norm_label": "vincular-produtos.tsx"
     },
     {
@@ -10288,7 +10308,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "portfolios_vincular_produtos_produtolite",
-      "community": 48,
+      "community": 53,
       "norm_label": "produtolite"
     },
     {
@@ -10298,7 +10318,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "portfolios_vincular_produtos_props",
-      "community": 48,
+      "community": 53,
       "norm_label": "props"
     },
     {
@@ -10318,7 +10338,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "prepedidos_botao_gerar_pedido",
-      "community": 26,
+      "community": 50,
       "norm_label": "botao-gerar-pedido.tsx"
     },
     {
@@ -10328,7 +10348,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "prepedidos_botao_gerar_pedido_botaogerarpedido",
-      "community": 26,
+      "community": 50,
       "norm_label": "botaogerarpedido()"
     },
     {
@@ -10338,7 +10358,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "prepedidos_tabela_prepedidos",
-      "community": 26,
+      "community": 50,
       "norm_label": "tabela-prepedidos.tsx"
     },
     {
@@ -10348,7 +10368,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "prepedidos_tabela_prepedidos_prepedidorow",
-      "community": 26,
+      "community": 50,
       "norm_label": "prepedidorow"
     },
     {
@@ -10358,7 +10378,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "prepedidos_tabela_prepedidos_status_label",
-      "community": 26,
+      "community": 50,
       "norm_label": "status_label"
     },
     {
@@ -10368,7 +10388,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "prepedidos_tabela_prepedidos_formatardata",
-      "community": 26,
+      "community": 50,
       "norm_label": "formatardata()"
     },
     {
@@ -10378,7 +10398,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "prepedidos_tabela_prepedidos_tabelaprepedidos",
-      "community": 26,
+      "community": 50,
       "norm_label": "tabelaprepedidos()"
     },
     {
@@ -10388,7 +10408,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "produtos_form_produto",
-      "community": 53,
+      "community": 28,
       "norm_label": "form-produto.tsx"
     },
     {
@@ -10398,7 +10418,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "produtos_form_produto_props",
-      "community": 53,
+      "community": 28,
       "norm_label": "props"
     },
     {
@@ -10408,7 +10428,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "produtos_form_produto_formproduto",
-      "community": 74,
+      "community": 120,
       "norm_label": "formproduto()"
     },
     {
@@ -10418,7 +10438,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "produtos_tabela_produtos",
-      "community": 7,
+      "community": 53,
       "norm_label": "tabela-produtos.tsx"
     },
     {
@@ -10428,7 +10448,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "produtos_tabela_produtos_props",
-      "community": 7,
+      "community": 53,
       "norm_label": "props"
     },
     {
@@ -10448,7 +10468,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "relatorios_botoes_exportar",
-      "community": 1,
+      "community": 69,
       "norm_label": "botoes-exportar.tsx"
     },
     {
@@ -10458,7 +10478,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "relatorios_botoes_exportar_dadosfunil",
-      "community": 1,
+      "community": 69,
       "norm_label": "dadosfunil"
     },
     {
@@ -10468,7 +10488,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "relatorios_botoes_exportar_dadosleadssemana",
-      "community": 1,
+      "community": 69,
       "norm_label": "dadosleadssemana"
     },
     {
@@ -10478,7 +10498,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "relatorios_botoes_exportar_dadosvendas",
-      "community": 1,
+      "community": 69,
       "norm_label": "dadosvendas"
     },
     {
@@ -10488,7 +10508,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "relatorios_botoes_exportar_dadosprodutos",
-      "community": 1,
+      "community": 69,
       "norm_label": "dadosprodutos"
     },
     {
@@ -10498,7 +10518,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "relatorios_botoes_exportar_dadosfornecedor",
-      "community": 1,
+      "community": 69,
       "norm_label": "dadosfornecedor"
     },
     {
@@ -10508,7 +10528,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "relatorios_botoes_exportar_props",
-      "community": 1,
+      "community": 69,
       "norm_label": "props"
     },
     {
@@ -10518,7 +10538,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "relatorios_botoes_exportar_botoesexportar",
-      "community": 1,
+      "community": 69,
       "norm_label": "botoesexportar()"
     },
     {
@@ -10528,7 +10548,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "relatorios_card_metrica",
-      "community": 1,
+      "community": 38,
       "norm_label": "card-metrica.tsx"
     },
     {
@@ -10538,7 +10558,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "relatorios_card_metrica_props",
-      "community": 1,
+      "community": 38,
       "norm_label": "props"
     },
     {
@@ -10588,7 +10608,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "relatorios_filtros_relatorio_filtrosrelatorio",
-      "community": 53,
+      "community": 1,
       "norm_label": "filtrosrelatorio()"
     },
     {
@@ -10928,7 +10948,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "tarefas_lista_tarefas_listatarefas",
-      "community": 74,
+      "community": 24,
       "norm_label": "listatarefas()"
     },
     {
@@ -11198,7 +11218,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_button",
-      "community": 7,
+      "community": 36,
       "norm_label": "button.tsx"
     },
     {
@@ -11208,7 +11228,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "ui_button_buttonvariants",
-      "community": 7,
+      "community": 36,
       "norm_label": "buttonvariants"
     },
     {
@@ -11218,7 +11238,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "ui_button_button",
-      "community": 7,
+      "community": 36,
       "norm_label": "button()"
     },
     {
@@ -11268,7 +11288,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "ui_card_carddescription",
-      "community": 38,
+      "community": 30,
       "norm_label": "carddescription()"
     },
     {
@@ -11578,7 +11598,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_input",
-      "community": 36,
+      "community": 7,
       "norm_label": "input.tsx"
     },
     {
@@ -11588,7 +11608,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "ui_input_input",
-      "community": 36,
+      "community": 7,
       "norm_label": "input()"
     },
     {
@@ -11898,7 +11918,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_switch",
-      "community": 40,
+      "community": 65,
       "norm_label": "switch.tsx"
     },
     {
@@ -11908,7 +11928,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "ui_switch_switch",
-      "community": 40,
+      "community": 65,
       "norm_label": "switch"
     },
     {
@@ -11958,7 +11978,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_textarea",
-      "community": 53,
+      "community": 36,
       "norm_label": "textarea.tsx"
     },
     {
@@ -11968,7 +11988,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "ui_textarea_textarea",
-      "community": 53,
+      "community": 36,
       "norm_label": "textarea()"
     },
     {
@@ -12098,7 +12118,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "usuarios_modal_novo_usuario",
-      "community": 7,
+      "community": 53,
       "norm_label": "modal-novo-usuario.tsx"
     },
     {
@@ -12108,7 +12128,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "usuarios_modal_novo_usuario_perfis",
-      "community": 7,
+      "community": 53,
       "norm_label": "perfis"
     },
     {
@@ -12198,7 +12218,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_card_instancia",
-      "community": 10,
+      "community": 35,
       "norm_label": "card-instancia.tsx"
     },
     {
@@ -12208,7 +12228,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "whatsapp_card_instancia_whatsappstatus",
-      "community": 10,
+      "community": 35,
       "norm_label": "whatsappstatus"
     },
     {
@@ -12218,7 +12238,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "whatsapp_card_instancia_props",
-      "community": 10,
+      "community": 35,
       "norm_label": "props"
     },
     {
@@ -12228,7 +12248,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "whatsapp_card_instancia_status_config",
-      "community": 10,
+      "community": 35,
       "norm_label": "status_config"
     },
     {
@@ -12238,7 +12258,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "whatsapp_card_instancia_normalizarstatus",
-      "community": 10,
+      "community": 35,
       "norm_label": "normalizarstatus()"
     },
     {
@@ -12248,7 +12268,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "whatsapp_card_instancia_extrairnomevendedor",
-      "community": 10,
+      "community": 35,
       "norm_label": "extrairnomevendedor()"
     },
     {
@@ -12258,7 +12278,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "whatsapp_card_instancia_cardinstancia",
-      "community": 10,
+      "community": 35,
       "norm_label": "cardinstancia()"
     },
     {
@@ -12318,7 +12338,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "whatsapp_chat_area_chatarea",
-      "community": 6,
+      "community": 21,
       "norm_label": "chatarea()"
     },
     {
@@ -12428,7 +12448,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_editar_nome",
-      "community": 18,
+      "community": 41,
       "norm_label": "editar-nome.tsx"
     },
     {
@@ -12438,7 +12458,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "whatsapp_editar_nome_editarnomeprops",
-      "community": 18,
+      "community": 41,
       "norm_label": "editarnomeprops"
     },
     {
@@ -12448,7 +12468,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "whatsapp_editar_nome_editarnome",
-      "community": 18,
+      "community": 41,
       "norm_label": "editarnome()"
     },
     {
@@ -12608,7 +12628,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_header_kpis",
-      "community": 119,
+      "community": 65,
       "norm_label": "header-kpis.tsx"
     },
     {
@@ -12618,7 +12638,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "whatsapp_header_kpis_kpiconfig",
-      "community": 119,
+      "community": 65,
       "norm_label": "kpiconfig"
     },
     {
@@ -12628,7 +12648,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "whatsapp_header_kpis_kpi_config",
-      "community": 119,
+      "community": 65,
       "norm_label": "kpi_config"
     },
     {
@@ -12638,7 +12658,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "whatsapp_header_kpis_props",
-      "community": 119,
+      "community": 65,
       "norm_label": "props"
     },
     {
@@ -12648,7 +12668,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "whatsapp_header_kpis_headerkpis",
-      "community": 119,
+      "community": 65,
       "norm_label": "headerkpis()"
     },
     {
@@ -12708,7 +12728,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_lista_conversas",
-      "community": 18,
+      "community": 41,
       "norm_label": "lista-conversas.tsx"
     },
     {
@@ -12718,7 +12738,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "whatsapp_lista_conversas_conversa",
-      "community": 18,
+      "community": 41,
       "norm_label": "conversa"
     },
     {
@@ -12728,7 +12748,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "whatsapp_lista_conversas_conversaselecionada",
-      "community": 18,
+      "community": 41,
       "norm_label": "conversaselecionada"
     },
     {
@@ -12738,7 +12758,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "whatsapp_lista_conversas_props",
-      "community": 18,
+      "community": 41,
       "norm_label": "props"
     },
     {
@@ -12748,7 +12768,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "whatsapp_lista_conversas_status_dot",
-      "community": 18,
+      "community": 41,
       "norm_label": "status_dot"
     },
     {
@@ -12758,7 +12778,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "whatsapp_lista_conversas_horacurta",
-      "community": 18,
+      "community": 41,
       "norm_label": "horacurta()"
     },
     {
@@ -12768,7 +12788,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "whatsapp_lista_conversas_itemconversarow",
-      "community": 18,
+      "community": 41,
       "norm_label": "itemconversarow"
     },
     {
@@ -12778,7 +12798,7 @@
       "source_location": "L166",
       "_origin": "ast",
       "id": "whatsapp_lista_conversas_listaconversas",
-      "community": 18,
+      "community": 41,
       "norm_label": "listaconversas()"
     },
     {
@@ -12788,7 +12808,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_modal_chamar_whatsapp",
-      "community": 53,
+      "community": 7,
       "norm_label": "modal-chamar-whatsapp.tsx"
     },
     {
@@ -12798,7 +12818,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "whatsapp_modal_chamar_whatsapp_instancia",
-      "community": 53,
+      "community": 7,
       "norm_label": "instancia"
     },
     {
@@ -12808,7 +12828,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "whatsapp_modal_chamar_whatsapp_props",
-      "community": 53,
+      "community": 7,
       "norm_label": "props"
     },
     {
@@ -12828,7 +12848,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_modal_excluir_instancia",
-      "community": 7,
+      "community": 35,
       "norm_label": "modal-excluir-instancia.tsx"
     },
     {
@@ -12838,7 +12858,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "whatsapp_modal_excluir_instancia_props",
-      "community": 7,
+      "community": 35,
       "norm_label": "props"
     },
     {
@@ -12848,7 +12868,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "whatsapp_modal_excluir_instancia_modalexcluirinstancia",
-      "community": 10,
+      "community": 35,
       "norm_label": "modalexcluirinstancia()"
     },
     {
@@ -12948,7 +12968,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_modal_modelo",
-      "community": 7,
+      "community": 36,
       "norm_label": "modal-modelo.tsx"
     },
     {
@@ -12958,7 +12978,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "whatsapp_modal_modelo_props",
-      "community": 7,
+      "community": 36,
       "norm_label": "props"
     },
     {
@@ -13028,7 +13048,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_modal_nova_instancia",
-      "community": 7,
+      "community": 4,
       "norm_label": "modal-nova-instancia.tsx"
     },
     {
@@ -13038,7 +13058,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "whatsapp_modal_nova_instancia_props",
-      "community": 7,
+      "community": 4,
       "norm_label": "props"
     },
     {
@@ -13208,7 +13228,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "whatsapp_painel_detalhes_conversa_paineldetalhesconversa",
-      "community": 18,
+      "community": 65,
       "norm_label": "paineldetalhesconversa()"
     },
     {
@@ -13238,7 +13258,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "whatsapp_qr_code_dialog_qrcodedialog",
-      "community": 10,
+      "community": 35,
       "norm_label": "qrcodedialog()"
     },
     {
@@ -13338,7 +13358,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_secao_historico_auditoria",
-      "community": 18,
+      "community": 119,
       "norm_label": "secao-historico-auditoria.tsx"
     },
     {
@@ -13348,7 +13368,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "whatsapp_secao_historico_auditoria_logentry",
-      "community": 18,
+      "community": 119,
       "norm_label": "logentry"
     },
     {
@@ -13358,7 +13378,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "whatsapp_secao_historico_auditoria_props",
-      "community": 18,
+      "community": 119,
       "norm_label": "props"
     },
     {
@@ -13368,7 +13388,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "whatsapp_secao_historico_auditoria_acao_labels",
-      "community": 18,
+      "community": 119,
       "norm_label": "acao_labels"
     },
     {
@@ -13378,7 +13398,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "whatsapp_secao_historico_auditoria_secaohistoricoauditoria",
-      "community": 18,
+      "community": 119,
       "norm_label": "secaohistoricoauditoria()"
     },
     {
@@ -13388,7 +13408,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_seletor_resposta_rapida",
-      "community": 18,
+      "community": 6,
       "norm_label": "seletor-resposta-rapida.tsx"
     },
     {
@@ -13398,7 +13418,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "whatsapp_seletor_resposta_rapida_template",
-      "community": 18,
+      "community": 6,
       "norm_label": "template"
     },
     {
@@ -13408,7 +13428,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "whatsapp_seletor_resposta_rapida_variaveis",
-      "community": 18,
+      "community": 6,
       "norm_label": "variaveis"
     },
     {
@@ -13418,7 +13438,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "whatsapp_seletor_resposta_rapida_props",
-      "community": 18,
+      "community": 6,
       "norm_label": "props"
     },
     {
@@ -13428,7 +13448,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "whatsapp_seletor_resposta_rapida_tela",
-      "community": 18,
+      "community": 6,
       "norm_label": "tela"
     },
     {
@@ -13438,7 +13458,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "whatsapp_seletor_resposta_rapida_substituirvariaveis",
-      "community": 18,
+      "community": 6,
       "norm_label": "substituirvariaveis()"
     },
     {
@@ -13448,7 +13468,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "whatsapp_seletor_resposta_rapida_iconearquivo",
-      "community": 18,
+      "community": 6,
       "norm_label": "iconearquivo()"
     },
     {
@@ -13458,7 +13478,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "whatsapp_seletor_resposta_rapida_seletorrespostarapida",
-      "community": 18,
+      "community": 6,
       "norm_label": "seletorrespostarapida()"
     },
     {
@@ -13498,7 +13518,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_sidebar_instancias",
-      "community": 40,
+      "community": 65,
       "norm_label": "sidebar-instancias.tsx"
     },
     {
@@ -13508,7 +13528,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "whatsapp_sidebar_instancias_props",
-      "community": 40,
+      "community": 65,
       "norm_label": "props"
     },
     {
@@ -13518,7 +13538,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "whatsapp_sidebar_instancias_statusicon",
-      "community": 40,
+      "community": 65,
       "norm_label": "statusicon()"
     },
     {
@@ -13528,7 +13548,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "whatsapp_sidebar_instancias_statusclass",
-      "community": 40,
+      "community": 65,
       "norm_label": "statusclass()"
     },
     {
@@ -13538,7 +13558,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "whatsapp_sidebar_instancias_statuslabel",
-      "community": 40,
+      "community": 65,
       "norm_label": "statuslabel()"
     },
     {
@@ -13548,7 +13568,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "whatsapp_sidebar_instancias_sidebarinstancias",
-      "community": 40,
+      "community": 65,
       "norm_label": "sidebarinstancias()"
     },
     {
@@ -13648,7 +13668,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_instance_manager",
-      "community": 53,
+      "community": 7,
       "norm_label": "whatsapp-instance-manager.tsx"
     },
     {
@@ -13658,7 +13678,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_instance_manager_whatsappinstance",
-      "community": 53,
+      "community": 7,
       "norm_label": "whatsappinstance"
     },
     {
@@ -13668,7 +13688,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_instance_manager_props",
-      "community": 53,
+      "community": 7,
       "norm_label": "props"
     },
     {
@@ -13678,7 +13698,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_instance_manager_whatsappinstancemanager",
-      "community": 41,
+      "community": 30,
       "norm_label": "whatsappinstancemanager()"
     },
     {
@@ -13728,7 +13748,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_monitor_whatsappmonitor",
-      "community": 41,
+      "community": 30,
       "norm_label": "whatsappmonitor()"
     },
     {
@@ -14574,7 +14594,7 @@
       "source_location": "L194",
       "_origin": "ast",
       "id": "lib_nome_contato_backfillnomesconversas",
-      "community": 5,
+      "community": 11,
       "norm_label": "backfillnomesconversas()"
     },
     {
@@ -14614,7 +14634,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pdf_download_pdf",
-      "community": 50,
+      "community": 8,
       "norm_label": "download-pdf.ts"
     },
     {
@@ -14624,7 +14644,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "pdf_download_pdf_baixarorcamentopdf",
-      "community": 50,
+      "community": 8,
       "norm_label": "baixarorcamentopdf()"
     },
     {
@@ -14824,7 +14844,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_quote_permissions",
-      "community": 25,
+      "community": 8,
       "norm_label": "quote-permissions.ts"
     },
     {
@@ -14834,7 +14854,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "lib_quote_permissions_caneditquote",
-      "community": 25,
+      "community": 8,
       "norm_label": "caneditquote()"
     },
     {
@@ -14914,7 +14934,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "supabase_client",
-      "community": 41,
+      "community": 30,
       "norm_label": "client.ts"
     },
     {
@@ -14924,7 +14944,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "supabase_client_getenv",
-      "community": 41,
+      "community": 30,
       "norm_label": "getenv()"
     },
     {
@@ -14934,7 +14954,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "supabase_client_createclient",
-      "community": 41,
+      "community": 30,
       "norm_label": "createclient()"
     },
     {
@@ -14954,7 +14974,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "supabase_server",
-      "community": 74,
+      "community": 5,
       "norm_label": "server.ts"
     },
     {
@@ -15024,7 +15044,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "lib_telefone_normalizarparabusca",
-      "community": 11,
+      "community": 21,
       "norm_label": "normalizarparabusca()"
     },
     {
@@ -15084,7 +15104,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "lib_utils_formatarmoeda",
-      "community": 1,
+      "community": 47,
       "norm_label": "formatarmoeda()"
     },
     {
@@ -15524,7 +15544,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_resolver_nome_conversa",
-      "community": 69,
+      "community": 21,
       "norm_label": "resolver-nome-conversa.ts"
     },
     {
@@ -15534,7 +15554,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "whatsapp_resolver_nome_conversa_namesource",
-      "community": 69,
+      "community": 21,
       "norm_label": "namesource"
     },
     {
@@ -15544,7 +15564,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "whatsapp_resolver_nome_conversa_resolvednameconversa",
-      "community": 69,
+      "community": 21,
       "norm_label": "resolvednameconversa"
     },
     {
@@ -15554,7 +15574,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "whatsapp_resolver_nome_conversa_resolvernomeconversainput",
-      "community": 69,
+      "community": 21,
       "norm_label": "resolvernomeconversainput"
     },
     {
@@ -15564,7 +15584,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "whatsapp_resolver_nome_conversa_isvalidname",
-      "community": 69,
+      "community": 21,
       "norm_label": "isvalidname()"
     },
     {
@@ -15574,7 +15594,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "whatsapp_resolver_nome_conversa_buildtelefonepatterns",
-      "community": 69,
+      "community": 21,
       "norm_label": "buildtelefonepatterns()"
     },
     {
@@ -15584,7 +15604,7 @@
       "source_location": "L99",
       "_origin": "ast",
       "id": "whatsapp_resolver_nome_conversa_resolvernomeconversa",
-      "community": 69,
+      "community": 21,
       "norm_label": "resolvernomeconversa()"
     },
     {
@@ -16314,7 +16334,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_cleanup_whatsapp_deals",
-      "community": 118,
+      "community": 117,
       "norm_label": "cleanup-whatsapp-deals.ts"
     },
     {
@@ -16324,7 +16344,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "scripts_cleanup_whatsapp_deals_deal",
-      "community": 118,
+      "community": 117,
       "norm_label": "deal"
     },
     {
@@ -16334,7 +16354,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "scripts_cleanup_whatsapp_deals_lead",
-      "community": 118,
+      "community": 117,
       "norm_label": "lead"
     },
     {
@@ -16344,7 +16364,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "scripts_cleanup_whatsapp_deals_messagecount",
-      "community": 118,
+      "community": 117,
       "norm_label": "messagecount"
     },
     {
@@ -16354,7 +16374,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "scripts_cleanup_whatsapp_deals_main",
-      "community": 118,
+      "community": 117,
       "norm_label": "main()"
     },
     {
@@ -16832,7 +16852,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "types_database_userrole",
-      "community": 25,
+      "community": 8,
       "norm_label": "userrole"
     },
     {
@@ -16852,7 +16872,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "types_database_leadstatus",
-      "community": 57,
+      "community": 40,
       "norm_label": "leadstatus"
     },
     {
@@ -16922,7 +16942,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "types_database_quotestatus",
-      "community": 25,
+      "community": 38,
       "norm_label": "quotestatus"
     },
     {
@@ -16932,7 +16952,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "types_database_orderstatus",
-      "community": 17,
+      "community": 36,
       "norm_label": "orderstatus"
     },
     {
@@ -16982,7 +17002,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "types_database_profile",
-      "community": 57,
+      "community": 44,
       "norm_label": "profile"
     },
     {
@@ -17162,7 +17182,7 @@
       "source_location": "L359",
       "_origin": "ast",
       "id": "types_database_portfolio",
-      "community": 36,
+      "community": 48,
       "norm_label": "portfolio"
     },
     {
@@ -17222,7 +17242,7 @@
       "source_location": "L455",
       "_origin": "ast",
       "id": "types_database_quoteitem",
-      "community": 25,
+      "community": 38,
       "norm_label": "quoteitem"
     },
     {
@@ -17302,7 +17322,7 @@
       "source_location": "L568",
       "_origin": "ast",
       "id": "types_database_kpiwhatsapp",
-      "community": 119,
+      "community": 65,
       "norm_label": "kpiwhatsapp"
     },
     {
@@ -17342,7 +17362,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "types_whatsapp_central_whatsappinstanciaresumo",
-      "community": 40,
+      "community": 65,
       "norm_label": "whatsappinstanciaresumo"
     },
     {
@@ -36358,6 +36378,28 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "app/(pdf)/orcamentos/[id]/preview-pdf/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "preview_pdf_page",
+      "target": "supabase_admin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(pdf)/orcamentos/[id]/preview-pdf/page.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "preview_pdf_page",
+      "target": "supabase_admin_createadminclient",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(pdf)/orcamentos/[id]/preview-pdf/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -36374,6 +36416,17 @@
       "confidence_score": 1.0,
       "source": "preview_pdf_page",
       "target": "supabase_server_createclient"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/(pdf)/orcamentos/[id]/preview-pdf/page.tsx",
+      "source_location": "L92",
+      "weight": 1.0,
+      "source": "preview_pdf_page_previewpdfpage",
+      "target": "supabase_admin_createadminclient"
     },
     {
       "relation": "calls",
@@ -45762,9 +45815,9 @@
       "source_file": "components/orcamentos/form-orcamento-hub.tsx",
       "source_location": "L63",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_form_orcamento_hub",
-      "target": "orcamentos_form_orcamento_hub_fichaproduto",
-      "confidence_score": 1.0
+      "target": "orcamentos_form_orcamento_hub_fichaproduto"
     },
     {
       "relation": "contains",
@@ -46021,9 +46074,9 @@
       "source_file": "components/orcamentos/form-orcamento-hub.tsx",
       "source_location": "L75",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_form_orcamento_hub_fichaproduto",
-      "target": "lib_utils_formatarmoeda",
-      "confidence_score": 1.0
+      "target": "lib_utils_formatarmoeda"
     },
     {
       "relation": "calls",
@@ -46868,6 +46921,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
+      "source_location": "L205",
+      "weight": 1.0,
+      "source": "orcamentos_orcamento_pdf_template",
+      "target": "orcamentos_orcamento_pdf_template_fichalinha",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
       "source_location": "L148",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -47123,6 +47186,16 @@
       "confidence_score": 1.0,
       "source": "orcamentos_orcamento_pdf_template",
       "target": "orcamentos_orcamento_pdf_template_secaoprodutos"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/orcamentos/orcamento-pdf-template.tsx",
+      "source_location": "L440",
+      "weight": 1.0,
+      "source": "orcamentos_orcamento_pdf_template",
+      "target": "orcamentos_orcamento_pdf_template_secaoprodutoshub",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -64967,5 +65040,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "344eaa14c93767bb22709f54258a62eb7f1f6242"
+  "built_at_commit": "43cc4e129d8f9cff64b88c8a575f511d8f626e68"
 }
