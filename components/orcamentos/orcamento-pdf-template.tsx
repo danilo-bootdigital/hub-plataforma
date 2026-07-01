@@ -148,6 +148,17 @@ type OrcamentoTemplateData = {
   prazo_entrega?: string | null
   transportadora?: string | null
   observacoes_cliente?: string | null
+  // Identidade do Hub (remetente do PDF ao cliente — DEC-017).
+  hub?: {
+    nome: string
+    logo_url: string | null
+    telefone: string | null
+    email: string | null
+    site: string | null
+    instagram: string | null
+    cnpj: string | null
+    endereco: string | null
+  } | null
   nota_tipo_pessoa: string | null
   nota_nome: string | null
   nota_documento: string | null
@@ -231,8 +242,18 @@ function CampoRotulo({ rotulo, valor, valorNegrito = true }: { rotulo: string; v
   )
 }
 
-function Cabecalho({ data }: { data: OrcamentoTemplateData }) {
-  const org = data.organizacao
+// Identidade exibida no cabeçalho/rodapé (remetente do PDF).
+type IdentidadePdf = {
+  nome: string
+  nome_fantasia?: string | null
+  logo_url: string | null
+  telefone: string | null
+  email: string | null
+  site: string | null
+  instagram: string | null
+}
+
+function Cabecalho({ data, org }: { data: OrcamentoTemplateData; org: IdentidadePdf }) {
   return (
     <header className="grid grid-cols-1 md:grid-cols-12 gap-2 items-center border-b-2 border-emerald-600 pb-4">
       {/* Bloco esquerda: logo + empresa */}
@@ -636,7 +657,7 @@ function SecaoComercial({ data, isHub }: { data: OrcamentoTemplateData; isHub: b
   )
 }
 
-function Rodape({ org }: { org: OrcamentoTemplateData['organizacao'] }) {
+function Rodape({ org }: { org: IdentidadePdf | null }) {
   if (!org) return null
   if (!org.telefone && !org.email && !org.site && !org.instagram) return null
   return (
@@ -660,12 +681,34 @@ function Rodape({ org }: { org: OrcamentoTemplateData['organizacao'] }) {
 export function OrcamentoPdfTemplate({ data }: { data: OrcamentoTemplateData }) {
   // Orçamento do Hub (DEC-017): tem Portfólio e não usa Fornecedor.
   const isHub = !!data.portfolio_id
+  // Identidade (remetente): no Hub é o próprio Hub; no legado, a organização.
+  const identidade: IdentidadePdf | null = isHub && data.hub
+    ? {
+        nome: data.hub.nome,
+        nome_fantasia: null,
+        logo_url: data.hub.logo_url,
+        telefone: data.hub.telefone,
+        email: data.hub.email,
+        site: data.hub.site,
+        instagram: data.hub.instagram,
+      }
+    : data.organizacao
+      ? {
+          nome: data.organizacao.nome,
+          nome_fantasia: data.organizacao.nome_fantasia,
+          logo_url: data.organizacao.logo_url,
+          telefone: data.organizacao.telefone,
+          email: data.organizacao.email,
+          site: data.organizacao.site,
+          instagram: data.organizacao.instagram,
+        }
+      : null
   return (
     <article
       data-pdf-template="ready"
       className="font-sans grid gap-5 p-10 bg-white text-slate-800 w-full"
     >
-      <Cabecalho data={data} />
+      {identidade && <Cabecalho data={data} org={identidade} />}
       <SecaoCards data={data} />
       {isHub ? (
         <SecaoProdutosHub itens={data.itens} />
@@ -674,7 +717,7 @@ export function OrcamentoPdfTemplate({ data }: { data: OrcamentoTemplateData }) 
       )}
       <SecaoTotais data={data} />
       <SecaoComercial data={data} isHub={isHub} />
-      <Rodape org={data.organizacao} />
+      <Rodape org={identidade} />
     </article>
   )
 }

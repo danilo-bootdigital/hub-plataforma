@@ -86,16 +86,31 @@ export default async function PreviewPdfPage({
   const ehHub = !!orcamento.portfolio_id
   const itensQuote: Array<Record<string, unknown> & { product_id: string | null }> =
     Array.isArray(orcamento.itens) ? orcamento.itens : []
-  if (ehHub && itensQuote.length > 0) {
+  if (ehHub) {
+    const admin = createAdminClient()
+
+    // Identidade do Hub (remetente do PDF ao cliente — DEC-017). Via admin
+    // pois hubs pode ter RLS restrita; o acesso ao orçamento já foi validado.
+    let hubIdentidade = null
+    if (orcamento.hub_id) {
+      const { data: hub } = await admin
+        .from('hubs')
+        .select('nome, logo_url, telefone, email, site, instagram, cnpj, endereco')
+        .eq('id', orcamento.hub_id)
+        .maybeSingle()
+      hubIdentidade = hub ?? null
+    }
+
+    // Ficha completa dos produtos (produtos têm RLS admin/gestor).
+    let itensEnriquecidos = itensQuote
     const productIds = [...new Set(itensQuote.map((i) => i.product_id).filter(Boolean))] as string[]
     if (productIds.length > 0) {
-      const admin = createAdminClient()
       const { data: produtos } = await admin
         .from('products')
         .select('id, nome, descricao, composicao, apresentacao, via_administracao, via_apresentacao, volume, unidade, quantidade_por_caixa, aplicadores, exige_receita')
         .in('id', productIds)
       const pmap = new Map((produtos ?? []).map((p) => [p.id, p]))
-      const itensEnriquecidos = itensQuote.map((i) => {
+      itensEnriquecidos = itensQuote.map((i) => {
         const p = i.product_id ? pmap.get(i.product_id) : null
         return p
           ? {
@@ -114,8 +129,9 @@ export default async function PreviewPdfPage({
             }
           : i
       })
-      dadosTemplate = { ...orcamento, itens: itensEnriquecidos }
     }
+
+    dadosTemplate = { ...orcamento, itens: itensEnriquecidos, hub: hubIdentidade }
   }
 
   return (

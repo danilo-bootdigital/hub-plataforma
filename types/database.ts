@@ -38,6 +38,14 @@ export type Hub = {
   descricao: string | null
   status: HubStatus
   ativo: boolean
+  // Identidade/Marca do Hub (Expand — DEC-017): usada no PDF de orçamento.
+  logo_url: string | null
+  telefone: string | null
+  email: string | null
+  site: string | null
+  instagram: string | null
+  cnpj: string | null
+  endereco: string | null
   criado_em: string
   atualizado_em: string
 }
