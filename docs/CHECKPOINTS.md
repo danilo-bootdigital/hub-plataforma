@@ -147,3 +147,14 @@
 - **Banco:** RPC `vincular_produtos_portfolio` (`security definer`, atômica, idempotente, preço herdado) + helper `produtos_vinculados_portfolio` → `uuid[]`. Artefatos `hubdev/bootstrap/expand_rpc_vincular_produtos_portfolio.sql` (+ rollback).
 - **Situação:** ✔ Concluído — smoke 13/13; deploy em `https://hub-plataforma-dev.vercel.app`
 - **Observações:** vínculo em massa de produtos existentes em **2 pontos de entrada** (modal na página do Portfólio + ação em lote na lista de Produtos). Idempotente (já vinculado ignorado), classificação opcional aplicada ao lote, N:N validado. `products.portfolio_id` não utilizado; Fornecedor intocado (DEC-014). Sem policies novas (acesso só via RPC).
+
+## Checkpoint 014 — Página HUB "Produtos" (consulta operacional — Sprint Expand E7)
+
+- **Data:** 2026-06-30
+- **Git Commit:** `__HASH__`
+- **Git Branch:** main
+- **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV / Homologação)
+- **Ambiente:** HUB DEV (banco — RPCs + metadata via SQL Editor) + produção Vercel (`hub-plataforma-dev`)
+- **Banco:** colunas `products.metadata`/`product_portfolios.metadata` (jsonb); RPCs `SECURITY DEFINER` `hub_produtos_listar`/`hub_produto_detalhe`/`hub_produtos_filtros` + `_hub_ctx`. Artefatos `hubdev/bootstrap/expand_hub_produtos.sql` (+ rollback).
+- **Situação:** ✔ Concluído — smoke 16/16; deploy em `https://hub-plataforma-dev.vercel.app`
+- **Observações:** `/hub/produtos` para Proprietário/Assistente (admin/gestor pré-visualizam), consulta server-side (busca/filtros/ordenação/paginação) com autorização por Hub via `hub_portfolios`; drawer dinâmico (só campos preenchidos + `metadata`); sem CRUD, sem imagens/cards. Orçamento/pré-pedido fora desta etapa. Fornecedor intocado (DEC-014).

@@ -37,6 +37,8 @@ export const navegacao: ItemNavegacao[] = [
   { label: 'Portfólios', href: '/configuracoes/portfolios', icone: Layers, perfis: ['admin', 'gestor'] },
   // Áreas iniciais dos novos perfis (placeholder — Fatia 03)
   { label: 'Área do Hub', href: '/hub', icone: Building2, perfis: ['proprietario_hub'] },
+  // Consulta operacional de Produtos (Hub) — DEC-013/014; sem CRUD
+  { label: 'Produtos', href: '/hub/produtos', icone: Package, perfis: ['proprietario_hub', 'assistente'] },
   { label: 'Assistentes', href: '/hub/assistentes', icone: Users, perfis: ['proprietario_hub'] },
   { label: 'Carteiras', href: '/hub/carteiras', icone: Wallet, perfis: ['proprietario_hub'] },
   { label: 'Clientes', href: '/hub/clientes', icone: Contact, perfis: ['proprietario_hub'] },

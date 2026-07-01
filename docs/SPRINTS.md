@@ -133,6 +133,22 @@
 - **Checkpoint Relacionado:** Checkpoint 013.
 - **Changelog Relacionado:** 2026-06-30 — Vínculo em massa Produto↔Portfólio (Expand E6).
 
+## Sprint Expand E7 — Página HUB "Produtos" (consulta operacional)
+
+- **Identificador:** Expand E7 (FASE 1 — Expand)
+- **Objetivo:** tela `/hub/produtos` para **Proprietário e Assistentes** consultarem os produtos autorizados pelos Portfólios liberados (DEC-013/014). **Sem CRUD** — o Hub não cadastra produtos, apenas consome.
+- **Escopo:**
+  - **Banco (Expand):** colunas `products.metadata` e `product_portfolios.metadata` (jsonb, flexível p/ campos específicos de Portfólio); RPCs `SECURITY DEFINER` `hub_produtos_listar` (busca/filtros/ordenação/paginação server-side), `hub_produto_detalhe`, `hub_produtos_filtros` + helper `_hub_ctx`. Arquivos `hubdev/bootstrap/expand_hub_produtos.sql` (+ rollback). Autorização por Hub via `hub_portfolios` ativos; Indústria vê tudo da org.
+  - **Backend:** actions em `app/(dashboard)/hub/produtos/actions.ts`.
+  - **Frontend:** `hub/produtos/page.tsx` (gate + carga inicial server-side) + `components/hub/produtos-consulta.tsx` (DataTable ordenável, paginação, contagem, drawer 500px dinâmico com Esc/click-fora, responsivo → lista no mobile); item de menu para `proprietario_hub`/`assistente`.
+  - **Tela dinâmica:** colunas operacionais fixas; drawer exibe só campos preenchidos, agrupados; campos extras de importação vivem em `metadata` e aparecem em "Informações técnicas / Outros dados". Sem imagens, sem cards, sem "—" em excesso.
+- **Fora de escopo:** Orçamento e pré-pedido (etapa posterior).
+- **Dependências:** Expand E4/E5/E6; DEC-013; DEC-014.
+- **Critérios de Aceite:** AC1 SQL aplicado no HUB DEV (3 RPCs + metadata) · AC2 build OK · AC3 gate proprietario_hub/assistente (admin/gestor preview) · AC4 busca/filtros/ordenação/paginação server-side · AC5 autorização por Hub (só Portfólios autorizados) · AC6 drawer dinâmico só com campos preenchidos + metadata · AC7 sem CRUD; sem imagens; sem Fornecedor.
+- **Resultado:** ✔ Concluída — smoke 16/16 no HUB DEV; RPCs + metadata aplicados via SQL Editor; build OK.
+- **Checkpoint Relacionado:** Checkpoint 014.
+- **Changelog Relacionado:** 2026-06-30 — Página HUB Produtos (Expand E7).
+
 ---
 
 ## Convenção de identificadores
