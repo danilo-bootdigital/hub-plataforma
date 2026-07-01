@@ -1875,8 +1875,8 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/clientes/page.tsx": {
-    "mtime": 1782648853.3246443,
-    "ast_hash": "581fae19740d8968f5dfaa7954b57105",
+    "mtime": 1782896324.5527132,
+    "ast_hash": "7c1ec0c24827f98deb46f6f0e53d2c41",
     "semantic_hash": ""
   },
   "components/hub-clientes/tabela-clientes-hub.tsx": {
@@ -2242,6 +2242,21 @@
   "hubdev/bootstrap/dev_excluir_usuario.sql": {
     "mtime": 1782892506.3637924,
     "ast_hash": "536cdc5e775feba80f81e4de76d9067f",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/clientes/actions.ts": {
+    "mtime": 1782896290.6406448,
+    "ast_hash": "b8e1460f25f4cadab91a8bb5286964f2",
+    "semantic_hash": ""
+  },
+  "components/hub-clientes/distribuir-clientes.tsx": {
+    "mtime": 1782896341.1728122,
+    "ast_hash": "57bf7477324827da5852a9506350484a",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/expand_responsavel_operacional.sql": {
+    "mtime": 1782896277.0798392,
+    "ast_hash": "bac380f8fd1f0989665f452ec3681d93",
     "semantic_hash": ""
   }
 }

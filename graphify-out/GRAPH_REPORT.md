@@ -1,16 +1,16 @@
 # Graph Report - plataforma-hub  (2026-07-01)
 
 ## Corpus Check
-- 452 files · ~197,385 words
+- 452 files · ~197,836 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1705 nodes · 4362 edges · 115 communities (96 shown, 19 thin omitted)
+- 1705 nodes · 4362 edges · 113 communities (95 shown, 18 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 22 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b0f5649f`
+- Built from commit: `44ac84de`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -40,7 +40,6 @@
 - [[_COMMUNITY_Listagem de Leads e Orçamentos|Listagem de Leads e Orçamentos]]
 - [[_COMMUNITY_Rota de Exportação CSV|Rota de Exportação CSV]]
 - [[_COMMUNITY_Ações de Tarefas|Ações de Tarefas]]
-- [[_COMMUNITY_Configuração TypeScript|Configuração TypeScript]]
 - [[_COMMUNITY_Detalhe de Orçamento e PDF|Detalhe de Orçamento e PDF]]
 - [[_COMMUNITY_Tipos do Banco de Dados|Tipos do Banco de Dados]]
 - [[_COMMUNITY_Community 28|Community 28]]
@@ -58,7 +57,6 @@
 - [[_COMMUNITY_Sidebar Mobile e Sheet|Sidebar Mobile e Sheet]]
 - [[_COMMUNITY_Community 41|Community 41]]
 - [[_COMMUNITY_Community 42|Community 42]]
-- [[_COMMUNITY_Community 43|Community 43]]
 - [[_COMMUNITY_Community 44|Community 44]]
 - [[_COMMUNITY_Layout Raiz e Autenticação|Layout Raiz e Autenticação]]
 - [[_COMMUNITY_Gestão de Modelos|Gestão de Modelos]]
@@ -142,7 +140,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (115 total, 19 thin omitted)
+## Communities (113 total, 18 thin omitted)
 
 ### Community 0 - "Ações de Usuários e Contatos"
 Cohesion: 0.14
@@ -244,10 +242,6 @@ Nodes (19): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModu
 Cohesion: 0.12
 Nodes (20): concluirTarefa(), criarTarefa(), excluirTarefa(), getUsuarioEOrg(), reabrirTarefa(), CardTarefa(), ICONES_TIPO, LABELS_TIPO (+12 more)
 
-### Community 25 - "Configuração TypeScript"
-Cohesion: 0.40
-Nodes (3): BotoesPedido(), ETAPAS, TimelineStatus()
-
 ### Community 26 - "Detalhe de Orçamento e PDF"
 Cohesion: 0.12
 Nodes (29): criarOrcamento(), formatarData(), OrcamentoEditarPage(), STATUS_LABEL, adicionarItemOrcamento(), alterarItemQuantidade(), auditarItem(), calcularTotalFinal() (+21 more)
@@ -341,8 +335,8 @@ Cohesion: 0.36
 Nodes (10): adicionarEtapa(), alterarCorEtapa(), alternarOculto(), excluirEtapa(), getAdminOuGestor(), getMaxOrdem(), moverEtapa(), renomearEtapa() (+2 more)
 
 ### Community 50 - "Community 50"
-Cohesion: 0.11
-Nodes (18): Props, ContatoImportado, MAPEAMENTO_NOME, ModoImportacao, Props, CardKPI(), Props, DadoEtapa (+10 more)
+Cohesion: 0.13
+Nodes (11): Props, ContatoImportado, MAPEAMENTO_NOME, ModoImportacao, Props, BotoesPedido(), ETAPAS, TimelineStatus() (+3 more)
 
 ### Community 51 - "Gerador de PDF de Orçamento"
 Cohesion: 0.30
@@ -433,8 +427,8 @@ Cohesion: 0.47
 Nodes (3): AssistenteAtendimentosPage(), AtendimentoRow, TabelaAtendimentos()
 
 ### Community 74 - "Community 74"
-Cohesion: 0.11
-Nodes (6): FormImportacao(), FormEmpresa(), EmpresaPage(), NovoOrcamentoContent(), FormOrcamento(), FormProduto()
+Cohesion: 0.09
+Nodes (8): GET(), FormImportacao(), calcularPeriodo(), NovoOrcamentoContent(), FormOrcamento(), OrcamentoPdfTemplate(), PreviewPdfPage(), FormProduto()
 
 ### Community 86 - "Community 86"
 Cohesion: 0.17
@@ -457,8 +451,8 @@ Cohesion: 0.38
 Nodes (6): buildTelefonePatterns(), isValidName(), NameSource, ResolvedNameConversa, resolverNomeConversa(), ResolverNomeConversaInput
 
 ### Community 112 - "Community 112"
-Cohesion: 0.33
-Nodes (5): CORES, DadoOrigem, GraficoLeadsPorOrigem(), LABELS, Props
+Cohesion: 0.14
+Nodes (15): CardKPI(), Props, DadoEtapa, GraficoDealsPorEtapa(), Props, CORES, DadoOrigem, GraficoLeadsPorOrigem() (+7 more)
 
 ### Community 116 - "Community 116"
 Cohesion: 0.24
@@ -467,16 +461,16 @@ Nodes (8): excluirFuncao(), FuncaoLista, FuncaoPayload, listarFuncoes(), PermIte
 ## Knowledge Gaps
 - **508 isolated node(s):** `mensagensErro`, `STATUS_LABEL`, `STATUS_LABEL`, `SupabaseSrv`, `PerfilMin` (+503 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **19 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `createClient()` connect `Autenticação e Listagens (Hubs/Fornecedores)` to `Ações de Usuários e Contatos`, `Fornecedores e Importação de Produtos`, `Pipeline de Deals (Kanban)`, `Relatórios e Exportação`, `Ações de Orçamento`, `Modais e Diálogos (UI)`, `Conversas e Painel do Cliente`, `Páginas de Orçamento e Botões PDF`, `Painel de KPIs e Gráficos`, `Botões e Modais de Negociação`, `Gestão de Hubs de Saúde`, `Fluxo de Status de Pedidos`, `Ações de Conversa (Tags/Templates)`, `Página de Conversa e Telefone`, `Config de Componentes (shadcn)`, `Listagem de Leads e Orçamentos`, `Ações de Tarefas`, `Configuração TypeScript`, `Detalhe de Orçamento e PDF`, `Community 28`, `Auth Provider e Hooks`, `Cache do WhatsApp`, `Detalhe de Contato e Timeline`, `Community 38`, `Disponibilidade e Header`, `Sidebar Mobile e Sheet`, `Community 42`, `Community 43`, `Community 44`, `Layout Raiz e Autenticação`, `Gestão de Modelos`, `Community 47`, `Community 48`, `Configuração de Etapas do Pipeline`, `Community 50`, `Gerador de PDF de Orçamento`, `Community 54`, `Community 57`, `Rotas de Impressão e Browser`, `Relatórios de WhatsApp`, `Arquivamento de Conversas`, `Gestão de Empresa`, `Community 73`, `Community 74`, `Community 86`, `Community 109`, `Community 110`, `Community 111`, `Community 113`, `Community 116`?**
+- **Why does `createClient()` connect `Autenticação e Listagens (Hubs/Fornecedores)` to `Ações de Usuários e Contatos`, `Fornecedores e Importação de Produtos`, `Pipeline de Deals (Kanban)`, `Relatórios e Exportação`, `Ações de Orçamento`, `Modais e Diálogos (UI)`, `Conversas e Painel do Cliente`, `Páginas de Orçamento e Botões PDF`, `Painel de KPIs e Gráficos`, `Botões e Modais de Negociação`, `Gestão de Hubs de Saúde`, `Fluxo de Status de Pedidos`, `Ações de Conversa (Tags/Templates)`, `Página de Conversa e Telefone`, `Config de Componentes (shadcn)`, `Listagem de Leads e Orçamentos`, `Ações de Tarefas`, `Detalhe de Orçamento e PDF`, `Community 28`, `Auth Provider e Hooks`, `Cache do WhatsApp`, `Detalhe de Contato e Timeline`, `Community 38`, `Disponibilidade e Header`, `Sidebar Mobile e Sheet`, `Community 42`, `Community 44`, `Layout Raiz e Autenticação`, `Gestão de Modelos`, `Community 47`, `Community 48`, `Configuração de Etapas do Pipeline`, `Community 50`, `Gerador de PDF de Orçamento`, `Community 54`, `Community 57`, `Rotas de Impressão e Browser`, `Relatórios de WhatsApp`, `Arquivamento de Conversas`, `Gestão de Empresa`, `Community 73`, `Community 74`, `Community 86`, `Community 109`, `Community 110`, `Community 111`, `Community 112`, `Community 113`, `Community 116`?**
   _High betweenness centrality (0.192) - this node is a cross-community bridge._
-- **Why does `Button()` connect `Página de Conversa e Telefone` to `Ações de Usuários e Contatos`, `Pipeline de Deals (Kanban)`, `Modais de Leads e Tarefas`, `Relatórios e Exportação`, `Login e Formulário de Contato`, `Ações de Orçamento`, `Modais e Diálogos (UI)`, `Conversas e Painel do Cliente`, `Componentes UI (Dropdown/Card)`, `Páginas de Orçamento e Botões PDF`, `Painel de KPIs e Gráficos`, `Botões e Modais de Negociação`, `Gestão de Hubs de Saúde`, `Ações de Conversa (Tags/Templates)`, `Ações de Tarefas`, `Configuração TypeScript`, `Detalhe de Orçamento e PDF`, `Community 28`, `Auth Provider e Hooks`, `Config Avançada de WhatsApp`, `Edição e Listagem de Contatos`, `Itens da Caixa de Entrada`, `Detalhe de Contato e Timeline`, `Gerenciador de Instâncias WhatsApp`, `Community 38`, `Sidebar Mobile e Sheet`, `Community 41`, `Community 42`, `Community 44`, `Gestão de Modelos`, `Community 47`, `Community 48`, `Configuração de Etapas do Pipeline`, `Community 50`, `Community 53`, `Community 54`, `Community 55`, `Community 57`, `Configuração de Distribuição`, `Community 63`, `Community 65`, `Community 66`, `Community 67`, `Community 69`, `Community 73`, `Community 74`, `Community 109`?**
+- **Why does `Button()` connect `Página de Conversa e Telefone` to `Ações de Usuários e Contatos`, `Pipeline de Deals (Kanban)`, `Modais de Leads e Tarefas`, `Autenticação e Listagens (Hubs/Fornecedores)`, `Relatórios e Exportação`, `Login e Formulário de Contato`, `Ações de Orçamento`, `Modais e Diálogos (UI)`, `Conversas e Painel do Cliente`, `Componentes UI (Dropdown/Card)`, `Páginas de Orçamento e Botões PDF`, `Painel de KPIs e Gráficos`, `Botões e Modais de Negociação`, `Gestão de Hubs de Saúde`, `Ações de Conversa (Tags/Templates)`, `Ações de Tarefas`, `Detalhe de Orçamento e PDF`, `Community 28`, `Auth Provider e Hooks`, `Config Avançada de WhatsApp`, `Edição e Listagem de Contatos`, `Itens da Caixa de Entrada`, `Detalhe de Contato e Timeline`, `Gerenciador de Instâncias WhatsApp`, `Community 38`, `Sidebar Mobile e Sheet`, `Community 41`, `Community 42`, `Community 44`, `Gestão de Modelos`, `Community 47`, `Community 48`, `Configuração de Etapas do Pipeline`, `Community 50`, `Community 53`, `Community 54`, `Community 55`, `Community 57`, `Configuração de Distribuição`, `Community 63`, `Community 65`, `Community 66`, `Community 67`, `Community 69`, `Community 73`, `Community 74`, `Community 109`?**
   _High betweenness centrality (0.118) - this node is a cross-community bridge._
-- **Why does `cn()` connect `Componentes UI (Dropdown/Card)` to `Pipeline de Deals (Kanban)`, `Modais de Leads e Tarefas`, `Login e Formulário de Contato`, `Conversas e Painel do Cliente`, `Gestão de Hubs de Saúde`, `Página de Conversa e Telefone`, `Listagem de Conversas WhatsApp`, `Config de Componentes (shadcn)`, `Listagem de Leads e Orçamentos`, `Ações de Tarefas`, `Configuração TypeScript`, `Config Avançada de WhatsApp`, `Gerenciador de Instâncias WhatsApp`, `Community 37`, `Community 38`, `Community 41`, `Community 50`, `Gerador de PDF de Orçamento`, `Community 53`, `Community 55`, `Community 65`, `Community 108`?**
+- **Why does `cn()` connect `Componentes UI (Dropdown/Card)` to `Pipeline de Deals (Kanban)`, `Modais de Leads e Tarefas`, `Login e Formulário de Contato`, `Conversas e Painel do Cliente`, `Gestão de Hubs de Saúde`, `Página de Conversa e Telefone`, `Listagem de Conversas WhatsApp`, `Config de Componentes (shadcn)`, `Listagem de Leads e Orçamentos`, `Ações de Tarefas`, `Config Avançada de WhatsApp`, `Gerenciador de Instâncias WhatsApp`, `Community 37`, `Community 38`, `Community 41`, `Community 50`, `Gerador de PDF de Orçamento`, `Community 53`, `Community 55`, `Community 65`, `Community 108`, `Community 112`?**
   _High betweenness centrality (0.046) - this node is a cross-community bridge._
 - **What connects `mensagensErro`, `STATUS_LABEL`, `STATUS_LABEL` to the rest of the system?**
   _508 weakly-connected nodes found - possible documentation gaps or missing edges._
