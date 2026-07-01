@@ -10,7 +10,7 @@
 
 - **Objetivo:** garantir que um Hub nunca fique sem Proprietário. Criação já exigia/criava o Proprietário (`criarHub`); faltava fechar a brecha de **remoção**.
 - **Aplicação Web:** `definirProprietarioHub` passa a **rejeitar remoção** (`proprietarioId` vazio) — só permite **substituir**; `components/hubs/tabela-hubs.tsx` remove a opção "— Nenhum —" (placeholder desabilitado "Selecionar proprietário…"). Sem novo SQL.
-- **Observações:** criação de Hub já cobre "Proprietário obrigatório"; a troca cobre "selecionar Proprietário existente". Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+- **Observações:** criação de Hub já cobre "Proprietário obrigatório"; a troca cobre "selecionar Proprietário existente". Commit `64d6ec8`; deploy em `https://hub-plataforma-dev.vercel.app`.
 
 ## 2026-06-30 — RBAC Migrate-C: tela de Usuários (drawer + atribuição de Função) — DEC-015
 
