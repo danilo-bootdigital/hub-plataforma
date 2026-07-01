@@ -162,7 +162,7 @@
 ## Checkpoint 015 — RBAC: fundação Funções/Permissões (Sprint Expand E8 — DEC-015)
 
 - **Data:** 2026-06-30
-- **Git Commit:** `__HASH__`
+- **Git Commit:** `5276589`
 - **Git Branch:** main
 - **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV / Homologação)
 - **Ambiente:** HUB DEV (banco — via SQL Editor). Sem deploy (app inalterado nesta fatia).

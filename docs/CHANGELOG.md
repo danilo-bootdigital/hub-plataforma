@@ -12,7 +12,7 @@
 - **Banco (SQL Editor, HUB DEV):** tabelas `funcoes` (escopo Hub) e `funcao_permissoes` (módulo×ação, `chk_acao`); coluna `profiles.funcao_id`; índices; RLS habilitada sem policies (acesso via RPC). RPC `SECURITY DEFINER` `minhas_permissoes()` (admin/proprietário=total; gestor=fixo; assistente=Função). Artefatos `hubdev/bootstrap/expand_rbac_funcoes.sql` (+ rollback).
 - **Aplicação Web:** nenhuma mudança de comportamento nesta fatia (fundação). Wiring de menu/middleware/server-actions e telas ficam para o Migrate.
 - **Estruturas preservadas:** enum `user_role`, RLS existente e dados intocados; perfis atuais preservados.
-- **Observações:** smoke funcional **9/9** no HUB DEV (resolvedor por perfil/Função, constraint de ação, teardown com restauração do usuário de teste). Sem deploy (app inalterado nesta fatia). Commit `__HASH__`.
+- **Observações:** smoke funcional **9/9** no HUB DEV (resolvedor por perfil/Função, constraint de ação, teardown com restauração do usuário de teste). Sem deploy (app inalterado nesta fatia). Commit `5276589`.
 
 ## 2026-06-30 — Página HUB "Produtos" (consulta operacional — Sprint Expand E7, DEC-013/014)
 
