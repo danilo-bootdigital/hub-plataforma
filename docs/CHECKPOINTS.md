@@ -158,3 +158,14 @@
 - **Banco:** colunas `products.metadata`/`product_portfolios.metadata` (jsonb); RPCs `SECURITY DEFINER` `hub_produtos_listar`/`hub_produto_detalhe`/`hub_produtos_filtros` + `_hub_ctx`. Artefatos `hubdev/bootstrap/expand_hub_produtos.sql` (+ rollback).
 - **Situação:** ✔ Concluído — smoke 16/16; deploy em `https://hub-plataforma-dev.vercel.app`
 - **Observações:** `/hub/produtos` para Proprietário/Assistente (admin/gestor pré-visualizam), consulta server-side (busca/filtros/ordenação/paginação) com autorização por Hub via `hub_portfolios`; drawer dinâmico (só campos preenchidos + `metadata`); sem CRUD, sem imagens/cards. Orçamento/pré-pedido fora desta etapa. Fornecedor intocado (DEC-014).
+
+## Checkpoint 015 — RBAC: fundação Funções/Permissões (Sprint Expand E8 — DEC-015)
+
+- **Data:** 2026-06-30
+- **Git Commit:** `__HASH__`
+- **Git Branch:** main
+- **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV / Homologação)
+- **Ambiente:** HUB DEV (banco — via SQL Editor). Sem deploy (app inalterado nesta fatia).
+- **Banco:** `funcoes`, `funcao_permissoes`, `profiles.funcao_id`, índices, RLS habilitada sem policies; RPC `minhas_permissoes()`. Artefatos `hubdev/bootstrap/expand_rbac_funcoes.sql` (+ rollback).
+- **Situação:** ✔ Concluído (Expand) — smoke 9/9
+- **Observações:** fundação do RBAC oficial (DEC-015). Emenda a DEC-011. Aditivo puro (enum/RLS/dados intocados). Próximas fatias: Migrate (dados `vendedor→assistente` + Função padrão; menu/middleware/actions; telas Usuários/Funções; Criar Hub com Proprietário) e Contract (limpeza do enum).

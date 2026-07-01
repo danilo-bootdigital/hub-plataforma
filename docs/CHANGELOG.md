@@ -6,6 +6,14 @@
 
 ---
 
+## 2026-06-30 — RBAC: fundação de Funções e Permissões (Sprint Expand E8, DEC-015)
+
+- **Objetivo:** iniciar o novo RBAC (DEC-015) — separar Perfil de Permissões via camada de Função (Role), de forma aditiva, sem quebrar auth/permissões atuais.
+- **Banco (SQL Editor, HUB DEV):** tabelas `funcoes` (escopo Hub) e `funcao_permissoes` (módulo×ação, `chk_acao`); coluna `profiles.funcao_id`; índices; RLS habilitada sem policies (acesso via RPC). RPC `SECURITY DEFINER` `minhas_permissoes()` (admin/proprietário=total; gestor=fixo; assistente=Função). Artefatos `hubdev/bootstrap/expand_rbac_funcoes.sql` (+ rollback).
+- **Aplicação Web:** nenhuma mudança de comportamento nesta fatia (fundação). Wiring de menu/middleware/server-actions e telas ficam para o Migrate.
+- **Estruturas preservadas:** enum `user_role`, RLS existente e dados intocados; perfis atuais preservados.
+- **Observações:** smoke funcional **9/9** no HUB DEV (resolvedor por perfil/Função, constraint de ação, teardown com restauração do usuário de teste). Sem deploy (app inalterado nesta fatia). Commit `__HASH__`.
+
 ## 2026-06-30 — Página HUB "Produtos" (consulta operacional — Sprint Expand E7, DEC-013/014)
 
 - **Objetivo:** tela `/hub/produtos` para Proprietário e Assistentes consultarem os produtos autorizados pelos Portfólios liberados. Sem CRUD; o Hub apenas consome.

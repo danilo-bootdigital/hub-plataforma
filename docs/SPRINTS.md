@@ -149,6 +149,21 @@
 - **Checkpoint Relacionado:** Checkpoint 014.
 - **Changelog Relacionado:** 2026-06-30 — Página HUB Produtos (Expand E7).
 
+## Sprint Expand E8 — RBAC: Perfis × Funções × Permissões (DEC-015)
+
+- **Identificador:** Expand E8 (FASE 1 — Expand)
+- **Objetivo:** fundação do novo RBAC (DEC-015): separar Perfil de Permissões via camada de **Função (Role)**, sem quebrar auth/permissões atuais.
+- **Escopo (Expand — aditivo puro):** tabelas `funcoes` (escopo Hub) e `funcao_permissoes` (módulo×ação); coluna `profiles.funcao_id`; RPC resolvedora `minhas_permissoes()` (admin/proprietário=total; gestor=fixo; assistente=Função). RLS habilitada sem policies (acesso via RPC). Arquivos `hubdev/bootstrap/expand_rbac_funcoes.sql` (+ rollback). **Nada removido**, enum/RLS existente intocados.
+- **Fatias seguintes (não nesta Sprint):**
+  - **Migrate:** `vendedor→assistente` + Função padrão por Hub (preserva acesso); RPCs CRUD de Função; ligar **menu + middleware + server actions** à resolução de permissões; refatorar tela **Usuários** (drawer: dados/perfil/permissões/status) + nova tela **Funções**; fluxo **Criar Hub com Proprietário obrigatório**.
+  - **Contract:** remover perfis legados do enum/código (`vendedor`, `atendimento`, `suporte`, `financeiro` como perfil).
+- **Aplicação das permissões (DEC-015):** menu + middleware/rotas + server actions. RLS permanece por **Perfil + Hub**; granular por módulo/ação só em fase futura.
+- **Dependências:** DEC-015 (emenda DEC-011); `hubs` (DEC-008).
+- **Critérios de Aceite:** AC1 tabelas + coluna criadas · AC2 `minhas_permissoes()` resolve corretamente por perfil/Função · AC3 RLS existente e enum intocados · AC4 comportamento atual preservado (nada quebrado) · AC5 smoke (Função + permissões + atribuição a assistente).
+- **Resultado:** ✔ Expand concluído — SQL aplicado no HUB DEV; smoke 9/9 (`minhas_permissoes` admin=total, assistente herda Função; constraint de ação; teardown com restauração). Migrate/Contract nas próximas fatias.
+- **Checkpoint Relacionado:** Checkpoint 015.
+- **Changelog Relacionado:** 2026-06-30 — RBAC Expand (Funções/Permissões).
+
 ---
 
 ## Convenção de identificadores
