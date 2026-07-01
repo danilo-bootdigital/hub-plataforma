@@ -69,19 +69,9 @@
     "ast_hash": "39815667c64424fa77e58516ee9e6f61",
     "semantic_hash": "39815667c64424fa77e58516ee9e6f61"
   },
-  "app/(dashboard)/configuracoes/hubs-de-saude/actions.ts": {
-    "mtime": 1781460878.0,
-    "ast_hash": "71d18f0fbfc506e9156bd8e4b75c6827",
-    "semantic_hash": "71d18f0fbfc506e9156bd8e4b75c6827"
-  },
-  "app/(dashboard)/configuracoes/hubs-de-saude/page.tsx": {
-    "mtime": 1781460430.0,
-    "ast_hash": "48653dd7d32e10e98a0e0c99c2bbc2ee",
-    "semantic_hash": "48653dd7d32e10e98a0e0c99c2bbc2ee"
-  },
   "app/(dashboard)/configuracoes/page.tsx": {
-    "mtime": 1782732041.3181112,
-    "ast_hash": "f6bd616e24a3a607e04abf745b194aaa",
+    "mtime": 1782871141.452754,
+    "ast_hash": "203b310b36df8bcc8c4a033646fde3f8",
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/produtos/actions.ts": {
@@ -603,26 +593,6 @@
     "mtime": 1780846582.0,
     "ast_hash": "5428d42adaff0f384c197a446479c1bd",
     "semantic_hash": "5428d42adaff0f384c197a446479c1bd"
-  },
-  "components/hubs-de-saude/modal-editar-hub.tsx": {
-    "mtime": 1781460468.0,
-    "ast_hash": "fbeb4d9c000a22471f640a5ce0e35e67",
-    "semantic_hash": "fbeb4d9c000a22471f640a5ce0e35e67"
-  },
-  "components/hubs-de-saude/modal-novo-hub.tsx": {
-    "mtime": 1781460890.0,
-    "ast_hash": "f3d168134f7262687d21146280ea631f",
-    "semantic_hash": "f3d168134f7262687d21146280ea631f"
-  },
-  "components/hubs-de-saude/tabela-hubs.tsx": {
-    "mtime": 1781460501.0,
-    "ast_hash": "aee85343b5796903c3524c5c29de8e77",
-    "semantic_hash": "aee85343b5796903c3524c5c29de8e77"
-  },
-  "components/hubs-de-saude/upload-logo-hub.tsx": {
-    "mtime": 1781460448.0,
-    "ast_hash": "6b53987d9371a96dd43f5827d574e01e",
-    "semantic_hash": "6b53987d9371a96dd43f5827d574e01e"
   },
   "components/layout/botao-sair.tsx": {
     "mtime": 1778737718.0,
@@ -1825,8 +1795,8 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/hubs/actions.ts": {
-    "mtime": 1782681835.3826396,
-    "ast_hash": "e38f22245c6c34e39787694b943e38da",
+    "mtime": 1782871017.6051753,
+    "ast_hash": "d5b389776248845c59e3b020ae9423c6",
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/hubs/page.tsx": {
@@ -1840,8 +1810,8 @@
     "semantic_hash": ""
   },
   "components/hubs/tabela-hubs.tsx": {
-    "mtime": 1782740936.3292987,
-    "ast_hash": "7b023a34a1cbea7672192c887b1831e5",
+    "mtime": 1782871010.047406,
+    "ast_hash": "dfa94908e6ea72cd929f13d97dd99e30",
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/carteiras/actions.ts": {
