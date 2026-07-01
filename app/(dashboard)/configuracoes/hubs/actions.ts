@@ -58,28 +58,68 @@ export async function criarHub(formData: FormData) {
   const { supabase, perfil } = await getAdminOuGestor()
 
   const nome = (formData.get('nome') as string)?.trim()
-  const nomeRepresentante = (formData.get('nome_representante') as string)?.trim()
-  const email = (formData.get('email') as string)?.trim()
   const telefone = (formData.get('telefone') as string)?.trim()
   const cnpj = (formData.get('cnpj') as string)?.trim()
   const nomeFantasia = (formData.get('nome_fantasia') as string)?.trim() || null
   const razaoSocial = (formData.get('razao_social') as string)?.trim() || null
   const observacoes = (formData.get('observacoes') as string)?.trim() || null
-  const senha = (formData.get('senha') as string) || ''
-  const senhaConfirmacao = (formData.get('senha_confirmacao') as string) || ''
+  // Modo do Proprietário: existente (vincular) ou novo (criar). DEC-015/016.
+  const propExistenteId = (formData.get('proprietario_existente_id') as string)?.trim() || null
 
-  // Validações (obrigatórios + e-mail válido + senha + limite de observações).
+  // Validações comuns do Hub.
   if (!nome) throw new Error('Nome do Hub é obrigatório.')
-  if (!nomeRepresentante) throw new Error('Nome do representante é obrigatório.')
-  if (!email) throw new Error('E-mail é obrigatório.')
-  if (!EMAIL_RE.test(email)) throw new Error('E-mail inválido.')
   if (!telefone) throw new Error('Telefone é obrigatório.')
   if (!cnpj) throw new Error('CNPJ da empresa é obrigatório.')
-  if (senha.length < 8) throw new Error('A senha deve ter no mínimo 8 caracteres.')
-  if (senha !== senhaConfirmacao) throw new Error('As senhas não coincidem.')
   if (observacoes && observacoes.length > 3000) throw new Error('Observações: máximo de 3.000 caracteres.')
 
   const admin = createAdminClient()
+
+  // ── Caminho A: usar Proprietário EXISTENTE (não cria usuário) ────────────
+  if (propExistenteId) {
+    const { data: owner } = await supabase
+      .from('profiles').select('id, nome, email, cargo, ativo, hub_id')
+      .eq('id', propExistenteId).eq('organization_id', perfil.organization_id).single()
+    if (!owner || owner.cargo !== 'proprietario_hub' || !owner.ativo) {
+      throw new Error('Proprietário inválido (precisa ser Proprietário de Hub ativo da Indústria).')
+    }
+    if (owner.hub_id) throw new Error('Este Proprietário já está vinculado a um Hub.')
+
+    const { data: hub, error: hubErr } = await supabase
+      .from('hubs')
+      .insert({
+        organization_id: perfil.organization_id, nome,
+        nome_representante: owner.nome, email: owner.email, telefone, cnpj,
+        nome_fantasia: nomeFantasia, razao_social: razaoSocial, observacoes, status: 'ATIVO',
+      })
+      .select('id').single()
+    if (hubErr || !hub) throw new Error(`Erro ao criar Hub: ${hubErr?.message ?? 'desconhecido'}`)
+
+    const { error: linkErr } = await admin
+      .from('profiles').update({ hub_id: hub.id, atualizado_em: new Date().toISOString() }).eq('id', owner.id)
+    if (linkErr) {
+      await supabase.from('hubs').delete().eq('id', hub.id) // rollback
+      throw new Error('Erro ao vincular o proprietário ao Hub.')
+    }
+    await registrarAuditoria(supabase, perfil, 'CRIACAO_HUB', hub.id, null, {
+      nome, nome_representante: owner.nome, email: owner.email, telefone, cnpj, status: 'ATIVO',
+    })
+    await registrarAuditoria(supabase, perfil, 'VINCULO_PROPRIETARIO_HUB', hub.id, null, { proprietario_id: owner.id, existente: true })
+    revalidatePath('/configuracoes/hubs')
+    return
+  }
+
+  // ── Caminho B: criar NOVO Proprietário (usuário + senha) ─────────────────
+  const nomeRepresentante = (formData.get('nome_representante') as string)?.trim()
+  const email = (formData.get('email') as string)?.trim()
+  const senha = (formData.get('senha') as string) || ''
+  const senhaConfirmacao = (formData.get('senha_confirmacao') as string) || ''
+
+  if (!nomeRepresentante) throw new Error('Nome do representante é obrigatório.')
+  if (!email) throw new Error('E-mail é obrigatório.')
+  if (!EMAIL_RE.test(email)) throw new Error('E-mail inválido.')
+  if (senha.length < 8) throw new Error('A senha deve ter no mínimo 8 caracteres.')
+  if (senha !== senhaConfirmacao) throw new Error('As senhas não coincidem.')
+
   let ownerId: string | null = null
   let hubId: string | null = null
 

@@ -51,7 +51,11 @@ export default async function HubsPage() {
             </p>
           </div>
         </div>
-        <ModalNovoHub />
+        <ModalNovoHub
+          proprietariosDisponiveis={(proprietarios ?? [])
+            .filter((p) => !p.hub_id)
+            .map((p) => ({ id: p.id, nome: p.nome, email: p.email }))}
+        />
       </div>
       <TabelaHubs
         hubs={(hubs ?? []) as HubRow[]}

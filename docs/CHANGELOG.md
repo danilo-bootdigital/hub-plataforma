@@ -6,6 +6,12 @@
 
 ---
 
+## 2026-07-01 — Criar Hub: selecionar Proprietário existente ou criar novo (DEC-016, Ajuste 1)
+
+- **Objetivo:** no fluxo de criação de Hub, permitir **selecionar um Proprietário existente** (sem Hub) além de **criar novo** — mantendo o invariante "Hub sempre com Proprietário".
+- **Aplicação Web:** `modal-novo-hub` ganha alternância **Criar novo | Usar existente** (existente lista Proprietários sem Hub, vindos da página); `criarHub` ramifica: com `proprietario_existente_id` valida o Proprietário (proprietario_hub ativo, mesma org, sem Hub) e o vincula ao novo Hub (sem criar usuário/senha; rollback do Hub em falha de vínculo); sem id, mantém o caminho de criar novo usuário. Auditoria `CRIACAO_HUB` + `VINCULO_PROPRIETARIO_HUB`.
+- **Observações:** completa os ajustes da DEC-016. Sem novo SQL; build OK. Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+
 ## 2026-07-01 — Governança Indústria×Hub: separação de gestão (DEC-016)
 
 - **Objetivo:** a Indústria **governa** o Hub; o Proprietário **opera** o Hub. A Indústria não gerencia a equipe interna do Hub.
