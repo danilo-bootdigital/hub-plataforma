@@ -85,13 +85,13 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/usuarios/actions.ts": {
-    "mtime": 1782892522.4688537,
-    "ast_hash": "1c84d61cc1321c5871af94d249871820",
+    "mtime": 1782893371.2181652,
+    "ast_hash": "a606d1b73f8eff90ace37e0c36058acd",
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/usuarios/page.tsx": {
-    "mtime": 1782892531.0718312,
-    "ast_hash": "baabf6e0ae829b1329bdb747cb05b231",
+    "mtime": 1782893357.0837982,
+    "ast_hash": "fa091d6324e12e317e631cf77bfdb58d",
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/whatsapp/actions-seguras.ts": {
@@ -995,8 +995,8 @@
     "semantic_hash": "45a34c680181dae15ac712a3c1e67871"
   },
   "components/usuarios/modal-novo-usuario.tsx": {
-    "mtime": 1782891988.5263183,
-    "ast_hash": "de589e27a1afd16731cb43f4ae212dfd",
+    "mtime": 1782893364.2538729,
+    "ast_hash": "9f31da2e4cdfcfe2809a00999a45a6e1",
     "semantic_hash": ""
   },
   "components/whatsapp/adicionar-instancia-button.tsx": {
@@ -1835,13 +1835,13 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/assistentes/actions.ts": {
-    "mtime": 1782644633.779181,
-    "ast_hash": "9391cfd0fd974b8332a78aa25193a938",
+    "mtime": 1782893390.00773,
+    "ast_hash": "9e64ab5cef790a0cd95d6e312cfbe4d9",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/assistentes/page.tsx": {
-    "mtime": 1782644646.484376,
-    "ast_hash": "f8a11d0aadc6c0b5d293eff775629bf7",
+    "mtime": 1782893419.4616194,
+    "ast_hash": "16ea313ecae27b7484e3438d0d5b1b28",
     "semantic_hash": ""
   },
   "components/assistentes/modal-novo-assistente.tsx": {
@@ -1850,8 +1850,8 @@
     "semantic_hash": ""
   },
   "components/assistentes/tabela-assistentes.tsx": {
-    "mtime": 1782644678.6416633,
-    "ast_hash": "ea20b211ef103b26900bfbf277c91982",
+    "mtime": 1782893478.9766262,
+    "ast_hash": "e33ce6e2a68265d9f8dbe09706dbdd5e",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/carteiras/actions.ts": {

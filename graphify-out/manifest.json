@@ -1795,18 +1795,18 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/hubs/actions.ts": {
-    "mtime": 1782871017.6051753,
-    "ast_hash": "d5b389776248845c59e3b020ae9423c6",
+    "mtime": 1782894115.6988447,
+    "ast_hash": "326304baa79c4eebaf60f6bc1cdaa7ef",
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/hubs/page.tsx": {
-    "mtime": 1782678891.978198,
-    "ast_hash": "41c2c5affddbdbfabfce27b4b1f158c6",
+    "mtime": 1782894158.7166605,
+    "ast_hash": "4512a94d6d78522d77337b8b9014b534",
     "semantic_hash": ""
   },
   "components/hubs/modal-novo-hub.tsx": {
-    "mtime": 1782681520.0844505,
-    "ast_hash": "d18865d6e41be74537b7cefd6bb3e3af",
+    "mtime": 1782894153.0009136,
+    "ast_hash": "191d085dbf0b47c7bea4f542a579fdd5",
     "semantic_hash": ""
   },
   "components/hubs/tabela-hubs.tsx": {
