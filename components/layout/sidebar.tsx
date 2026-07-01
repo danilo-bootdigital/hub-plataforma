@@ -5,14 +5,17 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { navegacaoParaPerfil } from '@/lib/navegacao'
 
+type Perm = { total?: boolean; permissoes?: Record<string, string[]> } | null
+
 type Props = {
   logoUrl?: string | null
   cargo?: string | null
+  permissoes?: Perm
 }
 
-export function Sidebar({ logoUrl, cargo }: Props) {
+export function Sidebar({ logoUrl, cargo, permissoes }: Props) {
   const pathname = usePathname()
-  const itens = navegacaoParaPerfil(cargo)
+  const itens = navegacaoParaPerfil(cargo, permissoes)
 
   return (
     <aside className="hidden md:flex h-screen w-[248px] flex-col border-r bg-white shrink-0">

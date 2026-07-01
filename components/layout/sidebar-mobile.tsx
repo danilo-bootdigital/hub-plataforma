@@ -9,15 +9,18 @@ import { Menu } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { navegacaoParaPerfil } from '@/lib/navegacao'
 
+type Perm = { total?: boolean; permissoes?: Record<string, string[]> } | null
+
 type Props = {
   logoUrl?: string | null
   cargo?: string | null
+  permissoes?: Perm
 }
 
-export function SidebarMobile({ logoUrl, cargo }: Props) {
+export function SidebarMobile({ logoUrl, cargo, permissoes }: Props) {
   const [aberto, setAberto] = useState(false)
   const pathname = usePathname()
-  const itens = navegacaoParaPerfil(cargo)
+  const itens = navegacaoParaPerfil(cargo, permissoes)
 
   return (
     <Sheet open={aberto} onOpenChange={setAberto}>

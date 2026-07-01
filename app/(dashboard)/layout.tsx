@@ -1,6 +1,7 @@
 import { Sidebar } from '@/components/layout/sidebar'
 import { Header } from '@/components/layout/header'
 import { requireAuth } from '@/lib/auth/server'
+import { resolverPermissoes } from '@/lib/rbac'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 
@@ -10,6 +11,9 @@ export default async function DashboardLayout({
   children: React.ReactNode
 }) {
   const { user, profile } = await requireAuth()
+
+  // Permissões efetivas (DEC-015) — usadas para filtrar o menu do Assistente.
+  const permissoes = await resolverPermissoes()
 
   // Buscar logo da organização
   let logoUrl: string | null = null
@@ -47,9 +51,9 @@ export default async function DashboardLayout({
 
   return (
     <div className="flex h-screen bg-slate-50">
-      <Sidebar logoUrl={logoUrl} cargo={profile?.cargo} />
+      <Sidebar logoUrl={logoUrl} cargo={profile?.cargo} permissoes={permissoes} />
       <div className="flex flex-1 flex-col overflow-hidden min-w-0">
-        <Header logoUrl={logoUrl} />
+        <Header logoUrl={logoUrl} permissoes={permissoes} />
         <main className="flex-1 overflow-y-auto p-5 md:p-6">
           {children}
         </main>

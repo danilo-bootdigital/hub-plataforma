@@ -6,6 +6,14 @@
 
 ---
 
+## 2026-06-30 — RBAC Migrate (parcial): Função padrão + menu por permissões (DEC-015)
+
+- **Objetivo:** iniciar a aplicação do RBAC (DEC-015) sem quebrar nada — migração de dados e primeira aplicação (menu), confinada ao Assistente.
+- **Banco (SQL Editor, HUB DEV — Migrate-A):** Função padrão **"Comercial"** por Hub + baseline de permissões (dashboard/leads/clientes/produtos/pedidos/orçamentos/whatsapp/agenda) + atribuição aos assistentes existentes. `hubdev/bootstrap/migrate_rbac_funcao_padrao.sql`. Verificado: 2 funções, 2/3 assistentes com função (o 3º sem Hub fica sem função), acesso preservado.
+- **Aplicação Web (Migrate-B — menu):** `lib/rbac.ts` (`resolverPermissoes`/`podeVer`/`podeAcao` via `minhas_permissoes()`); `lib/navegacao.ts` ganha `modulo` por item e filtra o menu do **Assistente** pelas permissões da Função (fail-open; demais perfis inalterados); layout/sidebar/sidebar-mobile/header passam as permissões resolvidas.
+- **Estruturas preservadas:** admin/gestor/proprietário com menu idêntico; RLS por Perfil+Hub inalterada; enum intocado.
+- **Observações:** primeira aplicação do RBAC no menu. Próximas fatias: middleware/rotas + server actions (guard por permissão) + flip `vendedor→assistente`; telas Usuários (drawer)/Funções; Criar Hub com Proprietário. Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+
 ## 2026-06-30 — RBAC: fundação de Funções e Permissões (Sprint Expand E8, DEC-015)
 
 - **Objetivo:** iniciar o novo RBAC (DEC-015) — separar Perfil de Permissões via camada de Função (Role), de forma aditiva, sem quebrar auth/permissões atuais.

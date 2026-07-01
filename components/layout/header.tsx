@@ -6,7 +6,9 @@ import { BotaoSair } from '@/components/layout/botao-sair'
 import { BotaoDisponibilidade } from '@/components/distribuicao/botao-disponibilidade'
 import type { UserRole } from '@/types/database'
 
-export async function Header({ logoUrl }: { logoUrl?: string | null }) {
+type Perm = { total?: boolean; permissoes?: Record<string, string[]> } | null
+
+export async function Header({ logoUrl, permissoes }: { logoUrl?: string | null; permissoes?: Perm }) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
@@ -25,7 +27,7 @@ export async function Header({ logoUrl }: { logoUrl?: string | null }) {
 
   return (
     <header className="flex h-16 items-center justify-between border-b bg-white px-4 md:px-6">
-      <SidebarMobile logoUrl={logoUrl} cargo={profile?.cargo} />
+      <SidebarMobile logoUrl={logoUrl} cargo={profile?.cargo} permissoes={permissoes} />
 
       <div className="flex items-center gap-3 md:gap-4">
         {profile?.cargo && (
