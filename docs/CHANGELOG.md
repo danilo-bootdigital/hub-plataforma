@@ -11,7 +11,7 @@
 - **Objetivo:** o Proprietário distribui clientes entre Assistentes (define responsável operacional) **sem** alterar a Carteira oficial da Indústria — separando os dois conceitos.
 - **Banco (SQL Editor, HUB DEV):** coluna nova `contacts.responsavel_operacional_id` (FK profiles) + índice; RPC `SECURITY DEFINER` `hub_clientes_listar` (Proprietário; clientes das Carteiras operadas pelo Hub — `carteiras.hub_id`; retorna Carteira × responsável operacional). `hubdev/bootstrap/expand_responsavel_operacional.sql`.
 - **Aplicação Web:** `/hub/clientes` passa a listar os clientes do Hub e distribuir o **responsável operacional** (seletor de Assistentes do Hub) — `components/hub-clientes/distribuir-clientes.tsx`; action `definirResponsavelOperacional` (gate Proprietário; valida cliente em Carteira do Hub e responsável Assistente do Hub; auditoria `DEFINICAO_RESPONSAVEL_OPERACIONAL`). Não toca `carteira_id`.
-- **Observações:** smoke **8/8** no HUB DEV (escopo por Hub; Carteira preservada; gravação/leitura do responsável; negação a não-Proprietário), dados `ZZ_SMOKE_RO_*` limpos. Fatia 2 (consolidação Indústria: mover cliente de Carteira/ver Hub operante) pode vir depois. Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+- **Observações:** smoke **8/8** no HUB DEV (escopo por Hub; Carteira preservada; gravação/leitura do responsável; negação a não-Proprietário), dados `ZZ_SMOKE_RO_*` limpos. Fatia 2 (consolidação Indústria: mover cliente de Carteira/ver Hub operante) pode vir depois. Commit `784ab6b`; deploy em `https://hub-plataforma-dev.vercel.app`.
 
 ## 2026-07-01 — Clientes: import/cadastro exclusivos da Indústria (DEC-017, Fatia 1)
 
