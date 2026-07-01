@@ -11,7 +11,7 @@
 - **Objetivo:** remover o "hub legado" (Hubs de Saúde) da plataforma — telas, menu (card) e código.
 - **Aplicação Web:** removidos o card em `configuracoes/page.tsx`, a rota `app/(dashboard)/configuracoes/hubs-de-saude/**` e os componentes `components/hubs-de-saude/**`. Confirmado: nada externo importava esses componentes/actions.
 - **Preservado (Contract):** a tabela `health_hubs` **não** foi removida — é referenciada por `suppliers.hub_id` e Fornecedor ainda tem o bloqueador do Orçamento (DEC-014). Remoção física da tabela fica para o Contract, após o desacoplamento de Fornecedor.
-- **Observações:** o Hub oficial é `hubs` (`/configuracoes/hubs`), intocado. Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+- **Observações:** o Hub oficial é `hubs` (`/configuracoes/hubs`), intocado. Commit `b66113f`; deploy em `https://hub-plataforma-dev.vercel.app`.
 
 ## 2026-06-30 — RBAC Migrate-C: Hub sempre com Proprietário (invariante DEC-015)
 
