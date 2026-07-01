@@ -11,7 +11,7 @@
 - **Objetivo:** refatorar `/configuracoes/usuarios` para o modelo DEC-015 — drawer com Dados/Perfil/Permissões/Status e atribuição de **Função** ao Assistente.
 - **Aplicação Web:** tabela com colunas Nome/E-mail/Telefone/Perfil/Hub/Status/Último acesso/Criado em/Ações; linha abre **drawer** (Esc/click-fora). Assistente → seletor de **Função** (do próprio Hub); Admin/Proprietário/Gestor sem edição (nota de acesso). `page.tsx` enriquece com Hub (join), Função e último acesso (`auth.admin.listUsers` via admin client). Action `atribuirFuncao` (admin; valida org + Hub da Função). `badge-perfil` relabelado (DEC-015; `assistente` = "Assistente"). Sem novo SQL.
 - **Estruturas preservadas:** criação de usuário/senha/status inalteradas; perfis legados ainda exibidos (Contract remove).
-- **Observações:** build OK. Validação visual (clicar/atribuir) pelo admin. Commit `__HASH__`; deploy em `https://hub-plataforma-dev.vercel.app`.
+- **Observações:** build OK. Validação visual (clicar/atribuir) pelo admin. Commit `642b5db`; deploy em `https://hub-plataforma-dev.vercel.app`.
 
 ## 2026-06-30 — RBAC Migrate-C: tela de Funções (Proprietário) — DEC-015
 
