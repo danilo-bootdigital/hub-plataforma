@@ -1235,8 +1235,8 @@
     "semantic_hash": "35ac2dad0755e14c603fb7ceb00a8aa6"
   },
   "lib/navegacao.ts": {
-    "mtime": 1782732031.479923,
-    "ast_hash": "96c8ad8811fe6d581684f0138d4a8d58",
+    "mtime": 1782865497.742596,
+    "ast_hash": "f6af877afc2452baca0e9512e08f9678",
     "semantic_hash": ""
   },
   "lib/nome-contato.ts": {
@@ -2202,6 +2202,31 @@
   "hubdev/bootstrap/expand_rpc_vincular_produtos_portfolio_rollback.sql": {
     "mtime": 1782860134.6357377,
     "ast_hash": "40ba6fe6c78406b2e960a200604615dd",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/produtos/actions.ts": {
+    "mtime": 1782865393.5372233,
+    "ast_hash": "1c6a8dd0bb789376118f1d828056b877",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/produtos/page.tsx": {
+    "mtime": 1782865404.5078828,
+    "ast_hash": "506c45c83d0fe427c57581b3fbeb0c70",
+    "semantic_hash": ""
+  },
+  "components/hub/produtos-consulta.tsx": {
+    "mtime": 1782865487.2639296,
+    "ast_hash": "413e4fe968df8cb1776c25ddb9bb5950",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/expand_hub_produtos.sql": {
+    "mtime": 1782865372.9999504,
+    "ast_hash": "dba7af82d3402413cb8c6d54668596a4",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/expand_hub_produtos_rollback.sql": {
+    "mtime": 1782865380.31797,
+    "ast_hash": "46c2b0fd55b4d56ca76d62e30189ba55",
     "semantic_hash": ""
   }
 }
