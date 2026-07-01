@@ -255,13 +255,9 @@ export async function definirProprietarioHub(hubId: string, proprietarioId: stri
 
   const adminClient = createAdminClient()
 
-  // Remoção do vínculo.
+  // DEC-015: um Hub nunca fica sem Proprietário — só é permitido SUBSTITUIR, não remover.
   if (!proprietarioId) {
-    if (!atualId) return
-    await adminClient.from('profiles').update({ hub_id: null, atualizado_em: new Date().toISOString() }).eq('id', atualId)
-    await registrarAuditoria(supabase, perfil, 'REMOCAO_PROPRIETARIO_HUB', hubId, { proprietario_id: atualId }, { proprietario_id: null })
-    revalidatePath('/configuracoes/hubs')
-    return
+    throw new Error('O Hub deve ter um Proprietário. Selecione um substituto — não é possível remover.')
   }
 
   // Valida o novo Proprietário (proprietario_hub ativo da mesma Indústria).

@@ -93,7 +93,7 @@ export function TabelaHubs({ hubs, proprietarios }: { hubs: HubRow[]; proprietar
     startTransition(async () => {
       try {
         await definirProprietarioHub(hubId, propId || null)
-        toast.success(propId ? 'Proprietário vinculado.' : 'Vínculo removido.')
+        toast.success('Proprietário atualizado.')
         router.refresh()
       } catch (err: unknown) {
         toast.error(err instanceof Error ? err.message : 'Erro ao vincular Proprietário.')
@@ -165,7 +165,8 @@ export function TabelaHubs({ hubs, proprietarios }: { hubs: HubRow[]; proprietar
                         onChange={(e) => vincularProprietario(h.id, e.target.value)}
                         className="h-8 rounded-md border border-input bg-transparent px-2 text-xs"
                       >
-                        <option value="">— Nenhum —</option>
+                        {/* DEC-015: Hub sempre tem Proprietário — só é possível trocar, não remover. */}
+                        <option value="" disabled>Selecionar proprietário…</option>
                         {opcoes.map((p) => (
                           <option key={p.id} value={p.id}>{p.nome}</option>
                         ))}
