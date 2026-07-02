@@ -6,6 +6,13 @@
 
 ---
 
+## 2026-07-01 — Fix (causa raiz): PDF em branco por regra global `@media print`
+
+- **Causa raiz confirmada por diagnóstico:** `?debug=info` retornou `navStatus:200`, `markerExists:true`, `bodyTextLen:2055` (tela) mas **`bodyTextPrint:0`** (print). Em `app/globals.css` há um `@media print { body * { visibility: hidden } }` (do print nativo `window.print`, que revela só `.area-impressao`). A página `preview-pdf` do Puppeteer não usa `.area-impressao`, então **todo o conteúdo ficava invisível na mídia print** → PDF ~1KB em branco.
+- **Correção:** no CSS inline da `preview-pdf`, dentro de `@media print`, `body * { visibility: visible !important }` (revela o conteúdo do PDF sem quebrar o print nativo legado; `.print-hidden`/`.no-print` seguem ocultos).
+- **Validação:** teste local reproduz o bug (sem fix: textoPrint=0, PDF 876 bytes) e confirma a correção (com fix: textoPrint=108, PDF ~18KB). Guardas da rota mantidas.
+- **Debug temporário:** `?debug=info|html|screenshot` na rota do PDF permanece por ora para validação em produção (remover depois).
+
 ## 2026-07-01 — Fix: PDF do orçamento em branco em produção
 
 - **Objetivo:** corrigir o PDF gerado em branco (Puppeteer) e blindar o pipeline contra entrega silenciosa de PDF vazio.

@@ -33,6 +33,10 @@ img { max-width: 100% !important; height: auto !important; page-break-inside: av
 .bg-emerald-700, .bg-emerald-600 { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 section, article { page-break-inside: avoid; break-inside: avoid; }
 @media print {
+  /* globals.css define "body * { visibility: hidden }" no print nativo (revela só
+     .area-impressao). Esta página é dedicada ao PDF do Puppeteer — revelamos TODO
+     o conteúdo. Elementos .print-hidden/.no-print seguem escondidos pelas regras acima. */
+  body * { visibility: visible !important; }
   [data-pdf-products] { page-break-inside: auto !important; break-inside: auto !important; }
   [data-pdf-products] > div { overflow: visible !important; }
 }

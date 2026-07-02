@@ -1,7 +1,7 @@
 # Graph Report - plataforma-hub  (2026-07-01)
 
 ## Corpus Check
-- 467 files · ~207,952 words
+- 467 files · ~207,942 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `85ce04f1`
+- Built from commit: `d75e6155`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -184,8 +184,8 @@ Cohesion: 0.11
 Nodes (18): Badge(), badgeVariants, ChatHeaderInfo, MensagemInicial, Props, STATUS_BADGE, ConversaStatus, DealType (+10 more)
 
 ### Community 7 - "Login e Formulário de Contato"
-Cohesion: 0.21
-Nodes (16): CampoSenha(), ProprietarioDisponivel, Props, Props, Props, Props, Dialog(), DialogContent() (+8 more)
+Cohesion: 0.22
+Nodes (15): CampoSenha(), ProprietarioDisponivel, Props, Props, Props, Dialog(), DialogContent(), DialogHeader() (+7 more)
 
 ### Community 8 - "Ações de Orçamento"
 Cohesion: 0.17
@@ -297,7 +297,7 @@ Nodes (8): CardInstancia(), extrairNomeVendedor(), normalizarStatus(), Props, ST
 
 ### Community 36 - "Gerenciador de Instâncias WhatsApp"
 Cohesion: 0.15
-Nodes (12): ACAO_LABEL, EditState, MODULOS, PROXIMO_LABEL, STATUS_LABELS, TRANSICOES_CORRECAO, Props, Button() (+4 more)
+Nodes (13): ACAO_LABEL, EditState, MODULOS, PROXIMO_LABEL, STATUS_LABELS, TRANSICOES_CORRECAO, Props, Props (+5 more)
 
 ### Community 37 - "Community 37"
 Cohesion: 0.16
