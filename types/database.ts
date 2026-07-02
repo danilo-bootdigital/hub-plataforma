@@ -461,13 +461,44 @@ export type Quote = {
 }
 
 // Migration 056: Receita do orçamento (modelo/rascunho + arquivo assinado no Storage)
+// Migration 057 (DEC-019): + 'em_conferencia' | 'aprovada_operacionalmente' | 'precisa_revisao_humana'
 export type ReceitaStatusFluxo =
   | 'rascunho'
   | 'modelo_gerado'
   | 'enviada'
   | 'recebida'
+  | 'em_conferencia'
   | 'validada'
+  | 'aprovada_operacionalmente'
   | 'rejeitada'
+  | 'precisa_revisao_humana'
+
+// Migration 057 (DEC-019): pré-análise (motor de regras) — nunca aprova
+export type ReceitaStatusAnalise =
+  | 'sem_pendencias_aparentes'
+  | 'pendencias_encontradas'
+  | 'ilegivel'
+  | 'divergente_do_orcamento'
+  | 'precisa_de_revisao_humana'
+
+export type ReceitaMotivo =
+  | 'crm_ausente'
+  | 'crm_uf_ausente'
+  | 'assinatura_ausente'
+  | 'paciente_ausente'
+  | 'cpf_ausente_obrigatorio'
+  | 'produto_divergente'
+  | 'concentracao_divergente'
+  | 'quantidade_divergente'
+  | 'posologia_ausente'
+  | 'data_ausente'
+  | 'receita_vencida'
+  | 'documento_ilegivel'
+  | 'outro'
+
+export type ChecklistEscopo = 'organizacao' | 'portfolio' | 'produto'
+export type ChecklistTipoRegra = 'presenca' | 'formato' | 'comparacao_orcamento' | 'valor_esperado'
+export type ReceitaItemSeveridade = 'info' | 'aviso' | 'critico'
 
 export type QuoteReceita = {
   id: string
@@ -483,9 +514,93 @@ export type QuoteReceita = {
   validada_por: string | null
   validada_em: string | null
   validacao_comentario: string | null
+  // Migration 057 (DEC-019)
+  checklist_id: string | null
+  status_analise_ia: ReceitaStatusAnalise | null
+  score_ultima_conferencia: number | null
   criado_por: string | null
   criado_em: string
   atualizado_em: string
+}
+
+// Migration 057 (DEC-019) — Conferência Operacional de Receita
+export type ReceitaChecklist = {
+  id: string
+  organization_id: string
+  nome: string
+  escopo: ChecklistEscopo
+  portfolio_id: string | null
+  produto_id: string | null
+  tipo_documento: string | null
+  versao: number
+  ativo: boolean
+  criado_por: string | null
+  criado_em: string
+  atualizado_em: string
+}
+
+export type ReceitaChecklistItem = {
+  id: string
+  checklist_id: string
+  chave: string
+  rotulo: string
+  obrigatorio: boolean
+  tipo_regra: ChecklistTipoRegra
+  config_json: Record<string, unknown>
+  motivo: ReceitaMotivo | null
+  severidade: ReceitaItemSeveridade
+  peso: number
+  ordem: number
+}
+
+export type ReceitaModelo = {
+  id: string
+  organization_id: string
+  produto_id: string
+  nome: string
+  arquivo_path: string | null
+  campos_referencia_json: Record<string, unknown>
+  observacoes: string | null
+  ativo: boolean
+  criado_por: string | null
+  criado_em: string
+}
+
+export type ReceitaConferencia = {
+  id: string
+  organization_id: string
+  quote_receita_id: string
+  quote_id: string
+  checklist_id: string | null
+  checklist_versao: number | null
+  provedor_ocr: string | null
+  provedor_ia: string | null
+  modelo_ia: string | null
+  prompt_versao: string | null
+  texto_ocr: string | null
+  extracao_json: Record<string, unknown> | null
+  explicacao_ia: string | null
+  status_analise: ReceitaStatusAnalise | null
+  score: number | null
+  confianca_extracao: number | null
+  tokens_entrada: number | null
+  tokens_saida: number | null
+  custo_estimado: number | null
+  criado_por: string | null
+  criado_em: string
+}
+
+export type ReceitaConferenciaPendencia = {
+  id: string
+  conferencia_id: string
+  origem: 'regra' | 'extracao'
+  chave: string | null
+  motivo: ReceitaMotivo | null
+  tipo: 'campo_ausente' | 'divergencia' | 'formato_invalido' | 'ilegivel' | 'suspeita'
+  severidade: ReceitaItemSeveridade
+  mensagem: string | null
+  esperado: string | null
+  encontrado: string | null
 }
 
 export type QuoteItem = {
