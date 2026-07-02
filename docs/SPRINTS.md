@@ -343,3 +343,24 @@
 **Caminho crítico (ordem obrigatória):** S1 → S2 → S5 → S6 → S7 → S8. **Paralelizáveis após S1:** S3 (apoiado por S2) e S4. S6 é o gargalo de integração (depende de S1+S2+S5, e de S4 para o arquivo).
 
 > **Status da fase de arquitetura:** encerrada. A implementação (Sprint 1) só inicia mediante **autorização explícita**.
+
+### Realinhamento MVP-first — DEC-019 (2026-07-02)
+
+> **Aprovado.** Foco no **MVP**: "o cliente envia uma receita e o sistema informa se ela está **apta para conferência humana** ou **quais pendências corrigir**". **Central de Conferência, filas, SLA, múltiplos operadores, prioridade, produtividade e dashboards → fase pós-MVP** (nada removido; Sprints 1 e 2 permanecem válidas). O resultado apresentado ao assistente passa a se chamar **"Diagnóstico da Receita"**.
+>
+> **Fluxo do MVP:** Upload → Extração → **Motor de Regras** → **Diagnóstico da Receita** → **Conferência humana** (obrigatória). O motor é o **coração**; nenhuma regra de negócio fora dele; a IA apenas **alimenta** o motor.
+
+**Ordem de execução do MVP** (substitui a ordem S3–S8 acima enquanto o MVP não estiver concluído):
+
+- ✅ **S1 — Infraestrutura** (concluída) · ✅ **S2 — Motor de Regras** (concluída)
+- **MVP-3 — Regras & Diagnóstico (SEM IA):** checklist **padrão** + checklist **Tirzepatida** (como dados), **regras**, **orientação operacional** e **Diagnóstico da Receita**, tudo funcionando com **JSON de entrada simulado** (fixtures) — **sem depender da IA**. Entrega a "camada 3" (orientação) e o objeto de resultado (**Diagnóstico da Receita**) sobre o motor da S2. Função pura + testes `node --test`. Sem persistência/UI/RBAC.
+- **MVP-4 — Camada de IA:** `ExtratorReceita` + **Provider Claude** + **JSON estruturado** (validado). A IA **apenas alimenta** o motor com a extração; **não altera nenhuma regra de negócio**. OCR como interface opcional (multimodal). + `ANTHROPIC_API_KEY` nas envs.
+- **MVP-5 — Integração/pipeline + decisão humana + RBAC:** `rodarPreAnalise` (extração → motor → grava conferência) + decisão humana (**aprovar operacionalmente / necessita correção / rejeitar**); estende `funcao_permissoes.chk_acao` para `receita:conferir`/`receita:aprovar`.
+- **MVP-6 — UI mínima na aba Receita:** botão "Rodar pré-análise" + **Diagnóstico da Receita** (status + pendências + orientação) + decisão humana. **MVP utilizável aqui.**
+- **MVP-7 — Fecho:** validação end-to-end no HUB DEV + auditoria/observabilidade mínimas.
+
+**Caminho crítico:** MVP-3 → MVP-5 → MVP-6 → MVP-7 (MVP-4 entra entre MVP-3 e MVP-5; a IA passa a alimentar o motor sem mudar regras).
+
+**Adiado (pós-MVP):** Central de Conferência; filas/SLA/atribuição/prioridade/dashboards; CRUD administrativo de checklists (MVP usa **seed**); histórico/timeline ricos; `receita_modelos`; OCR externo dedicado; bloqueio de `transformarEmPedido`; hardening completo.
+
+**Termos oficiais no resultado (Diagnóstico da Receita):** `sem pendências aparentes` · `pendências encontradas` · `apta para conferência humana` · `necessita correção`. **Nunca** "validada" nem linguagem jurídica.
