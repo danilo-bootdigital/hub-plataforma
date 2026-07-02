@@ -203,6 +203,7 @@
 - **Riscos:** schema drift (aplicar via SQL Editor); constraint/trigger de aprovação; enum vs CHECK.
 - **Dependências:** DEC-018 (`quote_receitas`, bucket privado).
 - **Complexidade:** Média · **Risco:** Médio · **Duração:** 2–3 dias · **Ordem obrigatória:** 1ª.
+- **Resultado:** ✔ **Concluída (2026-07-02).** Migration `057` aplicada no HUB DEV via SQL Editor; smoke verde (catálogo/RLS/constraints/trigger/append-only/CHECKs). Commit `8fb0c2c`; Checkpoint 017.
 
 ### SPRINT 2 — Motor de Regras (determinístico, sem IA, sem UI)
 - **Objetivo:** lógica de conferência 100% determinística e testável.

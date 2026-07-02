@@ -6,6 +6,16 @@
 
 ---
 
+## 2026-07-02 — Conferência de Receita: infraestrutura (Sprint 1 — DEC-019)
+
+- **Objetivo:** entregar a base persistente do módulo de Conferência Operacional de Receita (Expand), sem IA/motor de regras/UI/permissões.
+- **Banco (migration `057_receita_conferencia.sql`, aplicada no HUB DEV via SQL Editor):** tabelas `receita_checklists`, `receita_checklist_itens`, `receita_modelos`, `receita_conferencias` (append-only), `receita_conferencia_pendencias`; extensão aditiva de `quote_receitas` (`checklist_id`, `status_analise_ia`, `score_ultima_conferencia`; `status_fluxo` += `em_conferencia`/`aprovada_operacionalmente`/`precisa_revisao_humana`); índices; RLS `get_organization_id()`; constraint `chk_receita_aprovacao_humana` (aprovação exige `validada_por` — IA não aprova); trigger append-only. TEXT+CHECK; reuso do bucket privado `orcamento-receitas`.
+- **Aplicação Web:** apenas tipos em `types/database.ts` (`ReceitaStatusFluxo` estendido; `QuoteReceita` + colunas; `ReceitaStatusAnalise`/`ReceitaMotivo`/`ReceitaChecklist(+Item)`/`ReceitaModelo`/`ReceitaConferencia(+Pendencia)`). Sem UI/actions/IA nesta fatia.
+- **Artefatos:** `hubdev/bootstrap/expand_receita_conferencia.sql` (+ `rollback_` + `smoke_`).
+- **Estruturas preservadas:** DEC-018 intocada (aditivo puro); `chk_acao` do RBAC intocado.
+- **Validação:** build `build:hubdev` OK; **smoke SQL (transação/ROLLBACK) — todos os testes passaram** (catálogo/RLS/constraints/trigger/policies; coerência de escopo; append-only; CHECKs; constraint de aprovação humana). Commit `8fb0c2c`.
+- **Observações:** CLI segue no projeto legado (relink adiado); rotação da `service_role` exposta pendente — ambos para depois da Sprint 1. Sem deploy (mudança de banco + tipos).
+
 ## 2026-07-01 — PDF: centralização + limpeza do debug
 
 - **Centralização:** o bloco do PDF ficava puxado à direita por conflito de `@page` (globals `16mm` × inline sides `0`) com `[data-pdf-page]` de largura fixa `210mm` (maior que a área imprimível). Correção: em print, `[data-pdf-page]` usa `width:100%` da área imprimível + `padding: 0 12mm` simétrico e `@page { margin: 10mm 0 }` — centraliza independentemente de qual `@page` vença.

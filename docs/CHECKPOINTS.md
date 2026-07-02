@@ -181,3 +181,16 @@
 - **Aplicação Web:** aba **Receita** no detalhe do Orçamento com **carregamento sob demanda** (só monta ao abrir); aba "Orçamento" inalterada. Ações separadas (`actions-receita.ts`): `getReceitasDoOrcamento` (sem `select('*')`), `gerarModeloReceita`, `salvarRascunhoReceita`, `anexarReceitaAssinada` (upload Storage + só metadados no banco, rollback do arquivo em falha), `validarReceita`, `marcarReceitaEnviada`. Signed URL para download; upload via service role.
 - **Estruturas preservadas:** query pesada do detalhe, geração de PDF (só por clique), `leads`/`suppliers` (legado) e `quotes`/`quote_items` **intocados**; nenhum WhatsApp automático.
 - **Situação:** ⏳ Código pronto e com build OK — **aguardando aplicação da migration 056 no HUB DEV** e testes manuais da aba (ver Changelog/testes). A refatoração completa do detalhe (queries por aba, histórico paginado, pagamento) segue como trabalho futuro.
+
+## Checkpoint 017 — Conferência de Receita: Infraestrutura (Sprint 1 — DEC-019)
+
+- **Data:** 2026-07-02
+- **Git Commit:** `8fb0c2c`
+- **Git Branch:** main
+- **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV / Homologação)
+- **Ambiente:** HUB DEV. Migration `057_receita_conferencia.sql` **aplicada via SQL Editor** (CLI segue linkado ao projeto legado — relink adiado para depois da Sprint 1). App: build `build:hubdev` OK.
+- **Banco (aplicado):** tabelas `receita_checklists`, `receita_checklist_itens`, `receita_modelos`, `receita_conferencias` (append-only), `receita_conferencia_pendencias`; extensão aditiva de `quote_receitas` (`checklist_id`, `status_analise_ia`, `score_ultima_conferencia`; `status_fluxo` += `em_conferencia`/`aprovada_operacionalmente`/`precisa_revisao_humana`); índices; RLS `get_organization_id()`; constraint `chk_receita_aprovacao_humana` (aprovação exige `validada_por` — IA não aprova); trigger append-only. Artefatos: `hubdev/bootstrap/expand_receita_conferencia.sql` (+ `rollback_` + `smoke_`).
+- **Smoke (SQL Editor, transação com ROLLBACK):** ✔ **todos os testes passaram** — catálogo/RLS/constraints/trigger/policies; coerência de escopo (bloqueado); `status_fluxo=em_conferencia` aceito; aprovação sem usuário bloqueada e com usuário permitida; append-only (UPDATE/DELETE bloqueados); CHECK de score/`status_analise`.
+- **Estruturas preservadas:** DEC-018 intocada (aditivo puro); `chk_acao` do RBAC intocado; sem IA/motor de regras/UI/permissões nesta fatia.
+- **Situação:** ✔ **Sprint 1 (Expand) concluída** e validada. Próxima: **Sprint 2 — Motor de Regras** (aguardando autorização).
+- **Changelog Relacionado:** 2026-07-02 — Sprint 1 DEC-019 (infraestrutura da Conferência).
