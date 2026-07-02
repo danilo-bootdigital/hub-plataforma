@@ -2,6 +2,8 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { conferir } from '../motor-regras'
 import { resolverChecklist } from '../resolver-checklist'
+import { montarDiagnostico } from '../diagnostico'
+import { mapChecklistRows } from '../mapear-checklist'
 import type { Checklist, EntradaMotor, ExtracaoReceita, OrcamentoContexto } from '../tipos'
 
 // --- Fixture: checklist de Tirzepatida (DEC-019 §9), escopo produto ---
@@ -125,4 +127,57 @@ test('resolverChecklist: produto vence portfólio vence organização', () => {
   assert.equal(resolverChecklist(cands, { produtoId: 'prX', portfolioId: 'pf1' })?.escopo, 'portfolio')
   assert.equal(resolverChecklist(cands, { produtoId: 'prX', portfolioId: 'pfX' })?.escopo, 'organizacao')
   assert.equal(resolverChecklist([{ escopo: 'produto', produtoId: 'pr1', itens: [] }], {}), null)
+})
+
+// ---- Diagnóstico da Receita (objeto estruturado) ----
+
+test('diagnóstico: apta para conferência humana quando sem pendências', () => {
+  const d = montarDiagnostico(conferir(entrada()))
+  assert.equal(d.resultado, 'apta_para_conferencia_humana')
+  assert.equal(d.aptaParaConferenciaHumana, true)
+  assert.equal(d.score, 100)
+  assert.equal(d.conferenciaDocumental.ok, true)
+  assert.equal(d.conferenciaComercial.ok, true)
+  assert.equal(d.orientacaoOperacional.itens.length, 0)
+  assert.match(d.orientacaoOperacional.mensagem, /conferência humana/i)
+})
+
+test('diagnóstico: pendência documental (CRM) separada da comercial + ação clara', () => {
+  const d = montarDiagnostico(conferir(entrada({ campos: { crm_uf: '' } })))
+  assert.equal(d.resultado, 'necessita_correcao')
+  assert.equal(d.conferenciaComercial.ok, true)
+  assert.equal(d.conferenciaDocumental.ok, false)
+  assert.ok(d.conferenciaDocumental.pendencias.some((p) => p.motivo === 'crm_uf_ausente'))
+  assert.ok(d.orientacaoOperacional.itens.some((t) => /CRM/i.test(t)))
+})
+
+test('diagnóstico: divergência comercial (produto) separada da documental', () => {
+  const d = montarDiagnostico(conferir(entrada({ itens: [{ descricao: 'Semaglutida', concentracao: '5 mg', quantidade: 1 }] })))
+  assert.equal(d.resultado, 'necessita_correcao')
+  assert.equal(d.conferenciaDocumental.ok, true)
+  assert.equal(d.conferenciaComercial.ok, false)
+  assert.ok(d.conferenciaComercial.pendencias.some((p) => p.motivo === 'produto_divergente'))
+  assert.ok(d.orientacaoOperacional.itens.some((t) => /medicamento/i.test(t)))
+})
+
+test('diagnóstico: ilegível e revisão humana mapeiam corretamente', () => {
+  assert.equal(montarDiagnostico(conferir(entrada({ confianca: 0.1 }))).resultado, 'ilegivel')
+  assert.equal(montarDiagnostico(conferir(entrada({ confianca: 0.4 }))).resultado, 'necessita_revisao_humana')
+})
+
+// ---- Mapeamento das linhas do banco (checklists no BD, não no código) ----
+
+test('mapChecklistRows: monta Checklist ordenado por ordem, config passthrough', () => {
+  const checklists = [{ id: 'c1', escopo: 'produto', portfolio_id: null, produto_id: 'p1', versao: 2 }]
+  const itens = [
+    { checklist_id: 'c1', chave: 'b', rotulo: 'B', obrigatorio: true, tipo_regra: 'presenca', config_json: null, motivo: null, severidade: 'aviso', peso: 1, ordem: 2 },
+    { checklist_id: 'c1', chave: 'a', rotulo: 'A', obrigatorio: true, tipo_regra: 'formato', config_json: { regex: 'x' }, motivo: 'crm_uf_ausente', severidade: 'critico', peso: 3, ordem: 1 },
+    { checklist_id: 'cX', chave: 'z', rotulo: 'Z', obrigatorio: false, tipo_regra: 'presenca', config_json: null, motivo: null, severidade: 'info', peso: 1, ordem: 1 },
+  ]
+  const [cl] = mapChecklistRows(checklists, itens)
+  assert.equal(cl.produtoId, 'p1')
+  assert.equal(cl.versao, 2)
+  assert.deepEqual(cl.itens.map((i) => i.chave), ['a', 'b']) // ordenado; item de outro checklist ignorado
+  assert.equal(cl.itens[0].config.regex, 'x')
+  assert.equal(cl.itens[0].motivo, 'crm_uf_ausente')
 })
