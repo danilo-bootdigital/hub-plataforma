@@ -2365,7 +2365,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/package.json": {
-    "mtime": 1783004432.4562573,
+    "mtime": 1783008505.611753,
     "ast_hash": "95b08bc3062cdc4b0334fa9be037e557",
     "semantic_hash": ""
   },
@@ -2380,8 +2380,8 @@
     "semantic_hash": ""
   },
   "lib/conferencia/__tests__/motor-regras.test.ts": {
-    "mtime": 1783004357.559004,
-    "ast_hash": "07e15c0a67d1c1cc47b67a586e0b6aca",
+    "mtime": 1783008376.479915,
+    "ast_hash": "cf04cc586bd9d3daea94b395fcd95a88",
     "semantic_hash": ""
   },
   "lib/conferencia/motor-regras.ts": {
@@ -2440,52 +2440,52 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js": {
-    "mtime": 1783004432.332017,
-    "ast_hash": "fc79628753746dd3ab9190d6b3d41d72",
+    "mtime": 1783008505.487286,
+    "ast_hash": "38c28de4a723f6a42155418da82a3d39",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/diagnostico.js": {
-    "mtime": 1783004432.2876308,
+    "mtime": 1783008505.4500246,
     "ast_hash": "5ea24105facb28e452350557fa18379c",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/mapear-checklist.js": {
-    "mtime": 1783004432.2906806,
+    "mtime": 1783008505.4531124,
     "ast_hash": "34df1160f09a44ee78a8d1f50bf33891",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/motor-regras.js": {
-    "mtime": 1783004432.3040588,
+    "mtime": 1783008505.4680068,
     "ast_hash": "ef3ce5ddec65f2e56a7f00bf035c1eea",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/resolver-checklist.js": {
-    "mtime": 1783004432.3080814,
+    "mtime": 1783008505.4722252,
     "ast_hash": "d548dcd48788531c2dc0856bf4d8f08f",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/tipos.js": {
-    "mtime": 1783004432.274783,
+    "mtime": 1783008505.4362292,
     "ast_hash": "e5242a72d0a2ba687aa9e3006b57a65e",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/__tests__/extrator.test.js": {
-    "mtime": 1783004432.3514059,
+    "mtime": 1783008505.506697,
     "ast_hash": "6e2b694f19dd8fee1cb7ea97fa3c08ae",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/provedores/mock.js": {
-    "mtime": 1783004432.3457751,
+    "mtime": 1783008505.5013754,
     "ast_hash": "a22ce2e93e402f6a40022f63c29d7153",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/schema-extracao.js": {
-    "mtime": 1783004432.3393576,
+    "mtime": 1783008505.4943075,
     "ast_hash": "fd19ab98516a9aeaebf041bdee9f00c4",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/tipos.js": {
-    "mtime": 1783004432.3407705,
+    "mtime": 1783008505.4955654,
     "ast_hash": "2a4e7dac578b1592c5b287ba8c2c9bd2",
     "semantic_hash": ""
   },
@@ -2520,18 +2520,18 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/persistencia.js": {
-    "mtime": 1783004432.3066523,
+    "mtime": 1783008505.4707832,
     "ast_hash": "668db06c4329a65eacad4352ddfc4c9c",
     "semantic_hash": ""
   },
   "app/(dashboard)/orcamentos/actions-conferencia.ts": {
-    "mtime": 1783004135.94325,
-    "ast_hash": "4fd2fb3abb5f4c354c0c8addeb213627",
+    "mtime": 1783008348.0624313,
+    "ast_hash": "5e9577f17d1b3eb56b7b2c15001a1c24",
     "semantic_hash": ""
   },
   "hubdev/bootstrap/expand_receita_conferencia_mvp5.sql": {
-    "mtime": 1783004339.1714463,
-    "ast_hash": "c11a069aa5cbbbfc89107d33aca6d475",
+    "mtime": 1783008356.2421932,
+    "ast_hash": "c8b0b3fde68876adbf9b172a369f39c0",
     "semantic_hash": ""
   },
   "hubdev/bootstrap/rollback_receita_conferencia_mvp5.sql": {
@@ -2545,13 +2545,23 @@
     "semantic_hash": ""
   },
   "supabase/migrations/059_receita_conferencia_status_rbac.sql": {
-    "mtime": 1783004160.0239542,
-    "ast_hash": "c11a069aa5cbbbfc89107d33aca6d475",
+    "mtime": 1783008305.0794356,
+    "ast_hash": "c8b0b3fde68876adbf9b172a369f39c0",
     "semantic_hash": ""
   },
   "apresentacao-stinpharma.html": {
     "mtime": 1783004379.282542,
     "ast_hash": "cf31571d17ed2e6aa89d2f0ee16f2a98",
+    "semantic_hash": ""
+  },
+  ".tmp-conferencia/conferencia/mapear-orcamento.js": {
+    "mtime": 1783008505.4554868,
+    "ast_hash": "ff2af05a1c739320b55e8ae7cf420c3e",
+    "semantic_hash": ""
+  },
+  "lib/conferencia/mapear-orcamento.ts": {
+    "mtime": 1783008316.6333997,
+    "ast_hash": "79c1bbc11e7dea7918996f6cc362e072",
     "semantic_hash": ""
   }
 }

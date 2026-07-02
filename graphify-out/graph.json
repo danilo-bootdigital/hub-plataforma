@@ -204,10 +204,20 @@
       "norm_label": "persistencia_1"
     },
     {
+      "label": "mapear_orcamento_1",
+      "file_type": "code",
+      "source_file": ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "tests_motor_regras_test_mapear_orcamento_1",
+      "community": 125,
+      "norm_label": "mapear_orcamento_1"
+    },
+    {
       "label": "checklistTirzepatida",
       "file_type": "code",
       "source_file": ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js",
-      "source_location": "L14",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "tmp_conferencia_conferencia_tests_motor_regras_test_js_tests_motor_regras_test_checklisttirzepatida",
       "community": 125,
@@ -217,7 +227,7 @@
       "label": "orcamentoBase",
       "file_type": "code",
       "source_file": ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js",
-      "source_location": "L32",
+      "source_location": "L33",
       "_origin": "ast",
       "id": "tmp_conferencia_conferencia_tests_motor_regras_test_js_tests_motor_regras_test_orcamentobase",
       "community": 125,
@@ -227,7 +237,7 @@
       "label": "extracaoBoa()",
       "file_type": "code",
       "source_file": ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js",
-      "source_location": "L36",
+      "source_location": "L37",
       "_origin": "ast",
       "id": "tmp_conferencia_conferencia_tests_motor_regras_test_js_tests_motor_regras_test_extracaoboa",
       "community": 125,
@@ -237,7 +247,7 @@
       "label": "entrada()",
       "file_type": "code",
       "source_file": ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js",
-      "source_location": "L48",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "tmp_conferencia_conferencia_tests_motor_regras_test_js_tests_motor_regras_test_entrada",
       "community": 125,
@@ -247,7 +257,7 @@
       "label": "motivos()",
       "file_type": "code",
       "source_file": ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js",
-      "source_location": "L57",
+      "source_location": "L58",
       "_origin": "ast",
       "id": "tmp_conferencia_conferencia_tests_motor_regras_test_js_tests_motor_regras_test_motivos",
       "community": 125,
@@ -332,6 +342,26 @@
       "id": "tmp_conferencia_conferencia_mapear_checklist_js_conferencia_mapear_checklist_mapchecklistrows",
       "community": 144,
       "norm_label": "mapchecklistrows()"
+    },
+    {
+      "label": "mapear-orcamento.js",
+      "file_type": "code",
+      "source_file": ".tmp-conferencia/conferencia/mapear-orcamento.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tmp_conferencia_conferencia_mapear_orcamento_js_conferencia_mapear_orcamento",
+      "community": 114,
+      "norm_label": "mapear-orcamento.js"
+    },
+    {
+      "label": "mapOrcamentoContexto()",
+      "file_type": "code",
+      "source_file": ".tmp-conferencia/conferencia/mapear-orcamento.js",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "tmp_conferencia_conferencia_mapear_orcamento_js_conferencia_mapear_orcamento_maporcamentocontexto",
+      "community": 114,
+      "norm_label": "maporcamentocontexto()"
     },
     {
       "label": "motor-regras.js",
@@ -950,7 +980,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "login_page",
-      "community": 38,
+      "community": 36,
       "norm_label": "page.tsx"
     },
     {
@@ -960,7 +990,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "login_page_mensagenserro",
-      "community": 38,
+      "community": 36,
       "norm_label": "mensagenserro"
     },
     {
@@ -970,7 +1000,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "login_page_loginpage",
-      "community": 38,
+      "community": 36,
       "norm_label": "loginpage()"
     },
     {
@@ -980,7 +1010,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "login_page_errologin",
-      "community": 38,
+      "community": 36,
       "norm_label": "errologin()"
     },
     {
@@ -1400,7 +1430,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "caixa_de_entrada_page",
-      "community": 74,
+      "community": 5,
       "norm_label": "page.tsx"
     },
     {
@@ -1410,7 +1440,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "caixa_de_entrada_page_caixadeentradapage",
-      "community": 74,
+      "community": 5,
       "norm_label": "caixadeentradapage()"
     },
     {
@@ -1420,7 +1450,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "editar_formulario_editar_contato",
-      "community": 38,
+      "community": 36,
       "norm_label": "formulario-editar-contato.tsx"
     },
     {
@@ -1430,7 +1460,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "editar_formulario_editar_contato_contatocompleto",
-      "community": 38,
+      "community": 36,
       "norm_label": "contatocompleto"
     },
     {
@@ -1440,7 +1470,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "editar_formulario_editar_contato_formularioeditarcontatoprops",
-      "community": 38,
+      "community": 36,
       "norm_label": "formularioeditarcontatoprops"
     },
     {
@@ -1960,7 +1990,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "distribuicao_actions_alternardisponibilidade",
-      "community": 32,
+      "community": 39,
       "norm_label": "alternardisponibilidade()"
     },
     {
@@ -2060,7 +2090,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_configuracoes_fornecedores_id_page_tsx_id_page",
-      "community": 12,
+      "community": 15,
       "norm_label": "page.tsx"
     },
     {
@@ -2070,7 +2100,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "id_page_fornecedordetalhepage",
-      "community": 12,
+      "community": 15,
       "norm_label": "fornecedordetalhepage()"
     },
     {
@@ -2230,7 +2260,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "fornecedores_page",
-      "community": 7,
+      "community": 12,
       "norm_label": "page.tsx"
     },
     {
@@ -2240,7 +2270,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "fornecedores_page_fornecedorespage",
-      "community": 7,
+      "community": 12,
       "norm_label": "fornecedorespage()"
     },
     {
@@ -2690,7 +2720,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_configuracoes_produtos_id_editar_page_tsx_editar_page",
-      "community": 28,
+      "community": 74,
       "norm_label": "page.tsx"
     },
     {
@@ -2700,7 +2730,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "editar_page_editarprodutopage",
-      "community": 28,
+      "community": 74,
       "norm_label": "editarprodutopage()"
     },
     {
@@ -2710,7 +2740,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_configuracoes_produtos_actions_ts_produtos_actions",
-      "community": 12,
+      "community": 15,
       "norm_label": "actions.ts"
     },
     {
@@ -2720,7 +2750,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "produtos_actions_getadminougestor",
-      "community": 12,
+      "community": 15,
       "norm_label": "getadminougestor()"
     },
     {
@@ -2730,7 +2760,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "produtos_actions_criarproduto",
-      "community": 12,
+      "community": 15,
       "norm_label": "criarproduto()"
     },
     {
@@ -2740,7 +2770,7 @@
       "source_location": "L80",
       "_origin": "ast",
       "id": "produtos_actions_editarproduto",
-      "community": 12,
+      "community": 15,
       "norm_label": "editarproduto()"
     },
     {
@@ -2750,7 +2780,7 @@
       "source_location": "L141",
       "_origin": "ast",
       "id": "produtos_actions_alternarativoproduto",
-      "community": 12,
+      "community": 15,
       "norm_label": "alternarativoproduto()"
     },
     {
@@ -2760,7 +2790,7 @@
       "source_location": "L154",
       "_origin": "ast",
       "id": "produtos_actions_excluirproduto",
-      "community": 12,
+      "community": 15,
       "norm_label": "excluirproduto()"
     },
     {
@@ -2770,7 +2800,7 @@
       "source_location": "L181",
       "_origin": "ast",
       "id": "produtos_actions_excluirprodutosemlote",
-      "community": 12,
+      "community": 15,
       "norm_label": "excluirprodutosemlote()"
     },
     {
@@ -2780,7 +2810,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_configuracoes_produtos_novo_page_tsx_novo_page",
-      "community": 28,
+      "community": 74,
       "norm_label": "page.tsx"
     },
     {
@@ -2790,7 +2820,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "novo_page_novoprodutopage",
-      "community": 28,
+      "community": 74,
       "norm_label": "novoprodutopage()"
     },
     {
@@ -2870,7 +2900,7 @@
       "source_location": "L178",
       "_origin": "ast",
       "id": "usuarios_actions_alternarstatususuario",
-      "community": 115,
+      "community": 118,
       "norm_label": "alternarstatususuario()"
     },
     {
@@ -3040,7 +3070,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "whatsapp_config_avancada_configuracaoavancada",
-      "community": 37,
+      "community": 30,
       "norm_label": "configuracaoavancada()"
     },
     {
@@ -3100,7 +3130,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "debug_whatsapp_page",
-      "community": 30,
+      "community": 38,
       "norm_label": "page.tsx"
     },
     {
@@ -3110,7 +3140,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "debug_whatsapp_page_debugwhatsapppage",
-      "community": 30,
+      "community": 38,
       "norm_label": "debugwhatsapppage()"
     },
     {
@@ -3120,7 +3150,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "dashboard_error",
-      "community": 7,
+      "community": 36,
       "norm_label": "error.tsx"
     },
     {
@@ -3130,7 +3160,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "dashboard_error_dashboarderror",
-      "community": 7,
+      "community": 36,
       "norm_label": "dashboarderror()"
     },
     {
@@ -3310,7 +3340,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_hub_clientes_actions_ts_clientes_actions",
-      "community": 74,
+      "community": 108,
       "norm_label": "actions.ts"
     },
     {
@@ -3320,7 +3350,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "clientes_actions_getproprietario",
-      "community": 74,
+      "community": 108,
       "norm_label": "getproprietario()"
     },
     {
@@ -3330,7 +3360,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "clientes_actions_definirresponsaveloperacional",
-      "community": 74,
+      "community": 108,
       "norm_label": "definirresponsaveloperacional()"
     },
     {
@@ -3690,7 +3720,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_leads_id_page_tsx_id_page",
-      "community": 38,
+      "community": 44,
       "norm_label": "page.tsx"
     },
     {
@@ -3700,7 +3730,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "id_page_leadcomresponsavel",
-      "community": 38,
+      "community": 44,
       "norm_label": "leadcomresponsavel"
     },
     {
@@ -3900,7 +3930,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "id_acoes_orcamento_acoesorcamento",
-      "community": 8,
+      "community": 113,
       "norm_label": "acoesorcamento()"
     },
     {
@@ -3940,7 +3970,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_orcamentos_id_editar_page_tsx_editar_page",
-      "community": 22,
+      "community": 113,
       "norm_label": "page.tsx"
     },
     {
@@ -3950,7 +3980,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "editar_page_editarorcamentopage",
-      "community": 22,
+      "community": 113,
       "norm_label": "editarorcamentopage()"
     },
     {
@@ -3960,7 +3990,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_orcamentos_id_page_backup_tsx_id_page_backup",
-      "community": 113,
+      "community": 38,
       "norm_label": "page.backup.tsx"
     },
     {
@@ -3970,7 +4000,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "app_dashboard_orcamentos_id_page_backup_tsx_id_page_backup_orcamentodetalhepage",
-      "community": 113,
+      "community": 38,
       "norm_label": "orcamentodetalhepage()"
     },
     {
@@ -3980,7 +4010,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_orcamentos_id_page_tsx_id_page",
-      "community": 22,
+      "community": 113,
       "norm_label": "page.tsx"
     },
     {
@@ -3990,7 +4020,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "id_page_orcamentodetalhepage",
-      "community": 22,
+      "community": 113,
       "norm_label": "orcamentodetalhepage()"
     },
     {
@@ -4084,14 +4114,14 @@
       "norm_label": "aprovarreceitaoperacionalmente()"
     },
     {
-      "label": "marcarNecessitaCorrecao()",
+      "label": "devolverParaCorrecao()",
       "file_type": "code",
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L204",
       "_origin": "ast",
-      "id": "orcamentos_actions_conferencia_marcarnecessitacorrecao",
+      "id": "orcamentos_actions_conferencia_devolverparacorrecao",
       "community": 69,
-      "norm_label": "marcarnecessitacorrecao()"
+      "norm_label": "devolverparacorrecao()"
     },
     {
       "label": "rejeitarReceita()",
@@ -4570,7 +4600,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_orcamentos_page_tsx_orcamentos_page",
-      "community": 57,
+      "community": 14,
       "norm_label": "page.tsx"
     },
     {
@@ -4580,7 +4610,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "orcamentos_page_searchparams",
-      "community": 57,
+      "community": 14,
       "norm_label": "searchparams"
     },
     {
@@ -4590,7 +4620,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "orcamentos_page_orcamentospage",
-      "community": 57,
+      "community": 14,
       "norm_label": "orcamentospage()"
     },
     {
@@ -4670,7 +4700,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_pedidos_id_editar_page_tsx_editar_page",
-      "community": 38,
+      "community": 7,
       "norm_label": "page.tsx"
     },
     {
@@ -4680,7 +4710,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "editar_page_props",
-      "community": 38,
+      "community": 7,
       "norm_label": "props"
     },
     {
@@ -4690,7 +4720,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "editar_page_editarpedidopage",
-      "community": 38,
+      "community": 7,
       "norm_label": "editarpedidopage()"
     },
     {
@@ -4700,7 +4730,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_pedidos_id_page_tsx_id_page",
-      "community": 128,
+      "community": 38,
       "norm_label": "page.tsx"
     },
     {
@@ -4710,7 +4740,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "id_page_pedidodetalhepage",
-      "community": 128,
+      "community": 38,
       "norm_label": "pedidodetalhepage()"
     },
     {
@@ -4890,7 +4920,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pipeline_actions",
-      "community": 140,
+      "community": 3,
       "norm_label": "actions.ts"
     },
     {
@@ -4900,7 +4930,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "pipeline_actions_getvendedorousuperior",
-      "community": 140,
+      "community": 3,
       "norm_label": "getvendedorousuperior()"
     },
     {
@@ -4910,7 +4940,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "pipeline_actions_criardeal",
-      "community": 140,
+      "community": 3,
       "norm_label": "criardeal()"
     },
     {
@@ -4920,7 +4950,7 @@
       "source_location": "L84",
       "_origin": "ast",
       "id": "pipeline_actions_moverdeal",
-      "community": 140,
+      "community": 3,
       "norm_label": "moverdeal()"
     },
     {
@@ -4930,7 +4960,7 @@
       "source_location": "L198",
       "_origin": "ast",
       "id": "pipeline_actions_adicionarobservacaodeal",
-      "community": 140,
+      "community": 3,
       "norm_label": "adicionarobservacaodeal()"
     },
     {
@@ -5070,7 +5100,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_relatorios_exportar_route_ts_exportar_route",
-      "community": 74,
+      "community": 67,
       "norm_label": "route.ts"
     },
     {
@@ -5080,7 +5110,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "exportar_route_calcularperiodo",
-      "community": 74,
+      "community": 67,
       "norm_label": "calcularperiodo()"
     },
     {
@@ -5090,7 +5120,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "app_dashboard_relatorios_exportar_route_ts_exportar_route_escapecsv",
-      "community": 74,
+      "community": 67,
       "norm_label": "escapecsv()"
     },
     {
@@ -5100,7 +5130,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "app_dashboard_relatorios_exportar_route_ts_exportar_route_get",
-      "community": 74,
+      "community": 67,
       "norm_label": "get()"
     },
     {
@@ -5220,7 +5250,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tarefas_page",
-      "community": 5,
+      "community": 24,
       "norm_label": "page.tsx"
     },
     {
@@ -5230,7 +5260,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "tarefas_page_tarefaspage",
-      "community": 5,
+      "community": 24,
       "norm_label": "tarefaspage()"
     },
     {
@@ -5810,7 +5840,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_whatsapp_page_tsx_whatsapp_page",
-      "community": 1,
+      "community": 131,
       "norm_label": "page.tsx"
     },
     {
@@ -5820,7 +5850,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "whatsapp_page_formatardataserver",
-      "community": 1,
+      "community": 131,
       "norm_label": "formatardataserver()"
     },
     {
@@ -5830,7 +5860,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "whatsapp_page_carregarconversaativa",
-      "community": 1,
+      "community": 131,
       "norm_label": "carregarconversaativa()"
     },
     {
@@ -5840,7 +5870,7 @@
       "source_location": "L194",
       "_origin": "ast",
       "id": "whatsapp_page_buscarultimasmensagens",
-      "community": 1,
+      "community": 131,
       "norm_label": "buscarultimasmensagens()"
     },
     {
@@ -5850,7 +5880,7 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "whatsapp_page_whatsapppage",
-      "community": 1,
+      "community": 131,
       "norm_label": "whatsapppage()"
     },
     {
@@ -5900,7 +5930,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "preview_pdf_page",
-      "community": 118,
+      "community": 37,
       "norm_label": "page.tsx"
     },
     {
@@ -5910,7 +5940,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "preview_pdf_page_previewpdfpage",
-      "community": 118,
+      "community": 37,
       "norm_label": "previewpdfpage()"
     },
     {
@@ -5950,7 +5980,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backfill_nomes_conversas_route",
-      "community": 31,
+      "community": 5,
       "norm_label": "route.ts"
     },
     {
@@ -5960,7 +5990,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backfill_nomes_conversas_route_post",
-      "community": 31,
+      "community": 5,
       "norm_label": "post()"
     },
     {
@@ -6030,7 +6060,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "acao_route",
-      "community": 148,
+      "community": 74,
       "norm_label": "route.ts"
     },
     {
@@ -6040,7 +6070,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "acao_route_post",
-      "community": 148,
+      "community": 74,
       "norm_label": "post()"
     },
     {
@@ -6050,7 +6080,7 @@
       "source_location": "L130",
       "_origin": "ast",
       "id": "acao_route_getnovostatus",
-      "community": 148,
+      "community": 74,
       "norm_label": "getnovostatus()"
     },
     {
@@ -6100,7 +6130,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "evolution_route_improved",
-      "community": 108,
+      "community": 122,
       "norm_label": "route-improved.ts"
     },
     {
@@ -6110,7 +6140,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "evolution_route_improved_contatocache",
-      "community": 108,
+      "community": 122,
       "norm_label": "contatocache"
     },
     {
@@ -6120,7 +6150,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "evolution_route_improved_normalizartelefone",
-      "community": 108,
+      "community": 122,
       "norm_label": "normalizartelefone()"
     },
     {
@@ -6130,7 +6160,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "evolution_route_improved_buscarcontatoportelefone",
-      "community": 108,
+      "community": 122,
       "norm_label": "buscarcontatoportelefone()"
     },
     {
@@ -6140,7 +6170,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "evolution_route_improved_verifyhmacsignature",
-      "community": 108,
+      "community": 122,
       "norm_label": "verifyhmacsignature()"
     },
     {
@@ -6150,7 +6180,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "evolution_route_improved_obterconfiguracao",
-      "community": 108,
+      "community": 122,
       "norm_label": "obterconfiguracao()"
     },
     {
@@ -6160,7 +6190,7 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "evolution_route_improved_classificarurgencia",
-      "community": 108,
+      "community": 122,
       "norm_label": "classificarurgencia()"
     },
     {
@@ -6170,7 +6200,7 @@
       "source_location": "L94",
       "_origin": "ast",
       "id": "evolution_route_improved_post",
-      "community": 108,
+      "community": 122,
       "norm_label": "post()"
     },
     {
@@ -6600,7 +6630,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_public_id_page_tsx_id_page",
-      "community": 113,
+      "community": 38,
       "norm_label": "page.tsx"
     },
     {
@@ -6610,7 +6640,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "id_page_orcamentopublicopage",
-      "community": 113,
+      "community": 38,
       "norm_label": "orcamentopublicopage()"
     },
     {
@@ -7018,7 +7048,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "auth_auth_provider",
-      "community": 37,
+      "community": 45,
       "norm_label": "auth-provider.tsx"
     },
     {
@@ -7028,7 +7058,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "auth_auth_provider_user",
-      "community": 37,
+      "community": 45,
       "norm_label": "user"
     },
     {
@@ -7038,7 +7068,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "auth_auth_provider_profile",
-      "community": 37,
+      "community": 45,
       "norm_label": "profile"
     },
     {
@@ -7048,7 +7078,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "auth_auth_provider_authcontexttype",
-      "community": 37,
+      "community": 45,
       "norm_label": "authcontexttype"
     },
     {
@@ -7058,7 +7088,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "auth_auth_provider_authcontext",
-      "community": 37,
+      "community": 45,
       "norm_label": "authcontext"
     },
     {
@@ -7068,7 +7098,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "auth_auth_provider_authproviderprops",
-      "community": 37,
+      "community": 45,
       "norm_label": "authproviderprops"
     },
     {
@@ -7088,7 +7118,7 @@
       "source_location": "L159",
       "_origin": "ast",
       "id": "auth_auth_provider_useauth",
-      "community": 37,
+      "community": 45,
       "norm_label": "useauth()"
     },
     {
@@ -7258,7 +7288,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "caixa_de_entrada_lista_itens_inbox_listaitensinbox",
-      "community": 74,
+      "community": 5,
       "norm_label": "listaitensinbox()"
     },
     {
@@ -7348,7 +7378,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "clientes_acoes_contato",
-      "community": 44,
+      "community": 19,
       "norm_label": "acoes-contato.tsx"
     },
     {
@@ -7358,7 +7388,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "clientes_acoes_contato_props",
-      "community": 44,
+      "community": 19,
       "norm_label": "props"
     },
     {
@@ -7368,7 +7398,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "clientes_acoes_contato_acoescontato",
-      "community": 44,
+      "community": 19,
       "norm_label": "acoescontato()"
     },
     {
@@ -7578,7 +7608,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "distribuicao_botao_disponibilidade",
-      "community": 32,
+      "community": 39,
       "norm_label": "botao-disponibilidade.tsx"
     },
     {
@@ -7588,7 +7618,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "distribuicao_botao_disponibilidade_props",
-      "community": 32,
+      "community": 39,
       "norm_label": "props"
     },
     {
@@ -7598,7 +7628,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "distribuicao_botao_disponibilidade_cargos_com_disponibilidade",
-      "community": 32,
+      "community": 39,
       "norm_label": "cargos_com_disponibilidade"
     },
     {
@@ -7608,7 +7638,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "distribuicao_botao_disponibilidade_botaodisponibilidade",
-      "community": 32,
+      "community": 39,
       "norm_label": "botaodisponibilidade()"
     },
     {
@@ -7618,7 +7648,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "distribuicao_botao_disponibilidade_botaodisponibilidadeinterativo",
-      "community": 32,
+      "community": 39,
       "norm_label": "botaodisponibilidadeinterativo()"
     },
     {
@@ -7808,7 +7838,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "fornecedores_gerenciar_categorias",
-      "community": 12,
+      "community": 15,
       "norm_label": "gerenciar-categorias.tsx"
     },
     {
@@ -7818,7 +7848,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "fornecedores_gerenciar_categorias_props",
-      "community": 12,
+      "community": 15,
       "norm_label": "props"
     },
     {
@@ -7828,7 +7858,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "fornecedores_gerenciar_categorias_produtoimportado",
-      "community": 12,
+      "community": 15,
       "norm_label": "produtoimportado"
     },
     {
@@ -7838,7 +7868,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "fornecedores_gerenciar_categorias_mapeamento",
-      "community": 12,
+      "community": 15,
       "norm_label": "mapeamento"
     },
     {
@@ -7848,7 +7878,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "fornecedores_gerenciar_categorias_parsearplanilha",
-      "community": 12,
+      "community": 15,
       "norm_label": "parsearplanilha()"
     },
     {
@@ -7858,7 +7888,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "fornecedores_gerenciar_categorias_mapearprodutos",
-      "community": 12,
+      "community": 15,
       "norm_label": "mapearprodutos()"
     },
     {
@@ -7868,7 +7898,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "fornecedores_gerenciar_categorias_gerenciarcategorias",
-      "community": 12,
+      "community": 15,
       "norm_label": "gerenciarcategorias()"
     },
     {
@@ -7878,7 +7908,7 @@
       "source_location": "L307",
       "_origin": "ast",
       "id": "fornecedores_gerenciar_categorias_tabelaprodutosfornecedor",
-      "community": 12,
+      "community": 15,
       "norm_label": "tabelaprodutosfornecedor()"
     },
     {
@@ -7888,7 +7918,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "fornecedores_hub_selector",
-      "community": 12,
+      "community": 38,
       "norm_label": "hub-selector.tsx"
     },
     {
@@ -7898,7 +7928,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "fornecedores_hub_selector_hub",
-      "community": 12,
+      "community": 38,
       "norm_label": "hub"
     },
     {
@@ -7908,7 +7938,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "fornecedores_hub_selector_fornecedorcomhub",
-      "community": 12,
+      "community": 38,
       "norm_label": "fornecedorcomhub"
     },
     {
@@ -7918,7 +7948,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "fornecedores_hub_selector_props",
-      "community": 12,
+      "community": 38,
       "norm_label": "props"
     },
     {
@@ -7928,7 +7958,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "fornecedores_hub_selector_hubselector",
-      "community": 12,
+      "community": 38,
       "norm_label": "hubselector()"
     },
     {
@@ -7948,7 +7978,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "fornecedores_modal_novo_fornecedor_modalnovofornecedor",
-      "community": 7,
+      "community": 12,
       "norm_label": "modalnovofornecedor()"
     },
     {
@@ -7958,7 +7988,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "fornecedores_tabela_fornecedores",
-      "community": 7,
+      "community": 12,
       "norm_label": "tabela-fornecedores.tsx"
     },
     {
@@ -7968,7 +7998,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "fornecedores_tabela_fornecedores_fornecedorcomhub",
-      "community": 7,
+      "community": 12,
       "norm_label": "fornecedorcomhub"
     },
     {
@@ -7978,7 +8008,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "fornecedores_tabela_fornecedores_tabelafornecedores",
-      "community": 7,
+      "community": 12,
       "norm_label": "tabelafornecedores()"
     },
     {
@@ -8048,7 +8078,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "fornecedores_tabela_frete_tabelafrete",
-      "community": 12,
+      "community": 15,
       "norm_label": "tabelafrete()"
     },
     {
@@ -8058,7 +8088,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hooks_use_orcamento_data",
-      "community": 37,
+      "community": 45,
       "norm_label": "use-orcamento-data.tsx"
     },
     {
@@ -8068,7 +8098,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "hooks_use_orcamento_data_useorcamentodata",
-      "community": 37,
+      "community": 45,
       "norm_label": "useorcamentodata()"
     },
     {
@@ -8078,7 +8108,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "hooks_use_user_role",
-      "community": 22,
+      "community": 27,
       "norm_label": "use-user-role.tsx"
     },
     {
@@ -8088,7 +8118,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "hooks_use_user_role_useuserrole",
-      "community": 22,
+      "community": 27,
       "norm_label": "useuserrole()"
     },
     {
@@ -8568,7 +8598,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "layout_botao_sair",
-      "community": 37,
+      "community": 30,
       "norm_label": "botao-sair.tsx"
     },
     {
@@ -8578,7 +8608,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "layout_botao_sair_botaosair",
-      "community": 37,
+      "community": 30,
       "norm_label": "botaosair()"
     },
     {
@@ -8648,7 +8678,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "layout_sidebar_mobile_sidebarmobile",
-      "community": 32,
+      "community": 123,
       "norm_label": "sidebarmobile()"
     },
     {
@@ -8698,7 +8728,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "leads_badge_origem",
-      "community": 15,
+      "community": 3,
       "norm_label": "badge-origem.tsx"
     },
     {
@@ -8708,7 +8738,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "leads_badge_origem_config",
-      "community": 15,
+      "community": 3,
       "norm_label": "config"
     },
     {
@@ -8718,7 +8748,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "leads_badge_origem_badgeorigem",
-      "community": 15,
+      "community": 3,
       "norm_label": "badgeorigem()"
     },
     {
@@ -8798,7 +8828,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "leads_form_observacao_formobservacao",
-      "community": 38,
+      "community": 44,
       "norm_label": "formobservacao()"
     },
     {
@@ -8828,7 +8858,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "leads_modal_converter_lead_modalconverterlead",
-      "community": 38,
+      "community": 44,
       "norm_label": "modalconverterlead()"
     },
     {
@@ -9268,7 +9298,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_acoes_orcamento_detalhe",
-      "community": 113,
+      "community": 38,
       "norm_label": "acoes-orcamento-detalhe.tsx"
     },
     {
@@ -9278,7 +9308,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "orcamentos_acoes_orcamento_detalhe_props",
-      "community": 113,
+      "community": 38,
       "norm_label": "props"
     },
     {
@@ -9288,7 +9318,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "orcamentos_acoes_orcamento_detalhe_acoesorcamentodetalhe",
-      "community": 113,
+      "community": 38,
       "norm_label": "acoesorcamentodetalhe()"
     },
     {
@@ -9298,7 +9328,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_acoes_orcamento",
-      "community": 38,
+      "community": 8,
       "norm_label": "acoes-orcamento.tsx"
     },
     {
@@ -9308,7 +9338,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "orcamentos_acoes_orcamento_props",
-      "community": 38,
+      "community": 8,
       "norm_label": "props"
     },
     {
@@ -9318,7 +9348,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "orcamentos_acoes_orcamento_acoesorcamento",
-      "community": 38,
+      "community": 8,
       "norm_label": "acoesorcamento()"
     },
     {
@@ -9328,7 +9358,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_acoes_wrapper",
-      "community": 113,
+      "community": 38,
       "norm_label": "acoes-wrapper.tsx"
     },
     {
@@ -9338,7 +9368,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "orcamentos_acoes_wrapper_acoeswrapperprops",
-      "community": 113,
+      "community": 38,
       "norm_label": "acoeswrapperprops"
     },
     {
@@ -9348,7 +9378,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "orcamentos_acoes_wrapper_acoeswrapper",
-      "community": 113,
+      "community": 38,
       "norm_label": "acoeswrapper()"
     },
     {
@@ -9408,7 +9438,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_botao_baixar_pdf",
-      "community": 22,
+      "community": 37,
       "norm_label": "botao-baixar-pdf.tsx"
     },
     {
@@ -9418,7 +9448,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "orcamentos_botao_baixar_pdf_props",
-      "community": 22,
+      "community": 37,
       "norm_label": "props"
     },
     {
@@ -9428,7 +9458,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "orcamentos_botao_baixar_pdf_botaobaixarpdf",
-      "community": 22,
+      "community": 37,
       "norm_label": "botaobaixarpdf()"
     },
     {
@@ -9438,7 +9468,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf",
-      "community": 67,
+      "community": 117,
       "norm_label": "botao-exportar-pdf.tsx"
     },
     {
@@ -9448,7 +9478,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_item",
-      "community": 67,
+      "community": 117,
       "norm_label": "item"
     },
     {
@@ -9458,7 +9488,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_props",
-      "community": 67,
+      "community": 117,
       "norm_label": "props"
     },
     {
@@ -9468,7 +9498,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_green_dark",
-      "community": 67,
+      "community": 117,
       "norm_label": "green_dark"
     },
     {
@@ -9478,7 +9508,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_green_mid",
-      "community": 67,
+      "community": 117,
       "norm_label": "green_mid"
     },
     {
@@ -9488,7 +9518,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_green_light",
-      "community": 67,
+      "community": 117,
       "norm_label": "green_light"
     },
     {
@@ -9498,7 +9528,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_green_accent",
-      "community": 67,
+      "community": 117,
       "norm_label": "green_accent"
     },
     {
@@ -9508,7 +9538,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_dark_text",
-      "community": 67,
+      "community": 117,
       "norm_label": "dark_text"
     },
     {
@@ -9518,7 +9548,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_gray_text",
-      "community": 67,
+      "community": 117,
       "norm_label": "gray_text"
     },
     {
@@ -9528,7 +9558,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_white",
-      "community": 67,
+      "community": 117,
       "norm_label": "white"
     },
     {
@@ -9538,7 +9568,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_botaoexportarpdf",
-      "community": 67,
+      "community": 117,
       "norm_label": "botaoexportarpdf()"
     },
     {
@@ -9548,7 +9578,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_botao_preview_pdf_novo",
-      "community": 22,
+      "community": 113,
       "norm_label": "botao-preview-pdf-novo.tsx"
     },
     {
@@ -9558,7 +9588,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "orcamentos_botao_preview_pdf_novo_props",
-      "community": 22,
+      "community": 113,
       "norm_label": "props"
     },
     {
@@ -9568,7 +9598,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "orcamentos_botao_preview_pdf_novo_botaopreviewpdfnovo",
-      "community": 22,
+      "community": 113,
       "norm_label": "botaopreviewpdfnovo()"
     },
     {
@@ -9608,7 +9638,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_exportar_pdf_button",
-      "community": 22,
+      "community": 37,
       "norm_label": "exportar-pdf-button.tsx"
     },
     {
@@ -9618,7 +9648,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "orcamentos_exportar_pdf_button_props",
-      "community": 22,
+      "community": 37,
       "norm_label": "props"
     },
     {
@@ -9628,7 +9658,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "orcamentos_exportar_pdf_button_exportarpdfbutton",
-      "community": 22,
+      "community": 37,
       "norm_label": "exportarpdfbutton()"
     },
     {
@@ -9638,7 +9668,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_form_orcamento_hub",
-      "community": 119,
+      "community": 53,
       "norm_label": "form-orcamento-hub.tsx"
     },
     {
@@ -9678,7 +9708,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "orcamentos_form_orcamento_hub_itemstate",
-      "community": 119,
+      "community": 53,
       "norm_label": "itemstate"
     },
     {
@@ -9688,7 +9718,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "orcamentos_form_orcamento_hub_normalizar",
-      "community": 119,
+      "community": 53,
       "norm_label": "normalizar()"
     },
     {
@@ -9698,7 +9728,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "orcamentos_form_orcamento_hub_fichaproduto",
-      "community": 119,
+      "community": 117,
       "norm_label": "fichaproduto()"
     },
     {
@@ -9918,7 +9948,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "orcamentos_orcamento_detalhe_orcamentodetalhe",
-      "community": 22,
+      "community": 113,
       "norm_label": "orcamentodetalhe()"
     },
     {
@@ -10368,7 +10398,7 @@
       "source_location": "L688",
       "_origin": "ast",
       "id": "orcamentos_orcamento_pdf_template_orcamentopdftemplate",
-      "community": 118,
+      "community": 37,
       "norm_label": "orcamentopdftemplate()"
     },
     {
@@ -10378,7 +10408,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_orcamento_simplificado",
-      "community": 113,
+      "community": 38,
       "norm_label": "orcamento-simplificado.tsx"
     },
     {
@@ -10398,7 +10428,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "orcamentos_orcamento_simplificado_orcamentosimplificado",
-      "community": 119,
+      "community": 117,
       "norm_label": "orcamentosimplificado()"
     },
     {
@@ -10408,7 +10438,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_orcamento_tabs",
-      "community": 22,
+      "community": 30,
       "norm_label": "orcamento-tabs.tsx"
     },
     {
@@ -10418,7 +10448,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "orcamentos_orcamento_tabs_props",
-      "community": 22,
+      "community": 30,
       "norm_label": "props"
     },
     {
@@ -10428,7 +10458,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "orcamentos_orcamento_tabs_orcamentotabs",
-      "community": 22,
+      "community": 113,
       "norm_label": "orcamentotabs()"
     },
     {
@@ -10518,7 +10548,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "orcamentos_tabela_orcamentos_tabelaorcamentos",
-      "community": 57,
+      "community": 14,
       "norm_label": "tabelaorcamentos()"
     },
     {
@@ -10528,7 +10558,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "painel_card_kpi",
-      "community": 112,
+      "community": 38,
       "norm_label": "card-kpi.tsx"
     },
     {
@@ -10538,7 +10568,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "painel_card_kpi_props",
-      "community": 112,
+      "community": 38,
       "norm_label": "props"
     },
     {
@@ -10738,7 +10768,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pedidos_badge_status_pedido",
-      "community": 128,
+      "community": 139,
       "norm_label": "badge-status-pedido.tsx"
     },
     {
@@ -10748,7 +10778,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "pedidos_badge_status_pedido_status_config",
-      "community": 128,
+      "community": 139,
       "norm_label": "status_config"
     },
     {
@@ -10758,7 +10788,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "pedidos_badge_status_pedido_badgestatuspedido",
-      "community": 128,
+      "community": 139,
       "norm_label": "badgestatuspedido()"
     },
     {
@@ -10828,7 +10858,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "pedidos_botoes_pedido_botoespedido",
-      "community": 128,
+      "community": 38,
       "norm_label": "botoespedido()"
     },
     {
@@ -10878,7 +10908,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pedidos_modal_editar_pedido",
-      "community": 38,
+      "community": 7,
       "norm_label": "modal-editar-pedido.tsx"
     },
     {
@@ -10888,7 +10918,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "pedidos_modal_editar_pedido_editarpedidoprops",
-      "community": 38,
+      "community": 7,
       "norm_label": "editarpedidoprops"
     },
     {
@@ -10898,7 +10928,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "pedidos_modal_editar_pedido_modaleditarpedido",
-      "community": 38,
+      "community": 7,
       "norm_label": "modaleditarpedido()"
     },
     {
@@ -10908,7 +10938,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pedidos_timeline_status",
-      "community": 128,
+      "community": 117,
       "norm_label": "timeline-status.tsx"
     },
     {
@@ -10918,7 +10948,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "pedidos_timeline_status_etapas",
-      "community": 128,
+      "community": 117,
       "norm_label": "etapas"
     },
     {
@@ -10928,7 +10958,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "pedidos_timeline_status_timelinestatus",
-      "community": 128,
+      "community": 117,
       "norm_label": "timelinestatus()"
     },
     {
@@ -10938,7 +10968,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pipeline_form_etapas",
-      "community": 49,
+      "community": 53,
       "norm_label": "form-etapas.tsx"
     },
     {
@@ -10948,7 +10978,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "pipeline_form_etapas_etapa",
-      "community": 49,
+      "community": 53,
       "norm_label": "etapa"
     },
     {
@@ -10958,7 +10988,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "pipeline_form_etapas_props",
-      "community": 49,
+      "community": 53,
       "norm_label": "props"
     },
     {
@@ -11168,7 +11198,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal",
-      "community": 15,
+      "community": 3,
       "norm_label": "modal-detalhe-deal.tsx"
     },
     {
@@ -11178,7 +11208,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal_autor",
-      "community": 15,
+      "community": 3,
       "norm_label": "autor"
     },
     {
@@ -11188,7 +11218,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal_observacaosupabase",
-      "community": 15,
+      "community": 3,
       "norm_label": "observacaosupabase"
     },
     {
@@ -11198,7 +11228,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal_observacao",
-      "community": 15,
+      "community": 3,
       "norm_label": "observacao"
     },
     {
@@ -11208,7 +11238,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal_estagio",
-      "community": 15,
+      "community": 3,
       "norm_label": "estagio"
     },
     {
@@ -11218,7 +11248,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal_props",
-      "community": 15,
+      "community": 3,
       "norm_label": "props"
     },
     {
@@ -11228,7 +11258,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal_badgeorigemtipo",
-      "community": 15,
+      "community": 3,
       "norm_label": "badgeorigemtipo"
     },
     {
@@ -11238,7 +11268,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal_normalizarobservacoes",
-      "community": 15,
+      "community": 3,
       "norm_label": "normalizarobservacoes()"
     },
     {
@@ -11248,7 +11278,7 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal_buscarobservacoesdeal",
-      "community": 15,
+      "community": 3,
       "norm_label": "buscarobservacoesdeal()"
     },
     {
@@ -11258,7 +11288,7 @@
       "source_location": "L90",
       "_origin": "ast",
       "id": "pipeline_modal_detalhe_deal_modaldetalhedeal",
-      "community": 15,
+      "community": 3,
       "norm_label": "modaldetalhedeal()"
     },
     {
@@ -11298,7 +11328,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pipeline_modal_nova_negociacao",
-      "community": 7,
+      "community": 0,
       "norm_label": "modal-nova-negociacao.tsx"
     },
     {
@@ -11308,7 +11338,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "pipeline_modal_nova_negociacao_props",
-      "community": 7,
+      "community": 0,
       "norm_label": "props"
     },
     {
@@ -11558,7 +11588,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "portfolios_modal_novo_portfolio",
-      "community": 7,
+      "community": 0,
       "norm_label": "modal-novo-portfolio.tsx"
     },
     {
@@ -11568,7 +11598,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "portfolios_modal_novo_portfolio_props",
-      "community": 7,
+      "community": 0,
       "norm_label": "props"
     },
     {
@@ -11728,7 +11758,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "produtos_form_produto",
-      "community": 28,
+      "community": 15,
       "norm_label": "form-produto.tsx"
     },
     {
@@ -11738,7 +11768,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "produtos_form_produto_props",
-      "community": 28,
+      "community": 15,
       "norm_label": "props"
     },
     {
@@ -11748,7 +11778,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "produtos_form_produto_formproduto",
-      "community": 28,
+      "community": 74,
       "norm_label": "formproduto()"
     },
     {
@@ -11758,7 +11788,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "produtos_tabela_produtos",
-      "community": 53,
+      "community": 15,
       "norm_label": "tabela-produtos.tsx"
     },
     {
@@ -11768,7 +11798,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "produtos_tabela_produtos_props",
-      "community": 53,
+      "community": 15,
       "norm_label": "props"
     },
     {
@@ -12268,7 +12298,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "tarefas_lista_tarefas_listatarefas",
-      "community": 5,
+      "community": 24,
       "norm_label": "listatarefas()"
     },
     {
@@ -12538,7 +12568,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_button",
-      "community": 7,
+      "community": 36,
       "norm_label": "button.tsx"
     },
     {
@@ -12548,7 +12578,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "ui_button_buttonvariants",
-      "community": 7,
+      "community": 36,
       "norm_label": "buttonvariants"
     },
     {
@@ -12558,7 +12588,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "ui_button_button",
-      "community": 7,
+      "community": 36,
       "norm_label": "button()"
     },
     {
@@ -12728,7 +12758,7 @@
       "source_location": "L93",
       "_origin": "ast",
       "id": "ui_dialog_dialogfooter",
-      "community": 36,
+      "community": 0,
       "norm_label": "dialogfooter()"
     },
     {
@@ -12748,7 +12778,7 @@
       "source_location": "L133",
       "_origin": "ast",
       "id": "ui_dialog_dialogdescription",
-      "community": 36,
+      "community": 0,
       "norm_label": "dialogdescription()"
     },
     {
@@ -12958,7 +12988,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_paginacao",
-      "community": 57,
+      "community": 14,
       "norm_label": "paginacao.tsx"
     },
     {
@@ -12968,7 +12998,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "ui_paginacao_props",
-      "community": 57,
+      "community": 14,
       "norm_label": "props"
     },
     {
@@ -12978,7 +13008,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "ui_paginacao_paginacao",
-      "community": 57,
+      "community": 14,
       "norm_label": "paginacao()"
     },
     {
@@ -13238,7 +13268,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_switch",
-      "community": 65,
+      "community": 117,
       "norm_label": "switch.tsx"
     },
     {
@@ -13248,7 +13278,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "ui_switch_switch",
-      "community": 65,
+      "community": 117,
       "norm_label": "switch"
     },
     {
@@ -13348,7 +13378,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "usuarios_lista_usuarios",
-      "community": 115,
+      "community": 53,
       "norm_label": "lista-usuarios.tsx"
     },
     {
@@ -13378,7 +13408,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "usuarios_lista_usuarios_datacurta",
-      "community": 115,
+      "community": 53,
       "norm_label": "datacurta()"
     },
     {
@@ -13388,7 +13418,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "usuarios_lista_usuarios_datahora",
-      "community": 115,
+      "community": 53,
       "norm_label": "datahora()"
     },
     {
@@ -13398,7 +13428,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "usuarios_lista_usuarios_nota_perfil",
-      "community": 115,
+      "community": 53,
       "norm_label": "nota_perfil"
     },
     {
@@ -13428,7 +13458,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "usuarios_modal_alterar_senha_modalalterarsenha",
-      "community": 115,
+      "community": 53,
       "norm_label": "modalalterarsenha()"
     },
     {
@@ -13438,7 +13468,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "usuarios_modal_novo_usuario",
-      "community": 53,
+      "community": 0,
       "norm_label": "modal-novo-usuario.tsx"
     },
     {
@@ -13448,7 +13478,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "usuarios_modal_novo_usuario_perfis",
-      "community": 53,
+      "community": 0,
       "norm_label": "perfis"
     },
     {
@@ -13468,7 +13498,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_adicionar_instancia_button",
-      "community": 7,
+      "community": 36,
       "norm_label": "adicionar-instancia-button.tsx"
     },
     {
@@ -13478,7 +13508,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "whatsapp_adicionar_instancia_button_props",
-      "community": 7,
+      "community": 36,
       "norm_label": "props"
     },
     {
@@ -13488,7 +13518,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "whatsapp_adicionar_instancia_button_adicionarinstanciabutton",
-      "community": 7,
+      "community": 36,
       "norm_label": "adicionarinstanciabutton()"
     },
     {
@@ -13608,7 +13638,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_chat_area",
-      "community": 50,
+      "community": 32,
       "norm_label": "chat-area.tsx"
     },
     {
@@ -13618,7 +13648,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "whatsapp_chat_area_status_badge",
-      "community": 50,
+      "community": 32,
       "norm_label": "status_badge"
     },
     {
@@ -13628,7 +13658,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "whatsapp_chat_area_chatheaderinfo",
-      "community": 50,
+      "community": 1,
       "norm_label": "chatheaderinfo"
     },
     {
@@ -13638,7 +13668,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "whatsapp_chat_area_mensageminicial",
-      "community": 50,
+      "community": 32,
       "norm_label": "mensageminicial"
     },
     {
@@ -13648,7 +13678,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "whatsapp_chat_area_props",
-      "community": 50,
+      "community": 32,
       "norm_label": "props"
     },
     {
@@ -13888,7 +13918,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_form_envio_mensagem",
-      "community": 114,
+      "community": 43,
       "norm_label": "form-envio-mensagem.tsx"
     },
     {
@@ -13898,7 +13928,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "whatsapp_form_envio_mensagem_props",
-      "community": 114,
+      "community": 43,
       "norm_label": "props"
     },
     {
@@ -13908,7 +13938,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "whatsapp_form_envio_mensagem_accepted_types",
-      "community": 114,
+      "community": 43,
       "norm_label": "accepted_types"
     },
     {
@@ -13918,7 +13948,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "whatsapp_form_envio_mensagem_isfileaccepted",
-      "community": 114,
+      "community": 43,
       "norm_label": "isfileaccepted()"
     },
     {
@@ -13928,7 +13958,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "whatsapp_form_envio_mensagem_iconearquivo",
-      "community": 114,
+      "community": 43,
       "norm_label": "iconearquivo()"
     },
     {
@@ -13938,7 +13968,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "whatsapp_form_envio_mensagem_formenviomensagem",
-      "community": 114,
+      "community": 43,
       "norm_label": "formenviomensagem()"
     },
     {
@@ -14128,7 +14158,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_modal_chamar_whatsapp",
-      "community": 0,
+      "community": 53,
       "norm_label": "modal-chamar-whatsapp.tsx"
     },
     {
@@ -14138,7 +14168,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "whatsapp_modal_chamar_whatsapp_instancia",
-      "community": 0,
+      "community": 53,
       "norm_label": "instancia"
     },
     {
@@ -14148,7 +14178,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "whatsapp_modal_chamar_whatsapp_props",
-      "community": 0,
+      "community": 53,
       "norm_label": "props"
     },
     {
@@ -14168,7 +14198,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_modal_excluir_instancia",
-      "community": 36,
+      "community": 0,
       "norm_label": "modal-excluir-instancia.tsx"
     },
     {
@@ -14178,7 +14208,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "whatsapp_modal_excluir_instancia_props",
-      "community": 36,
+      "community": 0,
       "norm_label": "props"
     },
     {
@@ -14238,7 +14268,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_modal_exportar_conversa",
-      "community": 0,
+      "community": 36,
       "norm_label": "modal-exportar-conversa.tsx"
     },
     {
@@ -14248,7 +14278,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "whatsapp_modal_exportar_conversa_mensagem",
-      "community": 0,
+      "community": 36,
       "norm_label": "mensagem"
     },
     {
@@ -14258,7 +14288,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "whatsapp_modal_exportar_conversa_props",
-      "community": 0,
+      "community": 36,
       "norm_label": "props"
     },
     {
@@ -14268,7 +14298,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "whatsapp_modal_exportar_conversa_gerarnomearquivo",
-      "community": 0,
+      "community": 36,
       "norm_label": "gerarnomearquivo()"
     },
     {
@@ -14388,7 +14418,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "whatsapp_modal_nova_instancia_modalnovainstancia",
-      "community": 7,
+      "community": 36,
       "norm_label": "modalnovainstancia()"
     },
     {
@@ -14468,7 +14498,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_painel_detalhes_conversa",
-      "community": 40,
+      "community": 18,
       "norm_label": "painel-detalhes-conversa.tsx"
     },
     {
@@ -14478,7 +14508,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "whatsapp_painel_detalhes_conversa_conversastatus",
-      "community": 40,
+      "community": 18,
       "norm_label": "conversastatus"
     },
     {
@@ -14488,7 +14518,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "whatsapp_painel_detalhes_conversa_tagtype",
-      "community": 40,
+      "community": 18,
       "norm_label": "tagtype"
     },
     {
@@ -14498,7 +14528,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "whatsapp_painel_detalhes_conversa_nota",
-      "community": 40,
+      "community": 18,
       "norm_label": "nota"
     },
     {
@@ -14508,7 +14538,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "whatsapp_painel_detalhes_conversa_usuario",
-      "community": 40,
+      "community": 18,
       "norm_label": "usuario"
     },
     {
@@ -14518,7 +14548,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "whatsapp_painel_detalhes_conversa_dealtype",
-      "community": 40,
+      "community": 18,
       "norm_label": "dealtype"
     },
     {
@@ -14528,7 +14558,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "whatsapp_painel_detalhes_conversa_props",
-      "community": 40,
+      "community": 18,
       "norm_label": "props"
     },
     {
@@ -14538,7 +14568,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "whatsapp_painel_detalhes_conversa_status_config",
-      "community": 40,
+      "community": 18,
       "norm_label": "status_config"
     },
     {
@@ -14548,7 +14578,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "whatsapp_painel_detalhes_conversa_paineldetalhesconversa",
-      "community": 40,
+      "community": 18,
       "norm_label": "paineldetalhesconversa()"
     },
     {
@@ -14678,7 +14708,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_secao_historico_auditoria",
-      "community": 40,
+      "community": 18,
       "norm_label": "secao-historico-auditoria.tsx"
     },
     {
@@ -14688,7 +14718,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "whatsapp_secao_historico_auditoria_logentry",
-      "community": 40,
+      "community": 18,
       "norm_label": "logentry"
     },
     {
@@ -14698,7 +14728,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "whatsapp_secao_historico_auditoria_props",
-      "community": 40,
+      "community": 18,
       "norm_label": "props"
     },
     {
@@ -14708,7 +14738,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "whatsapp_secao_historico_auditoria_acao_labels",
-      "community": 40,
+      "community": 18,
       "norm_label": "acao_labels"
     },
     {
@@ -14718,7 +14748,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "whatsapp_secao_historico_auditoria_secaohistoricoauditoria",
-      "community": 40,
+      "community": 18,
       "norm_label": "secaohistoricoauditoria()"
     },
     {
@@ -14728,7 +14758,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_seletor_resposta_rapida",
-      "community": 114,
+      "community": 18,
       "norm_label": "seletor-resposta-rapida.tsx"
     },
     {
@@ -14738,7 +14768,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "whatsapp_seletor_resposta_rapida_template",
-      "community": 114,
+      "community": 18,
       "norm_label": "template"
     },
     {
@@ -14748,7 +14778,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "whatsapp_seletor_resposta_rapida_variaveis",
-      "community": 114,
+      "community": 18,
       "norm_label": "variaveis"
     },
     {
@@ -14758,7 +14788,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "whatsapp_seletor_resposta_rapida_props",
-      "community": 114,
+      "community": 18,
       "norm_label": "props"
     },
     {
@@ -14768,7 +14798,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "whatsapp_seletor_resposta_rapida_tela",
-      "community": 114,
+      "community": 18,
       "norm_label": "tela"
     },
     {
@@ -14778,7 +14808,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "whatsapp_seletor_resposta_rapida_substituirvariaveis",
-      "community": 114,
+      "community": 18,
       "norm_label": "substituirvariaveis()"
     },
     {
@@ -14788,7 +14818,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "whatsapp_seletor_resposta_rapida_iconearquivo",
-      "community": 114,
+      "community": 18,
       "norm_label": "iconearquivo()"
     },
     {
@@ -14798,7 +14828,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "whatsapp_seletor_resposta_rapida_seletorrespostarapida",
-      "community": 114,
+      "community": 18,
       "norm_label": "seletorrespostarapida()"
     },
     {
@@ -14838,7 +14868,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_sidebar_instancias",
-      "community": 65,
+      "community": 1,
       "norm_label": "sidebar-instancias.tsx"
     },
     {
@@ -14848,7 +14878,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "whatsapp_sidebar_instancias_props",
-      "community": 65,
+      "community": 1,
       "norm_label": "props"
     },
     {
@@ -14858,7 +14888,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "whatsapp_sidebar_instancias_statusicon",
-      "community": 65,
+      "community": 1,
       "norm_label": "statusicon()"
     },
     {
@@ -14868,7 +14898,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "whatsapp_sidebar_instancias_statusclass",
-      "community": 65,
+      "community": 1,
       "norm_label": "statusclass()"
     },
     {
@@ -14878,7 +14908,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "whatsapp_sidebar_instancias_statuslabel",
-      "community": 65,
+      "community": 1,
       "norm_label": "statuslabel()"
     },
     {
@@ -14888,7 +14918,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "whatsapp_sidebar_instancias_sidebarinstancias",
-      "community": 65,
+      "community": 1,
       "norm_label": "sidebarinstancias()"
     },
     {
@@ -14978,7 +15008,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "whatsapp_thread_mensagens_threadmensagens",
-      "community": 50,
+      "community": 32,
       "norm_label": "threadmensagens()"
     },
     {
@@ -14988,7 +15018,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_instance_manager",
-      "community": 53,
+      "community": 0,
       "norm_label": "whatsapp-instance-manager.tsx"
     },
     {
@@ -14998,7 +15028,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_instance_manager_whatsappinstance",
-      "community": 53,
+      "community": 0,
       "norm_label": "whatsappinstance"
     },
     {
@@ -15008,7 +15038,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_instance_manager_props",
-      "community": 53,
+      "community": 0,
       "norm_label": "props"
     },
     {
@@ -15018,7 +15048,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_instance_manager_whatsappinstancemanager",
-      "community": 37,
+      "community": 30,
       "norm_label": "whatsappinstancemanager()"
     },
     {
@@ -15148,7 +15178,7 @@
       "source_location": "L122",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_shell_filtrochip",
-      "community": 20,
+      "community": 1,
       "norm_label": "filtrochip()"
     },
     {
@@ -15158,7 +15188,7 @@
       "source_location": "L158",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_shell_whatsappshell",
-      "community": 1,
+      "community": 131,
       "norm_label": "whatsappshell()"
     },
     {
@@ -15411,7 +15441,7 @@
       "label": "checklistTirzepatida",
       "file_type": "code",
       "source_file": "lib/conferencia/__tests__/motor-regras.test.ts",
-      "source_location": "L11",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "lib_conferencia_tests_motor_regras_test_ts_tests_motor_regras_test_checklisttirzepatida",
       "community": 41,
@@ -15421,7 +15451,7 @@
       "label": "orcamentoBase",
       "file_type": "code",
       "source_file": "lib/conferencia/__tests__/motor-regras.test.ts",
-      "source_location": "L30",
+      "source_location": "L31",
       "_origin": "ast",
       "id": "lib_conferencia_tests_motor_regras_test_ts_tests_motor_regras_test_orcamentobase",
       "community": 41,
@@ -15431,7 +15461,7 @@
       "label": "extracaoBoa()",
       "file_type": "code",
       "source_file": "lib/conferencia/__tests__/motor-regras.test.ts",
-      "source_location": "L35",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "lib_conferencia_tests_motor_regras_test_ts_tests_motor_regras_test_extracaoboa",
       "community": 41,
@@ -15441,7 +15471,7 @@
       "label": "entrada()",
       "file_type": "code",
       "source_file": "lib/conferencia/__tests__/motor-regras.test.ts",
-      "source_location": "L48",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "lib_conferencia_tests_motor_regras_test_ts_tests_motor_regras_test_entrada",
       "community": 41,
@@ -15451,7 +15481,7 @@
       "label": "motivos()",
       "file_type": "code",
       "source_file": "lib/conferencia/__tests__/motor-regras.test.ts",
-      "source_location": "L58",
+      "source_location": "L59",
       "_origin": "ast",
       "id": "lib_conferencia_tests_motor_regras_test_ts_tests_motor_regras_test_motivos",
       "community": 41,
@@ -15584,7 +15614,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "conferencia_mapear_checklist_checklistrow",
-      "community": 69,
+      "community": 4,
       "norm_label": "checklistrow"
     },
     {
@@ -15594,7 +15624,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "conferencia_mapear_checklist_checklistitemrow",
-      "community": 69,
+      "community": 4,
       "norm_label": "checklistitemrow"
     },
     {
@@ -15606,6 +15636,56 @@
       "id": "lib_conferencia_mapear_checklist_ts_conferencia_mapear_checklist_mapchecklistrows",
       "community": 4,
       "norm_label": "mapchecklistrows()"
+    },
+    {
+      "label": "mapear-orcamento.ts",
+      "file_type": "code",
+      "source_file": "lib/conferencia/mapear-orcamento.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "lib_conferencia_mapear_orcamento_ts_conferencia_mapear_orcamento",
+      "community": 40,
+      "norm_label": "mapear-orcamento.ts"
+    },
+    {
+      "label": "QuoteRow",
+      "file_type": "code",
+      "source_file": "lib/conferencia/mapear-orcamento.ts",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "conferencia_mapear_orcamento_quoterow",
+      "community": 40,
+      "norm_label": "quoterow"
+    },
+    {
+      "label": "QuoteItemRow",
+      "file_type": "code",
+      "source_file": "lib/conferencia/mapear-orcamento.ts",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "conferencia_mapear_orcamento_quoteitemrow",
+      "community": 40,
+      "norm_label": "quoteitemrow"
+    },
+    {
+      "label": "ContextoOrcamento",
+      "file_type": "code",
+      "source_file": "lib/conferencia/mapear-orcamento.ts",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "conferencia_mapear_orcamento_contextoorcamento",
+      "community": 40,
+      "norm_label": "contextoorcamento"
+    },
+    {
+      "label": "mapOrcamentoContexto()",
+      "file_type": "code",
+      "source_file": "lib/conferencia/mapear-orcamento.ts",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "lib_conferencia_mapear_orcamento_ts_conferencia_mapear_orcamento_maporcamentocontexto",
+      "community": 40,
+      "norm_label": "maporcamentocontexto()"
     },
     {
       "label": "motor-regras.ts",
@@ -15934,7 +16014,7 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "conferencia_tipos_itemorcamento",
-      "community": 69,
+      "community": 40,
       "norm_label": "itemorcamento"
     },
     {
@@ -15944,7 +16024,7 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "conferencia_tipos_orcamentocontexto",
-      "community": 137,
+      "community": 40,
       "norm_label": "orcamentocontexto"
     },
     {
@@ -16104,7 +16184,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_evolution_retry",
-      "community": 31,
+      "community": 74,
       "norm_label": "evolution-retry.ts"
     },
     {
@@ -16114,7 +16194,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "lib_evolution_retry_retryconfig",
-      "community": 31,
+      "community": 74,
       "norm_label": "retryconfig"
     },
     {
@@ -16124,7 +16204,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "lib_evolution_retry_evolutionresponse",
-      "community": 31,
+      "community": 74,
       "norm_label": "evolutionresponse"
     },
     {
@@ -16134,7 +16214,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "lib_evolution_retry_evolutionretry",
-      "community": 31,
+      "community": 65,
       "norm_label": "evolutionretry"
     },
     {
@@ -16144,7 +16224,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "lib_evolution_retry_evolutionretry_withretry",
-      "community": 31,
+      "community": 65,
       "norm_label": ".withretry()"
     },
     {
@@ -16154,7 +16234,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "lib_evolution_retry_evolutionretry_sendmessage",
-      "community": 31,
+      "community": 65,
       "norm_label": ".sendmessage()"
     },
     {
@@ -16164,7 +16244,7 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "lib_evolution_retry_evolutionretry_sendmedia",
-      "community": 31,
+      "community": 65,
       "norm_label": ".sendmedia()"
     },
     {
@@ -16174,7 +16254,7 @@
       "source_location": "L157",
       "_origin": "ast",
       "id": "lib_evolution_retry_evolutionretry_getconnectionstate",
-      "community": 31,
+      "community": 65,
       "norm_label": ".getconnectionstate()"
     },
     {
@@ -16184,7 +16264,7 @@
       "source_location": "L179",
       "_origin": "ast",
       "id": "lib_evolution_retry_evolutionretry_createinstance",
-      "community": 31,
+      "community": 65,
       "norm_label": ".createinstance()"
     },
     {
@@ -16194,7 +16274,7 @@
       "source_location": "L211",
       "_origin": "ast",
       "id": "lib_evolution_retry_evolutionretry_deleteinstance",
-      "community": 31,
+      "community": 65,
       "norm_label": ".deleteinstance()"
     },
     {
@@ -16464,7 +16544,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "provedores_index",
-      "community": 25,
+      "community": 69,
       "norm_label": "index.ts"
     },
     {
@@ -16474,7 +16554,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "provedores_index_criarextrator",
-      "community": 25,
+      "community": 69,
       "norm_label": "criarextrator()"
     },
     {
@@ -16604,7 +16684,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "ia_tipos_provedoria",
-      "community": 25,
+      "community": 69,
       "norm_label": "provedoria"
     },
     {
@@ -16714,7 +16794,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_nome_contato",
-      "community": 31,
+      "community": 50,
       "norm_label": "nome-contato.ts"
     },
     {
@@ -16724,7 +16804,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "lib_nome_contato_namesource",
-      "community": 31,
+      "community": 50,
       "norm_label": "namesource"
     },
     {
@@ -16734,7 +16814,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "lib_nome_contato_resolvedname",
-      "community": 31,
+      "community": 50,
       "norm_label": "resolvedname"
     },
     {
@@ -16744,7 +16824,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "lib_nome_contato_resolvernomecontato",
-      "community": 31,
+      "community": 50,
       "norm_label": "resolvernomecontato()"
     },
     {
@@ -16754,7 +16834,7 @@
       "source_location": "L177",
       "_origin": "ast",
       "id": "lib_nome_contato_obternomecontato",
-      "community": 31,
+      "community": 50,
       "norm_label": "obternomecontato()"
     },
     {
@@ -16764,7 +16844,7 @@
       "source_location": "L194",
       "_origin": "ast",
       "id": "lib_nome_contato_backfillnomesconversas",
-      "community": 31,
+      "community": 5,
       "norm_label": "backfillnomesconversas()"
     },
     {
@@ -16804,7 +16884,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pdf_download_pdf",
-      "community": 22,
+      "community": 37,
       "norm_label": "download-pdf.ts"
     },
     {
@@ -16814,7 +16894,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "pdf_download_pdf_baixarorcamentopdf",
-      "community": 22,
+      "community": 37,
       "norm_label": "baixarorcamentopdf()"
     },
     {
@@ -16864,7 +16944,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_pipeline_lead",
-      "community": 108,
+      "community": 120,
       "norm_label": "pipeline-lead.ts"
     },
     {
@@ -16874,7 +16954,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "lib_pipeline_lead_parecetelefone",
-      "community": 108,
+      "community": 120,
       "norm_label": "parecetelefone()"
     },
     {
@@ -16884,7 +16964,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "lib_pipeline_lead_criardealparalead",
-      "community": 108,
+      "community": 120,
       "norm_label": "criardealparalead()"
     },
     {
@@ -16954,7 +17034,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "queries_kpis_whatsapp",
-      "community": 1,
+      "community": 131,
       "norm_label": "kpis-whatsapp.ts"
     },
     {
@@ -16964,7 +17044,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "queries_kpis_whatsapp_kpiwhatsapp",
-      "community": 1,
+      "community": 131,
       "norm_label": "kpiwhatsapp"
     },
     {
@@ -16974,7 +17054,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "queries_kpis_whatsapp_buscarkpiswhatsapp",
-      "community": 1,
+      "community": 131,
       "norm_label": "buscarkpiswhatsapp()"
     },
     {
@@ -16984,7 +17064,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "queries_totais_cliente",
-      "community": 1,
+      "community": 131,
       "norm_label": "totais-cliente.ts"
     },
     {
@@ -16994,7 +17074,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "queries_totais_cliente_totaiscliente",
-      "community": 1,
+      "community": 131,
       "norm_label": "totaiscliente"
     },
     {
@@ -17004,7 +17084,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "queries_totais_cliente_buscartotaiscliente",
-      "community": 1,
+      "community": 131,
       "norm_label": "buscartotaiscliente()"
     },
     {
@@ -17014,7 +17094,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_quote_permissions",
-      "community": 22,
+      "community": 113,
       "norm_label": "quote-permissions.ts"
     },
     {
@@ -17024,7 +17104,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "lib_quote_permissions_caneditquote",
-      "community": 22,
+      "community": 113,
       "norm_label": "caneditquote()"
     },
     {
@@ -17034,7 +17114,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_rbac",
-      "community": 69,
+      "community": 86,
       "norm_label": "rbac.ts"
     },
     {
@@ -17044,7 +17124,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "lib_rbac_permissoesresolvidas",
-      "community": 69,
+      "community": 86,
       "norm_label": "permissoesresolvidas"
     },
     {
@@ -17054,7 +17134,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "lib_rbac_resolverpermissoes",
-      "community": 69,
+      "community": 86,
       "norm_label": "resolverpermissoes()"
     },
     {
@@ -17064,7 +17144,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "lib_rbac_podever",
-      "community": 69,
+      "community": 86,
       "norm_label": "podever()"
     },
     {
@@ -17074,7 +17154,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "lib_rbac_acaorbac",
-      "community": 69,
+      "community": 86,
       "norm_label": "acaorbac"
     },
     {
@@ -17114,7 +17194,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "supabase_client",
-      "community": 37,
+      "community": 30,
       "norm_label": "client.ts"
     },
     {
@@ -17124,7 +17204,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "supabase_client_getenv",
-      "community": 37,
+      "community": 30,
       "norm_label": "getenv()"
     },
     {
@@ -17134,7 +17214,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "supabase_client_createclient",
-      "community": 37,
+      "community": 30,
       "norm_label": "createclient()"
     },
     {
@@ -17224,7 +17304,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "lib_telefone_normalizarparabusca",
-      "community": 31,
+      "community": 50,
       "norm_label": "normalizarparabusca()"
     },
     {
@@ -17234,7 +17314,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "lib_telefone_telefonesiguais",
-      "community": 31,
+      "community": 50,
       "norm_label": "telefonesiguais()"
     },
     {
@@ -17264,7 +17344,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_utils",
-      "community": 113,
+      "community": 117,
       "norm_label": "utils.ts"
     },
     {
@@ -17284,7 +17364,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "lib_utils_formatarmoeda",
-      "community": 119,
+      "community": 117,
       "norm_label": "formatarmoeda()"
     },
     {
@@ -19212,7 +19292,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "types_database_userrole",
-      "community": 22,
+      "community": 113,
       "norm_label": "userrole"
     },
     {
@@ -19312,7 +19392,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "types_database_orderstatus",
-      "community": 38,
+      "community": 7,
       "norm_label": "orderstatus"
     },
     {
@@ -19442,7 +19522,7 @@
       "source_location": "L227",
       "_origin": "ast",
       "id": "types_database_activity",
-      "community": 44,
+      "community": 27,
       "norm_label": "activity"
     },
     {
@@ -19462,7 +19542,7 @@
       "source_location": "L252",
       "_origin": "ast",
       "id": "types_database_conversastatus",
-      "community": 1,
+      "community": 131,
       "norm_label": "conversastatus"
     },
     {
@@ -19512,7 +19592,7 @@
       "source_location": "L318",
       "_origin": "ast",
       "id": "types_database_supplier",
-      "community": 7,
+      "community": 12,
       "norm_label": "supplier"
     },
     {
@@ -19522,7 +19602,7 @@
       "source_location": "L329",
       "_origin": "ast",
       "id": "types_database_suppliercategory",
-      "community": 12,
+      "community": 15,
       "norm_label": "suppliercategory"
     },
     {
@@ -19722,7 +19802,7 @@
       "source_location": "L606",
       "_origin": "ast",
       "id": "types_database_quoteitem",
-      "community": 113,
+      "community": 38,
       "norm_label": "quoteitem"
     },
     {
@@ -19862,7 +19942,7 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "types_whatsapp_central_perfilcentral",
-      "community": 1,
+      "community": 131,
       "norm_label": "perfilcentral"
     },
     {
@@ -20114,11 +20194,21 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "tmp_conferencia_conferencia_tests_motor_regras_test_js_tests_motor_regras_test",
-      "target": "tests_motor_regras_test_persistencia_1",
+      "target": "tests_motor_regras_test_mapear_orcamento_1",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tmp_conferencia_conferencia_tests_motor_regras_test_js_tests_motor_regras_test",
+      "target": "tests_motor_regras_test_persistencia_1"
     },
     {
       "relation": "contains",
@@ -20304,6 +20394,16 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": ".tmp-conferencia/conferencia/mapear-orcamento.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "tmp_conferencia_conferencia_mapear_orcamento_js_conferencia_mapear_orcamento",
+      "target": "tmp_conferencia_conferencia_mapear_orcamento_js_conferencia_mapear_orcamento_maporcamentocontexto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": ".tmp-conferencia/conferencia/motor-regras.js",
       "source_location": "L54",
       "weight": 1.0,
@@ -20453,9 +20553,9 @@
       "source_file": ".tmp-conferencia/conferencia/persistencia.js",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tmp_conferencia_conferencia_persistencia_js_conferencia_persistencia",
-      "target": "tmp_conferencia_conferencia_persistencia_js_conferencia_persistencia_montarlinhaconferencia",
-      "confidence_score": 1.0
+      "target": "tmp_conferencia_conferencia_persistencia_js_conferencia_persistencia_montarlinhaconferencia"
     },
     {
       "relation": "contains",
@@ -20463,9 +20563,9 @@
       "source_file": ".tmp-conferencia/conferencia/persistencia.js",
       "source_location": "L30",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tmp_conferencia_conferencia_persistencia_js_conferencia_persistencia",
-      "target": "tmp_conferencia_conferencia_persistencia_js_conferencia_persistencia_montarpendencias",
-      "confidence_score": 1.0
+      "target": "tmp_conferencia_conferencia_persistencia_js_conferencia_persistencia_montarpendencias"
     },
     {
       "relation": "contains",
@@ -20473,9 +20573,9 @@
       "source_file": ".tmp-conferencia/conferencia/persistencia.js",
       "source_location": "L43",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tmp_conferencia_conferencia_persistencia_js_conferencia_persistencia",
-      "target": "tmp_conferencia_conferencia_persistencia_js_conferencia_persistencia_resumoquotereceita",
-      "confidence_score": 1.0
+      "target": "tmp_conferencia_conferencia_persistencia_js_conferencia_persistencia_resumoquotereceita"
     },
     {
       "relation": "contains",
@@ -33684,9 +33784,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "conferencia_diagnostico_diagnosticoreceita",
-      "confidence_score": 1.0
+      "target": "conferencia_diagnostico_diagnosticoreceita"
     },
     {
       "relation": "imports",
@@ -33695,9 +33795,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "conferencia_mapear_checklist_checklistitemrow",
-      "confidence_score": 1.0
+      "target": "conferencia_mapear_checklist_checklistitemrow"
     },
     {
       "relation": "imports",
@@ -33706,9 +33806,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "conferencia_mapear_checklist_checklistrow",
-      "confidence_score": 1.0
+      "target": "conferencia_mapear_checklist_checklistrow"
     },
     {
       "relation": "imports",
@@ -33718,7 +33818,7 @@
       "source_location": "L18",
       "weight": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "conferencia_tipos_itemorcamento",
+      "target": "conferencia_mapear_orcamento_quoteitemrow",
       "confidence_score": 1.0
     },
     {
@@ -33728,9 +33828,20 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "conferencia_tipos_orcamentocontexto",
-      "confidence_score": 1.0
+      "target": "conferencia_tipos_itemorcamento"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "orcamentos_actions_conferencia",
+      "target": "conferencia_tipos_orcamentocontexto"
     },
     {
       "relation": "imports",
@@ -33739,9 +33850,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "ia_schema_extracao_campos_extracao",
-      "confidence_score": 1.0
+      "target": "ia_schema_extracao_campos_extracao"
     },
     {
       "relation": "imports",
@@ -33750,9 +33861,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "ia_tipos_mimereceita",
-      "confidence_score": 1.0
+      "target": "ia_tipos_mimereceita"
     },
     {
       "relation": "imports",
@@ -33761,9 +33872,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "ia_tipos_provedoria",
-      "confidence_score": 1.0
+      "target": "ia_tipos_provedoria"
     },
     {
       "relation": "imports_from",
@@ -33772,9 +33883,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "lib_rbac",
-      "confidence_score": 1.0
+      "target": "lib_rbac"
     },
     {
       "relation": "imports",
@@ -33783,9 +33894,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "lib_rbac_podeacao",
-      "confidence_score": 1.0
+      "target": "lib_rbac_podeacao"
     },
     {
       "relation": "imports",
@@ -33794,9 +33905,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "lib_rbac_resolverpermissoes",
-      "confidence_score": 1.0
+      "target": "lib_rbac_resolverpermissoes"
     },
     {
       "relation": "contains",
@@ -33804,9 +33915,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L201",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "orcamentos_actions_conferencia_aprovarreceitaoperacionalmente",
-      "confidence_score": 1.0
+      "target": "orcamentos_actions_conferencia_aprovarreceitaoperacionalmente"
     },
     {
       "relation": "contains",
@@ -33814,9 +33925,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L27",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "orcamentos_actions_conferencia_createadminclient",
-      "confidence_score": 1.0
+      "target": "orcamentos_actions_conferencia_createadminclient"
     },
     {
       "relation": "contains",
@@ -33824,9 +33935,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L170",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "orcamentos_actions_conferencia_decisaohumana",
-      "confidence_score": 1.0
+      "target": "orcamentos_actions_conferencia_decisaohumana"
     },
     {
       "relation": "contains",
@@ -33834,39 +33945,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L168",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "orcamentos_actions_conferencia_decisaostatus",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
-      "source_location": "L44",
-      "weight": 1.0,
-      "source": "orcamentos_actions_conferencia",
-      "target": "orcamentos_actions_conferencia_exigirpermissao",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
-      "source_location": "L34",
-      "weight": 1.0,
-      "source": "orcamentos_actions_conferencia",
-      "target": "orcamentos_actions_conferencia_getusuarioeorg",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
-      "source_location": "L52",
-      "weight": 1.0,
-      "source": "orcamentos_actions_conferencia",
-      "target": "orcamentos_actions_conferencia_hojeiso",
-      "confidence_score": 1.0
+      "target": "orcamentos_actions_conferencia_decisaostatus"
     },
     {
       "relation": "contains",
@@ -33875,8 +33956,38 @@
       "source_location": "L204",
       "weight": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "orcamentos_actions_conferencia_marcarnecessitacorrecao",
+      "target": "orcamentos_actions_conferencia_devolverparacorrecao",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
+      "source_location": "L44",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "orcamentos_actions_conferencia",
+      "target": "orcamentos_actions_conferencia_exigirpermissao"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
+      "source_location": "L34",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "orcamentos_actions_conferencia",
+      "target": "orcamentos_actions_conferencia_getusuarioeorg"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
+      "source_location": "L52",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "orcamentos_actions_conferencia",
+      "target": "orcamentos_actions_conferencia_hojeiso"
     },
     {
       "relation": "contains",
@@ -33884,9 +33995,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L207",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "orcamentos_actions_conferencia_rejeitarreceita",
-      "confidence_score": 1.0
+      "target": "orcamentos_actions_conferencia_rejeitarreceita"
     },
     {
       "relation": "contains",
@@ -33894,9 +34005,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L60",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "orcamentos_actions_conferencia_rodarpreanalise",
-      "confidence_score": 1.0
+      "target": "orcamentos_actions_conferencia_rodarpreanalise"
     },
     {
       "relation": "imports_from",
@@ -33905,9 +34016,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "provedores_index",
-      "confidence_score": 1.0
+      "target": "provedores_index"
     },
     {
       "relation": "imports",
@@ -33916,9 +34027,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "provedores_index_criarextrator",
-      "confidence_score": 1.0
+      "target": "provedores_index_criarextrator"
     },
     {
       "relation": "imports_from",
@@ -33927,9 +34038,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "supabase_server",
-      "confidence_score": 1.0
+      "target": "supabase_server"
     },
     {
       "relation": "imports",
@@ -33938,9 +34049,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia",
-      "target": "supabase_server_createclient",
-      "confidence_score": 1.0
+      "target": "supabase_server_createclient"
     },
     {
       "relation": "calls",
@@ -33949,9 +34060,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L110",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia_rodarpreanalise",
-      "target": "orcamentos_actions_conferencia_createadminclient",
-      "confidence_score": 1.0
+      "target": "orcamentos_actions_conferencia_createadminclient"
     },
     {
       "relation": "calls",
@@ -33960,9 +34071,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L171",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia_decisaohumana",
-      "target": "orcamentos_actions_conferencia_getusuarioeorg",
-      "confidence_score": 1.0
+      "target": "orcamentos_actions_conferencia_getusuarioeorg"
     },
     {
       "relation": "calls",
@@ -33971,9 +34082,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L35",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia_getusuarioeorg",
-      "target": "supabase_server_createclient",
-      "confidence_score": 1.0
+      "target": "supabase_server_createclient"
     },
     {
       "relation": "calls",
@@ -33982,9 +34093,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L61",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia_rodarpreanalise",
-      "target": "orcamentos_actions_conferencia_getusuarioeorg",
-      "confidence_score": 1.0
+      "target": "orcamentos_actions_conferencia_getusuarioeorg"
     },
     {
       "relation": "calls",
@@ -33993,9 +34104,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L172",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia_decisaohumana",
-      "target": "orcamentos_actions_conferencia_exigirpermissao",
-      "confidence_score": 1.0
+      "target": "orcamentos_actions_conferencia_exigirpermissao"
     },
     {
       "relation": "calls",
@@ -34004,9 +34115,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L46",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia_exigirpermissao",
-      "target": "lib_rbac_podeacao",
-      "confidence_score": 1.0
+      "target": "lib_rbac_podeacao"
     },
     {
       "relation": "calls",
@@ -34015,9 +34126,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L45",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia_exigirpermissao",
-      "target": "lib_rbac_resolverpermissoes",
-      "confidence_score": 1.0
+      "target": "lib_rbac_resolverpermissoes"
     },
     {
       "relation": "calls",
@@ -34026,9 +34137,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L62",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia_rodarpreanalise",
-      "target": "orcamentos_actions_conferencia_exigirpermissao",
-      "confidence_score": 1.0
+      "target": "orcamentos_actions_conferencia_exigirpermissao"
     },
     {
       "relation": "calls",
@@ -34037,9 +34148,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L122",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia_rodarpreanalise",
-      "target": "orcamentos_actions_conferencia_hojeiso",
-      "confidence_score": 1.0
+      "target": "orcamentos_actions_conferencia_hojeiso"
     },
     {
       "relation": "calls",
@@ -34059,9 +34170,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L202",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia_aprovarreceitaoperacionalmente",
-      "target": "orcamentos_actions_conferencia_decisaohumana",
-      "confidence_score": 1.0
+      "target": "orcamentos_actions_conferencia_decisaohumana"
     },
     {
       "relation": "calls",
@@ -34070,7 +34181,7 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L205",
       "weight": 1.0,
-      "source": "orcamentos_actions_conferencia_marcarnecessitacorrecao",
+      "source": "orcamentos_actions_conferencia_devolverparacorrecao",
       "target": "orcamentos_actions_conferencia_decisaohumana",
       "confidence_score": 1.0
     },
@@ -34081,9 +34192,9 @@
       "source_file": "app/(dashboard)/orcamentos/actions-conferencia.ts",
       "source_location": "L208",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_actions_conferencia_rejeitarreceita",
-      "target": "orcamentos_actions_conferencia_decisaohumana",
-      "confidence_score": 1.0
+      "target": "orcamentos_actions_conferencia_decisaohumana"
     },
     {
       "relation": "contains",
@@ -65891,9 +66002,9 @@
       "source_file": "lib/conferencia/persistencia.ts",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_conferencia_persistencia_ts_conferencia_persistencia",
-      "target": "conferencia_diagnostico_diagnosticoreceita",
-      "confidence_score": 1.0
+      "target": "conferencia_diagnostico_diagnosticoreceita"
     },
     {
       "relation": "contains",
@@ -65990,6 +66101,79 @@
       "confidence_score": 1.0,
       "source": "lib_conferencia_mapear_checklist_ts_conferencia_mapear_checklist",
       "target": "lib_conferencia_mapear_checklist_ts_conferencia_mapear_checklist_mapchecklistrows"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/conferencia/mapear-orcamento.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "lib_conferencia_mapear_orcamento_ts_conferencia_mapear_orcamento",
+      "target": "conferencia_mapear_orcamento_contextoorcamento",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/conferencia/mapear-orcamento.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "lib_conferencia_mapear_orcamento_ts_conferencia_mapear_orcamento",
+      "target": "conferencia_mapear_orcamento_quoteitemrow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/conferencia/mapear-orcamento.ts",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "lib_conferencia_mapear_orcamento_ts_conferencia_mapear_orcamento",
+      "target": "conferencia_mapear_orcamento_quoterow",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/conferencia/mapear-orcamento.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "lib_conferencia_mapear_orcamento_ts_conferencia_mapear_orcamento",
+      "target": "conferencia_tipos_itemorcamento",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/conferencia/mapear-orcamento.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "lib_conferencia_mapear_orcamento_ts_conferencia_mapear_orcamento",
+      "target": "conferencia_tipos_orcamentocontexto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/conferencia/mapear-orcamento.ts",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "lib_conferencia_mapear_orcamento_ts_conferencia_mapear_orcamento",
+      "target": "lib_conferencia_mapear_orcamento_ts_conferencia_mapear_orcamento_maporcamentocontexto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "field",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/conferencia/mapear-orcamento.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "conferencia_mapear_orcamento_contextoorcamento",
+      "target": "conferencia_tipos_orcamentocontexto",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -66220,9 +66404,9 @@
       "source_file": "lib/conferencia/persistencia.ts",
       "source_location": "L25",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_conferencia_persistencia_ts_conferencia_persistencia",
-      "target": "conferencia_persistencia_linhaconferencia",
-      "confidence_score": 1.0
+      "target": "conferencia_persistencia_linhaconferencia"
     },
     {
       "relation": "contains",
@@ -66230,9 +66414,9 @@
       "source_file": "lib/conferencia/persistencia.ts",
       "source_location": "L46",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_conferencia_persistencia_ts_conferencia_persistencia",
-      "target": "conferencia_persistencia_linhapendencia",
-      "confidence_score": 1.0
+      "target": "conferencia_persistencia_linhapendencia"
     },
     {
       "relation": "contains",
@@ -66240,9 +66424,9 @@
       "source_file": "lib/conferencia/persistencia.ts",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_conferencia_persistencia_ts_conferencia_persistencia",
-      "target": "conferencia_persistencia_metaconferencia",
-      "confidence_score": 1.0
+      "target": "conferencia_persistencia_metaconferencia"
     },
     {
       "relation": "imports",
@@ -66251,9 +66435,9 @@
       "source_file": "lib/conferencia/persistencia.ts",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_conferencia_persistencia_ts_conferencia_persistencia",
-      "target": "conferencia_tipos_extracaoreceita",
-      "confidence_score": 1.0
+      "target": "conferencia_tipos_extracaoreceita"
     },
     {
       "relation": "imports",
@@ -66262,9 +66446,9 @@
       "source_file": "lib/conferencia/persistencia.ts",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_conferencia_persistencia_ts_conferencia_persistencia",
-      "target": "conferencia_tipos_resultadoconferencia",
-      "confidence_score": 1.0
+      "target": "conferencia_tipos_resultadoconferencia"
     },
     {
       "relation": "contains",
@@ -66272,9 +66456,9 @@
       "source_file": "lib/conferencia/persistencia.ts",
       "source_location": "L57",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_conferencia_persistencia_ts_conferencia_persistencia",
-      "target": "lib_conferencia_persistencia_ts_conferencia_persistencia_montarlinhaconferencia",
-      "confidence_score": 1.0
+      "target": "lib_conferencia_persistencia_ts_conferencia_persistencia_montarlinhaconferencia"
     },
     {
       "relation": "contains",
@@ -66282,9 +66466,9 @@
       "source_file": "lib/conferencia/persistencia.ts",
       "source_location": "L83",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_conferencia_persistencia_ts_conferencia_persistencia",
-      "target": "lib_conferencia_persistencia_ts_conferencia_persistencia_montarpendencias",
-      "confidence_score": 1.0
+      "target": "lib_conferencia_persistencia_ts_conferencia_persistencia_montarpendencias"
     },
     {
       "relation": "contains",
@@ -66292,9 +66476,9 @@
       "source_file": "lib/conferencia/persistencia.ts",
       "source_location": "L97",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_conferencia_persistencia_ts_conferencia_persistencia",
-      "target": "lib_conferencia_persistencia_ts_conferencia_persistencia_resumoquotereceita",
-      "confidence_score": 1.0
+      "target": "lib_conferencia_persistencia_ts_conferencia_persistencia_resumoquotereceita"
     },
     {
       "relation": "references",
@@ -66303,9 +66487,9 @@
       "source_file": "lib/conferencia/persistencia.ts",
       "source_location": "L35",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "conferencia_persistencia_linhaconferencia",
-      "target": "conferencia_tipos_extracaoreceita",
-      "confidence_score": 1.0
+      "target": "conferencia_tipos_extracaoreceita"
     },
     {
       "relation": "references",
@@ -66314,9 +66498,9 @@
       "source_file": "lib/conferencia/persistencia.ts",
       "source_location": "L36",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "conferencia_persistencia_linhaconferencia",
-      "target": "conferencia_tipos_resultadoconferencia",
-      "confidence_score": 1.0
+      "target": "conferencia_tipos_resultadoconferencia"
     },
     {
       "relation": "contains",
@@ -68399,9 +68583,9 @@
       "source_file": "lib/rbac.ts",
       "source_location": "L33",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "lib_rbac",
-      "target": "lib_rbac_acaorbac",
-      "confidence_score": 1.0
+      "target": "lib_rbac_acaorbac"
     },
     {
       "relation": "contains",
@@ -71480,5 +71664,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "2369876b21324403e9be5caed96a40a119b67022"
+  "built_at_commit": "4b6da06ccbc536e93c64059ef4b702cd3fd6ac60"
 }

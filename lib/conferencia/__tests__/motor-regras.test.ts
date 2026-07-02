@@ -5,6 +5,7 @@ import { resolverChecklist } from '../resolver-checklist'
 import { montarDiagnostico } from '../diagnostico'
 import { mapChecklistRows } from '../mapear-checklist'
 import { montarLinhaConferencia, montarPendencias, resumoQuoteReceita } from '../persistencia'
+import { mapOrcamentoContexto } from '../mapear-orcamento'
 import type { Checklist, EntradaMotor, ExtracaoReceita, OrcamentoContexto } from '../tipos'
 
 // --- Fixture: checklist de Tirzepatida (DEC-019 §9), escopo produto ---
@@ -209,4 +210,31 @@ test('montarPendencias e resumoQuoteReceita', () => {
   const resumo = resumoQuoteReceita(montarDiagnostico(resultado))
   assert.equal(resumo.status_fluxo, 'em_conferencia')
   assert.equal(resumo.status_analise_ia, resultado.status)
+})
+
+// ---- mapOrcamentoContexto (mapper puro; tirado de dentro da action) ----
+
+test('mapOrcamentoContexto monta itens/cliente e resolve produtoId único', () => {
+  const ctx = mapOrcamentoContexto(
+    { portfolio_id: 'pf1', contato: { nome: 'Ana' } },
+    [{ descricao: 'Tirzepatida', quantidade: '2', product_id: 'p1' }]
+  )
+  assert.equal(ctx.portfolioId, 'pf1')
+  assert.equal(ctx.produtoId, 'p1')
+  assert.equal(ctx.orcamento.nomeCliente, 'Ana')
+  assert.equal(ctx.orcamento.itens[0].quantidade, 2) // string→number
+  assert.equal(ctx.orcamento.itens[0].concentracao, null)
+})
+
+test('mapOrcamentoContexto: múltiplos produtos → produtoId null (cai p/ portfólio/organização)', () => {
+  const ctx = mapOrcamentoContexto(
+    { portfolio_id: null, contato: null },
+    [
+      { descricao: 'A', quantidade: 1, product_id: 'p1' },
+      { descricao: 'B', quantidade: 1, product_id: 'p2' },
+    ]
+  )
+  assert.equal(ctx.produtoId, null)
+  assert.equal(ctx.portfolioId, null)
+  assert.equal(ctx.orcamento.nomeCliente, null)
 })

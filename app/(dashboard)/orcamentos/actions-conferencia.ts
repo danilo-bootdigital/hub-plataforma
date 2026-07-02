@@ -15,7 +15,7 @@ import { resolverChecklist } from '@/lib/conferencia/resolver-checklist'
 import { conferir } from '@/lib/conferencia/motor-regras'
 import { montarDiagnostico, type DiagnosticoReceita } from '@/lib/conferencia/diagnostico'
 import { montarLinhaConferencia, montarPendencias, resumoQuoteReceita } from '@/lib/conferencia/persistencia'
-import type { OrcamentoContexto, ItemOrcamento } from '@/lib/conferencia/tipos'
+import { mapOrcamentoContexto, type QuoteItemRow } from '@/lib/conferencia/mapear-orcamento'
 import { criarExtrator } from '@/lib/ia/provedores'
 import { CAMPOS_EXTRACAO } from '@/lib/ia/schema-extracao'
 import type { MimeReceita, ProvedorIA } from '@/lib/ia/tipos'
@@ -80,14 +80,14 @@ export async function rodarPreAnalise(quoteReceitaId: string): Promise<Diagnosti
     .single()
   if (!quote) throw new Error('Orçamento não encontrado')
 
-  const itensQuote = (Array.isArray(quote.itens) ? quote.itens : []) as Array<{ descricao: string; quantidade: number; product_id: string | null }>
-  const orcamento: OrcamentoContexto = {
-    itens: itensQuote.map((i): ItemOrcamento => ({ descricao: i.descricao, quantidade: Number(i.quantidade), concentracao: null })),
-    nomeCliente: (quote.contato as { nome?: string } | null)?.nome ?? null,
-  }
-  const productIds = [...new Set(itensQuote.map((i) => i.product_id).filter((v): v is string => !!v))]
-  const produtoId = productIds.length === 1 ? productIds[0] : null
-  const portfolioId = (quote as { portfolio_id: string | null }).portfolio_id ?? null
+  const itensQuote = (Array.isArray(quote.itens) ? quote.itens : []) as QuoteItemRow[]
+  const { orcamento, produtoId, portfolioId } = mapOrcamentoContexto(
+    {
+      portfolio_id: (quote as { portfolio_id: string | null }).portfolio_id ?? null,
+      contato: quote.contato as { nome?: string | null } | null,
+    },
+    itensQuote
+  )
 
   // 3) Resolver checklist a partir do BANCO (Produto > Portfólio > Organização).
   const { data: clRows } = await supabase
@@ -165,7 +165,7 @@ export async function rodarPreAnalise(quoteReceitaId: string): Promise<Diagnosti
   return diag
 }
 
-type DecisaoStatus = 'aprovada_operacionalmente' | 'necessita_correcao' | 'rejeitada'
+type DecisaoStatus = 'aprovada_operacionalmente' | 'devolvida_para_correcao' | 'rejeitada'
 
 async function decisaoHumana(quoteReceitaId: string, novoStatus: DecisaoStatus, comentario?: string) {
   const { supabase, perfil, user } = await getUsuarioEOrg()
@@ -201,8 +201,8 @@ async function decisaoHumana(quoteReceitaId: string, novoStatus: DecisaoStatus, 
 export async function aprovarReceitaOperacionalmente(quoteReceitaId: string, comentario?: string) {
   return decisaoHumana(quoteReceitaId, 'aprovada_operacionalmente', comentario)
 }
-export async function marcarNecessitaCorrecao(quoteReceitaId: string, comentario?: string) {
-  return decisaoHumana(quoteReceitaId, 'necessita_correcao', comentario)
+export async function devolverParaCorrecao(quoteReceitaId: string, comentario?: string) {
+  return decisaoHumana(quoteReceitaId, 'devolvida_para_correcao', comentario)
 }
 export async function rejeitarReceita(quoteReceitaId: string, comentario?: string) {
   return decisaoHumana(quoteReceitaId, 'rejeitada', comentario)
