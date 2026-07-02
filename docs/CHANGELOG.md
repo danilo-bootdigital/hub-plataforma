@@ -6,6 +6,16 @@
 
 ---
 
+## 2026-07-01 — Fix: PDF do orçamento em branco em produção
+
+- **Objetivo:** corrigir o PDF gerado em branco (Puppeteer) e blindar o pipeline contra entrega silenciosa de PDF vazio.
+- **Causa raiz:** `preview-pdf` carregava o print CSS via `<link href="./print.css">`, mas o middleware não serve `.css` como estático (só `_next`/favicon/imagens) — o arquivo retornava 307/404 e as regras `@page`/A4 nunca se aplicavam; somado a `page.goto(..., networkidle0)`, que trava/atrapalha com imagens externas de logo.
+- **Correção:**
+  - `app/(pdf)/orcamentos/[id]/preview-pdf/page.tsx` — print CSS **inline** (`<style>`), removendo o `<link>` quebrado.
+  - `app/api/orcamentos/[id]/pdf/route.ts` — navegação por `domcontentloaded` (não `networkidle0`); espera explícita de `[data-pdf-template="ready"]` (15s) + `document.fonts.ready` + `waitForNetworkIdle` best-effort; **guardas**: sem marcador → 500 claro, corpo vazio (bodyText < 40) → 500, PDF < 1200 bytes → 500 (nunca entrega branco); logs `[pdf-diag]` (printUrl, navStatus, htmlLength, bodyTextLen, marcador, console/pageerror/requestfailed/respostas ≥400).
+- **Validação:** build OK; smoke test local do pipeline de impressão (Puppeteer + print CSS inline) gera PDF de ~30KB com conteúdo e a guarda aborta quando não há marcador. Diagnóstico em produção via logs `[pdf-diag]`.
+- **Estruturas preservadas:** tela de detalhe do orçamento intocada; template e query da preview-pdf inalterados (só CSS/print e robustez da rota).
+
 ## 2026-07-01 — Detalhe do Orçamento: layout operacional (foco nos itens)
 
 - **Objetivo:** tornar o detalhe do orçamento (`/orcamentos/[id]`) mais compacto e operacional, com a **tabela de itens como bloco principal** e o **valor total exibido uma única vez** (no resumo). Sem mudar sidebar, autenticação ou permissões; aba Receita preservada.

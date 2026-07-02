@@ -175,8 +175,8 @@
     "semantic_hash": "79d8df90a56567416e973efeef4ce0b6"
   },
   "app/(dashboard)/orcamentos/[id]/page.tsx": {
-    "mtime": 1782948038.5884883,
-    "ast_hash": "2a71ab617078c64bdd449982c0844bea",
+    "mtime": 1782952469.8859553,
+    "ast_hash": "dfce965eea45e6e59fd6af8b1b0862ad",
     "semantic_hash": ""
   },
   "app/(dashboard)/orcamentos/actions-orcamento.ts": {
@@ -645,9 +645,9 @@
     "semantic_hash": ""
   },
   "components/orcamentos/orcamento-detalhe.tsx": {
-    "mtime": 1782909688.032319,
-    "ast_hash": "1c2f870ffe36d44e91e0f2828fcee05e",
-    "semantic_hash": "1c2f870ffe36d44e91e0f2828fcee05e"
+    "mtime": 1782952506.4078033,
+    "ast_hash": "9164b6e29ad2f02d4910408deaaddee5",
+    "semantic_hash": ""
   },
   "components/orcamentos/orcamento-pdf-generator.ts": {
     "mtime": 1782909688.0347085,

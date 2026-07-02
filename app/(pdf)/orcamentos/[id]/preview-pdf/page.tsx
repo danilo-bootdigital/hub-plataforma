@@ -8,6 +8,36 @@ import { BotaoBaixarPdf } from '@/components/orcamentos/botao-baixar-pdf'
 // PR 1: renderiza o template com dados reais. Botão "Baixar PDF" é apenas visual.
 // PR 2: usa BotaoBaixarPdf real que chama a API Puppeteer.
 
+// Print CSS INLINE. Antes era um <link href="./print.css"> relativo, que o
+// middleware NÃO serve (só trata como estático _next/favicon/imagens; .css cai
+// no fluxo de auth e retorna 307/404). Inline garante que as regras de @page e
+// do layout A4 sempre se apliquem na impressão do Puppeteer.
+const PRINT_CSS = `
+@page { size: A4; margin: 14mm 0 0 0; }
+@page :first { margin-top: 0; }
+* { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; box-sizing: border-box; }
+html, body { margin: 0 !important; padding: 0 !important; background: #ffffff !important; width: 100%; }
+main { margin: 0 !important; padding: 0 !important; background: #ffffff !important; min-height: auto; display: block !important; }
+[data-pdf-page] {
+  width: 210mm !important; max-width: 210mm !important; min-height: 297mm; margin: 0 auto !important;
+  padding: 4mm 12mm 12mm !important; background: #ffffff !important; box-shadow: none !important;
+  border: none !important; border-radius: 0 !important; overflow: visible !important; display: block !important;
+}
+.print-hidden, button[title*="Salvar como PDF"], .no-print { display: none !important; visibility: hidden !important; }
+table { page-break-inside: auto; border-collapse: collapse; }
+thead { display: table-header-group; }
+tr, th, td { page-break-inside: avoid; break-inside: avoid; }
+* { max-width: 100%; }
+img { max-width: 100% !important; height: auto !important; page-break-inside: avoid; break-inside: avoid; }
+* { transform: none !important; filter: none !important; }
+.bg-emerald-700, .bg-emerald-600 { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+section, article { page-break-inside: avoid; break-inside: avoid; }
+@media print {
+  [data-pdf-products] { page-break-inside: auto !important; break-inside: auto !important; }
+  [data-pdf-products] > div { overflow: visible !important; }
+}
+`
+
 export default async function PreviewPdfPage({
   params,
   searchParams,
@@ -136,7 +166,7 @@ export default async function PreviewPdfPage({
 
   return (
     <>
-      <link rel="stylesheet" href="./print.css" />
+      <style dangerouslySetInnerHTML={{ __html: PRINT_CSS }} />
       <main className="min-h-screen bg-slate-100 py-6 print:bg-white print:py-0">
         <div
           data-pdf-page="true"

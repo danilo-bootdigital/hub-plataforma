@@ -4,54 +4,44 @@ import { launchBrowser } from '@/lib/pdf/launch-browser'
 import { buildPrintUrl } from '@/lib/pdf/print-url'
 import { extractCookieHeader } from '@/lib/pdf/auth-cookie'
 
-// Rota de download do PDF do orçamento.
-// PR 2: usa Puppeteer + template HTML/Tailwind (preview).
+// Rota de download do PDF do orçamento (Puppeteer + template HTML/Tailwind).
 //
-// IMPORTANTE — SEM FALLBACK SILENCIOSO:
-// O botão "Baixar PDF" SEMPRE gera o PDF a partir do template HTML
-// novo (preview-pdf). Se o Puppeteer falhar, a rota retorna 500
-// com a mensagem de erro — NUNCA gera o PDF antigo (jsPDF).
+// GARANTIAS (sem fallback silencioso, sem PDF branco):
+// - Se o Puppeteer falhar, ou o marcador [data-pdf-template="ready"] não
+//   aparecer, ou o corpo renderizar vazio → retorna 500 com mensagem clara.
+// - NUNCA salva/serve um PDF em branco.
 //
-// Para diagnóstico, USE_HTML_PDF=false desabilita Puppeteer e
-// retorna 503 com mensagem clara (ao invés de fallback silencioso).
-
-// Default: Puppeteer ativo. O gerador antigo (jsPDF) está preservado
-// em components/orcamentos/orcamento-pdf-generator.ts mas não é mais
-// importado aqui — qualquer tentativa de usá-lo resultaria em erro
-// de build.
+// USE_HTML_PDF=false desabilita Puppeteer e retorna 503 (diagnóstico).
 const PUPPETEER_DISABLED = process.env.USE_HTML_PDF === 'false'
 
-// Defesa em profundidade: Puppeteer requer Node.js (não Edge) e
-// resposta dinâmica (não cacheável) por construção.
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 export const maxDuration = 60
+
+// Comprimento mínimo de texto no corpo para considerar o template "renderizado".
+const MIN_BODY_TEXT = 40
+// Tamanho mínimo plausível de um PDF com conteúdo (bytes).
+const MIN_PDF_BYTES = 1200
 
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  // Modo diagnóstico: USE_HTML_PDF=false → Puppeteer desligado, 503 claro
   if (PUPPETEER_DISABLED) {
     return new NextResponse(
-      'Geração de PDF via Puppeteer está desabilitada (USE_HTML_PDF=false). ' +
-        'O PR 2 (HTML/Tailwind) está em desenvolvimento. ' +
-        'Veja components/orcamentos/orcamento-pdf-generator.ts (jsPDF legado, preservado).',
+      'Geração de PDF via Puppeteer está desabilitada (USE_HTML_PDF=false).',
       { status: 503 }
     )
   }
 
+  const { id } = await params
+
   try {
-    // [pdf-perf] Instrumentação de baseline (somente medição — não altera
-    // comportamento). Logs prefixados com [pdf-perf] para grep nos logs.
     const tStart = performance.now()
     const supabase = await createClient()
     const { data: { user }, error: authError } = await supabase.auth.getUser()
-    if (authError || !user) {
-      return new NextResponse('Unauthorized', { status: 401 })
-    }
+    if (authError || !user) return new NextResponse('Unauthorized', { status: 401 })
 
-    const { id } = await params
     const { data: perfil } = await supabase
       .from('profiles')
       .select('id, organization_id')
@@ -59,81 +49,130 @@ export async function GET(
       .single()
     if (!perfil) return new NextResponse('Unauthorized', { status: 401 })
 
-    // Esta rota NÃO renderiza o orçamento — quem monta o HTML completo é a
-    // página /preview-pdf (que refaz a query pesada com todos os joins). Aqui
-    // basta validar existência + escopo da organização (RLS) e obter o número
-    // para o nome do arquivo. Buscar só `numero` evita duplicar a query pesada
-    // de `quotes` (~10 joins) a cada download.
-    const tQuery = performance.now()
+    // Só valida existência + escopo (RLS) e pega o número p/ nome do arquivo.
+    // Quem monta o HTML é a página /preview-pdf.
     const { data: orcamento, error } = await supabase
       .from('quotes')
       .select('numero')
       .eq('id', id)
       .eq('organization_id', perfil.organization_id)
       .single()
-    const dQuery = performance.now() - tQuery
-
     if (error || !orcamento) {
       return new NextResponse('Orçamento não encontrado', { status: 404 })
     }
 
-    // Geração via Puppeteer (PR 2) — SEM fallback silencioso.
-    const url = buildPrintUrl(id, new URL(request.url).origin)
+    const printUrl = buildPrintUrl(id, new URL(request.url).origin)
     const cookieHeader = extractCookieHeader(request)
 
-    const tLaunch = performance.now()
+    // Diagnóstico da página (temporário — prefixo [pdf-diag]).
+    const consoleErros: string[] = []
+    const pageErros: string[] = []
+    const requestFailures: string[] = []
+    const respostasComErro: string[] = []
+
     const browser = await launchBrowser()
-    const dLaunch = performance.now() - tLaunch
     let pdf: Uint8Array | null = null
-    let dGoto = 0
-    let dWaitSelector = 0
-    let dPdf = 0
+    let navStatus: number | null = null
+    let htmlLength = 0
+    let bodyTextLen = 0
+    let markerExists = false
+
     try {
       const page = await browser.newPage()
       if (cookieHeader) {
         await page.setExtraHTTPHeaders({ Cookie: cookieHeader })
       }
-      const tGoto = performance.now()
-      await page.goto(url, { waitUntil: 'networkidle0', timeout: 30_000 })
-      dGoto = performance.now() - tGoto
-      // data-pdf-template="ready" é emitido server-side pelo <article> raiz;
-      // garante que o Puppeteer só captura depois do template montado.
-      const tWait = performance.now()
-      await page.waitForSelector('[data-pdf-template="ready"]', { timeout: 10_000 })
-      dWaitSelector = performance.now() - tWait
-      const tPdf = performance.now()
-      pdf = await page.pdf({
-        format: 'A4',
-        printBackground: true,
-        // Honra as margens do CSS @page (inclui @page :first), garantindo
-        // margem superior apenas da página 2 em diante. Sem margem fixa aqui,
-        // que seria aplicada uniformemente a todas as páginas (inclusive a 1ª).
-        preferCSSPageSize: true,
+
+      page.on('console', (msg) => {
+        if (msg.type() === 'error') consoleErros.push(msg.text().slice(0, 200))
       })
-      dPdf = performance.now() - tPdf
+      page.on('pageerror', (err) => pageErros.push(String(err).slice(0, 200)))
+      page.on('requestfailed', (req) => {
+        requestFailures.push(`${req.url().slice(0, 120)} :: ${req.failure()?.errorText ?? '??'}`)
+      })
+      page.on('response', (res) => {
+        if (res.status() >= 400) respostasComErro.push(`${res.status()} ${res.url().slice(0, 120)}`)
+      })
+
+      // NÃO usamos networkidle0: imagens externas (logos) podem travar a rede
+      // e/ou nunca completar. Navegamos até o DOM e aguardamos explicitamente
+      // o marcador do template + as fontes.
+      const resp = await page.goto(printUrl, { waitUntil: 'domcontentloaded', timeout: 30_000 })
+      navStatus = resp?.status() ?? null
+
+      // Espera explícita do marcador. Sem ele, NÃO geramos PDF.
+      try {
+        await page.waitForSelector('[data-pdf-template="ready"]', { timeout: 15_000 })
+        markerExists = true
+      } catch {
+        markerExists = false
+      }
+
+      // Fontes prontas (evita texto invisível/deslocado no PDF). Best-effort.
+      try {
+        await page.evaluate(async () => {
+          const d = document as unknown as { fonts?: { ready?: Promise<unknown> } }
+          if (d.fonts?.ready) await d.fonts.ready
+        })
+      } catch { /* ignore */ }
+
+      // Deixa a rede assentar por um curto período (imagens de logo, se houver),
+      // sem travar o fluxo caso algo externo não complete.
+      try {
+        await page.waitForNetworkIdle({ idleTime: 400, timeout: 6_000 })
+      } catch { /* ok: seguimos mesmo se um recurso externo não completar */ }
+
+      const html = await page.content()
+      htmlLength = html.length
+      bodyTextLen = await page.evaluate(() => (document.body?.innerText ?? '').trim().length)
+
+      const diag = {
+        id,
+        printUrl,
+        navStatus,
+        markerExists,
+        htmlLength,
+        bodyTextLen,
+        consoleErros: consoleErros.slice(0, 5),
+        pageErros: pageErros.slice(0, 5),
+        requestFailures: requestFailures.slice(0, 8),
+        respostasComErro: respostasComErro.slice(0, 8),
+      }
+      console.log('[pdf-diag]', JSON.stringify(diag))
+
+      // GUARDA 1: marcador ausente → template não montou → erro claro.
+      if (!markerExists) {
+        return new NextResponse(
+          `PDF não gerado: template não carregou (marcador data-pdf-template="ready" ausente). ` +
+            `navStatus=${navStatus}, htmlLength=${htmlLength}. ` +
+            `Verifique autenticação/rota do preview-pdf. Detalhe: ${JSON.stringify(diag).slice(0, 400)}`,
+          { status: 500 }
+        )
+      }
+
+      // GUARDA 2: corpo praticamente vazio → não gerar PDF branco.
+      if (bodyTextLen < MIN_BODY_TEXT) {
+        return new NextResponse(
+          `PDF não gerado: template carregou mas está vazio (bodyTextLen=${bodyTextLen}). ` +
+            `Provável falha de dados/query. Detalhe: ${JSON.stringify(diag).slice(0, 400)}`,
+          { status: 500 }
+        )
+      }
+
+      pdf = await page.pdf({ format: 'A4', printBackground: true, preferCSSPageSize: true })
     } finally {
       await browser.close()
     }
 
-    if (!pdf) {
-      return new NextResponse('Falha ao gerar PDF', { status: 500 })
+    // GUARDA 3: PDF ausente ou pequeno demais (provável branco).
+    if (!pdf || pdf.byteLength < MIN_PDF_BYTES) {
+      return new NextResponse(
+        `PDF não gerado corretamente (bytes=${pdf?.byteLength ?? 0}). Geração abortada para não entregar PDF em branco.`,
+        { status: 500 }
+      )
     }
 
-    // [pdf-perf] Resumo do baseline (ms) — uma linha por download.
-    console.log(
-      '[pdf-perf]',
-      JSON.stringify({
-        id,
-        query_ms: Math.round(dQuery),
-        launchBrowser_ms: Math.round(dLaunch),
-        goto_networkidle0_ms: Math.round(dGoto),
-        waitSelector_ms: Math.round(dWaitSelector),
-        pdf_ms: Math.round(dPdf),
-        total_ms: Math.round(performance.now() - tStart),
-        pdf_bytes: pdf.byteLength,
-        pdf_kb: Math.round(pdf.byteLength / 1024),
-      })
-    )
+    console.log('[pdf-diag] OK', JSON.stringify({ id, pdf_kb: Math.round(pdf.byteLength / 1024), total_ms: Math.round(performance.now() - tStart) }))
 
     return new NextResponse(Buffer.from(pdf), {
       headers: {
@@ -143,9 +182,8 @@ export async function GET(
       },
     })
   } catch (error) {
-    // Sem fallback silencioso. Retorna 500 com mensagem clara.
     console.error('[pdf route] erro:', error)
     const msg = error instanceof Error ? error.message : 'Erro interno'
-    return new NextResponse(`Erro interno (PR 2): ${msg.slice(0, 300)}`, { status: 500 })
+    return new NextResponse(`Erro ao gerar PDF: ${msg.slice(0, 300)}`, { status: 500 })
   }
 }

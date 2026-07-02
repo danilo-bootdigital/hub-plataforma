@@ -1920,7 +1920,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "usuarios_actions",
-      "community": 115,
+      "community": 118,
       "norm_label": "actions.ts"
     },
     {
@@ -1930,7 +1930,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "usuarios_actions_criarusuario",
-      "community": 115,
+      "community": 118,
       "norm_label": "criarusuario()"
     },
     {
@@ -1940,7 +1940,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "usuarios_actions_alterarsenhausuario",
-      "community": 115,
+      "community": 118,
       "norm_label": "alterarsenhausuario()"
     },
     {
@@ -1950,7 +1950,7 @@
       "source_location": "L105",
       "_origin": "ast",
       "id": "usuarios_actions_atribuirfuncao",
-      "community": 115,
+      "community": 118,
       "norm_label": "atribuirfuncao()"
     },
     {
@@ -1960,7 +1960,7 @@
       "source_location": "L138",
       "_origin": "ast",
       "id": "usuarios_actions_excluirusuariodefinitivo",
-      "community": 115,
+      "community": 118,
       "norm_label": "excluirusuariodefinitivo()"
     },
     {
@@ -4897,7 +4897,7 @@
       "label": "PreviewPdfPage()",
       "file_type": "code",
       "source_file": "app/(pdf)/orcamentos/[id]/preview-pdf/page.tsx",
-      "source_location": "L11",
+      "source_location": "L41",
       "_origin": "ast",
       "id": "preview_pdf_page_previewpdfpage",
       "community": 86,
@@ -5007,7 +5007,7 @@
       "label": "GET()",
       "file_type": "code",
       "source_file": "app/api/orcamentos/[id]/pdf/route.ts",
-      "source_location": "L30",
+      "source_location": "L26",
       "_origin": "ast",
       "id": "pdf_route_get",
       "community": 60,
@@ -5260,7 +5260,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "maintenance_route",
-      "community": 118,
+      "community": 122,
       "norm_label": "route.ts"
     },
     {
@@ -5270,7 +5270,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "maintenance_route_post",
-      "community": 118,
+      "community": 122,
       "norm_label": "post()"
     },
     {
@@ -5280,7 +5280,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "maintenance_route_agendarmanutencao",
-      "community": 118,
+      "community": 122,
       "norm_label": "agendarmanutencao()"
     },
     {
@@ -15224,7 +15224,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "supabase_admin",
-      "community": 118,
+      "community": 122,
       "norm_label": "admin.ts"
     },
     {
@@ -15794,7 +15794,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_whatsapp_utils",
-      "community": 118,
+      "community": 122,
       "norm_label": "whatsapp-utils.ts"
     },
     {
@@ -15804,7 +15804,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "lib_whatsapp_utils_limparmidiaantiga",
-      "community": 118,
+      "community": 122,
       "norm_label": "limparmidiaantiga()"
     },
     {
@@ -15814,7 +15814,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "lib_whatsapp_utils_verificarsaudeinstancias",
-      "community": 118,
+      "community": 122,
       "norm_label": "verificarsaudeinstancias()"
     },
     {
@@ -15824,7 +15824,7 @@
       "source_location": "L96",
       "_origin": "ast",
       "id": "lib_whatsapp_utils_monitorarusomidia",
-      "community": 118,
+      "community": 122,
       "norm_label": "monitorarusomidia()"
     },
     {
@@ -47658,9 +47658,9 @@
       "source_file": "components/orcamentos/orcamento-detalhe.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "orcamentos_orcamento_detalhe",
-      "target": "orcamentos_orcamento_detalhe_itemcomproduto",
-      "confidence_score": 1.0
+      "target": "orcamentos_orcamento_detalhe_itemcomproduto"
     },
     {
       "relation": "contains",
@@ -66344,5 +66344,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "c5126ab281cfcc6111e92246b2d39138f7a56bf5"
+  "built_at_commit": "85ce04f1ebe902b005ad5b9ddbd796a6c6bfc1c5"
 }
