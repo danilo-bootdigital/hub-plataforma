@@ -235,3 +235,18 @@
 - **Estruturas preservadas:** sem UI/server action/persistência/RBAC/integração em runtime (fora do escopo); DEC-018/019 intactas.
 - **Situação:** ✔ **MVP-4 concluída** e validada. Próxima: **MVP-5 — Integração/pipeline + decisão humana + RBAC** (aguardando autorização).
 - **Changelog Relacionado:** 2026-07-02 — MVP-4 DEC-019 (camada de IA).
+
+## Checkpoint 021 — Conferência de Receita: Integração + decisão humana + RBAC (MVP-5 — DEC-019)
+
+- **Data:** 2026-07-02
+- **Git Commit:** `1f0d5cc` (código) + este commit de docs.
+- **Git Branch:** main
+- **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV). **Migration `059` PENDENTE de aplicação via SQL Editor**.
+- **Ambiente:** código apenas (build `build:hubdev` OK). Sem UI/deploy/preview.
+- **Entregue:** `app/(dashboard)/orcamentos/actions-conferencia.ts` — `rodarPreAnalise` (receita anexada → download Storage → extração IA → motor → Diagnóstico → persistência em `receita_conferencias` + `receita_conferencia_pendencias` → atualiza `quote_receitas` → auditoria) e decisões humanas `aprovarReceitaOperacionalmente` / `marcarNecessitaCorrecao` / `rejeitarReceita`. `lib/conferencia/persistencia.ts` (mappers puros). `lib/rbac.ts` (`AcaoRbac` += conferir/aprovar).
+- **RBAC:** `receita:conferir` (rodar) e `receita:aprovar` (decidir) via `resolverPermissoes`/`podeAcao`. **Nota:** RBAC é **fail-open** (convenção do projeto) — avaliar fail-closed para `receita:aprovar` no hardening.
+- **Banco (a aplicar):** migration `059` — `quote_receitas.status_fluxo += 'necessita_correcao'`; `funcao_permissoes.chk_acao += 'conferir','aprovar'`. Artefatos `hubdev/bootstrap/expand_receita_conferencia_mvp5.sql` (+ rollback).
+- **Testes:** `node:test` **26/26** (motor + diagnóstico + IA + **mappers de persistência**). E2E (com sessão/arquivo/IA real) fica para MVP-6/deploy.
+- **Fronteira mantida:** IA só extrai; motor decide; aprovação humana. DEC-018/019 intactas.
+- **Situação:** ✔ **MVP-5 (código) concluída**; migration `059` a aplicar; e2e na MVP-6. Próxima: **MVP-6 — UI mínima na aba Receita** (aguardando autorização).
+- **Changelog Relacionado:** 2026-07-02 — MVP-5 DEC-019 (integração + decisão humana + RBAC).

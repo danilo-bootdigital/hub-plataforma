@@ -6,6 +6,14 @@
 
 ---
 
+## 2026-07-02 — Conferência de Receita: Integração + decisão humana + RBAC (MVP-5 — DEC-019)
+
+- **Objetivo:** ligar o pipeline (receita → extração IA → motor → Diagnóstico → persistência) + decisões humanas + RBAC. Sem UI/deploy/preview.
+- **Aplicação Web:** `app/(dashboard)/orcamentos/actions-conferencia.ts` — `rodarPreAnalise` (RBAC `receita:conferir`; download do arquivo no bucket privado via service role; extração pelo provider de IA; `conferir()` + `montarDiagnostico()`; INSERT em `receita_conferencias` (append-only) + `receita_conferencia_pendencias`; UPDATE `quote_receitas.status_analise_ia`/`score_ultima_conferencia`/`status_fluxo='em_conferencia'`; auditoria) e `aprovarReceitaOperacionalmente`/`marcarNecessitaCorrecao`/`rejeitarReceita` (RBAC `receita:aprovar`; grava `validada_por`; auditoria). `lib/conferencia/persistencia.ts` (mappers puros). `lib/rbac.ts` (`AcaoRbac` += conferir/aprovar).
+- **Banco (migration `059`, a aplicar via SQL Editor):** `quote_receitas.status_fluxo += 'necessita_correcao'`; `funcao_permissoes.chk_acao += 'conferir','aprovar'` (aditivo/idempotente; não concede permissões — só habilita o vocabulário). Artefatos em `hubdev/bootstrap/`.
+- **Testes:** `node:test` **26/26** (inclui mappers de persistência). Build `build:hubdev` OK. Commit `1f0d5cc`.
+- **Fronteira:** IA só extrai (`campos`/`itens`/`confianca`); motor decide; aprovação humana obrigatória. Sem deploy (UI/e2e é a MVP-6). RBAC fail-open (convenção do projeto) — avaliar fail-closed no hardening.
+
 ## 2026-07-02 — Conferência de Receita: Camada de IA (MVP-4 — DEC-019)
 
 - **Objetivo:** camada de **extração provider-agnostic** + **Provider Claude**; a IA passa a **alimentar** o motor — **sem alterar nenhuma regra**. Sem UI/action/persistência/RBAC/integração runtime.
