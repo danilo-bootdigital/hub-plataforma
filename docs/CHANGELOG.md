@@ -6,6 +6,12 @@
 
 ---
 
+## 2026-07-01 — PDF: centralização + limpeza do debug
+
+- **Centralização:** o bloco do PDF ficava puxado à direita por conflito de `@page` (globals `16mm` × inline sides `0`) com `[data-pdf-page]` de largura fixa `210mm` (maior que a área imprimível). Correção: em print, `[data-pdf-page]` usa `width:100%` da área imprimível + `padding: 0 12mm` simétrico e `@page { margin: 10mm 0 }` — centraliza independentemente de qual `@page` vença.
+- **Limpeza/performance:** removido o modo debug temporário (`?debug=…`) e a medição extra por requisição (`emulateMediaType`+bodyText em print); `waitForNetworkIdle` reduzido para 2,5s. Guardas mantidas (sem PDF branco/erro claro).
+- **Nota de performance:** o tempo para *iniciar* a exportação é dominado pelo cold start do Chromium no serverless (inerente); a lentidão de *rolagem com o PDF aberto* é do visualizador de PDF do navegador (client-side), não do backend.
+
 ## 2026-07-01 — Fix (causa raiz): PDF em branco por regra global `@media print`
 
 - **Causa raiz confirmada por diagnóstico:** `?debug=info` retornou `navStatus:200`, `markerExists:true`, `bodyTextLen:2055` (tela) mas **`bodyTextPrint:0`** (print). Em `app/globals.css` há um `@media print { body * { visibility: hidden } }` (do print nativo `window.print`, que revela só `.area-impressao`). A página `preview-pdf` do Puppeteer não usa `.area-impressao`, então **todo o conteúdo ficava invisível na mídia print** → PDF ~1KB em branco.

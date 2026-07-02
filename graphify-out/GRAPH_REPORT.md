@@ -1,16 +1,16 @@
 # Graph Report - plataforma-hub  (2026-07-01)
 
 ## Corpus Check
-- 467 files · ~207,942 words
+- 467 files · ~207,745 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1769 nodes · 4541 edges · 126 communities (103 shown, 23 thin omitted)
+- 1769 nodes · 4541 edges · 125 communities (102 shown, 23 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 22 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d75e6155`
+- Built from commit: `bc726bda`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -121,7 +121,6 @@
 - [[_COMMUNITY_Community 119|Community 119]]
 - [[_COMMUNITY_Community 120|Community 120]]
 - [[_COMMUNITY_Community 121|Community 121]]
-- [[_COMMUNITY_Community 122|Community 122]]
 - [[_COMMUNITY_Community 123|Community 123]]
 - [[_COMMUNITY_Community 125|Community 125]]
 - [[_COMMUNITY_Community 126|Community 126]]
@@ -153,7 +152,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (126 total, 23 thin omitted)
+## Communities (125 total, 23 thin omitted)
 
 ### Community 0 - "Ações de Usuários e Contatos"
 Cohesion: 0.14
@@ -184,8 +183,8 @@ Cohesion: 0.11
 Nodes (18): Badge(), badgeVariants, ChatHeaderInfo, MensagemInicial, Props, STATUS_BADGE, ConversaStatus, DealType (+10 more)
 
 ### Community 7 - "Login e Formulário de Contato"
-Cohesion: 0.22
-Nodes (15): CampoSenha(), ProprietarioDisponivel, Props, Props, Props, Dialog(), DialogContent(), DialogHeader() (+7 more)
+Cohesion: 0.21
+Nodes (16): CampoSenha(), ProprietarioDisponivel, Props, Props, Props, Props, Dialog(), DialogContent() (+8 more)
 
 ### Community 8 - "Ações de Orçamento"
 Cohesion: 0.17
@@ -297,7 +296,7 @@ Nodes (8): CardInstancia(), extrairNomeVendedor(), normalizarStatus(), Props, ST
 
 ### Community 36 - "Gerenciador de Instâncias WhatsApp"
 Cohesion: 0.15
-Nodes (13): ACAO_LABEL, EditState, MODULOS, PROXIMO_LABEL, STATUS_LABELS, TRANSICOES_CORRECAO, Props, Props (+5 more)
+Nodes (12): ACAO_LABEL, EditState, MODULOS, PROXIMO_LABEL, STATUS_LABELS, TRANSICOES_CORRECAO, Props, Button() (+4 more)
 
 ### Community 37 - "Community 37"
 Cohesion: 0.16
@@ -468,8 +467,8 @@ Cohesion: 0.50
 Nodes (4): BotaoExcluirPedido(), FiltrosPedidos(), calcularPeriodo(), PedidosPage()
 
 ### Community 115 - "Community 115"
-Cohesion: 0.21
-Nodes (8): alternarStatusUsuario(), FuncaoOpcao, ListaUsuarios(), NOTA_PERFIL, UsuarioLinha, ModalAlterarSenha(), ModalNovoUsuario(), UsuariosPage()
+Cohesion: 0.16
+Nodes (12): alterarSenhaUsuario(), alternarStatusUsuario(), atribuirFuncao(), criarUsuario(), excluirUsuarioDefinitivo(), FuncaoOpcao, ListaUsuarios(), NOTA_PERFIL (+4 more)
 
 ### Community 116 - "Community 116"
 Cohesion: 0.24
@@ -480,8 +479,8 @@ Cohesion: 0.09
 Nodes (25): formatarMoeda(), BotoesExportar(), DadosFornecedor, DadosFunil, DadosLeadsSemana, DadosProdutos, DadosVendas, Props (+17 more)
 
 ### Community 118 - "Community 118"
-Cohesion: 0.17
-Nodes (14): limparMidiaAntiga(), monitorarUsoMidia(), verificarSaudeInstancias(), ProdutosPage(), TabelaProdutos(), Deal, Lead, main() (+6 more)
+Cohesion: 0.19
+Nodes (14): limparMidiaAntiga(), monitorarUsoMidia(), verificarSaudeInstancias(), limparMidiaAntiga(), monitorarUsoMidia(), verificarSaudeInstancias(), POST(), ProdutosPage() (+6 more)
 
 ### Community 119 - "Community 119"
 Cohesion: 0.33
@@ -490,10 +489,6 @@ Nodes (5): KPIWhatsApp, HeaderKPIs(), KPI_CONFIG, KpiConfig, Props
 ### Community 120 - "Community 120"
 Cohesion: 0.67
 Nodes (3): atualizarIdentidadeHub(), getProprietario(), IdentidadeHub
-
-### Community 122 - "Community 122"
-Cohesion: 0.50
-Nodes (4): limparMidiaAntiga(), monitorarUsoMidia(), verificarSaudeInstancias(), POST()
 
 ### Community 123 - "Community 123"
 Cohesion: 0.33

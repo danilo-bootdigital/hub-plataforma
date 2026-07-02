@@ -1920,7 +1920,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "usuarios_actions",
-      "community": 118,
+      "community": 115,
       "norm_label": "actions.ts"
     },
     {
@@ -1930,7 +1930,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "usuarios_actions_criarusuario",
-      "community": 118,
+      "community": 115,
       "norm_label": "criarusuario()"
     },
     {
@@ -1940,7 +1940,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "usuarios_actions_alterarsenhausuario",
-      "community": 118,
+      "community": 115,
       "norm_label": "alterarsenhausuario()"
     },
     {
@@ -1950,7 +1950,7 @@
       "source_location": "L105",
       "_origin": "ast",
       "id": "usuarios_actions_atribuirfuncao",
-      "community": 118,
+      "community": 115,
       "norm_label": "atribuirfuncao()"
     },
     {
@@ -1960,7 +1960,7 @@
       "source_location": "L138",
       "_origin": "ast",
       "id": "usuarios_actions_excluirusuariodefinitivo",
-      "community": 118,
+      "community": 115,
       "norm_label": "excluirusuariodefinitivo()"
     },
     {
@@ -4897,7 +4897,7 @@
       "label": "PreviewPdfPage()",
       "file_type": "code",
       "source_file": "app/(pdf)/orcamentos/[id]/preview-pdf/page.tsx",
-      "source_location": "L45",
+      "source_location": "L52",
       "_origin": "ast",
       "id": "preview_pdf_page_previewpdfpage",
       "community": 86,
@@ -5007,7 +5007,7 @@
       "label": "GET()",
       "file_type": "code",
       "source_file": "app/api/orcamentos/[id]/pdf/route.ts",
-      "source_location": "L25",
+      "source_location": "L21",
       "_origin": "ast",
       "id": "pdf_route_get",
       "community": 60,
@@ -5260,7 +5260,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "maintenance_route",
-      "community": 122,
+      "community": 118,
       "norm_label": "route.ts"
     },
     {
@@ -5270,7 +5270,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "maintenance_route_post",
-      "community": 122,
+      "community": 118,
       "norm_label": "post()"
     },
     {
@@ -5280,7 +5280,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "maintenance_route_agendarmanutencao",
-      "community": 122,
+      "community": 118,
       "norm_label": "agendarmanutencao()"
     },
     {
@@ -10548,7 +10548,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "portfolios_modal_novo_portfolio",
-      "community": 36,
+      "community": 7,
       "norm_label": "modal-novo-portfolio.tsx"
     },
     {
@@ -10558,7 +10558,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "portfolios_modal_novo_portfolio_props",
-      "community": 36,
+      "community": 7,
       "norm_label": "props"
     },
     {
@@ -15224,7 +15224,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "supabase_admin",
-      "community": 122,
+      "community": 118,
       "norm_label": "admin.ts"
     },
     {
@@ -15794,7 +15794,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_whatsapp_utils",
-      "community": 122,
+      "community": 118,
       "norm_label": "whatsapp-utils.ts"
     },
     {
@@ -15804,7 +15804,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "lib_whatsapp_utils_limparmidiaantiga",
-      "community": 122,
+      "community": 118,
       "norm_label": "limparmidiaantiga()"
     },
     {
@@ -15814,7 +15814,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "lib_whatsapp_utils_verificarsaudeinstancias",
-      "community": 122,
+      "community": 118,
       "norm_label": "verificarsaudeinstancias()"
     },
     {
@@ -15824,7 +15824,7 @@
       "source_location": "L96",
       "_origin": "ast",
       "id": "lib_whatsapp_utils_monitorarusomidia",
-      "community": 122,
+      "community": 118,
       "norm_label": "monitorarusomidia()"
     },
     {
@@ -66344,5 +66344,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "d75e6155790096ccae309cfadc7ffb1c93942caf"
+  "built_at_commit": "bc726bdafbbb9f8c3e5b3046adc6a8601f887a2b"
 }

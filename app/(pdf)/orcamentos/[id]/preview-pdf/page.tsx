@@ -13,8 +13,7 @@ import { BotaoBaixarPdf } from '@/components/orcamentos/botao-baixar-pdf'
 // no fluxo de auth e retorna 307/404). Inline garante que as regras de @page e
 // do layout A4 sempre se apliquem na impressão do Puppeteer.
 const PRINT_CSS = `
-@page { size: A4; margin: 14mm 0 0 0; }
-@page :first { margin-top: 0; }
+@page { size: A4; margin: 10mm 0; }
 * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; box-sizing: border-box; }
 html, body { margin: 0 !important; padding: 0 !important; background: #ffffff !important; width: 100%; }
 main { margin: 0 !important; padding: 0 !important; background: #ffffff !important; min-height: auto; display: block !important; }
@@ -37,6 +36,14 @@ section, article { page-break-inside: avoid; break-inside: avoid; }
      .area-impressao). Esta página é dedicada ao PDF do Puppeteer — revelamos TODO
      o conteúdo. Elementos .print-hidden/.no-print seguem escondidos pelas regras acima. */
   body * { visibility: visible !important; }
+  /* Centraliza de forma robusta: o bloco ocupa 100% da área imprimível (seja qual
+     for a margem @page que vença no cascade) e usa padding simétrico p/ as margens
+     laterais — evita o bloco fixo de 210mm "escapar" para a direita. */
+  [data-pdf-page] {
+    width: 100% !important; max-width: 100% !important;
+    margin: 0 !important; padding: 0 12mm !important;
+    box-shadow: none !important;
+  }
   [data-pdf-products] { page-break-inside: auto !important; break-inside: auto !important; }
   [data-pdf-products] > div { overflow: visible !important; }
 }
