@@ -1,16 +1,16 @@
 # Graph Report - plataforma-hub  (2026-07-02)
 
 ## Corpus Check
-- 488 files · ~218,043 words
+- 504 files · ~223,598 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1879 nodes · 4691 edges · 129 communities (109 shown, 20 thin omitted)
+- 1960 nodes · 4775 edges · 148 communities (122 shown, 26 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 22 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6f9a888e`
+- Built from commit: `7364ce66`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -127,6 +127,21 @@
 - [[_COMMUNITY_Community 126|Community 126]]
 - [[_COMMUNITY_Community 127|Community 127]]
 - [[_COMMUNITY_Community 128|Community 128]]
+- [[_COMMUNITY_Community 129|Community 129]]
+- [[_COMMUNITY_Community 130|Community 130]]
+- [[_COMMUNITY_Community 131|Community 131]]
+- [[_COMMUNITY_Community 132|Community 132]]
+- [[_COMMUNITY_Community 133|Community 133]]
+- [[_COMMUNITY_Community 134|Community 134]]
+- [[_COMMUNITY_Community 135|Community 135]]
+- [[_COMMUNITY_Community 136|Community 136]]
+- [[_COMMUNITY_Community 137|Community 137]]
+- [[_COMMUNITY_Community 138|Community 138]]
+- [[_COMMUNITY_Community 139|Community 139]]
+- [[_COMMUNITY_Community 140|Community 140]]
+- [[_COMMUNITY_Community 141|Community 141]]
+- [[_COMMUNITY_Community 142|Community 142]]
+- [[_COMMUNITY_Community 143|Community 143]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `createClient()` - 206 edges
@@ -155,67 +170,67 @@
 ## Import Cycles
 - None detected.
 
-## Communities (129 total, 20 thin omitted)
+## Communities (148 total, 26 thin omitted)
 
 ### Community 0 - "Ações de Usuários e Contatos"
-Cohesion: 0.24
-Nodes (12): CampoSenha(), ProprietarioDisponivel, Props, ORIGENS, Props, Props, DialogContent(), DialogTrigger() (+4 more)
+Cohesion: 0.20
+Nodes (16): CampoSenha(), ProprietarioDisponivel, Props, ORIGENS, Props, Props, Props, Dialog() (+8 more)
 
 ### Community 1 - "Fornecedores e Importação de Produtos"
-Cohesion: 0.18
-Nodes (15): buscarKPIsWhatsApp(), KPIWhatsApp, buscarTotaisCliente(), TotaisCliente, ConversaStatus, WhatsappStatus, CentralSearchParams, ConversaCompleta (+7 more)
+Cohesion: 0.08
+Nodes (35): ConversaResumo, FiltrosConversa, listarConversas(), ListarConversasOptions, resolverInstanciasPermitidas(), buscarKPIsWhatsApp(), KPIWhatsApp, buscarTotaisCliente() (+27 more)
 
 ### Community 2 - "Gestão de Instâncias WhatsApp (Seguras)"
 Cohesion: 0.09
 Nodes (21): aliases, components, hooks, lib, ui, utils, iconLibrary, menuAccent (+13 more)
 
 ### Community 3 - "Pipeline de Deals (Kanban)"
-Cohesion: 0.13
-Nodes (14): CARGOS_QUE_CRIAM, CARGOS_QUE_MOVEM, Etapa, KanbanBoard(), PendingEstagio, PendingFechado, PendingPerdido, Props (+6 more)
+Cohesion: 0.11
+Nodes (21): CARGOS_QUE_CRIAM, CARGOS_QUE_MOVEM, Etapa, KanbanBoard(), PendingEstagio, PendingFechado, PendingPerdido, Props (+13 more)
 
 ### Community 4 - "Modais de Leads e Tarefas"
-Cohesion: 0.07
-Nodes (42): ACAO_POR_MOTIVO, Camada, ConferenciaCamada, DiagnosticoReceita, montarDiagnostico(), OrientacaoOperacional, RESULTADO_POR_STATUS, ResultadoMvp (+34 more)
+Cohesion: 0.18
+Nodes (11): ChecklistItemRow, ChecklistRow, AlvoComparacao, Escopo, ItemConfig, ItemExtraido, ItemOrcamento, ReceitaMotivo (+3 more)
 
 ### Community 5 - "Autenticação e Listagens (Hubs/Fornecedores)"
-Cohesion: 0.08
-Nodes (26): POST(), ListaItensInbox(), CaixaDeEntradaPage(), GET(), ConfiguracoesPage(), ConfigurarPipelinePage(), DiagnosticoStep, Step2_Usuario() (+18 more)
+Cohesion: 0.09
+Nodes (23): ListaItensInbox(), CaixaDeEntradaPage(), GET(), ConfiguracoesPage(), ConfigurarPipelinePage(), DiagnosticoStep, Step2_Usuario(), Step3_Perfil() (+15 more)
 
 ### Community 6 - "Relatórios e Exportação"
 Cohesion: 0.08
-Nodes (20): diagnostico_1, mapear_checklist_1, motor_regras_1, node_test_1, resolver_checklist_1, strict_1, ACAO_POR_MOTIVO, RESULTADO_POR_STATUS (+12 more)
+Nodes (20): ACAO_POR_MOTIVO, RESULTADO_POR_STATUS, conferir(), DIACRITICOS, itensBatemPorNome(), nomesBatem(), norm(), parseDataDias() (+12 more)
 
 ### Community 7 - "Login e Formulário de Contato"
-Cohesion: 0.11
-Nodes (22): ACAO_LABEL, EditState, MODULOS, Props, Props, Props, Props, TIPOS_TAREFA (+14 more)
+Cohesion: 0.16
+Nodes (11): ACAO_LABEL, EditState, MODULOS, Props, Props, Props, Button(), buttonVariants (+3 more)
 
 ### Community 8 - "Ações de Orçamento"
-Cohesion: 0.09
-Nodes (34): criarOrcamento(), EditarOrcamentoPage(), AcoesOrcamento(), Props, OrcamentoDetalhePage(), canEditQuote(), AcoesOrcamento(), Props (+26 more)
+Cohesion: 0.17
+Nodes (23): criarOrcamento(), Props, AcoesOrcamento(), Props, alterarStatus(), aprovarInterno(), aprovarOrcamento(), calcularTotais() (+15 more)
 
 ### Community 9 - "Modais e Diálogos (UI)"
 Cohesion: 0.25
 Nodes (11): registrarAuditoria(), alterarStatusCarteira(), autorizarCarteiraHub(), criarCarteira(), editarCarteira(), getAdminOuGestor(), ModalNovaCarteira(), CarteirasPage() (+3 more)
 
 ### Community 10 - "Conversas e Painel do Cliente"
-Cohesion: 0.05
-Nodes (65): buscarContatoPorTelefone(), buscarContatoPorTelefone(), classificarUrgencia(), contatoCache, normalizarTelefone(), obterConfiguracao(), POST(), verifyHmacSignature() (+57 more)
+Cohesion: 0.21
+Nodes (14): enviarAudio(), enviarDocumento(), enviarImagem(), enviarMensagemComRetry(), enviarTexto(), validarTelefone(), POST(), SendMessageRequest (+6 more)
 
 ### Community 11 - "Componentes UI (Dropdown/Card)"
-Cohesion: 0.20
-Nodes (15): aprovarPropostaPublica(), recusarPropostaPublica(), AcaoAprovar(), AcaoRecusar(), AcaoAprovar(), AcaoRecusar(), fetchProposalData(), PropostaPublicaPage() (+7 more)
+Cohesion: 0.18
+Nodes (17): aprovarPropostaPublica(), recusarPropostaPublica(), AcaoAprovar(), AcaoRecusar(), AcaoAprovar(), AcaoRecusar(), fetchProposalData(), PropostaPublicaPage() (+9 more)
 
 ### Community 12 - "Páginas de Orçamento e Botões PDF"
 Cohesion: 0.07
-Nodes (33): criarCategoria(), criarFornecedor(), DadosTransportadora, editarFornecedor(), excluirCategoria(), excluirFornecedor(), getAdminOuGestor(), importarProdutosComFornecedor() (+25 more)
+Nodes (35): criarCategoria(), criarFornecedor(), DadosTransportadora, editarFornecedor(), excluirCategoria(), excluirFornecedor(), getAdminOuGestor(), importarProdutosComFornecedor() (+27 more)
 
 ### Community 13 - "Dependências do Projeto"
-Cohesion: 0.08
-Nodes (26): dependencies, @base-ui/react, class-variance-authority, clsx, date-fns, @dnd-kit/core, html2canvas, jspdf (+18 more)
+Cohesion: 0.07
+Nodes (28): dependencies, @anthropic-ai/sdk, @base-ui/react, class-variance-authority, clsx, date-fns, @dnd-kit/core, html2canvas (+20 more)
 
 ### Community 14 - "Painel de KPIs e Gráficos"
-Cohesion: 0.14
-Nodes (12): BotaoImportarExportar(), BuscaContatos(), ModalNovoContato(), ContatoComEmpresa, SearchParams, ContatoComEmpresa, Props, TabelaContatos() (+4 more)
+Cohesion: 0.13
+Nodes (14): BotaoImportarExportar(), BuscaContatos(), ModalNovoContato(), ContatoComEmpresa, SearchParams, ContatoComEmpresa, Props, TabelaContatos() (+6 more)
 
 ### Community 15 - "Botões e Modais de Negociação"
 Cohesion: 0.19
@@ -226,12 +241,12 @@ Cohesion: 0.26
 Nodes (12): alterarStatusAssistente(), assistenteDoHub(), atribuirFuncaoAssistente(), criarAssistente(), editarAssistente(), getProprietario(), registrarAuditoria(), ModalNovoAssistente() (+4 more)
 
 ### Community 17 - "Fluxo de Status de Pedidos"
-Cohesion: 0.19
-Nodes (18): AuditoriaAcao, CampoAlterado, compararAlteracoes(), RegistrarAuditoriaParams, registrarAuditoriaPedido(), avancarStatus(), cancelarPedido(), concluirPedido() (+10 more)
+Cohesion: 0.10
+Nodes (28): Props, AuditoriaAcao, CampoAlterado, compararAlteracoes(), RegistrarAuditoriaParams, registrarAuditoriaPedido(), avancarStatus(), cancelarPedido() (+20 more)
 
 ### Community 18 - "Ações de Conversa (Tags/Templates)"
-Cohesion: 0.08
-Nodes (38): adicionarTagConversa(), alterarStatusConversa(), atribuirResponsavel(), criarAnotacao(), criarTag(), criarTemplate(), desvincularDeal(), editarNomeConversa() (+30 more)
+Cohesion: 0.19
+Nodes (19): adicionarTagConversa(), alterarStatusConversa(), atribuirResponsavel(), criarAnotacao(), criarTag(), criarTemplate(), desvincularDeal(), editarNomeConversa() (+11 more)
 
 ### Community 19 - "Página de Conversa e Telefone"
 Cohesion: 0.25
@@ -239,11 +254,11 @@ Nodes (12): AcoesContato(), Props, adicionarObservacaoContato(), ContatoImportad
 
 ### Community 20 - "Listagem de Conversas WhatsApp"
 Cohesion: 0.10
-Nodes (19): cn(), CardAction(), CardFooter(), DialogOverlay(), DropdownMenuCheckboxItem(), DropdownMenuContent(), DropdownMenuItem(), DropdownMenuLabel() (+11 more)
+Nodes (20): cn(), CardAction(), CardFooter(), DialogOverlay(), DropdownMenuCheckboxItem(), DropdownMenuContent(), DropdownMenuItem(), DropdownMenuLabel() (+12 more)
 
 ### Community 21 - "Config de Componentes (shadcn)"
-Cohesion: 0.14
-Nodes (13): compilerOptions, esModuleInterop, forceConsistentCasingInFileNames, module, moduleResolution, noEmitOnError, outDir, rootDir (+5 more)
+Cohesion: 0.13
+Nodes (14): compilerOptions, esModuleInterop, forceConsistentCasingInFileNames, module, moduleResolution, noEmitOnError, outDir, rootDir (+6 more)
 
 ### Community 22 - "Listagem de Leads e Orçamentos"
 Cohesion: 0.23
@@ -254,40 +269,40 @@ Cohesion: 0.10
 Nodes (19): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, lib, module (+11 more)
 
 ### Community 24 - "Ações de Tarefas"
-Cohesion: 0.15
-Nodes (17): concluirTarefa(), criarTarefa(), excluirTarefa(), getUsuarioEOrg(), reabrirTarefa(), CardTarefa(), ICONES_TIPO, LABELS_TIPO (+9 more)
+Cohesion: 0.13
+Nodes (19): concluirTarefa(), criarTarefa(), excluirTarefa(), getUsuarioEOrg(), reabrirTarefa(), CardTarefa(), ICONES_TIPO, LABELS_TIPO (+11 more)
 
 ### Community 25 - "Community 25"
-Cohesion: 0.29
-Nodes (3): ContatoImportado, MAPEAMENTO_NOME, ModoImportacao
+Cohesion: 0.20
+Nodes (9): ExtracaoReceita, SCHEMA_EXTRACAO, ArquivoReceita, EntradaExtracao, ExtratorReceita, MimeReceita, ProvedorIA, MockExtrator (+1 more)
 
 ### Community 26 - "Detalhe de Orçamento e PDF"
 Cohesion: 0.09
 Nodes (34): criarOrcamento(), formatarData(), OrcamentoEditarPage(), STATUS_LABEL, adicionarItemOrcamento(), alterarItemQuantidade(), auditarItem(), calcularTotalFinal() (+26 more)
 
 ### Community 27 - "Tipos do Banco de Dados"
-Cohesion: 0.05
-Nodes (36): LeadDetalhePage(), Activity, AuditLog, Categoria, ChecklistEscopo, ChecklistTipoRegra, ConversationExport, Deal (+28 more)
+Cohesion: 0.06
+Nodes (33): AuditLog, Categoria, ChecklistEscopo, ChecklistTipoRegra, ConversationExport, Deal, DealStageLog, FiltrosConversa (+25 more)
 
 ### Community 28 - "Community 28"
-Cohesion: 0.11
-Nodes (14): BuscaProduto(), Props, Contato, Deal, Empresa, FORMAS_PAGAMENTO, FormOrcamento(), ItemForm (+6 more)
+Cohesion: 0.12
+Nodes (14): BuscaProduto(), Props, Contato, Deal, Empresa, FORMAS_PAGAMENTO, ItemForm, Props (+6 more)
 
 ### Community 29 - "Auth Provider e Hooks"
 Cohesion: 0.21
 Nodes (12): criarAtendimento(), getAssistente(), AssistenteClientesPage(), HubClientesPage(), Assistente, ClienteHub, DistribuirClientes(), TabelaClientesAssistente() (+4 more)
 
 ### Community 30 - "Config Avançada de WhatsApp"
-Cohesion: 0.11
-Nodes (22): ErrorBoundaryState, WhatsAppInstanceManager, WhatsAppMonitor, OrcamentoDetalhe(), Props, Alert, AlertDescription, AlertTitle (+14 more)
+Cohesion: 0.10
+Nodes (24): ErrorBoundaryState, WhatsAppInstanceManager, WhatsAppMonitor, Props, createClient(), getEnv(), Alert, AlertDescription (+16 more)
 
 ### Community 31 - "Cache do WhatsApp"
-Cohesion: 0.09
-Nodes (7): normalizarTelefoneParaComparacao(), CacheEntry, ContactCacheData, NameResolutionCacheData, normalizarTelefoneParaComparacao(), WhatsAppCache, WhatsAppService
+Cohesion: 0.17
+Nodes (5): CacheEntry, ContactCacheData, NameResolutionCacheData, normalizarTelefoneParaComparacao(), WhatsAppCache
 
 ### Community 32 - "Edição e Listagem de Contatos"
-Cohesion: 0.14
-Nodes (14): alternarDisponibilidade(), BotaoDisponibilidade(), BotaoDisponibilidadeInterativo(), CARGOS_COM_DISPONIBILIDADE, Props, Perm, Avatar(), AvatarBadge() (+6 more)
+Cohesion: 0.18
+Nodes (11): Avatar(), AvatarBadge(), AvatarFallback(), AvatarGroup(), AvatarGroupCount(), AvatarImage(), ChatHeaderInfo, MensagemInicial (+3 more)
 
 ### Community 33 - "Template PDF de Orçamento"
 Cohesion: 0.07
@@ -302,44 +317,44 @@ Cohesion: 0.28
 Nodes (8): CardInstancia(), extrairNomeVendedor(), normalizarStatus(), Props, STATUS_CONFIG, WhatsappStatus, ModalExcluirInstancia(), QrCodeDialog()
 
 ### Community 36 - "Gerenciador de Instâncias WhatsApp"
-Cohesion: 0.12
-Nodes (14): Button(), buttonVariants, AdicionarInstanciaButton(), Props, EditarNome(), EditarNomeProps, Conversa, ConversaSelecionada (+6 more)
+Cohesion: 0.15
+Nodes (11): DialogDescription(), DialogFooter(), EditarNome(), EditarNomeProps, Conversa, ConversaSelecionada, ItemConversaRow, ListaConversas() (+3 more)
 
 ### Community 37 - "Community 37"
-Cohesion: 0.18
-Nodes (13): AuthContext, AuthContextType, AuthProviderProps, Profile, useAuth(), User, useOrcamentoData(), BotaoSair() (+5 more)
+Cohesion: 0.38
+Nodes (4): BotaoSair(), Perm, BadgePerfil(), configuracoes
 
 ### Community 38 - "Community 38"
 Cohesion: 0.10
-Nodes (22): ContatoCompleto, FormularioEditarContatoProps, Props, Props, FreteItem, LinhaFrete, Props, Transportadora (+14 more)
+Nodes (18): Props, ContatoImportado, MAPEAMENTO_NOME, ModoImportacao, Props, FornecedorComHub, Hub, Props (+10 more)
 
 ### Community 39 - "Disponibilidade e Header"
-Cohesion: 0.33
-Nodes (5): getAdminOuGestor(), salvarConfigDistribuicao(), FormConfigDistribuicao(), DistribuicaoPage(), DistribuicaoModo
+Cohesion: 0.19
+Nodes (10): alternarDisponibilidade(), getAdminOuGestor(), salvarConfigDistribuicao(), BotaoDisponibilidade(), BotaoDisponibilidadeInterativo(), CARGOS_COM_DISPONIBILIDADE, Props, FormConfigDistribuicao() (+2 more)
 
 ### Community 40 - "Sidebar Mobile e Sheet"
-Cohesion: 0.21
-Nodes (9): BadgeOrigem(), config, DealCard, KanbanCard(), Props, StatusBadge(), Etapa, KanbanColuna() (+1 more)
+Cohesion: 0.12
+Nodes (15): ConversaStatus, DealType, Nota, PainelDetalhesConversa(), Props, STATUS_CONFIG, TagType, Usuario (+7 more)
 
 ### Community 41 - "Community 41"
-Cohesion: 0.16
-Nodes (8): ProvidersLayoutProps, AuthProvider(), ClientProviders(), ToastContext, ToastContextType, ToastProps, ToastProvider(), Toaster()
+Cohesion: 0.14
+Nodes (10): ContextoResolucao, Checklist, EntradaMotor, OrcamentoContexto, checklistTirzepatida, entrada(), extracaoBoa(), orcamentoBase (+2 more)
 
 ### Community 42 - "Community 42"
 Cohesion: 0.16
 Nodes (8): carregarMensagensConversa(), orgDoUsuario(), BalaoMensagem(), Props, MensagemDTO, cacheMensagens, Mensagem, Props
 
 ### Community 43 - "Community 43"
-Cohesion: 0.14
-Nodes (13): ConversaStatus, DealType, Mensagem, Nota, Props, STATUS_BADGE, TagType, Usuario (+5 more)
+Cohesion: 0.15
+Nodes (12): ConversaStatus, DealType, Mensagem, Nota, Props, STATUS_BADGE, TagType, Usuario (+4 more)
 
 ### Community 44 - "Community 44"
-Cohesion: 0.13
-Nodes (12): FormObservacaoContato(), ContatoCompleto, LeadComResponsavel, ModalConverterLead(), AtividadeComAutor, ICONES_TIPO, Props, TimelineAtividades() (+4 more)
+Cohesion: 0.16
+Nodes (9): FormObservacaoContato(), ContatoCompleto, AtividadeComAutor, ICONES_TIPO, Props, TimelineAtividades(), Activity, Profile (+1 more)
 
 ### Community 45 - "Layout Raiz e Autenticação"
-Cohesion: 0.16
-Nodes (12): geistMono, manrope, metadata, RootLayout(), viewport, AuthData, getAuthData(), requireAuth() (+4 more)
+Cohesion: 0.06
+Nodes (27): geistMono, manrope, metadata, RootLayout(), viewport, ProvidersLayoutProps, AuthContext, AuthContextType (+19 more)
 
 ### Community 46 - "Gestão de Modelos"
 Cohesion: 0.22
@@ -354,16 +369,16 @@ Cohesion: 0.07
 Nodes (42): alternarAtivoCategoria(), alternarAtivoPortfolio(), alternarAtivoSubcategoria(), autorizarHubPortfolio(), chamarRpcImportacao(), criarCategoria(), criarPortfolio(), criarSubcategoria() (+34 more)
 
 ### Community 49 - "Configuração de Etapas do Pipeline"
-Cohesion: 0.36
-Nodes (10): adicionarEtapa(), alterarCorEtapa(), alternarOculto(), excluirEtapa(), getAdminOuGestor(), getMaxOrdem(), moverEtapa(), renomearEtapa() (+2 more)
+Cohesion: 0.42
+Nodes (8): adicionarEtapa(), alterarCorEtapa(), alternarOculto(), excluirEtapa(), getAdminOuGestor(), getMaxOrdem(), moverEtapa(), renomearEtapa()
 
 ### Community 50 - "Community 50"
-Cohesion: 0.27
-Nodes (11): ConversaPage(), formatarTelefone(), iniciais(), nomeExibicao(), pareceTelefone(), ChatArea(), ConversaLayout(), ConversaStatus (+3 more)
+Cohesion: 0.17
+Nodes (19): ConversaPage(), formatarTelefone(), iniciais(), nomeExibicao(), normalizarParaBusca(), pareceTelefone(), telefonesIguais(), ChatArea() (+11 more)
 
 ### Community 51 - "Gerador de PDF de Orçamento"
-Cohesion: 0.07
-Nodes (32): EditarOrcamentoHubPage(), num(), STATUS_EDITAVEIS, Campo(), Coluna, COLUNAS, DrawerConteudo(), moeda() (+24 more)
+Cohesion: 0.14
+Nodes (15): Campo(), Coluna, COLUNAS, DrawerConteudo(), moeda(), Opcao, ProdutosConsulta(), Props (+7 more)
 
 ### Community 52 - "Dependências de Desenvolvimento"
 Cohesion: 0.15
@@ -371,23 +386,23 @@ Nodes (13): devDependencies, dotenv-cli, eslint, eslint-config-next, @eslint/esl
 
 ### Community 53 - "Community 53"
 Cohesion: 0.13
-Nodes (23): MODOS, Props, PROXIMO_LABEL, STATUS_LABELS, TRANSICOES_CORRECAO, PERIODOS, Props, ProdutoLite (+15 more)
+Nodes (27): MODOS, Props, PERIODOS, Props, Etapa, Props, ProdutoLite, Props (+19 more)
 
 ### Community 54 - "Community 54"
 Cohesion: 0.25
 Nodes (7): registrarAuditoria(), definirModoCarteira(), getProprietario(), MODOS, AssistenteOpcao, CarteiraHub, TabelaConfigCarteiras()
 
 ### Community 55 - "Community 55"
-Cohesion: 0.20
-Nodes (10): Perm, Props, Sheet(), SheetContent(), SheetDescription(), SheetFooter(), SheetHeader(), SheetOverlay() (+2 more)
+Cohesion: 0.12
+Nodes (19): Perm, Props, SidebarMobile(), Perm, Props, Sidebar(), ItemNavegacao, navegacao (+11 more)
 
 ### Community 56 - "Manifesto PWA"
 Cohesion: 0.20
 Nodes (9): background_color, description, display, icons, name, orientation, short_name, start_url (+1 more)
 
 ### Community 57 - "Community 57"
-Cohesion: 0.12
-Nodes (17): BadgeStatusLead(), config, ModalNovoLead(), LeadsPage(), SearchParams, LeadComResponsavel, ORIGEM_OPTIONS, Props (+9 more)
+Cohesion: 0.11
+Nodes (20): LeadComResponsavel, LeadDetalhePage(), BadgeOrigem(), config, BadgeStatusLead(), config, BotaoDescartarLead(), Props (+12 more)
 
 ### Community 58 - "Filtros de Conversas"
 Cohesion: 0.22
@@ -406,16 +421,12 @@ Cohesion: 0.33
 Nodes (3): Metrica, Props, RelatoriosWhatsappClient()
 
 ### Community 62 - "Configuração de Distribuição"
-Cohesion: 0.21
-Nodes (9): ModalAlterarSenha(), ModalNovoHub(), HubsPage(), HubRow, ProprietarioOpcao, STATUS, TabelaHubs(), Hub (+1 more)
+Cohesion: 0.17
+Nodes (17): alterarSenhaProprietario(), alterarStatusHub(), criarHub(), definirProprietarioHub(), editarHub(), getAdminOuGestor(), registrarAuditoria(), STATUS_VALIDOS (+9 more)
 
 ### Community 64 - "Community 64"
 Cohesion: 0.17
 Nodes (10): DARK_TEXT, gerarPdf(), GRAY_TEXT, GREEN, GREEN_BORDER, GREEN_LIGHT, GREEN_LIGHT2, OrcamentoData (+2 more)
-
-### Community 65 - "Community 65"
-Cohesion: 0.10
-Nodes (12): KPIWhatsApp, Switch, HeaderKPIs(), KPI_CONFIG, KpiConfig, Props, ModalNovaConversa(), Props (+4 more)
 
 ### Community 67 - "Community 67"
 Cohesion: 0.18
@@ -438,16 +449,16 @@ Cohesion: 0.47
 Nodes (3): AssistenteAtendimentosPage(), AtendimentoRow, TabelaAtendimentos()
 
 ### Community 74 - "Community 74"
-Cohesion: 0.09
-Nodes (8): getNovoStatus(), POST(), GET(), FormImportacao(), calcularPeriodo(), EvolutionResponse, RetryConfig, FormProduto()
+Cohesion: 0.11
+Nodes (6): getNovoStatus(), POST(), GET(), FormImportacao(), calcularPeriodo(), FormProduto()
 
 ### Community 86 - "Community 86"
-Cohesion: 0.40
-Nodes (4): BotaoBaixarPdf(), Props, OrcamentoPdfTemplate(), PreviewPdfPage()
+Cohesion: 0.24
+Nodes (7): BotaoBaixarPdf(), Props, ExportarPdfButton(), Props, OrcamentoPdfTemplate(), baixarOrcamentoPdf(), PreviewPdfPage()
 
 ### Community 108 - "Community 108"
-Cohesion: 0.24
-Nodes (9): SidebarMobile(), Perm, Props, Sidebar(), ItemNavegacao, navegacao, navegacaoParaPerfil(), PERFIS_LEGADOS (+1 more)
+Cohesion: 0.25
+Nodes (13): buscarContatoPorTelefone(), buscarContatoPorTelefone(), classificarUrgencia(), contatoCache, normalizarTelefone(), obterConfiguracao(), POST(), verifyHmacSignature() (+5 more)
 
 ### Community 109 - "Community 109"
 Cohesion: 0.32
@@ -462,56 +473,52 @@ Cohesion: 0.10
 Nodes (20): CardKPI(), Props, DadoEtapa, GraficoDealsPorEtapa(), Props, CORES, DadoOrigem, GraficoLeadsPorOrigem() (+12 more)
 
 ### Community 113 - "Community 113"
-Cohesion: 0.24
-Nodes (8): Props, BadgeStatusOrcamento(), CONFIG, OrcamentoSimplificado(), OrcamentoSimplificadoProps, OrcamentoLista, Props, QuoteStatus
+Cohesion: 0.10
+Nodes (22): EditarOrcamentoPage(), AcoesOrcamento(), OrcamentoDetalhePage(), canEditQuote(), AcoesOrcamentoDetalhe(), Props, AcoesWrapperProps, BadgeStatusOrcamento() (+14 more)
 
 ### Community 114 - "Community 114"
-Cohesion: 0.18
-Nodes (8): ChatHeaderInfo, MensagemInicial, Props, STATUS_BADGE, ACCEPTED_TYPES, FormEnvioMensagem(), Props, ThreadMensagens()
+Cohesion: 0.15
+Nodes (8): ACCEPTED_TYPES, FormEnvioMensagem(), Props, Props, SeletorRespostaRapida(), Tela, Template, Variaveis
 
 ### Community 115 - "Community 115"
-Cohesion: 0.16
-Nodes (12): alterarSenhaUsuario(), alternarStatusUsuario(), atribuirFuncao(), criarUsuario(), excluirUsuarioDefinitivo(), FuncaoOpcao, ListaUsuarios(), NOTA_PERFIL (+4 more)
+Cohesion: 0.21
+Nodes (8): alternarStatusUsuario(), FuncaoOpcao, ListaUsuarios(), NOTA_PERFIL, UsuarioLinha, ModalAlterarSenha(), ModalNovoUsuario(), UsuariosPage()
 
 ### Community 116 - "Community 116"
 Cohesion: 0.24
 Nodes (8): excluirFuncao(), FuncaoLista, FuncaoPayload, listarFuncoes(), PermItem, salvarFuncao(), FuncoesPage(), FuncoesGerenciar()
 
 ### Community 117 - "Community 117"
-Cohesion: 0.07
-Nodes (31): formatarMoeda(), BadgeStatusPedido(), STATUS_CONFIG, EditarPedidoProps, ModalEditarPedido(), ETAPAS, TimelineStatus(), BotoesExportar() (+23 more)
+Cohesion: 0.08
+Nodes (27): formatarMoeda(), FichaProduto(), OrcamentoSimplificado(), ModalEditarPedido(), BotoesExportar(), DadosFornecedor, DadosFunil, DadosLeadsSemana (+19 more)
 
 ### Community 118 - "Community 118"
-Cohesion: 0.23
-Nodes (12): definirResponsavelOperacional(), getProprietario(), limparMidiaAntiga(), monitorarUsoMidia(), verificarSaudeInstancias(), limparMidiaAntiga(), monitorarUsoMidia(), verificarSaudeInstancias() (+4 more)
+Cohesion: 0.20
+Nodes (14): limparMidiaAntiga(), monitorarUsoMidia(), verificarSaudeInstancias(), limparMidiaAntiga(), monitorarUsoMidia(), verificarSaudeInstancias(), POST(), ProdutosPage() (+6 more)
 
 ### Community 119 - "Community 119"
-Cohesion: 0.50
-Nodes (8): alterarSenhaProprietario(), alterarStatusHub(), criarHub(), definirProprietarioHub(), editarHub(), getAdminOuGestor(), registrarAuditoria(), STATUS_VALIDOS
+Cohesion: 0.26
+Nodes (8): EditarOrcamentoHubPage(), num(), STATUS_EDITAVEIS, ClienteOpc, FormOrcamentoHub(), InicialOrcamentoHub, ItemState, PortfolioOpc
 
 ### Community 120 - "Community 120"
-Cohesion: 0.39
-Nodes (6): NameSource, obterNomeContato(), ResolvedName, resolverNomeContato(), normalizarParaBusca(), telefonesIguais()
+Cohesion: 0.21
+Nodes (9): POST(), EvolutionResponse, RetryConfig, backfillNomesConversas(), NameSource, normalizarTelefoneParaComparacao(), obterNomeContato(), ResolvedName (+1 more)
 
 ### Community 121 - "Community 121"
-Cohesion: 0.29
-Nodes (7): ConversaResumo, FiltrosConversa, listarConversas(), ListarConversasOptions, resolverInstanciasPermitidas(), Conversation, WhatsappInstance
+Cohesion: 0.18
+Nodes (9): Camada, ConferenciaCamada, DiagnosticoReceita, OrientacaoOperacional, ResultadoMvp, Pendencia, StatusAnalise, ACAO_POR_MOTIVO (+1 more)
 
 ### Community 122 - "Community 122"
-Cohesion: 0.38
-Nodes (6): buildTelefonePatterns(), isValidName(), NameSource, ResolvedNameConversa, resolverNomeConversa(), ResolverNomeConversaInput
-
-### Community 123 - "Community 123"
-Cohesion: 0.50
-Nodes (4): BotaoExcluirPedido(), FiltrosPedidos(), calcularPeriodo(), PedidosPage()
+Cohesion: 0.24
+Nodes (10): buscarConfig(), buscarVendedoresElegiveis(), CARGOS_ELEGÍVEIS, ConfigDistribuicao, distribuirLead(), filtrarPorLimite(), selecionarPorCarga(), selecionarRotativo() (+2 more)
 
 ### Community 124 - "Community 124"
 Cohesion: 0.40
 Nodes (4): Deal, Lead, main(), MessageCount
 
 ### Community 125 - "Community 125"
-Cohesion: 0.50
-Nodes (4): TotaisCliente, formatarMoeda(), PainelCliente(), Props
+Cohesion: 0.18
+Nodes (10): checklistTirzepatida, diagnostico_1, entrada(), extracaoBoa(), mapear_checklist_1, motor_regras_1, node_test_1, orcamentoBase (+2 more)
 
 ### Community 126 - "Community 126"
 Cohesion: 0.17
@@ -525,25 +532,69 @@ Nodes (3): atualizarIdentidadeHub(), getProprietario(), IdentidadeHub
 Cohesion: 0.50
 Nodes (3): Instancia, Props, ResultadoBusca
 
+### Community 129 - "Community 129"
+Cohesion: 0.29
+Nodes (10): ChecklistItem, ResultadoConferencia, conferir(), DIACRITICOS, itensBatemPorNome(), nomesBatem(), norm(), parseDataDias() (+2 more)
+
+### Community 130 - "Community 130"
+Cohesion: 0.33
+Nodes (9): apiFetch(), apiHeaders(), deletarInstancia(), EstadoConexao, getConfig(), obterEstadoConexao(), excluirInstanciaSegura(), getSoAdmin() (+1 more)
+
+### Community 131 - "Community 131"
+Cohesion: 0.38
+Nodes (8): criarInstancia(), obterQRCode(), GET(), adicionarInstancia(), excluirInstancia(), fetchVendedores(), getSoAdmin(), verificarQRCode()
+
+### Community 132 - "Community 132"
+Cohesion: 0.20
+Nodes (8): diagnostico_1, mock_1, motor_regras_1, node_test_1, schema_extracao_1, strict_1, checklist, orcamento
+
+### Community 133 - "Community 133"
+Cohesion: 0.56
+Nodes (8): adicionarObservacao(), atribuirResponsavel(), converterLeadEmContato(), criarLead(), descartarLead(), editarLead(), getUsuarioEOrg(), registrarAtividade()
+
+### Community 134 - "Community 134"
+Cohesion: 0.33
+Nodes (8): AdminClient, criarOrcamentoHub(), DadosOrcamentoHub, editarOrcamentoHub(), getHubUser(), ItemOrcamentoHub, STATUS_EDITAVEIS, validarECalcular()
+
+### Community 135 - "Community 135"
+Cohesion: 0.39
+Nodes (8): conferir(), DIACRITICOS, itensBatemPorNome(), nomesBatem(), norm(), parseDataDias(), PENALIDADE_BASE, vazio()
+
+### Community 136 - "Community 136"
+Cohesion: 0.33
+Nodes (5): OrcamentosPage(), SearchParams, TabelaOrcamentos(), Paginacao(), Props
+
+### Community 137 - "Community 137"
+Cohesion: 0.33
+Nodes (3): CAMPOS_EXTRACAO, PromptExtracao, ExtracaoInvalida
+
+### Community 139 - "Community 139"
+Cohesion: 0.40
+Nodes (4): AdicionarInstanciaButton(), Props, ModalNovaInstancia(), Props
+
+### Community 140 - "Community 140"
+Cohesion: 0.50
+Nodes (3): PROXIMO_LABEL, STATUS_LABELS, TRANSICOES_CORRECAO
+
 ## Knowledge Gaps
-- **576 isolated node(s):** `node_test_1`, `strict_1`, `motor_regras_1`, `resolver_checklist_1`, `diagnostico_1` (+571 more)
+- **606 isolated node(s):** `node_test_1`, `strict_1`, `motor_regras_1`, `resolver_checklist_1`, `diagnostico_1` (+601 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **20 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **26 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `createClient()` connect `Autenticação e Listagens (Hubs/Fornecedores)` to `Fornecedores e Importação de Produtos`, `Pipeline de Deals (Kanban)`, `Ações de Orçamento`, `Modais e Diálogos (UI)`, `Conversas e Painel do Cliente`, `Componentes UI (Dropdown/Card)`, `Páginas de Orçamento e Botões PDF`, `Painel de KPIs e Gráficos`, `Botões e Modais de Negociação`, `Gestão de Hubs de Saúde`, `Fluxo de Status de Pedidos`, `Ações de Conversa (Tags/Templates)`, `Página de Conversa e Telefone`, `Listagem de Leads e Orçamentos`, `Ações de Tarefas`, `Detalhe de Orçamento e PDF`, `Auth Provider e Hooks`, `Cache do WhatsApp`, `Edição e Listagem de Contatos`, `Community 38`, `Disponibilidade e Header`, `Community 42`, `Community 44`, `Layout Raiz e Autenticação`, `Gestão de Modelos`, `Community 47`, `Community 48`, `Configuração de Etapas do Pipeline`, `Community 50`, `Gerador de PDF de Orçamento`, `Community 54`, `Community 57`, `Rotas de Impressão e Browser`, `Relatórios de WhatsApp`, `Configuração de Distribuição`, `Arquivamento de Conversas`, `Gestão de Empresa`, `Community 73`, `Community 74`, `Community 86`, `Community 109`, `Community 110`, `Community 112`, `Community 115`, `Community 116`, `Community 117`, `Community 118`, `Community 119`, `Community 120`, `Community 121`, `Community 122`, `Community 123`, `Community 126`, `Community 127`?**
-  _High betweenness centrality (0.188) - this node is a cross-community bridge._
-- **Why does `Button()` connect `Gerenciador de Instâncias WhatsApp` to `Ações de Usuários e Contatos`, `Fornecedores e Importação de Produtos`, `Community 128`, `Autenticação e Listagens (Hubs/Fornecedores)`, `Login e Formulário de Contato`, `Ações de Orçamento`, `Modais e Diálogos (UI)`, `Conversas e Painel do Cliente`, `Componentes UI (Dropdown/Card)`, `Páginas de Orçamento e Botões PDF`, `Painel de KPIs e Gráficos`, `Botões e Modais de Negociação`, `Gestão de Hubs de Saúde`, `Ações de Conversa (Tags/Templates)`, `Página de Conversa e Telefone`, `Listagem de Conversas WhatsApp`, `Listagem de Leads e Orçamentos`, `Ações de Tarefas`, `Community 25`, `Detalhe de Orçamento e PDF`, `Community 28`, `Auth Provider e Hooks`, `Config Avançada de WhatsApp`, `Itens da Caixa de Entrada`, `Detalhe de Contato e Timeline`, `Community 37`, `Community 38`, `Sidebar Mobile e Sheet`, `Community 43`, `Community 44`, `Gestão de Modelos`, `Community 47`, `Community 48`, `Configuração de Etapas do Pipeline`, `Gerador de PDF de Orçamento`, `Community 53`, `Community 54`, `Community 55`, `Community 57`, `Configuração de Distribuição`, `Community 65`, `Community 67`, `Community 73`, `Community 74`, `Community 86`, `Community 109`, `Community 110`, `Community 113`, `Community 114`, `Community 115`, `Community 117`, `Community 125`, `Community 126`?**
+- **Why does `createClient()` connect `Autenticação e Listagens (Hubs/Fornecedores)` to `Fornecedores e Importação de Produtos`, `Community 130`, `Community 131`, `Pipeline de Deals (Kanban)`, `Community 133`, `Community 134`, `Ações de Orçamento`, `Modais e Diálogos (UI)`, `Community 136`, `Componentes UI (Dropdown/Card)`, `Páginas de Orçamento e Botões PDF`, `Conversas e Painel do Cliente`, `Painel de KPIs e Gráficos`, `Community 143`, `Gestão de Hubs de Saúde`, `Fluxo de Status de Pedidos`, `Botões e Modais de Negociação`, `Página de Conversa e Telefone`, `Ações de Conversa (Tags/Templates)`, `Listagem de Leads e Orçamentos`, `Ações de Tarefas`, `Detalhe de Orçamento e PDF`, `Auth Provider e Hooks`, `Community 37`, `Community 38`, `Disponibilidade e Header`, `Community 42`, `Community 44`, `Layout Raiz e Autenticação`, `Gestão de Modelos`, `Community 47`, `Community 48`, `Configuração de Etapas do Pipeline`, `Community 50`, `Gerador de PDF de Orçamento`, `Community 54`, `Community 57`, `Rotas de Impressão e Browser`, `Relatórios de WhatsApp`, `Configuração de Distribuição`, `Arquivamento de Conversas`, `Gestão de Empresa`, `Community 73`, `Community 74`, `Community 86`, `Community 109`, `Community 110`, `Community 112`, `Community 113`, `Community 115`, `Community 116`, `Community 117`, `Community 118`, `Community 119`, `Community 120`, `Community 122`, `Community 123`, `Community 126`, `Community 127`?**
+  _High betweenness centrality (0.200) - this node is a cross-community bridge._
+- **Why does `Button()` connect `Login e Formulário de Contato` to `Ações de Usuários e Contatos`, `Fornecedores e Importação de Produtos`, `Community 128`, `Pipeline de Deals (Kanban)`, `Autenticação e Listagens (Hubs/Fornecedores)`, `Community 136`, `Modais e Diálogos (UI)`, `Ações de Orçamento`, `Componentes UI (Dropdown/Card)`, `Páginas de Orçamento e Botões PDF`, `Community 140`, `Painel de KPIs e Gráficos`, `Botões e Modais de Negociação`, `Gestão de Hubs de Saúde`, `Fluxo de Status de Pedidos`, `Community 139`, `Página de Conversa e Telefone`, `Listagem de Conversas WhatsApp`, `Listagem de Leads e Orçamentos`, `Ações de Tarefas`, `Detalhe de Orçamento e PDF`, `Community 28`, `Auth Provider e Hooks`, `Config Avançada de WhatsApp`, `Edição e Listagem de Contatos`, `Itens da Caixa de Entrada`, `Detalhe de Contato e Timeline`, `Gerenciador de Instâncias WhatsApp`, `Community 37`, `Community 38`, `Sidebar Mobile e Sheet`, `Community 43`, `Community 44`, `Gestão de Modelos`, `Community 47`, `Community 48`, `Gerador de PDF de Orçamento`, `Community 53`, `Community 54`, `Community 55`, `Community 57`, `Configuração de Distribuição`, `Community 65`, `Community 67`, `Community 73`, `Community 74`, `Community 86`, `Community 109`, `Community 110`, `Community 113`, `Community 114`, `Community 115`, `Community 117`, `Community 119`, `Community 126`?**
   _High betweenness centrality (0.097) - this node is a cross-community bridge._
-- **Why does `cn()` connect `Listagem de Conversas WhatsApp` to `Edição e Listagem de Contatos`, `Ações de Usuários e Contatos`, `Community 65`, `Detalhe de Contato e Timeline`, `Gerenciador de Instâncias WhatsApp`, `Community 38`, `Login e Formulário de Contato`, `Sidebar Mobile e Sheet`, `Community 41`, `Community 42`, `Community 108`, `Community 50`, `Community 117`, `Community 118`, `Community 55`, `Community 53`, `Ações de Tarefas`, `Config Avançada de WhatsApp`?**
-  _High betweenness centrality (0.043) - this node is a cross-community bridge._
+- **Why does `cn()` connect `Listagem de Conversas WhatsApp` to `Ações de Usuários e Contatos`, `Fornecedores e Importação de Produtos`, `Pipeline de Deals (Kanban)`, `Login e Formulário de Contato`, `Componentes UI (Dropdown/Card)`, `Fluxo de Status de Pedidos`, `Ações de Tarefas`, `Config Avançada de WhatsApp`, `Edição e Listagem de Contatos`, `Detalhe de Contato e Timeline`, `Gerenciador de Instâncias WhatsApp`, `Community 38`, `Community 42`, `Layout Raiz e Autenticação`, `Community 50`, `Community 53`, `Community 55`, `Community 65`, `Community 117`, `Community 118`?**
+  _High betweenness centrality (0.052) - this node is a cross-community bridge._
 - **What connects `node_test_1`, `strict_1`, `motor_regras_1` to the rest of the system?**
-  _576 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _606 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Fornecedores e Importação de Produtos` be split into smaller, more focused modules?**
+  _Cohesion score 0.07801418439716312 - nodes in this community are weakly interconnected._
 - **Should `Gestão de Instâncias WhatsApp (Seguras)` be split into smaller, more focused modules?**
   _Cohesion score 0.09090909090909091 - nodes in this community are weakly interconnected._
 - **Should `Pipeline de Deals (Kanban)` be split into smaller, more focused modules?**
-  _Cohesion score 0.13333333333333333 - nodes in this community are weakly interconnected._
-- **Should `Modais de Leads e Tarefas` be split into smaller, more focused modules?**
-  _Cohesion score 0.06901960784313725 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10666666666666667 - nodes in this community are weakly interconnected._

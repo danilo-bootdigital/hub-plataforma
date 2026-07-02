@@ -29,10 +29,13 @@ export function podeVer(perm: PermissoesResolvidas | null | undefined, modulo: s
   return (perm.permissoes?.[modulo] ?? []).includes('visualizar')
 }
 
+// Espelha funcao_permissoes.chk_acao (migration 059 adicionou 'conferir'/'aprovar').
+export type AcaoRbac = 'visualizar' | 'criar' | 'editar' | 'excluir' | 'conferir' | 'aprovar'
+
 export function podeAcao(
   perm: PermissoesResolvidas | null | undefined,
   modulo: string,
-  acao: 'visualizar' | 'criar' | 'editar' | 'excluir'
+  acao: AcaoRbac
 ): boolean {
   if (!perm) return true
   if (perm.total) return true

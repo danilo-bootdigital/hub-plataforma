@@ -2145,8 +2145,8 @@
     "semantic_hash": ""
   },
   "lib/rbac.ts": {
-    "mtime": 1782909687.9521296,
-    "ast_hash": "d55f80f1234e349273ac7197432706ec",
+    "mtime": 1783004495.3630848,
+    "ast_hash": "af83d1183d87f65557b87339947b6a47",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/funcoes/actions.ts": {
@@ -2365,7 +2365,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/package.json": {
-    "mtime": 1783000709.6304169,
+    "mtime": 1783004432.4562573,
     "ast_hash": "95b08bc3062cdc4b0334fa9be037e557",
     "semantic_hash": ""
   },
@@ -2380,8 +2380,8 @@
     "semantic_hash": ""
   },
   "lib/conferencia/__tests__/motor-regras.test.ts": {
-    "mtime": 1782995639.7232268,
-    "ast_hash": "48683f2bf5b358bec4f237153368ea90",
+    "mtime": 1783004357.559004,
+    "ast_hash": "07e15c0a67d1c1cc47b67a586e0b6aca",
     "semantic_hash": ""
   },
   "lib/conferencia/motor-regras.ts": {
@@ -2440,52 +2440,52 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js": {
-    "mtime": 1783000709.5104556,
-    "ast_hash": "126b2e131c8277d586aeec83b94a154c",
+    "mtime": 1783004432.332017,
+    "ast_hash": "fc79628753746dd3ab9190d6b3d41d72",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/diagnostico.js": {
-    "mtime": 1783000709.4729207,
+    "mtime": 1783004432.2876308,
     "ast_hash": "5ea24105facb28e452350557fa18379c",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/mapear-checklist.js": {
-    "mtime": 1783000709.4760664,
+    "mtime": 1783004432.2906806,
     "ast_hash": "34df1160f09a44ee78a8d1f50bf33891",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/motor-regras.js": {
-    "mtime": 1783000709.490786,
+    "mtime": 1783004432.3040588,
     "ast_hash": "ef3ce5ddec65f2e56a7f00bf035c1eea",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/resolver-checklist.js": {
-    "mtime": 1783000709.4927034,
+    "mtime": 1783004432.3080814,
     "ast_hash": "d548dcd48788531c2dc0856bf4d8f08f",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/tipos.js": {
-    "mtime": 1783000709.4619317,
+    "mtime": 1783004432.274783,
     "ast_hash": "e5242a72d0a2ba687aa9e3006b57a65e",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/__tests__/extrator.test.js": {
-    "mtime": 1783000709.5315037,
+    "mtime": 1783004432.3514059,
     "ast_hash": "6e2b694f19dd8fee1cb7ea97fa3c08ae",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/provedores/mock.js": {
-    "mtime": 1783000709.523295,
+    "mtime": 1783004432.3457751,
     "ast_hash": "a22ce2e93e402f6a40022f63c29d7153",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/schema-extracao.js": {
-    "mtime": 1783000709.5163813,
+    "mtime": 1783004432.3393576,
     "ast_hash": "fd19ab98516a9aeaebf041bdee9f00c4",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/tipos.js": {
-    "mtime": 1783000709.5171347,
+    "mtime": 1783004432.3407705,
     "ast_hash": "2a4e7dac578b1592c5b287ba8c2c9bd2",
     "semantic_hash": ""
   },
@@ -2517,6 +2517,41 @@
   "lib/ia/tipos.ts": {
     "mtime": 1783000438.2747042,
     "ast_hash": "ae500bcafbbf06d3c78a29a6def69dc0",
+    "semantic_hash": ""
+  },
+  ".tmp-conferencia/conferencia/persistencia.js": {
+    "mtime": 1783004432.3066523,
+    "ast_hash": "668db06c4329a65eacad4352ddfc4c9c",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/orcamentos/actions-conferencia.ts": {
+    "mtime": 1783004135.94325,
+    "ast_hash": "4fd2fb3abb5f4c354c0c8addeb213627",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/expand_receita_conferencia_mvp5.sql": {
+    "mtime": 1783004339.1714463,
+    "ast_hash": "c11a069aa5cbbbfc89107d33aca6d475",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/rollback_receita_conferencia_mvp5.sql": {
+    "mtime": 1783004339.1785092,
+    "ast_hash": "bce5c53ec89aa75a76cf99951d5dd29f",
+    "semantic_hash": ""
+  },
+  "lib/conferencia/persistencia.ts": {
+    "mtime": 1783004091.8734386,
+    "ast_hash": "f74a1816485a61e1a512d4e73b3fbb46",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/059_receita_conferencia_status_rbac.sql": {
+    "mtime": 1783004160.0239542,
+    "ast_hash": "c11a069aa5cbbbfc89107d33aca6d475",
+    "semantic_hash": ""
+  },
+  "apresentacao-stinpharma.html": {
+    "mtime": 1783004379.282542,
+    "ast_hash": "cf31571d17ed2e6aa89d2f0ee16f2a98",
     "semantic_hash": ""
   }
 }

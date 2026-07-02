@@ -4,6 +4,7 @@ import { conferir } from '../motor-regras'
 import { resolverChecklist } from '../resolver-checklist'
 import { montarDiagnostico } from '../diagnostico'
 import { mapChecklistRows } from '../mapear-checklist'
+import { montarLinhaConferencia, montarPendencias, resumoQuoteReceita } from '../persistencia'
 import type { Checklist, EntradaMotor, ExtracaoReceita, OrcamentoContexto } from '../tipos'
 
 // --- Fixture: checklist de Tirzepatida (DEC-019 §9), escopo produto ---
@@ -180,4 +181,32 @@ test('mapChecklistRows: monta Checklist ordenado por ordem, config passthrough',
   assert.deepEqual(cl.itens.map((i) => i.chave), ['a', 'b']) // ordenado; item de outro checklist ignorado
   assert.equal(cl.itens[0].config.regex, 'x')
   assert.equal(cl.itens[0].motivo, 'crm_uf_ausente')
+})
+
+// ---- Persistência (mapper puro; a server action só faz os inserts) ----
+
+test('montarLinhaConferencia mapeia status/score/confianca/extracao_json', () => {
+  const ext = extracaoBoa()
+  const resultado = conferir(entrada())
+  const linha = montarLinhaConferencia(ext, resultado, {
+    organization_id: 'org1', quote_receita_id: 'qr1', quote_id: 'q1',
+    checklist_id: 'c1', checklist_versao: 1, provedor_ia: 'claude', modelo_ia: 'claude-opus-4-8',
+    prompt_versao: 'extracao/v1', criado_por: 'u1',
+  })
+  assert.equal(linha.status_analise, resultado.status)
+  assert.equal(linha.score, resultado.score)
+  assert.equal(linha.confianca_extracao, ext.confianca)
+  assert.equal(linha.provedor_ia, 'claude')
+  assert.ok(linha.extracao_json.campos && Array.isArray(linha.extracao_json.itens))
+  assert.equal(linha.provedor_ocr, null) // default
+})
+
+test('montarPendencias e resumoQuoteReceita', () => {
+  const resultado = conferir(entrada({ campos: { crm_uf: '' } }))
+  const pend = montarPendencias(resultado)
+  assert.equal(pend.length, resultado.pendencias.length)
+  assert.ok(pend.some((p) => p.motivo === 'crm_uf_ausente'))
+  const resumo = resumoQuoteReceita(montarDiagnostico(resultado))
+  assert.equal(resumo.status_fluxo, 'em_conferencia')
+  assert.equal(resumo.status_analise_ia, resultado.status)
 })
