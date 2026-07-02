@@ -216,7 +216,7 @@
 - **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV).
 - **Ambiente:** HUB DEV. Seed `058_seed_checklists_receita.sql` **aplicada via SQL Editor**. App: build `build:hubdev` OK.
 - **Código (puro, `lib/conferencia/`):** `diagnostico.ts` (`montarDiagnostico()` → **Diagnóstico da Receita** estruturado: `resultado`/`score`/`conferenciaDocumental`/`conferenciaComercial`/`orientacaoOperacional`; documental vs comercial; frases de ação por motivo; termos MVP). `mapear-checklist.ts` (`mapChecklistRows()` — linhas do BD → `Checklist`). Motor da S2 **intocado**.
-- **Banco (seed):** **Checklist Genérico** (escopo `organizacao`, 10 itens) semeado e verificado. **Checklist Tirzepatida** (escopo `produto`) **não semeado** — não há produto "tirzepatida" no HUB DEV; seed idempotente cria quando o produto existir.
+- **Banco (seed):** **Checklist Genérico** (escopo `organizacao`, 10 itens) e **Checklist Tirzepatida** (escopo `produto`, 11 itens, produto `5193483c…`) semeados e verificados. **Lógica da seed endurecida** (não pontual): skip de produto ausente vira **WARNING** (não NOTICE silencioso) + **relatório final** do estado pós-seed; mantém idempotente e self-healing. (Causa do skip inicial: a seed não foi re-executada após o cadastro do produto; a lógica/ILIKE estava correta.)
 - **Testes:** `node:test` **16/16** (motor + diagnóstico estruturado + mapeamento), com **JSON simulado** (sem IA).
 - **Estruturas preservadas:** sem IA, sem UI, sem RBAC; checklists **no banco** (não no código); DEC-018/019 intactas.
 - **Situação:** ✔ **MVP-3 concluída** (Genérico end-to-end; Tirzepatida pendente do produto). Próxima: **MVP-4 — Camada de IA** (aguardando autorização).

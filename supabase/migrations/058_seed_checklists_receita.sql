@@ -50,7 +50,7 @@ BEGIN
      LIMIT 1;
 
     IF prod_tz IS NULL THEN
-      RAISE NOTICE 'Org %: produto Tirzepatida não encontrado — checklist Tirzepatida NAO semeado (vincular quando o produto existir)', org.id;
+      RAISE WARNING 'Org %: produto (nome ILIKE %%tirzepatida%%) NAO encontrado — checklist Tirzepatida NAO semeado. REEXECUTE esta seed apos cadastrar o produto (idempotente).', org.id;
     ELSIF NOT EXISTS (
       SELECT 1 FROM receita_checklists
        WHERE organization_id = org.id AND nome = 'Checklist Tirzepatida'
@@ -76,5 +76,16 @@ BEGIN
       RAISE NOTICE 'Org %: Checklist Tirzepatida semeado (produto %)', org.id, prod_tz;
     END IF;
 
+  END LOOP;
+
+  -- Relatório final (evita skip silencioso): estado após a seed.
+  FOR org IN
+    SELECT c.nome AS nm, c.escopo AS esc, count(i.*) AS itens
+      FROM receita_checklists c
+      LEFT JOIN receita_checklist_itens i ON i.checklist_id = c.id
+     WHERE c.nome IN ('Checklist Genérico','Checklist Tirzepatida')
+     GROUP BY c.nome, c.escopo
+  LOOP
+    RAISE NOTICE 'pos-seed: % (%) — % itens', org.nm, org.esc, org.itens;
   END LOOP;
 END $$;
