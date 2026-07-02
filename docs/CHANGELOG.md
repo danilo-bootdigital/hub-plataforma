@@ -6,6 +6,15 @@
 
 ---
 
+## 2026-07-01 — Detalhe do Orçamento: layout operacional (foco nos itens)
+
+- **Objetivo:** tornar o detalhe do orçamento (`/orcamentos/[id]`) mais compacto e operacional, com a **tabela de itens como bloco principal** e o **valor total exibido uma única vez** (no resumo). Sem mudar sidebar, autenticação ou permissões; aba Receita preservada.
+- **Aplicação Web:**
+  - `app/(dashboard)/orcamentos/[id]/page.tsx` — cabeçalho compacto (mantém Voltar, título #, cliente, status e botões Enviar ao Cliente/Exportar PDF/Pré-visualizar/Editar); removida a linha de 4 cards (Valor Total, Responsável, Fornecedor) e o valor total do topo; no lugar, faixa fina **Criado em + Status**. Sub-select de itens ganhou `produto:products!product_id(apresentacao)` (aditivo, sem `select('*')`).
+  - `components/orcamentos/orcamento-detalhe.tsx` — reescrito: itens como bloco principal com **descrição completa sem truncamento** (`whitespace-pre-wrap`, coluna larga) e coluna **Apresentação** condicional (só quando há dado no cadastro); cards grandes de endereços/transportadora movidos para seção colapsável **"Dados adicionais"** (com Observações), discreta quando vazia; **Resumo Financeiro** compacto no rodapé (Subtotal/Frete/Desconto/Valor Total único). Padding vertical reduzido.
+- **Estruturas preservadas:** query pesada (só join aditivo de apresentação), PDF só por clique, legado `leads`/`suppliers`, schema; nenhuma mudança de dados.
+- **Observações:** build `build:hubdev` OK; graphify atualizado. Nota: em orçamentos do Hub a apresentação já vem concatenada na `descricao` na criação do item — a nova coluna Apresentação pode repetir esse texto (não sobrescrevemos a descrição, conforme requisito).
+
 ## 2026-07-01 — Receita no Orçamento: aba sob demanda + Storage (DEC-018)
 
 - **Objetivo:** adicionar a **Receita** ao detalhe do Orçamento como **aba com carregamento sob demanda**, sem refatorar a tela inteira nem o legado `leads`/`suppliers`. A Receita reúne o **modelo/rascunho** (gerado a partir dos itens) e a **receita assinada** anexada.

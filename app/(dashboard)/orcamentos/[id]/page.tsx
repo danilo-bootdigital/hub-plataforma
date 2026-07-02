@@ -2,7 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { notFound, redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ChevronLeft, Edit, User, Building2, Truck, MapPin, Calendar } from 'lucide-react'
+import { ChevronLeft, Edit, Calendar } from 'lucide-react'
 import { OrcamentoTabs } from '@/components/orcamentos/orcamento-tabs'
 import { BadgeStatusOrcamento } from '@/components/orcamentos/badge-status-orcamento'
 import { AcoesOrcamento } from './acoes-orcamento'
@@ -57,7 +57,8 @@ export default async function OrcamentoDetalhePage({ params }: { params: Promise
         preco_unitario,
         desconto_item,
         subtotal,
-        product_id
+        product_id,
+        produto:products!product_id(apresentacao)
       )
     `)
     .eq('id', id)
@@ -110,48 +111,30 @@ export default async function OrcamentoDetalhePage({ params }: { params: Promise
   // Dados do cliente para exibir no header
   const cliente = orcamento.lead ?? orcamento.contato
   const nomeCliente = cliente?.nome ?? 'Cliente não vinculado'
-  const telefoneCliente = (orcamento.lead as any)?.telefone ?? orcamento.contato?.telefone
-  const emailCliente = (orcamento.lead as any)?.email ?? orcamento.contato?.email
 
   return (
-    <div className="space-y-5">
-      {/* Header Premium */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
-        {/* Left: Back + Title */}
+    <div className="space-y-4">
+      {/* Header compacto */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-200">
+        {/* Left: Back + Title + Cliente */}
         <div className="space-y-1">
-          <Link href="/orcamentos" className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-emerald-600 transition-colors">
-            <ChevronLeft className="h-4 w-4" />
+          <Link href="/orcamentos" className="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-emerald-600 transition-colors">
+            <ChevronLeft className="h-3.5 w-3.5" />
             Voltar para Orçamentos
           </Link>
 
-          <div className="flex items-center gap-3 flex-wrap">
-            <h1 className="text-xl font-bold text-slate-900">
+          <div className="flex items-center gap-2.5 flex-wrap">
+            <h1 className="text-lg font-bold text-slate-900">
               Orçamento #{orcamento.numero}
             </h1>
             <BadgeStatusOrcamento status={orcamento.status} />
+            {cliente && (
+              <>
+                <span className="text-slate-300">•</span>
+                <span className="text-sm font-medium text-slate-700">{nomeCliente}</span>
+              </>
+            )}
           </div>
-
-          {/* Cliente Info Row */}
-          {cliente && (
-            <div className="flex items-center gap-2 text-sm text-slate-500">
-              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-[10px] font-semibold text-emerald-700">
-                {nomeCliente.charAt(0).toUpperCase()}
-              </div>
-              <span className="font-medium text-slate-700">{nomeCliente}</span>
-              {emailCliente && (
-                <>
-                  <span className="text-slate-300">•</span>
-                  <span>{emailCliente}</span>
-                </>
-              )}
-              {telefoneCliente && (
-                <>
-                  <span className="text-slate-300">•</span>
-                  <span>{telefoneCliente}</span>
-                </>
-              )}
-            </div>
-          )}
         </div>
 
         {/* Right: Actions */}
@@ -182,58 +165,19 @@ export default async function OrcamentoDetalhePage({ params }: { params: Promise
         </div>
       </div>
 
-      {/* Info Cards Row - Dados rápidos */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {/* Valor Total */}
-        <div className="rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm">
-          <div className="flex items-center gap-2.5 mb-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-50">
-              <span className="text-base font-bold text-emerald-600">R$</span>
-            </div>
-            <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">Valor Total</span>
-          </div>
-          <p className="text-xl font-bold text-slate-900">
-            {Number(orcamento.valor_total).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })}
-          </p>
-        </div>
-
-        {/* Data de Criação */}
-        <div className="rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm">
-          <div className="flex items-center gap-2.5 mb-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50">
-              <Calendar className="h-4 w-4 text-blue-600" />
-            </div>
-            <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">Criado em</span>
-          </div>
-          <p className="text-base font-semibold text-slate-700">
+      {/* Metadados compactos: Criado em + Status */}
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-lg border border-slate-200/80 bg-white px-4 py-2.5 text-sm">
+        <div className="flex items-center gap-2">
+          <Calendar className="h-4 w-4 text-slate-400" />
+          <span className="text-slate-500">Criado em</span>
+          <span className="font-medium text-slate-700">
             {new Date(orcamento.criado_em).toLocaleDateString('pt-BR')}
-          </p>
+          </span>
         </div>
-
-        {/* Responsável */}
-        <div className="rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm">
-          <div className="flex items-center gap-2.5 mb-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-purple-50">
-              <User className="h-4 w-4 text-purple-600" />
-            </div>
-            <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">Responsável</span>
-          </div>
-          <p className="text-base font-semibold text-slate-700 truncate">
-            {orcamento.responsavel?.nome ?? '—'}
-          </p>
-        </div>
-
-        {/* Fornecedor */}
-        <div className="rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm">
-          <div className="flex items-center gap-2.5 mb-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-50">
-              <Building2 className="h-4 w-4 text-amber-600" />
-            </div>
-            <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">Fornecedor</span>
-          </div>
-          <p className="text-base font-semibold text-slate-700 truncate">
-            {orcamento.fornecedor?.nome ?? '—'}
-          </p>
+        <span className="hidden sm:block h-4 w-px bg-slate-200" />
+        <div className="flex items-center gap-2">
+          <span className="text-slate-500">Status</span>
+          <BadgeStatusOrcamento status={orcamento.status} />
         </div>
       </div>
 
