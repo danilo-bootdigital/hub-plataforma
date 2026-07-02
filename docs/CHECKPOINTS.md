@@ -207,3 +207,17 @@
 - **Estruturas preservadas:** sem IA, sem persistência, sem UI, sem RBAC, sem mudança de schema; DEC-018/019 intactas.
 - **Situação:** ✔ **Sprint 2 concluída** e validada. Próxima: **Sprint 3 — Interface Administrativa** (aguardando autorização).
 - **Changelog Relacionado:** 2026-07-02 — Sprint 2 DEC-019 (motor de regras).
+
+## Checkpoint 019 — Conferência de Receita: Diagnóstico + checklists no banco (MVP-3 — DEC-019)
+
+- **Data:** 2026-07-02
+- **Git Commit:** `295db48` (código puro) + seed 058 (este commit de docs).
+- **Git Branch:** main
+- **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV).
+- **Ambiente:** HUB DEV. Seed `058_seed_checklists_receita.sql` **aplicada via SQL Editor**. App: build `build:hubdev` OK.
+- **Código (puro, `lib/conferencia/`):** `diagnostico.ts` (`montarDiagnostico()` → **Diagnóstico da Receita** estruturado: `resultado`/`score`/`conferenciaDocumental`/`conferenciaComercial`/`orientacaoOperacional`; documental vs comercial; frases de ação por motivo; termos MVP). `mapear-checklist.ts` (`mapChecklistRows()` — linhas do BD → `Checklist`). Motor da S2 **intocado**.
+- **Banco (seed):** **Checklist Genérico** (escopo `organizacao`, 10 itens) semeado e verificado. **Checklist Tirzepatida** (escopo `produto`) **não semeado** — não há produto "tirzepatida" no HUB DEV; seed idempotente cria quando o produto existir.
+- **Testes:** `node:test` **16/16** (motor + diagnóstico estruturado + mapeamento), com **JSON simulado** (sem IA).
+- **Estruturas preservadas:** sem IA, sem UI, sem RBAC; checklists **no banco** (não no código); DEC-018/019 intactas.
+- **Situação:** ✔ **MVP-3 concluída** (Genérico end-to-end; Tirzepatida pendente do produto). Próxima: **MVP-4 — Camada de IA** (aguardando autorização).
+- **Changelog Relacionado:** 2026-07-02 — MVP-3 DEC-019 (Diagnóstico + seed de checklists).

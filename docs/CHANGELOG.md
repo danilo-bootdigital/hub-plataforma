@@ -6,7 +6,13 @@
 
 ---
 
-## 2026-07-02 — Conferência de Receita: motor de regras (Sprint 2 — DEC-019)
+## 2026-07-02 — Conferência de Receita: Diagnóstico + checklists no banco (MVP-3 — DEC-019)
+
+- **Objetivo:** entregar regras + orientação + **Diagnóstico da Receita** funcionando com **JSON simulado** (sem IA), com os checklists vindo do **banco** (seed), não do código.
+- **Aplicação Web (`lib/conferencia/`):** `diagnostico.ts` — `montarDiagnostico()` produz o **objeto estruturado** (resultado/score/conferenciaDocumental/conferenciaComercial/orientacaoOperacional); separa documental × comercial; frases de ação por `motivo`; termos MVP (apta para conferência humana / necessita correção / …), nunca "validada". `mapear-checklist.ts` — `mapChecklistRows()` (linhas do BD → `Checklist`). Motor da S2 **intocado**.
+- **Banco (seed `058_seed_checklists_receita.sql`, aplicada via SQL Editor):** **Checklist Genérico** (escopo `organizacao`, 10 itens) — verificado. **Checklist Tirzepatida** (escopo `produto`) só é semeado quando existir o produto "tirzepatida" (seed idempotente); ainda não presente no HUB DEV. Artefatos: `hubdev/bootstrap/seed_checklists_receita.sql` (+ `rollback_`).
+- **Testes:** `node:test` **16/16** (motor + diagnóstico + mapeamento). Build `build:hubdev` OK. Commit `295db48` (código).
+- **Estruturas preservadas:** sem IA/UI/RBAC; checklists no banco (sem CRUD ainda); DEC-018/019 intactas. Sem deploy (integração é a MVP-5).
 
 - **Objetivo:** implementar o motor de regras determinístico da Conferência — **sem IA, sem persistência, sem UI**.
 - **Aplicação Web (`lib/conferencia/`):** `tipos.ts` (contrato puro entrada/saída); `resolver-checklist.ts` (resolução hierárquica Produto>Portfólio>Organização); `motor-regras.ts` (`conferir()`: pendências com `motivo` normalizado, `score` 0..100, `status_analise`; precedência ilegivel>precisa_de_revisao_humana>divergente_do_orcamento>pendencias_encontradas>sem_pendencias_aparentes; `hoje` injetado — sem `Date.now`; **nunca aprova**).
