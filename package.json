@@ -12,7 +12,8 @@
     "lint": "eslint .",
     "deploy:verify": "./scripts/verify-deploy-env.sh",
     "deploy:test": "./scripts/verify-deploy.sh",
-    "deploy:webhook": "./scripts/setup-webhook.sh"
+    "deploy:webhook": "./scripts/setup-webhook.sh",
+    "test:conferencia": "tsc -p tsconfig.conferencia.json && node -e \"require('fs').writeFileSync('.tmp-conferencia/package.json','{\\\"type\\\":\\\"commonjs\\\"}')\" && node --test .tmp-conferencia/__tests__/motor-regras.test.js"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.0",

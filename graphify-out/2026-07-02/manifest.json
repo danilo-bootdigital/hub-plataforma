@@ -1610,8 +1610,8 @@
     "semantic_hash": "02fc19ad21338c2ab820a70136310db4"
   },
   "types/database.ts": {
-    "mtime": 1782948044.5088303,
-    "ast_hash": "80220f242f989656918f609164479a07",
+    "mtime": 1782990031.167728,
+    "ast_hash": "542a851a25600e704537e4d4c91a2089",
     "semantic_hash": ""
   },
   "types/whatsapp-central.ts": {
@@ -2332,6 +2332,26 @@
   "supabase/migrations/056_orcamento_receitas.sql": {
     "mtime": 1782947873.4772758,
     "ast_hash": "a2cb3cf30b8345fe9ae29a2777aff718",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/expand_receita_conferencia.sql": {
+    "mtime": 1782989387.787529,
+    "ast_hash": "c13d0d4d39fbe5a0d420c64dea79187d",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/rollback_receita_conferencia.sql": {
+    "mtime": 1782990001.2304232,
+    "ast_hash": "b4d5260746d6cd78517dbeb4a6e96239",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/smoke_receita_conferencia.sql": {
+    "mtime": 1782990216.4878895,
+    "ast_hash": "fb5f8dec3e4af0418e2a73a54ae0820f",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/057_receita_conferencia.sql": {
+    "mtime": 1782989081.5292482,
+    "ast_hash": "c13d0d4d39fbe5a0d420c64dea79187d",
     "semantic_hash": ""
   }
 }
