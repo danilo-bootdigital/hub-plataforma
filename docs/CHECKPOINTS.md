@@ -169,3 +169,15 @@
 - **Banco:** `funcoes`, `funcao_permissoes`, `profiles.funcao_id`, índices, RLS habilitada sem policies; RPC `minhas_permissoes()`. Artefatos `hubdev/bootstrap/expand_rbac_funcoes.sql` (+ rollback).
 - **Situação:** ✔ Concluído (Expand) — smoke 9/9
 - **Observações:** fundação do RBAC oficial (DEC-015). Emenda a DEC-011. Aditivo puro (enum/RLS/dados intocados). Próximas fatias: Migrate (dados `vendedor→assistente` + Função padrão; menu/middleware/actions; telas Usuários/Funções; Criar Hub com Proprietário) e Contract (limpeza do enum).
+
+## Checkpoint 016 — Receita no Orçamento (aba sob demanda + Storage) — DEC-018
+
+- **Data:** 2026-07-01
+- **Git Commit:** `07d7019` (código da Receita ainda não commitado nesta fatia)
+- **Git Branch:** main
+- **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV / Homologação)
+- **Ambiente:** HUB DEV. **Migration `056_orcamento_receitas.sql` PENDENTE de aplicação via SQL Editor** (CLI linkado a projeto incorreto — aplicar manualmente). App: build `build:hubdev` OK.
+- **Banco (a aplicar):** `quote_receitas` (`texto_modelo`, `status_fluxo`, metadados de arquivo, validação; 1:N com `quotes`); índices `quote_id`/`status_fluxo`/`criado_em`/`organization_id`; RLS `get_organization_id()`; bucket **privado** `orcamento-receitas`; índices auxiliares `quotes(status)` e `quotes(criado_em)`.
+- **Aplicação Web:** aba **Receita** no detalhe do Orçamento com **carregamento sob demanda** (só monta ao abrir); aba "Orçamento" inalterada. Ações separadas (`actions-receita.ts`): `getReceitasDoOrcamento` (sem `select('*')`), `gerarModeloReceita`, `salvarRascunhoReceita`, `anexarReceitaAssinada` (upload Storage + só metadados no banco, rollback do arquivo em falha), `validarReceita`, `marcarReceitaEnviada`. Signed URL para download; upload via service role.
+- **Estruturas preservadas:** query pesada do detalhe, geração de PDF (só por clique), `leads`/`suppliers` (legado) e `quotes`/`quote_items` **intocados**; nenhum WhatsApp automático.
+- **Situação:** ⏳ Código pronto e com build OK — **aguardando aplicação da migration 056 no HUB DEV** e testes manuais da aba (ver Changelog/testes). A refatoração completa do detalhe (queries por aba, histórico paginado, pagamento) segue como trabalho futuro.

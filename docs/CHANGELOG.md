@@ -6,6 +6,16 @@
 
 ---
 
+## 2026-07-01 — Receita no Orçamento: aba sob demanda + Storage (DEC-018)
+
+- **Objetivo:** adicionar a **Receita** ao detalhe do Orçamento como **aba com carregamento sob demanda**, sem refatorar a tela inteira nem o legado `leads`/`suppliers`. A Receita reúne o **modelo/rascunho** (gerado a partir dos itens) e a **receita assinada** anexada.
+- **Banco (migration `056_orcamento_receitas.sql` — PENDENTE de aplicação no SQL Editor do HUB DEV):** tabela `quote_receitas` 1:N com `quotes` (`texto_modelo`, `status_fluxo` = rascunho/modelo_gerado/enviada/recebida/validada/rejeitada, `arquivo_path`/`arquivo_nome`/`arquivo_tipo`/`arquivo_tamanho`/`enviado_em`, validação); índices `quote_id`/`status_fluxo`/`criado_em`/`organization_id`; RLS `get_organization_id()`; bucket **privado** `orcamento-receitas`; índices auxiliares `quotes(status)` e `quotes(criado_em)`.
+- **Aplicação Web (arquivos):**
+  - **Criados:** `app/(dashboard)/orcamentos/actions-receita.ts` (ações separadas, sem `select('*')`); `components/orcamentos/receita-tab.tsx` (aba lazy: gerar modelo / editar / salvar rascunho / anexar assinada / validar / rejeitar); `components/orcamentos/orcamento-tabs.tsx` (wrapper de abas; Receita só monta ao abrir); `supabase/migrations/056_orcamento_receitas.sql`.
+  - **Alterados:** `app/(dashboard)/orcamentos/[id]/page.tsx` (troca mínima `OrcamentoDetalhe` → `OrcamentoTabs`; query e legado intocados); `types/database.ts` (`QuoteReceita`, `ReceitaStatusFluxo`).
+- **Estruturas preservadas:** query pesada do detalhe, geração de PDF **só por clique**, `leads`/`suppliers`, `quotes`/`quote_items`; sem WhatsApp automático; sem `select('*')` novo.
+- **Observações:** build `build:hubdev` OK; graphify atualizado. **Não aplicado no banco ainda** (aguarda SQL Editor). Sem deploy nesta fatia. Testes manuais e ajustes visuais **após** aplicar a migration no HUB DEV.
+
 ## 2026-07-01 — Orçamento do Hub por Portfólio (substitui fluxo Fornecedor) — DEC-013/014/016/017
 
 - **Objetivo:** a criação de orçamento passa a ser **fluxo do Hub, por Portfólio autorizado**, substituindo o fluxo antigo baseado em Fornecedor (DEC-014). Acesso restrito a **`proprietario_hub` e `assistente`** (Indústria e Cliente não criam).

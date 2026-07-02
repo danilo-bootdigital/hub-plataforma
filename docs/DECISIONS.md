@@ -242,3 +242,17 @@
 - **Impacto:** gating de import/cadastro/troca-de-Carteira para a Indústria; introdução do **responsável operacional por cliente** no Hub (distribuição); consolidação da visão Indústria "Clientes e Carteiras". Aplicação em telas + gates + auditoria (sem alterar a natureza de `carteiras`).
 - **Data:** 2026-07-01
 - **Status:** Aprovada / vigente
+
+## DEC-018 — Receita no Orçamento: aba com carregamento sob demanda + arquivo no Storage
+
+- **Descrição:** introduz a **Receita** como parte do detalhe do Orçamento, sob a diretriz de **performance por carga sob demanda**. A Receita é o registro que reúne o **modelo/rascunho** gerado a partir do orçamento **e** a **receita assinada** anexada. Novo `quote_receitas` em relação **1:N** com `quotes` (permite reenvio/versões). Decisões fixadas:
+  - **Aba sob demanda:** o detalhe do Orçamento passa a ter abas; a aba **Receita** só **monta e busca dados quando aberta** — nada de receita/anexo/histórico/pagamento é carregado no load inicial. A aba "Orçamento" mantém o conteúdo atual **inalterado**.
+  - **Fluxo (`status_fluxo`):** `rascunho → modelo_gerado → enviada → recebida → validada | rejeitada`. Ações **separadas**: gerar modelo (a partir dos itens), editar texto, salvar rascunho, anexar assinada, validar/rejeitar, marcar enviada.
+  - **Arquivo no Storage:** a receita assinada vai para o bucket **privado** `orcamento-receitas` (dado sensível); o banco guarda **apenas metadados** (`arquivo_path`, `arquivo_nome`, `arquivo_tipo`, `arquivo_tamanho`, `enviado_em`). Acesso somente via **service role + signed URL** (sem leitura pública).
+  - **Sem acoplamentos:** PDF continua **só por ação do usuário** (intocado); **nenhum** envio automático de WhatsApp; sem `select('*')` novo; **legado `leads`/`suppliers` intocado**.
+  - **Índices mínimos:** `quote_receitas(quote_id | status_fluxo | criado_em)` e, de brinde para a listagem, `quotes(status)` e `quotes(criado_em)`.
+- **Ajustes:** (1) migration `056_orcamento_receitas.sql` (tabela + índices + RLS `get_organization_id()` + bucket privado); (2) server actions dedicadas por ação (`actions-receita.ts`); (3) wrapper de abas + componente da aba Receita (lazy); (4) troca mínima no `page.tsx` do detalhe (sem alterar a query pesada existente — refatoração da tela fica para depois); (5) tipos `QuoteReceita`/`ReceitaStatusFluxo`.
+- **Motivo:** habilitar a Receita sem penalizar a abertura do orçamento (carga essencial primeiro; o resto sob demanda) e sem refatorar a tela inteira agora; manter dado sensível fora do banco e sob acesso restrito.
+- **Impacto:** aditivo puro (nova tabela/bucket/índices); nenhuma mudança em `quotes`/`quote_items` nem no legado. Aplicação no detalhe do Orçamento (abas) + Storage + RLS. A refatoração completa do detalhe (server queries por aba, histórico paginado, pagamento) permanece como trabalho futuro sob os mesmos requisitos.
+- **Data:** 2026-07-01
+- **Status:** Aprovada / vigente

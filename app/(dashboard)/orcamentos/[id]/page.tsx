@@ -3,7 +3,7 @@ import { notFound, redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ChevronLeft, Edit, User, Building2, Truck, MapPin, Calendar } from 'lucide-react'
-import { OrcamentoDetalhe } from '@/components/orcamentos/orcamento-detalhe'
+import { OrcamentoTabs } from '@/components/orcamentos/orcamento-tabs'
 import { BadgeStatusOrcamento } from '@/components/orcamentos/badge-status-orcamento'
 import { AcoesOrcamento } from './acoes-orcamento'
 import { ExportarPdfButton } from '@/components/orcamentos/exportar-pdf-button'
@@ -237,7 +237,7 @@ export default async function OrcamentoDetalhePage({ params }: { params: Promise
         </div>
       </div>
 
-      <OrcamentoDetalhe orcamento={orcamento} />
+      <OrcamentoTabs orcamento={orcamento} quoteId={id} />
     </div>
   )
 }

@@ -460,6 +460,34 @@ export type Quote = {
   atualizado_em: string
 }
 
+// Migration 056: Receita do orçamento (modelo/rascunho + arquivo assinado no Storage)
+export type ReceitaStatusFluxo =
+  | 'rascunho'
+  | 'modelo_gerado'
+  | 'enviada'
+  | 'recebida'
+  | 'validada'
+  | 'rejeitada'
+
+export type QuoteReceita = {
+  id: string
+  organization_id: string
+  quote_id: string
+  texto_modelo: string | null
+  status_fluxo: ReceitaStatusFluxo
+  arquivo_path: string | null
+  arquivo_nome: string | null
+  arquivo_tipo: string | null
+  arquivo_tamanho: number | null
+  enviado_em: string | null
+  validada_por: string | null
+  validada_em: string | null
+  validacao_comentario: string | null
+  criado_por: string | null
+  criado_em: string
+  atualizado_em: string
+}
+
 export type QuoteItem = {
   id: string
   quote_id: string
