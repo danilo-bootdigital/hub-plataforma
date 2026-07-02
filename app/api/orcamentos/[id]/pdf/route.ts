@@ -96,6 +96,8 @@ export async function GET(
         'Content-Type': 'application/pdf',
         'Content-Disposition': `attachment; filename="orcamento-${orcamento.numero}.pdf"`,
         'Content-Length': pdf.byteLength.toString(),
+        // Evita que o navegador sirva um PDF antigo em cache (GET cacheável).
+        'Cache-Control': 'no-store, max-age=0',
       },
     })
   } catch (error) {
