@@ -6,6 +6,14 @@
 
 ---
 
+## 2026-07-02 — Conferência de Receita: motor de regras (Sprint 2 — DEC-019)
+
+- **Objetivo:** implementar o motor de regras determinístico da Conferência — **sem IA, sem persistência, sem UI**.
+- **Aplicação Web (`lib/conferencia/`):** `tipos.ts` (contrato puro entrada/saída); `resolver-checklist.ts` (resolução hierárquica Produto>Portfólio>Organização); `motor-regras.ts` (`conferir()`: pendências com `motivo` normalizado, `score` 0..100, `status_analise`; precedência ilegivel>precisa_de_revisao_humana>divergente_do_orcamento>pendencias_encontradas>sem_pendencias_aparentes; `hoje` injetado — sem `Date.now`; **nunca aprova**).
+- **Testes:** `node:test` **11/11** (fixtures do checklist de Tirzepatida). Runner sem dependência nova: `tsc -p tsconfig.conferencia.json` → `.tmp-conferencia/` (gitignored) + `node --test`; script `npm run test:conferencia`.
+- **Estruturas preservadas:** nenhuma mudança de banco/RBAC/UI; DEC-018/019 intactas; `package.json` só ganhou o script de teste.
+- **Validação:** testes 11/11 + build `build:hubdev` OK. Commit `6f59f52`. Sem deploy (lib sem superfície de runtime na app ainda — integração é a Sprint 6).
+
 ## 2026-07-02 — Conferência de Receita: infraestrutura (Sprint 1 — DEC-019)
 
 - **Objetivo:** entregar a base persistente do módulo de Conferência Operacional de Receita (Expand), sem IA/motor de regras/UI/permissões.

@@ -219,6 +219,7 @@
 - **Riscos:** calibração das faixas score→status; **projeto sem test runner** (decidir `vitest`/script node).
 - **Dependências:** S1 (tipos/enums); DEC-019 §9.
 - **Complexidade:** Alta · **Risco:** Médio · **Duração:** 3–4 dias · **Ordem obrigatória:** 2ª (pode paralelizar com S1 após os tipos).
+- **Resultado:** ✔ **Concluída (2026-07-02).** `lib/conferencia/` (tipos + resolver + motor); testes `node:test` 11/11 (fixtures Tirzepatida); runner sem dependência nova (`npm run test:conferencia`). Commit `6f59f52`; Checkpoint 018. Decisão do test runner: **Node nativo `node --test` + `tsc`** (sem vitest/jest).
 
 ### SPRINT 3 — Interface Administrativa (CRUD de checklists)
 - **Objetivo:** cadastrar/gerir checklists, regras, obrigatoriedades, pesos e associação de motivos.

@@ -194,3 +194,16 @@
 - **Estruturas preservadas:** DEC-018 intocada (aditivo puro); `chk_acao` do RBAC intocado; sem IA/motor de regras/UI/permissões nesta fatia.
 - **Situação:** ✔ **Sprint 1 (Expand) concluída** e validada. Próxima: **Sprint 2 — Motor de Regras** (aguardando autorização).
 - **Changelog Relacionado:** 2026-07-02 — Sprint 1 DEC-019 (infraestrutura da Conferência).
+
+## Checkpoint 018 — Conferência de Receita: Motor de Regras (Sprint 2 — DEC-019)
+
+- **Data:** 2026-07-02
+- **Git Commit:** `6f59f52`
+- **Git Branch:** main
+- **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV) — **sem alteração de banco nesta fatia** (lib pura).
+- **Ambiente:** código apenas. Build `build:hubdev` OK.
+- **Entregue (`lib/conferencia/`):** `tipos.ts` (contrato puro), `resolver-checklist.ts` (Produto>Portfólio>Organização), `motor-regras.ts` (`conferir()` — determinístico: pendências com `motivo` normalizado, `score` 0..100, `status_analise`; sem `Date.now`, `hoje` injetado; **nunca aprova**).
+- **Testes:** `node:test` **11/11 verdes** (checklist Tirzepatida — sem pendências/score 100; CRM e assinatura ausentes; produto/concentração/quantidade divergentes; receita vencida; baixa confiança→precisa_de_revisao_humana; ilegível; clamp de score em 0; resolução hierárquica). Runner sem dependência nova: `tsc` → `.tmp-conferencia` (gitignored) + `node --test`; script `npm run test:conferencia`.
+- **Estruturas preservadas:** sem IA, sem persistência, sem UI, sem RBAC, sem mudança de schema; DEC-018/019 intactas.
+- **Situação:** ✔ **Sprint 2 concluída** e validada. Próxima: **Sprint 3 — Interface Administrativa** (aguardando autorização).
+- **Changelog Relacionado:** 2026-07-02 — Sprint 2 DEC-019 (motor de regras).
