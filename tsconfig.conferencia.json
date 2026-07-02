@@ -9,8 +9,9 @@
     "skipLibCheck": true,
     "noEmitOnError": true,
     "outDir": ".tmp-conferencia",
-    "rootDir": "lib/conferencia",
+    "rootDir": "lib",
     "types": ["node"]
   },
-  "include": ["lib/conferencia/**/*.ts"]
+  "include": ["lib/conferencia/**/*.ts", "lib/ia/**/*.ts"],
+  "exclude": ["lib/ia/provedores/claude.ts", "lib/ia/provedores/index.ts"]
 }

@@ -13,9 +13,10 @@
     "deploy:verify": "./scripts/verify-deploy-env.sh",
     "deploy:test": "./scripts/verify-deploy.sh",
     "deploy:webhook": "./scripts/setup-webhook.sh",
-    "test:conferencia": "tsc -p tsconfig.conferencia.json && node -e \"require('fs').writeFileSync('.tmp-conferencia/package.json','{\\\"type\\\":\\\"commonjs\\\"}')\" && node --test .tmp-conferencia/__tests__/motor-regras.test.js"
+    "test:conferencia": "tsc -p tsconfig.conferencia.json && node -e \"require('fs').writeFileSync('.tmp-conferencia/package.json','{\\\"type\\\":\\\"commonjs\\\"}')\" && node --test .tmp-conferencia/conferencia/__tests__/motor-regras.test.js .tmp-conferencia/ia/__tests__/extrator.test.js"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.109.1",
     "@base-ui/react": "^1.4.0",
     "@dnd-kit/core": "^6.3.1",
     "@radix-ui/react-switch": "^1.2.6",
@@ -32,6 +33,7 @@
     "lucide-react": "^1.14.0",
     "next": "^16.2.6",
     "next-themes": "^0.4.6",
+    "pptxgenjs": "^4.0.1",
     "puppeteer-core": "^24.43.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

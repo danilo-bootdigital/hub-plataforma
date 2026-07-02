@@ -2355,33 +2355,33 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/__tests__/motor-regras.test.js": {
-    "mtime": 1782993633.3742757,
-    "ast_hash": "d2f84d2f9df4797fd66458f0ca2c3503",
+    "mtime": 1782995654.85041,
+    "ast_hash": "126b2e131c8277d586aeec83b94a154c",
     "semantic_hash": ""
   },
   ".tmp-conferencia/motor-regras.js": {
-    "mtime": 1782993633.360242,
+    "mtime": 1782995654.8327124,
     "ast_hash": "ef3ce5ddec65f2e56a7f00bf035c1eea",
     "semantic_hash": ""
   },
   ".tmp-conferencia/package.json": {
-    "mtime": 1782993633.4693751,
+    "mtime": 1782995654.952185,
     "ast_hash": "95b08bc3062cdc4b0334fa9be037e557",
     "semantic_hash": ""
   },
   ".tmp-conferencia/resolver-checklist.js": {
-    "mtime": 1782993633.3623188,
+    "mtime": 1782995654.8347201,
     "ast_hash": "d548dcd48788531c2dc0856bf4d8f08f",
     "semantic_hash": ""
   },
   ".tmp-conferencia/tipos.js": {
-    "mtime": 1782993633.3383977,
+    "mtime": 1782995654.8014996,
     "ast_hash": "e5242a72d0a2ba687aa9e3006b57a65e",
     "semantic_hash": ""
   },
   "lib/conferencia/__tests__/motor-regras.test.ts": {
-    "mtime": 1782993586.9419374,
-    "ast_hash": "308e6089092b376a274c7b338ded1e9b",
+    "mtime": 1782995639.7232268,
+    "ast_hash": "48683f2bf5b358bec4f237153368ea90",
     "semantic_hash": ""
   },
   "lib/conferencia/motor-regras.ts": {
@@ -2402,6 +2402,41 @@
   "tsconfig.conferencia.json": {
     "mtime": 1782993598.9095225,
     "ast_hash": "0aa7ff44223398a8a4b5906ee2a12927",
+    "semantic_hash": ""
+  },
+  ".tmp-conferencia/diagnostico.js": {
+    "mtime": 1782995654.8126602,
+    "ast_hash": "5ea24105facb28e452350557fa18379c",
+    "semantic_hash": ""
+  },
+  ".tmp-conferencia/mapear-checklist.js": {
+    "mtime": 1782995654.8158443,
+    "ast_hash": "34df1160f09a44ee78a8d1f50bf33891",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/rollback_seed_checklists_receita.sql": {
+    "mtime": 1782996451.3575935,
+    "ast_hash": "7b9668ea692d52592761678c2dfafcca",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/seed_checklists_receita.sql": {
+    "mtime": 1782996451.3513963,
+    "ast_hash": "4516a5f909f501ce0c1ff3a46bd12603",
+    "semantic_hash": ""
+  },
+  "lib/conferencia/diagnostico.ts": {
+    "mtime": 1782995594.566665,
+    "ast_hash": "1206997a61943f88b3423c5e42bc094e",
+    "semantic_hash": ""
+  },
+  "lib/conferencia/mapear-checklist.ts": {
+    "mtime": 1782995609.7735126,
+    "ast_hash": "02202edf4f86aed21adbc00d1178773f",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/058_seed_checklists_receita.sql": {
+    "mtime": 1782995733.0585654,
+    "ast_hash": "4516a5f909f501ce0c1ff3a46bd12603",
     "semantic_hash": ""
   }
 }
