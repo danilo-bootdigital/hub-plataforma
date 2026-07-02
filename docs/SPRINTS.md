@@ -171,3 +171,173 @@
 - **E#** — fundação/infraestrutura.
 - **Expand E# / M# / C#** — fases Expand / Migrate / Contract.
 - **G#** — governança (transversais; não constam no Changelog).
+
+---
+
+## Plano de Implementação — DEC-019 (Conferência Operacional de Receita)
+
+> Fonte: **DEC-019** (estende DEC-018). Fase de arquitetura **encerrada**. Sprints pequenos, independentes e testáveis, na ordem obrigatória **S1 → S8**. Mapeamento no fluxo oficial: **S1 = Expand**; **S2–S8 = Migrate**; **sem Contract** (nada é removido). Nenhuma Sprint inicia sem autorização explícita.
+
+### Princípios de Implementação (OBRIGATÓRIOS durante toda a Sprint)
+
+1. **Nunca** implementar uma Sprint antes de a anterior estar **aprovada**.
+2. Cada Sprint deve **terminar com testes e validação** antes de iniciar a próxima.
+3. **Nenhuma regra de negócio dentro da IA.** A IA **apenas extrai** informações e **explica** inconsistências.
+4. O **motor de regras** é o responsável por calcular **score, alertas e pendências**.
+5. Toda decisão operacional deve ser **rastreável, auditável e reproduzível**.
+6. O sistema deve permanecer **desacoplado do provedor de IA**.
+7. Nenhuma Sprint poderá **quebrar compatibilidade** com as **DEC-018** e **DEC-019**.
+8. Toda implementação mantém o princípio: **Receita → Extração → Motor de Regras → Score → Revisão Humana → Aprovação Operacional**.
+
+### SPRINT 1 — Infraestrutura (Expand)
+- **Objetivo:** criar toda a estrutura persistente do módulo, sem qualquer IA.
+- **Escopo:** tabelas, relacionamentos, índices, constraints, RLS, gancho de auditoria, reuso do Storage (DEC-018), versionamento append-only.
+- **Arquivos criados:** `supabase/migrations/057_receita_conferencia.sql`; `hubdev/bootstrap/expand_receita_conferencia.sql` (+ rollback); adições em `types/database.ts`.
+- **Arquivos alterados:** `types/database.ts` (estender `QuoteReceita`/`ReceitaStatusFluxo`); `docs/CHANGELOG.md`, `docs/CHECKPOINTS.md`.
+- **Banco:** enums (`receita_status_analise`, `receita_motivo`, `receita_provedor_ocr`, `receita_provedor_ia`, `checklist_escopo`, `checklist_item_tipo_regra`, `item_severidade`); tabelas `receita_checklists`, `receita_checklist_itens`, `receita_modelos`, `receita_conferencias` (append-only), `receita_conferencia_pendencias`; `ALTER quote_receitas` (`checklist_id`, `status_analise_ia`, `score_ultima_conferencia`, novos valores em `status_fluxo`); índices (DEC-019 §3); RLS `get_organization_id()`; **constraint** `status_fluxo='aprovada_operacionalmente' ⇒ validada_por NOT NULL`; append-only (revoke UPDATE/DELETE em `receita_conferencias`).
+- **Componentes React:** nenhum.
+- **Server Actions:** nenhuma.
+- **RBAC:** reservar o **módulo `receita`** (sem gates funcionais ainda).
+- **Testes:** smoke SQL no HUB DEV (insert/select por org; RLS nega cross-org; constraint bloqueia aprovada sem `validada_por`; append-only impede UPDATE); `build:hubdev` OK.
+- **Critérios de aceite:** migration idempotente aplicada; smoke X/X; **zero** mudança de comportamento na app.
+- **Riscos:** schema drift (aplicar via SQL Editor); constraint/trigger de aprovação; enum vs CHECK.
+- **Dependências:** DEC-018 (`quote_receitas`, bucket privado).
+- **Complexidade:** Média · **Risco:** Médio · **Duração:** 2–3 dias · **Ordem obrigatória:** 1ª.
+
+### SPRINT 2 — Motor de Regras (determinístico, sem IA, sem UI)
+- **Objetivo:** lógica de conferência 100% determinística e testável.
+- **Escopo:** resolução hierárquica (Produto > Portfólio > Indústria); regras (`presenca`/`formato`/`comparacao_orcamento`/`valor_esperado`); **score 0–100**; pendências com **motivo normalizado**; mapeamento score/severidade → `status_analise`. Entrada: `extracao_json` (fixtures) + orçamento + checklist.
+- **Arquivos criados:** `lib/conferencia/tipos.ts`, `lib/conferencia/resolver-checklist.ts`, `lib/conferencia/motor-regras.ts` (função pura), `lib/conferencia/__tests__/motor-regras.test.ts`.
+- **Arquivos alterados:** `package.json` (test runner — ver riscos).
+- **Banco:** nenhuma alteração (fixtures em memória; lê estruturas do S1).
+- **Componentes React:** nenhum.
+- **Server Actions:** nenhuma.
+- **RBAC:** n/a.
+- **Testes:** **unit tests** da função pura (sem pendências; CRM ausente; produto/concentração divergente; quantidade fora da tolerância; receita vencida; baixa confiança → `precisa_de_revisao_humana`).
+- **Critérios de aceite:** score e pendências corretos e determinísticos; cobertura de todos os `motivo`; build OK.
+- **Riscos:** calibração das faixas score→status; **projeto sem test runner** (decidir `vitest`/script node).
+- **Dependências:** S1 (tipos/enums); DEC-019 §9.
+- **Complexidade:** Alta · **Risco:** Médio · **Duração:** 3–4 dias · **Ordem obrigatória:** 2ª (pode paralelizar com S1 após os tipos).
+
+### SPRINT 3 — Interface Administrativa (CRUD de checklists)
+- **Objetivo:** cadastrar/gerir checklists, regras, obrigatoriedades, pesos e associação de motivos.
+- **Escopo:** CRUD de `receita_checklists` + itens; escopo (Indústria/Portfólio/Produto); ativar/desativar; **versionar**; cadastro de `receita_modelos`.
+- **Arquivos criados:** `app/(dashboard)/configuracoes/checklists-receita/page.tsx`, `.../actions.ts`, `components/conferencia/checklist-editor.tsx`, `checklist-lista.tsx`, `receita-modelos-editor.tsx`.
+- **Arquivos alterados:** `lib/navegacao.ts`, `middleware.ts`, `lib/rbac.ts`.
+- **Banco:** leitura/escrita nas tabelas do S1; nenhuma nova.
+- **Componentes React:** lista + editor (matriz item × obrigatório/severidade/peso/tipo_regra/config + motivo), seletor de escopo, versões, upload de receita-modelo.
+- **Server Actions:** `listarChecklists`, `salvarChecklist` (upsert + itens, versiona), `desativarChecklist`, `salvarReceitaModelo`, `resolverChecklistPreview`.
+- **RBAC:** **`receita:configurar_checklist`** (Indústria: Ind/Portfólio; Proprietário: Produto — DEC-016/017). Gate na rota + actions.
+- **Testes:** smoke CRUD no HUB DEV; RLS/escopo; validação de `config_json`; negação a não-autorizado; build.
+- **Critérios de aceite:** criar/editar/versionar checklist e receita-modelo; preview mostra qual regra vence; negação a perfil sem permissão.
+- **Riscos:** complexidade da UI de matriz; governança de edição por escopo.
+- **Dependências:** S1 (tabelas); S2 (preview — opcional).
+- **Complexidade:** Média-Alta · **Risco:** Médio · **Duração:** 3–4 dias · **Ordem obrigatória:** 3ª (paralelizável após S1).
+
+### SPRINT 4 — Upload da Receita (histórico/versões/timeline, sem IA)
+- **Objetivo:** evoluir o upload da DEC-018 para histórico versionado, visualização e timeline.
+- **Escopo:** múltiplos anexos versionados; timeline (transições de `status_fluxo`); visualização inline (PDF/imagem via signed URL); download.
+- **Arquivos criados:** `components/conferencia/receita-timeline.tsx`, `receita-visualizador.tsx`, `receita-versoes-lista.tsx`.
+- **Arquivos alterados:** `components/orcamentos/receita-tab.tsx`, `app/(dashboard)/orcamentos/actions-receita.ts`.
+- **Banco:** usa `quote_receitas` (DEC-018) + auditoria; timeline **derivada** (sem tabela nova obrigatória).
+- **Componentes React:** timeline, visualizador inline, lista de versões.
+- **Server Actions:** `getReceitasVersionadas`, `getSignedUrl` (reuso), anexar (reuso DEC-018).
+- **RBAC:** `receita:conferir`/visualizar conforme Função.
+- **Testes:** upload múltiplo; signed URL abre/expira; download; timeline correta; validação tipo/tamanho.
+- **Critérios de aceite:** ver histórico/versões/timeline; visualizar inline; baixar; **sem IA**.
+- **Riscos:** viewer de PDF; exposição de dado sensível.
+- **Dependências:** DEC-018, S1.
+- **Complexidade:** Média · **Risco:** Baixo-Médio · **Duração:** 2–3 dias · **Ordem obrigatória:** 4ª (independe de S2/S3; paralelizável após S1).
+
+### SPRINT 5 — Camada de IA (`ExtratorReceita`, provider-agnostic)
+- **Objetivo:** extração desacoplada do provedor; IA **apenas** extrai/organiza/explica — **jamais decide**.
+- **Escopo:** interfaces `LeitorDocumento` (OCR) + `ExtratorReceita` (IA); **factory de provedor** (`claude`/`openai`/`gemini`/`azure`/`local`); implementação inicial **Claude** (`claude-opus-4-8`, multimodal, structured output `json_schema strict`); retorno = `extracao_json` + `explicacao` + `confianca`.
+- **Arquivos criados:** `lib/ia/leitor-documento.ts`, `lib/ia/extrator-receita.ts`, `lib/ia/schema-extracao.ts`, `lib/ia/provedores/index.ts` (factory), `lib/ia/provedores/claude.ts`, `lib/ia/__tests__/extrator.test.ts`.
+- **Arquivos alterados:** env (`.env.local.hubdev`, Vercel).
+- **Banco:** define campos que o S6 persiste (`provedor_ocr`/`provedor_ia`/`modelo_ia`/`prompt_versao`/`extracao_json`); persistência real no S6.
+- **Componentes React:** nenhum.
+- **Server Actions:** nenhuma pública (orquestração no S6).
+- **RBAC:** n/a (não exposto).
+- **Testes:** interface com **mock provider**; teste real Claude opcional (fixture PDF, schema válido); troca de provedor via env sem alterar o chamador; **schema sem campo de decisão/aprovação**.
+- **Critérios de aceite:** extração retorna JSON válido + explicação + confiança; provedor trocável; IA nunca retorna decisão.
+- **Riscos:** custo/latência; chave de API; qualidade de extração; **privacidade** (dado de saúde ao provedor — decisão pendente).
+- **Dependências:** S1 (schema); DEC-019 §8.
+- **Complexidade:** Alta · **Risco:** Alto · **Duração:** 3–5 dias · **Ordem obrigatória:** 5ª.
+
+### SPRINT 6 — Integração (pipeline Receita→Motor→Orçamento→Pedido)
+- **Objetivo:** orquestrar o pipeline completo e o bloqueio de pedido.
+- **Escopo:** `rodarPreAnalise` (arquivo → OCR/IA extrai → **motor** calcula → persiste `receita_conferencias` + pendências → atualiza `quote_receitas`); decisões humanas com gate + constraint; **bloqueio de `transformarEmPedido`** quando `products.exige_receita`.
+- **Arquivos criados:** `app/(dashboard)/orcamentos/actions-conferencia.ts`.
+- **Arquivos alterados:** `app/(dashboard)/orcamentos/actions.ts` (gate em `transformarEmPedido`), `actions-hub.ts` (se aplicável), `types/database.ts`.
+- **Banco:** escreve `receita_conferencias`/`pendencias`; usa constraint de aprovação; **IA/OCR via service role só leem o arquivo; decisão via client do usuário**.
+- **Componentes React:** botão "Rodar pré-análise" mínimo (UI plena no S7).
+- **Server Actions:** `rodarPreAnalise` (`receita:conferir`), `aprovarReceitaOperacionalmente`/`rejeitar`/`marcarRevisao` (`receita:aprovar`), `getConferencias`.
+- **RBAC:** **`receita:conferir`** e **`receita:aprovar`** — gate de código **+** constraint no banco.
+- **Testes:** smoke fim-a-fim com **IA mockada** (recebida→pré-análise→`em_conferencia`→aprovar→`aprovada_operacionalmente`); **IA não consegue aprovar** (sem `user_id`); `transformarEmPedido` bloqueado sem receita aprovada quando `exige_receita`; auditoria gravada.
+- **Critérios de aceite:** pipeline completo (IA mock); bloqueio funciona e é **configurável**; append-only preservado; auditoria.
+- **Riscos:** acoplamento com `transformarEmPedido` (fluxo crítico) → regressão; consistência transacional upload+persist.
+- **Dependências:** S1, S2, S5 (e S4 para o arquivo).
+- **Complexidade:** Alta · **Risco:** Alto · **Duração:** 3–5 dias · **Ordem obrigatória:** 6ª.
+
+### SPRINT 7 — UX (dashboard de conferência)
+- **Objetivo:** interface completa na aba Receita.
+- **Escopo:** dashboard com **score**, **alertas**, **checklist aplicado**, **extração × orçamento** lado a lado, **histórico/timeline**, **explicabilidade** (explicação da IA + `motivo` do motor), botões de decisão.
+- **Arquivos criados:** `components/conferencia/painel-conferencia.tsx`, `score-badge.tsx`, `alertas-lista.tsx`, `extracao-vs-orcamento.tsx`, `decisao-humana.tsx`.
+- **Arquivos alterados:** `components/orcamentos/receita-tab.tsx`, `orcamento-tabs.tsx` (se necessário).
+- **Banco:** somente leitura (reuso S6).
+- **Componentes React:** dashboard e subcomponentes acima.
+- **Server Actions:** leitura (reuso S6).
+- **RBAC:** botões condicionais por **`receita:aprovar`**.
+- **Testes:** visual/manual logado; render lazy (carga sob demanda DEC-018); acessibilidade básica; build.
+- **Critérios de aceite:** operador vê score/alertas/comparação/histórico/explicação e decide; **terminologia correta** ("pré-análise concluída", "sem pendências aparentes", "pendências encontradas", "aprovada operacionalmente por usuário"); **nunca** "validada pela IA".
+- **Riscos:** UI passar impressão de "aprovação automática"; performance de render.
+- **Dependências:** S6 (dados), S1–S5.
+- **Complexidade:** Média-Alta · **Risco:** Médio · **Duração:** 3–4 dias · **Ordem obrigatória:** 7ª.
+
+### SPRINT 8 — Hardening
+- **Objetivo:** robustez, compliance e operação.
+- **Escopo:** auditoria completa; logs estruturados; performance/índices; permissões (inclusive negativas); observabilidade de IA (tokens/custo/latência por provedor); **retenção/expurgo** do `extracao_json` e arquivos; suíte de testes consolidada.
+- **Arquivos criados:** runbook em `docs/`; script/job de retenção; testes adicionais.
+- **Arquivos alterados:** actions (logs), revisões de RLS; migration `058_retencao_conferencia.sql` se necessário.
+- **Banco:** job de expurgo; índices adicionais conforme medição.
+- **Componentes React:** ajustes menores.
+- **Server Actions:** revisão de gates; rate-limiting da IA.
+- **RBAC:** matriz de permissões auditada (casos negativos).
+- **Testes:** carga; RLS negativa; auditoria 100%; retenção.
+- **Critérios de aceite:** auditoria cobre todos os eventos; sem PII além do necessário; performance aceitável; permissões negativas OK.
+- **Riscos:** **compliance** de dado de saúde (retenção); custo/latência da IA em escala.
+- **Dependências:** todos os anteriores.
+- **Complexidade:** Média · **Risco:** Médio-Alto · **Duração:** 3–5 dias · **Ordem obrigatória:** 8ª (final).
+
+### Matriz de implementação (funcionalidade → Sprint)
+
+| # | Funcionalidade | Sprint | Fase |
+|---|---|---|---|
+| 1 | Tabelas, enums, relacionamentos, índices | S1 | Expand |
+| 2 | RLS, constraint de aprovação, append-only | S1 | Expand |
+| 3 | Reuso do Storage privado + versionamento (base) | S1 | Expand |
+| 4 | Extensão de `quote_receitas` (status_fluxo, score, checklist_id) | S1 | Expand |
+| 5 | Resolução hierárquica de checklist (Ind→Port→Prod) | S2 | Migrate |
+| 6 | Cálculo de score 0–100 | S2 | Migrate |
+| 7 | Geração de pendências + motivos normalizados | S2 | Migrate |
+| 8 | Mapeamento score/severidade → `status_analise` | S2 | Migrate |
+| 9 | CRUD checklists/itens/obrigatoriedade/pesos | S3 | Migrate |
+| 10 | Associação item → motivo/severidade | S3 | Migrate |
+| 11 | Cadastro de receitas-modelo (`receita_modelos`) | S3 | Migrate |
+| 12 | Upload multi-versão + timeline + visualização + download | S4 | Migrate |
+| 13 | Interface `LeitorDocumento` (OCR) | S5 | Migrate |
+| 14 | `ExtratorReceita` + factory (Claude/OpenAI/Gemini/Azure/Local) | S5 | Migrate |
+| 15 | Extração JSON + explicação + confiança | S5 | Migrate |
+| 16 | Orquestração `rodarPreAnalise` + persistência da conferência | S6 | Migrate |
+| 17 | Decisão humana (aprovar/reprovar) + gate + constraint | S6 | Migrate |
+| 18 | Bloqueio de `transformarEmPedido` quando `exige_receita` | S6 | Migrate |
+| 19 | RBAC `receita:configurar_checklist` | S3 | Migrate |
+| 20 | RBAC `receita:conferir` / `receita:aprovar` | S6 | Migrate |
+| 21 | Dashboard: score/alertas/checklist/extração×orçamento/timeline/explicabilidade | S7 | Migrate |
+| 22 | Auditoria completa, logs, observabilidade de IA | S8 | Migrate |
+| 23 | Retenção/expurgo de documentos e JSON | S8 | Migrate |
+| 24 | Performance, permissões negativas, testes finais | S8 | Migrate |
+
+**Caminho crítico (ordem obrigatória):** S1 → S2 → S5 → S6 → S7 → S8. **Paralelizáveis após S1:** S3 (apoiado por S2) e S4. S6 é o gargalo de integração (depende de S1+S2+S5, e de S4 para o arquivo).
+
+> **Status da fase de arquitetura:** encerrada. A implementação (Sprint 1) só inicia mediante **autorização explícita**.

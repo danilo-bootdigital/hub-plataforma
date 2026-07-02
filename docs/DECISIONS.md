@@ -256,3 +256,89 @@
 - **Impacto:** aditivo puro (nova tabela/bucket/índices); nenhuma mudança em `quotes`/`quote_items` nem no legado. Aplicação no detalhe do Orçamento (abas) + Storage + RLS. A refatoração completa do detalhe (server queries por aba, histórico paginado, pagamento) permanece como trabalho futuro sob os mesmos requisitos.
 - **Data:** 2026-07-01
 - **Status:** Aprovada / vigente
+
+## DEC-019 — Conferência Operacional de Receita (pré-análise por IA + motor de regras + revisão humana)
+
+Estende a **DEC-018** (Receita no Orçamento). Define como o Hub confere, de forma **operacional** (nunca jurídica), a receita assinada enviada pelo cliente, com apoio de **IA apenas para extração/explicação** e um **motor de regras interno** que aponta pendências e calcula um **score**. A aprovação final é **sempre humana**.
+
+**Pipeline canônico (aprovado):** Receita → **OCR/leitura do documento** → **IA extrai dados estruturados** (e explica inconsistências) → **motor de regras interno** compara com o checklist → **sistema gera score (0–100) e alertas** → **humano aprova ou reprova operacionalmente**. A **IA NÃO é o agente principal de decisão**: apenas **extrai** e **explica**. Quem define **pendência, aprovação operacional ou bloqueio** é o **motor de regras do sistema + usuário autorizado**.
+
+### 1. Objetivo
+Dar ao operador (Proprietário/Assistente do Hub) uma **pré-análise automática** da receita anexada ao orçamento que aponte **campos ausentes, divergências e ilegibilidade**, acelerando a decisão — **sem** substituir o julgamento humano e **sem** emitir validação jurídica ou clínica. A ferramenta apenas indica: **sem pendências aparentes**, **pendências encontradas**, **ilegível**, **divergente do orçamento** ou **precisa de revisão humana**. A conclusão do fluxo é **"aprovada operacionalmente por usuário"**. **Proibido** o termo "validada pela IA"; a UI usa **"pré-análise concluída"**, **"sem pendências aparentes"**, **"pendências encontradas"** e **"aprovada operacionalmente por usuário"**.
+
+### 2. Escopo
+- **Inclui:** cadastro de checklists/regras (por Indústria → Portfólio → Produto); upload da receita assinada (Storage privado, DEC-018); **extração** dos dados da receita por IA; **explicação** textual da IA; **motor de regras interno** (determinístico) que gera pendências, divergências e **score de conferência**; histórico versionado de conferências; decisão humana (aprovar operacionalmente / rejeitar / marcar para revisão); auditoria completa.
+- **Não inclui (fora de escopo, explícito):** validação **jurídica** ou **clínica** da receita; aprovação automática pela IA; dispensação/logística; assinatura digital certificada. A IA **não decide** status — apenas extrai e explica.
+- **Formatos variados:** PDF e imagens (JPG/PNG/WEBP). Leitura em **duas etapas desacopladas** — **OCR/leitura** do documento e **extração estruturada por IA** — ambas atrás de uma **abstração de provedor** (§8), nada fixo em Claude.
+- **Checklist por Indústria/Portfólio/Produto** (não apenas por tipo de documento) — resolução "mais específico vence" (§3).
+
+### 3. Modelagem
+Três planos separados: **(a) regras/checklist** (cadastro), **(b) extração da IA + análise do motor de regras** (sugestão, somente leitura para decisão), **(c) decisão humana** (aprovação operacional). A IA escreve só em (b.extração); o motor de regras escreve (b.análise); a aprovação vive em (c).
+- **`receita_checklists`** — `id, organization_id, nome, escopo ('industria'|'portfolio'|'produto'), industria_id?, portfolio_id?, produto_id?, tipo_documento, ativo, versao, criado_por, criado_em, atualizado_em`. Resolução **mais específica vence** (produto > portfólio > indústria).
+- **`receita_checklist_itens`** — `id, checklist_id, chave, rotulo, obrigatorio, tipo_regra ('presenca'|'formato'|'comparacao_orcamento'|'valor_esperado'), config_json (regex/tolerâncias/valores), peso (int), severidade ('info'|'aviso'|'critico'), ordem`.
+- **`quote_receitas`** (estender DEC-018) — `+ checklist_id?`, `+ status_analise_ia?`, `+ score_ultima_conferencia?`; `status_fluxo` ganha `em_conferencia` e `aprovada_operacionalmente`. `validada_por/validada_em/validacao_comentario` (já existem) = **decisão humana**.
+- **`receita_conferencias`** (append-only; N por receita = **histórico de versões**) — `id, organization_id, quote_receita_id, quote_id, checklist_id, checklist_versao, provedor_ocr, provedor_ia, modelo_ia, prompt_versao, texto_ocr?, extracao_json (jsonb), explicacao_ia (text), status_analise, score (0..100), confianca_extracao (0..1), tokens_entrada, tokens_saida, custo_estimado, criado_por, criado_em`.
+- **`receita_conferencia_pendencias`** — `id, conferencia_id, origem ('regra'|'extracao'), chave, motivo (enum normalizado — ver abaixo), tipo ('campo_ausente'|'divergencia'|'formato_invalido'|'ilegivel'|'suspeita'), severidade, mensagem, esperado, encontrado`.
+- **`receita_modelos`** — receitas-modelo/exemplos **por produto** para melhorar extração e comparação: `id, organization_id, produto_id (FK), nome, arquivo_path (bucket privado), campos_referencia_json (gabarito esperado: doses válidas, layout, campos), observacoes, ativo, criado_por, criado_em`. Servem de referência ao checklist e como *few-shot* opcional do extrator.
+- **Motivos normalizados (`motivo`)** — enum de reprovação/pendência: `crm_ausente`, `crm_uf_ausente`, `assinatura_ausente`, `paciente_ausente`, `cpf_ausente_obrigatorio`, `produto_divergente`, `concentracao_divergente`, `quantidade_divergente`, `posologia_ausente`, `data_ausente`, `receita_vencida`, `documento_ilegivel`, `outro`. Usado em pendências e no comentário de reprovação humana (relatórios/auditoria consistentes).
+- **Índices:** `receita_conferencias(quote_receita_id|quote_id|status_analise|criado_em)`, `receita_conferencia_pendencias(conferencia_id|severidade)`, `receita_checklist_itens(checklist_id)`, checklists por (`industria_id`/`portfolio_id`/`produto_id`). **RLS** por `organization_id` (`get_organization_id()`). Arquivo no bucket privado `orcamento-receitas` (DEC-018) — banco só metadados. Migration prevista: `057_receita_conferencia.sql`.
+
+### 4. Fluxo operacional
+`recebida` → **[Rodar pré-análise]** (ação explícita) → IA **extrai** dados + **explica** → **motor de regras** aplica o checklist resolvido, gera **pendências** e **score**, define `status_analise` → `status_fluxo='em_conferencia'` → painel lado a lado (extração × orçamento, lista de pendências, selo da IA, score) → **revisor humano** decide: **Aprovar operacionalmente** (`aprovada_operacionalmente`) · **Rejeitar** (`rejeitada`) · **Marcar p/ revisão** (`precisa_revisao_humana`). Reexecutável (novo anexo/checklist) preservando histórico. Tudo dentro da aba Receita (carregamento sob demanda, DEC-018).
+
+### 5. Status (dois eixos separados)
+- **Operacional — `status_fluxo`:** `rascunho → modelo_gerado → enviada → recebida → em_conferencia → aprovada_operacionalmente | rejeitada | precisa_revisao_humana`.
+- **Pré-análise — `status_analise`** (resultado do **motor de regras**, rótulo exibido; **nunca** aprova): `sem_pendencias_aparentes` ("sem pendências aparentes") · `pendencias_encontradas` ("pendências encontradas") · `ilegivel` · `divergente_do_orcamento` · `precisa_de_revisao_humana`. A UI sinaliza **"pré-análise concluída"** ao término da execução; a conclusão do fluxo é **"aprovada operacionalmente por usuário"**. **Nunca** "validada pela IA".
+- **Três planos, sempre separados:** (a) **extração da IA** (`extracao_json` + explicação, sem decisão), (b) **resultado do motor de regras** (pendências + `motivo` + `score` + `status_analise`), (c) **decisão humana** (`aprovada_operacionalmente`/`rejeitada`, com `validada_por`).
+- **Score de conferência (0..100):** calculado pelo **motor de regras** a partir dos itens do checklist (peso × severidade). Faixas mapeiam para `status_analise` (ex.: pendência **crítica** ou baixa confiança de extração → `precisa_de_revisao_humana`; divergência de item/concentração/quantidade/paciente → `divergente_do_orcamento`). **Nenhuma faixa aprova** — sempre requer humano.
+
+### 6. Regras de negócio
+1. **IA só extrai e explica.** Quem aponta pendências/score/status é o **motor de regras determinístico** (código), não a IA — isso torna a decisão auditável e independente de provedor.
+2. **IA nunca aprova**, jurídica ou operacionalmente. Não há caminho de código onde saída de IA escreve `aprovada_operacionalmente`.
+3. **Aprovação = usuário autorizado** (permissão RBAC nova, ver §7). Constraint: `status_fluxo='aprovada_operacionalmente'` ⇒ `validada_por IS NOT NULL`.
+4. **Ilegível/baixa confiança de extração** → força `precisa_de_revisao_humana` e bloqueia atalhos.
+5. **Comparação com o orçamento:** paciente, itens, quantidades e apresentação (tolerância no checklist).
+6. **Vínculo com pipeline (configurável):** se algum item do orçamento tem `products.exige_receita`, `transformarEmPedido` **pode exigir** receita `aprovada_operacionalmente` (regra ligável por Hub/organização).
+7. **Auditoria obrigatória:** cada execução de IA e cada decisão humana em `audit_logs` + histórico técnico em `receita_conferencias`.
+
+### 7. Permissões (RBAC — DEC-015)
+- **Nova permissão de módulo `receita`** com ações: `conferir` (rodar pré-análise), `aprovar` (aprovar operacionalmente/rejeitar), `configurar_checklist` (CRUD de regras).
+- **Cadastro de checklists** por escopo: Indústria (admin/gestor) define regras por Indústria/Portfólio; Proprietário do Hub pode ajustar as de Produto conforme governança (DEC-016/017). **Assistente** confere e (se a Função permitir) aprova; sem permissão, o botão "Aprovar operacionalmente" não aparece. RLS por `organization_id` + escopo por Hub.
+
+### 8. Arquitetura de extração (OCR + IA) — provider-agnostic
+- **Etapas desacopladas atrás de abstrações:** (1) `LeitorDocumento` (OCR/leitura) → texto/coordenadas; (2) `ExtratorReceita` (entrada: texto/arquivo + contexto do checklist/orçamento; saída: `extracao_json` + `explicacao` + `confianca`); (3) **motor de regras** (função pura). Nada fixo em Claude.
+- **Provedores plugáveis** — `provedor_ocr` e `provedor_ia`: `claude` | `openai` | `gemini` | `ocr_externo` | `motor_local` (futuro). Implementação **inicial: Anthropic Claude** (`@anthropic-ai/sdk`, `claude-opus-4-8`, entrada multimodal `document`/`image`, **structured output** `output_config.format json_schema strict`, sem `temperature`), podendo combinar um OCR externo antes da IA. `provedor_ocr`, `provedor_ia`, `modelo_ia`, `prompt_versao` gravados por conferência → **troca/mistura de provedores sem migração**.
+- **Fronteira dura:** OCR e IA devolvem **apenas** texto/dados extraídos + explicação + confiança — **nunca** decidem. O **motor de regras** (função pura, testável) recebe `extracao_json` + checklist (+ `receita_modelos` de referência) + orçamento e produz **pendências (com `motivo` normalizado), divergências, `score` (0–100) e `status_analise`**. Trocar de provedor não muda a lógica de decisão.
+- **Segurança/observabilidade:** chaves por provedor em env (local + Vercel); disparo só sob ação do usuário; tokens/custo por provedor registrados; dado sensível de saúde em bucket privado + signed URL.
+
+### 9. Checklist inicial para Tirzepatida (exemplo de referência)
+Escopo **produto** (mais específico). Itens (chave · obrigatório · severidade · tipo):
+- `nome_paciente` · sim · crítico · presença
+- `prescritor_nome` · sim · crítico · presença
+- `crm_uf` · sim · crítico · formato (`CRM \d+/[A-Z]{2}`) → motivo `crm_ausente`/`crm_uf_ausente`
+- `cpf_paciente` · condicional · aviso · presença (obrigatório quando a regra exigir) → motivo `cpf_ausente_obrigatorio`
+- `data_emissao` · sim · aviso · formato data + validade (config: ≤ 90 dias)
+- `medicamento` · sim · crítico · comparação_orçamento (nome bate com item do orçamento)
+- `concentracao_dose` · sim · crítico · valor_esperado (ex.: 2,5/5/7,5/10/12,5/15 mg — config)
+- `quantidade` · sim · crítico · comparação_orçamento (qtd × tolerância)
+- `posologia` · sim · aviso · presença
+- `via_administracao` · não · info · valor_esperado (subcutânea)
+- `assinatura` · sim · crítico · presença (assinatura/carimbo detectável)
+- `legibilidade` · sim · crítico · ilegível (se confiança de extração < limiar → pendência crítica)
+> Observação de negócio (não jurídica): produtos injetáveis/uso contínuo tendem a exigir mais rigor de conferência; a severidade/pesos são parametrizáveis no checklist.
+
+### 10. Riscos e decisões pendentes
+- **Risco — dado sensível (saúde):** definir política de **retenção** do `extracao_json` (ex.: minimizar campos, expurgo por prazo); bucket privado obrigatório.
+- **Risco — leitura como "aprovação":** UI/textos devem deixar claro que é **pré-análise operacional**, nunca validação.
+- **Risco — custo/latência da IA:** só sob ação; observabilidade de tokens; avaliar modelo mais barato para extração se necessário (decisão registrada em `modelo_ia`).
+- **Risco — schema drift:** migration `057` aplicada via SQL Editor no HUB DEV (CLI linkado a projeto incorreto).
+- **Pendente — bloqueio de `transformarEmPedido`:** obrigatório vs. configurável por Hub (proposto: configurável, default ligado quando `exige_receita`).
+- **Pendente — eixo principal do checklist:** confirmar Indústria→Portfólio→Produto com "mais específico vence" (proposto) vs. herança/merge de regras.
+- **Pendente — limiares de score/confiança** e mapeamento exato faixa→`status_analise` (a calibrar com casos reais).
+- **Pendente — provedor de IA** de longo prazo (Anthropic inicial; interface já isola a troca).
+
+- **Ajustes (implementação — Sprint futura, faseada Expand→Migrate):** migration `057_receita_conferencia.sql` (checklists hierárquicos, itens, `receita_conferencias` com `provedor_ocr`/`provedor_ia`, `receita_conferencia_pendencias` com `motivo` normalizado, `receita_modelos`, colunas em `quote_receitas`, índices, RLS, constraint de aprovação); abstrações `LeitorDocumento` (OCR) + `ExtratorReceita` (IA) com **provedores plugáveis** (Claude inicial; OpenAI/Gemini/OCR externo/motor local futuros); **motor de regras** (função pura → pendências + `motivo` + score + `status_analise`); server actions separadas (`rodarPreAnalise`, `aprovarReceitaOperacionalmente`, `rejeitar`, `marcarRevisao`, CRUD de checklist e de `receita_modelos`); UI da conferência (3 planos: extração IA · resultado do motor · decisão humana); permissão RBAC `receita:conferir`/`receita:aprovar`/`receita:configurar_checklist`; gate opcional em `transformarEmPedido` quando `products.exige_receita`; chaves de provedores nas envs.
+- **Motivo:** conferência operacional rápida e auditável, com IA restrita a **extração/explicação** e decisão **determinística (motor de regras) + humana** — reduzindo risco jurídico e dependência de provedor, com pipeline OCR→IA→motor→humano.
+- **Impacto:** aditivo (novas tabelas/permissão/env); estende DEC-018; possível gate opcional em `transformarEmPedido`. Nada implementado nesta DEC.
+- **Data:** 2026-07-02
+- **Status:** Aprovada / vigente — implementação pendente (Sprint futura). Revisada em 2026-07-02 (pipeline OCR→IA→motor→humano; provedor de IA genérico; motivos normalizados; receitas-modelo; separação extração/motor/humano; terminologia).
