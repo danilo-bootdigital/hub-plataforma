@@ -221,3 +221,17 @@
 - **Estruturas preservadas:** sem IA, sem UI, sem RBAC; checklists **no banco** (não no código); DEC-018/019 intactas.
 - **Situação:** ✔ **MVP-3 concluída** (Genérico end-to-end; Tirzepatida pendente do produto). Próxima: **MVP-4 — Camada de IA** (aguardando autorização).
 - **Changelog Relacionado:** 2026-07-02 — MVP-3 DEC-019 (Diagnóstico + seed de checklists).
+
+## Checkpoint 020 — Conferência de Receita: Camada de IA (MVP-4 — DEC-019)
+
+- **Data:** 2026-07-02
+- **Git Commit:** `00358ba` (código) + este commit de docs.
+- **Git Branch:** main
+- **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` — **sem alteração de banco** nesta fatia.
+- **Ambiente:** código apenas. Build `build:hubdev` OK. Nova dependência: `@anthropic-ai/sdk` (`^0.109.1`).
+- **Entregue (`lib/ia/`):** `tipos.ts` (`ExtratorReceita` provider-agnostic; saída = `ExtracaoReceita` = entrada do motor). `schema-extracao.ts` (`SCHEMA_EXTRACAO` **sem score/status/aprovação**; `parseExtracao()` validação pura 0..1; `construirPromptExtracao()` — só extrai, nunca decide/aprova/score). `provedores/claude.ts` (`ClaudeExtrator`: `claude-opus-4-8`, PDF/imagem multimodal, saída estruturada via **tool forçada**, resultado validado por `parseExtracao`). `provedores/mock.ts` + `index.ts` (factory; openai/gemini/azure/local futuros).
+- **Testes:** `node:test` **24/24** (schema sem decisão; parse válido/inválido; prompt sem linguagem de decisão; **pipeline IA(mock)→motor→Diagnóstico**). Runner: `npm run test:conferencia` (compila `lib/conferencia` + `lib/ia`, exceto o provider Claude/factory que usam SDK).
+- **IA apenas alimenta o motor:** o schema não tem campos de decisão; a IA devolve `campos`/`itens`/`confianca`; **motor (S2)** calcula pendências/score/status e o **Diagnóstico da Receita** (MVP-3). Motor intocado.
+- **Estruturas preservadas:** sem UI/server action/persistência/RBAC/integração em runtime (fora do escopo); DEC-018/019 intactas.
+- **Situação:** ✔ **MVP-4 concluída** e validada. Próxima: **MVP-5 — Integração/pipeline + decisão humana + RBAC** (aguardando autorização).
+- **Changelog Relacionado:** 2026-07-02 — MVP-4 DEC-019 (camada de IA).

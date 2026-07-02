@@ -6,6 +6,14 @@
 
 ---
 
+## 2026-07-02 — Conferência de Receita: Camada de IA (MVP-4 — DEC-019)
+
+- **Objetivo:** camada de **extração provider-agnostic** + **Provider Claude**; a IA passa a **alimentar** o motor — **sem alterar nenhuma regra**. Sem UI/action/persistência/RBAC/integração runtime.
+- **Aplicação Web (`lib/ia/`):** `tipos.ts` (`ExtratorReceita`; saída = `ExtracaoReceita`, entrada do motor). `schema-extracao.ts` (`SCHEMA_EXTRACAO` **sem score/status/aprovação**; `parseExtracao()` validação pura; `construirPromptExtracao()`). `provedores/claude.ts` (`ClaudeExtrator` — `claude-opus-4-8`, PDF/imagem, saída estruturada via tool forçada, validada por `parseExtracao`). `provedores/mock.ts` + `index.ts` (factory; openai/gemini/azure/local futuros).
+- **Dependência:** `@anthropic-ai/sdk@^0.109.1` (adicionada).
+- **Testes:** `node:test` **24/24** (schema sem decisão; parse; prompt; **pipeline IA(mock)→motor→Diagnóstico**). Build `build:hubdev` OK. Commit `00358ba`.
+- **Fronteira IA/decisão:** IA só extrai (`campos`/`itens`/`confianca`); pendências/score/status/Diagnóstico continuam no **motor (S2)**. Sem deploy (integração é a MVP-5).
+
 ## 2026-07-02 — Conferência de Receita: Diagnóstico + checklists no banco (MVP-3 — DEC-019)
 
 - **Objetivo:** entregar regras + orientação + **Diagnóstico da Receita** funcionando com **JSON simulado** (sem IA), com os checklists vindo do **banco** (seed), não do código.
