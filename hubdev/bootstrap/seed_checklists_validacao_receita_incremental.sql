@@ -32,7 +32,7 @@ BEGIN
       VALUES
         -- EMITENTE / documento
         (cl_gen,'prescritor_nome','Nome do emitente/prescritor',true,'presenca','{"camada":"documental"}'::jsonb,'outro','critico',3,1),
-        (cl_gen,'crm_uf','CRM',true,'formato','{"camada":"documental","regex":"(\\d{4,7}[\\s/.-]+(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO))|((AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)[\\s/.-]+\\d{4,7})"}'::jsonb,'crm_uf_ausente','critico',3,2),
+        (cl_gen,'crm_uf','CRM',true,'formato','{"camada":"documental","regex":"(\\d{4,7}[^0-9A-Za-z]+(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO))|((AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)[^0-9A-Za-z]+\\d{4,7})"}'::jsonb,'crm_uf_ausente','critico',3,2),
         (cl_gen,'emitente_cpf','CPF do emitente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,3),
         (cl_gen,'emitente_endereco','Endereço do emitente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,4),
         (cl_gen,'emitente_cidade_uf','Cidade/UF do emitente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,5),
@@ -65,7 +65,7 @@ BEGIN
       VALUES
         -- EMITENTE / documento
         (cl_tz,'prescritor_nome','Nome do emitente/prescritor',true,'presenca','{"camada":"documental"}'::jsonb,'outro','critico',3,1),
-        (cl_tz,'crm_uf','CRM',true,'formato','{"camada":"documental","regex":"(\\d{4,7}[\\s/.-]+(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO))|((AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)[\\s/.-]+\\d{4,7})"}'::jsonb,'crm_uf_ausente','critico',3,2),
+        (cl_tz,'crm_uf','CRM',true,'formato','{"camada":"documental","regex":"(\\d{4,7}[^0-9A-Za-z]+(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO))|((AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)[^0-9A-Za-z]+\\d{4,7})"}'::jsonb,'crm_uf_ausente','critico',3,2),
         (cl_tz,'emitente_cpf','CPF do emitente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,3),
         (cl_tz,'emitente_endereco','Endereço do emitente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,4),
         (cl_tz,'emitente_cidade_uf','Cidade/UF do emitente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,5),

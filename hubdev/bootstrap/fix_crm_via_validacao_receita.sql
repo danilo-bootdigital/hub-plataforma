@@ -19,7 +19,7 @@ UPDATE receita_checklist_itens
    SET config_json = jsonb_set(
      coalesce(config_json, '{}'::jsonb),
      '{regex}',
-     '"(\\d{4,7}[\\s/.-]+(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO))|((AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)[\\s/.-]+\\d{4,7})"'::jsonb
+     '"(\\d{4,7}[^0-9A-Za-z]+(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO))|((AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)[^0-9A-Za-z]+\\d{4,7})"'::jsonb
    )
  WHERE chave = 'crm_uf';
 

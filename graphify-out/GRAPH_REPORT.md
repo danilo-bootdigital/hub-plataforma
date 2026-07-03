@@ -1,7 +1,7 @@
 # Graph Report - plataforma-hub  (2026-07-03)
 
 ## Corpus Check
-- 546 files · ~249,541 words
+- 546 files · ~249,695 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `766669f4`
+- Built from commit: `2cb774f3`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -206,8 +206,8 @@ Cohesion: 0.08
 Nodes (20): ACAO_POR_MOTIVO, RESULTADO_POR_STATUS, conferir(), DIACRITICOS, itensBatemPorNome(), nomesBatem(), norm(), parseDataDias() (+12 more)
 
 ### Community 7 - "Login e Formulário de Contato"
-Cohesion: 0.15
-Nodes (12): ComparacaoPosologia, PromptComparacao, ResultadoComparacaoPosologia, SCHEMA_COMPARACAO, ArquivoReceita, ComparadorPosologia, EntradaComparacaoPosologia, MimeReceita (+4 more)
+Cohesion: 0.18
+Nodes (9): ComparacaoPosologia, PromptComparacao, ResultadoComparacaoPosologia, SCHEMA_COMPARACAO, ComparadorPosologia, EntradaComparacaoPosologia, ComparacaoInvalida, ClaudeComparador (+1 more)
 
 ### Community 8 - "Ações de Orçamento"
 Cohesion: 0.16
@@ -278,8 +278,8 @@ Cohesion: 0.15
 Nodes (17): concluirTarefa(), criarTarefa(), excluirTarefa(), getUsuarioEOrg(), reabrirTarefa(), CardTarefa(), ICONES_TIPO, LABELS_TIPO (+9 more)
 
 ### Community 25 - "Community 25"
-Cohesion: 0.13
-Nodes (13): ExtracaoReceita, CAMPOS_EXTRACAO, PromptExtracao, SCHEMA_EXTRACAO, EntradaExtracao, ExtratorReceita, MockExtrator, ExtracaoInvalida (+5 more)
+Cohesion: 0.11
+Nodes (16): ExtracaoReceita, CAMPOS_EXTRACAO, PromptExtracao, SCHEMA_EXTRACAO, ArquivoReceita, EntradaExtracao, ExtratorReceita, MimeReceita (+8 more)
 
 ### Community 26 - "Detalhe de Orçamento e PDF"
 Cohesion: 0.09

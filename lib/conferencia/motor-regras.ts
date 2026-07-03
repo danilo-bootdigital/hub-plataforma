@@ -108,7 +108,7 @@ export function conferir(entrada: EntradaMotor): ResultadoConferencia {
             }, item)
           }
         }
-        if (item.config.regex && !new RegExp(item.config.regex).test(String(valor))) {
+        if (item.config.regex && !new RegExp(item.config.regex, 'i').test(String(valor))) {
           registrar({
             origem: 'regra', chave: item.chave, motivo: item.motivo, tipo: 'formato_invalido',
             severidade: item.severidade, mensagem: `${item.rotulo} em formato inválido`,
