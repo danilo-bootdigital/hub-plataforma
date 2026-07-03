@@ -115,6 +115,8 @@ export function construirPromptExtracao(
     'A receita tem dois blocos de identificação: EMITENTE/PRESCRITOR (prescritor_nome, crm_uf, emitente_cpf, ' +
       'emitente_endereco, emitente_cidade_uf, emitente_telefone) e PACIENTE (nome_paciente, cpf_paciente, ' +
       'paciente_documento = RG ou CPF do paciente, paciente_data_nascimento, paciente_endereco, paciente_cidade_uf).',
+    'Em "crm_uf" inclua SEMPRE o número de registro do CRM E a UF juntos (ex.: "104352/SP", "022516-DF") — ' +
+      'NUNCA apenas a UF ("MG") nem apenas o número. Se o CRM e a UF aparecerem separados no documento, junte-os.',
     'Para "medicamento" use apenas o nome do medicamento/princípio ativo (sem a dose); ' +
       'para "concentracao" use apenas a dose (ex.: "5 mg"); para "quantidade" o número de unidades prescritas.',
     'Para "assinatura": considere PRESENTE se houver assinatura manuscrita, assinatura eletrônica/digital ' +
