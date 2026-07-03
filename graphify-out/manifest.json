@@ -1140,8 +1140,8 @@
     "semantic_hash": "35ac2dad0755e14c603fb7ceb00a8aa6"
   },
   "lib/navegacao.ts": {
-    "mtime": 1782940574.3869157,
-    "ast_hash": "d7e5cbe6737021bcee3380b7d3698740",
+    "mtime": 1783083231.7878435,
+    "ast_hash": "65c04ea7b130b6fdf0dfad0720d610dd",
     "semantic_hash": ""
   },
   "lib/nome-contato.ts": {
@@ -1610,8 +1610,8 @@
     "semantic_hash": "02fc19ad21338c2ab820a70136310db4"
   },
   "types/database.ts": {
-    "mtime": 1782990031.167728,
-    "ast_hash": "542a851a25600e704537e4d4c91a2089",
+    "mtime": 1783079034.9729621,
+    "ast_hash": "fcc23e45a8e5af54c32440ed1c19ab78",
     "semantic_hash": ""
   },
   "types/whatsapp-central.ts": {
@@ -2365,7 +2365,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/package.json": {
-    "mtime": 1783008505.611753,
+    "mtime": 1783097448.2198355,
     "ast_hash": "95b08bc3062cdc4b0334fa9be037e557",
     "semantic_hash": ""
   },
@@ -2380,13 +2380,13 @@
     "semantic_hash": ""
   },
   "lib/conferencia/__tests__/motor-regras.test.ts": {
-    "mtime": 1783008376.479915,
-    "ast_hash": "cf04cc586bd9d3daea94b395fcd95a88",
+    "mtime": 1783079084.272012,
+    "ast_hash": "ce8cb384c103d6ca51e4a3023d325dac",
     "semantic_hash": ""
   },
   "lib/conferencia/motor-regras.ts": {
-    "mtime": 1782993523.647175,
-    "ast_hash": "275dbc226ec35fe28abe7a1c3c4a066f",
+    "mtime": 1783018008.4223557,
+    "ast_hash": "1b550283963d106341990b28cb48b71b",
     "semantic_hash": ""
   },
   "lib/conferencia/resolver-checklist.ts": {
@@ -2395,13 +2395,13 @@
     "semantic_hash": ""
   },
   "lib/conferencia/tipos.ts": {
-    "mtime": 1782993396.389064,
-    "ast_hash": "153911be1c69d70a5add71394fee7c8d",
+    "mtime": 1783078866.4216454,
+    "ast_hash": "e89b2bfe249b5fdb305538e7bc7e6d29",
     "semantic_hash": ""
   },
   "tsconfig.conferencia.json": {
-    "mtime": 1783000542.1402202,
-    "ast_hash": "ebc74fa3323b05639b06e09d9217ddeb",
+    "mtime": 1783093576.8997164,
+    "ast_hash": "b6fefd73cd7025c9e54246c9b2ebe857",
     "semantic_hash": ""
   },
   ".tmp-conferencia/diagnostico.js": {
@@ -2425,8 +2425,8 @@
     "semantic_hash": ""
   },
   "lib/conferencia/diagnostico.ts": {
-    "mtime": 1782995594.566665,
-    "ast_hash": "1206997a61943f88b3423c5e42bc094e",
+    "mtime": 1783029588.9058967,
+    "ast_hash": "e7177b6984da5caf65a9adf61dc02277",
     "semantic_hash": ""
   },
   "lib/conferencia/mapear-checklist.ts": {
@@ -2440,58 +2440,58 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js": {
-    "mtime": 1783008505.487286,
-    "ast_hash": "38c28de4a723f6a42155418da82a3d39",
+    "mtime": 1783097448.1114457,
+    "ast_hash": "fc0876e0c5456c6f5c51b4c19a335bc5",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/diagnostico.js": {
-    "mtime": 1783008505.4500246,
-    "ast_hash": "5ea24105facb28e452350557fa18379c",
+    "mtime": 1783097448.0544214,
+    "ast_hash": "d2bf2d6eb15a769511269a45f780c483",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/mapear-checklist.js": {
-    "mtime": 1783008505.4531124,
+    "mtime": 1783097448.0623207,
     "ast_hash": "34df1160f09a44ee78a8d1f50bf33891",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/motor-regras.js": {
-    "mtime": 1783008505.4680068,
-    "ast_hash": "ef3ce5ddec65f2e56a7f00bf035c1eea",
+    "mtime": 1783097448.0762937,
+    "ast_hash": "b3c8dc00c63a29c434c1ed58455d1255",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/resolver-checklist.js": {
-    "mtime": 1783008505.4722252,
+    "mtime": 1783097448.084771,
     "ast_hash": "d548dcd48788531c2dc0856bf4d8f08f",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/tipos.js": {
-    "mtime": 1783008505.4362292,
+    "mtime": 1783097448.038994,
     "ast_hash": "e5242a72d0a2ba687aa9e3006b57a65e",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/__tests__/extrator.test.js": {
-    "mtime": 1783008505.506697,
-    "ast_hash": "6e2b694f19dd8fee1cb7ea97fa3c08ae",
+    "mtime": 1783097448.1289535,
+    "ast_hash": "ad7f4903194356fb3b9ca488da6c4b64",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/provedores/mock.js": {
-    "mtime": 1783008505.5013754,
+    "mtime": 1783097448.1242182,
     "ast_hash": "a22ce2e93e402f6a40022f63c29d7153",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/schema-extracao.js": {
-    "mtime": 1783008505.4943075,
-    "ast_hash": "fd19ab98516a9aeaebf041bdee9f00c4",
+    "mtime": 1783097448.1188862,
+    "ast_hash": "406eb4ef31c91b231213980497914c3a",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/tipos.js": {
-    "mtime": 1783008505.4955654,
+    "mtime": 1783097448.119901,
     "ast_hash": "2a4e7dac578b1592c5b287ba8c2c9bd2",
     "semantic_hash": ""
   },
   "lib/ia/__tests__/extrator.test.ts": {
-    "mtime": 1783000534.0869126,
-    "ast_hash": "f29b8ce3ebfd608300cf1be13908b322",
+    "mtime": 1783093560.6998749,
+    "ast_hash": "c9a3bb8866167472fc23f8f786168465",
     "semantic_hash": ""
   },
   "lib/ia/provedores/claude.ts": {
@@ -2500,8 +2500,8 @@
     "semantic_hash": ""
   },
   "lib/ia/provedores/index.ts": {
-    "mtime": 1783000492.4297714,
-    "ast_hash": "fb0b6225a5de5d763273f2d3b37109d0",
+    "mtime": 1783093286.2457237,
+    "ast_hash": "097bfd86b2697bd06d294d4c0c218014",
     "semantic_hash": ""
   },
   "lib/ia/provedores/mock.ts": {
@@ -2510,17 +2510,17 @@
     "semantic_hash": ""
   },
   "lib/ia/schema-extracao.ts": {
-    "mtime": 1783000461.7932863,
-    "ast_hash": "61c80c47e900923b1fdf179ad510f611",
+    "mtime": 1783093241.5621514,
+    "ast_hash": "a2ab34f7e7a3d047fc7de6c17c06a6cb",
     "semantic_hash": ""
   },
   "lib/ia/tipos.ts": {
-    "mtime": 1783000438.2747042,
-    "ast_hash": "ae500bcafbbf06d3c78a29a6def69dc0",
+    "mtime": 1783093266.8926,
+    "ast_hash": "e418fe1847573c65f594eead216ffd23",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/persistencia.js": {
-    "mtime": 1783008505.4707832,
+    "mtime": 1783097448.082359,
     "ast_hash": "668db06c4329a65eacad4352ddfc4c9c",
     "semantic_hash": ""
   },
@@ -2555,13 +2555,143 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/mapear-orcamento.js": {
-    "mtime": 1783008505.4554868,
+    "mtime": 1783097448.0646708,
     "ast_hash": "ff2af05a1c739320b55e8ae7cf420c3e",
     "semantic_hash": ""
   },
   "lib/conferencia/mapear-orcamento.ts": {
     "mtime": 1783008316.6333997,
     "ast_hash": "79c1bbc11e7dea7918996f6cc362e072",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/rollback_conferencia_receita_standalone.sql": {
+    "mtime": 1783022696.6067228,
+    "ast_hash": "15e2eea67601cf6bcde81769f1f71df1",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/060_conferencia_receita_standalone.sql": {
+    "mtime": 1783025936.2123628,
+    "ast_hash": "ea602ca821722511df676e0b95983140",
+    "semantic_hash": ""
+  },
+  ".tmp-conferencia/conferencia/persistencia-standalone.js": {
+    "mtime": 1783097448.0789096,
+    "ast_hash": "18e1d116527b9498cb61995f732e87c1",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/smoke_conferencia_receita_standalone.sql": {
+    "mtime": 1783022735.1623397,
+    "ast_hash": "639ffaa3d3d2b3acdb1de1259f413c59",
+    "semantic_hash": ""
+  },
+  "lib/conferencia/persistencia-standalone.ts": {
+    "mtime": 1783025876.4406488,
+    "ast_hash": "abb8343df80bb2b8e9edab8d1fee482e",
+    "semantic_hash": ""
+  },
+  ".tmp-conferencia/conferencia/hidratar-checklist.js": {
+    "mtime": 1783097448.0593123,
+    "ast_hash": "2ac252b6539f6ae8037bca6769d0f621",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/seed_checklists_validacao_receita_standalone.sql": {
+    "mtime": 1783093541.707337,
+    "ast_hash": "7f4b0adde9c2c9f483d6e2c0b31c9236",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/verify_checklists_validacao_receita.sql": {
+    "mtime": 1783028391.8503225,
+    "ast_hash": "2d656f2f5a17baf228292912df34bd1e",
+    "semantic_hash": ""
+  },
+  "lib/conferencia/hidratar-checklist.ts": {
+    "mtime": 1783078884.252459,
+    "ast_hash": "d5238ce7eeb360cf4321d1a57c4ef469",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/rollback_product_validation_metadata.sql": {
+    "mtime": 1783078915.7796125,
+    "ast_hash": "7c8e057648422b14292b526df320f921",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/seed_product_validation_metadata_tirzepatida.sql": {
+    "mtime": 1783078944.4303474,
+    "ast_hash": "7833d80de806722216c8552d007ede69",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/smoke_product_validation_metadata.sql": {
+    "mtime": 1783078933.4972534,
+    "ast_hash": "f0be054ad2d4f8461de883fd2ebad9c3",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/061_product_validation_metadata.sql": {
+    "mtime": 1783078903.1137161,
+    "ast_hash": "536426e77375143ef3f9c499014467c8",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/validacao-receita/[id]/page.tsx": {
+    "mtime": 1783091659.7569273,
+    "ast_hash": "211bcf417be8858186b4ca2f973c97f5",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/validacao-receita/actions.ts": {
+    "mtime": 1783097391.7618976,
+    "ast_hash": "006cfe29258b3b12aa95c359bf9dcf10",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/validacao-receita/nova/page.tsx": {
+    "mtime": 1783091639.447964,
+    "ast_hash": "1a84da452007353debba4d2b3083c8f9",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/validacao-receita/page.tsx": {
+    "mtime": 1783083279.1806276,
+    "ast_hash": "ee2a41dc29a96aa4a797f1a9613064ed",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/validacao-receita/ui.ts": {
+    "mtime": 1783093367.6987426,
+    "ast_hash": "c83c28bc8c7264ebb27da9ca452a5a9c",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/validacao-receita/acoes-decisao.tsx": {
+    "mtime": 1783091433.6366153,
+    "ast_hash": "b709587f71f5630262cb40880f296b91",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/validacao-receita/nova/tela-validacao.tsx": {
+    "mtime": 1783093441.0928826,
+    "ast_hash": "e376c3afa3e3633ae9151d3a22bf611d",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/validacao-receita/painel-resultado.tsx": {
+    "mtime": 1783097439.1824641,
+    "ast_hash": "616d73f3f0193858e916327c3a662c95",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/validacao-receita/preview-receita.tsx": {
+    "mtime": 1783091404.5165274,
+    "ast_hash": "b64bc1976a2ebef9f164cb7af6c26803",
+    "semantic_hash": ""
+  },
+  ".tmp-conferencia/ia/comparar-posologia.js": {
+    "mtime": 1783097448.1150856,
+    "ast_hash": "1b699497caaca1853038a0a70136b823",
+    "semantic_hash": ""
+  },
+  "lib/ia/comparar-posologia.ts": {
+    "mtime": 1783093259.0471895,
+    "ast_hash": "0afc1310208998e3da1abc8e3f00ccc4",
+    "semantic_hash": ""
+  },
+  "lib/ia/provedores/comparador-claude.ts": {
+    "mtime": 1783093276.8147342,
+    "ast_hash": "d17387aef721f2122a58bf99b54a0f33",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/validacao-receita/bloco-comparar-posologia.tsx": {
+    "mtime": 1783097406.9219782,
+    "ast_hash": "ef57fd9e26e9d465f63218217a1c606b",
     "semantic_hash": ""
   }
 }

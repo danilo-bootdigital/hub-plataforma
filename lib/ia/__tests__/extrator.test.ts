@@ -1,6 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { parseExtracao, construirPromptExtracao, SCHEMA_EXTRACAO, ExtracaoInvalida, CAMPOS_EXTRACAO } from '../schema-extracao'
+import { parseComparacao, construirPromptComparacao, ComparacaoInvalida } from '../comparar-posologia'
 import { MockExtrator } from '../provedores/mock'
 import { conferir } from '../../conferencia/motor-regras'
 import { montarDiagnostico } from '../../conferencia/diagnostico'
@@ -81,6 +82,27 @@ test('IA (mock) → motor → Diagnóstico: extração com CRM ausente vira nece
   const diag = montarDiagnostico(conferir({ checklist, extracao: ext, orcamento, hoje: '2026-07-02' }))
   assert.equal(diag.resultado, 'necessita_correcao')
   assert.ok(diag.conferenciaDocumental.pendencias.some((p) => p.motivo === 'crm_uf_ausente'))
+})
+
+// ---- Comparação de posologia (consultiva; IA só compara) ----
+
+test('parseComparacao aceita os 3 resultados válidos', () => {
+  for (const r of ['compativel', 'diferenca_encontrada', 'nao_foi_possivel_comparar']) {
+    const c = parseComparacao({ resultado: r, justificativa: 'ok' })
+    assert.equal(c.resultado, r)
+  }
+})
+
+test('parseComparacao rejeita resultado inválido', () => {
+  assert.throws(() => parseComparacao({ resultado: 'aprovada', justificativa: '' }), ComparacaoInvalida)
+  assert.throws(() => parseComparacao('x'), ComparacaoInvalida)
+})
+
+test('prompt de comparação inclui as duas posologias e proíbe decidir', () => {
+  const { system, instrucao } = construirPromptComparacao('1x ao dia', '1 vez por dia')
+  assert.match(system, /n[ãa]o aprove/i)
+  assert.match(instrucao, /ESPERADA/)
+  assert.match(instrucao, /EXTRA[ÍI]DA/)
 })
 
 test('retorno cru da IA (parseExtracao) alimenta o motor de ponta a ponta', () => {

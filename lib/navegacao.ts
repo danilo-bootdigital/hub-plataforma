@@ -1,7 +1,7 @@
 import {
   LayoutDashboard, Users, TrendingUp, UserCheck,
   MessageCircle, CheckSquare, FileText, Inbox,
-  BarChart3, Settings, Package, Building2, Briefcase, Network, Wallet, Contact, ClipboardList, PackageCheck, Layers, ShieldCheck, type LucideIcon
+  BarChart3, Settings, Package, Building2, Briefcase, Network, Wallet, Contact, ClipboardList, PackageCheck, Layers, ShieldCheck, ClipboardCheck, type LucideIcon
 } from 'lucide-react'
 import type { UserRole } from '@/types/database'
 
@@ -47,6 +47,8 @@ export const navegacao: ItemNavegacao[] = [
   { label: 'Produtos', href: '/hub/produtos', icone: Package, perfis: ['proprietario_hub', 'assistente'], modulo: 'produtos' },
   // Orçamentos — área operacional do Hub (DEC-017); escopo por hub_id no servidor.
   { label: 'Orçamentos', href: '/hub/orcamentos', icone: FileText, perfis: ['proprietario_hub', 'assistente'], modulo: 'orcamentos' },
+  // Validação de Receita — módulo do Hub (DEC-019). Proprietário sempre; Assistente se a Função conceder 'visualizar' em 'receita'.
+  { label: 'Validação de Receita', href: '/hub/validacao-receita', icone: ClipboardCheck, perfis: ['proprietario_hub', 'assistente'], modulo: 'receita' },
   { label: 'Identidade', href: '/hub/identidade', icone: Building2, perfis: ['proprietario_hub'] },
   { label: 'Assistentes', href: '/hub/assistentes', icone: Users, perfis: ['proprietario_hub'] },
   { label: 'Funções', href: '/hub/funcoes', icone: ShieldCheck, perfis: ['proprietario_hub'] },

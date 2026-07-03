@@ -139,6 +139,24 @@ export function conferir(entrada: EntradaMotor): ResultadoConferencia {
         break
       }
 
+      case 'limite_maximo': {
+        // DOCUMENTAL: quantidade prescrita vs. limite máximo por receita do produto.
+        // Não compara com orçamento. Quantidade vem do campo configurado ou do 1º item extraído.
+        const limite = item.config.limiteMaximo
+        if (typeof limite !== 'number') break
+        const bruto = item.config.campo != null ? valor : extracao.itens[0]?.quantidade
+        const qtd = typeof bruto === 'number' ? bruto : Number(String(bruto ?? '').replace(',', '.'))
+        if (Number.isFinite(qtd) && qtd > limite) {
+          registrar({
+            origem: 'regra', chave: item.chave, motivo: item.motivo ?? 'limite_maximo_excedido',
+            tipo: 'formato_invalido', severidade: item.severidade,
+            mensagem: `${item.rotulo} acima do limite máximo por receita (${qtd} > ${limite})`,
+            esperado: `<= ${limite}`, encontrado: String(qtd),
+          }, item)
+        }
+        break
+      }
+
       case 'comparacao_orcamento': {
         const alvo = item.config.alvo ?? 'produto'
         if (alvo === 'produto') {

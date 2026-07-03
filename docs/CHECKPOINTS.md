@@ -251,3 +251,22 @@
 - **Fronteira mantida:** IA só extrai; motor decide; aprovação humana. DEC-018/019 intactas.
 - **Situação:** ⏳ **MVP-5 em andamento** — ajustes aprovados aplicados (rename de status + mapper de orçamento). **Cobertura documental por quantidade (múltiplas receitas por orçamento/produto) em revisão arquitetural** antes de finalizar. Migration `059` a aplicar.
 - **Changelog Relacionado:** 2026-07-02 — MVP-5 DEC-019 (integração + decisão humana + RBAC).
+
+## Checkpoint 022 — Validação de Receita: UI operacional única + comparação de posologia + Emitente/Paciente (MVP-6 — DEC-019)
+
+- **Data:** 2026-07-03
+- **Git Commit:** este commit.
+- **Git Branch:** main
+- **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV).
+- **Ambiente:** código + `build:hubdev` OK. **Sem deploy/preview** (validação runtime online pendente).
+- **Entregue (módulo STANDALONE "Validação de Receita", independente do orçamento — Área do Hub):**
+  - **Tela operacional ÚNICA** (2 colunas ~60/40): preview grande da receita + painel — **resultado principal 🟢/🟡** (linguagem do operador), **checklist ✅/❌**, **resumo/orientação**, **decisão sempre visível** (Aprovar/Devolver/Rejeitar), **dados agrupados** (Documento/Emitente · Paciente · Medicamento) e **Detalhes técnicos** recolhíveis (score/confiança/JSON). Sem wizard/múltiplas telas. Rotas `app/(dashboard)/hub/validacao-receita/` (lista · `nova` · `[id]`); menu `lib/navegacao.ts` (perfis `proprietario_hub`+`assistente`, `modulo:'receita'`).
+  - **Comparação OPCIONAL de posologia (consultiva):** campo na Coleta **e** bloco "Comparar Posologia" sob demanda no Resultado — `compararPosologiaConferencia` compara a posologia esperada com a **já extraída** (sem refazer extração/motor); nova IA `comparar-posologia.ts` (puro) + `provedores/comparador-claude.ts` + `criarComparador`. **Não** altera resultado/checklist/score/decisão.
+  - **Novos campos de extração:** Emitente (`emitente_cpf`/`emitente_endereco`/`emitente_cidade_uf`/`emitente_telefone`) e Paciente (`paciente_documento`/`paciente_data_nascimento`/`paciente_endereco`/`paciente_cidade_uf`).
+  - **`product_validation_metadata`** (catálogo keyed) + helper puro **`hidratarChecklistComMetadadosProduto`**: aliases/concentrações/vias/limite por produto hidratam as regras `origemValores` na composição — **motor intacto**.
+- **Banco (HUB DEV):** `060` (`conferencias_receita` + `conferencia_receita_pendencias` + `historico_decisoes_conferencia_receita` append-only) **aplicada, smoke OK**. Checklists standalone (Genérico **17** / Tirzepatida **18**) + **incremental** aplicados e **verificação aprovada** (sem duplicatas). Comparação de posologia persiste no `extracao_json` (sem migration). **A confirmar:** `061` (`product_validation_metadata`) + seed de metadados da Tirzepatida — necessários para validar medicamento/concentração/vias/limite via aliases (sem eles, essas regras ficam no-op; o restante do checklist funciona).
+- **Testes/validação:** `node:test` **47/47**; `tsc --noEmit` **0 erros**; `eslint` limpo; `build:hubdev` **OK**. Runtime E2E (sessão + IA real) pendente do deploy.
+- **RBAC:** `receita:conferir` (criar/rodar/comparar) e `receita:aprovar` (decidir; Proprietário `total`). Assistente sem `aprovar` → botões ocultos. Indústria → sem menu / redirect.
+- **Fronteira mantida:** IA só **extrai e compara** (comparação consultiva); **motor documental decide**; **decisão sempre humana**. Banco estrutural/motor/RBAC/Storage/metadados não alterados nesta UI.
+- **Situação:** ✅ **MVP-6 (código) concluído**; ⏳ validação runtime online (deploy) pendente.
+- **Changelog Relacionado:** 2026-07-03 — MVP-6 DEC-019 (UI operacional única + comparação de posologia + Emitente/Paciente + metadados por produto).

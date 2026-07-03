@@ -494,10 +494,11 @@ export type ReceitaMotivo =
   | 'data_ausente'
   | 'receita_vencida'
   | 'documento_ilegivel'
+  | 'limite_maximo_excedido'
   | 'outro'
 
 export type ChecklistEscopo = 'organizacao' | 'portfolio' | 'produto'
-export type ChecklistTipoRegra = 'presenca' | 'formato' | 'comparacao_orcamento' | 'valor_esperado'
+export type ChecklistTipoRegra = 'presenca' | 'formato' | 'comparacao_orcamento' | 'valor_esperado' | 'limite_maximo'
 export type ReceitaItemSeveridade = 'info' | 'aviso' | 'critico'
 
 export type QuoteReceita = {
@@ -601,6 +602,99 @@ export type ReceitaConferenciaPendencia = {
   mensagem: string | null
   esperado: string | null
   encontrado: string | null
+}
+
+// Migration 060 (DEC-019 emenda MVP-5′) — Conferência de Receita STANDALONE
+// (independente do orçamento; arquitetura simplificada, sem Event Sourcing).
+export type ConferenciaStatusAtual =
+  | 'criada'
+  | 'aguardando_decisao'
+  | 'aprovada'
+  | 'reprovada'
+  | 'devolvida_para_correcao'
+  | 'erro'
+
+export type ConferenciaStatusProcessamento = 'pendente' | 'processando' | 'concluido' | 'erro'
+
+// Documental-only: sem 'divergente_do_orcamento'.
+export type ConferenciaResultadoAnalise =
+  | 'sem_pendencias_aparentes'
+  | 'pendencias_encontradas'
+  | 'ilegivel'
+  | 'precisa_de_revisao_humana'
+
+export type ConferenciaDecisao = 'aprovada' | 'reprovada' | 'devolvida_para_correcao'
+
+export type ConferenciaReceita = {
+  id: string
+  organization_id: string
+  hub_id: string | null
+  product_id: string
+  storage_path: string | null
+  arquivo_nome: string | null
+  arquivo_tipo: string | null
+  arquivo_tamanho: number | null
+  checklist_id: string | null
+  checklist_versao: number | null
+  status_atual: ConferenciaStatusAtual
+  status_processamento: ConferenciaStatusProcessamento
+  resultado_analise: ConferenciaResultadoAnalise | null
+  provedor_ia: string | null
+  modelo_ia: string | null
+  prompt_versao: string | null
+  extracao_json: Record<string, unknown> | null
+  explicacao_ia: string | null
+  score: number | null
+  confianca_extracao: number | null
+  decidido_por: string | null
+  decidido_em: string | null
+  observacao_decisao: string | null
+  criado_por: string | null
+  criado_em: string
+  atualizado_em: string
+}
+
+export type ConferenciaReceitaPendencia = {
+  id: string
+  conferencia_id: string
+  origem: 'regra' | 'extracao'
+  chave: string | null
+  motivo: ReceitaMotivo | null
+  tipo: 'campo_ausente' | 'divergencia' | 'formato_invalido' | 'ilegivel' | 'suspeita'
+  severidade: ReceitaItemSeveridade
+  mensagem: string | null
+  esperado: string | null
+  encontrado: string | null
+}
+
+export type HistoricoDecisaoConferenciaReceita = {
+  id: string
+  conferencia_id: string
+  decisao: ConferenciaDecisao
+  observacao: string | null
+  decidido_por: string
+  decidido_em: string
+}
+
+// Migration 061 (DEC-019 MVP-5′ / DEC-012) — catálogo keyed de metadados de validação por produto.
+export type ProductValidationChave =
+  | 'medicamento_aliases'
+  | 'concentracoes_permitidas'
+  | 'vias_permitidas'
+  | 'limite_maximo_por_receita'
+export type ProductValidationTipo = 'lista' | 'numero' | 'texto'
+export type ProductValidationMetadata = {
+  id: string
+  organization_id: string
+  product_id: string
+  chave: ProductValidationChave
+  tipo: ProductValidationTipo
+  valores: string[] | null
+  valor_num: number | null
+  valor_texto: string | null
+  ativo: boolean
+  criado_por: string | null
+  criado_em: string
 }
 
 export type QuoteItem = {

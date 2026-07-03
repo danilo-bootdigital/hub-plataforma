@@ -5,15 +5,32 @@
 import type { ExtracaoReceita } from '../conferencia/tipos'
 
 // Campos que a IA extrai (alinhados às chaves usadas pelos checklists no banco).
+// medicamento/concentracao/quantidade também em `campos` (MVP-5′, Opção A): o fluxo
+// standalone documental valida-os por 'valor_esperado'/'limite_maximo' (que leem `campos`).
+// Continuam também em itens[] para o fluxo acoplado (comparacao_orcamento). Retrocompatível.
 export const CAMPOS_EXTRACAO = [
-  'nome_paciente',
+  // Emitente / documento
   'prescritor_nome',
   'crm_uf',
-  'cpf_paciente',
+  'emitente_cpf',
+  'emitente_endereco',
+  'emitente_cidade_uf',
+  'emitente_telefone',
+  'assinatura',
   'data_emissao',
+  // Paciente
+  'nome_paciente',
+  'cpf_paciente',
+  'paciente_documento',
+  'paciente_data_nascimento',
+  'paciente_endereco',
+  'paciente_cidade_uf',
+  // Medicamento / prescrição
+  'medicamento',
+  'concentracao',
+  'quantidade',
   'posologia',
   'via_administracao',
-  'assinatura',
 ] as const
 
 // JSON Schema para saída estruturada / tool input. Strings vazias quando ausente
@@ -95,6 +112,11 @@ export function construirPromptExtracao(
   ].join(' ')
   const instrucao = [
     'Extraia os campos: ' + camposEsperados.join(', ') + '.',
+    'A receita tem dois blocos de identificação: EMITENTE/PRESCRITOR (prescritor_nome, crm_uf, emitente_cpf, ' +
+      'emitente_endereco, emitente_cidade_uf, emitente_telefone) e PACIENTE (nome_paciente, cpf_paciente, ' +
+      'paciente_documento = RG ou CPF do paciente, paciente_data_nascimento, paciente_endereco, paciente_cidade_uf).',
+    'Para "medicamento" use apenas o nome do medicamento/princípio ativo (sem a dose); ' +
+      'para "concentracao" use apenas a dose (ex.: "5 mg"); para "quantidade" o número de unidades prescritas.',
     'Extraia também os itens (medicamentos) com descricao, concentracao e quantidade.',
     'Responda somente pela ferramenta de extração, no formato do schema. Use "" quando ausente e 0 para quantidade desconhecida.',
   ].join(' ')

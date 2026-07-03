@@ -46,13 +46,14 @@ const ACAO_POR_MOTIVO: Record<string, string> = {
   assinatura_ausente: 'Adicionar a assinatura do prescritor',
   paciente_ausente: 'Informar o nome do paciente',
   cpf_ausente_obrigatorio: 'Informar o CPF do paciente',
-  produto_divergente: 'Corrigir o medicamento (não confere com o orçamento)',
+  produto_divergente: 'Corrigir o medicamento (não confere com o esperado)',
   concentracao_divergente: 'Corrigir a concentração do medicamento',
   quantidade_divergente: 'Ajustar a quantidade prescrita',
   posologia_ausente: 'Informar a posologia',
   data_ausente: 'Informar a data de emissão',
   receita_vencida: 'Emitir nova receita (documento vencido)',
   documento_ilegivel: 'Reenviar a receita de forma legível',
+  limite_maximo_excedido: 'Ajustar a quantidade (acima do limite máximo por receita)',
 }
 
 function acaoDe(p: Pendencia): string {
@@ -67,9 +68,17 @@ const RESULTADO_POR_STATUS: Record<StatusAnalise, ResultadoMvp> = {
   ilegivel: 'ilegivel',
 }
 
-export function montarDiagnostico(resultado: ResultadoConferencia): DiagnosticoReceita {
-  const documental = resultado.pendencias.filter((p) => camadaDa(p) === 'documental')
-  const comercial = resultado.pendencias.filter((p) => camadaDa(p) === 'comercial')
+// MVP-5′ (DEC-019 emenda): no fluxo standalone (independente do orçamento) a conferência
+// é DOCUMENTAL-ONLY. Com { documentalOnly: true } não há bloco comercial: toda pendência
+// é tratada como documental. Sem a opção, o comportamento acoplado (documental + comercial)
+// permanece idêntico — retrocompatível.
+export function montarDiagnostico(
+  resultado: ResultadoConferencia,
+  opts: { documentalOnly?: boolean } = {},
+): DiagnosticoReceita {
+  const ehComercial = (p: Pendencia) => !opts.documentalOnly && camadaDa(p) === 'comercial'
+  const documental = resultado.pendencias.filter((p) => !ehComercial(p))
+  const comercial = resultado.pendencias.filter((p) => ehComercial(p))
   const resultadoMvp = RESULTADO_POR_STATUS[resultado.status]
   const apta = resultado.status === 'sem_pendencias_aparentes'
 

@@ -26,3 +26,13 @@ export interface ExtratorReceita {
   readonly id: ProvedorIA
   extrair(entrada: EntradaExtracao): Promise<ExtracaoReceita>
 }
+
+// Comparação semântica de posologia (etapa CONSULTIVA — não decide nem toca o motor).
+export interface EntradaComparacaoPosologia {
+  esperada: string
+  extraida: string
+}
+export interface ComparadorPosologia {
+  readonly id: ProvedorIA
+  comparar(entrada: EntradaComparacaoPosologia): Promise<import('./comparar-posologia').ComparacaoPosologia>
+}
