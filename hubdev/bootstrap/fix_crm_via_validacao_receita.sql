@@ -34,6 +34,14 @@ UPDATE product_validation_metadata
    SET valores = ARRAY['subcutânea','subcutanea','SC','S.C.','via subcutânea','via SC']
  WHERE chave = 'vias_permitidas';
 
+-- 4) Assinatura: manuscrita NÃO é aceita — só assinatura DIGITAL/eletrônica (gov.br/ICP) ou QR code.
+--    Regra vira valor_esperado (contem): "manuscrita" → recusada ("fora do aceito"); vazio → ausente.
+UPDATE receita_checklist_itens
+   SET tipo_regra = 'valor_esperado',
+       rotulo = 'Assinatura (digital/eletrônica)',
+       config_json = '{"camada":"documental","valores":["digital","eletronica","qr","icp","govbr"],"contem":true}'::jsonb
+ WHERE chave = 'assinatura';
+
 -- ---- Verificação (deve mostrar o novo regex e contem:true) ----
 SELECT c.nome, i.chave, i.config_json
   FROM receita_checklist_itens i

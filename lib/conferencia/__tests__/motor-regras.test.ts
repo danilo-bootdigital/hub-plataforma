@@ -394,6 +394,34 @@ test('via (contem): rejeita via realmente diferente', () => {
   assert.equal(viaInvalida('endovenosa'), true)
 })
 
+// ---- Assinatura: só digital/QR/gov.br; manuscrita RECUSADA; ausente ACUSA ----
+
+const checklistAssin: Checklist = {
+  escopo: 'organizacao',
+  itens: [{ chave: 'assinatura', rotulo: 'Assinatura (digital/eletrônica)', obrigatorio: true, tipoRegra: 'valor_esperado', config: { valores: ['digital', 'eletronica', 'qr', 'icp', 'govbr'], contem: true }, motivo: 'assinatura_ausente', severidade: 'critico', peso: 3 }],
+}
+const assinPend = (v: string) =>
+  conferir({ checklist: checklistAssin, extracao: { campos: { assinatura: v }, itens: [], confianca: 0.95 }, orcamento: { itens: [] }, hoje: '2026-07-02' })
+    .pendencias.find((p) => p.motivo === 'assinatura_ausente')
+
+test('assinatura digital/QR/gov.br → aceita', () => {
+  for (const v of ['assinatura digital', 'QR code', 'gov.br', 'ICP-Brasil', 'assinatura eletrônica']) {
+    assert.equal(assinPend(v), undefined, `deveria aceitar: ${v}`)
+  }
+})
+
+test('assinatura manuscrita → RECUSADA (formato_invalido)', () => {
+  const p = assinPend('manuscrita')
+  assert.ok(p)
+  assert.equal(p?.tipo, 'formato_invalido')
+})
+
+test('assinatura ausente (vazio) → acusa (campo_ausente)', () => {
+  const p = assinPend('')
+  assert.ok(p)
+  assert.equal(p?.tipo, 'campo_ausente')
+})
+
 test('diagnóstico documental-only: toda pendência é documental, comercial vazia', () => {
   // mesmo com uma divergência comercial no resultado, documentalOnly a trata como documental
   const resultado = conferir(entrada({ itens: [{ descricao: 'Semaglutida', concentracao: '5 mg', quantidade: 1 }] }))

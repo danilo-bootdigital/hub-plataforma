@@ -119,9 +119,10 @@ export function construirPromptExtracao(
       'NUNCA apenas a UF ("MG") nem apenas o número. Se o CRM e a UF aparecerem separados no documento, junte-os.',
     'Para "medicamento" use apenas o nome do medicamento/princípio ativo (sem a dose); ' +
       'para "concentracao" use apenas a dose (ex.: "5 mg"); para "quantidade" o número de unidades prescritas.',
-    'Para "assinatura": preencha SOMENTE se houver, DE FATO, assinatura manuscrita, assinatura eletrônica/digital ' +
-      '(ex.: carimbo gov.br/ICP-Brasil) OU um QR code de validação (receita digital) — descreva qual (ex.: "assinatura digital / QR code"). ' +
-      'Se NÃO houver nenhuma dessas, retorne "assinatura" VAZIA (""). NÃO invente assinatura que não esteja visível no documento.',
+    'Em "assinatura" informe o TIPO encontrado: se houver assinatura DIGITAL/eletrônica (gov.br/ICP-Brasil) ' +
+      'ou QR code de validação, escreva o tipo (ex.: "assinatura digital", "QR code", "gov.br"). ' +
+      'Se houver APENAS assinatura MANUSCRITA (à mão), escreva exatamente "manuscrita". ' +
+      'Se NÃO houver assinatura alguma, retorne "" (vazio). NÃO invente.',
     'Extraia também os itens (medicamentos) com descricao, concentracao e quantidade.',
     'Responda somente pela ferramenta de extração, no formato do schema. Use "" quando ausente e 0 para quantidade desconhecida.',
   ].join(' ')

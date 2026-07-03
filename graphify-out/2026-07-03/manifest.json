@@ -2365,7 +2365,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/package.json": {
-    "mtime": 1783119621.6201565,
+    "mtime": 1783121594.3415148,
     "ast_hash": "95b08bc3062cdc4b0334fa9be037e557",
     "semantic_hash": ""
   },
@@ -2380,13 +2380,13 @@
     "semantic_hash": ""
   },
   "lib/conferencia/__tests__/motor-regras.test.ts": {
-    "mtime": 1783118580.9689703,
-    "ast_hash": "1e75eb4297e75cfc3e4210b8b80db105",
+    "mtime": 1783120559.342099,
+    "ast_hash": "b62eff4ba3f2d1396e79c080731f2e85",
     "semantic_hash": ""
   },
   "lib/conferencia/motor-regras.ts": {
-    "mtime": 1783117887.0362377,
-    "ast_hash": "d27c4f39bc44a11218703053b60edb5e",
+    "mtime": 1783120536.415213,
+    "ast_hash": "a60b51af917a4790f81dfcbe8b9c20bf",
     "semantic_hash": ""
   },
   "lib/conferencia/resolver-checklist.ts": {
@@ -2440,52 +2440,52 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js": {
-    "mtime": 1783119621.515014,
-    "ast_hash": "382ff575e58ed4a491bb5480cfd71a10",
+    "mtime": 1783121594.2306316,
+    "ast_hash": "f63a49c0495512babc8a270e817846e4",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/diagnostico.js": {
-    "mtime": 1783119621.4656417,
+    "mtime": 1783121594.1774943,
     "ast_hash": "d2bf2d6eb15a769511269a45f780c483",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/mapear-checklist.js": {
-    "mtime": 1783119621.4724915,
+    "mtime": 1783121594.1834466,
     "ast_hash": "34df1160f09a44ee78a8d1f50bf33891",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/motor-regras.js": {
-    "mtime": 1783119621.4865582,
-    "ast_hash": "49bbce88f1afa73813f891b9b185c521",
+    "mtime": 1783121594.1973727,
+    "ast_hash": "d1dee6737d510ef12665b503bcc27088",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/resolver-checklist.js": {
-    "mtime": 1783119621.4928842,
+    "mtime": 1783121594.2029235,
     "ast_hash": "d548dcd48788531c2dc0856bf4d8f08f",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/tipos.js": {
-    "mtime": 1783119621.4529989,
+    "mtime": 1783121594.1688652,
     "ast_hash": "e5242a72d0a2ba687aa9e3006b57a65e",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/__tests__/extrator.test.js": {
-    "mtime": 1783119621.5310369,
+    "mtime": 1783121594.2516952,
     "ast_hash": "1f179bacbd8b36712e9e160e2c9d458d",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/provedores/mock.js": {
-    "mtime": 1783119621.5263252,
+    "mtime": 1783121594.2466242,
     "ast_hash": "a22ce2e93e402f6a40022f63c29d7153",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/schema-extracao.js": {
-    "mtime": 1783119621.5210857,
-    "ast_hash": "e41a84876797124401bdd8323d4639bb",
+    "mtime": 1783121594.2406561,
+    "ast_hash": "c26b50f85dfffe748a1031f159ff68f8",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/tipos.js": {
-    "mtime": 1783119621.5217261,
+    "mtime": 1783121594.2413661,
     "ast_hash": "2a4e7dac578b1592c5b287ba8c2c9bd2",
     "semantic_hash": ""
   },
@@ -2510,8 +2510,8 @@
     "semantic_hash": ""
   },
   "lib/ia/schema-extracao.ts": {
-    "mtime": 1783119562.0209537,
-    "ast_hash": "c7e8c4ba8c140ce76206db89ea202362",
+    "mtime": 1783121579.8039486,
+    "ast_hash": "e80f45791f8c9fed33e3da5f161cb8d8",
     "semantic_hash": ""
   },
   "lib/ia/tipos.ts": {
@@ -2520,7 +2520,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/persistencia.js": {
-    "mtime": 1783119621.4908702,
+    "mtime": 1783121594.2014098,
     "ast_hash": "668db06c4329a65eacad4352ddfc4c9c",
     "semantic_hash": ""
   },
@@ -2555,7 +2555,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/mapear-orcamento.js": {
-    "mtime": 1783119621.474353,
+    "mtime": 1783121594.1849885,
     "ast_hash": "ff2af05a1c739320b55e8ae7cf420c3e",
     "semantic_hash": ""
   },
@@ -2575,7 +2575,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/persistencia-standalone.js": {
-    "mtime": 1783119621.4884539,
+    "mtime": 1783121594.1996293,
     "ast_hash": "18e1d116527b9498cb61995f732e87c1",
     "semantic_hash": ""
   },
@@ -2590,13 +2590,13 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/hidratar-checklist.js": {
-    "mtime": 1783119621.4699554,
+    "mtime": 1783121594.1812918,
     "ast_hash": "2ac252b6539f6ae8037bca6769d0f621",
     "semantic_hash": ""
   },
   "hubdev/bootstrap/seed_checklists_validacao_receita_standalone.sql": {
-    "mtime": 1783118602.957984,
-    "ast_hash": "7d5b5cedf85e429415339b1f87a98dc3",
+    "mtime": 1783120581.849264,
+    "ast_hash": "ea9c587b4a69cdb14a9eaaaa470b74fd",
     "semantic_hash": ""
   },
   "hubdev/bootstrap/verify_checklists_validacao_receita.sql": {
@@ -2675,7 +2675,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/comparar-posologia.js": {
-    "mtime": 1783119621.5177116,
+    "mtime": 1783121594.2368548,
     "ast_hash": "1b699497caaca1853038a0a70136b823",
     "semantic_hash": ""
   },
@@ -2700,8 +2700,8 @@
     "semantic_hash": ""
   },
   "hubdev/bootstrap/seed_checklists_validacao_receita_incremental.sql": {
-    "mtime": 1783118610.0751922,
-    "ast_hash": "b2af82b675139e365efbe6b15f469d53",
+    "mtime": 1783120587.114783,
+    "ast_hash": "c89581a1d6f01a46a0ebc1fd0eb72232",
     "semantic_hash": ""
   },
   "hubdev/bootstrap/verify_checklists_validacao_receita_itens.sql": {
@@ -2720,8 +2720,8 @@
     "semantic_hash": ""
   },
   "hubdev/bootstrap/fix_crm_via_validacao_receita.sql": {
-    "mtime": 1783119603.699292,
-    "ast_hash": "3de6b6687840ef488ffea569e21811f9",
+    "mtime": 1783120577.267847,
+    "ast_hash": "50b87c18f264d411eef5abca3572dc95",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/validacao-receita/botao-substituir-receita.tsx": {

@@ -37,7 +37,7 @@ BEGIN
         (cl_gen,'emitente_endereco','Endereço do emitente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,4),
         (cl_gen,'emitente_cidade_uf','Cidade/UF do emitente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,5),
         (cl_gen,'emitente_telefone','Telefone do emitente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','info',1,6),
-        (cl_gen,'assinatura','Assinatura',true,'presenca','{"camada":"documental"}'::jsonb,'assinatura_ausente','critico',3,7),
+        (cl_gen,'assinatura','Assinatura (digital/eletrônica)',true,'valor_esperado','{"camada":"documental","valores":["digital","eletronica","qr","icp","govbr"],"contem":true}'::jsonb,'assinatura_ausente','critico',3,7),
         (cl_gen,'data_emissao','Data de emissão',true,'formato','{"camada":"documental","validadeDias":180}'::jsonb,'data_ausente','aviso',1,8),
         -- PACIENTE
         (cl_gen,'nome_paciente','Nome completo do paciente',true,'presenca','{"camada":"documental"}'::jsonb,'paciente_ausente','critico',3,9),
@@ -70,7 +70,7 @@ BEGIN
         (cl_tz,'emitente_endereco','Endereço do emitente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,4),
         (cl_tz,'emitente_cidade_uf','Cidade/UF do emitente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,5),
         (cl_tz,'emitente_telefone','Telefone do emitente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','info',1,6),
-        (cl_tz,'assinatura','Assinatura',true,'presenca','{"camada":"documental"}'::jsonb,'assinatura_ausente','critico',3,7),
+        (cl_tz,'assinatura','Assinatura (digital/eletrônica)',true,'valor_esperado','{"camada":"documental","valores":["digital","eletronica","qr","icp","govbr"],"contem":true}'::jsonb,'assinatura_ausente','critico',3,7),
         (cl_tz,'data_emissao','Data de emissão',true,'formato','{"camada":"documental","validadeDias":90}'::jsonb,'data_ausente','aviso',1,8),
         -- PACIENTE
         (cl_tz,'nome_paciente','Nome completo do paciente',true,'presenca','{"camada":"documental"}'::jsonb,'paciente_ausente','critico',3,9),

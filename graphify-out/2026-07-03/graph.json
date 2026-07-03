@@ -337,7 +337,7 @@
       "label": "checklistCrm",
       "file_type": "code",
       "source_file": ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js",
-      "source_location": "L311",
+      "source_location": "L312",
       "_origin": "ast",
       "id": "tmp_conferencia_conferencia_tests_motor_regras_test_js_tests_motor_regras_test_checklistcrm",
       "community": 125,
@@ -347,7 +347,7 @@
       "label": "crmInvalido()",
       "file_type": "code",
       "source_file": ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js",
-      "source_location": "L315",
+      "source_location": "L316",
       "_origin": "ast",
       "id": "tmp_conferencia_conferencia_tests_motor_regras_test_js_tests_motor_regras_test_crminvalido",
       "community": 125,
@@ -357,7 +357,7 @@
       "label": "checklistVia",
       "file_type": "code",
       "source_file": ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js",
-      "source_location": "L331",
+      "source_location": "L333",
       "_origin": "ast",
       "id": "tmp_conferencia_conferencia_tests_motor_regras_test_js_tests_motor_regras_test_checklistvia",
       "community": 125,
@@ -367,7 +367,7 @@
       "label": "viaInvalida()",
       "file_type": "code",
       "source_file": ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js",
-      "source_location": "L335",
+      "source_location": "L337",
       "_origin": "ast",
       "id": "tmp_conferencia_conferencia_tests_motor_regras_test_js_tests_motor_regras_test_viainvalida",
       "community": 125,
@@ -16511,7 +16511,7 @@
       "label": "checklistCrm",
       "file_type": "code",
       "source_file": "lib/conferencia/__tests__/motor-regras.test.ts",
-      "source_location": "L352",
+      "source_location": "L353",
       "_origin": "ast",
       "id": "lib_conferencia_tests_motor_regras_test_ts_tests_motor_regras_test_checklistcrm",
       "community": 41,
@@ -16521,7 +16521,7 @@
       "label": "crmInvalido()",
       "file_type": "code",
       "source_file": "lib/conferencia/__tests__/motor-regras.test.ts",
-      "source_location": "L356",
+      "source_location": "L357",
       "_origin": "ast",
       "id": "lib_conferencia_tests_motor_regras_test_ts_tests_motor_regras_test_crminvalido",
       "community": 41,
@@ -16531,7 +16531,7 @@
       "label": "checklistVia",
       "file_type": "code",
       "source_file": "lib/conferencia/__tests__/motor-regras.test.ts",
-      "source_location": "L377",
+      "source_location": "L379",
       "_origin": "ast",
       "id": "lib_conferencia_tests_motor_regras_test_ts_tests_motor_regras_test_checklistvia",
       "community": 41,
@@ -16541,7 +16541,7 @@
       "label": "viaInvalida()",
       "file_type": "code",
       "source_file": "lib/conferencia/__tests__/motor-regras.test.ts",
-      "source_location": "L381",
+      "source_location": "L383",
       "_origin": "ast",
       "id": "lib_conferencia_tests_motor_regras_test_ts_tests_motor_regras_test_viainvalida",
       "community": 41,
@@ -17944,7 +17944,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "provedores_index",
-      "community": 7,
+      "community": 25,
       "norm_label": "index.ts"
     },
     {
@@ -18134,7 +18134,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_ia_tipos_ts_ia_tipos",
-      "community": 7,
+      "community": 25,
       "norm_label": "tipos.ts"
     },
     {
@@ -18144,7 +18144,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "ia_tipos_provedoria",
-      "community": 7,
+      "community": 25,
       "norm_label": "provedoria"
     },
     {
@@ -18154,7 +18154,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "ia_tipos_mimereceita",
-      "community": 7,
+      "community": 25,
       "norm_label": "mimereceita"
     },
     {
@@ -18164,7 +18164,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "ia_tipos_arquivoreceita",
-      "community": 7,
+      "community": 25,
       "norm_label": "arquivoreceita"
     },
     {
@@ -34265,9 +34265,9 @@
       "source_file": "app/(dashboard)/hub/validacao-receita/actions.ts",
       "source_location": "L137",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "validacao_receita_actions",
-      "target": "validacao_receita_actions_substituirreceitaconferencia",
-      "confidence_score": 1.0
+      "target": "validacao_receita_actions_substituirreceitaconferencia"
     },
     {
       "relation": "contains",
@@ -34308,9 +34308,9 @@
       "source_file": "app/(dashboard)/hub/validacao-receita/botao-substituir-receita.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "validacao_receita_botao_substituir_receita",
-      "target": "validacao_receita_actions",
-      "confidence_score": 1.0
+      "target": "validacao_receita_actions"
     },
     {
       "relation": "imports_from",
@@ -34374,9 +34374,9 @@
       "source_file": "app/(dashboard)/hub/validacao-receita/actions.ts",
       "source_location": "L151",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "validacao_receita_actions_substituirreceitaconferencia",
-      "target": "validacao_receita_actions_createadminclient",
-      "confidence_score": 1.0
+      "target": "validacao_receita_actions_createadminclient"
     },
     {
       "relation": "calls",
@@ -34473,9 +34473,9 @@
       "source_file": "app/(dashboard)/hub/validacao-receita/actions.ts",
       "source_location": "L138",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "validacao_receita_actions_substituirreceitaconferencia",
-      "target": "validacao_receita_actions_getusuarioeorg",
-      "confidence_score": 1.0
+      "target": "validacao_receita_actions_getusuarioeorg"
     },
     {
       "relation": "calls",
@@ -34550,9 +34550,9 @@
       "source_file": "app/(dashboard)/hub/validacao-receita/actions.ts",
       "source_location": "L139",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "validacao_receita_actions_substituirreceitaconferencia",
-      "target": "validacao_receita_actions_exigirpermissao",
-      "confidence_score": 1.0
+      "target": "validacao_receita_actions_exigirpermissao"
     },
     {
       "relation": "calls",
@@ -34594,9 +34594,9 @@
       "source_file": "app/(dashboard)/hub/validacao-receita/botao-substituir-receita.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "validacao_receita_botao_substituir_receita",
-      "target": "validacao_receita_actions_substituirreceitaconferencia",
-      "confidence_score": 1.0
+      "target": "validacao_receita_actions_substituirreceitaconferencia"
     },
     {
       "relation": "imports",
@@ -34649,9 +34649,9 @@
       "source_file": "app/(dashboard)/hub/validacao-receita/botao-substituir-receita.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "validacao_receita_botao_substituir_receita",
-      "target": "validacao_receita_actions_rodarpreanalise",
-      "confidence_score": 1.0
+      "target": "validacao_receita_actions_rodarpreanalise"
     },
     {
       "relation": "calls",
@@ -34966,9 +34966,9 @@
       "source_file": "app/(dashboard)/hub/validacao-receita/botao-substituir-receita.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "validacao_receita_botao_substituir_receita",
-      "target": "ui_button",
-      "confidence_score": 1.0
+      "target": "ui_button"
     },
     {
       "relation": "imports",
@@ -34977,9 +34977,9 @@
       "source_file": "app/(dashboard)/hub/validacao-receita/botao-substituir-receita.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "validacao_receita_botao_substituir_receita",
-      "target": "ui_button_button",
-      "confidence_score": 1.0
+      "target": "ui_button_button"
     },
     {
       "relation": "contains",
@@ -34987,9 +34987,9 @@
       "source_file": "app/(dashboard)/hub/validacao-receita/botao-substituir-receita.tsx",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "validacao_receita_botao_substituir_receita",
-      "target": "validacao_receita_botao_substituir_receita_botaosubstituirreceita",
-      "confidence_score": 1.0
+      "target": "validacao_receita_botao_substituir_receita_botaosubstituirreceita"
     },
     {
       "relation": "contains",
@@ -34997,9 +34997,9 @@
       "source_file": "app/(dashboard)/hub/validacao-receita/botao-substituir-receita.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "validacao_receita_botao_substituir_receita",
-      "target": "validacao_receita_botao_substituir_receita_tipos",
-      "confidence_score": 1.0
+      "target": "validacao_receita_botao_substituir_receita_tipos"
     },
     {
       "relation": "imports_from",
@@ -35008,9 +35008,9 @@
       "source_file": "app/(dashboard)/hub/validacao-receita/painel-resultado.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "validacao_receita_painel_resultado",
-      "target": "validacao_receita_botao_substituir_receita",
-      "confidence_score": 1.0
+      "target": "validacao_receita_botao_substituir_receita"
     },
     {
       "relation": "imports",
@@ -35019,9 +35019,9 @@
       "source_file": "app/(dashboard)/hub/validacao-receita/painel-resultado.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "validacao_receita_painel_resultado",
-      "target": "validacao_receita_botao_substituir_receita_botaosubstituirreceita",
-      "confidence_score": 1.0
+      "target": "validacao_receita_botao_substituir_receita_botaosubstituirreceita"
     },
     {
       "relation": "contains",
@@ -76977,5 +76977,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "766669f4f9b8dc1f02f1e9779ef4fe594b53bc88"
+  "built_at_commit": "2cb774f3c3ffd1412bfeab7d04a483c06a53ec7a"
 }
