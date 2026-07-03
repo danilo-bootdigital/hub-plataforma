@@ -2365,7 +2365,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/package.json": {
-    "mtime": 1783118813.2499716,
+    "mtime": 1783119621.6201565,
     "ast_hash": "95b08bc3062cdc4b0334fa9be037e557",
     "semantic_hash": ""
   },
@@ -2440,58 +2440,58 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js": {
-    "mtime": 1783118813.127617,
+    "mtime": 1783119621.515014,
     "ast_hash": "382ff575e58ed4a491bb5480cfd71a10",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/diagnostico.js": {
-    "mtime": 1783118813.0735183,
+    "mtime": 1783119621.4656417,
     "ast_hash": "d2bf2d6eb15a769511269a45f780c483",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/mapear-checklist.js": {
-    "mtime": 1783118813.0812528,
+    "mtime": 1783119621.4724915,
     "ast_hash": "34df1160f09a44ee78a8d1f50bf33891",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/motor-regras.js": {
-    "mtime": 1783118813.0969884,
+    "mtime": 1783119621.4865582,
     "ast_hash": "49bbce88f1afa73813f891b9b185c521",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/resolver-checklist.js": {
-    "mtime": 1783118813.1030107,
+    "mtime": 1783119621.4928842,
     "ast_hash": "d548dcd48788531c2dc0856bf4d8f08f",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/tipos.js": {
-    "mtime": 1783118813.062388,
+    "mtime": 1783119621.4529989,
     "ast_hash": "e5242a72d0a2ba687aa9e3006b57a65e",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/__tests__/extrator.test.js": {
-    "mtime": 1783118813.148607,
-    "ast_hash": "ad7f4903194356fb3b9ca488da6c4b64",
+    "mtime": 1783119621.5310369,
+    "ast_hash": "1f179bacbd8b36712e9e160e2c9d458d",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/provedores/mock.js": {
-    "mtime": 1783118813.143077,
+    "mtime": 1783119621.5263252,
     "ast_hash": "a22ce2e93e402f6a40022f63c29d7153",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/schema-extracao.js": {
-    "mtime": 1783118813.1368144,
-    "ast_hash": "406eb4ef31c91b231213980497914c3a",
+    "mtime": 1783119621.5210857,
+    "ast_hash": "e41a84876797124401bdd8323d4639bb",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/tipos.js": {
-    "mtime": 1783118813.1379294,
+    "mtime": 1783119621.5217261,
     "ast_hash": "2a4e7dac578b1592c5b287ba8c2c9bd2",
     "semantic_hash": ""
   },
   "lib/ia/__tests__/extrator.test.ts": {
-    "mtime": 1783093560.6998749,
-    "ast_hash": "c9a3bb8866167472fc23f8f786168465",
+    "mtime": 1783119614.137617,
+    "ast_hash": "cd7f41ab85c0e468330efe0763c7b5e1",
     "semantic_hash": ""
   },
   "lib/ia/provedores/claude.ts": {
@@ -2510,8 +2510,8 @@
     "semantic_hash": ""
   },
   "lib/ia/schema-extracao.ts": {
-    "mtime": 1783093241.5621514,
-    "ast_hash": "a2ab34f7e7a3d047fc7de6c17c06a6cb",
+    "mtime": 1783119562.0209537,
+    "ast_hash": "c7e8c4ba8c140ce76206db89ea202362",
     "semantic_hash": ""
   },
   "lib/ia/tipos.ts": {
@@ -2520,7 +2520,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/persistencia.js": {
-    "mtime": 1783118813.1011674,
+    "mtime": 1783119621.4908702,
     "ast_hash": "668db06c4329a65eacad4352ddfc4c9c",
     "semantic_hash": ""
   },
@@ -2555,7 +2555,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/mapear-orcamento.js": {
-    "mtime": 1783118813.0837982,
+    "mtime": 1783119621.474353,
     "ast_hash": "ff2af05a1c739320b55e8ae7cf420c3e",
     "semantic_hash": ""
   },
@@ -2575,7 +2575,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/persistencia-standalone.js": {
-    "mtime": 1783118813.0992172,
+    "mtime": 1783119621.4884539,
     "ast_hash": "18e1d116527b9498cb61995f732e87c1",
     "semantic_hash": ""
   },
@@ -2590,7 +2590,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/hidratar-checklist.js": {
-    "mtime": 1783118813.078432,
+    "mtime": 1783119621.4699554,
     "ast_hash": "2ac252b6539f6ae8037bca6769d0f621",
     "semantic_hash": ""
   },
@@ -2665,8 +2665,8 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/validacao-receita/painel-resultado.tsx": {
-    "mtime": 1783118782.32366,
-    "ast_hash": "00cd322ea3c2aeeba3d9b0016ae500e2",
+    "mtime": 1783119714.27204,
+    "ast_hash": "ea005ce758fef6dfe2dc844ae854b770",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/validacao-receita/preview-receita.tsx": {
@@ -2675,7 +2675,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/comparar-posologia.js": {
-    "mtime": 1783118813.131506,
+    "mtime": 1783119621.5177116,
     "ast_hash": "1b699497caaca1853038a0a70136b823",
     "semantic_hash": ""
   },
@@ -2720,8 +2720,8 @@
     "semantic_hash": ""
   },
   "hubdev/bootstrap/fix_crm_via_validacao_receita.sql": {
-    "mtime": 1783118619.846813,
-    "ast_hash": "5281e353378ccd1ed716b8778e33ae35",
+    "mtime": 1783119603.699292,
+    "ast_hash": "3de6b6687840ef488ffea569e21811f9",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/validacao-receita/botao-substituir-receita.tsx": {

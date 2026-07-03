@@ -20,11 +20,11 @@ function GrupoCampos({ titulo, itens }: { titulo: string; itens: Array<{ label: 
   return (
     <div className="rounded-lg border border-slate-200 bg-white p-4">
       <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">{titulo}</p>
-      <dl className="space-y-1.5">
+      <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5">
         {itens.map((i) => (
-          <div key={i.label} className="flex justify-between gap-2">
+          <div key={i.label} className="contents">
             <dt className="text-xs text-slate-400">{i.label}</dt>
-            <dd className="truncate text-right text-sm text-slate-800">{i.valor && i.valor.trim() !== '' ? i.valor : '—'}</dd>
+            <dd className="text-right text-sm text-slate-800 break-words">{i.valor && i.valor.trim() !== '' ? i.valor : '—'}</dd>
           </div>
         ))}
       </dl>
@@ -51,11 +51,14 @@ export function PainelResultado({ detalhe: v, onAtualizado }: { detalhe: Detalhe
         <Badge variant={STATUS_BADGE[v.status_atual] ?? 'secondary'}>{STATUS_LABEL[v.status_atual] ?? v.status_atual}</Badge>
       </div>
 
-      {/* Substituir a receita (troca o arquivo e reexecuta) — disponível sempre */}
-      <BotaoSubstituirReceita conferenciaId={v.id} onFeito={onAtualizado} />
+      {/* Ações sobre a receita — sempre visíveis: trocar o arquivo e/ou refazer a análise */}
+      <div className="flex flex-wrap gap-2">
+        <BotaoSubstituirReceita conferenciaId={v.id} onFeito={onAtualizado} />
+        <BotaoReexecutar conferenciaId={v.id} onFeito={onAtualizado} />
+      </div>
 
       {falhou ? (
-        /* ---- Estado de ERRO: motivo real + reexecutar; sem decisão/checklist/resultado ---- */
+        /* ---- Estado de ERRO: motivo real; a decisão/checklist/resultado ficam ocultos ---- */
         <div className="rounded-xl border border-red-200 bg-red-50 p-4">
           <p className="flex items-center gap-2 text-base font-bold text-red-800"><AlertTriangle className="size-5 shrink-0" /> Não foi possível concluir a análise</p>
           {v.erroProcessamento?.mensagem && (
@@ -63,8 +66,7 @@ export function PainelResultado({ detalhe: v, onAtualizado }: { detalhe: Detalhe
               Motivo{v.erroProcessamento.etapa ? ` (etapa: ${v.erroProcessamento.etapa})` : ''}: {v.erroProcessamento.mensagem}
             </p>
           )}
-          <p className="mt-1 text-sm text-slate-600">A receita anexada foi mantida. Você pode reexecutar sem criar uma nova validação.</p>
-          <div className="mt-3"><BotaoReexecutar conferenciaId={v.id} onFeito={onAtualizado} /></div>
+          <p className="mt-1 text-sm text-slate-600">A receita anexada foi mantida. Use “Reexecutar análise” acima (ou “Substituir receita”) — sem criar uma nova validação.</p>
         </div>
       ) : (
         <>
@@ -124,9 +126,9 @@ export function PainelResultado({ detalhe: v, onAtualizado }: { detalhe: Detalhe
         posologiaExtraida={v.posologiaExtraida}
       />
 
-      {/* Dados agrupados — só quando há extração */}
+      {/* Dados agrupados — UMA coluna (cartões empilhados), valores completos */}
       {!falhou && (
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-3">
           {GRUPOS_CAMPOS.map((g) => (
             <GrupoCampos key={g.titulo} titulo={g.titulo} itens={g.campos.map((c) => ({ label: c.label, valor: campos[c.chave] ?? null }))} />
           ))}

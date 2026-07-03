@@ -117,6 +117,8 @@ export function construirPromptExtracao(
       'paciente_documento = RG ou CPF do paciente, paciente_data_nascimento, paciente_endereco, paciente_cidade_uf).',
     'Para "medicamento" use apenas o nome do medicamento/princípio ativo (sem a dose); ' +
       'para "concentracao" use apenas a dose (ex.: "5 mg"); para "quantidade" o número de unidades prescritas.',
+    'Para "assinatura": considere PRESENTE se houver assinatura manuscrita, assinatura eletrônica/digital ' +
+      'OU um QR code de validação (receita digital) — nesse caso preencha "assinatura" com algo como "assinatura digital / QR code".',
     'Extraia também os itens (medicamentos) com descricao, concentracao e quantidade.',
     'Responda somente pela ferramenta de extração, no formato do schema. Use "" quando ausente e 0 para quantidade desconhecida.',
   ].join(' ')

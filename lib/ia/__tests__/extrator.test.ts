@@ -67,6 +67,12 @@ test('prompt instrui apenas extração, sem decidir/aprovar/score', () => {
   assert.match(instrucao, /nome_paciente/)
 })
 
+test('prompt considera QR code / assinatura digital como assinatura presente', () => {
+  const { instrucao } = construirPromptExtracao()
+  assert.match(instrucao, /qr\s*code/i)
+  assert.match(instrucao, /assinatura digital/i)
+})
+
 // ---- Pipeline: IA (mock) ALIMENTA o motor; motor + diagnóstico decidem ----
 
 test('IA (mock) → motor → Diagnóstico: extração boa vira apta para conferência humana', async () => {
