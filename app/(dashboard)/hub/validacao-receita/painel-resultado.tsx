@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge'
 import { AcoesDecisao } from './acoes-decisao'
 import { BlocoCompararPosologia } from './bloco-comparar-posologia'
 import { BotaoReexecutar } from './botao-reexecutar'
+import { BotaoSubstituirReceita } from './botao-substituir-receita'
 import type { getValidacaoDetalhe } from './actions'
 import {
   STATUS_LABEL, STATUS_BADGE, SEVERIDADE_ICONE, CAMPOS_ORDEM, fmtData, fmtConfianca,
@@ -49,6 +50,9 @@ export function PainelResultado({ detalhe: v, onAtualizado }: { detalhe: Detalhe
         </div>
         <Badge variant={STATUS_BADGE[v.status_atual] ?? 'secondary'}>{STATUS_LABEL[v.status_atual] ?? v.status_atual}</Badge>
       </div>
+
+      {/* Substituir a receita (troca o arquivo e reexecuta) — disponível sempre */}
+      <BotaoSubstituirReceita conferenciaId={v.id} onFeito={onAtualizado} />
 
       {falhou ? (
         /* ---- Estado de ERRO: motivo real + reexecutar; sem decisão/checklist/resultado ---- */

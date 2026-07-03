@@ -347,7 +347,8 @@ test('metadados: MOTOR não conhece product_validation_metadata (sem hidratar �
 
 // ---- CRM/UF: regex tolerante a separadores (número + UF ainda obrigatórios) ----
 
-const REGEX_CRM = '\\d{4,7}\\s*[-/]\\s*[A-Za-z]{2}'
+const UF = 'AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO'
+const REGEX_CRM = `(\\d{4,7}[\\s/.-]+(${UF}))|((${UF})[\\s/.-]+\\d{4,7})`
 const checklistCrm: Checklist = {
   escopo: 'organizacao',
   itens: [{ chave: 'crm_uf', rotulo: 'CRM/UF', obrigatorio: true, tipoRegra: 'formato', config: { regex: REGEX_CRM }, motivo: 'crm_uf_ausente', severidade: 'critico', peso: 3 }],
@@ -356,15 +357,19 @@ const crmInvalido = (v: string) =>
   conferir({ checklist: checklistCrm, extracao: { campos: { crm_uf: v }, itens: [], confianca: 0.95 }, orcamento: { itens: [] }, hoje: '2026-07-02' })
     .pendencias.some((p) => p.motivo === 'crm_uf_ausente' && p.tipo === 'formato_invalido')
 
-test('CRM/UF aceita variações comuns de separador', () => {
-  for (const v of ['CRM 104352/SP', 'CRM: 104352/SP', 'CRM 104352 - SP', 'CRM: 104352 - SP', '104352/SP', '104352 - SP']) {
+test('CRM/UF aceita variações (número+UF e UF+número, separadores diversos)', () => {
+  for (const v of [
+    'CRM 104352/SP', 'CRM: 104352/SP', 'CRM 104352 - SP', 'CRM: 104352 - SP', '104352/SP', '104352 - SP',
+    'CRM: MG 46173', 'CRM MG 46173', 'MG 46173', 'CRM/MG 46173', 'SP/104352',
+  ]) {
     assert.equal(crmInvalido(v), false, `deveria aceitar: ${v}`)
   }
 })
 
-test('CRM/UF ainda exige número + UF', () => {
-  assert.equal(crmInvalido('104352'), true)
-  assert.equal(crmInvalido('CRM 104352'), true)
+test('CRM/UF ainda exige número + UF real', () => {
+  assert.equal(crmInvalido('104352'), true)        // sem UF
+  assert.equal(crmInvalido('CRM 104352'), true)    // "RM" não é UF válida
+  assert.equal(crmInvalido('CRM: XY 46173'), true) // XY não é UF
 })
 
 // ---- Via de administração: valor_esperado com contem (token/substring) ----

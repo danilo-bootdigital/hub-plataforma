@@ -2365,7 +2365,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/package.json": {
-    "mtime": 1783118011.8810606,
+    "mtime": 1783118813.2499716,
     "ast_hash": "95b08bc3062cdc4b0334fa9be037e557",
     "semantic_hash": ""
   },
@@ -2380,8 +2380,8 @@
     "semantic_hash": ""
   },
   "lib/conferencia/__tests__/motor-regras.test.ts": {
-    "mtime": 1783117915.5998156,
-    "ast_hash": "fdfc9b2d5ad899e6570842a70ea8a0b7",
+    "mtime": 1783118580.9689703,
+    "ast_hash": "1e75eb4297e75cfc3e4210b8b80db105",
     "semantic_hash": ""
   },
   "lib/conferencia/motor-regras.ts": {
@@ -2440,52 +2440,52 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js": {
-    "mtime": 1783118011.7546592,
-    "ast_hash": "b8ed2b103c93062c66caaabe8d490d29",
+    "mtime": 1783118813.127617,
+    "ast_hash": "382ff575e58ed4a491bb5480cfd71a10",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/diagnostico.js": {
-    "mtime": 1783118011.6929178,
+    "mtime": 1783118813.0735183,
     "ast_hash": "d2bf2d6eb15a769511269a45f780c483",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/mapear-checklist.js": {
-    "mtime": 1783118011.7014604,
+    "mtime": 1783118813.0812528,
     "ast_hash": "34df1160f09a44ee78a8d1f50bf33891",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/motor-regras.js": {
-    "mtime": 1783118011.7169204,
+    "mtime": 1783118813.0969884,
     "ast_hash": "49bbce88f1afa73813f891b9b185c521",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/resolver-checklist.js": {
-    "mtime": 1783118011.7252421,
+    "mtime": 1783118813.1030107,
     "ast_hash": "d548dcd48788531c2dc0856bf4d8f08f",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/tipos.js": {
-    "mtime": 1783118011.681921,
+    "mtime": 1783118813.062388,
     "ast_hash": "e5242a72d0a2ba687aa9e3006b57a65e",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/__tests__/extrator.test.js": {
-    "mtime": 1783118011.7763045,
+    "mtime": 1783118813.148607,
     "ast_hash": "ad7f4903194356fb3b9ca488da6c4b64",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/provedores/mock.js": {
-    "mtime": 1783118011.7699428,
+    "mtime": 1783118813.143077,
     "ast_hash": "a22ce2e93e402f6a40022f63c29d7153",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/schema-extracao.js": {
-    "mtime": 1783118011.76424,
+    "mtime": 1783118813.1368144,
     "ast_hash": "406eb4ef31c91b231213980497914c3a",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/tipos.js": {
-    "mtime": 1783118011.7651389,
+    "mtime": 1783118813.1379294,
     "ast_hash": "2a4e7dac578b1592c5b287ba8c2c9bd2",
     "semantic_hash": ""
   },
@@ -2520,7 +2520,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/persistencia.js": {
-    "mtime": 1783118011.7224786,
+    "mtime": 1783118813.1011674,
     "ast_hash": "668db06c4329a65eacad4352ddfc4c9c",
     "semantic_hash": ""
   },
@@ -2555,7 +2555,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/mapear-orcamento.js": {
-    "mtime": 1783118011.7038534,
+    "mtime": 1783118813.0837982,
     "ast_hash": "ff2af05a1c739320b55e8ae7cf420c3e",
     "semantic_hash": ""
   },
@@ -2575,7 +2575,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/persistencia-standalone.js": {
-    "mtime": 1783118011.7198758,
+    "mtime": 1783118813.0992172,
     "ast_hash": "18e1d116527b9498cb61995f732e87c1",
     "semantic_hash": ""
   },
@@ -2590,13 +2590,13 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/hidratar-checklist.js": {
-    "mtime": 1783118011.6988018,
+    "mtime": 1783118813.078432,
     "ast_hash": "2ac252b6539f6ae8037bca6769d0f621",
     "semantic_hash": ""
   },
   "hubdev/bootstrap/seed_checklists_validacao_receita_standalone.sql": {
-    "mtime": 1783117971.750156,
-    "ast_hash": "4f806f10bb34e45d92711e256db3c874",
+    "mtime": 1783118602.957984,
+    "ast_hash": "7d5b5cedf85e429415339b1f87a98dc3",
     "semantic_hash": ""
   },
   "hubdev/bootstrap/verify_checklists_validacao_receita.sql": {
@@ -2635,8 +2635,8 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/validacao-receita/actions.ts": {
-    "mtime": 1783107881.0191267,
-    "ast_hash": "0acab565482c07c6c2326f649347c11c",
+    "mtime": 1783118748.856153,
+    "ast_hash": "087f9db20e864aea49708d4ed448539f",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/validacao-receita/nova/page.tsx": {
@@ -2660,13 +2660,13 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/validacao-receita/nova/tela-validacao.tsx": {
-    "mtime": 1783107985.0418336,
-    "ast_hash": "8a1e1fa312cbe736d21d22f4ea1a3c15",
+    "mtime": 1783118806.3011985,
+    "ast_hash": "3fd7a0541cd1c70bf51eaf07e6557ef4",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/validacao-receita/painel-resultado.tsx": {
-    "mtime": 1783107976.938748,
-    "ast_hash": "0c0fd8eceb0b95b0ed9c2c7d7e926200",
+    "mtime": 1783118782.32366,
+    "ast_hash": "00cd322ea3c2aeeba3d9b0016ae500e2",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/validacao-receita/preview-receita.tsx": {
@@ -2675,7 +2675,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/comparar-posologia.js": {
-    "mtime": 1783118011.7593806,
+    "mtime": 1783118813.131506,
     "ast_hash": "1b699497caaca1853038a0a70136b823",
     "semantic_hash": ""
   },
@@ -2700,8 +2700,8 @@
     "semantic_hash": ""
   },
   "hubdev/bootstrap/seed_checklists_validacao_receita_incremental.sql": {
-    "mtime": 1783117982.4530973,
-    "ast_hash": "e5598a0b114bc07f46ab9d88c81dc233",
+    "mtime": 1783118610.0751922,
+    "ast_hash": "b2af82b675139e365efbe6b15f469d53",
     "semantic_hash": ""
   },
   "hubdev/bootstrap/verify_checklists_validacao_receita_itens.sql": {
@@ -2720,8 +2720,18 @@
     "semantic_hash": ""
   },
   "hubdev/bootstrap/fix_crm_via_validacao_receita.sql": {
-    "mtime": 1783118003.6463137,
-    "ast_hash": "2db3afe1e18ac97730de9bb25ad58e4a",
+    "mtime": 1783118619.846813,
+    "ast_hash": "5281e353378ccd1ed716b8778e33ae35",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/validacao-receita/botao-substituir-receita.tsx": {
+    "mtime": 1783118761.8302622,
+    "ast_hash": "b9e04bcd5edcce2aacf4fc7fd2744320",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/062_conferencia_receita_produto_opcional.sql": {
+    "mtime": 1783118646.3094423,
+    "ast_hash": "d12be3ab3516585e84666ac1c3fcd60c",
     "semantic_hash": ""
   }
 }

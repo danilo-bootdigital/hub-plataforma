@@ -5,10 +5,11 @@
 -- Rodar no SQL Editor do HUB DEV (pnkgwfgjhijksfmofiot). Idempotente (UPDATE por chave).
 -- ============================================================================
 
--- 1) CRM/UF: aceita "104352/SP", "104352 - SP", "CRM: 104352 - SP" etc.
---    Ainda EXIGE número (4–7 díg.) + separador (/ ou -) + UF (2 letras).
+-- 1) CRM/UF: aceita as duas ordens (número+UF e UF+número) e separadores diversos:
+--    "104352/SP", "104352 - SP", "CRM: 104352 - SP", "CRM: MG 46173", "MG 46173", "CRM/MG 46173".
+--    Ainda EXIGE número (4–7 díg.) + UF REAL (lista das 27 UFs) — evita falso positivo (ex.: "RM" de "CRM").
 UPDATE receita_checklist_itens
-   SET config_json = '{"camada":"documental","regex":"\\d{4,7}\\s*[-/]\\s*[A-Za-z]{2}"}'::jsonb
+   SET config_json = '{"camada":"documental","regex":"(\\d{4,7}[\\s/.-]+(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO))|((AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)[\\s/.-]+\\d{4,7})"}'::jsonb
  WHERE chave = 'crm_uf'
    AND checklist_id IN (
      SELECT id FROM receita_checklists

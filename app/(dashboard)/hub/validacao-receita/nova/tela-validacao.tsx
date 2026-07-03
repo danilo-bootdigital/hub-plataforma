@@ -46,11 +46,12 @@ export function TelaValidacao() {
   }
 
   async function executar() {
-    if (!file || !produto) return
+    if (!file) return
     setProcessando(true); setErro(null)
     try {
       const fd = new FormData()
-      fd.set('file', file); fd.set('productId', produto.id)
+      fd.set('file', file)
+      if (produto) fd.set('productId', produto.id)
       const { id } = await criarConferencia(fd)
       setConfId(id)
       try { await rodarPreAnalise(id, posologiaEsperada) } catch { /* mostra estado de erro no detalhe */ }
@@ -97,7 +98,7 @@ export function TelaValidacao() {
 
             {/* 2. Produto */}
             <div>
-              <p className="mb-1.5 text-sm font-semibold text-slate-700">2. Produto</p>
+              <p className="mb-1.5 text-sm font-semibold text-slate-700">2. Produto <span className="font-normal text-slate-400">(opcional)</span></p>
               {produto ? (
                 <div className="flex items-center justify-between rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2">
                   <span className="flex items-center gap-2 text-sm font-medium text-emerald-800"><Check className="size-4" /> {produto.nome}</span>
@@ -129,9 +130,10 @@ export function TelaValidacao() {
 
             {/* Executar */}
             {erro && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{erro}</p>}
-            <Button size="lg" className="w-full" disabled={!file || !produto || processando} onClick={executar}>
+            <Button size="lg" className="w-full" disabled={!file || processando} onClick={executar}>
               {processando ? <><Loader2 className="animate-spin" /> Lendo a receita com IA…</> : <><Sparkles /> Executar análise</>}
             </Button>
+            {!produto && file && <p className="hint">Sem produto selecionado → validação documental genérica (sem checagem de medicamento/concentração/limite).</p>}
           </div>
         )}
       </div>

@@ -80,17 +80,19 @@ export async function criarConferencia(formData: FormData): Promise<{ id: string
   const { supabase, perfil, user } = await getUsuarioEOrg()
   await exigirPermissao('conferir')
 
-  const productId = formData.get('productId') as string
+  const productId = (formData.get('productId') as string) || null // OPCIONAL
   const file = formData.get('file') as File
 
-  if (!productId) throw new Error('Selecione o produto da conferência.')
   if (!file || file.size === 0) throw new Error('Anexe a receita (arquivo).')
   if (!TIPOS_PERMITIDOS.includes(file.type)) throw new Error('Arquivo deve ser PDF ou imagem (PNG/JPG/WEBP).')
   if (file.size > TAMANHO_MAX) throw new Error('Arquivo deve ter no máximo 10MB.')
 
-  const { data: prod } = await supabase
-    .from('products').select('id').eq('id', productId).eq('organization_id', perfil.organization_id).single()
-  if (!prod) throw new Error('Produto não encontrado.')
+  // Produto é OPCIONAL; se informado, precisa pertencer à organização.
+  if (productId) {
+    const { data: prod } = await supabase
+      .from('products').select('id').eq('id', productId).eq('organization_id', perfil.organization_id).single()
+    if (!prod) throw new Error('Produto não encontrado.')
+  }
 
   const { data: conf, error: eIns } = await supabase
     .from('conferencias_receita')
@@ -128,6 +130,55 @@ export async function criarConferencia(formData: FormData): Promise<{ id: string
   return { id: conf.id }
 }
 
+/**
+ * Substitui o arquivo da receita numa conferência existente (novo upload no bucket).
+ * Não roda a análise — a UI chama rodarPreAnalise em seguida. RBAC: receita:conferir.
+ */
+export async function substituirReceitaConferencia(conferenciaId: string, formData: FormData): Promise<{ ok: true }> {
+  const { supabase, perfil, user } = await getUsuarioEOrg()
+  await exigirPermissao('conferir')
+
+  const file = formData.get('file') as File
+  if (!file || file.size === 0) throw new Error('Anexe a nova receita (arquivo).')
+  if (!TIPOS_PERMITIDOS.includes(file.type)) throw new Error('Arquivo deve ser PDF ou imagem (PNG/JPG/WEBP).')
+  if (file.size > TAMANHO_MAX) throw new Error('Arquivo deve ter no máximo 10MB.')
+
+  const { data: conf } = await supabase
+    .from('conferencias_receita').select('id, storage_path')
+    .eq('id', conferenciaId).eq('organization_id', perfil.organization_id).single()
+  if (!conf) throw new Error('Conferência não encontrada')
+
+  const admin = createAdminClient()
+  const ext = file.name.split('.').pop() || 'bin'
+  const path = `${PREFIXO}/${perfil.organization_id}/${conf.id}/${Date.now()}.${ext}`
+  const buffer = Buffer.from(await file.arrayBuffer())
+  const { error: eUp } = await admin.storage.from(BUCKET).upload(path, buffer, { upsert: false, contentType: file.type })
+  if (eUp) throw new Error(`Erro no upload: ${eUp.message}`)
+
+  const { error: eUpd } = await supabase
+    .from('conferencias_receita')
+    .update({ storage_path: path, arquivo_nome: file.name, arquivo_tipo: file.type, arquivo_tamanho: file.size })
+    .eq('id', conf.id).eq('organization_id', perfil.organization_id)
+  if (eUpd) {
+    await admin.storage.from(BUCKET).remove([path])
+    throw new Error(`Erro ao registrar novo arquivo: ${eUpd.message}`)
+  }
+
+  // Remove o arquivo anterior (evita órfão no Storage).
+  if (conf.storage_path && conf.storage_path !== path) {
+    await admin.storage.from(BUCKET).remove([conf.storage_path as string])
+  }
+
+  await supabase.from('audit_logs').insert({
+    organization_id: perfil.organization_id, usuario_id: user.id,
+    acao: 'conferencia_receita_arquivo_substituido', tabela_afetada: 'conferencias_receita',
+    registro_id: conf.id, dados_novos: { arquivo_nome: file.name },
+  })
+
+  revalidatePath(`${ROTA}/${conferenciaId}`)
+  return { ok: true }
+}
+
 export async function rodarPreAnalise(conferenciaId: string, posologiaEsperada?: string): Promise<DiagnosticoReceita> {
   const { supabase, perfil, user } = await getUsuarioEOrg()
   await exigirPermissao('conferir')
@@ -160,18 +211,22 @@ export async function rodarPreAnalise(conferenciaId: string, posologiaEsperada?:
     const checklist = resolverChecklist(checklists, { produtoId: conf.product_id, portfolioId: null })
     if (!checklist) throw new Error('Nenhum checklist aplicável (cadastre ao menos um Checklist Genérico).')
 
-    const { data: prod } = await supabase
-      .from('products').select('nome')
-      .eq('id', conf.product_id).eq('organization_id', perfil.organization_id).single()
-    const { data: metaRows } = await supabase
-      .from('product_validation_metadata')
-      .select('chave, tipo, valores, valor_num, valor_texto, ativo')
-      .eq('product_id', conf.product_id).eq('organization_id', perfil.organization_id)
-    const metadados: MetadadoValidacao[] = ((metaRows ?? []) as Array<{
-      chave: string; tipo: 'lista' | 'numero' | 'texto'
-      valores: string[] | null; valor_num: number | null; valor_texto: string | null; ativo: boolean
-    }>).map((m) => ({ chave: m.chave, tipo: m.tipo, valores: m.valores, valorNum: m.valor_num, valorTexto: m.valor_texto, ativo: m.ativo }))
-    const checklistHidratado = hidratarChecklistComMetadadosProduto(checklist, { nome: prod?.nome ?? null }, metadados)
+    // Produto é OPCIONAL: só hidrata metadados quando há produto. Sem produto → checklist Genérico como está.
+    let checklistHidratado = checklist
+    if (conf.product_id) {
+      const { data: prod } = await supabase
+        .from('products').select('nome')
+        .eq('id', conf.product_id).eq('organization_id', perfil.organization_id).single()
+      const { data: metaRows } = await supabase
+        .from('product_validation_metadata')
+        .select('chave, tipo, valores, valor_num, valor_texto, ativo')
+        .eq('product_id', conf.product_id).eq('organization_id', perfil.organization_id)
+      const metadados: MetadadoValidacao[] = ((metaRows ?? []) as Array<{
+        chave: string; tipo: 'lista' | 'numero' | 'texto'
+        valores: string[] | null; valor_num: number | null; valor_texto: string | null; ativo: boolean
+      }>).map((m) => ({ chave: m.chave, tipo: m.tipo, valores: m.valores, valorNum: m.valor_num, valorTexto: m.valor_texto, ativo: m.ativo }))
+      checklistHidratado = hidratarChecklistComMetadadosProduto(checklist, { nome: prod?.nome ?? null }, metadados)
+    }
 
     etapa = 'baixar_arquivo'
     const admin = createAdminClient()
@@ -399,9 +454,10 @@ export async function getValidacaoDetalhe(id: string) {
     .eq('id', id).eq('organization_id', perfil.organization_id).single()
   if (!conf) return null
 
-  // Buscas EXPLÍCITAS (sem embeds PostgREST): produto + pessoas por id.
-  const { data: prodRow } = await supabase
-    .from('products').select('nome').eq('id', conf.product_id as string).single()
+  // Buscas EXPLÍCITAS (sem embeds PostgREST): produto (opcional) + pessoas por id.
+  const { data: prodRow } = conf.product_id
+    ? await supabase.from('products').select('nome').eq('id', conf.product_id as string).single()
+    : { data: null }
   const pessoaIds = [conf.criado_por as string | null, conf.decidido_por as string | null].filter((v): v is string => !!v)
   const { data: pessoas } = pessoaIds.length
     ? await supabase.from('profiles').select('id, nome').in('id', pessoaIds)
