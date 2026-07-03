@@ -2365,7 +2365,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/package.json": {
-    "mtime": 1783121069.889234,
+    "mtime": 1783121594.3415148,
     "ast_hash": "95b08bc3062cdc4b0334fa9be037e557",
     "semantic_hash": ""
   },
@@ -2440,52 +2440,52 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js": {
-    "mtime": 1783121069.7761862,
+    "mtime": 1783121594.2306316,
     "ast_hash": "f63a49c0495512babc8a270e817846e4",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/diagnostico.js": {
-    "mtime": 1783121069.7331045,
+    "mtime": 1783121594.1774943,
     "ast_hash": "d2bf2d6eb15a769511269a45f780c483",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/mapear-checklist.js": {
-    "mtime": 1783121069.7389624,
+    "mtime": 1783121594.1834466,
     "ast_hash": "34df1160f09a44ee78a8d1f50bf33891",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/motor-regras.js": {
-    "mtime": 1783121069.751026,
+    "mtime": 1783121594.1973727,
     "ast_hash": "d1dee6737d510ef12665b503bcc27088",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/resolver-checklist.js": {
-    "mtime": 1783121069.7566628,
+    "mtime": 1783121594.2029235,
     "ast_hash": "d548dcd48788531c2dc0856bf4d8f08f",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/tipos.js": {
-    "mtime": 1783121069.724262,
+    "mtime": 1783121594.1688652,
     "ast_hash": "e5242a72d0a2ba687aa9e3006b57a65e",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/__tests__/extrator.test.js": {
-    "mtime": 1783121069.7949705,
+    "mtime": 1783121594.2516952,
     "ast_hash": "1f179bacbd8b36712e9e160e2c9d458d",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/provedores/mock.js": {
-    "mtime": 1783121069.7897606,
+    "mtime": 1783121594.2466242,
     "ast_hash": "a22ce2e93e402f6a40022f63c29d7153",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/schema-extracao.js": {
-    "mtime": 1783121069.7846384,
-    "ast_hash": "d786450e401ddd8683485096c835e0f5",
+    "mtime": 1783121594.2406561,
+    "ast_hash": "c26b50f85dfffe748a1031f159ff68f8",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/tipos.js": {
-    "mtime": 1783121069.7858014,
+    "mtime": 1783121594.2413661,
     "ast_hash": "2a4e7dac578b1592c5b287ba8c2c9bd2",
     "semantic_hash": ""
   },
@@ -2510,8 +2510,8 @@
     "semantic_hash": ""
   },
   "lib/ia/schema-extracao.ts": {
-    "mtime": 1783121058.9897604,
-    "ast_hash": "6319c22b09ad4b6e7aefa6005567b024",
+    "mtime": 1783121579.8039486,
+    "ast_hash": "e80f45791f8c9fed33e3da5f161cb8d8",
     "semantic_hash": ""
   },
   "lib/ia/tipos.ts": {
@@ -2520,7 +2520,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/persistencia.js": {
-    "mtime": 1783121069.7551327,
+    "mtime": 1783121594.2014098,
     "ast_hash": "668db06c4329a65eacad4352ddfc4c9c",
     "semantic_hash": ""
   },
@@ -2555,7 +2555,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/mapear-orcamento.js": {
-    "mtime": 1783121069.7405787,
+    "mtime": 1783121594.1849885,
     "ast_hash": "ff2af05a1c739320b55e8ae7cf420c3e",
     "semantic_hash": ""
   },
@@ -2575,7 +2575,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/persistencia-standalone.js": {
-    "mtime": 1783121069.7529402,
+    "mtime": 1783121594.1996293,
     "ast_hash": "18e1d116527b9498cb61995f732e87c1",
     "semantic_hash": ""
   },
@@ -2590,7 +2590,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/hidratar-checklist.js": {
-    "mtime": 1783121069.7368665,
+    "mtime": 1783121594.1812918,
     "ast_hash": "2ac252b6539f6ae8037bca6769d0f621",
     "semantic_hash": ""
   },
@@ -2675,7 +2675,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/comparar-posologia.js": {
-    "mtime": 1783121069.7794383,
+    "mtime": 1783121594.2368548,
     "ast_hash": "1b699497caaca1853038a0a70136b823",
     "semantic_hash": ""
   },
