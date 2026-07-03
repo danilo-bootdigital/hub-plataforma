@@ -39,6 +39,7 @@ export interface ItemConfig {
   regex?: string            // regra 'formato'
   validadeDias?: number     // regra 'formato': idade máxima de uma data
   valores?: string[]        // regra 'valor_esperado': conjunto permitido
+  contem?: boolean          // 'valor_esperado': casa por TOKEN/substring (não exige igualdade exata) — p/ campos compostos (ex.: "via sc / subcutânea")
   origemValores?: string    // nome da CHAVE em product_validation_metadata (ex.: 'medicamento_aliases',
                             // 'concentracoes_permitidas', 'vias_permitidas', 'limite_maximo_por_receita').
                             // A composição hidrata `valores` (tipo lista) ou `limiteMaximo` (tipo numero).

@@ -16,7 +16,7 @@ BEGIN
       INSERT INTO product_validation_metadata(organization_id, product_id, chave, tipo, valores, valor_num) VALUES
         (org.id, prod, 'medicamento_aliases',      'lista',  ARRAY['Tirzepatida','Mounjaro','Zepbound'], NULL),
         (org.id, prod, 'concentracoes_permitidas', 'lista',  ARRAY['2.5 mg','5 mg','7.5 mg','10 mg','12.5 mg','15 mg'], NULL),
-        (org.id, prod, 'vias_permitidas',          'lista',  ARRAY['subcutanea'], NULL),
+        (org.id, prod, 'vias_permitidas',          'lista',  ARRAY['subcutânea','subcutanea','SC','S.C.','via subcutânea','via SC'], NULL),
         (org.id, prod, 'limite_maximo_por_receita','numero', NULL, 3)
       ON CONFLICT (product_id, chave) DO NOTHING;
       RAISE NOTICE 'Org %: metadados Tirzepatida semeados (produto %)', org.id, prod;

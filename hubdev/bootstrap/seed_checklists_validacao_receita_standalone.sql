@@ -46,7 +46,7 @@ BEGIN
       VALUES
         -- EMITENTE / documento
         (cl_gen,'prescritor_nome','Nome do emitente/prescritor',true,'presenca','{"camada":"documental"}'::jsonb,'outro','critico',3,1),
-        (cl_gen,'crm_uf','CRM',true,'formato','{"camada":"documental","regex":"CRM \\d+/[A-Z]{2}"}'::jsonb,'crm_uf_ausente','critico',3,2),
+        (cl_gen,'crm_uf','CRM',true,'formato','{"camada":"documental","regex":"\\d{4,7}\\s*[-/]\\s*[A-Za-z]{2}"}'::jsonb,'crm_uf_ausente','critico',3,2),
         (cl_gen,'emitente_cpf','CPF do emitente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,3),
         (cl_gen,'emitente_endereco','Endereço do emitente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,4),
         (cl_gen,'emitente_cidade_uf','Cidade/UF do emitente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,5),
@@ -90,7 +90,7 @@ BEGIN
       VALUES
         -- EMITENTE / documento
         (cl_tz,'prescritor_nome','Nome do emitente/prescritor',true,'presenca','{"camada":"documental"}'::jsonb,'outro','critico',3,1),
-        (cl_tz,'crm_uf','CRM',true,'formato','{"camada":"documental","regex":"CRM \\d+/[A-Z]{2}"}'::jsonb,'crm_uf_ausente','critico',3,2),
+        (cl_tz,'crm_uf','CRM',true,'formato','{"camada":"documental","regex":"\\d{4,7}\\s*[-/]\\s*[A-Za-z]{2}"}'::jsonb,'crm_uf_ausente','critico',3,2),
         (cl_tz,'emitente_cpf','CPF do emitente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,3),
         (cl_tz,'emitente_endereco','Endereço do emitente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,4),
         (cl_tz,'emitente_cidade_uf','Cidade/UF do emitente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,5),
@@ -103,7 +103,7 @@ BEGIN
         (cl_tz,'paciente_data_nascimento','Data de nascimento do paciente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,11),
         (cl_tz,'paciente_endereco','Endereço do paciente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,12),
         (cl_tz,'paciente_cidade_uf','Cidade/UF do paciente',true,'presenca','{"camada":"documental"}'::jsonb,'outro','aviso',1,13),
-        (cl_tz,'via_administracao','Via de administração',false,'valor_esperado','{"camada":"documental","origemValores":"vias_permitidas"}'::jsonb,'outro','info',1,14),
+        (cl_tz,'via_administracao','Via de administração',false,'valor_esperado','{"camada":"documental","origemValores":"vias_permitidas","contem":true}'::jsonb,'outro','info',1,14),
         -- MEDICAMENTO — valores hidratados de product_validation_metadata (sem hardcode).
         (cl_tz,'medicamento','Medicamento esperado',true,'valor_esperado','{"camada":"documental","origemValores":"medicamento_aliases"}'::jsonb,'produto_divergente','critico',3,15),
         (cl_tz,'concentracao','Concentração esperada',true,'valor_esperado','{"camada":"documental","origemValores":"concentracoes_permitidas"}'::jsonb,'concentracao_divergente','critico',3,16),

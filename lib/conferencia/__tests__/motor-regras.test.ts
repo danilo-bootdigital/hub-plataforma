@@ -345,6 +345,48 @@ test('metadados: MOTOR não conhece product_validation_metadata (sem hidratar �
   assert.equal(temMotivo(r, 'limite_maximo_excedido'), false)
 })
 
+// ---- CRM/UF: regex tolerante a separadores (número + UF ainda obrigatórios) ----
+
+const REGEX_CRM = '\\d{4,7}\\s*[-/]\\s*[A-Za-z]{2}'
+const checklistCrm: Checklist = {
+  escopo: 'organizacao',
+  itens: [{ chave: 'crm_uf', rotulo: 'CRM/UF', obrigatorio: true, tipoRegra: 'formato', config: { regex: REGEX_CRM }, motivo: 'crm_uf_ausente', severidade: 'critico', peso: 3 }],
+}
+const crmInvalido = (v: string) =>
+  conferir({ checklist: checklistCrm, extracao: { campos: { crm_uf: v }, itens: [], confianca: 0.95 }, orcamento: { itens: [] }, hoje: '2026-07-02' })
+    .pendencias.some((p) => p.motivo === 'crm_uf_ausente' && p.tipo === 'formato_invalido')
+
+test('CRM/UF aceita variações comuns de separador', () => {
+  for (const v of ['CRM 104352/SP', 'CRM: 104352/SP', 'CRM 104352 - SP', 'CRM: 104352 - SP', '104352/SP', '104352 - SP']) {
+    assert.equal(crmInvalido(v), false, `deveria aceitar: ${v}`)
+  }
+})
+
+test('CRM/UF ainda exige número + UF', () => {
+  assert.equal(crmInvalido('104352'), true)
+  assert.equal(crmInvalido('CRM 104352'), true)
+})
+
+// ---- Via de administração: valor_esperado com contem (token/substring) ----
+
+const checklistVia: Checklist = {
+  escopo: 'organizacao',
+  itens: [{ chave: 'via_administracao', rotulo: 'Via de administração', obrigatorio: false, tipoRegra: 'valor_esperado', config: { valores: ['subcutânea', 'SC', 'via subcutânea', 'via SC'], contem: true }, motivo: 'outro', severidade: 'info', peso: 1 }],
+}
+const viaInvalida = (v: string) =>
+  conferir({ checklist: checklistVia, extracao: { campos: { via_administracao: v }, itens: [], confianca: 0.95 }, orcamento: { itens: [] }, hoje: '2026-07-02' })
+    .pendencias.some((p) => p.tipo === 'formato_invalido')
+
+test('via (contem): aceita equivalências e compostos', () => {
+  for (const v of ['via sc / subcutânea', 'SC', 'S.C.', 'subcutânea', 'subcutanea', 'via subcutânea', 'via sc']) {
+    assert.equal(viaInvalida(v), false, `deveria aceitar via: ${v}`)
+  }
+})
+
+test('via (contem): rejeita via realmente diferente', () => {
+  assert.equal(viaInvalida('endovenosa'), true)
+})
+
 test('diagnóstico documental-only: toda pendência é documental, comercial vazia', () => {
   // mesmo com uma divergência comercial no resultado, documentalOnly a trata como documental
   const resultado = conferir(entrada({ itens: [{ descricao: 'Semaglutida', concentracao: '5 mg', quantidade: 1 }] }))

@@ -129,7 +129,21 @@ export function conferir(entrada: EntradaMotor): ResultadoConferencia {
           break
         }
         const permitidos = (item.config.valores ?? []).map(norm)
-        if (permitidos.length > 0 && !permitidos.includes(norm(valor))) {
+        const val = norm(valor)
+        // Modo padrão: igualdade exata. Modo 'contem' (opt-in): casa por TOKEN ou substring —
+        // útil p/ campos compostos (ex.: "via sc / subcutânea", "S.C."). Não altera as demais regras.
+        let bate: boolean
+        if (item.config.contem) {
+          const compact = val.replace(/[^a-z0-9]/g, '')
+          const tokens = val.split(/[^a-z0-9]+/).filter(Boolean)
+          bate = permitidos.some((p) => {
+            const pc = p.replace(/[^a-z0-9]/g, '')
+            return !!pc && (compact === pc || tokens.includes(p) || (pc.length >= 3 && compact.includes(pc)))
+          })
+        } else {
+          bate = permitidos.includes(val)
+        }
+        if (permitidos.length > 0 && !bate) {
           registrar({
             origem: 'regra', chave: item.chave, motivo: item.motivo, tipo: 'formato_invalido',
             severidade: item.severidade, mensagem: `${item.rotulo} fora do conjunto esperado`,
