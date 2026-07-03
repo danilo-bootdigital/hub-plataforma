@@ -74,7 +74,7 @@ export function TelaValidacao() {
       {/* Direita — coleta OU resultado (mesmo fluxo, sem navegação) */}
       <div>
         {detalhe ? (
-          <PainelResultado detalhe={detalhe} onDecidido={recarregar} />
+          <PainelResultado detalhe={detalhe} onAtualizado={recarregar} />
         ) : (
           <div className="space-y-4">
             <input ref={inputRef} type="file" accept=".pdf,.png,.jpg,.jpeg,.webp,application/pdf,image/*" className="hidden"

@@ -27,6 +27,7 @@ import { criarExtrator, criarComparador } from '@/lib/ia/provedores'
 import { CAMPOS_EXTRACAO } from '@/lib/ia/schema-extracao'
 import type { ComparacaoPosologia } from '@/lib/ia/comparar-posologia'
 import type { MimeReceita, ProvedorIA } from '@/lib/ia/tipos'
+import { listarProdutosHub } from '../produtos/actions'
 
 const BUCKET = 'orcamento-receitas'
 const PREFIXO = 'conferencia'
@@ -133,16 +134,18 @@ export async function rodarPreAnalise(conferenciaId: string, posologiaEsperada?:
 
   const { data: conf, error: eConf } = await supabase
     .from('conferencias_receita')
-    .select('id, product_id, storage_path, arquivo_tipo')
+    .select('id, product_id, storage_path, arquivo_tipo, extracao_json')
     .eq('id', conferenciaId).eq('organization_id', perfil.organization_id).single()
   if (eConf || !conf) throw new Error('Conferência não encontrada')
   if (!conf.storage_path) throw new Error('Nenhuma receita anexada para conferir')
 
+  let etapa = 'inicio'
   try {
     await supabase.from('conferencias_receita')
       .update({ status_processamento: 'processando' })
       .eq('id', conf.id).eq('organization_id', perfil.organization_id)
 
+    etapa = 'resolver_checklist'
     const { data: clRows } = await supabase
       .from('receita_checklists')
       .select('id, escopo, portfolio_id, produto_id, versao, ativo')
@@ -170,16 +173,19 @@ export async function rodarPreAnalise(conferenciaId: string, posologiaEsperada?:
     }>).map((m) => ({ chave: m.chave, tipo: m.tipo, valores: m.valores, valorNum: m.valor_num, valorTexto: m.valor_texto, ativo: m.ativo }))
     const checklistHidratado = hidratarChecklistComMetadadosProduto(checklist, { nome: prod?.nome ?? null }, metadados)
 
+    etapa = 'baixar_arquivo'
     const admin = createAdminClient()
     const { data: blob, error: eDl } = await admin.storage.from(BUCKET).download(conf.storage_path)
     if (eDl || !blob) throw new Error('Falha ao baixar a receita do Storage')
     const base64 = Buffer.from(await blob.arrayBuffer()).toString('base64')
     const mime = mimeDoTipo(conf.arquivo_tipo, conf.storage_path)
 
+    etapa = 'extracao_ia'
     const provedor = ((process.env.IA_PROVEDOR as ProvedorIA) || 'claude')
     const extrator = criarExtrator(provedor)
     const extracao = await extrator.extrair({ arquivo: { base64, mime }, camposEsperados: CAMPOS_EXTRACAO })
 
+    etapa = 'motor'
     const resultado = conferir({ checklist: checklistHidratado, extracao, orcamento: { itens: [] }, hoje: hojeISO() })
     const diag = montarDiagnostico(resultado, { documentalOnly: true })
 
@@ -195,17 +201,20 @@ export async function rodarPreAnalise(conferenciaId: string, posologiaEsperada?:
       }
     }
 
+    etapa = 'persistir_preanalise'
     const atualizacao = montarAtualizacaoPreAnalise(extracao, resultado, {
       checklist_id: checklist.id ?? null, checklist_versao: checklist.versao ?? null,
       provedor_ia: extrator.id, modelo_ia: extrator.id === 'claude' ? MODELO_CLAUDE : null, prompt_versao: PROMPT_VERSAO,
     })
     // Posologia esperada + comparação vivem no extracao_json (jsonb) — sem migration.
+    // erro_processamento fica de fora (extração bem-sucedida limpa erro anterior).
     const extracaoJsonFinal = { ...atualizacao.extracao_json, posologia_esperada: esperada || null, posologia_comparacao: posologiaComparacao }
     const { error: eUpd } = await supabase
       .from('conferencias_receita').update({ ...atualizacao, extracao_json: extracaoJsonFinal })
       .eq('id', conf.id).eq('organization_id', perfil.organization_id)
     if (eUpd) throw new Error(`Erro ao gravar pré-análise: ${eUpd.message}`)
 
+    etapa = 'gravar_pendencias'
     await supabase.from('conferencia_receita_pendencias').delete().eq('conferencia_id', conf.id)
     const pendencias = montarPendencias(resultado).map((p) => ({ ...p, conferencia_id: conf.id }))
     if (pendencias.length) {
@@ -222,8 +231,15 @@ export async function rodarPreAnalise(conferenciaId: string, posologiaEsperada?:
     revalidatePath(`${ROTA}/${conf.id}`)
     return diag
   } catch (err) {
+    // Persiste o MOTIVO REAL da falha (etapa + mensagem) no extracao_json — visível em Detalhes técnicos.
+    const mensagem = err instanceof Error ? err.message : String(err)
+    const jsonAtual = (conf.extracao_json as Record<string, unknown> | null) ?? {}
     await supabase.from('conferencias_receita')
-      .update({ status_processamento: 'erro', status_atual: 'erro' })
+      .update({
+        status_processamento: 'erro',
+        status_atual: 'erro',
+        extracao_json: { ...jsonAtual, erro_processamento: { etapa, mensagem } },
+      })
       .eq('id', conf.id).eq('organization_id', perfil.organization_id)
     revalidatePath(`${ROTA}/${conf.id}`)
     throw err
@@ -290,6 +306,11 @@ export async function compararPosologiaConferencia(
   const extracaoJson = ((conf.extracao_json as Record<string, unknown> | null) ?? {}) as Record<string, unknown>
   const extraida = String((extracaoJson.campos as Record<string, string> | undefined)?.posologia ?? '')
 
+  // Não compara vazio: se não há posologia extraída (ex.: análise falhou), orienta a reexecutar.
+  if (!extraida.trim()) {
+    return { resultado: 'nao_foi_possivel_comparar', justificativa: 'Não há posologia extraída para comparar. Reexecute a análise primeiro.' }
+  }
+
   const provedor = ((process.env.IA_PROVEDOR as ProvedorIA) || 'claude')
   let comparacao: ComparacaoPosologia
   try {
@@ -311,13 +332,23 @@ export async function compararPosologiaConferencia(
 
 // ===================== READS (MVP-6 — só consomem a estrutura) =====================
 
-// Busca produtos da organização para o seletor da Nova Validação.
+// Busca produtos para o seletor da Nova Validação — RESPEITANDO o escopo do Hub.
+// Reusa a RPC autorizada `hub_produtos_listar` (SECURITY DEFINER): só retorna produtos
+// dos Portfólios AUTORIZADOS ao Hub do usuário. Dedup por product_id (aparece por vínculo).
 export async function buscarProdutosParaValidacao(busca: string): Promise<Array<{ id: string; nome: string }>> {
-  const { supabase, perfil } = await getUsuarioEOrg()
-  let q = supabase.from('products').select('id, nome').eq('organization_id', perfil.organization_id).order('nome').limit(20)
-  if (busca && busca.trim()) q = q.ilike('nome', `%${busca.trim()}%`)
-  const { data } = await q
-  return (data ?? []) as Array<{ id: string; nome: string }>
+  await getUsuarioEOrg() // garante sessão (senão redireciona ao login)
+  const { rows } = await listarProdutosHub({
+    busca: busca?.trim() || undefined, limit: 20, orderBy: 'nome', orderDir: 'asc',
+  })
+  const vistos = new Set<string>()
+  const out: Array<{ id: string; nome: string }> = []
+  for (const r of rows ?? []) {
+    if (r.product_id && !vistos.has(r.product_id)) {
+      vistos.add(r.product_id)
+      out.push({ id: r.product_id, nome: r.nome })
+    }
+  }
+  return out
 }
 
 // Lista para a tabela principal. Buscas EXPLÍCITAS (sem embeds PostgREST).
@@ -416,6 +447,7 @@ export async function getValidacaoDetalhe(id: string) {
     campos?: Record<string, string>
     posologia_esperada?: string | null
     posologia_comparacao?: ComparacaoPosologia | null
+    erro_processamento?: { etapa?: string; mensagem?: string } | null
   } | null)
   const campos = extracaoJson?.campos ?? {}
 
@@ -423,6 +455,8 @@ export async function getValidacaoDetalhe(id: string) {
     id: conf.id as string,
     posologiaEsperada: extracaoJson?.posologia_esperada ?? null,
     posologiaComparacao: extracaoJson?.posologia_comparacao ?? null,
+    posologiaExtraida: (campos.posologia ?? '').trim() || null,
+    erroProcessamento: extracaoJson?.erro_processamento ?? null,
     produto: (prodRow?.nome as string | undefined) ?? null,
     responsavel: conf.criado_por ? nomePorId.get(conf.criado_por as string) ?? null : null,
     decisor: conf.decidido_por ? nomePorId.get(conf.decidido_por as string) ?? null : null,

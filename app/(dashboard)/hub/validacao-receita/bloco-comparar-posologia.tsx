@@ -12,11 +12,12 @@ import type { ComparacaoPosologia } from '@/lib/ia/comparar-posologia'
 // Opção B: comparar a posologia esperada com a já extraída, SOB DEMANDA, na tela de Resultado.
 // Consultivo — não refaz análise nem altera resultado/checklist/score/decisão.
 export function BlocoCompararPosologia({
-  conferenciaId, esperadaInicial, comparacaoInicial,
+  conferenciaId, esperadaInicial, comparacaoInicial, posologiaExtraida,
 }: {
   conferenciaId: string
   esperadaInicial: string | null
   comparacaoInicial: ComparacaoPosologia | null
+  posologiaExtraida: string | null
 }) {
   const router = useRouter()
   const [texto, setTexto] = useState(esperadaInicial ?? '')
@@ -38,6 +39,16 @@ export function BlocoCompararPosologia({
 
   const cor = cmp?.resultado === 'compativel' ? 'text-emerald-700'
     : cmp?.resultado === 'diferenca_encontrada' ? 'text-amber-700' : 'text-slate-500'
+
+  // Sem posologia extraída (ex.: análise falhou) → não compara vazio; orienta a reexecutar.
+  if (!posologiaExtraida) {
+    return (
+      <div className="rounded-lg border border-slate-200 bg-white p-4">
+        <p className="mb-1 text-sm font-semibold text-slate-700">Comparar Posologia</p>
+        <p className="text-sm text-slate-500">Não há posologia extraída para comparar. Reexecute a análise primeiro.</p>
+      </div>
+    )
+  }
 
   return (
     <div className="rounded-lg border border-slate-200 bg-white p-4">
