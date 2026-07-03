@@ -13,5 +13,5 @@
     "types": ["node"]
   },
   "include": ["lib/conferencia/**/*.ts", "lib/ia/**/*.ts"],
-  "exclude": ["lib/ia/provedores/claude.ts", "lib/ia/provedores/comparador-claude.ts", "lib/ia/provedores/index.ts"]
+  "exclude": ["lib/ia/provedores/claude.ts", "lib/ia/provedores/comparador-claude.ts", "lib/ia/provedores/openai.ts", "lib/ia/provedores/comparador-openai.ts", "lib/ia/provedores/index.ts"]
 }

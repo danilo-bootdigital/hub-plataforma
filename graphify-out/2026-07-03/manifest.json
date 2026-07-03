@@ -2365,7 +2365,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/package.json": {
-    "mtime": 1783097448.2198355,
+    "mtime": 1783107993.4563549,
     "ast_hash": "95b08bc3062cdc4b0334fa9be037e557",
     "semantic_hash": ""
   },
@@ -2440,52 +2440,52 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js": {
-    "mtime": 1783097448.1114457,
+    "mtime": 1783107993.3331873,
     "ast_hash": "fc0876e0c5456c6f5c51b4c19a335bc5",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/diagnostico.js": {
-    "mtime": 1783097448.0544214,
+    "mtime": 1783107993.2753708,
     "ast_hash": "d2bf2d6eb15a769511269a45f780c483",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/mapear-checklist.js": {
-    "mtime": 1783097448.0623207,
+    "mtime": 1783107993.283346,
     "ast_hash": "34df1160f09a44ee78a8d1f50bf33891",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/motor-regras.js": {
-    "mtime": 1783097448.0762937,
+    "mtime": 1783107993.3026505,
     "ast_hash": "b3c8dc00c63a29c434c1ed58455d1255",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/resolver-checklist.js": {
-    "mtime": 1783097448.084771,
+    "mtime": 1783107993.3100808,
     "ast_hash": "d548dcd48788531c2dc0856bf4d8f08f",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/tipos.js": {
-    "mtime": 1783097448.038994,
+    "mtime": 1783107993.264287,
     "ast_hash": "e5242a72d0a2ba687aa9e3006b57a65e",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/__tests__/extrator.test.js": {
-    "mtime": 1783097448.1289535,
+    "mtime": 1783107993.3570783,
     "ast_hash": "ad7f4903194356fb3b9ca488da6c4b64",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/provedores/mock.js": {
-    "mtime": 1783097448.1242182,
+    "mtime": 1783107993.3500996,
     "ast_hash": "a22ce2e93e402f6a40022f63c29d7153",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/schema-extracao.js": {
-    "mtime": 1783097448.1188862,
+    "mtime": 1783107993.3412752,
     "ast_hash": "406eb4ef31c91b231213980497914c3a",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/tipos.js": {
-    "mtime": 1783097448.119901,
+    "mtime": 1783107993.342418,
     "ast_hash": "2a4e7dac578b1592c5b287ba8c2c9bd2",
     "semantic_hash": ""
   },
@@ -2520,7 +2520,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/persistencia.js": {
-    "mtime": 1783097448.082359,
+    "mtime": 1783107993.3079631,
     "ast_hash": "668db06c4329a65eacad4352ddfc4c9c",
     "semantic_hash": ""
   },
@@ -2555,7 +2555,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/mapear-orcamento.js": {
-    "mtime": 1783097448.0646708,
+    "mtime": 1783107993.2854948,
     "ast_hash": "ff2af05a1c739320b55e8ae7cf420c3e",
     "semantic_hash": ""
   },
@@ -2575,7 +2575,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/persistencia-standalone.js": {
-    "mtime": 1783097448.0789096,
+    "mtime": 1783107993.305239,
     "ast_hash": "18e1d116527b9498cb61995f732e87c1",
     "semantic_hash": ""
   },
@@ -2590,7 +2590,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/hidratar-checklist.js": {
-    "mtime": 1783097448.0593123,
+    "mtime": 1783107993.28038,
     "ast_hash": "2ac252b6539f6ae8037bca6769d0f621",
     "semantic_hash": ""
   },
@@ -2635,8 +2635,8 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/validacao-receita/actions.ts": {
-    "mtime": 1783097391.7618976,
-    "ast_hash": "006cfe29258b3b12aa95c359bf9dcf10",
+    "mtime": 1783107881.0191267,
+    "ast_hash": "0acab565482c07c6c2326f649347c11c",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/validacao-receita/nova/page.tsx": {
@@ -2660,13 +2660,13 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/validacao-receita/nova/tela-validacao.tsx": {
-    "mtime": 1783093441.0928826,
-    "ast_hash": "e376c3afa3e3633ae9151d3a22bf611d",
+    "mtime": 1783107985.0418336,
+    "ast_hash": "8a1e1fa312cbe736d21d22f4ea1a3c15",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/validacao-receita/painel-resultado.tsx": {
-    "mtime": 1783097439.1824641,
-    "ast_hash": "616d73f3f0193858e916327c3a662c95",
+    "mtime": 1783107976.938748,
+    "ast_hash": "0c0fd8eceb0b95b0ed9c2c7d7e926200",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/validacao-receita/preview-receita.tsx": {
@@ -2675,7 +2675,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/comparar-posologia.js": {
-    "mtime": 1783097448.1150856,
+    "mtime": 1783107993.3369617,
     "ast_hash": "1b699497caaca1853038a0a70136b823",
     "semantic_hash": ""
   },
@@ -2690,8 +2690,23 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/validacao-receita/bloco-comparar-posologia.tsx": {
-    "mtime": 1783097406.9219782,
-    "ast_hash": "ef57fd9e26e9d465f63218217a1c606b",
+    "mtime": 1783107910.9069643,
+    "ast_hash": "e8f7c69b07d7ee8a0a38d6c03fe8c4fc",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/validacao-receita/botao-reexecutar.tsx": {
+    "mtime": 1783107892.1733453,
+    "ast_hash": "29078a09db9d4c66379a1bbd8ce77d38",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/seed_checklists_validacao_receita_incremental.sql": {
+    "mtime": 1783097728.035163,
+    "ast_hash": "d703ee4c15139903e9637e0d8bfb1588",
+    "semantic_hash": ""
+  },
+  "hubdev/bootstrap/verify_checklists_validacao_receita_itens.sql": {
+    "mtime": 1783097743.3009353,
+    "ast_hash": "3d10fe36f1b3aba5e614e83460db0263",
     "semantic_hash": ""
   }
 }

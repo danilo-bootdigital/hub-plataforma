@@ -1265,8 +1265,8 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1783000707.808675,
-    "ast_hash": "10ea6546c659f160ceb52d313d995dfe",
+    "mtime": 1783108832.4417229,
+    "ast_hash": "9ea3335a31fb988be8d980c234d1c85f",
     "semantic_hash": ""
   },
   "postcss.config.mjs": {
@@ -2365,7 +2365,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/package.json": {
-    "mtime": 1783107993.4563549,
+    "mtime": 1783108968.255379,
     "ast_hash": "95b08bc3062cdc4b0334fa9be037e557",
     "semantic_hash": ""
   },
@@ -2400,8 +2400,8 @@
     "semantic_hash": ""
   },
   "tsconfig.conferencia.json": {
-    "mtime": 1783093576.8997164,
-    "ast_hash": "b6fefd73cd7025c9e54246c9b2ebe857",
+    "mtime": 1783108909.6157103,
+    "ast_hash": "2c668306ba4b12e2940a8d10bad34085",
     "semantic_hash": ""
   },
   ".tmp-conferencia/diagnostico.js": {
@@ -2440,52 +2440,52 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/__tests__/motor-regras.test.js": {
-    "mtime": 1783107993.3331873,
+    "mtime": 1783108968.128762,
     "ast_hash": "fc0876e0c5456c6f5c51b4c19a335bc5",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/diagnostico.js": {
-    "mtime": 1783107993.2753708,
+    "mtime": 1783108968.0662723,
     "ast_hash": "d2bf2d6eb15a769511269a45f780c483",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/mapear-checklist.js": {
-    "mtime": 1783107993.283346,
+    "mtime": 1783108968.0752313,
     "ast_hash": "34df1160f09a44ee78a8d1f50bf33891",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/motor-regras.js": {
-    "mtime": 1783107993.3026505,
+    "mtime": 1783108968.0925806,
     "ast_hash": "b3c8dc00c63a29c434c1ed58455d1255",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/resolver-checklist.js": {
-    "mtime": 1783107993.3100808,
+    "mtime": 1783108968.1026614,
     "ast_hash": "d548dcd48788531c2dc0856bf4d8f08f",
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/tipos.js": {
-    "mtime": 1783107993.264287,
+    "mtime": 1783108968.0536776,
     "ast_hash": "e5242a72d0a2ba687aa9e3006b57a65e",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/__tests__/extrator.test.js": {
-    "mtime": 1783107993.3570783,
+    "mtime": 1783108968.1504266,
     "ast_hash": "ad7f4903194356fb3b9ca488da6c4b64",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/provedores/mock.js": {
-    "mtime": 1783107993.3500996,
+    "mtime": 1783108968.1443746,
     "ast_hash": "a22ce2e93e402f6a40022f63c29d7153",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/schema-extracao.js": {
-    "mtime": 1783107993.3412752,
+    "mtime": 1783108968.137017,
     "ast_hash": "406eb4ef31c91b231213980497914c3a",
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/tipos.js": {
-    "mtime": 1783107993.342418,
+    "mtime": 1783108968.1378841,
     "ast_hash": "2a4e7dac578b1592c5b287ba8c2c9bd2",
     "semantic_hash": ""
   },
@@ -2500,8 +2500,8 @@
     "semantic_hash": ""
   },
   "lib/ia/provedores/index.ts": {
-    "mtime": 1783093286.2457237,
-    "ast_hash": "097bfd86b2697bd06d294d4c0c218014",
+    "mtime": 1783108903.330635,
+    "ast_hash": "33ba47b6bec3f5c76003a382631547bb",
     "semantic_hash": ""
   },
   "lib/ia/provedores/mock.ts": {
@@ -2520,7 +2520,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/persistencia.js": {
-    "mtime": 1783107993.3079631,
+    "mtime": 1783108968.1000345,
     "ast_hash": "668db06c4329a65eacad4352ddfc4c9c",
     "semantic_hash": ""
   },
@@ -2555,7 +2555,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/mapear-orcamento.js": {
-    "mtime": 1783107993.2854948,
+    "mtime": 1783108968.0779781,
     "ast_hash": "ff2af05a1c739320b55e8ae7cf420c3e",
     "semantic_hash": ""
   },
@@ -2575,7 +2575,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/persistencia-standalone.js": {
-    "mtime": 1783107993.305239,
+    "mtime": 1783108968.0963626,
     "ast_hash": "18e1d116527b9498cb61995f732e87c1",
     "semantic_hash": ""
   },
@@ -2590,7 +2590,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/conferencia/hidratar-checklist.js": {
-    "mtime": 1783107993.28038,
+    "mtime": 1783108968.0720973,
     "ast_hash": "2ac252b6539f6ae8037bca6769d0f621",
     "semantic_hash": ""
   },
@@ -2675,7 +2675,7 @@
     "semantic_hash": ""
   },
   ".tmp-conferencia/ia/comparar-posologia.js": {
-    "mtime": 1783107993.3369617,
+    "mtime": 1783108968.132329,
     "ast_hash": "1b699497caaca1853038a0a70136b823",
     "semantic_hash": ""
   },
@@ -2707,6 +2707,16 @@
   "hubdev/bootstrap/verify_checklists_validacao_receita_itens.sql": {
     "mtime": 1783097743.3009353,
     "ast_hash": "3d10fe36f1b3aba5e614e83460db0263",
+    "semantic_hash": ""
+  },
+  "lib/ia/provedores/comparador-openai.ts": {
+    "mtime": 1783108891.385111,
+    "ast_hash": "daf0356ed56fb060b721965cc459ea35",
+    "semantic_hash": ""
+  },
+  "lib/ia/provedores/openai.ts": {
+    "mtime": 1783108882.5398118,
+    "ast_hash": "a38656ae27102a4af57f7504fd84a24c",
     "semantic_hash": ""
   }
 }

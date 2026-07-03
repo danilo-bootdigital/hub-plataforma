@@ -5,12 +5,15 @@
 import type { ExtratorReceita, ComparadorPosologia, ProvedorIA } from '../tipos'
 import { ClaudeExtrator } from './claude'
 import { ClaudeComparador } from './comparador-claude'
+import { OpenAiExtrator } from './openai'
+import { OpenAiComparador } from './comparador-openai'
 
 export function criarExtrator(provedor: ProvedorIA = 'claude'): ExtratorReceita {
   switch (provedor) {
     case 'claude':
       return new ClaudeExtrator()
     case 'openai':
+      return new OpenAiExtrator()
     case 'gemini':
     case 'azure':
     case 'local':
@@ -25,6 +28,7 @@ export function criarComparador(provedor: ProvedorIA = 'claude'): ComparadorPoso
     case 'claude':
       return new ClaudeComparador()
     case 'openai':
+      return new OpenAiComparador()
     case 'gemini':
     case 'azure':
     case 'local':
