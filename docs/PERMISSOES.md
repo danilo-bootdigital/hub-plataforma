@@ -483,5 +483,25 @@ Recebem trilha de auditoria: **ADM** (governança da Indústria) e **PROP** (no 
 
 ---
 
+## Módulo — Cadastro de Clientes (Pré-cadastro) — DEC-020
+
+Módulo RBAC `cadastro_clientes`. Distingue **operação do Hub** (criar/editar/enviar) da **decisão da Indústria** (aprovar/reprovar/solicitar correção — **exclusiva de ADM/GES por Perfil**, nunca concedível a Função de Hub).
+
+| Ação | ADM | GES | FIN | PROP | ASS |
+|---|---|---|---|---|---|
+| Visualizar | ✓ (destinados à Indústria) | ✓ (destinados à Indústria) | — | ✓ (do próprio Hub) | ✓ (do próprio Hub) |
+| Criar | — | — | — | ✓ | ✓ |
+| Editar (rascunho) | — | — | — | ✓ | ✓ |
+| Enviar para Indústria | — | — | — | ✓ | ✓ |
+| Solicitar correção | ✓ | ✓ | — | — | — |
+| Aprovar | ✓ | ✓ | — | — | — |
+| Reprovar | ✓ | ✓ | — | — | — |
+| Converter em Cliente | ✓ | ✓ | — | — | — |
+| Recebe notificações | ✓ | ✓ | — | ✓ | ✓ |
+
+> **Fronteira (DEC-020):** o Hub **cria/envia/corrige**; a Indústria **decide**. **Proprietário do Hub e Assistente** operam o Cadastro de Clientes **por padrão** (item padrão do Hub, **sem gate por Função** — ambos fazem o cadastro). As transições de decisão e a conversão são RPCs `SECURITY DEFINER` restritas a `admin`/`gestor`. `aprovar`/`reprovar` **não** entram no vocabulário de Função do Hub. Documentos em bucket privado (signed URL); o pré-cadastro **nunca** é excluído após a conversão.
+
+---
+
 ## Documentos relacionados
-- [`ARQUITETURA_OFICIAL.md`](ARQUITETURA_OFICIAL.md) · [`DECISIONS.md`](DECISIONS.md) (DEC-011, **DEC-012**) · [`DOMINIO.md`](DOMINIO.md) · [`FUNCIONAL.md`](FUNCIONAL.md)
+- [`ARQUITETURA_OFICIAL.md`](ARQUITETURA_OFICIAL.md) · [`DECISIONS.md`](DECISIONS.md) (DEC-011, **DEC-012**, **DEC-020**) · [`DOMINIO.md`](DOMINIO.md) · [`FUNCIONAL.md`](FUNCIONAL.md)

@@ -6,6 +6,17 @@
 
 ---
 
+## 2026-07-03 — Cadastro de Clientes: pré-cadastro Hub → aprovação Indústria (DEC-020)
+
+- **Objetivo:** novo módulo em que o Hub pré-cadastra clientes (dados + documentos) e envia para a Indústria decidir (aprovar/reprovar/solicitar correção), com conversão em Cliente ativo (`contacts`) após aprovação. Fluxo interno completo; envio por e-mail à Indústria fica para a Fase 2.
+- **Banco (`supabase/migrations/064_hub_client_onboarding.sql`):** helper `get_hub_id()`; tabelas `hub_client_onboarding`, `hub_client_onboarding_files`, `hub_client_onboarding_events` (append-only via trigger), `notifications` (central genérica); trigger `updated_at`; RLS (Hub por `get_hub_id()`, Indústria por `get_organization_id()`); bucket **privado** `client-onboarding-docs` (sem policy pública). RPCs `SECURITY DEFINER`: `hub_onboarding_criar/salvar/anexar/remover_arquivo/enviar`, `industria_onboarding_decidir/converter`, `onboarding_listar/detalhe/filtros`, `notificacoes_listar/marcar_lida` (authz por cargo no banco; decisão exclusiva de admin/gestor). **A APLICAR via SQL Editor no HUB DEV** (CLI linkado a projeto incorreto).
+- **Aplicação Web:** `app/(dashboard)/hub/cadastro-clientes/` (`page.tsx` lista, `novo/`, `[id]/`, `actions.ts` com upload/signed URL via service role) e `app/(dashboard)/configuracoes/cadastro-clientes/` (lista + `[id]` de análise + `actions.ts`). Componentes em `components/cadastro-clientes/` (formulário PF/PJ com abas + barra de progresso, área de documentos com upload/visualizar/substituir/remover, tabela com filtros, linha do tempo, painel de análise da Indústria, badge de status). `lib/cadastro-clientes/` (constantes de documentos/status, actions de notificação). Central de notificações in-app: `components/layout/sino-notificacoes.tsx` no `header.tsx`.
+- **Menu/RBAC:** `lib/navegacao.ts` — "Cadastro de Clientes" para Hub (`proprietario_hub`+`assistente`, `modulo:'cadastro_clientes'`) e Indústria (`admin`+`gestor`). `middleware.ts` — guard `cadastro_clientes` para Assistente. Módulo RBAC `cadastro_clientes` (visualizar/criar/editar) reusa `funcao_permissoes.chk_acao` (sem migration de enum).
+- **Tipos (`types/database.ts`):** `HubClientOnboarding`, `HubClientOnboardingFile`, `OnboardingStatus`, `TipoDocumentoOnboarding`, `Notification`.
+- **Build:** `npm run build` **OK** (compiled successfully; 0 erros de tipo/lint; rotas Hub e Indústria geradas).
+- **Fronteira/nomenclatura:** Hub cria/envia/corrige; Indústria decide (RPCs restritas). Documentos só por signed URL (nada público). Nenhuma tela exibe "Stin Pharma" — termos neutros.
+- **Pendente:** aplicar migration `064` no HUB DEV (SQL Editor) e verificação runtime end-to-end (fluxo Hub→Indústria→conversão) com sessão autenticada. Sem deploy. E-mail à Indústria = Fase 2 (sem provedor no projeto).
+
 ## 2026-07-03 — Validação de Receita: UI operacional única + comparação de posologia + Emitente/Paciente (MVP-6 — DEC-019)
 
 - **Objetivo:** transformar a estrutura da Conferência em **módulo utilizável** — tela operacional única na Área do Hub, comparação opcional de posologia, campos de Emitente/Paciente e catálogo de metadados por produto. Sem deploy.

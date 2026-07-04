@@ -3,6 +3,7 @@ import { BadgePerfil } from '@/components/usuarios/badge-perfil'
 import { SidebarMobile } from '@/components/layout/sidebar-mobile'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { BotaoSair } from '@/components/layout/botao-sair'
+import { SinoNotificacoes } from '@/components/layout/sino-notificacoes'
 import { BotaoDisponibilidade } from '@/components/distribuicao/botao-disponibilidade'
 import type { UserRole } from '@/types/database'
 
@@ -54,6 +55,7 @@ export async function Header({ logoUrl, permissoes }: { logoUrl?: string | null;
             </AvatarFallback>
           </Avatar>
         </div>
+        <SinoNotificacoes />
         <BotaoSair />
       </div>
     </header>
