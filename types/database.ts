@@ -856,3 +856,75 @@ export type FiltrosConversa = {
   comContato?: boolean | null
   arquivada?: boolean
 }
+
+// ==========================================================================
+// DEC-020 — Cadastro de Clientes (pré-cadastro Hub → aprovação Indústria)
+// ==========================================================================
+export type OnboardingStatus =
+  | 'rascunho' | 'enviado' | 'em_analise' | 'correcao_solicitada' | 'aprovado' | 'reprovado'
+
+export type TipoPessoaOnboarding = 'fisica' | 'juridica'
+
+export type TipoDocumentoOnboarding =
+  | 'comprovante_endereco' | 'contrato_social' | 'alvara_funcionamento'
+  | 'alvara_vigilancia_sanitaria' | 'crm_frente' | 'crm_verso'
+
+export type HubClientOnboarding = {
+  id: string
+  hub_id: string | null
+  industry_id: string
+  tipo_pessoa: TipoPessoaOnboarding
+  status: OnboardingStatus
+  nome_completo: string | null
+  razao_social: string | null
+  nome_fantasia: string | null
+  registro_conselho: string | null
+  cpf: string | null
+  cnpj: string | null
+  data_nascimento: string | null
+  email: string | null
+  endereco_completo: string | null
+  cep: string | null
+  telefones: string[]
+  observacao_correcao: string | null
+  motivo_reprovacao: string | null
+  criado_por: string | null
+  enviado_em: string | null
+  aprovado_por_industria_id: string | null
+  aprovado_em: string | null
+  reprovado_em: string | null
+  converted_contact_id: string | null
+  created_at: string
+  updated_at: string
+}
+
+export type HubClientOnboardingFile = {
+  id: string
+  onboarding_id: string
+  hub_id: string | null
+  tipo_documento: TipoDocumentoOnboarding
+  nome_arquivo: string
+  storage_path: string
+  mime_type: string | null
+  tamanho: number | null
+  uploaded_by: string | null
+  created_at: string
+}
+
+export type OnboardingEventoTipo =
+  | 'criado' | 'documento_enviado' | 'documento_removido' | 'enviado_industria'
+  | 'correcao_solicitada' | 'reapresentado' | 'aprovado' | 'reprovado' | 'convertido' | 'email_enviado'
+
+export type Notification = {
+  id: string
+  user_id: string
+  organization_id: string | null
+  tipo: string
+  titulo: string
+  mensagem: string | null
+  link: string | null
+  lida: boolean
+  entidade_tipo: string | null
+  entidade_id: string | null
+  created_at: string
+}

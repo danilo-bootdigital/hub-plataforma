@@ -69,6 +69,7 @@ export async function middleware(request: NextRequest) {
       ['/assistente/orcamentos', 'orcamentos'],
       ['/assistente/prepedidos', 'pedidos'],
       ['/hub/produtos', 'produtos'],
+      ['/hub/cadastro-clientes', 'cadastro_clientes'],
     ]
     const alvo = ROTA_MODULO.find(([p]) => path === p || path.startsWith(p + '/'))
     if (alvo) {

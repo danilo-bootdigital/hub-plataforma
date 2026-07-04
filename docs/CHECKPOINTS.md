@@ -270,3 +270,19 @@
 - **Fronteira mantida:** IA só **extrai e compara** (comparação consultiva); **motor documental decide**; **decisão sempre humana**. Banco estrutural/motor/RBAC/Storage/metadados não alterados nesta UI.
 - **Situação:** ✅ **MVP-6 (código) concluído**; ⏳ validação runtime online (deploy) pendente.
 - **Changelog Relacionado:** 2026-07-03 — MVP-6 DEC-019 (UI operacional única + comparação de posologia + Emitente/Paciente + metadados por produto).
+
+## Checkpoint 023 — Cadastro de Clientes: pré-cadastro Hub → aprovação Indústria (DEC-020)
+
+- **Data:** 2026-07-03
+- **Git Commit:** este commit.
+- **Git Branch:** main
+- **Project Ref Supabase:** `pnkgwfgjhijksfmofiot` (HUB DEV).
+- **Ambiente:** código + `npm run build` OK. **Sem deploy/preview**; migration `064` **a aplicar** via SQL Editor.
+- **Entregue (novo módulo, DEC-020):**
+  - **Banco** `064_hub_client_onboarding.sql`: helper `get_hub_id()`; tabelas `hub_client_onboarding`, `_files`, `_events` (append-only), `notifications`; RLS (Hub por `get_hub_id()`, Indústria por `get_organization_id()`); bucket **privado** `client-onboarding-docs`; RPCs `SECURITY DEFINER` de fluxo (criar/salvar/anexar/remover/enviar), decisão da Indústria (`industria_onboarding_decidir` aprovar/reprovar/solicitar correção), conversão em `contacts` (`industria_onboarding_converter`, tipo_pessoa mapeado p/ PF/PJ; `converted_contact_id`; nunca apaga o pré-cadastro), leitura (listar/detalhe/filtros) e notificações.
+  - **Aplicação Web:** Hub `app/(dashboard)/hub/cadastro-clientes/` (lista, `novo`, `[id]`) e Indústria `app/(dashboard)/configuracoes/cadastro-clientes/` (lista, `[id]` análise). Componentes `components/cadastro-clientes/` (form PF/PJ com abas + progresso, área de documentos, tabela+filtros, linha do tempo, painel de análise, badge de status). Central de notificações in-app (`sino-notificacoes.tsx` no header). Menu + guard de middleware.
+- **RBAC:** módulo `cadastro_clientes` (visualizar/criar/editar) reusa `chk_acao` (sem migration de enum). Aprovar/reprovar/converter = **exclusivo admin/gestor** por RPC (não concedível a Função de Hub).
+- **Build/validação:** `npm run build` **OK** (compiled successfully; 0 erros tipo/lint; rotas Hub e Indústria geradas).
+- **Fronteira/nomenclatura:** Hub cria/envia/corrige; Indústria decide. Documentos só por signed URL (nada público). Sem "Stin Pharma" nas telas.
+- **Situação:** ✅ **código concluído**; ⏳ aplicar migration `064` (SQL Editor) + verificação runtime E2E (Hub→Indústria→conversão). Sem deploy. E-mail à Indústria = Fase 2.
+- **Changelog Relacionado:** 2026-07-03 — Cadastro de Clientes (DEC-020).

@@ -1,7 +1,7 @@
 import {
   LayoutDashboard, Users, TrendingUp, UserCheck,
   MessageCircle, CheckSquare, FileText, Inbox,
-  BarChart3, Settings, Package, Building2, Briefcase, Network, Wallet, Contact, ClipboardList, PackageCheck, Layers, ShieldCheck, ClipboardCheck, Sparkles, type LucideIcon
+  BarChart3, Settings, Package, Building2, Briefcase, Network, Wallet, Contact, ClipboardList, PackageCheck, Layers, ShieldCheck, ClipboardCheck, Sparkles, UserPlus, type LucideIcon
 } from 'lucide-react'
 import type { UserRole } from '@/types/database'
 
@@ -41,6 +41,8 @@ export const navegacao: ItemNavegacao[] = [
   { label: 'Carteiras', href: '/configuracoes/carteiras', icone: Wallet, perfis: ['admin', 'gestor'] },
   // Portfólios — catálogo da Indústria (DEC-012 / Expand E4)
   { label: 'Portfólios', href: '/configuracoes/portfolios', icone: Layers, perfis: ['admin', 'gestor'] },
+  // Cadastro de Clientes — análise da Indústria (DEC-020)
+  { label: 'Cadastro de Clientes', href: '/configuracoes/cadastro-clientes', icone: UserPlus, perfis: ['admin', 'gestor'] },
   // Áreas iniciais dos novos perfis (placeholder — Fatia 03)
   { label: 'Área do Hub', href: '/hub', icone: Building2, perfis: ['proprietario_hub'] },
   // Consulta operacional de Produtos (Hub) — DEC-013/014; sem CRUD
@@ -49,6 +51,8 @@ export const navegacao: ItemNavegacao[] = [
   { label: 'Orçamentos', href: '/hub/orcamentos', icone: FileText, perfis: ['proprietario_hub', 'assistente'], modulo: 'orcamentos' },
   // Validação de Receita — módulo do Hub (DEC-019). Proprietário sempre; Assistente se a Função conceder 'visualizar' em 'receita'.
   { label: 'Validação de Receita', href: '/hub/validacao-receita', icone: ClipboardCheck, perfis: ['proprietario_hub', 'assistente'], modulo: 'receita' },
+  // Cadastro de Clientes — pré-cadastro do Hub (DEC-020). Assistente conforme Função.
+  { label: 'Cadastro de Clientes', href: '/hub/cadastro-clientes', icone: UserPlus, perfis: ['proprietario_hub', 'assistente'], modulo: 'cadastro_clientes' },
   { label: 'Identidade', href: '/hub/identidade', icone: Building2, perfis: ['proprietario_hub'] },
   { label: 'Assistentes', href: '/hub/assistentes', icone: Users, perfis: ['proprietario_hub'] },
   { label: 'Funções', href: '/hub/funcoes', icone: ShieldCheck, perfis: ['proprietario_hub'] },

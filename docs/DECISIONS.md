@@ -344,3 +344,46 @@ Escopo **produto** (mais específico). Itens (chave · obrigatório · severidad
 - **Emenda — Conferência INDEPENDENTE do orçamento no MVP (2026-07-02):** o módulo de Conferência de Receita, **neste MVP**, é **independente do orçamento**. Fluxo: **Menu "Conferência de Receita" → upload da receita → selecionar produto → pré-análise → resultado (sem pendências aparentes | pendências encontradas) + orientação → decisão humana**. **NÃO** compara com orçamento, **NÃO** calcula cobertura documental do pedido, **NÃO** bloqueia pedido, **NÃO** cria Central. A conferência verifica a **receita como documento**, considerando o **produto selecionado** (paciente, prescritor, CRM/UF, assinatura, data, medicamento, concentração, quantidade, posologia, **limite máximo por receita se o produto tiver essa regra**, legibilidade). Consequências arquiteturais: **estrutura própria, limpa e simplificada (SEM Event Sourcing no MVP)** — três tabelas: `conferencias_receita` (tabela principal com `status_atual`, `status_processamento`, `resultado_analise` escritos direto pela aplicação, para leitura simples da UI), `conferencia_receita_pendencias` (detalhe das pendências do motor) e `historico_decisoes_conferencia_receita` (**auditoria IMUTÁVEL — append-only** apenas das **decisões humanas**: `aprovada`/`reprovada`/`devolvida_para_correcao`, com usuário `NOT NULL`, data/hora e observação). Sem trigger de projeção, sem log de eventos, sem payload. As tabelas acopladas `quote_receitas`/`receita_conferencias` **não** são usadas neste MVP e ficam para o fluxo acoplado futuro. Storage reusa o bucket privado com prefixo `conferencia/`; **Diagnóstico simplificado para documental-only** (sem bloco comercial); motor ganha regra `limite_maximo`; `medicamento`/`concentração` via `valor_esperado` contra o produto. IA continua só extraindo; motor cuida de pendências/score/diagnóstico; **decisão sempre humana** (status de decisão exige `decidido_por`; histórico exige usuário; a IA nunca decide). **Event Sourcing avaliado e adiado**: agrega valor marginal no MVP (baixo volume, workflow único) e pode entrar de forma aditiva numa versão futura sobre esta base, já que as decisões nascem em histórico append-only. **Metadados de validação por produto (migration 061 — catálogo único):** os valores das regras (medicamento/concentração/via) e o limite máximo **não** ficam hardcoded no checklist. Em vez de N tabelas específicas, há **um catálogo keyed** `product_validation_metadata` (colunas `chave`, `tipo` ∈ lista/numero/texto, `valores`/`valor_num`/`valor_texto`, `ativo`; `chave` e `tipo` restritos por CHECK; UNIQUE(product_id, chave); RLS por organização). Chaves iniciais: `medicamento_aliases`, `concentracoes_permitidas`, `vias_permitidas`, `limite_maximo_por_receita`. A regra do checklist declara `origemValores: "<chave>"` e a **composição (server action)** hidrata `config.valores` (tipo lista; para medicamento inclui `product.nome` implícito) ou `config.limiteMaximo` (tipo numero) via helper puro `hidratarChecklistComMetadadosProduto` **antes** de chamar o motor. O **motor permanece puro e agnóstico** (só executa contra `config.valores`/`config.limiteMaximo`; não conhece o catálogo). Novo metadado = nova **chave/linha (dado)**, sem alterar seed, checklist ou código (nova *categoria* de metadado adiciona uma `chave` ao CHECK — mudança mínima). Escolha registrada: **Opção B disciplinada** (catálogo único com guarda-corpos) sobre N tabelas específicas. O fluxo **acoplado ao orçamento** (comparação/cobertura/bloqueio) permanece como evolução pós-MVP.
 - **Data:** 2026-07-02
 - **Status:** Aprovada / vigente — implementação pendente (Sprint futura). Revisada em 2026-07-02 (pipeline OCR→IA→motor→humano; provedor de IA genérico; motivos normalizados; receitas-modelo; separação extração/motor/humano; terminologia). Realinhada em 2026-07-02 (MVP-first; "Diagnóstico da Receita"; Central e correlatos adiados).
+
+---
+
+## DEC-020 — Cadastro de Clientes (Pré-cadastro do Hub → Aprovação da Indústria)
+
+Define o novo módulo **Cadastro de Clientes**: o Hub (Proprietário ou Assistente) realiza o **pré-cadastro** de um cliente/profissional (dados + documentos) e o **envia para a Indústria**, que é a **única** autorizada a **aprovar, reprovar ou solicitar correção**. O Hub **nunca** decide o status final. Após a aprovação, o pré-cadastro pode ser **convertido** em Cliente ativo (`contacts`), mantendo vínculo de auditoria com o pré-cadastro original — que **nunca é excluído**.
+
+Coerente com DEC-011/016/017 (Indústria **governa**/possui a base; Hub **opera**) e DEC-015 (RBAC por Perfil + Função). **Não cria** perfil novo: "Usuário da Indústria" = perfis `admin`/`gestor` (acesso total); usuários do Hub = `proprietario_hub`/`assistente`.
+
+### 1. Fluxo de status (eixo único)
+`rascunho → enviado → em_analise → correcao_solicitada → aprovado | reprovado`.
+- **Hub:** cria, edita rascunho, anexa documentos, **Salvar Rascunho**, **Enviar para Indústria**, **reenviar** após correção. Escopo: só os cadastros do próprio Hub.
+- **Indústria:** visualiza os cadastros a ela destinados, baixa documentos, **Solicitar Correção** (observação obrigatória), **Aprovar**, **Reprovar** (motivo obrigatório), **Converter em Cliente**.
+
+### 2. Fronteira de governança
+Hub cria/envia/corrige; Indústria decide. As transições de decisão (aprovar/reprovar/solicitar correção) e a conversão são **exclusivas de `admin`/`gestor`** e implementadas em **RPCs `SECURITY DEFINER`** (authz no banco), não por RLS de UPDATE aberto ao Hub. **`aprovar`/`reprovar` NÃO são permissões concedíveis a Função de Hub** — pertencem à Indústria por Perfil.
+
+### 3. Modelo de dados (aditivo — migration `064`)
+- **`hub_client_onboarding`** — `id, hub_id (→hubs), industry_id (= organization_id da Indústria dona do Hub), tipo_pessoa ('fisica'|'juridica'), status, nome_completo, razao_social, nome_fantasia, registro_conselho, cpf, cnpj, data_nascimento, email, endereco_completo, cep, telefones (jsonb), observacao_correcao, motivo_reprovacao, criado_por, enviado_em, aprovado_por_industria_id, aprovado_em, reprovado_em, converted_contact_id (→contacts, vínculo de auditoria), created_at, updated_at`.
+- **`hub_client_onboarding_files`** — `id, onboarding_id (CASCADE), hub_id, tipo_documento, nome_arquivo, storage_path, mime_type, tamanho, uploaded_by, created_at`. Tipos: `comprovante_endereco, contrato_social, alvara_funcionamento, alvara_vigilancia_sanitaria, crm_frente, crm_verso`.
+- **`hub_client_onboarding_events`** — histórico/linha do tempo **append-only** (trigger bloqueia UPDATE/DELETE): `id, onboarding_id, tipo_evento, ator_id, observacao, metadata (jsonb), created_at`.
+- **`notifications`** — central genérica in-app: `id, user_id, organization_id, tipo, titulo, mensagem, link, lida, entidade_tipo, entidade_id, created_at`. RLS: `user_id = auth.uid()`.
+- **Documentos obrigatórios** — PF: `comprovante_endereco, crm_frente, crm_verso`. PJ: os de PF + `contrato_social, alvara_funcionamento, alvara_vigilancia_sanitaria`.
+
+### 4. Storage e RLS
+- Bucket **privado** `client-onboarding-docs` (`public:false`, sem policy pública). Upload/leitura via **service role**; visualização por **signed URL** (TTL curto). Nenhum arquivo público.
+- **RLS:** Hub vê/edita `hub_id = get_hub_id()`; Indústria vê `industry_id = get_organization_id()`. Novo helper `get_hub_id()` (espelha `get_organization_id()`).
+
+### 5. RBAC (DEC-015)
+- **Novo módulo `cadastro_clientes`** com ações `visualizar/criar/editar` (vocabulário já suportado por `funcao_permissoes.chk_acao`; **sem** migration de enum). Menu/middleware aplicam a Função ao Assistente; Proprietário sempre vê; Indústria (`admin`/`gestor`) vê a área própria.
+
+### 6. Sub-entregas
+- **Notificações:** central in-app (tabela `notifications` + sino no header) para os eventos enviado/correção/reapresentado/aprovado/reprovado.
+- **Envio por e-mail à Indústria (Fase 2):** complementar ao fluxo interno (nunca substitui). Exige provedor de e-mail (não há no projeto hoje). Fica documentado; o evento `email_enviado` já é previsto no histórico.
+
+### 7. Interface e nomenclatura
+Segue o padrão visual do sistema; formulário amplo (~60–70% da largura) com abas **Pessoa Física / Pessoa Jurídica**, barra de progresso, área dedicada de documentos e linha do tempo. **Proibido "Stin Pharma" em qualquer tela** — termos neutros (Cadastro de Clientes, Pré-cadastro, Documentação Cadastral, Enviar para Indústria, Em análise pela Indústria, Correção solicitada, Aprovado/Reprovado pela Indústria).
+
+- **Rotas:** Hub — `/hub/cadastro-clientes`, `/novo`, `/[id]`. Indústria — `/configuracoes/cadastro-clientes`, `/[id]`.
+- **Motivo:** dar ao Hub uma forma padronizada e auditável de pré-cadastrar clientes e submetê-los à Indústria, preservando a fronteira propriedade (Indústria) × operação (Hub) e a decisão exclusiva da Indústria.
+- **Impacto:** aditivo puro (novas tabelas/bucket/RPCs/telas + módulo RBAC `cadastro_clientes` + central de notificações). Não altera enum de perfis nem tabelas existentes; a conversão apenas **insere** em `contacts`. Migration `064_hub_client_onboarding.sql` aplicada via SQL Editor no HUB DEV (`pnkgwfgjhijksfmofiot`).
+- **Data:** 2026-07-03
+- **Status:** Aprovada / vigente — em implementação (Sprint Cadastro de Clientes, Expand). E-mail à Indústria em Fase 2.

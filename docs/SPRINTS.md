@@ -367,3 +367,16 @@
 **Adiado (pós-MVP):** Central de Conferência; filas/SLA/atribuição/prioridade/dashboards; CRUD administrativo de checklists (MVP usa **seed**); histórico/timeline ricos; `receita_modelos`; OCR externo dedicado; bloqueio de `transformarEmPedido`; hardening completo.
 
 **Termos oficiais no resultado (Diagnóstico da Receita):** `sem pendências aparentes` · `pendências encontradas` · `apta para conferência humana` · `necessita correção`. **Nunca** "validada" nem linguagem jurídica.
+
+---
+
+## Sprint Cadastro de Clientes (DEC-020)
+
+- **Identificador:** Cadastro de Clientes (FASE Expand — aditivo puro).
+- **Objetivo:** módulo de **pré-cadastro** de clientes pelo Hub, com documentos, envio para a Indústria e decisão exclusiva da Indústria (aprovar/reprovar/solicitar correção), com conversão em Cliente ativo (`contacts`) após aprovação.
+- **Escopo:** migration `064` (tabelas `hub_client_onboarding`, `_files`, `_events` append-only, `notifications`; helper `get_hub_id()`; RLS; bucket privado `client-onboarding-docs`; RPCs `SECURITY DEFINER` de fluxo/conversão); módulo RBAC `cadastro_clientes`; telas do Hub (`/hub/cadastro-clientes`, `/novo`, `/[id]`) e da Indústria (`/configuracoes/cadastro-clientes`, `/[id]`); central de notificações in-app (sino no header); menu + middleware. **Fora de escopo (Fase 2):** envio por e-mail à Indústria (sem provedor no projeto).
+- **Dependências:** DEC-015 (RBAC), DEC-016/017 (governança Indústria×Hub), tabelas `hubs`/`contacts`/`profiles.hub_id` (Expand E1).
+- **Critérios de Aceite:** AC1 migration `064` aplicada no HUB DEV (SQL Editor) · AC2 bucket privado + signed URL (nenhum arquivo público) · AC3 RLS: Hub só vê o próprio Hub, Indústria só o que lhe é destinado · AC4 Hub não aprova/reprova (RPC nega) · AC5 fluxo completo rascunho→enviado→correção→reenvio→aprovado→convertido · AC6 conversão insere `contacts` e grava `converted_contact_id` sem excluir o pré-cadastro · AC7 notificações in-app nos eventos · AC8 nomenclatura neutra (sem "Stin Pharma") · AC9 `npm run build` limpo.
+- **Resultado:** em implementação (2026-07-03).
+- **Checkpoint Relacionado:** a registrar.
+- **Changelog Relacionado:** 2026-07-03 — Sprint Cadastro de Clientes (DEC-020).

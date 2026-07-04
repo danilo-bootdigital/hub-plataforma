@@ -535,8 +535,8 @@
     "semantic_hash": "f42ed6bd5c6b388e743ec09f287fe177"
   },
   "components/layout/header.tsx": {
-    "mtime": 1782909687.9652452,
-    "ast_hash": "b2262b09594b27476bb42e5978ca6595",
+    "mtime": 1783129448.8500564,
+    "ast_hash": "f76b51a14ff5e1af32495499844ac265",
     "semantic_hash": ""
   },
   "components/layout/sidebar-mobile.tsx": {
@@ -1140,8 +1140,8 @@
     "semantic_hash": "35ac2dad0755e14c603fb7ceb00a8aa6"
   },
   "lib/navegacao.ts": {
-    "mtime": 1783123356.8388495,
-    "ast_hash": "9dc26142afcc753c5ab862b16f4b670d",
+    "mtime": 1783129472.3579388,
+    "ast_hash": "816088a681cb9bd19100ea32c1c8f25a",
     "semantic_hash": ""
   },
   "lib/nome-contato.ts": {
@@ -1250,8 +1250,8 @@
     "semantic_hash": "992263d64f6c1f3fa6505cc36c4d7900"
   },
   "middleware.ts": {
-    "mtime": 1782871513.694864,
-    "ast_hash": "9fa2f92fa823fce59c0c073b91c9259f",
+    "mtime": 1783129476.5575125,
+    "ast_hash": "0341ee531cc77ecf496725b51661fcd3",
     "semantic_hash": ""
   },
   "next-env.d.ts": {
@@ -1610,8 +1610,8 @@
     "semantic_hash": "02fc19ad21338c2ab820a70136310db4"
   },
   "types/database.ts": {
-    "mtime": 1783123264.7266867,
-    "ast_hash": "4b6e17e916855aaadc7db74cd852f2c1",
+    "mtime": 1783128960.463578,
+    "ast_hash": "aba7b581e44b0f7f3b8b0d084200460d",
     "semantic_hash": ""
   },
   "types/whatsapp-central.ts": {
@@ -2752,6 +2752,101 @@
   "supabase/migrations/063_ia_prompts.sql": {
     "mtime": 1783123250.6881797,
     "ast_hash": "d8a76431cdd7f26ccdf201d544dc9670",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx": {
+    "mtime": 1783129409.536147,
+    "ast_hash": "b2149b843d7d06b426d02a62b064d924",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/configuracoes/cadastro-clientes/actions.ts": {
+    "mtime": 1783129063.4014182,
+    "ast_hash": "2deacbfdc079a2fff8e781e262db0865",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/configuracoes/cadastro-clientes/page.tsx": {
+    "mtime": 1783129351.6823308,
+    "ast_hash": "ae0f46247f3928c693fa286ad51d2846",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx": {
+    "mtime": 1783129334.119033,
+    "ast_hash": "53dd0e12e7645ecdfb42cbc72b232448",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/cadastro-clientes/actions.ts": {
+    "mtime": 1783129049.292057,
+    "ast_hash": "cbe8ac06f72488ec0ce4765492753c70",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/cadastro-clientes/novo/page.tsx": {
+    "mtime": 1783129297.2519312,
+    "ast_hash": "7ded4e315a92ea6400bc8b301f14b47c",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/cadastro-clientes/page.tsx": {
+    "mtime": 1783129289.8271863,
+    "ast_hash": "e14e577cb2db4970cfd2f7a8e20ec6c4",
+    "semantic_hash": ""
+  },
+  "components/cadastro-clientes/area-documentos.tsx": {
+    "mtime": 1783129147.93802,
+    "ast_hash": "b9bfc08049597b58f0fb76a9e38d9389",
+    "semantic_hash": ""
+  },
+  "components/cadastro-clientes/badge-status.tsx": {
+    "mtime": 1783129103.8955169,
+    "ast_hash": "57c9f2ad8b4c3cac4b99288900b6d770",
+    "semantic_hash": ""
+  },
+  "components/cadastro-clientes/barra-progresso.tsx": {
+    "mtime": 1783129109.8371708,
+    "ast_hash": "750bf330855a5b952f9eb4dbc03198f7",
+    "semantic_hash": ""
+  },
+  "components/cadastro-clientes/detalhe-cadastro-view.tsx": {
+    "mtime": 1783129317.586299,
+    "ast_hash": "d2dce746dbb969f31cfbc533727c22b7",
+    "semantic_hash": ""
+  },
+  "components/cadastro-clientes/formulario-cadastro.tsx": {
+    "mtime": 1783129231.7049963,
+    "ast_hash": "c5915efe849a94ae14f8854ecaffc9cb",
+    "semantic_hash": ""
+  },
+  "components/cadastro-clientes/linha-do-tempo.tsx": {
+    "mtime": 1783129120.2878478,
+    "ast_hash": "bb23bb8e24cb9521bd6b613f1f253dba",
+    "semantic_hash": ""
+  },
+  "components/cadastro-clientes/painel-analise-industria.tsx": {
+    "mtime": 1783129396.2277288,
+    "ast_hash": "c9d46dfd6f4ba0f87301e7890911da71",
+    "semantic_hash": ""
+  },
+  "components/cadastro-clientes/tabela-cadastros.tsx": {
+    "mtime": 1783129278.6444938,
+    "ast_hash": "55d5561d7d0253b80cc690e112f4f93a",
+    "semantic_hash": ""
+  },
+  "components/layout/sino-notificacoes.tsx": {
+    "mtime": 1783129438.5835226,
+    "ast_hash": "1436f6da4beea3c04d75a0060c09d628",
+    "semantic_hash": ""
+  },
+  "lib/cadastro-clientes/documentos.ts": {
+    "mtime": 1783129016.111126,
+    "ast_hash": "0efd982fa13a18bebb91724d5767b434",
+    "semantic_hash": ""
+  },
+  "lib/cadastro-clientes/notificacoes-actions.ts": {
+    "mtime": 1783129069.5815787,
+    "ast_hash": "371eae8463a321700b3ab4d0d177aa8e",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/064_hub_client_onboarding.sql": {
+    "mtime": 1783129627.5937765,
+    "ast_hash": "43b4526372177ce92215c4631d6b7034",
     "semantic_hash": ""
   }
 }
