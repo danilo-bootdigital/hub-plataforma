@@ -697,6 +697,15 @@ export type ProductValidationMetadata = {
   criado_em: string
 }
 
+// Migration 063 (DEC-019) — override do prompt de IA por organização.
+export type IaPrompt = {
+  organization_id: string
+  extracao_system: string | null
+  extracao_instrucao: string | null
+  atualizado_por: string | null
+  atualizado_em: string
+}
+
 export type QuoteItem = {
   id: string
   quote_id: string

@@ -21,7 +21,7 @@ export class ClaudeExtrator implements ExtratorReceita {
   }
 
   async extrair(entrada: EntradaExtracao): Promise<ExtracaoReceita> {
-    const { system, instrucao } = construirPromptExtracao(entrada.camposEsperados)
+    const { system, instrucao } = construirPromptExtracao(entrada.camposEsperados, entrada.prompt)
 
     const conteudo: Anthropic.ContentBlockParam[] = []
     if (entrada.arquivo) {

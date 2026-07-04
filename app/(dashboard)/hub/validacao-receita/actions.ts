@@ -24,7 +24,7 @@ import {
 } from '@/lib/conferencia/persistencia-standalone'
 import type { Pendencia, ResultadoConferencia } from '@/lib/conferencia/tipos'
 import { criarExtrator, criarComparador } from '@/lib/ia/provedores'
-import { CAMPOS_EXTRACAO } from '@/lib/ia/schema-extracao'
+import { CAMPOS_EXTRACAO, PROMPT_EXTRACAO_SYSTEM_DEFAULT, PROMPT_EXTRACAO_INSTRUCAO_DEFAULT } from '@/lib/ia/schema-extracao'
 import type { ComparacaoPosologia } from '@/lib/ia/comparar-posologia'
 import type { MimeReceita, ProvedorIA } from '@/lib/ia/tipos'
 import { listarProdutosHub } from '../produtos/actions'
@@ -238,7 +238,15 @@ export async function rodarPreAnalise(conferenciaId: string, posologiaEsperada?:
     etapa = 'extracao_ia'
     const provedor = ((process.env.IA_PROVEDOR as ProvedorIA) || 'claude')
     const extrator = criarExtrator(provedor)
-    const extracao = await extrator.extrair({ arquivo: { base64, mime }, camposEsperados: CAMPOS_EXTRACAO })
+    // Override do prompt (editor de IA); vazio → padrão do código.
+    const { data: promptRow } = await supabase
+      .from('ia_prompts').select('extracao_system, extracao_instrucao')
+      .eq('organization_id', perfil.organization_id).maybeSingle()
+    const extracao = await extrator.extrair({
+      arquivo: { base64, mime },
+      camposEsperados: CAMPOS_EXTRACAO,
+      prompt: { system: promptRow?.extracao_system ?? null, instrucao: promptRow?.extracao_instrucao ?? null },
+    })
 
     etapa = 'motor'
     const resultado = conferir({ checklist: checklistHidratado, extracao, orcamento: { itens: [] }, hoje: hojeISO() })
@@ -383,6 +391,39 @@ export async function compararPosologiaConferencia(
 
   revalidatePath(`${ROTA}/${conferenciaId}`)
   return comparacao
+}
+
+// ===================== ADMIN — Editor de prompt da IA (Proprietário do Hub) =====================
+
+// Retorna o prompt EFETIVO (override salvo OU o padrão do código).
+export async function getPromptIa(): Promise<{ system: string; instrucao: string; usandoPadrao: boolean }> {
+  const { supabase, perfil } = await getUsuarioEOrg()
+  const { data } = await supabase
+    .from('ia_prompts').select('extracao_system, extracao_instrucao')
+    .eq('organization_id', perfil.organization_id).maybeSingle()
+  const sysOv = data?.extracao_system?.trim() || ''
+  const instOv = data?.extracao_instrucao?.trim() || ''
+  return {
+    system: sysOv || PROMPT_EXTRACAO_SYSTEM_DEFAULT,
+    instrucao: instOv || PROMPT_EXTRACAO_INSTRUCAO_DEFAULT,
+    usandoPadrao: !sysOv && !instOv,
+  }
+}
+
+// Salva o override do prompt de extração. Só o Proprietário do Hub. Salvar vazio → volta ao padrão.
+export async function salvarPromptIa(system: string, instrucao: string): Promise<{ ok: true }> {
+  const { supabase, perfil, user } = await getUsuarioEOrg()
+  if (perfil.cargo !== 'proprietario_hub') throw new Error('Somente o Proprietário do Hub pode editar o prompt da IA.')
+  const { error } = await supabase.from('ia_prompts').upsert({
+    organization_id: perfil.organization_id,
+    extracao_system: system.trim() || null,
+    extracao_instrucao: instrucao.trim() || null,
+    atualizado_por: user.id,
+    atualizado_em: new Date().toISOString(),
+  })
+  if (error) throw new Error(`Erro ao salvar o prompt: ${error.message}`)
+  revalidatePath('/hub/configuracoes-ia')
+  return { ok: true }
 }
 
 // ===================== READS (MVP-6 — só consomem a estrutura) =====================

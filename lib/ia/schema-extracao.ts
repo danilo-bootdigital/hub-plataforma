@@ -100,31 +100,39 @@ export interface PromptExtracao {
   instrucao: string
 }
 
+// Prompts PADRÃO (editáveis pelo Proprietário do Hub — armazenados por organização e
+// injetados em runtime). A instrução usa o placeholder {campos} (lista de campos a extrair).
+export const PROMPT_EXTRACAO_SYSTEM_DEFAULT = [
+  'Você é um EXTRATOR de dados de receitas médicas para um sistema de conferência.',
+  'Sua ÚNICA função é LER o documento e EXTRAIR os campos solicitados em JSON.',
+  'NÃO decida, NÃO aprove, NÃO calcule score, NÃO afirme se a receita é válida ou está correta.',
+  'NÃO invente dados: se um campo não estiver presente ou legível, retorne string vazia.',
+  '"confianca" (0..1) é apenas a SUA confiança na LEITURA/extração — não é um julgamento sobre a receita.',
+].join(' ')
+
+export const PROMPT_EXTRACAO_INSTRUCAO_DEFAULT = [
+  'Extraia os campos: {campos}.',
+  'A receita tem dois blocos de identificação: EMITENTE/PRESCRITOR (prescritor_nome, crm_uf, emitente_cpf, ' +
+    'emitente_endereco, emitente_cidade_uf, emitente_telefone) e PACIENTE (nome_paciente, cpf_paciente, ' +
+    'paciente_documento = RG ou CPF do paciente, paciente_data_nascimento, paciente_endereco, paciente_cidade_uf).',
+  'Em "crm_uf" inclua SEMPRE o número de registro do CRM E a UF juntos (ex.: "104352/SP", "022516-DF") — ' +
+    'NUNCA apenas a UF ("MG") nem apenas o número. Se o CRM e a UF aparecerem separados no documento, junte-os.',
+  'Para "medicamento" use apenas o nome do medicamento/princípio ativo (sem a dose); ' +
+    'para "concentracao" use apenas a dose (ex.: "5 mg"); para "quantidade" o número de unidades prescritas.',
+  'Em "assinatura" informe o TIPO encontrado: se houver assinatura DIGITAL/eletrônica (gov.br/ICP-Brasil) ' +
+    'ou QR code de validação, escreva o tipo (ex.: "assinatura digital", "QR code", "gov.br"). ' +
+    'Se houver APENAS assinatura MANUSCRITA (à mão), escreva exatamente "manuscrita". ' +
+    'Se NÃO houver assinatura alguma, retorne "" (vazio). NÃO invente.',
+  'Extraia também os itens (medicamentos) com descricao, concentracao e quantidade.',
+  'Responda somente pela ferramenta de extração, no formato do schema. Use "" quando ausente e 0 para quantidade desconhecida.',
+].join(' ')
+
 export function construirPromptExtracao(
-  camposEsperados: readonly string[] = CAMPOS_EXTRACAO
+  camposEsperados: readonly string[] = CAMPOS_EXTRACAO,
+  overrides?: { system?: string | null; instrucao?: string | null }
 ): PromptExtracao {
-  const system = [
-    'Você é um EXTRATOR de dados de receitas médicas para um sistema de conferência.',
-    'Sua ÚNICA função é LER o documento e EXTRAIR os campos solicitados em JSON.',
-    'NÃO decida, NÃO aprove, NÃO calcule score, NÃO afirme se a receita é válida ou está correta.',
-    'NÃO invente dados: se um campo não estiver presente ou legível, retorne string vazia.',
-    '"confianca" (0..1) é apenas a SUA confiança na LEITURA/extração — não é um julgamento sobre a receita.',
-  ].join(' ')
-  const instrucao = [
-    'Extraia os campos: ' + camposEsperados.join(', ') + '.',
-    'A receita tem dois blocos de identificação: EMITENTE/PRESCRITOR (prescritor_nome, crm_uf, emitente_cpf, ' +
-      'emitente_endereco, emitente_cidade_uf, emitente_telefone) e PACIENTE (nome_paciente, cpf_paciente, ' +
-      'paciente_documento = RG ou CPF do paciente, paciente_data_nascimento, paciente_endereco, paciente_cidade_uf).',
-    'Em "crm_uf" inclua SEMPRE o número de registro do CRM E a UF juntos (ex.: "104352/SP", "022516-DF") — ' +
-      'NUNCA apenas a UF ("MG") nem apenas o número. Se o CRM e a UF aparecerem separados no documento, junte-os.',
-    'Para "medicamento" use apenas o nome do medicamento/princípio ativo (sem a dose); ' +
-      'para "concentracao" use apenas a dose (ex.: "5 mg"); para "quantidade" o número de unidades prescritas.',
-    'Em "assinatura" informe o TIPO encontrado: se houver assinatura DIGITAL/eletrônica (gov.br/ICP-Brasil) ' +
-      'ou QR code de validação, escreva o tipo (ex.: "assinatura digital", "QR code", "gov.br"). ' +
-      'Se houver APENAS assinatura MANUSCRITA (à mão), escreva exatamente "manuscrita". ' +
-      'Se NÃO houver assinatura alguma, retorne "" (vazio). NÃO invente.',
-    'Extraia também os itens (medicamentos) com descricao, concentracao e quantidade.',
-    'Responda somente pela ferramenta de extração, no formato do schema. Use "" quando ausente e 0 para quantidade desconhecida.',
-  ].join(' ')
+  const system = (overrides?.system && overrides.system.trim()) || PROMPT_EXTRACAO_SYSTEM_DEFAULT
+  const instrucaoTpl = (overrides?.instrucao && overrides.instrucao.trim()) || PROMPT_EXTRACAO_INSTRUCAO_DEFAULT
+  const instrucao = instrucaoTpl.split('{campos}').join(camposEsperados.join(', '))
   return { system, instrucao }
 }

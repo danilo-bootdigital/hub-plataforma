@@ -19,6 +19,7 @@ export interface EntradaExtracao {
   arquivo?: ArquivoReceita // PDF/imagem (multimodal)
   texto?: string // texto já OCRizado (opcional; OCR é etapa separada)
   camposEsperados?: readonly string[] // dica: chaves do checklist a extrair
+  prompt?: { system?: string | null; instrucao?: string | null } // override do prompt (editor de IA); vazio → padrão
 }
 
 // Contrato único que qualquer provedor (Claude/OpenAI/Gemini/Azure/local) implementa.

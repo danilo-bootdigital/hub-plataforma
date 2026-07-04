@@ -25,7 +25,7 @@ export class OpenAiExtrator implements ExtratorReceita {
   }
 
   async extrair(entrada: EntradaExtracao): Promise<ExtracaoReceita> {
-    const { system, instrucao } = construirPromptExtracao(entrada.camposEsperados)
+    const { system, instrucao } = construirPromptExtracao(entrada.camposEsperados, entrada.prompt)
 
     const conteudo: ConteudoEntrada[] = []
     if (entrada.arquivo) {
