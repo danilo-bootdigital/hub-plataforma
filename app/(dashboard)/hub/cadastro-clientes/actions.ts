@@ -8,7 +8,6 @@ import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
-import { resolverPermissoes, podeAcao } from '@/lib/rbac'
 import {
   TIPOS_ARQUIVO_ACEITOS,
   TAMANHO_MAX_ARQUIVO,
@@ -22,19 +21,15 @@ const ROTA = '/hub/cadastro-clientes'
 
 type DadosCadastro = Record<string, string | string[] | undefined>
 
-async function exigirPermissaoHub(acao: 'criar' | 'editar' | 'visualizar') {
+async function exigirAcessoHub() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
   const { data: perfil } = await supabase.from('profiles').select('cargo').eq('id', user.id).single()
   if (!perfil) redirect('/login')
-  // Proprietário do Hub sempre pode; Assistente conforme a Função (DEC-015).
-  if (perfil.cargo === 'assistente') {
-    const perm = await resolverPermissoes()
-    if (!podeAcao(perm, 'cadastro_clientes', acao)) {
-      throw new Error(`Sem permissão para cadastro_clientes:${acao}`)
-    }
-  } else if (!['proprietario_hub', 'admin', 'gestor'].includes(perfil.cargo)) {
+  // Proprietário do Hub e Assistente fazem o cadastro (DEC-020). A autorização fina
+  // (escopo por Hub, transições) é aplicada nas RPCs SECURITY DEFINER.
+  if (!['proprietario_hub', 'assistente'].includes(perfil.cargo)) {
     throw new Error('Sem acesso ao Cadastro de Clientes.')
   }
 }
@@ -82,7 +77,7 @@ export async function urlAssinadaDocumento(id: string, storagePath: string): Pro
 
 // ---------------------------------------------------------------- escrita (Hub)
 export async function criarCadastro(tipoPessoa: TipoPessoaOnboarding, dados: DadosCadastro): Promise<string> {
-  await exigirPermissaoHub('criar')
+  await exigirAcessoHub()
   const supabase = await createClient()
   const { data, error } = await supabase.rpc('hub_onboarding_criar', {
     p_tipo_pessoa: tipoPessoa,
@@ -94,7 +89,7 @@ export async function criarCadastro(tipoPessoa: TipoPessoaOnboarding, dados: Dad
 }
 
 export async function salvarCadastro(id: string, dados: DadosCadastro): Promise<void> {
-  await exigirPermissaoHub('editar')
+  await exigirAcessoHub()
   const supabase = await createClient()
   const { error } = await supabase.rpc('hub_onboarding_salvar', { p_id: id, p_dados: dados })
   if (error) throw new Error(error.message)
@@ -102,7 +97,7 @@ export async function salvarCadastro(id: string, dados: DadosCadastro): Promise<
 }
 
 export async function anexarDocumento(formData: FormData): Promise<void> {
-  await exigirPermissaoHub('editar')
+  await exigirAcessoHub()
   const onboardingId = String(formData.get('onboardingId') || '')
   const tipoDocumento = String(formData.get('tipoDocumento') || '') as TipoDocumentoOnboarding
   const file = formData.get('file') as File | null
@@ -146,7 +141,7 @@ export async function anexarDocumento(formData: FormData): Promise<void> {
 }
 
 export async function removerDocumento(onboardingId: string, fileId: string): Promise<void> {
-  await exigirPermissaoHub('editar')
+  await exigirAcessoHub()
   const supabase = await createClient()
   const { data: path, error } = await supabase.rpc('hub_onboarding_remover_arquivo', { p_file_id: fileId })
   if (error) throw new Error(error.message)
@@ -158,7 +153,7 @@ export async function removerDocumento(onboardingId: string, fileId: string): Pr
 }
 
 export async function enviarParaIndustria(id: string): Promise<void> {
-  await exigirPermissaoHub('editar')
+  await exigirAcessoHub()
   const supabase = await createClient()
   const { error } = await supabase.rpc('hub_onboarding_enviar', { p_id: id })
   if (error) throw new Error(error.message)

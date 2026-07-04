@@ -373,7 +373,7 @@ Hub cria/envia/corrige; Indústria decide. As transições de decisão (aprovar/
 - **RLS:** Hub vê/edita `hub_id = get_hub_id()`; Indústria vê `industry_id = get_organization_id()`. Novo helper `get_hub_id()` (espelha `get_organization_id()`).
 
 ### 5. RBAC (DEC-015)
-- **Novo módulo `cadastro_clientes`** com ações `visualizar/criar/editar` (vocabulário já suportado por `funcao_permissoes.chk_acao`; **sem** migration de enum). Menu/middleware aplicam a Função ao Assistente; Proprietário sempre vê; Indústria (`admin`/`gestor`) vê a área própria.
+- **Proprietário do Hub e Assistente** operam o Cadastro de Clientes **por padrão** — ambos fazem o pré-cadastro, então o item é **padrão do Hub, sem gate por Função** (perfis `proprietario_hub`+`assistente`). A autorização fina (escopo por Hub, transições) vive nas RPCs `SECURITY DEFINER`. A Indústria (`admin`/`gestor`) vê a área própria. `aprovar`/`reprovar`/`converter` são **exclusivos da Indústria** por Perfil (RPC), nunca concedíveis a Função de Hub.
 
 ### 6. Sub-entregas
 - **Notificações:** central in-app (tabela `notifications` + sino no header) para os eventos enviado/correção/reapresentado/aprovado/reprovado.

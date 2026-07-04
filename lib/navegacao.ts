@@ -51,8 +51,9 @@ export const navegacao: ItemNavegacao[] = [
   { label: 'Orçamentos', href: '/hub/orcamentos', icone: FileText, perfis: ['proprietario_hub', 'assistente'], modulo: 'orcamentos' },
   // Validação de Receita — módulo do Hub (DEC-019). Proprietário sempre; Assistente se a Função conceder 'visualizar' em 'receita'.
   { label: 'Validação de Receita', href: '/hub/validacao-receita', icone: ClipboardCheck, perfis: ['proprietario_hub', 'assistente'], modulo: 'receita' },
-  // Cadastro de Clientes — pré-cadastro do Hub (DEC-020). Assistente conforme Função.
-  { label: 'Cadastro de Clientes', href: '/hub/cadastro-clientes', icone: UserPlus, perfis: ['proprietario_hub', 'assistente'], modulo: 'cadastro_clientes' },
+  // Cadastro de Clientes — pré-cadastro do Hub (DEC-020). Proprietário e Assistente
+  // fazem o cadastro → item padrão do Hub (sem gate por Função).
+  { label: 'Cadastro de Clientes', href: '/hub/cadastro-clientes', icone: UserPlus, perfis: ['proprietario_hub', 'assistente'] },
   { label: 'Identidade', href: '/hub/identidade', icone: Building2, perfis: ['proprietario_hub'] },
   { label: 'Assistentes', href: '/hub/assistentes', icone: Users, perfis: ['proprietario_hub'] },
   { label: 'Funções', href: '/hub/funcoes', icone: ShieldCheck, perfis: ['proprietario_hub'] },

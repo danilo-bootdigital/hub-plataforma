@@ -489,17 +489,17 @@ Módulo RBAC `cadastro_clientes`. Distingue **operação do Hub** (criar/editar/
 
 | Ação | ADM | GES | FIN | PROP | ASS |
 |---|---|---|---|---|---|
-| Visualizar | ✓ (destinados à Indústria) | ✓ (destinados à Indústria) | — | ✓ (do próprio Hub) | ✓ (do próprio Hub, se a Função conceder) |
-| Criar | — | — | — | ✓ | C |
-| Editar (rascunho) | — | — | — | ✓ | C |
-| Enviar para Indústria | — | — | — | ✓ | C |
+| Visualizar | ✓ (destinados à Indústria) | ✓ (destinados à Indústria) | — | ✓ (do próprio Hub) | ✓ (do próprio Hub) |
+| Criar | — | — | — | ✓ | ✓ |
+| Editar (rascunho) | — | — | — | ✓ | ✓ |
+| Enviar para Indústria | — | — | — | ✓ | ✓ |
 | Solicitar correção | ✓ | ✓ | — | — | — |
 | Aprovar | ✓ | ✓ | — | — | — |
 | Reprovar | ✓ | ✓ | — | — | — |
 | Converter em Cliente | ✓ | ✓ | — | — | — |
 | Recebe notificações | ✓ | ✓ | — | ✓ | ✓ |
 
-> **Fronteira (DEC-020):** o Hub **cria/envia/corrige**; a Indústria **decide**. As transições de decisão e a conversão são RPCs `SECURITY DEFINER` restritas a `admin`/`gestor`. `aprovar`/`reprovar` **não** entram no vocabulário de Função do Hub. Documentos em bucket privado (signed URL); o pré-cadastro **nunca** é excluído após a conversão.
+> **Fronteira (DEC-020):** o Hub **cria/envia/corrige**; a Indústria **decide**. **Proprietário do Hub e Assistente** operam o Cadastro de Clientes **por padrão** (item padrão do Hub, **sem gate por Função** — ambos fazem o cadastro). As transições de decisão e a conversão são RPCs `SECURITY DEFINER` restritas a `admin`/`gestor`. `aprovar`/`reprovar` **não** entram no vocabulário de Função do Hub. Documentos em bucket privado (signed URL); o pré-cadastro **nunca** é excluído após a conversão.
 
 ---
 
