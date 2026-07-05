@@ -6,6 +6,16 @@
 
 ---
 
+## 2026-07-05 — Cadastro de Clientes: correção de segurança (vazamento cross-Hub) + integridade (DEC-020)
+
+- **Objetivo:** corrigir 3 defeitos do módulo DEC-020 achados em code review — 1 crítico de segurança (vazamento de PII entre Hubs) e 2 de integridade de dados. Emenda a `064`.
+- **Banco (`supabase/migrations/065_hub_onboarding_security_fixes.sql`, idempotente/aditiva):**
+  - **#1 CRÍTICO — vazamento cross-Hub:** `onboarding_detalhe` e as policies RLS autorizavam o Hub por `industry_id = get_organization_id()`; como o usuário do Hub carrega o `organization_id` da Indústria, isso liberava **todos** os pré-cadastros da Indústria (CPF, endereço, documentos assinados) via URL direta. Agora o ramo da Indústria é restrito a admin/gestor (novo helper `fn_hco_is_industria()`) e o Hub só acessa `hub_id = get_hub_id()` (mesma regra de `onboarding_listar`). Fecha também as URLs assinadas (o server action `urlAssinadaDocumento` autoriza via `onboarding_detalhe`).
+  - **#2 nome de PJ:** `industria_onboarding_converter` passa a usar razão social (fallback fantasia) como `contacts.nome`; o responsável (PF) vai para a nova coluna aditiva **`contacts.contato_responsavel`**.
+  - **#3 data de nascimento:** `hub_onboarding_salvar` usa `CASE WHEN p_dados ? 'data_nascimento'` — chave presente sobrescreve (vazio ⇒ NULL), ausente preserva. Antes, `COALESCE(NULLIF(...))` impedia limpar uma data salva.
+- **Aplicação:** aplicada no HUB DEV (SQL Editor) e **validada ao vivo** (9/9 comportamentais via usuários QA descartáveis + cleanup): Hub B negado / Hub A dono acessa / Indústria acessa; URL assinada de outro Hub bloqueada; conversão PJ com razão social + responsável em campo próprio; data define/preserva/limpa.
+- **Sem deploy:** correção 100% de banco; nenhum código da Aplicação Web alterado. Fecha `R-SEC-03`.
+
 ## 2026-07-03 — Cadastro de Clientes: pré-cadastro Hub → aprovação Indústria (DEC-020)
 
 - **Objetivo:** novo módulo em que o Hub pré-cadastra clientes (dados + documentos) e envia para a Indústria decidir (aprovar/reprovar/solicitar correção), com conversão em Cliente ativo (`contacts`) após aprovação. Fluxo interno completo; envio por e-mail à Indústria fica para a Fase 2.
