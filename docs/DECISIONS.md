@@ -405,7 +405,7 @@ Decisões de produto: **(1)** branding é **white-label** (cores/logo/favicon te
 
 ### 3. Faseamento (Sprints Expand)
 - **Config-1 — Identidade (dados):** campos + upload logo/favicon + salvar. *(implementada; migration `067`)*
-- **Config-2 — White-label (theming):** cores + CSS vars + favicon/title + componentes-chave.
+- **Config-2 — White-label (theming):** cores + CSS vars + favicon/title + componentes-chave. *(implementada — abrangência "destaques")*
 - **Config-3 — IA config:** `hub_ia_config` + editor (Salvar/Restaurar).
 - **Config-4 — Assistente + Testar Prompt:** montagem do system prompt + Testar (Claude real) + consumidor WhatsApp (sugestão ao atendente).
 
@@ -413,4 +413,4 @@ Decisões de produto: **(1)** branding é **white-label** (cores/logo/favicon te
 - **Impacto:** aditivo (colunas em `hubs` na migration `067`; nova `hub_ia_config` na Config-3; bucket `public-assets` reusado; theming incremental; novo consumidor de IA). Não altera enum de perfis nem remove nada.
 - **Decisões pendentes (fases futuras):** abrangência do white-label (destaques × total) na Config-2; modo do assistente (sugestão × automático) na Config-4.
 - **Data:** 2026-07-05
-- **Status:** Aprovada / vigente — **Config-1 implementada** (migration `067` a aplicar no HUB DEV); Config-2..4 planejadas.
+- **Status:** Aprovada / vigente — **Config-1 e Config-2 implementadas** (migration `067` aplicada no HUB DEV; theming white-label "destaques"); Config-3..4 planejadas.

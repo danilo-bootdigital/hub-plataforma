@@ -1,59 +1,39 @@
+import type { Metadata } from 'next'
 import { Sidebar } from '@/components/layout/sidebar'
 import { Header } from '@/components/layout/header'
 import { requireAuth } from '@/lib/auth/server'
 import { resolverPermissoes } from '@/lib/rbac'
-import { createServerClient } from '@supabase/ssr'
-import { cookies } from 'next/headers'
+import { getBrandingAtual } from '@/lib/hub-branding'
+import { estiloMarca } from '@/lib/branding'
+
+// Título + favicon dinâmicos por Hub (white-label — DEC-021 Config-2).
+export async function generateMetadata(): Promise<Metadata> {
+  const b = await getBrandingAtual()
+  return {
+    title: b.hubNome ? `${b.hubNome} · Hub Plataforma` : 'Hub Plataforma',
+    ...(b.faviconUrl ? { icons: { icon: b.faviconUrl } } : {}),
+  }
+}
 
 export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const { user, profile } = await requireAuth()
+  const { profile } = await requireAuth()
 
   // Permissões efetivas (DEC-015) — usadas para filtrar o menu do Assistente.
   const permissoes = await resolverPermissoes()
 
-  // Buscar logo da organização
-  let logoUrl: string | null = null
-  if (profile) {
-    const cookieStore = await cookies()
-    const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        cookies: {
-          getAll() {
-            return cookieStore.getAll()
-          },
-          setAll(cookiesToSet) {
-            try {
-              cookiesToSet.forEach(({ name, value, options }) =>
-                cookieStore.set(name, value, options)
-              )
-            } catch {
-              // Server Component — cookies só podem ser setados em Server Actions
-            }
-          },
-        },
-      }
-    )
-
-    const { data: organization } = await supabase
-      .from('organizations')
-      .select('logo_url')
-      .eq('id', profile.organization_id)
-      .single()
-
-    logoUrl = organization?.logo_url || null
-  }
+  // Branding efetivo: marca do Hub (logo + cor) para usuários do Hub;
+  // logo da organização para a Indústria. Ver lib/hub-branding.ts.
+  const branding = await getBrandingAtual()
 
   return (
-    <div className="flex h-screen bg-slate-50">
-      <Sidebar logoUrl={logoUrl} cargo={profile?.cargo} permissoes={permissoes} />
+    <div className="flex h-screen bg-slate-50" style={estiloMarca(branding.corPrimaria)}>
+      <Sidebar logoUrl={branding.logoUrl} cargo={profile?.cargo} permissoes={permissoes} />
       <div className="flex flex-1 flex-col overflow-hidden min-w-0">
-        <Header logoUrl={logoUrl} permissoes={permissoes} />
+        <Header logoUrl={branding.logoUrl} permissoes={permissoes} />
         <main className="flex-1 overflow-y-auto p-5 md:p-6">
           {children}
         </main>

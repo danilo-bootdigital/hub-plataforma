@@ -9,6 +9,11 @@
    ============================================ */
 
 :root {
+  /* Marca do Hub (white-label — DEC-021 Config-2). Default = verde do sistema.
+     Sobrescrito no root do dashboard para usuários do Hub com a cor cadastrada. */
+  --brand-primary: #059669;
+  --brand-accent: #ECFDF5;
+
   /* Primary Colors */
   --color-primary: #059669;
   --color-primary-soft: #ECFDF5;

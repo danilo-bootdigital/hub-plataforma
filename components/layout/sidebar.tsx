@@ -26,17 +26,17 @@ function LinkMenu({ item, pathname, aninhado }: { item: ItemNavegacao; pathname:
         'group relative flex items-center gap-3 rounded-lg px-3 text-sm font-medium transition-all duration-200',
         aninhado ? 'py-2' : 'py-2.5',
         ativo
-          ? 'bg-emerald-50 text-emerald-700 font-medium'
+          ? 'bg-[var(--brand-accent)] text-[var(--brand-primary)] font-medium'
           : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
       )}
     >
       {/* Active indicator bar */}
       {ativo && (
-        <span className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-[3px] rounded-r-full bg-emerald-600" />
+        <span className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-[3px] rounded-r-full bg-[var(--brand-primary)]" />
       )}
       <Icone className={cn(
         'h-[18px] w-[18px] shrink-0 transition-colors',
-        ativo ? 'text-emerald-600' : 'text-slate-500 group-hover:text-slate-700'
+        ativo ? 'text-[var(--brand-primary)]' : 'text-slate-500 group-hover:text-slate-700'
       )} />
       <span className="flex-1">{item.label}</span>
       {/* Badge placeholder for future notifications */}
@@ -68,12 +68,12 @@ function GrupoMenu({ item, pathname }: { item: ItemNavegacao; pathname: string }
         onClick={alternar}
         className={cn(
           'group flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200',
-          algumAtivo ? 'text-emerald-700' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+          algumAtivo ? 'text-[var(--brand-primary)]' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
         )}
       >
         <Icone className={cn(
           'h-[18px] w-[18px] shrink-0 transition-colors',
-          algumAtivo ? 'text-emerald-600' : 'text-slate-500 group-hover:text-slate-700'
+          algumAtivo ? 'text-[var(--brand-primary)]' : 'text-slate-500 group-hover:text-slate-700'
         )} />
         <span className="flex-1 text-left">{item.label}</span>
         <ChevronDown className={cn(
