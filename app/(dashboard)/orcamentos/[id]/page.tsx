@@ -13,6 +13,7 @@ import { canEditQuote } from '@/lib/quote-permissions'
 import type { QuoteStatus, UserRole } from '@/types/database'
 import { ControleStatusOrcamento } from '@/components/orcamentos/controle-status-orcamento'
 import { resolverPermissoes, podeAcao } from '@/lib/rbac'
+import { enriquecerItensComPortfolio } from '@/lib/orcamentos/portfolio'
 
 export default async function OrcamentoDetalhePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -103,19 +104,18 @@ export default async function OrcamentoDetalhePage({ params }: { params: Promise
   }
 
   // Portfólio de origem por item (DEC-013/017): itens podem vir de portfólios
-  // diferentes. Portfólios têm RLS; o nome é resolvido via admin — o acesso ao
+  // diferentes. O nome é resolvido via admin (portfólios têm RLS) — o acesso ao
   // orçamento já foi validado acima (RLS + organização + escopo de hub).
-  const itensArr: Array<Record<string, unknown> & { portfolio_id?: string | null }> =
-    Array.isArray(orcamento.itens) ? orcamento.itens : []
-  const portIds = [...new Set(itensArr.map((i) => i.portfolio_id).filter(Boolean))] as string[]
-  if (portIds.length > 0) {
+  // Acesso via cast leve: o tipo inferido de orcamento.itens (join do supabase) é muito
+  // profundo e dispararia "type instantiation excessively deep" se tocado diretamente.
+  const orcItens = (orcamento as { itens?: unknown }).itens
+  if (Array.isArray(orcItens)) {
     const admin = createAdminClient()
-    const { data: ports } = await admin.from('portfolios').select('id, nome').in('id', portIds)
-    const pmap = new Map((ports ?? []).map((p) => [p.id, p.nome]))
-    orcamento.itens = itensArr.map((i) => ({
-      ...i,
-      portfolio_nome: i.portfolio_id ? pmap.get(i.portfolio_id) ?? null : null,
-    }))
+    const enriquecidos = await enriquecerItensComPortfolio(
+      admin,
+      orcItens as Array<Record<string, unknown> & { portfolio_id?: string | null }>,
+    )
+    ;(orcamento as { itens: unknown }).itens = enriquecidos
   }
 
   // Verificar se o usuário pode editar este orçamento

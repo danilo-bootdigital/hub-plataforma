@@ -16,6 +16,7 @@ import {
   Calendar,
   UserCircle2,
 } from 'lucide-react'
+import { resumirPortfolios } from '@/lib/orcamentos/portfolio'
 
 // Aliases semânticos com tamanho corporativo (informação > ícone):
 // títulos de seção em 16px (h-4); ícones inline em 14px (h-3.5).
@@ -463,13 +464,7 @@ function SecaoCards({ data }: { data: OrcamentoTemplateData }) {
 
 function SecaoProdutosHub({ itens }: { itens: OrcamentoItem[] }) {
   // Resumo do portfólio de origem: nome único ou "Múltiplos Portfólios" (DEC-013/017).
-  const portfoliosDistintos = [...new Set(itens.map((i) => i.portfolio_nome?.trim()).filter(Boolean))] as string[]
-  const resumoPortfolios =
-    portfoliosDistintos.length === 0
-      ? null
-      : portfoliosDistintos.length === 1
-        ? portfoliosDistintos[0]
-        : 'Múltiplos Portfólios'
+  const resumoPortfolios = resumirPortfolios(itens.map((i) => i.portfolio_nome))
   return (
     <section data-pdf-products className="flex flex-col gap-0">
       <div className="bg-[#e8f5e8] text-slate-700 px-4 py-2.5 rounded-t-md flex items-center justify-between gap-2 shadow-sm">

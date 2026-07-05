@@ -3,6 +3,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import { notFound, redirect } from 'next/navigation'
 import { OrcamentoPdfTemplate } from '@/components/orcamentos/orcamento-pdf-template'
 import { BotaoBaixarPdf } from '@/components/orcamentos/botao-baixar-pdf'
+import { enriquecerItensComPortfolio } from '@/lib/orcamentos/portfolio'
 
 // Página de preview HTML do orçamento.
 // PR 1: renderiza o template com dados reais. Botão "Baixar PDF" é apenas visual.
@@ -183,15 +184,10 @@ export default async function PreviewPdfPage({
 
     // Portfólio de origem por item (DEC-013/017): itens podem vir de portfólios
     // diferentes. Resolvido via admin (portfólios têm RLS) e exibido na ficha.
-    const portIds = [...new Set(itensQuote.map((i) => i.portfolio_id).filter(Boolean))] as string[]
-    if (portIds.length > 0) {
-      const { data: ports } = await admin.from('portfolios').select('id, nome').in('id', portIds)
-      const portMap = new Map((ports ?? []).map((p) => [p.id, p.nome]))
-      itensEnriquecidos = itensEnriquecidos.map((i) => ({
-        ...i,
-        portfolio_nome: i.portfolio_id ? portMap.get(i.portfolio_id as string) ?? null : null,
-      }))
-    }
+    itensEnriquecidos = (await enriquecerItensComPortfolio(
+      admin,
+      itensEnriquecidos as Array<Record<string, unknown> & { portfolio_id?: string | null }>,
+    )) as unknown as typeof itensEnriquecidos
 
     dadosTemplate = { ...orcamento, itens: itensEnriquecidos, hub: hubIdentidade }
   }
