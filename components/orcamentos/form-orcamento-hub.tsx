@@ -60,29 +60,17 @@ function normalizar(s: string) {
   return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
 }
 
-// Ficha compacta do item adicionado — apenas os campos definidos pela regra do produto
-// (via de administração, volume, unidade, qtd por caixa, valor da caixa, exige receita).
-function FichaItem({ p }: { p: LinhaProdutoHub }) {
-  const campos: [string, string | null][] = [
-    ['Via de administração', p.via_administracao],
-    ['Volume', p.volume],
-    ['Unidade', p.unidade],
-    ['Qtd por caixa', p.quantidade_por_caixa != null ? String(p.quantidade_por_caixa) : null],
-    ['Valor da caixa', p.valor_caixa != null ? formatarMoeda(p.valor_caixa) : null],
-    ['Exige receita', p.exige_receita == null ? null : p.exige_receita ? 'Sim' : 'Não'],
-  ]
-  const preenchidos = campos.filter(([, v]) => v != null && String(v).trim() !== '')
-  if (!preenchidos.length) return null
-  return (
-    <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs sm:grid-cols-3">
-      {preenchidos.map(([k, v]) => (
-        <div key={k}>
-          <p className="text-slate-400">{k}</p>
-          <p className="text-slate-700">{v}</p>
-        </div>
-      ))}
-    </div>
-  )
+// Linha de detalhes do produto para a tabela de itens (campos definidos pela regra:
+// via de administração, volume, unidade, qtd por caixa, valor da caixa, exige receita).
+function detalhesProduto(p: LinhaProdutoHub): string {
+  return [
+    p.via_administracao,
+    p.volume,
+    p.unidade,
+    p.quantidade_por_caixa != null ? `${p.quantidade_por_caixa}/cx` : null,
+    p.valor_caixa != null ? `cx ${formatarMoeda(p.valor_caixa)}` : null,
+    p.exige_receita ? 'Exige receita' : null,
+  ].filter(Boolean).join('  ·  ')
 }
 
 // Casa o texto da busca com vários campos do produto (nome, apresentação, princípio
@@ -247,11 +235,12 @@ export function FormOrcamentoHub({
 
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-1 items-start gap-4 lg:grid-cols-12">
-        {/* Bloco 1 — Cliente */}
-        <Card className="lg:col-span-4">
+      {/* Linha 1 — Cliente (40%) + Dados comerciais (60%), mesma altura */}
+      <div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-12">
+        {/* 1. Cliente */}
+        <Card className="flex h-full flex-col lg:col-span-5">
           <CardHeader><CardTitle>1. Cliente</CardTitle></CardHeader>
-          <CardContent className="space-y-3">
+          <CardContent className="flex-1 space-y-3">
             {cliente ? (
               <div className="flex items-start justify-between rounded-lg border border-slate-200 bg-slate-50 p-3">
                 <div className="flex items-start gap-3">
@@ -265,7 +254,7 @@ export function FormOrcamentoHub({
               </div>
             ) : (
               <>
-                <Label htmlFor="busca-cli">Buscar cliente (nome, telefone, CPF/CNPJ ou carteira)</Label>
+                <Label htmlFor="busca-cli">Buscar cliente (nome, telefone ou CPF/CNPJ)</Label>
                 <div className="relative">
                   <Search className="pointer-events-none absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
                   <Input id="busca-cli" className="pl-8" placeholder="Digite para buscar…" value={buscaCli} onChange={(e) => setBuscaCli(e.target.value)} autoComplete="off" />
@@ -276,7 +265,6 @@ export function FormOrcamentoHub({
                   ) : clientesFiltrados.map((c) => (
                     <button key={c.id} type="button" onClick={() => setClienteId(c.id)} className="flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-slate-50">
                       <span><span className="font-medium text-slate-900">{c.nome}</span><span className="ml-2 text-slate-500">{c.telefone ?? ''}</span></span>
-                      <span className="text-xs text-slate-400">{c.carteira_nome ?? ''}</span>
                     </button>
                   ))}
                 </div>
@@ -285,130 +273,151 @@ export function FormOrcamentoHub({
           </CardContent>
         </Card>
 
-        {/* Bloco 2 — Produtos (busca inteligente em toda a base autorizada do Hub) */}
-        <Card className="lg:col-span-8">
-          <CardHeader>
-            <CardTitle>2. Produtos</CardTitle>
-            <p className="text-sm text-slate-500">Busque em todos os produtos autorizados ao seu Hub — o portfólio de cada item é preenchido automaticamente.</p>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {/* Busca */}
-            <div className="relative">
-              <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
-              <Input
-                className="pl-9"
-                placeholder="Buscar produto autorizado…"
-                value={buscaProd}
-                onChange={(e) => setBuscaProd(e.target.value)}
-                autoComplete="off"
-              />
+        {/* 2. Dados comerciais */}
+        <Card className="flex h-full flex-col lg:col-span-7">
+          <CardHeader><CardTitle>2. Dados comerciais</CardTitle></CardHeader>
+          <CardContent className="flex-1">
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="space-y-1.5"><Label htmlFor="forma">Forma de pagamento</Label><Input id="forma" value={formaPagamento} onChange={(e) => setFormaPagamento(e.target.value)} /></div>
+              <div className="space-y-1.5"><Label htmlFor="prazo">Prazo de entrega</Label><Input id="prazo" value={prazoEntrega} onChange={(e) => setPrazoEntrega(e.target.value)} /></div>
+              <div className="space-y-1.5"><Label htmlFor="transp">Transportadora</Label><Input id="transp" value={transportadora} onChange={(e) => setTransportadora(e.target.value)} /></div>
+              <div className="space-y-1.5"><Label htmlFor="frete">Frete (R$)</Label><Input id="frete" inputMode="decimal" value={frete} onChange={(e) => setFrete(e.target.value)} placeholder="0,00" /></div>
+              <div className="space-y-1.5"><Label htmlFor="desc-geral">Desconto geral (%)</Label><Input id="desc-geral" inputMode="decimal" value={descontoGeral} onChange={(e) => setDescontoGeral(e.target.value)} placeholder="0" /></div>
+              <div className="space-y-1.5 sm:col-span-2"><Label htmlFor="endereco">Endereço de entrega</Label><Input id="endereco" value={enderecoEntrega} onChange={(e) => setEnderecoEntrega(e.target.value)} /></div>
             </div>
-
-            {/* Resultados (autocomplete em tempo real) */}
-            {carregandoCat ? (
-              <p className="flex items-center gap-2 text-sm text-slate-500"><Loader2 className="size-4 animate-spin" /> Carregando catálogo do Hub…</p>
-            ) : (
-              <div className="max-h-72 divide-y divide-slate-100 overflow-y-auto rounded-lg border border-slate-200">
-                {resultados.length === 0 ? (
-                  <p className="p-3 text-sm text-slate-500">{buscaProd.trim() ? 'Nenhum produto encontrado.' : 'Nenhum produto disponível.'}</p>
-                ) : resultados.map((p) => (
-                  <div key={`${p.product_id}::${p.portfolio_id}`} className="flex items-center gap-3 px-3 py-2 text-sm hover:bg-slate-50">
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate font-medium text-slate-900">{p.nome}</p>
-                      <p className="truncate text-xs text-slate-500">
-                        {[p.apresentacao, p.via_administracao, p.volume, p.unidade].filter(Boolean).join(' · ')}
-                      </p>
-                      {p.portfolio && <p className="truncate text-[11px] text-slate-400">{p.portfolio}</p>}
-                    </div>
-                    <span className="shrink-0 tabular-nums text-slate-700">{p.preco != null ? formatarMoeda(p.preco) : '—'}</span>
-                    <Button type="button" variant="outline" size="sm" className="shrink-0 gap-1" onClick={() => adicionarItem(p)}>
-                      <Plus className="size-4" /> Adicionar
-                    </Button>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* Itens adicionados */}
-            {itens.length === 0 ? (
-              <p className="text-sm text-slate-500">Nenhum produto adicionado ao orçamento.</p>
-            ) : (
-              <div className="space-y-3">
-                {itens.map((i) => {
-                  const p = catalogo.find((r) => r.product_id === i.product_id)
-                  const sub = i.quantidade * i.preco_unitario * (1 - i.desconto_item / 100)
-                  return (
-                    <div key={i.product_id} className="space-y-3 rounded-lg border border-slate-200 p-3">
-                      <div className="flex items-start justify-between gap-2">
-                        <p className="min-w-0 font-medium text-slate-900">{p?.nome ?? i.nome}</p>
-                        <Button type="button" variant="ghost" size="sm" onClick={() => removerItem(i.product_id)}><Trash2 className="size-4 text-slate-400" /></Button>
-                      </div>
-                      {p && <FichaItem p={p} />}
-                      <div className="grid grid-cols-2 gap-3 border-t border-slate-100 pt-3 sm:grid-cols-4">
-                        <div className="space-y-1">
-                          <Label className="text-xs">Quantidade</Label>
-                          <Input type="number" min={1} step={1} value={i.quantidade} onChange={(e) => atualizarItem(i.product_id, { quantidade: Math.max(1, Math.floor(Number(e.target.value) || 1)) })} className="h-8" />
-                        </div>
-                        <div className="space-y-1">
-                          <Label className="text-xs">Unitário</Label>
-                          <p className="flex h-8 items-center text-sm text-slate-600">{formatarMoeda(i.preco_unitario)}</p>
-                        </div>
-                        <div className="space-y-1">
-                          <Label className="text-xs">Desconto %</Label>
-                          <Input type="number" min={0} max={100} step={1} value={i.desconto_item} onChange={(e) => atualizarItem(i.product_id, { desconto_item: Math.min(100, Math.max(0, Number(e.target.value) || 0)) })} className="h-8" />
-                        </div>
-                        <div className="space-y-1">
-                          <Label className="text-xs">Subtotal</Label>
-                          <p className="flex h-8 items-center text-sm font-medium text-slate-900">{formatarMoeda(sub)}</p>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* Bloco 3 — Dados comerciais */}
-        <Card className="lg:col-span-12">
-          <CardHeader><CardTitle>3. Dados comerciais</CardTitle></CardHeader>
-          <CardContent className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="space-y-1.5"><Label htmlFor="forma">Forma de pagamento</Label><Input id="forma" value={formaPagamento} onChange={(e) => setFormaPagamento(e.target.value)} /></div>
-            <div className="space-y-1.5"><Label htmlFor="prazo">Prazo de entrega</Label><Input id="prazo" value={prazoEntrega} onChange={(e) => setPrazoEntrega(e.target.value)} /></div>
-            <div className="space-y-1.5"><Label htmlFor="transp">Transportadora</Label><Input id="transp" value={transportadora} onChange={(e) => setTransportadora(e.target.value)} /></div>
-            <div className="space-y-1.5"><Label htmlFor="frete">Frete (R$)</Label><Input id="frete" inputMode="decimal" value={frete} onChange={(e) => setFrete(e.target.value)} placeholder="0,00" /></div>
-            <div className="space-y-1.5"><Label htmlFor="desc-geral">Desconto geral (%)</Label><Input id="desc-geral" inputMode="decimal" value={descontoGeral} onChange={(e) => setDescontoGeral(e.target.value)} placeholder="0" /></div>
-            <div className="space-y-1.5 sm:col-span-2 lg:col-span-3"><Label htmlFor="endereco">Endereço de entrega</Label><Input id="endereco" value={enderecoEntrega} onChange={(e) => setEnderecoEntrega(e.target.value)} /></div>
-            <div className="space-y-1.5 sm:col-span-2"><Label htmlFor="obs-cli">Observações para o cliente</Label><Textarea id="obs-cli" rows={2} value={observacoesCliente} onChange={(e) => setObservacoesCliente(e.target.value)} /></div>
-            <div className="space-y-1.5 sm:col-span-2"><Label htmlFor="obs">Observações internas</Label><Textarea id="obs" rows={2} value={observacoes} onChange={(e) => setObservacoes(e.target.value)} /></div>
-          </CardContent>
-        </Card>
-
-        {/* Bloco 4 — Resumo */}
-        <Card className="lg:col-span-12">
-          <CardHeader><CardTitle>4. Resumo</CardTitle></CardHeader>
-          <CardContent className="space-y-3">
-            <div className="grid gap-2 text-sm sm:grid-cols-2">
-              <p className="text-slate-500">Cliente: <span className="text-slate-800">{cliente?.nome ?? '—'}</span></p>
-              <p className="text-slate-500">Itens: <span className="text-slate-800">{itens.length}</span></p>
-            </div>
-            <div className="space-y-1 border-t border-slate-100 pt-3 text-sm">
-              <div className="flex justify-between"><span className="text-slate-500">Subtotal dos itens</span><span className="text-slate-800">{formatarMoeda(subtotalItens)}</span></div>
-              {descGeralNum > 0 && <div className="flex justify-between"><span className="text-slate-500">Desconto geral ({descGeralNum}%)</span><span className="text-slate-800">− {formatarMoeda(subtotalItens * (descGeralNum / 100))}</span></div>}
-              {freteNum > 0 && <div className="flex justify-between"><span className="text-slate-500">Frete</span><span className="text-slate-800">{formatarMoeda(freteNum)}</span></div>}
-              <div className="flex justify-between border-t border-slate-100 pt-2 text-base font-semibold"><span className="text-slate-900">Valor final</span><span className="text-slate-900">{formatarMoeda(valorFinal)}</span></div>
-            </div>
-            <p className="text-xs text-slate-400">Os valores são recalculados no servidor a partir do preço do vínculo produto↔portfólio.</p>
           </CardContent>
         </Card>
       </div>
 
-      {/* Ações */}
-      <div className="flex flex-wrap items-center justify-end gap-2">
-        <Button type="button" variant="ghost" disabled={saving} onClick={() => router.push(editando ? `/orcamentos/${orcamentoId}` : '/hub/orcamentos')}>Cancelar</Button>
-        <Button type="button" variant="outline" disabled={saving} onClick={() => salvar(false)}>{editando ? 'Salvar alterações' : 'Salvar rascunho'}</Button>
-        <Button type="button" disabled={saving} onClick={() => salvar(true)}><Check className="size-4" /> Gerar orçamento</Button>
+      {/* Linha 2 — Adicionar produtos (largura total) */}
+      <Card>
+        <CardHeader>
+          <CardTitle>3. Adicionar produtos</CardTitle>
+          <p className="text-sm text-slate-500">Busque em todos os produtos autorizados ao seu Hub — o portfólio de cada item é preenchido automaticamente.</p>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div className="relative">
+            <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
+            <Input
+              className="pl-9"
+              placeholder="Buscar produto autorizado…"
+              value={buscaProd}
+              onChange={(e) => setBuscaProd(e.target.value)}
+              autoComplete="off"
+            />
+          </div>
+          {carregandoCat ? (
+            <p className="flex items-center gap-2 text-sm text-slate-500"><Loader2 className="size-4 animate-spin" /> Carregando catálogo do Hub…</p>
+          ) : (
+            <div className="max-h-80 divide-y divide-slate-100 overflow-y-auto rounded-lg border border-slate-200">
+              {resultados.length === 0 ? (
+                <p className="p-3 text-sm text-slate-500">{buscaProd.trim() ? 'Nenhum produto encontrado.' : 'Nenhum produto disponível.'}</p>
+              ) : resultados.map((p) => (
+                <div key={`${p.product_id}::${p.portfolio_id}`} className="flex items-center gap-3 px-3 py-2 text-sm hover:bg-slate-50">
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate font-medium text-slate-900">{p.nome}</p>
+                    <p className="truncate text-xs text-slate-500">
+                      {[p.apresentacao, p.via_administracao, p.volume, p.unidade].filter(Boolean).join(' · ')}
+                    </p>
+                    {p.portfolio && <p className="truncate text-[11px] text-slate-400">{p.portfolio}</p>}
+                  </div>
+                  <span className="shrink-0 tabular-nums text-slate-700">{p.preco != null ? formatarMoeda(p.preco) : '—'}</span>
+                  <Button type="button" variant="outline" size="sm" className="shrink-0 gap-1" onClick={() => adicionarItem(p)}>
+                    <Plus className="size-4" /> Adicionar
+                  </Button>
+                </div>
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Linha 3 — Produtos adicionados (tabela, largura total) */}
+      <Card>
+        <CardHeader>
+          <CardTitle>4. Produtos adicionados</CardTitle>
+          <p className="text-sm text-slate-500">{itens.length} {itens.length === 1 ? 'item' : 'itens'}</p>
+        </CardHeader>
+        <CardContent className="p-0">
+          {itens.length === 0 ? (
+            <p className="px-6 pb-6 text-sm text-slate-500">Nenhum produto adicionado ao orçamento.</p>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-y border-slate-100 bg-slate-50/60 text-xs uppercase tracking-wide text-slate-500">
+                    <th className="px-4 py-2 text-left font-semibold">Produto</th>
+                    <th className="px-3 py-2 text-center font-semibold w-24">Qtd</th>
+                    <th className="px-3 py-2 text-right font-semibold w-28">Unitário</th>
+                    <th className="px-3 py-2 text-center font-semibold w-24">Desc. %</th>
+                    <th className="px-3 py-2 text-right font-semibold w-32">Subtotal</th>
+                    <th className="px-3 py-2 w-12"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {itens.map((i) => {
+                    const p = catalogo.find((r) => r.product_id === i.product_id)
+                    const sub = i.quantidade * i.preco_unitario * (1 - i.desconto_item / 100)
+                    const det = p ? detalhesProduto(p) : ''
+                    return (
+                      <tr key={i.product_id} className="border-b border-slate-100 align-top last:border-0 hover:bg-slate-50/50">
+                        <td className="px-4 py-2.5">
+                          <p className="font-medium text-slate-900">{p?.nome ?? i.nome}</p>
+                          {det && <p className="mt-0.5 text-xs text-slate-500">{det}</p>}
+                        </td>
+                        <td className="px-3 py-2.5 text-center">
+                          <Input type="number" min={1} step={1} value={i.quantidade} onChange={(e) => atualizarItem(i.product_id, { quantidade: Math.max(1, Math.floor(Number(e.target.value) || 1)) })} className="mx-auto h-8 w-20 text-center" />
+                        </td>
+                        <td className="px-3 py-2.5 text-right tabular-nums text-slate-600">{formatarMoeda(i.preco_unitario)}</td>
+                        <td className="px-3 py-2.5 text-center">
+                          <Input type="number" min={0} max={100} step={1} value={i.desconto_item} onChange={(e) => atualizarItem(i.product_id, { desconto_item: Math.min(100, Math.max(0, Number(e.target.value) || 0)) })} className="mx-auto h-8 w-20 text-center" />
+                        </td>
+                        <td className="px-3 py-2.5 text-right font-semibold tabular-nums text-slate-900">{formatarMoeda(sub)}</td>
+                        <td className="px-3 py-2.5 text-center">
+                          <Button type="button" variant="ghost" size="sm" onClick={() => removerItem(i.product_id)}><Trash2 className="size-4 text-slate-400" /></Button>
+                        </td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Linha 4 — Observações (esq) + Resumo financeiro e ações (dir) */}
+      <div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-12">
+        {/* 5. Observações */}
+        <Card className="flex h-full flex-col lg:col-span-7">
+          <CardHeader><CardTitle>5. Observações</CardTitle></CardHeader>
+          <CardContent className="flex-1 grid gap-3 sm:grid-cols-2">
+            <div className="space-y-1.5"><Label htmlFor="obs-cli">Observações para o cliente</Label><Textarea id="obs-cli" rows={4} value={observacoesCliente} onChange={(e) => setObservacoesCliente(e.target.value)} /></div>
+            <div className="space-y-1.5"><Label htmlFor="obs">Observações internas</Label><Textarea id="obs" rows={4} value={observacoes} onChange={(e) => setObservacoes(e.target.value)} /></div>
+          </CardContent>
+        </Card>
+
+        {/* 6. Resumo financeiro + ações */}
+        <Card className="flex h-full flex-col lg:col-span-5">
+          <CardHeader><CardTitle>6. Resumo financeiro</CardTitle></CardHeader>
+          <CardContent className="flex flex-1 flex-col gap-3">
+            <div className="space-y-1 text-sm">
+              <div className="flex justify-between"><span className="text-slate-500">Itens</span><span className="text-slate-800">{itens.length}</span></div>
+              <div className="flex justify-between"><span className="text-slate-500">Subtotal</span><span className="tabular-nums text-slate-800">{formatarMoeda(subtotalItens)}</span></div>
+              <div className="flex justify-between"><span className="text-slate-500">Desconto{descGeralNum > 0 ? ` (${descGeralNum}%)` : ''}</span><span className="tabular-nums text-slate-800">{descGeralNum > 0 ? `− ${formatarMoeda(subtotalItens * (descGeralNum / 100))}` : formatarMoeda(0)}</span></div>
+              <div className="flex justify-between"><span className="text-slate-500">Frete</span><span className="tabular-nums text-slate-800">{formatarMoeda(freteNum)}</span></div>
+              <div className="mt-1 flex justify-between border-t border-slate-100 pt-2 text-base font-semibold"><span className="text-slate-900">Valor final</span><span className="tabular-nums text-slate-900">{formatarMoeda(valorFinal)}</span></div>
+            </div>
+            <p className="text-xs text-slate-400">Os valores são recalculados no servidor a partir do preço do vínculo produto↔portfólio.</p>
+            <div className="mt-auto flex flex-col gap-2 border-t border-slate-100 pt-3">
+              <Button type="button" disabled={saving} onClick={() => salvar(true)}><Check className="size-4" /> Gerar orçamento</Button>
+              <div className="flex gap-2">
+                <Button type="button" variant="outline" className="flex-1" disabled={saving} onClick={() => salvar(false)}>{editando ? 'Salvar alterações' : 'Salvar rascunho'}</Button>
+                <Button type="button" variant="ghost" disabled={saving} onClick={() => router.push(editando ? `/orcamentos/${orcamentoId}` : '/hub/orcamentos')}>Cancelar</Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   )
