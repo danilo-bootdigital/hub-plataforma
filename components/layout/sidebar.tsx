@@ -1,11 +1,11 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { navegacaoParaPerfil, type ItemNavegacao } from '@/lib/navegacao'
+import { itemAtivo, useGrupoAberto } from './menu-shared'
 
 type Perm = { total?: boolean; permissoes?: Record<string, string[]> } | null
 
@@ -13,12 +13,6 @@ type Props = {
   logoUrl?: string | null
   cargo?: string | null
   permissoes?: Perm
-}
-
-// Um item ativo quando a rota atual é o próprio href ou uma subrota dele.
-function itemAtivo(href: string | undefined, pathname: string): boolean {
-  if (!href) return false
-  return pathname === href || pathname.startsWith(href + '/')
 }
 
 // Link de menu (1º nível ou subitem de grupo). `aninhado` reduz o padding vertical.
@@ -64,15 +58,14 @@ function LinkMenu({ item, pathname, aninhado }: { item: ItemNavegacao; pathname:
 function GrupoMenu({ item, pathname }: { item: ItemNavegacao; pathname: string }) {
   const Icone = item.icone
   const filhos = item.children ?? []
-  const algumAtivo = filhos.some((c) => itemAtivo(c.href, pathname))
-  const [aberto, setAberto] = useState(algumAtivo)
+  const { aberto, alternar, algumAtivo } = useGrupoAberto(item, pathname)
 
   return (
     <li>
       <button
         type="button"
         aria-expanded={aberto}
-        onClick={() => setAberto((v) => !v)}
+        onClick={alternar}
         className={cn(
           'group flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200',
           algumAtivo ? 'text-emerald-700' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'

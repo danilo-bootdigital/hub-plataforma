@@ -47,11 +47,9 @@ function fromDetalhe(d: DetalheCadastro): FormState {
 }
 
 // Campos obrigatórios para ENVIAR (espelha a RPC hub_onboarding_enviar).
+// Fonte única: derivado de camposObrigatorios() — usado também pela barra de progresso.
 function obrigatoriosPreenchidos(tipo: TipoPessoaOnboarding, f: FormState): boolean {
-  const base = !!f.email.trim() && !!f.cep.trim() && !!f.registro_conselho.trim()
-    && f.telefones.some((t) => t.trim())
-  if (tipo === 'fisica') return base && !!f.nome_completo.trim() && !!f.cpf.trim()
-  return base && !!f.razao_social.trim() && !!f.nome_fantasia.trim() && !!f.cnpj.trim() && !!f.cpf.trim()
+  return camposObrigatorios(tipo, f).every(Boolean)
 }
 
 export function FormularioCadastro({ detalhe }: { detalhe?: DetalheCadastro }) {

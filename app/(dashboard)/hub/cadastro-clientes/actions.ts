@@ -66,13 +66,22 @@ export async function detalheCadastro(id: string): Promise<DetalheCadastro> {
 // URL assinada de um documento (bucket privado). Valida o acesso ao cadastro (RPC aplica
 // escopo) E que o path pertence a este cadastro — impede acesso a arquivos de terceiros.
 export async function urlAssinadaDocumento(id: string, storagePath: string): Promise<string> {
-  const detalhe = await detalheCadastro(id)
-  const pertence = detalhe.arquivos.some((a) => a.storage_path === storagePath)
+  const supabase = await createClient()
+  // Checagem leve de escopo (RPC valida perfil + que o path pertence ao cadastro).
+  // Fallback para o detalhe completo caso a migration 066 ainda não esteja aplicada.
+  let pertence = false
+  const { data, error } = await supabase.rpc('onboarding_arquivo_valido', { p_id: id, p_path: storagePath })
+  if (!error) {
+    pertence = data === true
+  } else {
+    const detalhe = await detalheCadastro(id)
+    pertence = detalhe.arquivos.some((a) => a.storage_path === storagePath)
+  }
   if (!pertence) throw new Error('Documento não pertence a este cadastro.')
   const admin = createAdminClient()
-  const { data, error } = await admin.storage.from(BUCKET).createSignedUrl(storagePath, 60 * 10)
-  if (error || !data) throw new Error(error?.message || 'Falha ao gerar link do documento.')
-  return data.signedUrl
+  const { data: sig, error: sigErr } = await admin.storage.from(BUCKET).createSignedUrl(storagePath, 60 * 10)
+  if (sigErr || !sig) throw new Error(sigErr?.message || 'Falha ao gerar link do documento.')
+  return sig.signedUrl
 }
 
 // ---------------------------------------------------------------- escrita (Hub)
@@ -115,6 +124,15 @@ export async function anexarDocumento(formData: FormData): Promise<void> {
   const ext = (file.name.split('.').pop() || 'bin').toLowerCase()
   const path = `${perfil?.hub_id ?? 'sem-hub'}/${onboardingId}/${tipoDocumento}-${file.name.replace(/[^\w.-]/g, '_')}`
 
+  // Path anterior deste tipo de documento (para apagar o órfão se o nome do arquivo mudar;
+  // o upsert só sobrescreve quando o path é idêntico). RLS restringe ao dono do Hub.
+  const { data: anterior } = await supabase
+    .from('hub_client_onboarding_files')
+    .select('storage_path')
+    .eq('onboarding_id', onboardingId)
+    .eq('tipo_documento', tipoDocumento)
+    .maybeSingle()
+
   const admin = createAdminClient()
   const buffer = Buffer.from(await file.arrayBuffer())
   const { error: upErr } = await admin.storage.from(BUCKET).upload(path, buffer, {
@@ -135,6 +153,10 @@ export async function anexarDocumento(formData: FormData): Promise<void> {
     // rollback do arquivo órfão
     await admin.storage.from(BUCKET).remove([path]).catch(() => {})
     throw new Error(error.message)
+  }
+  // Substituição com nome diferente: remove o objeto antigo (não referenciado mais).
+  if (anterior?.storage_path && anterior.storage_path !== path) {
+    await admin.storage.from(BUCKET).remove([anterior.storage_path]).catch(() => {})
   }
   void ext
   revalidatePath(`${ROTA}/${onboardingId}`)
