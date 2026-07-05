@@ -64,6 +64,37 @@ export async function middleware(request: NextRequest) {
     // RBAC (DEC-015): guard de rota por permissão da Função — SÓ Assistente.
     // Fail-open: erro/sem dado não bloqueia; rotas não mapeadas passam.
     const path = request.nextUrl.pathname
+
+    // DEC-022 — Separação Administração (Indústria) × Operação (Hub).
+    // Indústria (admin/gestor) NÃO acessa operação; Hub (proprietario_hub/assistente)
+    // NÃO acessa administração. Enforcement por path: cobre páginas, Server Actions
+    // (POST na própria rota) e APIs (/api/*). Bloqueio direto — não confia no menu.
+    const { data: perfilCargo } = await supabase
+      .from('profiles').select('cargo').eq('id', user.id).single()
+    const cargo = perfilCargo?.cargo
+    const ehIndustria = cargo === 'admin' || cargo === 'gestor'
+    const ehHub = cargo === 'proprietario_hub' || cargo === 'assistente'
+    const OPERACIONAL = [
+      '/caixa-de-entrada', '/leads', '/pipeline', '/tarefas', '/pedidos',
+      '/whatsapp', '/monitoramento-whatsapp', '/configuracoes-whatsapp', '/configuracoes/whatsapp',
+      '/orcamentos', '/hub', '/assistente', '/api/orcamentos', '/api/whatsapp',
+    ]
+    const ADMIN = [
+      '/painel', '/relatorios', '/clientes',
+      '/configuracoes/hubs', '/configuracoes/carteiras', '/configuracoes/portfolios',
+      '/configuracoes/produtos', '/configuracoes/usuarios', '/configuracoes/cadastro-clientes',
+      '/configuracoes/empresa', '/configuracoes/distribuicao', '/configuracoes/fornecedores',
+    ]
+    const bate = (lista: string[]) => lista.some((p) => path === p || path.startsWith(p + '/'))
+    if (ehIndustria && bate(OPERACIONAL)) {
+      const url = request.nextUrl.clone(); url.pathname = '/painel'
+      return NextResponse.redirect(url)
+    }
+    if (ehHub && (path === '/configuracoes' || bate(ADMIN))) {
+      const url = request.nextUrl.clone(); url.pathname = '/hub'
+      return NextResponse.redirect(url)
+    }
+
     const ROTA_MODULO: Array<[string, string]> = [
       ['/assistente/clientes', 'clientes'],
       ['/assistente/orcamentos', 'orcamentos'],

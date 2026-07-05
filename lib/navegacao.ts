@@ -1,6 +1,6 @@
 import {
-  LayoutDashboard, Users, TrendingUp, UserCheck,
-  MessageCircle, CheckSquare, FileText, Inbox,
+  LayoutDashboard, Users, UserCheck,
+  FileText,
   BarChart3, Settings, Package, Building2, Briefcase, Network, Wallet, Contact, ClipboardList, PackageCheck, Layers, ShieldCheck, ClipboardCheck, Sparkles, UserPlus, type LucideIcon
 } from 'lucide-react'
 import type { UserRole } from '@/types/database'
@@ -28,17 +28,16 @@ type PermInput = { total?: boolean; permissoes?: Record<string, string[]> } | nu
 const PERFIS_LEGADOS: UserRole[] = ['admin', 'gestor', 'vendedor', 'atendimento', 'financeiro', 'suporte']
 
 export const navegacao: ItemNavegacao[] = [
-  { label: 'Caixa de Entrada', href: '/caixa-de-entrada', icone: Inbox },
-  { label: 'Painel Principal', href: '/painel', icone: LayoutDashboard },
-  { label: 'Leads', href: '/leads', icone: Users },
-  { label: 'Pipeline de Vendas', href: '/pipeline', icone: TrendingUp },
-  { label: 'Clientes', href: '/clientes', icone: UserCheck },
-  { label: 'WhatsApp', href: '/whatsapp', icone: MessageCircle },
-  { label: 'Tarefas', href: '/tarefas', icone: CheckSquare },
-  { label: 'Orçamentos', href: '/orcamentos', icone: FileText },
-  { label: 'Pedidos', href: '/pedidos', icone: Package },
-  { label: 'Relatórios', href: '/relatorios', icone: BarChart3 },
-  { label: 'Configurações', href: '/configuracoes', icone: Settings },
+  // DEC-022 — Administração (Indústria): itens administrativos/gerenciais (admin/gestor).
+  { label: 'Painel Gerencial', href: '/painel', icone: LayoutDashboard, perfis: ['admin', 'gestor'] },
+  { label: 'Clientes', href: '/clientes', icone: UserCheck, perfis: ['admin', 'gestor'] },
+  { label: 'Relatórios', href: '/relatorios', icone: BarChart3, perfis: ['admin', 'gestor'] },
+  { label: 'Configurações', href: '/configuracoes', icone: Settings, perfis: ['admin', 'gestor'] },
+  // DEC-022 — itens OPERACIONAIS NÃO pertencem à Indústria (Pipeline, Atendimento, WhatsApp,
+  // Agenda, Orçamentos, Pedidos, Caixa de Entrada). São operados pelo Hub via /hub/** e
+  // /assistente/**. As rotas legadas (/caixa-de-entrada, /leads, /pipeline, /whatsapp,
+  // /tarefas, /orcamentos, /pedidos) saem do menu (código/rota preservados; acesso da
+  // Indústria bloqueado no middleware). Remoção do legado = fase seguinte.
   // Hubs — gestão pela Indústria (Fatia 04)
   { label: 'Hubs', href: '/configuracoes/hubs', icone: Network, perfis: ['admin', 'gestor'] },
   // Carteiras — gestão pela Indústria (Fatia 05)
