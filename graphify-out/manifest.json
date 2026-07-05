@@ -125,7 +125,7 @@
     "semantic_hash": "963eea8a4156261b217516eef8f471ec"
   },
   "app/(dashboard)/layout.tsx": {
-    "mtime": 1783227761.5798054,
+    "mtime": 1783227952.2261982,
     "ast_hash": "40f286c5dcd2f372bc4931b91b3fe63c",
     "semantic_hash": ""
   },
@@ -540,12 +540,12 @@
     "semantic_hash": ""
   },
   "components/layout/sidebar-mobile.tsx": {
-    "mtime": 1783227797.1143534,
+    "mtime": 1783227952.2271414,
     "ast_hash": "55b8f48dd3743bef4d5e4503783d6b03",
     "semantic_hash": ""
   },
   "components/layout/sidebar.tsx": {
-    "mtime": 1783227780.785705,
+    "mtime": 1783227952.2274854,
     "ast_hash": "37d39133bca20d4f078d98a933ba6643",
     "semantic_hash": ""
   },
@@ -2735,8 +2735,8 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/configuracoes-ia/page.tsx": {
-    "mtime": 1783123323.7553663,
-    "ast_hash": "bd737390685418dabbb0953ae3dd38ce",
+    "mtime": 1783228301.7733395,
+    "ast_hash": "f79695363fdfcdb2dc1e9139b12f836e",
     "semantic_hash": ""
   },
   "hubdev/bootstrap/rollback_ia_prompts.sql": {
@@ -2870,13 +2870,33 @@
     "semantic_hash": ""
   },
   "lib/branding.ts": {
-    "mtime": 1783227729.199171,
+    "mtime": 1783227952.2473934,
     "ast_hash": "a76fe9cacd912fb856a964e94b400e64",
     "semantic_hash": ""
   },
   "lib/hub-branding.ts": {
-    "mtime": 1783227740.083412,
+    "mtime": 1783227952.247864,
     "ast_hash": "e6b87498e74886b73af1adfc6ce0d2ae",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/configuracoes-ia/actions.ts": {
+    "mtime": 1783228372.4145093,
+    "ast_hash": "e6469078a0b16e0785937c3bdc62725a",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/configuracoes-ia/editor-ia-comercial.tsx": {
+    "mtime": 1783228377.1876729,
+    "ast_hash": "71a1c578841b1c6f6bc9d749d68bf481",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/hub/configuracoes-ia/ia-comercial.ts": {
+    "mtime": 1783228365.446043,
+    "ast_hash": "9d935c9fe2aeab50f53f346096c38c39",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/068_hub_ia_config.sql": {
+    "mtime": 1783228249.1658995,
+    "ast_hash": "6e1cb69f6959395f19bbde6aaf020657",
     "semantic_hash": ""
   }
 }
