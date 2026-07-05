@@ -34,6 +34,7 @@
 |---|---|---|---|
 | R-SEC-01 | Senha do usuário de teste exposta em chat (`HubDev@2026` revogada; senha atual também trafegou por chat). | 🟠 | Tratar como exposta/descartável; **trocar por uma senha nunca compartilhada** e não reutilizar em outros ambientes. |
 | R-SEC-02 | Uso de `service_role` em sessão (autorizado pelo usuário). | 🟡 | Nunca exibir/versionar o valor; manter em `.env.local.hubdev` (gitignored); usar apenas no HUB DEV. |
+| R-SEC-03 | Vazamento de PII entre Hubs no Cadastro de Clientes (DEC-020): `onboarding_detalhe`/RLS autorizavam o Hub por `industry_id`, expondo pré-cadastros (CPF, endereço, documentos) de outros Hubs da mesma Indústria via URL direta. | 🔴→✅ | **Corrigido** na migration `065` (escopo por perfil: Hub por `hub_id`, Indústria por `fn_hco_is_industria()`); validado ao vivo no HUB DEV. Ver [`CHANGELOG.md`](CHANGELOG.md) 2026-07-05. |
 
 ## Operação
 
