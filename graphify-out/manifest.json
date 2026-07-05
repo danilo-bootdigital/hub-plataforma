@@ -2735,7 +2735,7 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/configuracoes-ia/page.tsx": {
-    "mtime": 1783228301.7733395,
+    "mtime": 1783251368.3589675,
     "ast_hash": "f79695363fdfcdb2dc1e9139b12f836e",
     "semantic_hash": ""
   },
@@ -2880,22 +2880,22 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/configuracoes-ia/actions.ts": {
-    "mtime": 1783228372.4145093,
+    "mtime": 1783251368.356289,
     "ast_hash": "e6469078a0b16e0785937c3bdc62725a",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/configuracoes-ia/editor-ia-comercial.tsx": {
-    "mtime": 1783228377.1876729,
-    "ast_hash": "71a1c578841b1c6f6bc9d749d68bf481",
+    "mtime": 1783252371.4549742,
+    "ast_hash": "5c734074d6fca521c2a54ed4728f5e71",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/configuracoes-ia/ia-comercial.ts": {
-    "mtime": 1783228365.446043,
+    "mtime": 1783251368.3579624,
     "ast_hash": "9d935c9fe2aeab50f53f346096c38c39",
     "semantic_hash": ""
   },
   "supabase/migrations/068_hub_ia_config.sql": {
-    "mtime": 1783228249.1658995,
+    "mtime": 1783251368.392849,
     "ast_hash": "6e1cb69f6959395f19bbde6aaf020657",
     "semantic_hash": ""
   }

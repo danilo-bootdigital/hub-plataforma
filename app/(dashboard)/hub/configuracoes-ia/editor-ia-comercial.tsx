@@ -72,9 +72,6 @@ export function EditorIaComercial({ inicial }: { inicial: IaComercial }) {
           title="Limpa todos os campos e salva">
           <RotateCcw /> Restaurar padrão
         </Button>
-        <Button variant="ghost" disabled title="Disponível na próxima fase">
-          Testar Prompt (em breve)
-        </Button>
       </div>
     </div>
   )
