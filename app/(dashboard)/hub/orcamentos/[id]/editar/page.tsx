@@ -52,6 +52,16 @@ export default async function EditarOrcamentoHubPage({ params }: { params: Promi
     .from('quote_items')
     .select('product_id, portfolio_id, descricao, quantidade, preco_unitario, desconto_item, portfolio:portfolio_id(id, nome)')
     .eq('quote_id', id)
+    .order('id', { ascending: true })
+  const itensBase = (itensRaw ?? []).map((i) => i as unknown as {
+    product_id: string
+    portfolio_id: string | null
+    descricao: string | null
+    quantidade: number | null
+    preco_unitario: number | null
+    desconto_item: number | null
+    portfolio: { id: string; nome: string } | null
+  })
 
   // Clientes do Hub.
   const { data: cliRaw } = await admin
@@ -70,32 +80,64 @@ export default async function EditarOrcamentoHubPage({ params }: { params: Promi
     ? await admin.from('portfolios').select('nome').eq('id', orc.portfolio_id).maybeSingle()
     : { data: null }
 
+  // Ficha dos produtos (products tem RLS admin/gestor) — exibida na tabela de itens.
+  const productIds = [...new Set(itensBase.map((i) => i.product_id).filter(Boolean))]
+  type FichaProd = { nome: string | null; apresentacao: string | null; via_administracao: string | null; volume: string | null; unidade: string | null; quantidade_por_caixa: number | null; valor_caixa: number | null; exige_receita: boolean | null }
+  const fichaMap = new Map<string, FichaProd>()
+  if (productIds.length > 0) {
+    const { data: prods } = await admin
+      .from('products')
+      .select('id, nome, apresentacao, via_administracao, volume, unidade, quantidade_por_caixa, valor_caixa, exige_receita')
+      .in('id', productIds)
+    for (const p of (prods ?? []) as unknown as ({ id: string } & FichaProd)[]) fichaMap.set(p.id, p)
+  }
+
+  // Itens legados sem portfolio_id e sem cabeçalho: resolve por um vínculo autorizado/ativo
+  // do Hub para o produto (evita gravar portfolio_id vazio, que o backend rejeitaria — #1).
+  const vincHubMap = new Map<string, { portfolio_id: string; nome: string | null }>()
+  const semPortfolio = orc.portfolio_id ? [] : [...new Set(itensBase.filter((i) => !i.portfolio_id).map((i) => i.product_id))]
+  if (semPortfolio.length > 0) {
+    const { data: aut } = await admin
+      .from('hub_portfolios').select('portfolio_id')
+      .eq('hub_id', hub).eq('organization_id', org).eq('status', 'ativo')
+    const autIds = (aut ?? []).map((a) => a.portfolio_id as string)
+    if (autIds.length > 0) {
+      const { data: vincs } = await admin
+        .from('product_portfolios')
+        .select('product_id, portfolio_id, portfolios:portfolio_id(nome)')
+        .eq('organization_id', org).eq('ativo', true)
+        .in('product_id', semPortfolio).in('portfolio_id', autIds)
+      for (const v of (vincs ?? []) as unknown as { product_id: string; portfolio_id: string; portfolios: { nome: string } | null }[]) {
+        if (!vincHubMap.has(v.product_id)) vincHubMap.set(v.product_id, { portfolio_id: v.portfolio_id, nome: v.portfolios?.nome ?? null })
+      }
+    }
+  }
+
   const { data: h } = await admin.from('hubs').select('nome').eq('id', hub).single()
 
   const inicial: InicialOrcamentoHub = {
     contato_id: orc.contato_id ?? null,
-    itens: (itensRaw ?? []).map((i) => {
-      const it = i as unknown as {
-        product_id: string
-        portfolio_id: string | null
-        descricao: string | null
-        quantidade: number | null
-        preco_unitario: number | null
-        desconto_item: number | null
-        portfolio: { id: string; nome: string } | null
-      }
-      // Fallback: itens antigos sem portfolio_id herdam o portfólio de cabeçalho.
-      const portfolioId = it.portfolio_id ?? orc.portfolio_id ?? ''
-      const portfolioNome = it.portfolio?.nome ?? (it.portfolio_id ? null : pCab?.nome ?? null)
+    itens: itensBase.map((it) => {
+      // portfolio_id do item → cabeçalho → vínculo autorizado do Hub para o produto.
+      const vinc = vincHubMap.get(it.product_id)
+      const portfolioId = it.portfolio_id ?? orc.portfolio_id ?? vinc?.portfolio_id ?? ''
+      const portfolioNome = it.portfolio?.nome ?? (it.portfolio_id ? null : (pCab?.nome ?? vinc?.nome ?? null))
+      const f = fichaMap.get(it.product_id)
       return {
         product_id: it.product_id,
         portfolio_id: portfolioId,
         portfolio_nome: portfolioNome,
-        nome: it.descricao || 'Produto',
-        apresentacao: null,
+        nome: f?.nome || it.descricao || 'Produto',
+        apresentacao: f?.apresentacao ?? null,
         preco_unitario: Number(it.preco_unitario ?? 0),
         quantidade: Number(it.quantidade ?? 1),
         desconto_item: Number(it.desconto_item ?? 0),
+        via_administracao: f?.via_administracao ?? null,
+        volume: f?.volume ?? null,
+        unidade: f?.unidade ?? null,
+        quantidade_por_caixa: f?.quantidade_por_caixa ?? null,
+        valor_caixa: f?.valor_caixa ?? null,
+        exige_receita: f?.exige_receita ?? null,
       }
     }),
     forma_pagamento: orc.forma_pagamento ?? '',

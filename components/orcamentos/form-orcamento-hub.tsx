@@ -22,10 +22,21 @@ export type ClienteOpc = {
   responsavel_nome: string | null
 }
 
-// Valores iniciais para o modo edição. Cada item carrega seu portfólio (DEC-013/017).
+// Ficha exibida na tabela de itens (campos definidos pela regra do produto).
+type FichaItem = {
+  via_administracao: string | null
+  volume: string | null
+  unidade: string | null
+  quantidade_por_caixa: number | null
+  valor_caixa: number | null
+  exige_receita: boolean | null
+}
+
+// Valores iniciais para o modo edição. Cada item carrega seu portfólio (DEC-013/017)
+// e a ficha resolvida no servidor (products tem RLS admin/gestor).
 export type InicialOrcamentoHub = {
   contato_id: string | null
-  itens: {
+  itens: ({
     product_id: string
     portfolio_id: string
     portfolio_nome: string | null
@@ -34,7 +45,7 @@ export type InicialOrcamentoHub = {
     preco_unitario: number
     quantidade: number
     desconto_item: number
-  }[]
+  } & FichaItem)[]
   forma_pagamento: string
   prazo_entrega: string
   transportadora: string
@@ -54,33 +65,27 @@ type ItemState = {
   preco_unitario: number // do vínculo (product_portfolios) — apenas exibição; backend recalcula
   quantidade: number
   desconto_item: number
-}
+} & FichaItem
 
 function normalizar(s: string) {
   return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
 }
 
+// Chave do vínculo: o mesmo produto pode vir de portfólios diferentes (DEC-013), então
+// itens são identificados por product_id + portfolio_id (não só product_id).
+const chaveVinculo = (product_id: string, portfolio_id: string) => `${product_id}::${portfolio_id}`
+
 // Linha de detalhes do produto para a tabela de itens (campos definidos pela regra:
 // via de administração, volume, unidade, qtd por caixa, valor da caixa, exige receita).
-function detalhesProduto(p: LinhaProdutoHub): string {
+function detalhesProduto(f: FichaItem): string {
   return [
-    p.via_administracao,
-    p.volume,
-    p.unidade,
-    p.quantidade_por_caixa != null ? `${p.quantidade_por_caixa}/cx` : null,
-    p.valor_caixa != null ? `cx ${formatarMoeda(p.valor_caixa)}` : null,
-    p.exige_receita ? 'Exige receita' : null,
+    f.via_administracao,
+    f.volume,
+    f.unidade,
+    f.quantidade_por_caixa != null ? `${f.quantidade_por_caixa}/cx` : null,
+    f.valor_caixa != null ? `cx ${formatarMoeda(f.valor_caixa)}` : null,
+    f.exige_receita ? 'Exige receita' : null,
   ].filter(Boolean).join('  ·  ')
-}
-
-// Casa o texto da busca com vários campos do produto (nome, apresentação, princípio
-// ativo/composição, categoria, subcategoria, portfólio, via, volume, unidade).
-function casa(p: LinhaProdutoHub, q: string) {
-  const alvo = [
-    p.nome, p.apresentacao, p.composicao, p.categoria, p.subcategoria,
-    p.portfolio, p.via_administracao, p.via_apresentacao, p.volume, p.unidade,
-  ].filter(Boolean).join(' ')
-  return normalizar(alvo).includes(q)
 }
 
 export function FormOrcamentoHub({
@@ -115,22 +120,26 @@ export function FormOrcamentoHub({
       .slice(0, 30)
   }, [buscaCli, clientes])
 
-  // Catálogo autorizado do Hub (todos os portfólios) — carregado uma vez; busca client-side.
-  const [catalogo, setCatalogo] = useState<LinhaProdutoHub[]>([])
-  const [carregandoCat, setCarregandoCat] = useState(true)
+  // Bloco 2 — Busca de produtos autorizados: server-side (RPC hub_produtos_listar) com
+  // debounce. Evita carregar todo o catálogo no cliente e truncar em Hubs grandes; a
+  // pesquisa por nome/apresentação/código/via/etc. é feita pelo próprio RPC.
   const [buscaProd, setBuscaProd] = useState('')
+  const [resultadosRaw, setResultadosRaw] = useState<LinhaProdutoHub[]>([])
+  const [buscandoProd, setBuscandoProd] = useState(true)
 
   useEffect(() => {
-    // Carga única do catálogo autorizado (montagem). `carregandoCat` já inicia true.
     let vivo = true
-    listarProdutosHub({ status: 'ativo', limit: 1000, orderBy: 'nome', orderDir: 'asc' })
-      .then((r) => { if (vivo) setCatalogo(r.rows) })
-      .catch(() => { if (vivo) setCatalogo([]) })
-      .finally(() => { if (vivo) setCarregandoCat(false) })
-    return () => { vivo = false }
-  }, [])
+    const t = setTimeout(() => {
+      setBuscandoProd(true)
+      listarProdutosHub({ busca: buscaProd.trim() || undefined, status: 'ativo', limit: 30, orderBy: 'nome', orderDir: 'asc' })
+        .then((r) => { if (vivo) setResultadosRaw(r.rows) })
+        .catch(() => { if (vivo) { setResultadosRaw([]); toast.error('Não foi possível buscar os produtos. Tente novamente.') } })
+        .finally(() => { if (vivo) setBuscandoProd(false) })
+    }, 250)
+    return () => { vivo = false; clearTimeout(t) }
+  }, [buscaProd])
 
-  // Bloco 2 — Itens
+  // Bloco 2 — Itens (cada item carrega sua ficha para exibição na tabela — DEC-013/017)
   const [itens, setItens] = useState<ItemState[]>(
     inicial?.itens.map((i) => ({
       product_id: i.product_id,
@@ -141,16 +150,20 @@ export function FormOrcamentoHub({
       preco_unitario: i.preco_unitario,
       quantidade: i.quantidade,
       desconto_item: i.desconto_item,
+      via_administracao: i.via_administracao,
+      volume: i.volume,
+      unidade: i.unidade,
+      quantidade_por_caixa: i.quantidade_por_caixa,
+      valor_caixa: i.valor_caixa,
+      exige_receita: i.exige_receita,
     })) ?? []
   )
 
+  // Resultados = retorno do RPC menos o que já foi adicionado (por vínculo, não por produto).
   const resultados = useMemo(() => {
-    const q = normalizar(buscaProd.trim())
-    const jaAdicionado = new Set(itens.map((i) => i.product_id))
-    const base = catalogo.filter((p) => !jaAdicionado.has(p.product_id))
-    if (!q) return base.slice(0, 25)
-    return base.filter((p) => casa(p, q)).slice(0, 25)
-  }, [buscaProd, catalogo, itens])
+    const jaAdicionado = new Set(itens.map((i) => chaveVinculo(i.product_id, i.portfolio_id)))
+    return resultadosRaw.filter((p) => !jaAdicionado.has(chaveVinculo(p.product_id, p.portfolio_id)))
+  }, [resultadosRaw, itens])
 
   // Bloco 4 — Dados comerciais
   const [formaPagamento, setFormaPagamento] = useState(inicial?.forma_pagamento ?? '')
@@ -163,8 +176,9 @@ export function FormOrcamentoHub({
   const [descontoGeral, setDescontoGeral] = useState(inicial?.desconto_geral ?? '')
 
   function adicionarItem(p: LinhaProdutoHub) {
-    if (itens.some((i) => i.product_id === p.product_id)) {
-      toast.info('Produto já adicionado. Ajuste a quantidade na lista.')
+    const chave = chaveVinculo(p.product_id, p.portfolio_id)
+    if (itens.some((i) => chaveVinculo(i.product_id, i.portfolio_id) === chave)) {
+      toast.info('Este produto (neste portfólio) já foi adicionado. Ajuste a quantidade na lista.')
       return
     }
     setItens((prev) => [
@@ -178,14 +192,20 @@ export function FormOrcamentoHub({
         preco_unitario: Number(p.preco ?? 0),
         quantidade: 1,
         desconto_item: 0,
+        via_administracao: p.via_administracao,
+        volume: p.volume,
+        unidade: p.unidade,
+        quantidade_por_caixa: p.quantidade_por_caixa,
+        valor_caixa: p.valor_caixa,
+        exige_receita: p.exige_receita,
       },
     ])
   }
-  function atualizarItem(id: string, patch: Partial<ItemState>) {
-    setItens((prev) => prev.map((i) => (i.product_id === id ? { ...i, ...patch } : i)))
+  function atualizarItem(chave: string, patch: Partial<ItemState>) {
+    setItens((prev) => prev.map((i) => (chaveVinculo(i.product_id, i.portfolio_id) === chave ? { ...i, ...patch } : i)))
   }
-  function removerItem(id: string) {
-    setItens((prev) => prev.filter((i) => i.product_id !== id))
+  function removerItem(chave: string) {
+    setItens((prev) => prev.filter((i) => chaveVinculo(i.product_id, i.portfolio_id) !== chave))
   }
 
   // Bloco 5 — Resumo (cálculo espelha o backend; backend é a fonte de verdade)
@@ -306,13 +326,12 @@ export function FormOrcamentoHub({
               autoComplete="off"
             />
           </div>
-          {carregandoCat ? (
-            <p className="flex items-center gap-2 text-sm text-slate-500"><Loader2 className="size-4 animate-spin" /> Carregando catálogo do Hub…</p>
-          ) : (
-            <div className="max-h-80 divide-y divide-slate-100 overflow-y-auto rounded-lg border border-slate-200">
-              {resultados.length === 0 ? (
-                <p className="p-3 text-sm text-slate-500">{buscaProd.trim() ? 'Nenhum produto encontrado.' : 'Nenhum produto disponível.'}</p>
-              ) : resultados.map((p) => (
+          <div className="max-h-80 divide-y divide-slate-100 overflow-y-auto rounded-lg border border-slate-200">
+            {buscandoProd ? (
+              <p className="flex items-center gap-2 p-3 text-sm text-slate-500"><Loader2 className="size-4 animate-spin" /> Buscando…</p>
+            ) : resultados.length === 0 ? (
+              <p className="p-3 text-sm text-slate-500">{buscaProd.trim() ? 'Nenhum produto encontrado.' : 'Nenhum produto disponível.'}</p>
+            ) : resultados.map((p) => (
                 <div key={`${p.product_id}::${p.portfolio_id}`} className="flex items-center gap-3 px-3 py-2 text-sm hover:bg-slate-50">
                   <div className="min-w-0 flex-1">
                     <p className="truncate font-medium text-slate-900">{p.nome}</p>
@@ -327,8 +346,7 @@ export function FormOrcamentoHub({
                   </Button>
                 </div>
               ))}
-            </div>
-          )}
+          </div>
         </CardContent>
       </Card>
 
@@ -356,25 +374,25 @@ export function FormOrcamentoHub({
                 </thead>
                 <tbody>
                   {itens.map((i) => {
-                    const p = catalogo.find((r) => r.product_id === i.product_id)
+                    const chave = chaveVinculo(i.product_id, i.portfolio_id)
                     const sub = i.quantidade * i.preco_unitario * (1 - i.desconto_item / 100)
-                    const det = p ? detalhesProduto(p) : ''
+                    const det = detalhesProduto(i)
                     return (
-                      <tr key={i.product_id} className="border-b border-slate-100 align-top last:border-0 hover:bg-slate-50/50">
+                      <tr key={chave} className="border-b border-slate-100 align-top last:border-0 hover:bg-slate-50/50">
                         <td className="px-4 py-2.5">
-                          <p className="font-medium text-slate-900">{p?.nome ?? i.nome}</p>
+                          <p className="font-medium text-slate-900">{i.nome}</p>
                           {det && <p className="mt-0.5 text-xs text-slate-500">{det}</p>}
                         </td>
                         <td className="px-3 py-2.5 text-center">
-                          <Input type="number" min={1} step={1} value={i.quantidade} onChange={(e) => atualizarItem(i.product_id, { quantidade: Math.max(1, Math.floor(Number(e.target.value) || 1)) })} className="mx-auto h-8 w-20 text-center" />
+                          <Input type="number" min={1} step={1} value={i.quantidade} onChange={(e) => atualizarItem(chave, { quantidade: Math.max(1, Math.floor(Number(e.target.value) || 1)) })} className="mx-auto h-8 w-20 text-center" />
                         </td>
                         <td className="px-3 py-2.5 text-right tabular-nums text-slate-600">{formatarMoeda(i.preco_unitario)}</td>
                         <td className="px-3 py-2.5 text-center">
-                          <Input type="number" min={0} max={100} step={1} value={i.desconto_item} onChange={(e) => atualizarItem(i.product_id, { desconto_item: Math.min(100, Math.max(0, Number(e.target.value) || 0)) })} className="mx-auto h-8 w-20 text-center" />
+                          <Input type="number" min={0} max={100} step={1} value={i.desconto_item} onChange={(e) => atualizarItem(chave, { desconto_item: Math.min(100, Math.max(0, Number(e.target.value) || 0)) })} className="mx-auto h-8 w-20 text-center" />
                         </td>
                         <td className="px-3 py-2.5 text-right font-semibold tabular-nums text-slate-900">{formatarMoeda(sub)}</td>
                         <td className="px-3 py-2.5 text-center">
-                          <Button type="button" variant="ghost" size="sm" onClick={() => removerItem(i.product_id)}><Trash2 className="size-4 text-slate-400" /></Button>
+                          <Button type="button" variant="ghost" size="sm" onClick={() => removerItem(chave)}><Trash2 className="size-4 text-slate-400" /></Button>
                         </td>
                       </tr>
                     )

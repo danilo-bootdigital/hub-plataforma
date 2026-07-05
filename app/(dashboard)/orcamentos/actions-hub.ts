@@ -200,10 +200,11 @@ export async function editarOrcamentoHub(orcamentoId: string, dados: DadosOrcame
     throw new Error('Este orçamento não pode mais ser editado no status atual.')
   }
 
-  // Estado anterior dos itens (para diff granular no rastreamento — T-1).
+  // Estado anterior dos itens (para diff granular no rastreamento — T-1). Ordem
+  // estável (id) para consistência entre leituras.
   const { data: itensAntigos } = await admin
-    .from('quote_items').select('product_id, descricao, quantidade, preco_unitario, desconto_item')
-    .eq('quote_id', orcamentoId)
+    .from('quote_items').select('product_id, portfolio_id, descricao, quantidade, preco_unitario, desconto_item')
+    .eq('quote_id', orcamentoId).order('id', { ascending: true })
 
   const { itens, valorSubtotal, valorTotal, descontoGeral, frete } = await validarECalcular(admin, org, hub, dados)
   // "Gerar orçamento" (re)envia para aprovação; "Salvar alterações" mantém o status atual.
@@ -260,28 +261,30 @@ export async function editarOrcamentoHub(orcamentoId: string, dados: DadosOrcame
   if ((atual.observacoes ?? '') !== (dados.observacoes?.trim() || '')) {
     await registrarEventoOrcamento(orcamentoId, { tipo: 'observacao_adicionada', descricao: 'Observações internas atualizadas.', valorAnterior: atual.observacoes ?? '', valorNovo: dados.observacoes?.trim() || '' })
   }
-  // Diff de itens por product_id.
-  const antigos = new Map((itensAntigos ?? []).map((i) => [i.product_id, i]))
-  const novos = new Map(itens.map((i) => [i.product_id, i]))
-  for (const [pid, n] of novos) {
-    const a = antigos.get(pid)
+  // Diff de itens por vínculo (product_id + portfolio_id): o mesmo produto pode vir
+  // de portfólios diferentes (DEC-013), então a chave é composta.
+  const chaveItem = (i: { product_id: string; portfolio_id?: string | null }) => `${i.product_id}::${i.portfolio_id ?? ''}`
+  const antigos = new Map((itensAntigos ?? []).map((i) => [chaveItem(i), i]))
+  const novos = new Map(itens.map((i) => [chaveItem(i), i]))
+  for (const [k, n] of novos) {
+    const a = antigos.get(k)
     if (!a) {
-      await registrarEventoOrcamento(orcamentoId, { tipo: 'item_adicionado', descricao: `Produto adicionado: ${n.descricao} (qtd ${n.quantidade}).`, valorNovo: { product_id: pid, quantidade: n.quantidade, preco_unitario: n.preco_unitario } })
+      await registrarEventoOrcamento(orcamentoId, { tipo: 'item_adicionado', descricao: `Produto adicionado: ${n.descricao} (qtd ${n.quantidade}).`, valorNovo: { product_id: n.product_id, portfolio_id: n.portfolio_id, quantidade: n.quantidade, preco_unitario: n.preco_unitario } })
       continue
     }
     if (Number(a.quantidade) !== n.quantidade) {
-      await registrarEventoOrcamento(orcamentoId, { tipo: 'quantidade_alterada', descricao: `Quantidade de ${n.descricao} alterada de ${a.quantidade} para ${n.quantidade}.`, valorAnterior: Number(a.quantidade), valorNovo: n.quantidade, metadata: { product_id: pid } })
+      await registrarEventoOrcamento(orcamentoId, { tipo: 'quantidade_alterada', descricao: `Quantidade de ${n.descricao} alterada de ${a.quantidade} para ${n.quantidade}.`, valorAnterior: Number(a.quantidade), valorNovo: n.quantidade, metadata: { product_id: n.product_id } })
     }
     if (Number(a.preco_unitario) !== n.preco_unitario) {
-      await registrarEventoOrcamento(orcamentoId, { tipo: 'preco_alterado', descricao: `Preço de ${n.descricao} alterado.`, valorAnterior: Number(a.preco_unitario), valorNovo: n.preco_unitario, metadata: { product_id: pid } })
+      await registrarEventoOrcamento(orcamentoId, { tipo: 'preco_alterado', descricao: `Preço de ${n.descricao} alterado.`, valorAnterior: Number(a.preco_unitario), valorNovo: n.preco_unitario, metadata: { product_id: n.product_id } })
     }
     if (Number(a.desconto_item ?? 0) !== n.desconto_item) {
-      await registrarEventoOrcamento(orcamentoId, { tipo: 'desconto_aplicado', descricao: `Desconto do item ${n.descricao} alterado para ${n.desconto_item}%.`, valorAnterior: Number(a.desconto_item ?? 0), valorNovo: n.desconto_item, metadata: { product_id: pid, nivel: 'item' } })
+      await registrarEventoOrcamento(orcamentoId, { tipo: 'desconto_aplicado', descricao: `Desconto do item ${n.descricao} alterado para ${n.desconto_item}%.`, valorAnterior: Number(a.desconto_item ?? 0), valorNovo: n.desconto_item, metadata: { product_id: n.product_id, nivel: 'item' } })
     }
   }
-  for (const [pid, a] of antigos) {
-    if (!novos.has(pid)) {
-      await registrarEventoOrcamento(orcamentoId, { tipo: 'item_removido', descricao: `Produto removido: ${a.descricao}.`, valorAnterior: { product_id: pid, quantidade: a.quantidade } })
+  for (const [k, a] of antigos) {
+    if (!novos.has(k)) {
+      await registrarEventoOrcamento(orcamentoId, { tipo: 'item_removido', descricao: `Produto removido: ${a.descricao}.`, valorAnterior: { product_id: a.product_id, portfolio_id: a.portfolio_id, quantidade: a.quantidade } })
     }
   }
 

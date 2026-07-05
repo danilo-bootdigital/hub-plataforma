@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { formatarMoeda } from '@/lib/utils'
 import { Package, FileText, MapPin, ChevronDown } from 'lucide-react'
 import type { Quote, QuoteItem } from '@/types/database'
+import { resumirPortfolios } from '@/lib/orcamentos/portfolio'
 
 type ItemComProduto = QuoteItem & {
   produto?: { apresentacao: string | null } | null
@@ -27,15 +28,10 @@ export function OrcamentoDetalhe({ orcamento }: OrcamentoDetalheProps) {
   const itens = orcamento.itens ?? []
   const temApresentacao = itens.some((i) => i.produto?.apresentacao?.trim())
   // Portfólio de origem por item (DEC-013/017): itens podem vir de portfólios
-  // diferentes. Mostra a coluna quando há essa informação e resume no cabeçalho.
+  // diferentes. Mostra a coluna quando há essa informação e resume no cabeçalho
+  // (contando também itens legados sem portfólio como categoria distinta).
   const temPortfolio = itens.some((i) => i.portfolio_nome?.trim())
-  const portfoliosDistintos = [...new Set(itens.map((i) => i.portfolio_nome?.trim()).filter(Boolean))] as string[]
-  const resumoPortfolios =
-    portfoliosDistintos.length === 0
-      ? null
-      : portfoliosDistintos.length === 1
-        ? portfoliosDistintos[0]
-        : 'Múltiplos Portfólios'
+  const resumoPortfolios = resumirPortfolios(itens.map((i) => i.portfolio_nome))
   const enderecoEntrega = orcamento.endereco_entrega?.trim() || null
   const enderecoCliente = orcamento.lead?.endereco?.trim() || null
   const transportadora = orcamento.carrier?.nome?.trim() || null
