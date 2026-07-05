@@ -1,16 +1,16 @@
 # Graph Report - plataforma-hub  (2026-07-05)
 
 ## Corpus Check
-- 563 files · ~256,488 words
+- 563 files · ~260,014 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2212 nodes · 5405 edges · 149 communities (123 shown, 26 thin omitted)
+- 2212 nodes · 5405 edges · 147 communities (122 shown, 25 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 27 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3c8eff39`
+- Built from commit: `713c5862`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -52,13 +52,11 @@
 - [[_COMMUNITY_Itens da Caixa de Entrada|Itens da Caixa de Entrada]]
 - [[_COMMUNITY_Detalhe de Contato e Timeline|Detalhe de Contato e Timeline]]
 - [[_COMMUNITY_Gerenciador de Instâncias WhatsApp|Gerenciador de Instâncias WhatsApp]]
-- [[_COMMUNITY_Community 37|Community 37]]
 - [[_COMMUNITY_Community 38|Community 38]]
 - [[_COMMUNITY_Disponibilidade e Header|Disponibilidade e Header]]
 - [[_COMMUNITY_Sidebar Mobile e Sheet|Sidebar Mobile e Sheet]]
 - [[_COMMUNITY_Community 41|Community 41]]
 - [[_COMMUNITY_Community 42|Community 42]]
-- [[_COMMUNITY_Community 43|Community 43]]
 - [[_COMMUNITY_Community 44|Community 44]]
 - [[_COMMUNITY_Layout Raiz e Autenticação|Layout Raiz e Autenticação]]
 - [[_COMMUNITY_Gestão de Modelos|Gestão de Modelos]]
@@ -172,7 +170,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (149 total, 26 thin omitted)
+## Communities (147 total, 25 thin omitted)
 
 ### Community 0 - "Ações de Usuários e Contatos"
 Cohesion: 0.16
@@ -203,8 +201,8 @@ Cohesion: 0.08
 Nodes (20): ACAO_POR_MOTIVO, RESULTADO_POR_STATUS, conferir(), DIACRITICOS, itensBatemPorNome(), nomesBatem(), norm(), parseDataDias() (+12 more)
 
 ### Community 7 - "Login e Formulário de Contato"
-Cohesion: 0.15
-Nodes (12): ComparacaoPosologia, PromptComparacao, ResultadoComparacaoPosologia, SCHEMA_COMPARACAO, ArquivoReceita, ComparadorPosologia, EntradaComparacaoPosologia, MimeReceita (+4 more)
+Cohesion: 0.18
+Nodes (9): ComparacaoPosologia, PromptComparacao, ResultadoComparacaoPosologia, SCHEMA_COMPARACAO, ComparadorPosologia, EntradaComparacaoPosologia, ComparacaoInvalida, ClaudeComparador (+1 more)
 
 ### Community 8 - "Ações de Orçamento"
 Cohesion: 0.17
@@ -275,8 +273,8 @@ Cohesion: 0.13
 Nodes (19): concluirTarefa(), criarTarefa(), excluirTarefa(), getUsuarioEOrg(), reabrirTarefa(), CardTarefa(), ICONES_TIPO, LABELS_TIPO (+11 more)
 
 ### Community 25 - "Community 25"
-Cohesion: 0.11
-Nodes (15): ExtracaoReceita, CAMPOS_EXTRACAO, PROMPT_EXTRACAO_INSTRUCAO_DEFAULT, PROMPT_EXTRACAO_SYSTEM_DEFAULT, PromptExtracao, SCHEMA_EXTRACAO, EntradaExtracao, ExtratorReceita (+7 more)
+Cohesion: 0.10
+Nodes (18): ExtracaoReceita, CAMPOS_EXTRACAO, PROMPT_EXTRACAO_INSTRUCAO_DEFAULT, PROMPT_EXTRACAO_SYSTEM_DEFAULT, PromptExtracao, SCHEMA_EXTRACAO, ArquivoReceita, EntradaExtracao (+10 more)
 
 ### Community 26 - "Detalhe de Orçamento e PDF"
 Cohesion: 0.13
@@ -341,10 +339,6 @@ Nodes (16): MetadadoTipo, MetadadoValidacao, ProdutoRef, dedup(), DIACRITICOS, n
 ### Community 42 - "Community 42"
 Cohesion: 0.18
 Nodes (8): ChatHeaderInfo, MensagemInicial, Props, STATUS_BADGE, ACCEPTED_TYPES, FormEnvioMensagem(), Props, ThreadMensagens()
-
-### Community 43 - "Community 43"
-Cohesion: 0.22
-Nodes (8): AtualizacaoPreAnalise, DecisaoHumana, DecisaoPersistencia, MetaPreAnalise, ResultadoAnaliseDocumental, MAPA_RESULTADO, mapResultadoDocumental(), montarAtualizacaoPreAnalise()
 
 ### Community 44 - "Community 44"
 Cohesion: 0.12
@@ -427,8 +421,8 @@ Cohesion: 0.18
 Nodes (9): DARK_TEXT, GRAY_TEXT, GREEN_ACCENT, GREEN_DARK, GREEN_LIGHT, GREEN_MID, Item, Props (+1 more)
 
 ### Community 66 - "Community 66"
-Cohesion: 0.21
-Nodes (9): POST(), EvolutionResponse, RetryConfig, backfillNomesConversas(), NameSource, normalizarTelefoneParaComparacao(), obterNomeContato(), ResolvedName (+1 more)
+Cohesion: 0.12
+Nodes (10): POST(), EvolutionResponse, RetryConfig, backfillNomesConversas(), NameSource, normalizarTelefoneParaComparacao(), obterNomeContato(), ResolvedName (+2 more)
 
 ### Community 67 - "Community 67"
 Cohesion: 0.21
@@ -503,8 +497,8 @@ Cohesion: 0.38
 Nodes (8): criarInstancia(), obterQRCode(), GET(), adicionarInstancia(), excluirInstancia(), fetchVendedores(), getSoAdmin(), verificarQRCode()
 
 ### Community 121 - "Community 121"
-Cohesion: 0.11
-Nodes (13): Camada, ConferenciaCamada, DiagnosticoReceita, OrientacaoOperacional, ResultadoMvp, LinhaConferencia, LinhaPendencia, MetaConferencia (+5 more)
+Cohesion: 0.08
+Nodes (21): Camada, ConferenciaCamada, DiagnosticoReceita, OrientacaoOperacional, ResultadoMvp, LinhaConferencia, LinhaPendencia, MetaConferencia (+13 more)
 
 ### Community 124 - "Community 124"
 Cohesion: 0.32
@@ -589,12 +583,12 @@ Nodes (3): MAPA_RESULTADO, mapResultadoDocumental(), montarAtualizacaoPreAnalise
 ## Knowledge Gaps
 - **657 isolated node(s):** `node_test_1`, `strict_1`, `motor_regras_1`, `resolver_checklist_1`, `diagnostico_1` (+652 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **26 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **25 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `createClient()` connect `Autenticação e Listagens (Hubs/Fornecedores)` to `Community 128`, `Community 129`, `Community 130`, `Community 131`, `Community 134`, `Ações de Orçamento`, `Modais e Diálogos (UI)`, `Community 137`, `Community 139`, `Páginas de Orçamento e Botões PDF`, `Componentes UI (Dropdown/Card)`, `Painel de KPIs e Gráficos`, `Botões e Modais de Negociação`, `Gestão de Hubs de Saúde`, `Fluxo de Status de Pedidos`, `Ações de Conversa (Tags/Templates)`, `Listagem de Conversas WhatsApp`, `Community 149`, `Listagem de Leads e Orçamentos`, `Community 151`, `Ações de Tarefas`, `Community 148`, `Detalhe de Orçamento e PDF`, `Community 152`, `Community 156`, `Auth Provider e Hooks`, `Config Avançada de WhatsApp`, `Detalhe de Contato e Timeline`, `Gerenciador de Instâncias WhatsApp`, `Community 37`, `Community 38`, `Disponibilidade e Header`, `Sidebar Mobile e Sheet`, `Community 44`, `Layout Raiz e Autenticação`, `Gestão de Modelos`, `Community 47`, `Community 48`, `Configuração de Etapas do Pipeline`, `Community 50`, `Gerador de PDF de Orçamento`, `Community 54`, `Community 57`, `Filtros de Conversas`, `Rotas de Impressão e Browser`, `Relatórios de WhatsApp`, `Configuração de Distribuição`, `Community 66`, `Community 67`, `Arquivamento de Conversas`, `Community 69`, `Gestão de Empresa`, `Community 73`, `Rota de API`, `Community 86`, `Community 109`, `Community 110`, `Community 112`, `Community 113`, `Community 115`, `Community 117`, `Community 118`, `Community 119`, `Community 120`, `Community 124`, `Community 127`?**
+- **Why does `createClient()` connect `Autenticação e Listagens (Hubs/Fornecedores)` to `Community 128`, `Community 129`, `Community 130`, `Community 131`, `Community 134`, `Ações de Orçamento`, `Modais e Diálogos (UI)`, `Community 137`, `Community 139`, `Páginas de Orçamento e Botões PDF`, `Componentes UI (Dropdown/Card)`, `Painel de KPIs e Gráficos`, `Botões e Modais de Negociação`, `Gestão de Hubs de Saúde`, `Fluxo de Status de Pedidos`, `Ações de Conversa (Tags/Templates)`, `Listagem de Conversas WhatsApp`, `Community 149`, `Listagem de Leads e Orçamentos`, `Community 151`, `Ações de Tarefas`, `Community 148`, `Detalhe de Orçamento e PDF`, `Community 152`, `Community 156`, `Auth Provider e Hooks`, `Config Avançada de WhatsApp`, `Detalhe de Contato e Timeline`, `Gerenciador de Instâncias WhatsApp`, `Community 38`, `Disponibilidade e Header`, `Sidebar Mobile e Sheet`, `Community 44`, `Layout Raiz e Autenticação`, `Gestão de Modelos`, `Community 47`, `Community 48`, `Configuração de Etapas do Pipeline`, `Community 50`, `Gerador de PDF de Orçamento`, `Community 54`, `Community 57`, `Filtros de Conversas`, `Rotas de Impressão e Browser`, `Relatórios de WhatsApp`, `Configuração de Distribuição`, `Community 66`, `Community 67`, `Arquivamento de Conversas`, `Community 69`, `Gestão de Empresa`, `Community 73`, `Rota de API`, `Community 86`, `Community 109`, `Community 110`, `Community 112`, `Community 113`, `Community 115`, `Community 117`, `Community 118`, `Community 119`, `Community 120`, `Community 124`, `Community 127`?**
   _High betweenness centrality (0.198) - this node is a cross-community bridge._
 - **Why does `Button()` connect `Conversas e Painel do Cliente` to `Ações de Usuários e Contatos`, `Community 128`, `Community 130`, `Pipeline de Deals (Kanban)`, `Fornecedores e Importação de Produtos`, `Autenticação e Listagens (Hubs/Fornecedores)`, `Ações de Orçamento`, `Modais e Diálogos (UI)`, `Community 137`, `Community 139`, `Páginas de Orçamento e Botões PDF`, `Componentes UI (Dropdown/Card)`, `Painel de KPIs e Gráficos`, `Botões e Modais de Negociação`, `Gestão de Hubs de Saúde`, `Fluxo de Status de Pedidos`, `Community 140`, `Ações de Conversa (Tags/Templates)`, `Listagem de Conversas WhatsApp`, `Community 149`, `Listagem de Leads e Orçamentos`, `Community 151`, `Ações de Tarefas`, `Detalhe de Orçamento e PDF`, `Community 28`, `Auth Provider e Hooks`, `Config Avançada de WhatsApp`, `Edição e Listagem de Contatos`, `Itens da Caixa de Entrada`, `Detalhe de Contato e Timeline`, `Gerenciador de Instâncias WhatsApp`, `Community 38`, `Sidebar Mobile e Sheet`, `Community 42`, `Community 44`, `Gestão de Modelos`, `Community 47`, `Community 48`, `Configuração de Etapas do Pipeline`, `Community 50`, `Gerador de PDF de Orçamento`, `Community 53`, `Community 54`, `Community 55`, `Community 57`, `Configuração de Distribuição`, `Community 64`, `Community 73`, `Community 86`, `Community 109`, `Community 110`, `Community 113`, `Community 115`, `Community 116`, `Community 117`, `Community 118`, `Community 119`?**
   _High betweenness centrality (0.106) - this node is a cross-community bridge._
