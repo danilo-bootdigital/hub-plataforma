@@ -68,7 +68,7 @@ export default async function PreviewPdfPage({
 
   const { data: perfil } = await supabase
     .from('profiles')
-    .select('id, organization_id')
+    .select('id, cargo, hub_id, organization_id')
     .eq('id', user.id)
     .single()
 
@@ -118,6 +118,15 @@ export default async function PreviewPdfPage({
   )
 
   if (error || !orcamento) notFound()
+
+  // Escopo cross-hub (mesma regra de /orcamentos/[id] e da API de PDF): perfis do
+  // Hub só veem o preview/PDF de orçamentos do PRÓPRIO hub_id.
+  if (
+    (perfil.cargo === 'proprietario_hub' || perfil.cargo === 'assistente') &&
+    orcamento.hub_id !== perfil.hub_id
+  ) {
+    notFound()
+  }
 
   // Orçamento do Hub (DEC-017): enriquece cada item com a FICHA COMPLETA do
   // produto. Produtos têm RLS admin/gestor; o Hub não lê direto, então a ficha

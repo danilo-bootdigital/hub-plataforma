@@ -35,12 +35,21 @@ export async function GET(
     if (authError || !user) return new NextResponse('Unauthorized', { status: 401 })
 
     const { data: perfil } = await supabase
-      .from('profiles').select('id, organization_id').eq('id', user.id).single()
+      .from('profiles').select('id, cargo, hub_id, organization_id').eq('id', user.id).single()
     if (!perfil) return new NextResponse('Unauthorized', { status: 401 })
 
     const { data: orcamento, error } = await supabase
-      .from('quotes').select('numero').eq('id', id).eq('organization_id', perfil.organization_id).single()
+      .from('quotes').select('numero, hub_id').eq('id', id).eq('organization_id', perfil.organization_id).single()
     if (error || !orcamento) return new NextResponse('Orçamento não encontrado', { status: 404 })
+
+    // Escopo cross-hub (mesma regra de /orcamentos/[id]): perfis do Hub só acessam
+    // o PDF de orçamentos do PRÓPRIO hub_id. Indústria (admin/gestor) segue por org.
+    if (
+      (perfil.cargo === 'proprietario_hub' || perfil.cargo === 'assistente') &&
+      orcamento.hub_id !== perfil.hub_id
+    ) {
+      return new NextResponse('Orçamento não encontrado', { status: 404 })
+    }
 
     const printUrl = buildPrintUrl(id, new URL(request.url).origin)
     const cookieHeader = extractCookieHeader(request)
