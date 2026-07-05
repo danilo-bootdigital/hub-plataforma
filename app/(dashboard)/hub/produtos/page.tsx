@@ -22,15 +22,11 @@ export default async function ProdutosHubPage() {
     filtrosProdutosHub(),
   ])
 
+  // Full width: a tela ocupa toda a largura útil (o padding vem do <main> do layout).
+  // -m-5/-m-6 anula o padding do main para a tabela encostar nas bordas úteis, e o
+  // componente reaplica um padding horizontal de 24px controlado.
   return (
-    <div className="mx-auto w-[90%] max-w-[1600px] space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-slate-900">Produtos</h1>
-        <p className="mt-1 text-sm text-slate-500">
-          Consulte os produtos disponíveis nos Portfólios autorizados.
-        </p>
-      </div>
-
+    <div className="-m-5 h-[calc(100%+2.5rem)] md:-m-6 md:h-[calc(100%+3rem)]">
       <ProdutosConsulta
         pagina={PAGINA}
         inicial={inicial}

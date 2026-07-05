@@ -610,8 +610,8 @@
     "semantic_hash": ""
   },
   "components/orcamentos/orcamento-pdf-template.tsx": {
-    "mtime": 1782944173.2916245,
-    "ast_hash": "1a47dc3a910d39f38f9bf450c22ca3bc",
+    "mtime": 1783270591.4165974,
+    "ast_hash": "0bfdb29d116e5e3a2a299fb683c5de35",
     "semantic_hash": ""
   },
   "components/orcamentos/tabela-orcamentos.tsx": {
@@ -2025,13 +2025,13 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/produtos/page.tsx": {
-    "mtime": 1782909688.150305,
-    "ast_hash": "506c45c83d0fe427c57581b3fbeb0c70",
+    "mtime": 1783271164.5942256,
+    "ast_hash": "bf2b42b2318b24453edb285cd853920e",
     "semantic_hash": ""
   },
   "components/hub/produtos-consulta.tsx": {
-    "mtime": 1782909688.0437791,
-    "ast_hash": "413e4fe968df8cb1776c25ddb9bb5950",
+    "mtime": 1783271348.1835546,
+    "ast_hash": "1999a8e23a6f22f6c2ac07883d64451f",
     "semantic_hash": ""
   },
   "hubdev/bootstrap/expand_hub_produtos.sql": {

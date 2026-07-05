@@ -170,8 +170,8 @@
     "semantic_hash": "abef321c7a0ee48e879d7a94eabb6c58"
   },
   "app/(dashboard)/orcamentos/[id]/page.tsx": {
-    "mtime": 1783256397.6878715,
-    "ast_hash": "ee91fcabc1c68e3c5fe0be86aef2c515",
+    "mtime": 1783270081.1068456,
+    "ast_hash": "1b93d90852d0f5de1dcf5924b8172d55",
     "semantic_hash": ""
   },
   "app/(dashboard)/orcamentos/actions-orcamento.ts": {
@@ -180,7 +180,7 @@
     "semantic_hash": "c4dd95cabdbb1b875e4bef3ac493d4ba"
   },
   "app/(dashboard)/orcamentos/actions.ts": {
-    "mtime": 1783269085.3314364,
+    "mtime": 1783269430.7211318,
     "ast_hash": "060480c70039e5a1a6561e8b87646a9f",
     "semantic_hash": ""
   },
@@ -2175,8 +2175,8 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/orcamentos/actions-hub.ts": {
-    "mtime": 1783268898.8995314,
-    "ast_hash": "2116c5be95fb8a64202f39b35bee16f8",
+    "mtime": 1783270019.0640864,
+    "ast_hash": "8f365d309b0e00ac6c7271a48118aff6",
     "semantic_hash": ""
   },
   "components/orcamentos/form-orcamento-hub.tsx": {
@@ -2230,12 +2230,12 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/orcamentos/actions-receita.ts": {
-    "mtime": 1783269013.7642322,
+    "mtime": 1783269430.720762,
     "ast_hash": "b7ef335e5ee21eef6fa04e14458da16b",
     "semantic_hash": ""
   },
   "components/orcamentos/orcamento-tabs.tsx": {
-    "mtime": 1783269124.0404432,
+    "mtime": 1783269430.7249866,
     "ast_hash": "ef96f4bf2a4eb2f123372ad2cb023016",
     "semantic_hash": ""
   },
@@ -2820,33 +2820,38 @@
     "semantic_hash": ""
   },
   "arquitetura-oficial-stinpharma.html": {
-    "mtime": 1783262288.5902627,
+    "mtime": 1783269430.7215059,
     "ast_hash": "8d22536834ccc1bcde6210b816e4be8d",
     "semantic_hash": ""
   },
   "arquitetura-oficial-stinpharma.pdf": {
-    "mtime": 1783262292.4407425,
+    "mtime": 1783269430.7246106,
     "ast_hash": "74870efa78f40ffba7774d985d60a3aa",
     "semantic_hash": ""
   },
   "components/orcamentos/rastreamento-tab.tsx": {
-    "mtime": 1783269103.428378,
+    "mtime": 1783269430.7253456,
     "ast_hash": "4ddb2576118f8bcd3765335361ba2e6a",
     "semantic_hash": ""
   },
   "lib/orcamentos/eventos-tipos.ts": {
-    "mtime": 1783269062.4977489,
-    "ast_hash": "5b03c9863ab8a31e66f1170d4856b575",
+    "mtime": 1783269992.846784,
+    "ast_hash": "5447761e19ab90eeed77c5cedabed823",
     "semantic_hash": ""
   },
   "lib/orcamentos/eventos.ts": {
-    "mtime": 1783268838.4065263,
+    "mtime": 1783269430.7437584,
     "ast_hash": "d946f5b381703c73a73088fa240725e0",
     "semantic_hash": ""
   },
   "supabase/migrations/069_quote_events.sql": {
-    "mtime": 1783268793.943747,
+    "mtime": 1783269430.744272,
     "ast_hash": "51ebd80f6925fa2e172b348a7873a17c",
+    "semantic_hash": ""
+  },
+  "components/orcamentos/controle-status-orcamento.tsx": {
+    "mtime": 1783270039.4678173,
+    "ast_hash": "397e99b1c74d419c9737fc0c570f44f9",
     "semantic_hash": ""
   }
 }
