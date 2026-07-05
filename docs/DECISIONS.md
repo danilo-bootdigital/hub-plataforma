@@ -387,3 +387,30 @@ Segue o padrão visual do sistema; formulário amplo (~60–70% da largura) com 
 - **Impacto:** aditivo puro (novas tabelas/bucket/RPCs/telas + módulo RBAC `cadastro_clientes` + central de notificações). Não altera enum de perfis nem tabelas existentes; a conversão apenas **insere** em `contacts`. Migration `064_hub_client_onboarding.sql` aplicada via SQL Editor no HUB DEV (`pnkgwfgjhijksfmofiot`).
 - **Data:** 2026-07-03
 - **Status:** Aprovada / vigente — em implementação (Sprint Cadastro de Clientes, Expand). E-mail à Indústria em Fase 2.
+
+---
+
+## DEC-021 — Configurações do Hub: Identidade white-label + Assistente de IA comercial
+
+Preenche o grupo **Configurações** (menu do Proprietário) nas telas **Identidade** e **IA / Prompt** (Funções já está completa). Branding e configuração de IA são **operação do Hub** (só `proprietario_hub` edita; escopo por `hub_id`) — coerente com DEC-016/017 (Indústria governa a base; Hub opera). Aditivo puro (Expand).
+
+Decisões de produto: **(1)** branding é **white-label** (cores/logo/favicon tematizam a Aplicação Web para os usuários do Hub); **(2)** a config de IA alimenta um **assistente conversacional comercial** novo (consumidor natural: WhatsApp/Evolution já existente — começando por **sugestão ao atendente**); **(3)** **Testar Prompt** faz **chamada real** ao Claude (`ANTHROPIC_API_KEY`).
+
+### 1. Identidade (white-label)
+- Campos (aditivos em `hubs`): `nome_fantasia`, `favicon_url`, `cor_primaria`, `cor_secundaria`, `whatsapp` (dedicado; `telefone` segue para o PDF), `redes_sociais` (jsonb: facebook/linkedin/youtube/tiktok — Instagram permanece em `hubs.instagram`). `nome` passa a ser editável. Upload de logo/favicon no bucket público `public-assets`.
+- Theming (Config-2): `DashboardLayout` injeta CSS vars (`--brand-primary/secondary`) + favicon/title dinâmicos; componentes-chave migram de `emerald` fixo para as cores do Hub (só usuários do Hub; Indústria mantém o padrão).
+
+### 2. IA / Prompt (assistente comercial)
+- Nova tabela `hub_ia_config` (por Hub) com `prompt_mestre, objetivo, regras, tom_de_voz, restricoes, contexto_negocio, produtos_prioritarios, informacoes_proibidas, observacoes`. RLS `hub_id = get_hub_id()`; salvar via RPC `SECURITY DEFINER`. Editor com textareas grandes; **Salvar / Restaurar padrão / Testar Prompt** (chamada real). O editor de **extração de receita** (DEC-019) é outra finalidade e permanece.
+
+### 3. Faseamento (Sprints Expand)
+- **Config-1 — Identidade (dados):** campos + upload logo/favicon + salvar. *(implementada; migration `067`)*
+- **Config-2 — White-label (theming):** cores + CSS vars + favicon/title + componentes-chave.
+- **Config-3 — IA config:** `hub_ia_config` + editor (Salvar/Restaurar).
+- **Config-4 — Assistente + Testar Prompt:** montagem do system prompt + Testar (Claude real) + consumidor WhatsApp (sugestão ao atendente).
+
+- **Motivo:** dar ao Proprietário um centro de configurações profissional (marca própria + IA), com aparência de SaaS premium, preservando a fronteira Indústria×Hub.
+- **Impacto:** aditivo (colunas em `hubs` na migration `067`; nova `hub_ia_config` na Config-3; bucket `public-assets` reusado; theming incremental; novo consumidor de IA). Não altera enum de perfis nem remove nada.
+- **Decisões pendentes (fases futuras):** abrangência do white-label (destaques × total) na Config-2; modo do assistente (sugestão × automático) na Config-4.
+- **Data:** 2026-07-05
+- **Status:** Aprovada / vigente — **Config-1 implementada** (migration `067` a aplicar no HUB DEV); Config-2..4 planejadas.

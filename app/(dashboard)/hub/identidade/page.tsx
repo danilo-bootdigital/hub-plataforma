@@ -23,19 +23,25 @@ export default async function IdentidadeHubPage() {
 
   const { data: hub } = await supabase
     .from('hubs')
-    .select('nome, logo_url, telefone, email, site, instagram, cnpj, endereco')
+    .select('nome, nome_fantasia, logo_url, favicon_url, cor_primaria, cor_secundaria, whatsapp, telefone, email, site, instagram, redes_sociais, cnpj, endereco')
     .eq('id', perfil.hub_id)
     .single()
 
   return (
     <FormIdentidadeHub
-      hubNome={hub?.nome ?? '—'}
       inicial={{
+        nome: hub?.nome ?? '',
+        nome_fantasia: hub?.nome_fantasia ?? null,
         logo_url: hub?.logo_url ?? null,
+        favicon_url: hub?.favicon_url ?? null,
+        cor_primaria: hub?.cor_primaria ?? null,
+        cor_secundaria: hub?.cor_secundaria ?? null,
+        whatsapp: hub?.whatsapp ?? null,
         telefone: hub?.telefone ?? null,
         email: hub?.email ?? null,
         site: hub?.site ?? null,
         instagram: hub?.instagram ?? null,
+        redes_sociais: (hub?.redes_sociais as Record<string, string>) ?? {},
         cnpj: hub?.cnpj ?? null,
         endereco: hub?.endereco ?? null,
       }}

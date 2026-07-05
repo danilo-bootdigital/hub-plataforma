@@ -540,12 +540,12 @@
     "semantic_hash": ""
   },
   "components/layout/sidebar-mobile.tsx": {
-    "mtime": 1783225970.6718886,
+    "mtime": 1783227235.4978418,
     "ast_hash": "4ea886d3d25df7e7a8f9cb34be823daa",
     "semantic_hash": ""
   },
   "components/layout/sidebar.tsx": {
-    "mtime": 1783225954.3716633,
+    "mtime": 1783227235.4983213,
     "ast_hash": "6190d8ec8023645a671d8d36842ee306",
     "semantic_hash": ""
   },
@@ -2295,18 +2295,18 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/identidade/actions.ts": {
-    "mtime": 1782940539.9400702,
-    "ast_hash": "3f8f468f173442862c991c45eee13d0a",
+    "mtime": 1783227235.1947823,
+    "ast_hash": "1b18c20545c7275bad89a11d0ab1e372",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/identidade/page.tsx": {
-    "mtime": 1782940568.6226912,
-    "ast_hash": "d4dcf3a5576fbac75e6b09f993caa72b",
+    "mtime": 1783227235.1951432,
+    "ast_hash": "ef46845beea8785f76f77771ab171f44",
     "semantic_hash": ""
   },
   "components/hub/form-identidade-hub.tsx": {
-    "mtime": 1782940558.0063758,
-    "ast_hash": "ba2b0619bf4cdda3ace18f08175a5c9d",
+    "mtime": 1783227235.19679,
+    "ast_hash": "ea89ba270c1470df9a4df0ba4a5d0583",
     "semantic_hash": ""
   },
   "hubdev/bootstrap/expand_hub_identidade.sql": {
@@ -2549,11 +2549,6 @@
     "ast_hash": "c8b0b3fde68876adbf9b172a369f39c0",
     "semantic_hash": ""
   },
-  "apresentacao-stinpharma.html": {
-    "mtime": 1783004379.282542,
-    "ast_hash": "cf31571d17ed2e6aa89d2f0ee16f2a98",
-    "semantic_hash": ""
-  },
   ".tmp-conferencia/conferencia/mapear-orcamento.js": {
     "mtime": 1783123365.3135736,
     "ast_hash": "ff2af05a1c739320b55e8ae7cf420c3e",
@@ -2775,7 +2770,7 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/cadastro-clientes/actions.ts": {
-    "mtime": 1783226049.832209,
+    "mtime": 1783227235.4960208,
     "ast_hash": "47c73dca1c54401b789af7bc9a6d42b9",
     "semantic_hash": ""
   },
@@ -2810,7 +2805,7 @@
     "semantic_hash": ""
   },
   "components/cadastro-clientes/formulario-cadastro.tsx": {
-    "mtime": 1783225927.0346565,
+    "mtime": 1783227235.4970803,
     "ast_hash": "af4cafb28a5cc63107d832db09a51421",
     "semantic_hash": ""
   },
@@ -2830,7 +2825,7 @@
     "semantic_hash": ""
   },
   "components/layout/sino-notificacoes.tsx": {
-    "mtime": 1783225978.4308815,
+    "mtime": 1783227235.4988031,
     "ast_hash": "ebcdbc514a6ffabca1d99fbdb7a3922f",
     "semantic_hash": ""
   },
@@ -2849,19 +2844,29 @@
     "ast_hash": "43b4526372177ce92215c4631d6b7034",
     "semantic_hash": ""
   },
-  "components/layout/menu-shared.ts": {
-    "mtime": 1783225934.135926,
-    "ast_hash": "01a0d70ab659bf454de1c58f2bd7a655",
-    "semantic_hash": ""
-  },
   "supabase/migrations/065_hub_onboarding_security_fixes.sql": {
     "mtime": 1783225618.4962556,
     "ast_hash": "1b1f58ab17f9c23cdbe80cd407519410",
     "semantic_hash": ""
   },
+  "supabase/migrations/067_hub_identidade_branding.sql": {
+    "mtime": 1783227235.2133324,
+    "ast_hash": "140e26e8daf6a4bd6d798cf9a51a027a",
+    "semantic_hash": ""
+  },
+  "components/layout/menu-shared.ts": {
+    "mtime": 1783227235.4973626,
+    "ast_hash": "01a0d70ab659bf454de1c58f2bd7a655",
+    "semantic_hash": ""
+  },
   "supabase/migrations/066_hub_onboarding_cleanups.sql": {
-    "mtime": 1783226028.9001465,
+    "mtime": 1783227235.518791,
     "ast_hash": "60acf48399750ea0028c491c72b28613",
+    "semantic_hash": ""
+  },
+  "apresentacao-stinpharma.html": {
+    "mtime": 1783227235.4964378,
+    "ast_hash": "cf31571d17ed2e6aa89d2f0ee16f2a98",
     "semantic_hash": ""
   }
 }

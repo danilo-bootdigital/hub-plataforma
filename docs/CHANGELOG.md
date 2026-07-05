@@ -6,6 +6,15 @@
 
 ---
 
+## 2026-07-05 — Configurações do Hub: Identidade (Config-1 — DEC-021)
+
+- **Objetivo:** preencher a tela **Configurações → Identidade** com os campos da spec (base da DEC-021). White-label (theming) é a Config-2; aqui só os campos + upload + salvar.
+- **Banco (`supabase/migrations/067_hub_identidade_branding.sql`, aditivo/idempotente):** `hubs` += `nome_fantasia`, `favicon_url`, `cor_primaria`, `cor_secundaria`, `whatsapp`, `redes_sociais` (jsonb). **A APLICAR via SQL Editor no HUB DEV** antes do deploy.
+- **Aplicação Web:** `app/(dashboard)/hub/identidade/` — `page.tsx` (busca as novas colunas), `actions.ts` (`atualizarIdentidadeHub` estendida + nova action `uploadBrandingAsset` → bucket público `public-assets`), `components/hub/form-identidade-hub.tsx` reescrito em seções (Marca com nome editável + nome fantasia + upload de logo/favicon + seletores de cor; Contato; Redes sociais; Dados fiscais). Botão "Salvar alterações".
+- **Escopo/RBAC:** só `proprietario_hub`, escopo `hub_id` no servidor (inalterado). Audit log `ALTERACAO_IDENTIDADE_HUB`.
+- **Build:** `tsc --noEmit` 0 erros; `npm run build` OK (69/69).
+- **Pendente:** aplicar `067` no HUB DEV + verificação runtime (upload/salvar). Theming white-label = Config-2.
+
 ## 2026-07-05 — Cadastro de Clientes: correção de segurança (vazamento cross-Hub) + integridade (DEC-020)
 
 - **Objetivo:** corrigir 3 defeitos do módulo DEC-020 achados em code review — 1 crítico de segurança (vazamento de PII entre Hubs) e 2 de integridade de dados. Emenda a `064`.
