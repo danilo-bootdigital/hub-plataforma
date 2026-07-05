@@ -405,48 +405,8 @@ export async function converterEmPrePedido(quoteId: string) {
   revalidatePath(`/assistente/orcamentos/${quoteId}`)
 }
 
-// ---- Promoção de Pré-pedido para Pedido definitivo (Fatia 17) ----
-// Promoção IN-PLACE na mesma linha de `orders`: tipo PRE_PEDIDO -> PEDIDO.
-// NÃO cria novo order, NÃO duplica order_items, NÃO altera valores/vínculos/
-// status do Orçamento. Mantém o status operacional existente (ex.: 'pendente').
-// Idempotente: só promove quem está em PRE_PEDIDO; segunda tentativa é barrada.
-export async function gerarPedidoDefinitivo(orderId: string) {
-  const { supabase, perfil } = await getAssistente()
-
-  const { data: o } = await supabase
-    .from('orders')
-    .select('id, tipo, status, responsavel_id, organization_id')
-    .eq('id', orderId)
-    .single()
-  if (!o || o.organization_id !== perfil.organization_id) throw new Error('Pré-pedido não encontrado.')
-  if (o.responsavel_id !== perfil.id) throw new Error('Apenas o responsável pode gerar o Pedido.')
-  if (o.tipo !== 'PRE_PEDIDO') throw new Error('Apenas Pré-pedidos podem ser promovidos a Pedido.')
-
-  // Promoção in-place. Atualiza apenas `tipo` (preserva status operacional,
-  // valores, vínculos e itens). O filtro por tipo='PRE_PEDIDO' garante
-  // idempotência: uma segunda chamada concorrente não reescreve um já-PEDIDO.
-  const { data: atualizado, error } = await supabase
-    .from('orders')
-    .update({ tipo: 'PEDIDO', atualizado_em: new Date().toISOString() })
-    .eq('id', orderId)
-    .eq('tipo', 'PRE_PEDIDO')
-    .select('id')
-  if (error) throw new Error(`Erro ao gerar Pedido: ${error.message}`)
-  if (!atualizado || atualizado.length === 0) throw new Error('Este Pré-pedido já foi promovido a Pedido.')
-
-  await supabase.from('audit_logs').insert({
-    organization_id: perfil.organization_id,
-    usuario_id: perfil.id,
-    acao: 'GERACAO_PEDIDO_DEFINITIVO',
-    tabela_afetada: 'orders',
-    registro_id: orderId,
-    dados_anteriores: { tipo: 'PRE_PEDIDO', status: o.status },
-    dados_novos: { tipo: 'PEDIDO', status: o.status },
-  })
-
-  revalidatePath('/assistente/prepedidos')
-  revalidatePath('/pedidos')
-}
+// gerarPedidoDefinitivo foi MOVIDA para app/(dashboard)/assistente/prepedidos/actions.ts
+// (módulo neutro de Pré-pedidos), desacoplando Pré-pedidos deste arquivo legado. — DEC-017
 
 // ---- Resposta do Cliente (Fatia 15) ----
 // Registra manualmente (pelo Assistente responsável) a resposta comercial do

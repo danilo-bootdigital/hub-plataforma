@@ -4,7 +4,7 @@ import { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
-import { gerarPedidoDefinitivo } from '@/app/(dashboard)/assistente/orcamentos/actions'
+import { gerarPedidoDefinitivo } from '@/app/(dashboard)/assistente/prepedidos/actions'
 
 // Fatia 17: promove o Pré-pedido (orders@PRE_PEDIDO) para Pedido definitivo
 // (orders@PEDIDO) na mesma linha. Confirmação inline; promoção única.

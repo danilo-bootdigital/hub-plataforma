@@ -97,20 +97,29 @@ export function FormOrcamentoHub({
   hubNome,
   orcamentoId,
   inicial,
+  contatoInicial,
+  dealId,
 }: {
   clientes: ClienteOpc[]
   portfolios: PortfolioOpc[]
   hubNome: string
   orcamentoId?: string
   inicial?: InicialOrcamentoHub
+  // Criação vinda de Atendimentos/Pipeline: pré-seleciona o cliente e preserva o atendimento.
+  contatoInicial?: string | null
+  dealId?: string | null
 }) {
   const router = useRouter()
   const [saving, startSaving] = useTransition()
   const editando = !!orcamentoId
 
-  // Bloco 1 — Cliente
+  // Bloco 1 — Cliente. Na criação, pré-seleciona o cliente vindo de Atendimentos
+  // apenas se ele pertencer ao Hub (está na lista); senão, cai na busca normal.
   const [buscaCli, setBuscaCli] = useState('')
-  const [clienteId, setClienteId] = useState<string | null>(inicial?.contato_id ?? null)
+  const [clienteId, setClienteId] = useState<string | null>(
+    inicial?.contato_id ??
+    (contatoInicial && clientes.some((c) => c.id === contatoInicial) ? contatoInicial : null)
+  )
   const cliente = clientes.find((c) => c.id === clienteId) ?? null
   const clientesFiltrados = useMemo(() => {
     const q = normalizar(buscaCli.trim())
@@ -233,6 +242,7 @@ export function FormOrcamentoHub({
     return {
       contato_id: clienteId,
       portfolio_id: portfolioId,
+      deal_id: dealId ?? null, // preserva o atendimento de origem (ignorado na edição)
       // Envia SÓ id/quantidade/desconto — o backend recalcula o preço pelo vínculo.
       itens: itens.map((i) => ({
         product_id: i.product_id,

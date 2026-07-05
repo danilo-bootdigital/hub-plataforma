@@ -1,15 +1,16 @@
 'use client'
 
-import { useTransition } from 'react'
 import { useRouter } from 'next/navigation'
-import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { FileText } from 'lucide-react'
-import { criarOrcamento } from '@/app/(dashboard)/assistente/orcamentos/actions'
 
-// Tabela de Atendimentos do Assistente (Fatia 11) + ação "Criar Orçamento" (Fatia 12).
+// Tabela de Atendimentos do Assistente. "Criar Orçamento" leva ao fluxo OFICIAL do
+// Hub (/orcamentos/novo → criarOrcamentoHub), preservando cliente (contato) e
+// atendimento (deal). NÃO cria mais orçamento pelo fluxo legado (que nascia sem
+// hub_id/portfolio_id e ficava invisível em /hub/orcamentos).
 export type AtendimentoRow = {
   id: string
+  contato_id: string | null
   cliente_nome: string
   carteira_nome: string
   etapa: string
@@ -26,19 +27,14 @@ function formatarData(iso: string) {
 }
 
 export function TabelaAtendimentos({ atendimentos }: { atendimentos: AtendimentoRow[] }) {
-  const [isPending, startTransition] = useTransition()
   const router = useRouter()
 
-  function criar(atendimentoId: string) {
-    startTransition(async () => {
-      try {
-        await criarOrcamento(atendimentoId)
-        toast.success('Orçamento criado (rascunho).')
-        router.refresh()
-      } catch (e: unknown) {
-        toast.error(e instanceof Error ? e.message : 'Erro ao criar Orçamento.')
-      }
-    })
+  // Vai para o fluxo oficial do Hub, preservando cliente e atendimento na URL.
+  function novoOrcamento(a: AtendimentoRow) {
+    const params = new URLSearchParams()
+    if (a.contato_id) params.set('contato_id', a.contato_id)
+    params.set('deal_id', a.id)
+    router.push(`/orcamentos/novo?${params.toString()}`)
   }
 
   return (
@@ -70,7 +66,7 @@ export function TabelaAtendimentos({ atendimentos }: { atendimentos: Atendimento
               <td className="px-4 py-3 text-slate-500">{formatarData(a.criado_em)}</td>
               <td className="px-4 py-3 text-slate-600">{a.responsavel_nome}</td>
               <td className="px-4 py-3">
-                <Button size="sm" variant="outline" className="gap-1.5" disabled={isPending} onClick={() => criar(a.id)}>
+                <Button size="sm" variant="outline" className="gap-1.5" onClick={() => novoOrcamento(a)}>
                   <FileText className="h-4 w-4" />
                   Criar Orçamento
                 </Button>

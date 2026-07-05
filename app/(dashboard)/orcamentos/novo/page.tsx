@@ -4,7 +4,14 @@ import { redirect } from 'next/navigation'
 import { FormOrcamentoHub, type ClienteOpc, type PortfolioOpc } from '@/components/orcamentos/form-orcamento-hub'
 
 // Criação de orçamento é FLUXO DO HUB (DEC-017): só proprietario_hub/assistente.
-export default async function NovoOrcamentoPage() {
+// Aceita ?contato_id= e ?deal_id= (origem: Atendimentos/Pipeline) para pré-selecionar
+// o cliente e preservar o atendimento — o orçamento nasce sempre pelo criarOrcamentoHub.
+export default async function NovoOrcamentoPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ contato_id?: string; deal_id?: string }>
+}) {
+  const sp = await searchParams
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
@@ -57,7 +64,13 @@ export default async function NovoOrcamentoPage() {
         <h1 className="text-2xl font-bold text-slate-900">Novo Orçamento</h1>
         <p className="mt-1 text-sm text-slate-500">Hub: <span className="font-medium text-slate-700">{h?.nome ?? '—'}</span></p>
       </div>
-      <FormOrcamentoHub clientes={clientes} portfolios={portfolios} hubNome={h?.nome ?? ''} />
+      <FormOrcamentoHub
+        clientes={clientes}
+        portfolios={portfolios}
+        hubNome={h?.nome ?? ''}
+        contatoInicial={sp.contato_id ?? null}
+        dealId={sp.deal_id ?? null}
+      />
     </div>
   )
 }
