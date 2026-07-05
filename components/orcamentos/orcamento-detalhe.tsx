@@ -5,7 +5,11 @@ import { formatarMoeda } from '@/lib/utils'
 import { Package, FileText, MapPin, ChevronDown } from 'lucide-react'
 import type { Quote, QuoteItem } from '@/types/database'
 
-type ItemComProduto = QuoteItem & { produto?: { apresentacao: string | null } | null }
+type ItemComProduto = QuoteItem & {
+  produto?: { apresentacao: string | null } | null
+  portfolio_id?: string | null
+  portfolio_nome?: string | null
+}
 
 type OrcamentoDetalheProps = {
   orcamento: Quote & {
@@ -22,6 +26,16 @@ type OrcamentoDetalheProps = {
 export function OrcamentoDetalhe({ orcamento }: OrcamentoDetalheProps) {
   const itens = orcamento.itens ?? []
   const temApresentacao = itens.some((i) => i.produto?.apresentacao?.trim())
+  // Portfólio de origem por item (DEC-013/017): itens podem vir de portfólios
+  // diferentes. Mostra a coluna quando há essa informação e resume no cabeçalho.
+  const temPortfolio = itens.some((i) => i.portfolio_nome?.trim())
+  const portfoliosDistintos = [...new Set(itens.map((i) => i.portfolio_nome?.trim()).filter(Boolean))] as string[]
+  const resumoPortfolios =
+    portfoliosDistintos.length === 0
+      ? null
+      : portfoliosDistintos.length === 1
+        ? portfoliosDistintos[0]
+        : 'Múltiplos Portfólios'
   const enderecoEntrega = orcamento.endereco_entrega?.trim() || null
   const enderecoCliente = orcamento.lead?.endereco?.trim() || null
   const transportadora = orcamento.carrier?.nome?.trim() || null
@@ -38,7 +52,10 @@ export function OrcamentoDetalhe({ orcamento }: OrcamentoDetalheProps) {
             </div>
             <div>
               <CardTitle className="text-sm font-semibold text-slate-700">Itens do Orçamento</CardTitle>
-              <p className="text-xs text-slate-500">{itens.length} item(s)</p>
+              <p className="text-xs text-slate-500">
+                {itens.length} item(s)
+                {resumoPortfolios && <> · <span className="font-medium text-slate-600">{resumoPortfolios}</span></>}
+              </p>
             </div>
           </div>
         </CardHeader>
@@ -50,6 +67,9 @@ export function OrcamentoDetalhe({ orcamento }: OrcamentoDetalheProps) {
                   <tr className="border-b border-slate-100 bg-white">
                     <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 uppercase tracking-wide w-10">#</th>
                     <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 uppercase tracking-wide">Descrição</th>
+                    {temPortfolio && (
+                      <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 uppercase tracking-wide w-40">Portfólio</th>
+                    )}
                     {temApresentacao && (
                       <th className="px-3 py-2 text-left text-xs font-semibold text-slate-500 uppercase tracking-wide w-48">Apresentação</th>
                     )}
@@ -66,6 +86,15 @@ export function OrcamentoDetalhe({ orcamento }: OrcamentoDetalheProps) {
                       <td className="px-3 py-2.5">
                         <p className="font-medium text-slate-800 whitespace-pre-wrap break-words">{item.descricao}</p>
                       </td>
+                      {temPortfolio && (
+                        <td className="px-3 py-2.5">
+                          {item.portfolio_nome?.trim() ? (
+                            <span className="inline-block rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700">{item.portfolio_nome}</span>
+                          ) : (
+                            <span className="text-slate-300 text-xs">—</span>
+                          )}
+                        </td>
+                      )}
                       {temApresentacao && (
                         <td className="px-3 py-2.5 text-slate-600 whitespace-pre-wrap break-words">
                           {item.produto?.apresentacao?.trim() || <span className="text-slate-300">—</span>}

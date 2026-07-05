@@ -6,7 +6,6 @@ import { ChevronLeft } from 'lucide-react'
 import {
   FormOrcamentoHub,
   type ClienteOpc,
-  type PortfolioOpc,
   type InicialOrcamentoHub,
 } from '@/components/orcamentos/form-orcamento-hub'
 import type { QuoteStatus } from '@/types/database'
@@ -47,10 +46,11 @@ export default async function EditarOrcamentoHubPage({ params }: { params: Promi
     redirect(`/orcamentos/${id}`)
   }
 
-  // Itens atuais.
+  // Itens atuais. Cada item carrega seu portfólio (DEC-013/017); itens antigos sem
+  // portfolio_id caem no fallback quotes.portfolio_id ao montar `inicial`.
   const { data: itensRaw } = await admin
     .from('quote_items')
-    .select('product_id, descricao, quantidade, preco_unitario, desconto_item')
+    .select('product_id, portfolio_id, descricao, quantidade, preco_unitario, desconto_item, portfolio:portfolio_id(id, nome)')
     .eq('quote_id', id)
 
   // Clientes do Hub.
@@ -65,29 +65,39 @@ export default async function EditarOrcamentoHubPage({ params }: { params: Promi
     return { id: r.id, nome: r.nome, telefone: r.telefone, cpf_cnpj: r.cpf_cnpj, carteira_nome: r.carteira?.nome ?? null, responsavel_nome: r.responsavel?.nome ?? null }
   })
 
-  // Portfólios autorizados e ativos.
-  const { data: hpRaw } = await admin
-    .from('hub_portfolios')
-    .select('portfolio:portfolio_id!inner(id, nome, ativo)')
-    .eq('hub_id', hub).eq('status', 'ativo').eq('organization_id', org)
-  const portfolios: PortfolioOpc[] = (hpRaw ?? [])
-    .map((r) => (r as unknown as { portfolio: { id: string; nome: string; ativo: boolean } | null }).portfolio)
-    .filter((p): p is { id: string; nome: string; ativo: boolean } => !!p && p.ativo)
-    .map((p) => ({ id: p.id, nome: p.nome }))
+  // Nome do portfólio de cabeçalho (fallback para itens antigos sem portfolio_id).
+  const { data: pCab } = orc.portfolio_id
+    ? await admin.from('portfolios').select('nome').eq('id', orc.portfolio_id).maybeSingle()
+    : { data: null }
 
   const { data: h } = await admin.from('hubs').select('nome').eq('id', hub).single()
 
   const inicial: InicialOrcamentoHub = {
     contato_id: orc.contato_id ?? null,
-    portfolio_id: orc.portfolio_id ?? null,
-    itens: (itensRaw ?? []).map((i) => ({
-      product_id: i.product_id as string,
-      nome: (i.descricao as string) || 'Produto',
-      apresentacao: null,
-      preco_unitario: Number(i.preco_unitario ?? 0),
-      quantidade: Number(i.quantidade ?? 1),
-      desconto_item: Number(i.desconto_item ?? 0),
-    })),
+    itens: (itensRaw ?? []).map((i) => {
+      const it = i as unknown as {
+        product_id: string
+        portfolio_id: string | null
+        descricao: string | null
+        quantidade: number | null
+        preco_unitario: number | null
+        desconto_item: number | null
+        portfolio: { id: string; nome: string } | null
+      }
+      // Fallback: itens antigos sem portfolio_id herdam o portfólio de cabeçalho.
+      const portfolioId = it.portfolio_id ?? orc.portfolio_id ?? ''
+      const portfolioNome = it.portfolio?.nome ?? (it.portfolio_id ? null : pCab?.nome ?? null)
+      return {
+        product_id: it.product_id,
+        portfolio_id: portfolioId,
+        portfolio_nome: portfolioNome,
+        nome: it.descricao || 'Produto',
+        apresentacao: null,
+        preco_unitario: Number(it.preco_unitario ?? 0),
+        quantidade: Number(it.quantidade ?? 1),
+        desconto_item: Number(it.desconto_item ?? 0),
+      }
+    }),
     forma_pagamento: orc.forma_pagamento ?? '',
     prazo_entrega: orc.prazo_entrega ?? '',
     transportadora: orc.transportadora ?? '',
@@ -110,7 +120,6 @@ export default async function EditarOrcamentoHubPage({ params }: { params: Promi
       </div>
       <FormOrcamentoHub
         clientes={clientes}
-        portfolios={portfolios}
         hubNome={h?.nome ?? ''}
         orcamentoId={id}
         inicial={inicial}

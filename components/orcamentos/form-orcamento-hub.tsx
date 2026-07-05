@@ -8,11 +8,10 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { formatarMoeda } from '@/lib/utils'
 import { listarProdutosHub, type LinhaProdutoHub } from '@/app/(dashboard)/hub/produtos/actions'
 import { criarOrcamentoHub, editarOrcamentoHub, type DadosOrcamentoHub } from '@/app/(dashboard)/orcamentos/actions-hub'
-import { Search, Plus, Trash2, User, Check } from 'lucide-react'
+import { Search, Plus, Trash2, User, Check, Loader2 } from 'lucide-react'
 
 export type ClienteOpc = {
   id: string
@@ -22,14 +21,14 @@ export type ClienteOpc = {
   carteira_nome: string | null
   responsavel_nome: string | null
 }
-export type PortfolioOpc = { id: string; nome: string }
 
-// Valores iniciais para o modo edição.
+// Valores iniciais para o modo edição. Cada item carrega seu portfólio (DEC-013/017).
 export type InicialOrcamentoHub = {
   contato_id: string | null
-  portfolio_id: string | null
   itens: {
     product_id: string
+    portfolio_id: string
+    portfolio_nome: string | null
     nome: string
     apresentacao: string | null
     preco_unitario: number
@@ -48,9 +47,11 @@ export type InicialOrcamentoHub = {
 
 type ItemState = {
   product_id: string
+  portfolio_id: string
+  portfolio_nome: string | null
   nome: string
   apresentacao: string | null
-  preco_unitario: number // do vínculo (product_portfolios) — apenas exibição
+  preco_unitario: number // do vínculo (product_portfolios) — apenas exibição; backend recalcula
   quantidade: number
   desconto_item: number
 }
@@ -59,7 +60,7 @@ function normalizar(s: string) {
   return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
 }
 
-// Ficha read-only com TODOS os campos que compõem o produto (do vínculo/portfólio).
+// Ficha read-only com os campos que compõem o produto (do vínculo/portfólio).
 function FichaProduto({ p }: { p: LinhaProdutoHub }) {
   const campos: [string, string | null][] = [
     ['Categoria', p.categoria],
@@ -91,9 +92,18 @@ function FichaProduto({ p }: { p: LinhaProdutoHub }) {
   )
 }
 
+// Casa o texto da busca com vários campos do produto (nome, apresentação, princípio
+// ativo/composição, categoria, subcategoria, portfólio, via, volume, unidade).
+function casa(p: LinhaProdutoHub, q: string) {
+  const alvo = [
+    p.nome, p.apresentacao, p.composicao, p.categoria, p.subcategoria,
+    p.portfolio, p.via_administracao, p.via_apresentacao, p.volume, p.unidade,
+  ].filter(Boolean).join(' ')
+  return normalizar(alvo).includes(q)
+}
+
 export function FormOrcamentoHub({
   clientes,
-  portfolios,
   hubNome,
   orcamentoId,
   inicial,
@@ -101,11 +111,9 @@ export function FormOrcamentoHub({
   dealId,
 }: {
   clientes: ClienteOpc[]
-  portfolios: PortfolioOpc[]
   hubNome: string
   orcamentoId?: string
   inicial?: InicialOrcamentoHub
-  // Criação vinda de Atendimentos/Pipeline: pré-seleciona o cliente e preserva o atendimento.
   contatoInicial?: string | null
   dealId?: string | null
 }) {
@@ -113,8 +121,7 @@ export function FormOrcamentoHub({
   const [saving, startSaving] = useTransition()
   const editando = !!orcamentoId
 
-  // Bloco 1 — Cliente. Na criação, pré-seleciona o cliente vindo de Atendimentos
-  // apenas se ele pertencer ao Hub (está na lista); senão, cai na busca normal.
+  // Bloco 1 — Cliente
   const [buscaCli, setBuscaCli] = useState('')
   const [clienteId, setClienteId] = useState<string | null>(
     inicial?.contato_id ??
@@ -125,24 +132,31 @@ export function FormOrcamentoHub({
     const q = normalizar(buscaCli.trim())
     if (!q) return clientes.slice(0, 30)
     return clientes
-      .filter((c) =>
-        normalizar(
-          [c.nome, c.telefone, c.cpf_cnpj, c.carteira_nome].filter(Boolean).join(' ')
-        ).includes(q)
-      )
+      .filter((c) => normalizar([c.nome, c.telefone, c.cpf_cnpj, c.carteira_nome].filter(Boolean).join(' ')).includes(q))
       .slice(0, 30)
   }, [buscaCli, clientes])
 
-  // Bloco 2 — Portfólio
-  const [portfolioId, setPortfolioId] = useState<string | null>(inicial?.portfolio_id ?? null)
-  const portfolio = portfolios.find((p) => p.id === portfolioId) ?? null
-  const [produtosPf, setProdutosPf] = useState<LinhaProdutoHub[]>([])
-  const [carregandoPf, setCarregandoPf] = useState(false)
+  // Catálogo autorizado do Hub (todos os portfólios) — carregado uma vez; busca client-side.
+  const [catalogo, setCatalogo] = useState<LinhaProdutoHub[]>([])
+  const [carregandoCat, setCarregandoCat] = useState(true)
+  const [buscaProd, setBuscaProd] = useState('')
 
-  // Bloco 3 — Itens
+  useEffect(() => {
+    // Carga única do catálogo autorizado (montagem). `carregandoCat` já inicia true.
+    let vivo = true
+    listarProdutosHub({ status: 'ativo', limit: 1000, orderBy: 'nome', orderDir: 'asc' })
+      .then((r) => { if (vivo) setCatalogo(r.rows) })
+      .catch(() => { if (vivo) setCatalogo([]) })
+      .finally(() => { if (vivo) setCarregandoCat(false) })
+    return () => { vivo = false }
+  }, [])
+
+  // Bloco 2 — Itens
   const [itens, setItens] = useState<ItemState[]>(
     inicial?.itens.map((i) => ({
       product_id: i.product_id,
+      portfolio_id: i.portfolio_id,
+      portfolio_nome: i.portfolio_nome,
       nome: i.nome,
       apresentacao: i.apresentacao,
       preco_unitario: i.preco_unitario,
@@ -150,7 +164,14 @@ export function FormOrcamentoHub({
       desconto_item: i.desconto_item,
     })) ?? []
   )
-  const [addProdId, setAddProdId] = useState<string | null>(null)
+
+  const resultados = useMemo(() => {
+    const q = normalizar(buscaProd.trim())
+    const jaAdicionado = new Set(itens.map((i) => i.product_id))
+    const base = catalogo.filter((p) => !jaAdicionado.has(p.product_id))
+    if (!q) return base.slice(0, 25)
+    return base.filter((p) => casa(p, q)).slice(0, 25)
+  }, [buscaProd, catalogo, itens])
 
   // Bloco 4 — Dados comerciais
   const [formaPagamento, setFormaPagamento] = useState(inicial?.forma_pagamento ?? '')
@@ -162,44 +183,17 @@ export function FormOrcamentoHub({
   const [observacoesCliente, setObservacoesCliente] = useState(inicial?.observacoes_cliente ?? '')
   const [descontoGeral, setDescontoGeral] = useState(inicial?.desconto_geral ?? '')
 
-  async function carregarProdutos(portfolioIdArg: string) {
-    setCarregandoPf(true)
-    try {
-      const { rows } = await listarProdutosHub({ portfolioId: portfolioIdArg, status: 'ativo', limit: 1000 })
-      setProdutosPf(rows)
-    } catch (e) {
-      toast.error(e instanceof Error ? e.message : 'Erro ao carregar produtos do portfólio.')
-    } finally {
-      setCarregandoPf(false)
-    }
-  }
-
-  // Modo edição: carrega os produtos do portfólio já selecionado (sem limpar itens).
-  useEffect(() => {
-    if (inicial?.portfolio_id) carregarProdutos(inicial.portfolio_id)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  async function onPortfolioChange(v: string | null) {
-    setPortfolioId(v)
-    setItens([])
-    setAddProdId(null)
-    setProdutosPf([])
-    if (v) await carregarProdutos(v)
-  }
-
-  function adicionarItem() {
-    if (!addProdId) return
-    if (itens.some((i) => i.product_id === addProdId)) {
+  function adicionarItem(p: LinhaProdutoHub) {
+    if (itens.some((i) => i.product_id === p.product_id)) {
       toast.info('Produto já adicionado. Ajuste a quantidade na lista.')
       return
     }
-    const p = produtosPf.find((r) => r.product_id === addProdId)
-    if (!p) return
     setItens((prev) => [
       ...prev,
       {
         product_id: p.product_id,
+        portfolio_id: p.portfolio_id,
+        portfolio_nome: p.portfolio,
         nome: p.nome,
         apresentacao: p.apresentacao,
         preco_unitario: Number(p.preco ?? 0),
@@ -207,9 +201,7 @@ export function FormOrcamentoHub({
         desconto_item: 0,
       },
     ])
-    setAddProdId(null)
   }
-
   function atualizarItem(id: string, patch: Partial<ItemState>) {
     setItens((prev) => prev.map((i) => (i.product_id === id ? { ...i, ...patch } : i)))
   }
@@ -220,32 +212,21 @@ export function FormOrcamentoHub({
   // Bloco 5 — Resumo (cálculo espelha o backend; backend é a fonte de verdade)
   const descGeralNum = Math.min(100, Math.max(0, Number(descontoGeral.replace(',', '.')) || 0))
   const freteNum = Math.max(0, Number(frete.replace(',', '.')) || 0)
-  const subtotalItens = itens.reduce(
-    (s, i) => s + i.quantidade * i.preco_unitario * (1 - i.desconto_item / 100),
-    0
-  )
+  const subtotalItens = itens.reduce((s, i) => s + i.quantidade * i.preco_unitario * (1 - i.desconto_item / 100), 0)
   const valorFinal = Math.max(0, subtotalItens * (1 - descGeralNum / 100) + freteNum)
+  const portfoliosDistintos = [...new Set(itens.map((i) => i.portfolio_nome).filter(Boolean))]
+  const resumoPortfolios = portfoliosDistintos.length === 0 ? '—' : portfoliosDistintos.length === 1 ? portfoliosDistintos[0]! : 'Múltiplos Portfólios'
 
   function montarDados(finalizar: boolean): DadosOrcamentoHub | null {
-    if (!clienteId) {
-      toast.error('Selecione o Cliente.')
-      return null
-    }
-    if (!portfolioId) {
-      toast.error('Selecione o Portfólio.')
-      return null
-    }
-    if (itens.length === 0) {
-      toast.error('Adicione ao menos um produto.')
-      return null
-    }
+    if (!clienteId) { toast.error('Selecione o Cliente.'); return null }
+    if (itens.length === 0) { toast.error('Adicione ao menos um produto.'); return null }
     return {
       contato_id: clienteId,
-      portfolio_id: portfolioId,
-      deal_id: dealId ?? null, // preserva o atendimento de origem (ignorado na edição)
-      // Envia SÓ id/quantidade/desconto — o backend recalcula o preço pelo vínculo.
+      deal_id: dealId ?? null,
+      // Envia id/portfólio/quantidade/desconto — o backend recalcula o preço pelo vínculo.
       itens: itens.map((i) => ({
         product_id: i.product_id,
+        portfolio_id: i.portfolio_id,
         quantidade: i.quantidade,
         desconto_item: i.desconto_item,
       })),
@@ -266,18 +247,8 @@ export function FormOrcamentoHub({
     if (!dados) return
     startSaving(async () => {
       try {
-        const id = editando
-          ? await editarOrcamentoHub(orcamentoId!, dados)
-          : await criarOrcamentoHub(dados)
-        toast.success(
-          editando
-            ? finalizar
-              ? 'Orçamento atualizado e enviado para aprovação.'
-              : 'Alterações salvas.'
-            : finalizar
-              ? 'Orçamento gerado.'
-              : 'Rascunho salvo.'
-        )
+        const id = editando ? await editarOrcamentoHub(orcamentoId!, dados) : await criarOrcamentoHub(dados)
+        toast.success(editando ? (finalizar ? 'Orçamento atualizado e enviado.' : 'Alterações salvas.') : (finalizar ? 'Orçamento gerado.' : 'Rascunho salvo.'))
         router.push(`/orcamentos/${id}`)
       } catch (e) {
         toast.error(e instanceof Error ? e.message : 'Erro ao salvar o orçamento.')
@@ -285,331 +256,180 @@ export function FormOrcamentoHub({
     })
   }
 
-  const produtosDisponiveis = produtosPf.filter(
-    (p) => !itens.some((i) => i.product_id === p.product_id)
-  )
-
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-1 items-start gap-4 lg:grid-cols-12">
-      {/* Bloco 1 — Cliente */}
-      <Card className="lg:col-span-8">
-        <CardHeader>
-          <CardTitle>1. Cliente</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          {cliente ? (
-            <div className="flex items-start justify-between rounded-lg border border-slate-200 bg-slate-50 p-3">
-              <div className="flex items-start gap-3">
-                <div className="mt-0.5 rounded-full bg-slate-200 p-2 text-slate-600">
-                  <User className="size-4" />
+        {/* Bloco 1 — Cliente */}
+        <Card className="lg:col-span-4">
+          <CardHeader><CardTitle>1. Cliente</CardTitle></CardHeader>
+          <CardContent className="space-y-3">
+            {cliente ? (
+              <div className="flex items-start justify-between rounded-lg border border-slate-200 bg-slate-50 p-3">
+                <div className="flex items-start gap-3">
+                  <div className="mt-0.5 rounded-full bg-slate-200 p-2 text-slate-600"><User className="size-4" /></div>
+                  <div className="text-sm">
+                    <p className="font-semibold text-slate-900">{cliente.nome}</p>
+                    <p className="text-slate-500">{cliente.telefone ?? 'sem telefone'}</p>
+                    <p className="text-slate-500">Carteira: <span className="text-slate-700">{cliente.carteira_nome ?? '—'}</span></p>
+                  </div>
                 </div>
-                <div className="text-sm">
-                  <p className="font-semibold text-slate-900">{cliente.nome}</p>
-                  <p className="text-slate-500">{cliente.telefone ?? 'sem telefone'}</p>
-                  <p className="text-slate-500">
-                    Carteira: <span className="text-slate-700">{cliente.carteira_nome ?? '—'}</span>
-                    {' · '}Responsável:{' '}
-                    <span className="text-slate-700">{cliente.responsavel_nome ?? '—'}</span>
-                  </p>
+                <Button type="button" variant="ghost" size="sm" onClick={() => { setClienteId(null); setBuscaCli('') }}>Trocar</Button>
+              </div>
+            ) : (
+              <>
+                <Label htmlFor="busca-cli">Buscar cliente (nome, telefone, CPF/CNPJ ou carteira)</Label>
+                <div className="relative">
+                  <Search className="pointer-events-none absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
+                  <Input id="busca-cli" className="pl-8" placeholder="Digite para buscar…" value={buscaCli} onChange={(e) => setBuscaCli(e.target.value)} autoComplete="off" />
                 </div>
-              </div>
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setClienteId(null)
-                  setBuscaCli('')
-                }}
-              >
-                Trocar
-              </Button>
-            </div>
-          ) : (
-            <>
-              <Label htmlFor="busca-cli">Buscar cliente (nome, telefone, CPF/CNPJ ou carteira)</Label>
-              <div className="relative">
-                <Search className="pointer-events-none absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
-                <Input
-                  id="busca-cli"
-                  className="pl-8"
-                  placeholder="Digite para buscar…"
-                  value={buscaCli}
-                  onChange={(e) => setBuscaCli(e.target.value)}
-                  autoComplete="off"
-                />
-              </div>
-              <div className="max-h-64 divide-y divide-slate-100 overflow-y-auto rounded-lg border border-slate-200">
-                {clientesFiltrados.length === 0 ? (
-                  <p className="p-3 text-sm text-slate-500">Nenhum cliente encontrado no seu Hub.</p>
-                ) : (
-                  clientesFiltrados.map((c) => (
-                    <button
-                      key={c.id}
-                      type="button"
-                      onClick={() => setClienteId(c.id)}
-                      className="flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-slate-50"
-                    >
-                      <span>
-                        <span className="font-medium text-slate-900">{c.nome}</span>
-                        <span className="ml-2 text-slate-500">{c.telefone ?? ''}</span>
-                      </span>
+                <div className="max-h-64 divide-y divide-slate-100 overflow-y-auto rounded-lg border border-slate-200">
+                  {clientesFiltrados.length === 0 ? (
+                    <p className="p-3 text-sm text-slate-500">Nenhum cliente encontrado no seu Hub.</p>
+                  ) : clientesFiltrados.map((c) => (
+                    <button key={c.id} type="button" onClick={() => setClienteId(c.id)} className="flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-slate-50">
+                      <span><span className="font-medium text-slate-900">{c.nome}</span><span className="ml-2 text-slate-500">{c.telefone ?? ''}</span></span>
                       <span className="text-xs text-slate-400">{c.carteira_nome ?? ''}</span>
                     </button>
-                  ))
-                )}
-              </div>
-            </>
-          )}
-        </CardContent>
-      </Card>
-
-      {/* Bloco 2 — Portfólio */}
-      <Card className="lg:col-span-4">
-        <CardHeader>
-          <CardTitle>2. Portfólio</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-2">
-          <Label>Portfólio autorizado ao Hub (1 orçamento = 1 portfólio)</Label>
-          <Select value={portfolioId ?? ''} onValueChange={onPortfolioChange}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Selecione o portfólio…" />
-            </SelectTrigger>
-            <SelectContent>
-              {portfolios.map((p) => (
-                <SelectItem key={p.id} value={p.id}>
-                  {p.nome}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          {portfolios.length === 0 && (
-            <p className="text-sm text-slate-500">Nenhum portfólio autorizado ao seu Hub.</p>
-          )}
-          {editando && (
-            <p className="text-xs text-slate-400">
-              Trocar o portfólio limpa os produtos já adicionados.
-            </p>
-          )}
-        </CardContent>
-      </Card>
-
-      {/* Bloco 3 — Produtos */}
-      <Card className="lg:col-span-8">
-        <CardHeader>
-          <CardTitle>3. Produtos</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {!portfolioId ? (
-            <p className="text-sm text-slate-500">Selecione um portfólio para listar os produtos.</p>
-          ) : carregandoPf ? (
-            <p className="text-sm text-slate-500">Carregando produtos…</p>
-          ) : (
-            <>
-              <div className="flex items-end gap-2">
-                <div className="flex-1">
-                  <Label>Adicionar produto do portfólio</Label>
-                  <Select value={addProdId ?? ''} onValueChange={(v: string | null) => setAddProdId(v)}>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Selecione um produto…" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {produtosDisponiveis.map((p) => (
-                        <SelectItem key={p.product_id} value={p.product_id}>
-                          {p.nome}
-                          {p.apresentacao ? ` — ${p.apresentacao}` : ''} · {formatarMoeda(p.preco)}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  ))}
                 </div>
-                <Button type="button" variant="outline" onClick={adicionarItem} disabled={!addProdId}>
-                  <Plus className="size-4" /> Adicionar
-                </Button>
-              </div>
+              </>
+            )}
+          </CardContent>
+        </Card>
 
-              {itens.length === 0 ? (
-                <p className="text-sm text-slate-500">Nenhum produto adicionado.</p>
-              ) : (
-                <div className="space-y-3">
-                  {itens.map((i) => {
-                    const p = produtosPf.find((r) => r.product_id === i.product_id)
-                    const sub = i.quantidade * i.preco_unitario * (1 - i.desconto_item / 100)
-                    return (
-                      <div key={i.product_id} className="space-y-3 rounded-lg border border-slate-200 p-3">
-                        <div className="flex items-start justify-between gap-2">
-                          <div>
-                            <p className="font-medium text-slate-900">{p?.nome ?? i.nome}</p>
-                            {(p?.apresentacao ?? i.apresentacao) && (
-                              <p className="text-xs text-slate-500">{p?.apresentacao ?? i.apresentacao}</p>
+        {/* Bloco 2 — Produtos (busca inteligente em toda a base autorizada do Hub) */}
+        <Card className="lg:col-span-8">
+          <CardHeader>
+            <CardTitle>2. Produtos</CardTitle>
+            <p className="text-sm text-slate-500">Busque em todos os produtos autorizados ao seu Hub — o portfólio de cada item é preenchido automaticamente.</p>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {/* Busca */}
+            <div className="relative">
+              <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
+              <Input
+                className="pl-9"
+                placeholder="Buscar por nome, apresentação, princípio ativo, categoria, portfólio, via, volume…"
+                value={buscaProd}
+                onChange={(e) => setBuscaProd(e.target.value)}
+                autoComplete="off"
+              />
+            </div>
+
+            {/* Resultados (autocomplete em tempo real) */}
+            {carregandoCat ? (
+              <p className="flex items-center gap-2 text-sm text-slate-500"><Loader2 className="size-4 animate-spin" /> Carregando catálogo do Hub…</p>
+            ) : (
+              <div className="max-h-72 divide-y divide-slate-100 overflow-y-auto rounded-lg border border-slate-200">
+                {resultados.length === 0 ? (
+                  <p className="p-3 text-sm text-slate-500">{buscaProd.trim() ? 'Nenhum produto encontrado.' : 'Nenhum produto disponível.'}</p>
+                ) : resultados.map((p) => (
+                  <div key={`${p.product_id}::${p.portfolio_id}`} className="flex items-center gap-3 px-3 py-2 text-sm hover:bg-slate-50">
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate font-medium text-slate-900">{p.nome}</p>
+                      <p className="truncate text-xs text-slate-500">
+                        {[p.apresentacao, p.portfolio, p.via_administracao, p.volume, p.unidade].filter(Boolean).join(' · ')}
+                      </p>
+                    </div>
+                    <span className="shrink-0 tabular-nums text-slate-700">{p.preco != null ? formatarMoeda(p.preco) : '—'}</span>
+                    <Button type="button" variant="outline" size="sm" className="shrink-0 gap-1" onClick={() => adicionarItem(p)}>
+                      <Plus className="size-4" /> Adicionar
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Itens adicionados */}
+            {itens.length === 0 ? (
+              <p className="text-sm text-slate-500">Nenhum produto adicionado ao orçamento.</p>
+            ) : (
+              <div className="space-y-3">
+                {itens.map((i) => {
+                  const p = catalogo.find((r) => r.product_id === i.product_id)
+                  const sub = i.quantidade * i.preco_unitario * (1 - i.desconto_item / 100)
+                  return (
+                    <div key={i.product_id} className="space-y-3 rounded-lg border border-slate-200 p-3">
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="min-w-0">
+                          <p className="font-medium text-slate-900">{p?.nome ?? i.nome}</p>
+                          <div className="mt-0.5 flex flex-wrap items-center gap-1.5 text-xs text-slate-500">
+                            {(p?.apresentacao ?? i.apresentacao) && <span>{p?.apresentacao ?? i.apresentacao}</span>}
+                            {i.portfolio_nome && (
+                              <span className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600">{i.portfolio_nome}</span>
                             )}
                           </div>
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => removerItem(i.product_id)}
-                          >
-                            <Trash2 className="size-4 text-slate-400" />
-                          </Button>
                         </div>
-
-                        {p && <FichaProduto p={p} />}
-
-                        <div className="grid grid-cols-2 gap-3 border-t border-slate-100 pt-3 sm:grid-cols-4">
-                          <div className="space-y-1">
-                            <Label className="text-xs">Quantidade</Label>
-                            <Input
-                              type="number"
-                              min={1}
-                              step={1}
-                              value={i.quantidade}
-                              onChange={(e) =>
-                                atualizarItem(i.product_id, {
-                                  quantidade: Math.max(1, Math.floor(Number(e.target.value) || 1)),
-                                })
-                              }
-                              className="h-8"
-                            />
-                          </div>
-                          <div className="space-y-1">
-                            <Label className="text-xs">Unitário</Label>
-                            <p className="flex h-8 items-center text-sm text-slate-600">
-                              {formatarMoeda(i.preco_unitario)}
-                            </p>
-                          </div>
-                          <div className="space-y-1">
-                            <Label className="text-xs">Desconto %</Label>
-                            <Input
-                              type="number"
-                              min={0}
-                              max={100}
-                              step={1}
-                              value={i.desconto_item}
-                              onChange={(e) =>
-                                atualizarItem(i.product_id, {
-                                  desconto_item: Math.min(100, Math.max(0, Number(e.target.value) || 0)),
-                                })
-                              }
-                              className="h-8"
-                            />
-                          </div>
-                          <div className="space-y-1">
-                            <Label className="text-xs">Subtotal</Label>
-                            <p className="flex h-8 items-center text-sm font-medium text-slate-900">
-                              {formatarMoeda(sub)}
-                            </p>
-                          </div>
+                        <Button type="button" variant="ghost" size="sm" onClick={() => removerItem(i.product_id)}><Trash2 className="size-4 text-slate-400" /></Button>
+                      </div>
+                      {p && <FichaProduto p={p} />}
+                      <div className="grid grid-cols-2 gap-3 border-t border-slate-100 pt-3 sm:grid-cols-4">
+                        <div className="space-y-1">
+                          <Label className="text-xs">Quantidade</Label>
+                          <Input type="number" min={1} step={1} value={i.quantidade} onChange={(e) => atualizarItem(i.product_id, { quantidade: Math.max(1, Math.floor(Number(e.target.value) || 1)) })} className="h-8" />
+                        </div>
+                        <div className="space-y-1">
+                          <Label className="text-xs">Unitário</Label>
+                          <p className="flex h-8 items-center text-sm text-slate-600">{formatarMoeda(i.preco_unitario)}</p>
+                        </div>
+                        <div className="space-y-1">
+                          <Label className="text-xs">Desconto %</Label>
+                          <Input type="number" min={0} max={100} step={1} value={i.desconto_item} onChange={(e) => atualizarItem(i.product_id, { desconto_item: Math.min(100, Math.max(0, Number(e.target.value) || 0)) })} className="h-8" />
+                        </div>
+                        <div className="space-y-1">
+                          <Label className="text-xs">Subtotal</Label>
+                          <p className="flex h-8 items-center text-sm font-medium text-slate-900">{formatarMoeda(sub)}</p>
                         </div>
                       </div>
-                    )
-                  })}
-                </div>
-              )}
-            </>
-          )}
-        </CardContent>
-      </Card>
-
-      {/* Bloco 4 — Dados comerciais */}
-      <Card className="lg:col-span-4">
-        <CardHeader>
-          <CardTitle>4. Dados comerciais</CardTitle>
-        </CardHeader>
-        <CardContent className="grid gap-3 sm:grid-cols-2">
-          <div className="space-y-1.5">
-            <Label htmlFor="forma">Forma de pagamento</Label>
-            <Input id="forma" value={formaPagamento} onChange={(e) => setFormaPagamento(e.target.value)} />
-          </div>
-          <div className="space-y-1.5">
-            <Label htmlFor="prazo">Prazo de entrega</Label>
-            <Input id="prazo" value={prazoEntrega} onChange={(e) => setPrazoEntrega(e.target.value)} />
-          </div>
-          <div className="space-y-1.5">
-            <Label htmlFor="transp">Transportadora</Label>
-            <Input id="transp" value={transportadora} onChange={(e) => setTransportadora(e.target.value)} />
-          </div>
-          <div className="space-y-1.5">
-            <Label htmlFor="frete">Frete (R$)</Label>
-            <Input id="frete" inputMode="decimal" value={frete} onChange={(e) => setFrete(e.target.value)} placeholder="0,00" />
-          </div>
-          <div className="space-y-1.5">
-            <Label htmlFor="desc-geral">Desconto geral (%)</Label>
-            <Input id="desc-geral" inputMode="decimal" value={descontoGeral} onChange={(e) => setDescontoGeral(e.target.value)} placeholder="0" />
-          </div>
-          <div className="space-y-1.5 sm:col-span-2">
-            <Label htmlFor="endereco">Endereço de entrega</Label>
-            <Input id="endereco" value={enderecoEntrega} onChange={(e) => setEnderecoEntrega(e.target.value)} />
-          </div>
-          <div className="space-y-1.5 sm:col-span-2">
-            <Label htmlFor="obs-cli">Observações para o cliente</Label>
-            <Textarea id="obs-cli" rows={2} value={observacoesCliente} onChange={(e) => setObservacoesCliente(e.target.value)} />
-          </div>
-          <div className="space-y-1.5 sm:col-span-2">
-            <Label htmlFor="obs">Observações internas</Label>
-            <Textarea id="obs" rows={2} value={observacoes} onChange={(e) => setObservacoes(e.target.value)} />
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Bloco 5 — Resumo */}
-      <Card className="lg:col-span-12">
-        <CardHeader>
-          <CardTitle>5. Resumo</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          <div className="grid gap-2 text-sm sm:grid-cols-4">
-            <p className="text-slate-500">Cliente: <span className="text-slate-800">{cliente?.nome ?? '—'}</span></p>
-            <p className="text-slate-500">Portfólio: <span className="text-slate-800">{portfolio?.nome ?? '—'}</span></p>
-            <p className="text-slate-500">Hub: <span className="text-slate-800">{hubNome || '—'}</span></p>
-            <p className="text-slate-500">Itens: <span className="text-slate-800">{itens.length}</span></p>
-          </div>
-          <div className="space-y-1 border-t border-slate-100 pt-3 text-sm">
-            <div className="flex justify-between">
-              <span className="text-slate-500">Subtotal dos itens</span>
-              <span className="text-slate-800">{formatarMoeda(subtotalItens)}</span>
-            </div>
-            {descGeralNum > 0 && (
-              <div className="flex justify-between">
-                <span className="text-slate-500">Desconto geral ({descGeralNum}%)</span>
-                <span className="text-slate-800">− {formatarMoeda(subtotalItens * (descGeralNum / 100))}</span>
+                    </div>
+                  )
+                })}
               </div>
             )}
-            {freteNum > 0 && (
-              <div className="flex justify-between">
-                <span className="text-slate-500">Frete</span>
-                <span className="text-slate-800">{formatarMoeda(freteNum)}</span>
-              </div>
-            )}
-            <div className="flex justify-between border-t border-slate-100 pt-2 text-base font-semibold">
-              <span className="text-slate-900">Valor final</span>
-              <span className="text-slate-900">{formatarMoeda(valorFinal)}</span>
+          </CardContent>
+        </Card>
+
+        {/* Bloco 3 — Dados comerciais */}
+        <Card className="lg:col-span-12">
+          <CardHeader><CardTitle>3. Dados comerciais</CardTitle></CardHeader>
+          <CardContent className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="space-y-1.5"><Label htmlFor="forma">Forma de pagamento</Label><Input id="forma" value={formaPagamento} onChange={(e) => setFormaPagamento(e.target.value)} /></div>
+            <div className="space-y-1.5"><Label htmlFor="prazo">Prazo de entrega</Label><Input id="prazo" value={prazoEntrega} onChange={(e) => setPrazoEntrega(e.target.value)} /></div>
+            <div className="space-y-1.5"><Label htmlFor="transp">Transportadora</Label><Input id="transp" value={transportadora} onChange={(e) => setTransportadora(e.target.value)} /></div>
+            <div className="space-y-1.5"><Label htmlFor="frete">Frete (R$)</Label><Input id="frete" inputMode="decimal" value={frete} onChange={(e) => setFrete(e.target.value)} placeholder="0,00" /></div>
+            <div className="space-y-1.5"><Label htmlFor="desc-geral">Desconto geral (%)</Label><Input id="desc-geral" inputMode="decimal" value={descontoGeral} onChange={(e) => setDescontoGeral(e.target.value)} placeholder="0" /></div>
+            <div className="space-y-1.5 sm:col-span-2 lg:col-span-3"><Label htmlFor="endereco">Endereço de entrega</Label><Input id="endereco" value={enderecoEntrega} onChange={(e) => setEnderecoEntrega(e.target.value)} /></div>
+            <div className="space-y-1.5 sm:col-span-2"><Label htmlFor="obs-cli">Observações para o cliente</Label><Textarea id="obs-cli" rows={2} value={observacoesCliente} onChange={(e) => setObservacoesCliente(e.target.value)} /></div>
+            <div className="space-y-1.5 sm:col-span-2"><Label htmlFor="obs">Observações internas</Label><Textarea id="obs" rows={2} value={observacoes} onChange={(e) => setObservacoes(e.target.value)} /></div>
+          </CardContent>
+        </Card>
+
+        {/* Bloco 4 — Resumo */}
+        <Card className="lg:col-span-12">
+          <CardHeader><CardTitle>4. Resumo</CardTitle></CardHeader>
+          <CardContent className="space-y-3">
+            <div className="grid gap-2 text-sm sm:grid-cols-4">
+              <p className="text-slate-500">Cliente: <span className="text-slate-800">{cliente?.nome ?? '—'}</span></p>
+              <p className="text-slate-500">Portfólio: <span className="text-slate-800">{resumoPortfolios}</span></p>
+              <p className="text-slate-500">Hub: <span className="text-slate-800">{hubNome || '—'}</span></p>
+              <p className="text-slate-500">Itens: <span className="text-slate-800">{itens.length}</span></p>
             </div>
-          </div>
-          <p className="text-xs text-slate-400">
-            Os valores são recalculados no servidor a partir do preço do vínculo produto↔portfólio.
-          </p>
-        </CardContent>
-      </Card>
+            <div className="space-y-1 border-t border-slate-100 pt-3 text-sm">
+              <div className="flex justify-between"><span className="text-slate-500">Subtotal dos itens</span><span className="text-slate-800">{formatarMoeda(subtotalItens)}</span></div>
+              {descGeralNum > 0 && <div className="flex justify-between"><span className="text-slate-500">Desconto geral ({descGeralNum}%)</span><span className="text-slate-800">− {formatarMoeda(subtotalItens * (descGeralNum / 100))}</span></div>}
+              {freteNum > 0 && <div className="flex justify-between"><span className="text-slate-500">Frete</span><span className="text-slate-800">{formatarMoeda(freteNum)}</span></div>}
+              <div className="flex justify-between border-t border-slate-100 pt-2 text-base font-semibold"><span className="text-slate-900">Valor final</span><span className="text-slate-900">{formatarMoeda(valorFinal)}</span></div>
+            </div>
+            <p className="text-xs text-slate-400">Os valores são recalculados no servidor a partir do preço do vínculo produto↔portfólio.</p>
+          </CardContent>
+        </Card>
       </div>
 
       {/* Ações */}
       <div className="flex flex-wrap items-center justify-end gap-2">
-        <Button
-          type="button"
-          variant="ghost"
-          disabled={saving}
-          onClick={() => router.push(editando ? `/orcamentos/${orcamentoId}` : '/hub/orcamentos')}
-        >
-          Cancelar
-        </Button>
-        <Button type="button" variant="outline" disabled={saving} onClick={() => salvar(false)}>
-          {editando ? 'Salvar alterações' : 'Salvar rascunho'}
-        </Button>
-        <Button type="button" disabled={saving} onClick={() => salvar(true)}>
-          <Check className="size-4" /> Gerar orçamento
-        </Button>
+        <Button type="button" variant="ghost" disabled={saving} onClick={() => router.push(editando ? `/orcamentos/${orcamentoId}` : '/hub/orcamentos')}>Cancelar</Button>
+        <Button type="button" variant="outline" disabled={saving} onClick={() => salvar(false)}>{editando ? 'Salvar alterações' : 'Salvar rascunho'}</Button>
+        <Button type="button" disabled={saving} onClick={() => salvar(true)}><Check className="size-4" /> Gerar orçamento</Button>
       </div>
     </div>
   )
