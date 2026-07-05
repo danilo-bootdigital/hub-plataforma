@@ -1,0 +1,473 @@
+<title>Arquitetura Oficial — SISTEMA STIN PHARMA</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --surface: #ffffff; --surface-2: #f1f4f8;
+    --ink: #10151c; --body: #3f4a59; --muted: #737f8f; --line: #e2e7ee;
+    --accent: #059669; --accent-soft: #ecfdf5; --accent-ink: #047857;
+    --industria: #4f46e5; --industria-soft: #eef2ff;
+    --hub: #059669; --hub-soft: #ecfdf5;
+    --shared: #7c3aed; --shared-soft: #f5f3ff;
+    --legado: #b45309; --legado-soft: #fffbeb;
+    --proibido: #be123c; --proibido-soft: #fff1f3;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --maxw: 880px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0c1016; --surface: #131924; --surface-2: #0f151e;
+      --ink: #eef2f7; --body: #b6c0cd; --muted: #7e8a99; --line: #232c39;
+      --accent: #34d399; --accent-soft: #06281f; --accent-ink: #6ee7b7;
+      --industria: #a5b4fc; --industria-soft: #1a1f3a;
+      --hub: #34d399; --hub-soft: #06281f;
+      --shared: #c4b5fd; --shared-soft: #211a3a;
+      --legado: #fbbf24; --legado-soft: #2a2110;
+      --proibido: #fb7185; --proibido-soft: #2c1219;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #f7f8fa; --surface: #ffffff; --surface-2: #f1f4f8;
+    --ink: #10151c; --body: #3f4a59; --muted: #737f8f; --line: #e2e7ee;
+    --accent: #059669; --accent-soft: #ecfdf5; --accent-ink: #047857;
+    --industria: #4f46e5; --industria-soft: #eef2ff; --hub: #059669; --hub-soft: #ecfdf5;
+    --shared: #7c3aed; --shared-soft: #f5f3ff; --legado: #b45309; --legado-soft: #fffbeb;
+    --proibido: #be123c; --proibido-soft: #fff1f3;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0c1016; --surface: #131924; --surface-2: #0f151e;
+    --ink: #eef2f7; --body: #b6c0cd; --muted: #7e8a99; --line: #232c39;
+    --accent: #34d399; --accent-soft: #06281f; --accent-ink: #6ee7b7;
+    --industria: #a5b4fc; --industria-soft: #1a1f3a; --hub: #34d399; --hub-soft: #06281f;
+    --shared: #c4b5fd; --shared-soft: #211a3a; --legado: #fbbf24; --legado-soft: #2a2110;
+    --proibido: #fb7185; --proibido-soft: #2c1219;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--body); font-family: var(--sans);
+    line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px);
+    display: grid; grid-template-columns: 1fr; gap: 0; }
+  @media (min-width: 1040px) { .wrap { grid-template-columns: 232px minmax(0, var(--maxw)); gap: 48px; justify-content: center; } }
+
+  /* Header */
+  header.hero { grid-column: 1 / -1; padding: clamp(40px, 8vw, 88px) 0 32px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--accent-ink); margin: 0 0 14px; }
+  h1 { font-size: clamp(30px, 5.2vw, 50px); line-height: 1.05; letter-spacing: -0.02em; color: var(--ink);
+    margin: 0 0 16px; text-wrap: balance; font-weight: 800; }
+  .lede { font-size: clamp(16px, 2.2vw, 19px); color: var(--body); max-width: 62ch; margin: 0; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; font-family: var(--mono); font-size: 12px; }
+  .meta span { background: var(--surface-2); border: 1px solid var(--line); color: var(--muted);
+    padding: 4px 10px; border-radius: 999px; }
+
+  /* TOC */
+  nav.toc { display: none; }
+  @media (min-width: 1040px) {
+    nav.toc { display: block; position: sticky; top: 24px; align-self: start; height: max-content; padding-top: 8px; }
+    nav.toc ol { list-style: none; margin: 0; padding: 0; counter-reset: t; display: flex; flex-direction: column; gap: 2px; }
+    nav.toc a { counter-increment: t; display: flex; gap: 10px; text-decoration: none; color: var(--muted);
+      font-size: 13px; padding: 5px 8px; border-radius: 7px; border-left: 2px solid transparent; }
+    nav.toc a::before { content: counter(t, decimal-leading-zero); font-family: var(--mono); font-size: 11px; color: var(--accent-ink); opacity: .8; }
+    nav.toc a:hover { color: var(--ink); background: var(--surface-2); }
+  }
+
+  main { grid-column: auto; min-width: 0; padding-bottom: 96px; }
+  @media (max-width: 1039px) { main { grid-column: 1 / -1; } }
+
+  section { scroll-margin-top: 24px; margin: 0 0 52px; }
+  h2 { font-size: clamp(21px, 3vw, 27px); color: var(--ink); letter-spacing: -0.015em; font-weight: 750;
+    margin: 0 0 6px; display: flex; align-items: baseline; gap: 12px; text-wrap: balance; }
+  h2 .n { font-family: var(--mono); font-size: 14px; color: var(--accent-ink); font-weight: 600; flex: none; }
+  h2 + .sub { color: var(--muted); margin: 0 0 20px; font-size: 15px; }
+  h3 { font-size: 16px; color: var(--ink); margin: 26px 0 8px; font-weight: 700; letter-spacing: -0.01em; }
+  p { margin: 0 0 14px; max-width: 68ch; }
+  ul, ol.list { margin: 0 0 14px; padding-left: 20px; max-width: 68ch; }
+  li { margin: 5px 0; }
+  strong { color: var(--ink); font-weight: 650; }
+  code, .path { font-family: var(--mono); font-size: .86em; background: var(--surface-2); color: var(--accent-ink);
+    padding: 1px 6px; border-radius: 5px; border: 1px solid var(--line); white-space: nowrap; }
+
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; }
+  .grid2 { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .grid2 { grid-template-columns: 1fr 1fr; } }
+
+  .role-card { border-left: 3px solid var(--rc, var(--accent)); }
+  .role-card h3 { margin-top: 0; }
+  .role-card .who { font-family: var(--mono); font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
+
+  /* Pills */
+  .pill { display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 11px;
+    font-weight: 600; padding: 2px 9px; border-radius: 999px; border: 1px solid; white-space: nowrap; letter-spacing: .02em; }
+  .p-ind { color: var(--industria); background: var(--industria-soft); border-color: color-mix(in srgb, var(--industria) 30%, transparent); }
+  .p-hub { color: var(--accent-ink); background: var(--hub-soft); border-color: color-mix(in srgb, var(--hub) 34%, transparent); }
+  .p-shared { color: var(--shared); background: var(--shared-soft); border-color: color-mix(in srgb, var(--shared) 30%, transparent); }
+  .p-legado { color: var(--legado); background: var(--legado-soft); border-color: color-mix(in srgb, var(--legado) 34%, transparent); }
+  .p-proib { color: var(--proibido); background: var(--proibido-soft); border-color: color-mix(in srgb, var(--proibido) 32%, transparent); }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
+
+  /* Tables */
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; margin: 0 0 16px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; min-width: 520px; }
+  th, td { text-align: left; padding: 9px 13px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th { background: var(--surface-2); color: var(--ink); font-weight: 650; position: sticky; top: 0;
+    font-size: 12px; letter-spacing: .02em; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: color-mix(in srgb, var(--accent) 4%, transparent); }
+  td .path { white-space: nowrap; }
+  .rbac td:not(:first-child) { text-align: center; font-family: var(--mono); }
+  .yes { color: var(--accent-ink); font-weight: 700; }
+  .no { color: var(--proibido); font-weight: 700; }
+  .part { color: var(--legado); font-weight: 700; }
+
+  /* Flow */
+  .flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 8px; margin: 4px 0 18px; }
+  .flow .step { flex: 1 1 120px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+    padding: 12px 14px; position: relative; }
+  .flow .step .k { font-family: var(--mono); font-size: 10px; color: var(--accent-ink); letter-spacing: .1em; text-transform: uppercase; }
+  .flow .step .v { color: var(--ink); font-weight: 650; font-size: 14px; margin-top: 3px; }
+  .flow .step .o { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+  .callout { border: 1px solid color-mix(in srgb, var(--proibido) 34%, transparent); background: var(--proibido-soft);
+    border-radius: 12px; padding: 16px 18px; margin: 18px 0; }
+  .callout.warn { border-color: color-mix(in srgb, var(--legado) 40%, transparent); background: var(--legado-soft); }
+  .callout .t { font-weight: 700; color: var(--ink); margin: 0 0 6px; display: flex; gap: 8px; align-items: center; }
+  .callout .t .pill { font-size: 10px; }
+
+  ol.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  ol.steps > li { counter-increment: s; display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start; }
+  ol.steps > li::before { content: counter(s); font-family: var(--mono); font-weight: 700; color: var(--accent-ink);
+    background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; font-size: 13px; }
+
+  footer { grid-column: 1 / -1; border-top: 1px solid var(--line); padding: 28px 0 8px; color: var(--muted); font-size: 13px; }
+  a { color: var(--accent-ink); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">Arquitetura Oficial · Documento para aprovação</p>
+    <h1>SISTEMA STIN PHARMA — Arquitetura Funcional Definitiva</h1>
+    <p class="lede">A plataforma separa de forma definitiva <strong>quem administra</strong> (Indústria) de <strong>quem opera</strong> (Hub). A Indústria governa o catálogo, os Hubs e as autorizações; o Hub executa 100% da operação comercial. Este documento consolida responsabilidades, fluxos, módulos, RBAC, menus e o roteiro de saída do legado.</p>
+    <div class="meta">
+      <span>Arquitetura APROVADA · 2026-07-05</span>
+      <span>Base: DEC-011 · 012 · 013 · 014 · 015 · 016 · 017 · 019 · 020 · 021</span>
+      <span>DEC-022 — Separação Indústria × Hub (registrada)</span>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Índice">
+    <ol>
+      <li><a href="#s1">Objetivo da plataforma</a></li>
+      <li><a href="#s2">Responsabilidades — Indústria</a></li>
+      <li><a href="#s3">Responsabilidades — Hub</a></li>
+      <li><a href="#s4">Proprietário do Hub</a></li>
+      <li><a href="#s5">Assistente</a></li>
+      <li><a href="#s6">Fluxo completo da operação</a></li>
+      <li><a href="#s7">Módulos exclusivos da Indústria</a></li>
+      <li><a href="#s8">Módulos exclusivos do Hub</a></li>
+      <li><a href="#s9">Módulos compartilhados</a></li>
+      <li><a href="#s10">Matriz RBAC completa</a></li>
+      <li><a href="#s11">Menus por perfil</a></li>
+      <li><a href="#s12">Fluxo operacional oficial</a></li>
+      <li><a href="#s13">Fluxo administrativo oficial</a></li>
+      <li><a href="#s14">Tudo que ainda é legado</a></li>
+      <li><a href="#s15">Ordem de eliminação do legado</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <section id="s1">
+      <h2><span class="n">01</span> Objetivo da plataforma</h2>
+      <p>O STIN PHARMA é uma plataforma B2B em que uma <strong>Indústria</strong> disponibiliza seu catálogo a uma rede de <strong>Hubs</strong> (distribuidores/operadores locais), que realizam a operação comercial com os <strong>Clientes</strong> finais (profissionais e estabelecimentos de saúde).</p>
+      <p>Princípio arquitetural supremo: <strong>a Indústria administra a plataforma; o Hub opera</strong>. A Indústria nunca participa da operação comercial (orçamentos, atendimento, pedidos); o Hub é o único responsável por executá-la, dentro das autorizações concedidas pela Indústria.</p>
+      <div class="card" style="border-left:3px solid var(--accent)">
+        <h3 style="margin-top:0">Decisões consolidadas (2026-07-05)</h3>
+        <ul style="margin-bottom:0">
+          <li><strong>Indústria não aprova orçamento.</strong> A aprovação interna de orçamento pela Indústria é <strong>removida</strong>. A Indústria aprova apenas o <strong>cadastro do cliente</strong> e <strong>direciona a qual Hub</strong> aquele cliente passará a aparecer.</li>
+          <li><strong>Pré-pedido: mantido</strong> por ora — o formato definitivo será decidido após a reunião de apresentação.</li>
+          <li><strong>DEC-022</strong> — a separação Administração (Indústria) × Operação (Hub) é registrada como decisão oficial suprema (emenda DEC-011/015/016/017).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="s2">
+      <h2><span class="n">02</span> Responsabilidades da Indústria</h2>
+      <p class="sub">Papel administrativo/governança. Perfis: <span class="pill p-ind">admin</span> <span class="pill p-ind">gestor</span></p>
+      <ul>
+        <li><strong>Catálogo:</strong> criar/manter Produtos, Portfólios, Categorias e Subcategorias.</li>
+        <li><strong>Rede:</strong> criar/gerenciar Hubs e vincular Proprietários.</li>
+        <li><strong>Autorizações:</strong> conceder Portfólios a cada Hub (<span class="path">hub_portfolios</span>) e definir preços por vínculo (<span class="path">product_portfolios</span>).</li>
+        <li><strong>Base de Clientes e Carteiras:</strong> governar a base (propriedade), enquanto o Hub opera.</li>
+        <li><strong>Cadastro de Clientes:</strong> analisar e <strong>aprovar/reprovar</strong> os pré-cadastros enviados pelos Hubs e <strong>direcionar a qual Hub</strong> o cliente aprovado passará a pertencer/aparecer (DEC-020).</li>
+        <li><strong>Usuários da Indústria, Permissões, Auditoria, Relatórios gerenciais, IA e Identidade da plataforma.</strong></li>
+      </ul>
+      <div class="callout"><p class="t"><span class="pill p-proib">Proibido</span> A Indústria não cria, edita, envia <strong>nem aprova</strong> orçamentos, não usa WhatsApp/Pipeline/Atendimento, não gera pedidos. <em>(Decisão 2026-07-05: a aprovação interna de orçamento pela Indústria deixa de existir.)</em></p></div>
+    </section>
+
+    <section id="s3">
+      <h2><span class="n">03</span> Responsabilidades do Hub</h2>
+      <p class="sub">Papel operacional. Perfis: <span class="pill p-hub">proprietario_hub</span> <span class="pill p-hub">assistente</span></p>
+      <ul>
+        <li>Operar Pipeline/Atendimento, WhatsApp e a agenda operacional.</li>
+        <li>Pré-cadastrar Clientes e enviá-los à Indústria para aprovação.</li>
+        <li>Montar <strong>Orçamentos</strong> a partir dos Portfólios autorizados (preço vem do vínculo).</li>
+        <li>Conferir/validar <strong>Receitas</strong> (DEC-019).</li>
+        <li>Gerar <strong>Pré-pedidos</strong> e convertê-los em <strong>Pedidos</strong>.</li>
+        <li>Configurar a própria Identidade (white-label), IA e Funções internas.</li>
+      </ul>
+    </section>
+
+    <section id="s4">
+      <h2><span class="n">04</span> Responsabilidades do Proprietário do Hub</h2>
+      <div class="grid2">
+        <div class="card role-card" style="--rc: var(--hub)">
+          <div class="who">perfil · proprietario_hub</div>
+          <h3>Governa o próprio Hub</h3>
+          <ul>
+            <li>Administra a <strong>Identidade</strong> (marca/white-label), a <strong>IA</strong> e as <strong>Funções</strong> (RBAC interno) do Hub.</li>
+            <li>Gerencia <strong>Assistentes</strong> e concede permissões por Função.</li>
+            <li>Acesso operacional total do Hub (sem gate por Função).</li>
+            <li>Vê Carteiras e Clientes operados pelo Hub.</li>
+          </ul>
+        </div>
+        <div class="card role-card" style="--rc: var(--shared)">
+          <div class="who">fronteira</div>
+          <h3>O que NÃO faz</h3>
+          <ul>
+            <li>Não aprova o próprio Cadastro de Cliente (decisão da Indústria).</li>
+            <li>Não altera catálogo/portfólios/autorizações (Indústria).</li>
+            <li>Não acessa dados de outro Hub (escopo por <span class="path">hub_id</span>).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="s5">
+      <h2><span class="n">05</span> Responsabilidades do Assistente</h2>
+      <p class="sub">Perfil: <span class="pill p-hub">assistente</span> — operação delegada, <strong>gated por Função</strong> (DEC-015).</p>
+      <ul>
+        <li>Executa a operação que a <strong>Função</strong> conceder: Clientes, Atendimentos, Orçamentos, Validação de Receita, Pré-pedidos, Cadastro de Clientes.</li>
+        <li>Escopo restrito ao <strong>próprio Hub</strong> e, em alguns fluxos, ao próprio usuário (<span class="path">responsavel_id</span>).</li>
+        <li>Sem acesso à administração do Hub (Identidade/IA/Funções) nem à administração da Indústria.</li>
+      </ul>
+    </section>
+
+    <section id="s6">
+      <h2><span class="n">06</span> Fluxo completo da operação</h2>
+      <p class="sub">Da definição do catálogo (Indústria) até o Pedido (Hub).</p>
+      <div class="flow">
+        <div class="step"><div class="k">Indústria</div><div class="v">Produto</div><div class="o">catálogo mestre</div></div>
+        <div class="step"><div class="k">Indústria</div><div class="v">Portfólio</div><div class="o">Categoria › Subcategoria</div></div>
+        <div class="step"><div class="k">Indústria</div><div class="v">Carteira</div><div class="o">agrupa Clientes</div></div>
+        <div class="step"><div class="k">Ind. → Hub</div><div class="v">Cliente</div><div class="o">pré-cadastro → aprovação</div></div>
+        <div class="step"><div class="k">Ind. → Hub</div><div class="v">Hub</div><div class="o">autoriza Portfólios</div></div>
+        <div class="step"><div class="k">Hub</div><div class="v">Orçamento</div><div class="o">por Portfólio</div></div>
+        <div class="step"><div class="k">Hub</div><div class="v">Receita</div><div class="o">validação (DEC-019)</div></div>
+        <div class="step"><div class="k">Hub</div><div class="v">Pré-pedido</div><div class="o">orders@PRE_PEDIDO</div></div>
+        <div class="step"><div class="k">Hub</div><div class="v">Pedido</div><div class="o">orders@PEDIDO</div></div>
+      </div>
+      <ol class="steps">
+        <li><strong>Produto</strong> — a Indústria cadastra o produto no catálogo mestre (<span class="path">products</span>).</li>
+        <li><strong>Portfólio</strong> — produtos são organizados em Portfólio › Categoria › Subcategoria; o preço comercial vive no vínculo <span class="path">product_portfolios</span>.</li>
+        <li><strong>Carteira</strong> — a Indústria define Carteiras (<span class="path">carteiras</span>) que agrupam Clientes e são operadas por um Hub.</li>
+        <li><strong>Cliente</strong> — o Hub faz o <strong>pré-cadastro</strong>; a Indústria <strong>aprova</strong>; a conversão gera o Cliente ativo em <span class="path">contacts</span> (DEC-020).</li>
+        <li><strong>Hub</strong> — a Indústria autoriza quais Portfólios cada Hub pode vender (<span class="path">hub_portfolios</span>).</li>
+        <li><strong>Orçamento</strong> — o Hub monta o orçamento escolhendo 1 Portfólio autorizado + produtos; preço recalculado no servidor pelo vínculo; nasce com <span class="path">hub_id</span> + <span class="path">portfolio_id</span> (DEC-017).</li>
+        <li><strong>Receita</strong> — quando exigida, o Hub anexa/valida a receita (motor de regras + IA extrai; decisão humana — DEC-019).</li>
+        <li><strong>Pré-pedido</strong> — orçamento aprovado é convertido em <span class="path">orders</span> tipo <span class="path">PRE_PEDIDO</span> (copiando itens).</li>
+        <li><strong>Pedido</strong> — o Pré-pedido é promovido in-place a <span class="path">PEDIDO</span> (pedido definitivo).</li>
+      </ol>
+      <div class="callout warn"><p class="t"><span class="pill p-legado">Definição após reunião</span> Pré-pedido MANTIDO por ora</p>
+      <p style="margin:0">Dois caminhos de "virar pedido" coexistem: o Hub oficial usa <span class="path">transformarEmPedido</span> (orçamento → PEDIDO direto); o fluxo do Assistente usa <strong>Pré-pedido</strong> (orçamento → PRE_PEDIDO → PEDIDO). <strong>Decisão 2026-07-05: manter o Pré-pedido</strong> até o formato definitivo ser decidido após a reunião de apresentação. Nada é removido enquanto isso.</p></div>
+    </section>
+
+    <section id="s7">
+      <h2><span class="n">07</span> Módulos exclusivos da Indústria</h2>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Módulo</th><th>Rota / área</th><th>Função</th></tr></thead>
+        <tbody>
+          <tr><td>Dashboard Gerencial</td><td><span class="path">/painel</span> (a repensar)</td><td>visão consolidada da rede</td></tr>
+          <tr><td>Produtos</td><td><span class="path">/configuracoes/produtos</span></td><td>catálogo mestre</td></tr>
+          <tr><td>Portfólios / Categorias / Subcategorias</td><td><span class="path">/configuracoes/portfolios</span></td><td>organização do catálogo</td></tr>
+          <tr><td>Autorizações de Portfólio</td><td>vínculo <span class="path">hub_portfolios</span></td><td>o que cada Hub vende</td></tr>
+          <tr><td>Hubs</td><td><span class="path">/configuracoes/hubs</span></td><td>rede de Hubs</td></tr>
+          <tr><td>Carteiras</td><td><span class="path">/configuracoes/carteiras</span></td><td>governança da base</td></tr>
+          <tr><td>Clientes (governança)</td><td>a definir (visão administrativa)</td><td>propriedade da base</td></tr>
+          <tr><td>Cadastro de Clientes (análise)</td><td><span class="path">/configuracoes/cadastro-clientes</span></td><td>aprovar pré-cadastros</td></tr>
+          <tr><td>Usuários da Indústria</td><td><span class="path">/configuracoes/usuarios</span></td><td>equipe da Indústria</td></tr>
+          <tr><td>Permissões</td><td>a criar (nível Indústria)</td><td>papéis administrativos</td></tr>
+          <tr><td>Relatórios gerenciais</td><td><span class="path">/relatorios</span> (a segmentar)</td><td>analítico da rede</td></tr>
+          <tr><td>IA / Identidade / Auditoria</td><td>a consolidar no nível Indústria</td><td>configuração da plataforma</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section id="s8">
+      <h2><span class="n">08</span> Módulos exclusivos do Hub</h2>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Módulo</th><th>Rota</th><th>Perfis</th></tr></thead>
+        <tbody>
+          <tr><td>Dashboard Operacional</td><td><span class="path">/hub</span></td><td>proprietário/assistente</td></tr>
+          <tr><td>Pipeline / Atendimentos</td><td><span class="path">/pipeline</span>, <span class="path">/assistente/atendimentos</span></td><td>Hub</td></tr>
+          <tr><td>WhatsApp</td><td><span class="path">/whatsapp</span>, <span class="path">/monitoramento-whatsapp</span></td><td>Hub</td></tr>
+          <tr><td>Clientes operacionais</td><td><span class="path">/hub/clientes</span></td><td>Hub</td></tr>
+          <tr><td>Orçamentos</td><td><span class="path">/hub/orcamentos</span> (+ criação/detalhe compartilhados)</td><td>Hub</td></tr>
+          <tr><td>Validação de Receita</td><td><span class="path">/hub/validacao-receita</span></td><td>Hub (gate Função)</td></tr>
+          <tr><td>Pré-pedidos</td><td><span class="path">/assistente/prepedidos</span></td><td>Hub</td></tr>
+          <tr><td>Pedidos</td><td><span class="path">/pedidos</span></td><td>Hub</td></tr>
+          <tr><td>Configurações do Hub</td><td><span class="path">/hub/identidade · /configuracoes-ia · /funcoes</span></td><td>proprietário</td></tr>
+          <tr><td>Cadastro de Clientes (pré-cadastro)</td><td><span class="path">/hub/cadastro-clientes</span></td><td>Hub</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section id="s9">
+      <h2><span class="n">09</span> Módulos compartilhados</h2>
+      <p class="sub">Superfícies usadas por mais de um perfil, com <strong>escopo</strong> diferenciando o acesso.</p>
+      <ul>
+        <li><span class="pill p-shared">Compartilhado</span> <strong>Detalhe do Orçamento</strong> <span class="path">/orcamentos/[id]</span> — Hub opera; Indústria vê apenas o que lhe cabe (após a separação, o acesso da Indústria à operação é removido). Escopo por <span class="path">hub_id</span>.</li>
+        <li><span class="pill p-shared">Compartilhado</span> <strong>Cadastro de Clientes</strong> — Hub cria/envia (<span class="path">/hub/cadastro-clientes</span>); Indústria decide (<span class="path">/configuracoes/cadastro-clientes</span>). Mesma entidade, papéis distintos.</li>
+        <li><span class="pill p-shared">Compartilhado</span> <strong>Produtos</strong> — Indústria mantém (CRUD); Hub consulta (<span class="path">/hub/produtos</span>, sem edição).</li>
+        <li><span class="pill p-shared">Compartilhado</span> <strong>Carteiras</strong> — Indústria governa; Hub vê as próprias (<span class="path">/hub/carteiras</span>).</li>
+        <li><span class="pill p-shared">Compartilhado</span> <strong>Conversão em Pedido</strong> — <span class="path">convert_orcamento_to_pedido</span> (RPC) usada pelo Hub; produção de PDF idem.</li>
+      </ul>
+    </section>
+
+    <section id="s10">
+      <h2><span class="n">10</span> Matriz RBAC completa</h2>
+      <div class="legend">
+        <span class="pill p-hub">✓ acesso</span>
+        <span class="pill p-legado">◐ parcial / por Função</span>
+        <span class="pill p-proib">✕ sem acesso</span>
+      </div>
+      <div class="tablewrap"><table class="rbac">
+        <thead><tr><th>Módulo</th><th>Indústria<br>(admin/gestor)</th><th>Proprietário<br>do Hub</th><th>Assistente</th></tr></thead>
+        <tbody>
+          <tr><td>Dashboard Gerencial</td><td class="yes">✓</td><td class="no">✕</td><td class="no">✕</td></tr>
+          <tr><td>Dashboard Operacional</td><td class="no">✕</td><td class="yes">✓</td><td class="part">◐</td></tr>
+          <tr><td>Produtos (CRUD)</td><td class="yes">✓</td><td class="no">✕</td><td class="no">✕</td></tr>
+          <tr><td>Produtos (consulta)</td><td class="yes">✓</td><td class="yes">✓</td><td class="part">◐</td></tr>
+          <tr><td>Portfólios / Categorias / Autorizações</td><td class="yes">✓</td><td class="no">✕</td><td class="no">✕</td></tr>
+          <tr><td>Hubs</td><td class="yes">✓</td><td class="no">✕</td><td class="no">✕</td></tr>
+          <tr><td>Carteiras (governança)</td><td class="yes">✓</td><td class="no">✕</td><td class="no">✕</td></tr>
+          <tr><td>Usuários da Indústria / Permissões</td><td class="yes">✓</td><td class="no">✕</td><td class="no">✕</td></tr>
+          <tr><td>Cadastro de Clientes — aprovar + direcionar Hub</td><td class="yes">✓</td><td class="no">✕</td><td class="no">✕</td></tr>
+          <tr><td>Cadastro de Clientes — pré-cadastrar</td><td class="no">✕</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Pipeline / Atendimentos</td><td class="no">✕</td><td class="yes">✓</td><td class="part">◐</td></tr>
+          <tr><td>WhatsApp</td><td class="no">✕</td><td class="yes">✓</td><td class="part">◐</td></tr>
+          <tr><td>Clientes operacionais</td><td class="no">✕</td><td class="yes">✓</td><td class="part">◐</td></tr>
+          <tr><td>Orçamentos</td><td class="no">✕</td><td class="yes">✓</td><td class="part">◐</td></tr>
+          <tr><td>Validação de Receita</td><td class="no">✕</td><td class="yes">✓</td><td class="part">◐</td></tr>
+          <tr><td>Pré-pedidos / Pedidos</td><td class="no">✕</td><td class="yes">✓</td><td class="part">◐</td></tr>
+          <tr><td>Config. do Hub (Identidade/IA/Funções)</td><td class="no">✕</td><td class="yes">✓</td><td class="no">✕</td></tr>
+          <tr><td>Relatórios gerenciais</td><td class="yes">✓</td><td class="no">✕</td><td class="no">✕</td></tr>
+          <tr><td>Auditoria</td><td class="yes">✓</td><td class="no">✕</td><td class="no">✕</td></tr>
+        </tbody>
+      </table></div>
+      <p><span class="pill p-legado">◐</span> Assistente: acesso condicionado à <strong>Função</strong> conceder <span class="path">visualizar</span> no módulo (DEC-015), sempre no escopo do próprio Hub.</p>
+    </section>
+
+    <section id="s11">
+      <h2><span class="n">11</span> Estrutura definitiva dos menus por perfil</h2>
+      <div class="grid2">
+        <div class="card role-card" style="--rc: var(--industria)">
+          <div class="who">menu · Indústria (admin/gestor)</div>
+          <h3>Administração</h3>
+          <ul>
+            <li>Dashboard Gerencial</li><li>Hubs</li><li>Carteiras</li>
+            <li>Portfólios (Categorias · Subcategorias · Autorizações)</li>
+            <li>Produtos</li><li>Clientes (governança)</li>
+            <li>Cadastro de Clientes (análise)</li><li>Usuários da Indústria</li>
+            <li>Permissões</li><li>Relatórios</li><li>IA · Identidade</li><li>Auditoria</li><li>Configurações</li>
+          </ul>
+        </div>
+        <div class="card role-card" style="--rc: var(--hub)">
+          <div class="who">menu · Proprietário do Hub</div>
+          <h3>Operação + Config. do Hub</h3>
+          <ul>
+            <li>Dashboard Operacional</li><li>Pipeline · Atendimentos</li><li>WhatsApp</li>
+            <li>Clientes</li><li>Orçamentos</li><li>Validação de Receita</li>
+            <li>Pré-pedidos · Pedidos</li><li>Cadastro de Clientes</li>
+            <li>Produtos (consulta) · Carteiras</li>
+            <li>⚙️ Configurações › Identidade · IA / Prompt · Funções</li>
+          </ul>
+        </div>
+        <div class="card role-card" style="--rc: var(--shared)">
+          <div class="who">menu · Assistente (gated por Função)</div>
+          <h3>Operação delegada</h3>
+          <ul>
+            <li>Minha Área</li><li>Clientes*</li><li>Atendimentos</li>
+            <li>Orçamentos*</li><li>Validação de Receita*</li>
+            <li>Pré-pedidos*</li><li>Cadastro de Clientes</li><li>Produtos (consulta)*</li>
+          </ul>
+          <p style="margin:8px 0 0;font-size:12.5px;color:var(--muted)">* exibido só se a Função conceder o módulo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="s12">
+      <h2><span class="n">12</span> Fluxo operacional oficial (Hub)</h2>
+      <ol class="steps">
+        <li>Atendimento no Pipeline / WhatsApp; pré-cadastro do Cliente enviado à Indústria (aprovação).</li>
+        <li>Orçamento criado por <span class="path">criarOrcamentoHub</span> (1 Portfólio autorizado; preço do vínculo; <span class="path">hub_id</span> + <span class="path">portfolio_id</span>).</li>
+        <li>Edição por <span class="path">editarOrcamentoHub</span> (<span class="path">/hub/orcamentos/[id]/editar</span>) enquanto editável.</li>
+        <li>Validação de Receita quando exigida (motor + IA extrai; decisão humana).</li>
+        <li>Envio ao cliente e registro da resposta (aprovado/recusado).</li>
+        <li>Pré-pedido → Pedido (ou Pedido direto, conforme decisão da §06). PDF via Puppeteer.</li>
+      </ol>
+      <div class="callout"><p class="t"><span class="pill p-proib">Regra dura</span> Nenhuma etapa operacional é acessível pela Indústria</p>
+      <p style="margin:0">Bloqueio em 3 camadas: <strong>menu</strong> (não exibe), <strong>middleware</strong> (redireciona por URL) e <strong>guard de página/action</strong> (defesa em profundidade). Escopo sempre por <span class="path">hub_id</span>.</p></div>
+    </section>
+
+    <section id="s13">
+      <h2><span class="n">13</span> Fluxo administrativo oficial (Indústria)</h2>
+      <ol class="steps">
+        <li>Cadastrar Produtos e organizá-los em Portfólio › Categoria › Subcategoria.</li>
+        <li>Criar Hubs, vincular Proprietários e conceder Portfólios (autorizações + preço por vínculo).</li>
+        <li>Definir Carteiras e governar a base de Clientes.</li>
+        <li>Analisar e aprovar/reprovar pré-cadastros de Clientes enviados pelos Hubs.</li>
+        <li>Gerir Usuários da Indústria e Permissões; acompanhar Relatórios gerenciais e Auditoria.</li>
+        <li>Configurar IA/Identidade da plataforma. <strong>Nunca</strong> operar comercialmente.</li>
+      </ol>
+    </section>
+
+    <section id="s14">
+      <h2><span class="n">14</span> Tudo que ainda é legado</h2>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Item</th><th>Natureza</th><th>Situação</th></tr></thead>
+        <tbody>
+          <tr><td>Indústria acessando operação (menu sem <span class="path">perfis</span> = PERFIS_LEGADOS)</td><td><span class="pill p-proib">viola nova DEC</span></td><td>separação a implementar (menu+middleware+guards)</td></tr>
+          <tr><td>Fluxo Orçamento do Assistente (<span class="path">/assistente/orcamentos/**</span>, <span class="path">orcamentos-assistente/**</span>, <span class="path">actions.ts</span>)</td><td><span class="pill p-legado">legado</span></td><td>substituído pelo Hub; bloqueado por <span class="path">converterEmPrePedido</span></td></tr>
+          <tr><td>Ecossistema Fornecedor (<span class="path">suppliers</span>, <span class="path">supplier_*</span>, <span class="path">freight_carriers</span>, <span class="path">supplier_id</span>, <span class="path">form-orcamento.tsx</span>)</td><td><span class="pill p-legado">DEC-014</span></td><td>remoção só no Contract (edição legada ainda usa)</td></tr>
+          <tr><td><span class="path">leads</span> (compat de "Solicitação de Novo Cliente") + <span class="path">*.lead_id</span></td><td><span class="pill p-legado">compat</span></td><td>Contract; uso ativo em Pipeline/WhatsApp</td></tr>
+          <tr><td>Proposta pública por token (<span class="path">/proposta</span>, <span class="path">/public</span>, <span class="path">quote_tokens</span>, <span class="path">tokens.ts</span>)</td><td><span class="pill p-legado">morto</span></td><td>incompleto/sem gerador; decidir concluir ou remover</td></tr>
+          <tr><td><span class="path">health_hubs</span></td><td><span class="pill p-legado">legado</span></td><td>reconciliar → <span class="path">hubs</span> (Migrate)</td></tr>
+          <tr><td>Enum <span class="path">user_role</span>: vendedor/atendimento/suporte</td><td><span class="pill p-legado">DEC-015</span></td><td>limpeza de valores no Contract</td></tr>
+          <tr><td>Aprovação interna de Orçamento pela Indústria (<span class="path">aprovar_interna</span>, status <span class="path">aguardando_aprovacao_interna</span>)</td><td><span class="pill p-proib">a remover</span></td><td><strong>Decisão:</strong> Indústria não aprova orçamento — remover a etapa/ação (DEC-022)</td></tr>
+          <tr><td>Família de Conferência de Receita <span class="path">057</span> (vs standalone <span class="path">060</span>)</td><td><span class="pill p-legado">revisar</span></td><td>confirmar depreciação</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section id="s15">
+      <h2><span class="n">15</span> Ordem recomendada para eliminação do legado</h2>
+      <ol class="steps">
+        <li><strong>Separação Indústria×Hub (DEC-022)</strong> — menu com <span class="path">perfis</span> explícitos + middleware + guards; e <strong>remover a aprovação interna de orçamento</strong> (Indústria não aprova). Não-destrutivo. <em>(Pré-requisito já decidido.)</em></li>
+        <li><strong>Pré-pedido: mantido</strong> até definição pós-reunião. Enquanto isso, <span class="path">/assistente/orcamentos/**</span>, <span class="path">orcamentos-assistente/**</span> e o <span class="path">actions.ts</span> legado <strong>permanecem</strong> (a criação de PRE_PEDIDO ainda vive ali).</li>
+        <li><strong>Proposta pública morta</strong> — remover <span class="path">/proposta</span>, <span class="path">/public</span>, <span class="path">proposta-publica.ts</span>, <span class="path">tokens.ts</span> (e avaliar <span class="path">quote_tokens</span>).</li>
+        <li><strong>Fornecedor (Contract DEC-014)</strong> — desacoplar Orçamento de <span class="path">supplier_id</span>, dar novo lar ao Frete, aposentar editor legado; então drop de <span class="path">suppliers*</span>/<span class="path">freight_carriers</span>.</li>
+        <li><strong>Leads (Contract)</strong> — após "Solicitação de Novo Cliente" cobrir 100%, remover <span class="path">leads</span> + <span class="path">*.lead_id</span>.</li>
+        <li><strong>health_hubs</strong> — reconciliar para <span class="path">hubs</span> e remover.</li>
+        <li><strong>Enum user_role</strong> — limpar valores legados (Contract final).</li>
+      </ol>
+      <div class="callout warn"><p class="t"><span class="pill p-legado">Regra</span> Expand → Migrate → Contract</p><p style="margin:0">Nada de schema é removido antes de migrar os consumidores. Cada remoção é precedida de substituto validado em produção. Nenhuma etapa quebra a operação do Hub.</p></div>
+    </section>
+
+    <footer>
+      <p>Arquitetura <strong>aprovada</strong> (2026-07-05). Registrada em <span class="path">docs/DECISIONS.md</span> (<strong>DEC-022</strong>) e em <span class="path">docs/ARQUITETURA_OFICIAL.md</span> (§8). Nenhum código, migration ou deploy foi alterado — a implementação (Sprint de separação) inicia após seu aval. STIN PHARMA · Hub Plataforma · v1.2.</p>
+    </footer>
+  </main>
+</div>

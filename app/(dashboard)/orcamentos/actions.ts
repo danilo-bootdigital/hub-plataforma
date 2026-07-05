@@ -4,6 +4,8 @@ import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import type { QuoteStatus } from '@/types/database'
+import { registrarEventoOrcamento } from '@/lib/orcamentos/eventos'
+import type { EventoOrcamentoUI } from '@/lib/orcamentos/eventos-tipos'
 
 async function getUsuarioEOrg() {
   const supabase = await createClient()
@@ -359,6 +361,7 @@ export async function rejeitarInterno(orcamentoId: string, comentario: string) {
 export async function enviarAoCliente(orcamentoId: string) {
   // Permite enviar ao cliente a partir de rascunho ou após aprovação interna
   await alterarStatus(orcamentoId, 'enviado_ao_cliente', ['rascunho', 'aprovado_internamente'])
+  await registrarEventoOrcamento(orcamentoId, { tipo: 'enviado_cliente', descricao: 'Orçamento enviado ao cliente.', valorNovo: 'enviado_ao_cliente' })
 }
 
 export async function aprovarOrcamento(orcamentoId: string) {
@@ -399,6 +402,8 @@ export async function aprovarOrcamento(orcamentoId: string) {
     descricao: `Orçamento aprovado pelo cliente.`,
     autor_id: perfil.id,
   })
+
+  await registrarEventoOrcamento(orcamentoId, { tipo: 'aprovado', descricao: 'Orçamento aprovado pelo cliente.', valorAnterior: orcamento.status, valorNovo: 'aprovado_pelo_cliente' })
 
   revalidatePath('/orcamentos')
   revalidatePath(`/orcamentos/${orcamentoId}`)
@@ -442,11 +447,38 @@ export async function transformarEmPedido(orcamentoId: string, motivo?: string) 
     throw new Error(result?.message || 'Erro desconhecido ao converter orçamento em pedido')
   }
 
+  await registrarEventoOrcamento(orcamentoId, { tipo: 'pedido_gerado', descricao: 'Pedido gerado a partir do orçamento.', origem: 'sistema', metadata: { resultado: result ?? null } })
+
   revalidatePath('/orcamentos')
   revalidatePath(`/orcamentos/${orcamentoId}`)
   revalidatePath('/pedidos')
 
   return result
+}
+
+// T-1 — leitura dos eventos de rastreamento do orçamento.
+// RLS de quote_events restringe por hub_id (Indústria e outros Hubs não leem);
+// o detalhe /orcamentos/[id] já valida hub_id antes de exibir.
+export async function getEventosOrcamento(orcamentoId: string): Promise<EventoOrcamentoUI[]> {
+  const supabase = await createClient()
+  const { data } = await supabase
+    .from('quote_events')
+    .select('id, tipo_evento, ator_cargo, descricao, valor_anterior, valor_novo, created_at, ator:profiles!ator_id(nome)')
+    .eq('quote_id', orcamentoId)
+    .order('created_at', { ascending: false })
+  return (data ?? []).map((e) => {
+    const ator = (e as unknown as { ator?: { nome?: string | null } | null }).ator
+    return {
+      id: e.id as string,
+      tipo_evento: e.tipo_evento as string,
+      ator_nome: ator?.nome ?? null,
+      ator_cargo: (e.ator_cargo as string | null) ?? null,
+      descricao: (e.descricao as string | null) ?? null,
+      valor_anterior: e.valor_anterior ?? null,
+      valor_novo: e.valor_novo ?? null,
+      created_at: e.created_at as string,
+    }
+  })
 }
 
 export async function marcarAprovadoCliente(orcamentoId: string) {

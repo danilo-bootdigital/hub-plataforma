@@ -5,6 +5,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import type { QuoteStatus } from '@/types/database'
+import { registrarEventoOrcamento } from '@/lib/orcamentos/eventos'
 
 // Orçamento do HUB (DEC-013/014/016/017). Somente proprietario_hub/assistente.
 // TODA validação é server-side: Cliente em Carteira do Hub, Portfólio autorizado/ativo,
@@ -153,6 +154,14 @@ export async function criarOrcamentoHub(dados: DadosOrcamentoHub): Promise<strin
     dados_novos: { hub_id: hub, portfolio_id: dados.portfolio_id, contato_id: dados.contato_id, itens: itens.length, valor_total: valorTotal },
   })
 
+  // T-1 — rastreamento
+  await registrarEventoOrcamento(orc.id, {
+    tipo: 'criado',
+    descricao: `Orçamento criado com ${itens.length} ${itens.length === 1 ? 'item' : 'itens'}.`,
+    valorNovo: { status, portfolio_id: dados.portfolio_id, contato_id: dados.contato_id, valor_total: valorTotal },
+    metadata: { itens: itens.length, finalizar: !!dados.finalizar },
+  })
+
   revalidatePath('/hub/orcamentos')
   revalidatePath('/orcamentos')
   return orc.id
@@ -169,13 +178,18 @@ export async function editarOrcamentoHub(orcamentoId: string, dados: DadosOrcame
   // 0) O orçamento existe, é do MESMO Hub e está em status editável (não confia no front).
   const { data: atual } = await admin
     .from('quotes')
-    .select('id, hub_id, status')
+    .select('id, hub_id, status, contato_id, portfolio_id, desconto_geral, observacoes')
     .eq('id', orcamentoId).eq('organization_id', org).maybeSingle() as unknown as
-    { data: { id: string; hub_id: string | null; status: QuoteStatus } | null }
+    { data: { id: string; hub_id: string | null; status: QuoteStatus; contato_id: string | null; portfolio_id: string | null; desconto_geral: number | null; observacoes: string | null } | null }
   if (!atual || atual.hub_id !== hub) throw new Error('Orçamento não pertence ao seu Hub.')
   if (!STATUS_EDITAVEIS.includes(atual.status)) {
     throw new Error('Este orçamento não pode mais ser editado no status atual.')
   }
+
+  // Estado anterior dos itens (para diff granular no rastreamento — T-1).
+  const { data: itensAntigos } = await admin
+    .from('quote_items').select('product_id, descricao, quantidade, preco_unitario, desconto_item')
+    .eq('quote_id', orcamentoId)
 
   const { itens, valorSubtotal, valorTotal, descontoGeral, frete } = await validarECalcular(admin, org, hub, dados)
   // "Gerar orçamento" (re)envia para aprovação; "Salvar alterações" mantém o status atual.
@@ -219,6 +233,41 @@ export async function editarOrcamentoHub(orcamentoId: string, dados: DadosOrcame
     dados_anteriores: { status: atual.status },
     dados_novos: { hub_id: hub, portfolio_id: dados.portfolio_id, contato_id: dados.contato_id, itens: itens.length, valor_total: valorTotal, status },
   })
+
+  // T-1 — rastreamento granular (compara estado anterior × novo; só emite mudanças reais).
+  if (atual.contato_id !== dados.contato_id) {
+    await registrarEventoOrcamento(orcamentoId, { tipo: 'cliente_alterado', descricao: 'Cliente do orçamento alterado.', valorAnterior: atual.contato_id, valorNovo: dados.contato_id })
+  }
+  if (Number(atual.desconto_geral ?? 0) !== descontoGeral) {
+    await registrarEventoOrcamento(orcamentoId, { tipo: 'desconto_aplicado', descricao: `Desconto geral alterado para ${descontoGeral}%.`, valorAnterior: Number(atual.desconto_geral ?? 0), valorNovo: descontoGeral })
+  }
+  if ((atual.observacoes ?? '') !== (dados.observacoes?.trim() || '')) {
+    await registrarEventoOrcamento(orcamentoId, { tipo: 'observacao_adicionada', descricao: 'Observações internas atualizadas.', valorAnterior: atual.observacoes ?? '', valorNovo: dados.observacoes?.trim() || '' })
+  }
+  // Diff de itens por product_id.
+  const antigos = new Map((itensAntigos ?? []).map((i) => [i.product_id, i]))
+  const novos = new Map(itens.map((i) => [i.product_id, i]))
+  for (const [pid, n] of novos) {
+    const a = antigos.get(pid)
+    if (!a) {
+      await registrarEventoOrcamento(orcamentoId, { tipo: 'item_adicionado', descricao: `Produto adicionado: ${n.descricao} (qtd ${n.quantidade}).`, valorNovo: { product_id: pid, quantidade: n.quantidade, preco_unitario: n.preco_unitario } })
+      continue
+    }
+    if (Number(a.quantidade) !== n.quantidade) {
+      await registrarEventoOrcamento(orcamentoId, { tipo: 'quantidade_alterada', descricao: `Quantidade de ${n.descricao} alterada de ${a.quantidade} para ${n.quantidade}.`, valorAnterior: Number(a.quantidade), valorNovo: n.quantidade, metadata: { product_id: pid } })
+    }
+    if (Number(a.preco_unitario) !== n.preco_unitario) {
+      await registrarEventoOrcamento(orcamentoId, { tipo: 'preco_alterado', descricao: `Preço de ${n.descricao} alterado.`, valorAnterior: Number(a.preco_unitario), valorNovo: n.preco_unitario, metadata: { product_id: pid } })
+    }
+    if (Number(a.desconto_item ?? 0) !== n.desconto_item) {
+      await registrarEventoOrcamento(orcamentoId, { tipo: 'desconto_aplicado', descricao: `Desconto do item ${n.descricao} alterado para ${n.desconto_item}%.`, valorAnterior: Number(a.desconto_item ?? 0), valorNovo: n.desconto_item, metadata: { product_id: pid, nivel: 'item' } })
+    }
+  }
+  for (const [pid, a] of antigos) {
+    if (!novos.has(pid)) {
+      await registrarEventoOrcamento(orcamentoId, { tipo: 'item_removido', descricao: `Produto removido: ${a.descricao}.`, valorAnterior: { product_id: pid, quantidade: a.quantidade } })
+    }
+  }
 
   revalidatePath('/hub/orcamentos')
   revalidatePath(`/orcamentos/${orcamentoId}`)

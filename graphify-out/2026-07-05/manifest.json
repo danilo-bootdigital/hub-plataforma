@@ -320,7 +320,7 @@
     "semantic_hash": "e710d9a6203bedfa5b41c9526aab555a"
   },
   "app/(pdf)/orcamentos/[id]/preview-pdf/page.tsx": {
-    "mtime": 1783256897.7011573,
+    "mtime": 1783257012.568755,
     "ast_hash": "c72090dcad37b91f7260a23e04a9ebd7",
     "semantic_hash": ""
   },
@@ -340,7 +340,7 @@
     "semantic_hash": "7664692ac740061f573751c1c7f9a79d"
   },
   "app/api/orcamentos/[id]/pdf/route.ts": {
-    "mtime": 1783256869.2933502,
+    "mtime": 1783257012.5692325,
     "ast_hash": "fb8305b27fe633cab2d8ed2284dcf58e",
     "semantic_hash": ""
   },
@@ -1060,8 +1060,8 @@
     "semantic_hash": "35ac2dad0755e14c603fb7ceb00a8aa6"
   },
   "lib/navegacao.ts": {
-    "mtime": 1783213053.8279142,
-    "ast_hash": "8ede650f120dca3f93f099ed94a29d6e",
+    "mtime": 1783263367.291978,
+    "ast_hash": "7775f66c0137db1fcfe827cf2876d3ca",
     "semantic_hash": ""
   },
   "lib/nome-contato.ts": {
@@ -1170,8 +1170,8 @@
     "semantic_hash": "992263d64f6c1f3fa6505cc36c4d7900"
   },
   "middleware.ts": {
-    "mtime": 1783256397.7148323,
-    "ast_hash": "d710b25e6473cef28a55e6a97402cfdb",
+    "mtime": 1783263401.2765772,
+    "ast_hash": "22db7c52fa440191bf50b380d17814ac",
     "semantic_hash": ""
   },
   "next-env.d.ts": {
@@ -2817,6 +2817,16 @@
   "app/(dashboard)/assistente/prepedidos/actions.ts": {
     "mtime": 1783256397.687232,
     "ast_hash": "3ecbfd631f3102847f7942074f651aa6",
+    "semantic_hash": ""
+  },
+  "arquitetura-oficial-stinpharma.html": {
+    "mtime": 1783262288.5902627,
+    "ast_hash": "8d22536834ccc1bcde6210b816e4be8d",
+    "semantic_hash": ""
+  },
+  "arquitetura-oficial-stinpharma.pdf": {
+    "mtime": 1783262292.4407425,
+    "ast_hash": "74870efa78f40ffba7774d985d60a3aa",
     "semantic_hash": ""
   }
 }
