@@ -7,7 +7,8 @@ import type { UserRole } from '@/types/database'
 
 export type ItemNavegacao = {
   label: string
-  href: string
+  // Rota do item. Opcional em itens de grupo (que apenas abrem/fecham o submenu).
+  href?: string
   icone: LucideIcon
   // Se omitido, o item pertence aos perfis legados (operação da Indústria).
   // Se preenchido, o item só aparece para os perfis listados.
@@ -15,6 +16,9 @@ export type ItemNavegacao = {
   // Módulo RBAC (DEC-015). Quando definido, o item só aparece ao Assistente se a
   // Função conceder 'visualizar' nesse módulo. Ignorado para os demais perfis.
   modulo?: string
+  // Subitens de um grupo recolhível (ex.: "Configurações"). Cada filho segue as
+  // mesmas regras de visibilidade (perfis/modulo). Grupo sem filhos visíveis some.
+  children?: ItemNavegacao[]
 }
 
 // Permissões resolvidas (forma estrutural — evita importar código de servidor).
@@ -54,12 +58,22 @@ export const navegacao: ItemNavegacao[] = [
   // Cadastro de Clientes — pré-cadastro do Hub (DEC-020). Proprietário e Assistente
   // fazem o cadastro → item padrão do Hub (sem gate por Função).
   { label: 'Cadastro de Clientes', href: '/hub/cadastro-clientes', icone: UserPlus, perfis: ['proprietario_hub', 'assistente'] },
-  { label: 'Identidade', href: '/hub/identidade', icone: Building2, perfis: ['proprietario_hub'] },
   { label: 'Assistentes', href: '/hub/assistentes', icone: Users, perfis: ['proprietario_hub'] },
-  { label: 'Funções', href: '/hub/funcoes', icone: ShieldCheck, perfis: ['proprietario_hub'] },
-  { label: 'IA — Prompt', href: '/hub/configuracoes-ia', icone: Sparkles, perfis: ['proprietario_hub'] },
   { label: 'Carteiras', href: '/hub/carteiras', icone: Wallet, perfis: ['proprietario_hub'] },
   { label: 'Clientes', href: '/hub/clientes', icone: Contact, perfis: ['proprietario_hub'] },
+  // Configurações — grupo recolhível do Proprietário do Hub. Reúne as telas
+  // administrativas do HUB (identidade, IA e funções) num único item de 1º nível.
+  // Rotas preservadas: nenhum caminho muda, apenas a organização do menu.
+  {
+    label: 'Configurações',
+    icone: Settings,
+    perfis: ['proprietario_hub'],
+    children: [
+      { label: 'Identidade', href: '/hub/identidade', icone: Building2, perfis: ['proprietario_hub'] },
+      { label: 'IA / Prompt', href: '/hub/configuracoes-ia', icone: Sparkles, perfis: ['proprietario_hub'] },
+      { label: 'Funções', href: '/hub/funcoes', icone: ShieldCheck, perfis: ['proprietario_hub'] },
+    ],
+  },
   { label: 'Minha Área', href: '/assistente', icone: Briefcase, perfis: ['assistente'], modulo: 'dashboard' },
   { label: 'Clientes', href: '/assistente/clientes', icone: Contact, perfis: ['assistente'], modulo: 'clientes' },
   { label: 'Atendimentos', href: '/assistente/atendimentos', icone: ClipboardList, perfis: ['assistente'] },
@@ -73,20 +87,33 @@ export const navegacao: ItemNavegacao[] = [
 // Para o Assistente (DEC-015), aplica ainda o filtro por permissões da Função:
 // itens com `modulo` só aparecem se a Função conceder 'visualizar' nele.
 export function navegacaoParaPerfil(cargo?: string | null, permissoes?: PermInput): ItemNavegacao[] {
-  const base = !cargo
-    ? navegacao.filter((item) => !item.perfis)
-    : navegacao.filter((item) =>
-        item.perfis
-          ? item.perfis.includes(cargo as UserRole)
-          : PERFIS_LEGADOS.includes(cargo as UserRole)
-      )
-
-  // Filtro por Função — só Assistente; demais perfis inalterados. Fail-open:
-  // sem permissões (ou total), não filtra.
-  if (cargo === 'assistente' && permissoes && !permissoes.total) {
-    return base.filter((item) =>
-      !item.modulo || (permissoes.permissoes?.[item.modulo] ?? []).includes('visualizar')
-    )
+  // Visibilidade de um item isolado — mesma regra de sempre:
+  // - com `perfis`: aparece se o cargo estiver na lista (sem cargo → oculto);
+  // - sem `perfis`: pertence aos perfis legados (sem cargo → visível, como antes);
+  // - Assistente com Função (DEC-015): itens com `modulo` exigem 'visualizar'.
+  const filtroFuncao = cargo === 'assistente' && permissoes && !permissoes.total
+  const visivel = (item: ItemNavegacao): boolean => {
+    const perfilOk = item.perfis
+      ? item.perfis.includes(cargo as UserRole)
+      : !cargo || PERFIS_LEGADOS.includes(cargo as UserRole)
+    if (!perfilOk) return false
+    if (filtroFuncao && item.modulo) {
+      return (permissoes!.permissoes?.[item.modulo] ?? []).includes('visualizar')
+    }
+    return true
   }
-  return base
+
+  const resultado: ItemNavegacao[] = []
+  for (const item of navegacao) {
+    if (!visivel(item)) continue
+    if (item.children) {
+      // Grupo recolhível: filtra os filhos e descarta o grupo se ficar vazio.
+      const children = item.children.filter(visivel)
+      if (children.length === 0) continue
+      resultado.push({ ...item, children })
+    } else {
+      resultado.push(item)
+    }
+  }
+  return resultado
 }

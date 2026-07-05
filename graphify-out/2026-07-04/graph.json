@@ -2090,7 +2090,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "configuracoes_whatsapp_page_errorboundary",
-      "community": 66,
+      "community": 130,
       "norm_label": "errorboundary"
     },
     {
@@ -2100,7 +2100,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "configuracoes_whatsapp_page_errorboundary_constructor",
-      "community": 66,
+      "community": 130,
       "norm_label": ".constructor()"
     },
     {
@@ -2110,7 +2110,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "configuracoes_whatsapp_page_errorboundary_getderivedstatefromerror",
-      "community": 66,
+      "community": 130,
       "norm_label": ".getderivedstatefromerror()"
     },
     {
@@ -2120,7 +2120,7 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "configuracoes_whatsapp_page_errorboundary_componentdidcatch",
-      "community": 66,
+      "community": 130,
       "norm_label": ".componentdidcatch()"
     },
     {
@@ -2130,7 +2130,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "configuracoes_whatsapp_page_errorboundary_render",
-      "community": 66,
+      "community": 130,
       "norm_label": ".render()"
     },
     {
@@ -2150,7 +2150,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "community": 139,
+      "community": 38,
       "norm_label": "page.tsx"
     },
     {
@@ -2160,7 +2160,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "id_page_perfis_industria",
-      "community": 139,
+      "community": 38,
       "norm_label": "perfis_industria"
     },
     {
@@ -2170,7 +2170,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "id_page_cadastroindustriadetalhepage",
-      "community": 139,
+      "community": 38,
       "norm_label": "cadastroindustriadetalhepage()"
     },
     {
@@ -2400,7 +2400,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "distribuicao_actions_alternardisponibilidade",
-      "community": 108,
+      "community": 39,
       "norm_label": "alternardisponibilidade()"
     },
     {
@@ -3240,7 +3240,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_configuracoes_produtos_page_tsx_produtos_page",
-      "community": 153,
+      "community": 108,
       "norm_label": "page.tsx"
     },
     {
@@ -3250,7 +3250,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "produtos_page_produtospage",
-      "community": 153,
+      "community": 108,
       "norm_label": "produtospage()"
     },
     {
@@ -3260,7 +3260,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "usuarios_actions",
-      "community": 118,
+      "community": 30,
       "norm_label": "actions.ts"
     },
     {
@@ -3270,7 +3270,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "usuarios_actions_criarusuario",
-      "community": 118,
+      "community": 30,
       "norm_label": "criarusuario()"
     },
     {
@@ -3280,7 +3280,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "usuarios_actions_alterarsenhausuario",
-      "community": 118,
+      "community": 30,
       "norm_label": "alterarsenhausuario()"
     },
     {
@@ -3290,7 +3290,7 @@
       "source_location": "L105",
       "_origin": "ast",
       "id": "usuarios_actions_atribuirfuncao",
-      "community": 118,
+      "community": 30,
       "norm_label": "atribuirfuncao()"
     },
     {
@@ -3300,7 +3300,7 @@
       "source_location": "L138",
       "_origin": "ast",
       "id": "usuarios_actions_excluirusuariodefinitivo",
-      "community": 118,
+      "community": 30,
       "norm_label": "excluirusuariodefinitivo()"
     },
     {
@@ -3340,7 +3340,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_actions_seguras",
-      "community": 131,
+      "community": 36,
       "norm_label": "actions-seguras.ts"
     },
     {
@@ -3350,7 +3350,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "whatsapp_actions_seguras_getsoadmin",
-      "community": 131,
+      "community": 36,
       "norm_label": "getsoadmin()"
     },
     {
@@ -3360,7 +3360,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "whatsapp_actions_seguras_excluirinstanciasegura",
-      "community": 131,
+      "community": 36,
       "norm_label": "excluirinstanciasegura()"
     },
     {
@@ -3370,7 +3370,7 @@
       "source_location": "L111",
       "_origin": "ast",
       "id": "whatsapp_actions_seguras_marcarinstanciainativa",
-      "community": 131,
+      "community": 36,
       "norm_label": "marcarinstanciainativa()"
     },
     {
@@ -3380,7 +3380,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_configuracoes_whatsapp_actions_ts_whatsapp_actions",
-      "community": 140,
+      "community": 36,
       "norm_label": "actions.ts"
     },
     {
@@ -3390,7 +3390,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "whatsapp_actions_getsoadmin",
-      "community": 140,
+      "community": 36,
       "norm_label": "getsoadmin()"
     },
     {
@@ -3400,7 +3400,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "whatsapp_actions_adicionarinstancia",
-      "community": 140,
+      "community": 36,
       "norm_label": "adicionarinstancia()"
     },
     {
@@ -3410,7 +3410,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "whatsapp_actions_excluirinstancia",
-      "community": 140,
+      "community": 36,
       "norm_label": "excluirinstancia()"
     },
     {
@@ -3420,7 +3420,7 @@
       "source_location": "L96",
       "_origin": "ast",
       "id": "whatsapp_actions_fetchvendedores",
-      "community": 140,
+      "community": 36,
       "norm_label": "fetchvendedores()"
     },
     {
@@ -3430,7 +3430,7 @@
       "source_location": "L111",
       "_origin": "ast",
       "id": "whatsapp_actions_verificarqrcode",
-      "community": 140,
+      "community": 36,
       "norm_label": "verificarqrcode()"
     },
     {
@@ -3680,7 +3680,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "community": 139,
+      "community": 38,
       "norm_label": "page.tsx"
     },
     {
@@ -3690,7 +3690,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "id_page_perfis_hub",
-      "community": 139,
+      "community": 38,
       "norm_label": "perfis_hub"
     },
     {
@@ -3700,7 +3700,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "id_page_editavel",
-      "community": 139,
+      "community": 38,
       "norm_label": "editavel"
     },
     {
@@ -3710,7 +3710,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "id_page_cadastrohubdetalhepage",
-      "community": 139,
+      "community": 38,
       "norm_label": "cadastrohubdetalhepage()"
     },
     {
@@ -3727,27 +3727,27 @@
       "label": "DadosCadastro",
       "file_type": "code",
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L23",
+      "source_location": "L22",
       "_origin": "ast",
       "id": "cadastro_clientes_actions_dadoscadastro",
       "community": 38,
       "norm_label": "dadoscadastro"
     },
     {
-      "label": "exigirPermissaoHub()",
+      "label": "exigirAcessoHub()",
       "file_type": "code",
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L25",
+      "source_location": "L24",
       "_origin": "ast",
-      "id": "cadastro_clientes_actions_exigirpermissaohub",
+      "id": "cadastro_clientes_actions_exigiracessohub",
       "community": 38,
-      "norm_label": "exigirpermissaohub()"
+      "norm_label": "exigiracessohub()"
     },
     {
       "label": "listarCadastros()",
       "file_type": "code",
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L43",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "cadastro_clientes_actions_listarcadastros",
       "community": 67,
@@ -3757,7 +3757,7 @@
       "label": "detalheCadastro()",
       "file_type": "code",
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L64",
+      "source_location": "L59",
       "_origin": "ast",
       "id": "cadastro_clientes_actions_detalhecadastro",
       "community": 38,
@@ -3767,7 +3767,7 @@
       "label": "urlAssinadaDocumento()",
       "file_type": "code",
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L72",
+      "source_location": "L68",
       "_origin": "ast",
       "id": "cadastro_clientes_actions_urlassinadadocumento",
       "community": 38,
@@ -3777,7 +3777,7 @@
       "label": "criarCadastro()",
       "file_type": "code",
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L81",
+      "source_location": "L79",
       "_origin": "ast",
       "id": "cadastro_clientes_actions_criarcadastro",
       "community": 38,
@@ -3787,7 +3787,7 @@
       "label": "salvarCadastro()",
       "file_type": "code",
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L93",
+      "source_location": "L91",
       "_origin": "ast",
       "id": "cadastro_clientes_actions_salvarcadastro",
       "community": 38,
@@ -3797,7 +3797,7 @@
       "label": "anexarDocumento()",
       "file_type": "code",
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L101",
+      "source_location": "L99",
       "_origin": "ast",
       "id": "cadastro_clientes_actions_anexardocumento",
       "community": 38,
@@ -3807,7 +3807,7 @@
       "label": "removerDocumento()",
       "file_type": "code",
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L145",
+      "source_location": "L143",
       "_origin": "ast",
       "id": "cadastro_clientes_actions_removerdocumento",
       "community": 38,
@@ -3817,7 +3817,7 @@
       "label": "enviarParaIndustria()",
       "file_type": "code",
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L157",
+      "source_location": "L155",
       "_origin": "ast",
       "id": "cadastro_clientes_actions_enviarparaindustria",
       "community": 38,
@@ -4680,7 +4680,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "nova_page",
-      "community": 134,
+      "community": 120,
       "norm_label": "page.tsx"
     },
     {
@@ -4690,7 +4690,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "nova_page_perfis_permitidos",
-      "community": 134,
+      "community": 120,
       "norm_label": "perfis_permitidos"
     },
     {
@@ -4700,7 +4700,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "nova_page_novavalidacaopage",
-      "community": 134,
+      "community": 120,
       "norm_label": "novavalidacaopage()"
     },
     {
@@ -4750,7 +4750,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "nova_tela_validacao_telavalidacao",
-      "community": 134,
+      "community": 120,
       "norm_label": "telavalidacao()"
     },
     {
@@ -4780,7 +4780,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "validacao_receita_page_validacaoreceitapage",
-      "community": 153,
+      "community": 108,
       "norm_label": "validacaoreceitapage()"
     },
     {
@@ -5130,7 +5130,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "leads_actions",
-      "community": 113,
+      "community": 36,
       "norm_label": "actions.ts"
     },
     {
@@ -5140,7 +5140,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "leads_actions_getusuarioeorg",
-      "community": 113,
+      "community": 36,
       "norm_label": "getusuarioeorg()"
     },
     {
@@ -5150,7 +5150,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "leads_actions_registraratividade",
-      "community": 113,
+      "community": 36,
       "norm_label": "registraratividade()"
     },
     {
@@ -5160,7 +5160,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "leads_actions_criarlead",
-      "community": 113,
+      "community": 36,
       "norm_label": "criarlead()"
     },
     {
@@ -5170,7 +5170,7 @@
       "source_location": "L110",
       "_origin": "ast",
       "id": "leads_actions_editarlead",
-      "community": 113,
+      "community": 36,
       "norm_label": "editarlead()"
     },
     {
@@ -5180,7 +5180,7 @@
       "source_location": "L152",
       "_origin": "ast",
       "id": "leads_actions_atribuirresponsavel",
-      "community": 113,
+      "community": 36,
       "norm_label": "atribuirresponsavel()"
     },
     {
@@ -5190,7 +5190,7 @@
       "source_location": "L184",
       "_origin": "ast",
       "id": "leads_actions_descartarlead",
-      "community": 113,
+      "community": 36,
       "norm_label": "descartarlead()"
     },
     {
@@ -5200,7 +5200,7 @@
       "source_location": "L207",
       "_origin": "ast",
       "id": "leads_actions_adicionarobservacao",
-      "community": 113,
+      "community": 36,
       "norm_label": "adicionarobservacao()"
     },
     {
@@ -5210,7 +5210,7 @@
       "source_location": "L227",
       "_origin": "ast",
       "id": "leads_actions_converterleademcontato",
-      "community": 113,
+      "community": 36,
       "norm_label": "converterleademcontato()"
     },
     {
@@ -5320,7 +5320,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "aprovar_page",
-      "community": 115,
+      "community": 139,
       "norm_label": "page.tsx"
     },
     {
@@ -5330,7 +5330,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "aprovar_page_props",
-      "community": 115,
+      "community": 139,
       "norm_label": "props"
     },
     {
@@ -5340,7 +5340,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "aprovar_page_aprovarorcamentopage",
-      "community": 115,
+      "community": 139,
       "norm_label": "aprovarorcamentopage()"
     },
     {
@@ -5370,7 +5370,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_orcamentos_id_page_backup_tsx_id_page_backup",
-      "community": 115,
+      "community": 139,
       "norm_label": "page.backup.tsx"
     },
     {
@@ -5380,7 +5380,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "app_dashboard_orcamentos_id_page_backup_tsx_id_page_backup_orcamentodetalhepage",
-      "community": 115,
+      "community": 139,
       "norm_label": "orcamentodetalhepage()"
     },
     {
@@ -5520,7 +5520,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_actions_hub",
-      "community": 119,
+      "community": 66,
       "norm_label": "actions-hub.ts"
     },
     {
@@ -5530,7 +5530,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "orcamentos_actions_hub_itemorcamentohub",
-      "community": 119,
+      "community": 66,
       "norm_label": "itemorcamentohub"
     },
     {
@@ -5540,7 +5540,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "orcamentos_actions_hub_dadosorcamentohub",
-      "community": 119,
+      "community": 66,
       "norm_label": "dadosorcamentohub"
     },
     {
@@ -5550,7 +5550,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "orcamentos_actions_hub_status_editaveis",
-      "community": 119,
+      "community": 66,
       "norm_label": "status_editaveis"
     },
     {
@@ -5560,7 +5560,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "orcamentos_actions_hub_adminclient",
-      "community": 119,
+      "community": 66,
       "norm_label": "adminclient"
     },
     {
@@ -5570,7 +5570,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "orcamentos_actions_hub_gethubuser",
-      "community": 119,
+      "community": 66,
       "norm_label": "gethubuser()"
     },
     {
@@ -5580,7 +5580,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "orcamentos_actions_hub_validarecalcular",
-      "community": 119,
+      "community": 66,
       "norm_label": "validarecalcular()"
     },
     {
@@ -5590,7 +5590,7 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "orcamentos_actions_hub_criarorcamentohub",
-      "community": 119,
+      "community": 66,
       "norm_label": "criarorcamentohub()"
     },
     {
@@ -5600,7 +5600,7 @@
       "source_location": "L159",
       "_origin": "ast",
       "id": "orcamentos_actions_hub_editarorcamentohub",
-      "community": 119,
+      "community": 66,
       "norm_label": "editarorcamentohub()"
     },
     {
@@ -6270,7 +6270,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pedidos_page",
-      "community": 120,
+      "community": 124,
       "norm_label": "page.tsx"
     },
     {
@@ -6280,7 +6280,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "pedidos_page_calcularperiodo",
-      "community": 120,
+      "community": 124,
       "norm_label": "calcularperiodo()"
     },
     {
@@ -6290,7 +6290,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "pedidos_page_pedidospage",
-      "community": 120,
+      "community": 124,
       "norm_label": "pedidospage()"
     },
     {
@@ -6300,7 +6300,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pipeline_actions",
-      "community": 37,
+      "community": 129,
       "norm_label": "actions.ts"
     },
     {
@@ -6310,7 +6310,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "pipeline_actions_getvendedorousuperior",
-      "community": 37,
+      "community": 129,
       "norm_label": "getvendedorousuperior()"
     },
     {
@@ -6320,7 +6320,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "pipeline_actions_criardeal",
-      "community": 37,
+      "community": 129,
       "norm_label": "criardeal()"
     },
     {
@@ -6330,7 +6330,7 @@
       "source_location": "L84",
       "_origin": "ast",
       "id": "pipeline_actions_moverdeal",
-      "community": 37,
+      "community": 129,
       "norm_label": "moverdeal()"
     },
     {
@@ -6340,7 +6340,7 @@
       "source_location": "L198",
       "_origin": "ast",
       "id": "pipeline_actions_adicionarobservacaodeal",
-      "community": 37,
+      "community": 129,
       "norm_label": "adicionarobservacaodeal()"
     },
     {
@@ -6480,7 +6480,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_relatorios_exportar_route_ts_exportar_route",
-      "community": 120,
+      "community": 131,
       "norm_label": "route.ts"
     },
     {
@@ -6490,7 +6490,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "exportar_route_calcularperiodo",
-      "community": 120,
+      "community": 131,
       "norm_label": "calcularperiodo()"
     },
     {
@@ -6500,7 +6500,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "app_dashboard_relatorios_exportar_route_ts_exportar_route_escapecsv",
-      "community": 120,
+      "community": 131,
       "norm_label": "escapecsv()"
     },
     {
@@ -6510,7 +6510,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "app_dashboard_relatorios_exportar_route_ts_exportar_route_get",
-      "community": 120,
+      "community": 131,
       "norm_label": "get()"
     },
     {
@@ -6630,7 +6630,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tarefas_page",
-      "community": 5,
+      "community": 24,
       "norm_label": "page.tsx"
     },
     {
@@ -6640,7 +6640,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "tarefas_page_tarefaspage",
-      "community": 5,
+      "community": 24,
       "norm_label": "tarefaspage()"
     },
     {
@@ -6960,7 +6960,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_dashboard_whatsapp_actions_ts_whatsapp_actions",
-      "community": 124,
+      "community": 36,
       "norm_label": "actions.ts"
     },
     {
@@ -6970,7 +6970,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "whatsapp_actions_getvalidinstance",
-      "community": 124,
+      "community": 36,
       "norm_label": "getvalidinstance()"
     },
     {
@@ -6980,7 +6980,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "whatsapp_actions_enviarmensagem",
-      "community": 124,
+      "community": 36,
       "norm_label": "enviarmensagem()"
     },
     {
@@ -6990,7 +6990,7 @@
       "source_location": "L138",
       "_origin": "ast",
       "id": "whatsapp_actions_iniciarconversaparams",
-      "community": 124,
+      "community": 36,
       "norm_label": "iniciarconversaparams"
     },
     {
@@ -7000,7 +7000,7 @@
       "source_location": "L146",
       "_origin": "ast",
       "id": "whatsapp_actions_iniciarconversa",
-      "community": 124,
+      "community": 36,
       "norm_label": "iniciarconversa()"
     },
     {
@@ -7010,7 +7010,7 @@
       "source_location": "L413",
       "_origin": "ast",
       "id": "whatsapp_actions_buscarinstanciasautorizadas",
-      "community": 124,
+      "community": 36,
       "norm_label": "buscarinstanciasautorizadas()"
     },
     {
@@ -7020,7 +7020,7 @@
       "source_location": "L442",
       "_origin": "ast",
       "id": "whatsapp_actions_buscarcontatosparaconversa",
-      "community": 124,
+      "community": 36,
       "norm_label": "buscarcontatosparaconversa()"
     },
     {
@@ -7030,7 +7030,7 @@
       "source_location": "L481",
       "_origin": "ast",
       "id": "whatsapp_actions_enviarmidia",
-      "community": 124,
+      "community": 36,
       "norm_label": "enviarmidia()"
     },
     {
@@ -7710,7 +7710,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "send_route",
-      "community": 124,
+      "community": 5,
       "norm_label": "route.ts"
     },
     {
@@ -7720,7 +7720,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "send_route_sendmessagerequest",
-      "community": 124,
+      "community": 5,
       "norm_label": "sendmessagerequest"
     },
     {
@@ -7730,7 +7730,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "send_route_post",
-      "community": 124,
+      "community": 5,
       "norm_label": "post()"
     },
     {
@@ -7740,7 +7740,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "vendedores_route",
-      "community": 140,
+      "community": 36,
       "norm_label": "route.ts"
     },
     {
@@ -7750,7 +7750,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "vendedores_route_get",
-      "community": 140,
+      "community": 36,
       "norm_label": "get()"
     },
     {
@@ -8010,7 +8010,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_public_id_page_tsx_id_page",
-      "community": 115,
+      "community": 139,
       "norm_label": "page.tsx"
     },
     {
@@ -8020,7 +8020,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "id_page_orcamentopublicopage",
-      "community": 115,
+      "community": 139,
       "norm_label": "orcamentopublicopage()"
     },
     {
@@ -8558,7 +8558,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "cadastro_clientes_badge_status_badgestatus",
-      "community": 139,
+      "community": 38,
       "norm_label": "badgestatus()"
     },
     {
@@ -8568,7 +8568,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "cadastro_clientes_barra_progresso",
-      "community": 38,
+      "community": 117,
       "norm_label": "barra-progresso.tsx"
     },
     {
@@ -8578,7 +8578,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "cadastro_clientes_barra_progresso_barraprogresso",
-      "community": 38,
+      "community": 117,
       "norm_label": "barraprogresso()"
     },
     {
@@ -8588,7 +8588,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "cadastro_clientes_detalhe_cadastro_view",
-      "community": 139,
+      "community": 38,
       "norm_label": "detalhe-cadastro-view.tsx"
     },
     {
@@ -8598,7 +8598,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "cadastro_clientes_detalhe_cadastro_view_linha",
-      "community": 139,
+      "community": 38,
       "norm_label": "linha()"
     },
     {
@@ -8608,7 +8608,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "cadastro_clientes_detalhe_cadastro_view_detalhecadastroview",
-      "community": 139,
+      "community": 38,
       "norm_label": "detalhecadastroview()"
     },
     {
@@ -8768,7 +8768,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "cadastro_clientes_painel_analise_industria_painelanaliseindustria",
-      "community": 139,
+      "community": 38,
       "norm_label": "painelanaliseindustria()"
     },
     {
@@ -9128,7 +9128,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "clientes_form_importacao",
-      "community": 139,
+      "community": 113,
       "norm_label": "form-importacao.tsx"
     },
     {
@@ -9138,7 +9138,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "clientes_form_importacao_contatoimportado",
-      "community": 139,
+      "community": 113,
       "norm_label": "contatoimportado"
     },
     {
@@ -9148,7 +9148,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "clientes_form_importacao_mapeamento_nome",
-      "community": 139,
+      "community": 113,
       "norm_label": "mapeamento_nome"
     },
     {
@@ -9158,7 +9158,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "clientes_form_importacao_detectarcoluna",
-      "community": 139,
+      "community": 113,
       "norm_label": "detectarcoluna()"
     },
     {
@@ -9168,7 +9168,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "clientes_form_importacao_parsearplanilha",
-      "community": 139,
+      "community": 113,
       "norm_label": "parsearplanilha()"
     },
     {
@@ -9178,7 +9178,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "clientes_form_importacao_mapearcontatos",
-      "community": 139,
+      "community": 113,
       "norm_label": "mapearcontatos()"
     },
     {
@@ -9188,7 +9188,7 @@
       "source_location": "L93",
       "_origin": "ast",
       "id": "clientes_form_importacao_modoimportacao",
-      "community": 139,
+      "community": 113,
       "norm_label": "modoimportacao"
     },
     {
@@ -9288,7 +9288,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "distribuicao_botao_disponibilidade",
-      "community": 108,
+      "community": 39,
       "norm_label": "botao-disponibilidade.tsx"
     },
     {
@@ -9298,7 +9298,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "distribuicao_botao_disponibilidade_props",
-      "community": 108,
+      "community": 39,
       "norm_label": "props"
     },
     {
@@ -9308,7 +9308,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "distribuicao_botao_disponibilidade_cargos_com_disponibilidade",
-      "community": 108,
+      "community": 39,
       "norm_label": "cargos_com_disponibilidade"
     },
     {
@@ -9318,7 +9318,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "distribuicao_botao_disponibilidade_botaodisponibilidade",
-      "community": 108,
+      "community": 39,
       "norm_label": "botaodisponibilidade()"
     },
     {
@@ -9328,7 +9328,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "distribuicao_botao_disponibilidade_botaodisponibilidadeinterativo",
-      "community": 108,
+      "community": 39,
       "norm_label": "botaodisponibilidadeinterativo()"
     },
     {
@@ -10298,7 +10298,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "layout_header",
-      "community": 108,
+      "community": 151,
       "norm_label": "header.tsx"
     },
     {
@@ -10308,7 +10308,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "layout_header_perm",
-      "community": 108,
+      "community": 151,
       "norm_label": "perm"
     },
     {
@@ -10438,7 +10438,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "leads_badge_origem",
-      "community": 129,
+      "community": 37,
       "norm_label": "badge-origem.tsx"
     },
     {
@@ -10448,7 +10448,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "leads_badge_origem_config",
-      "community": 129,
+      "community": 37,
       "norm_label": "config"
     },
     {
@@ -10458,7 +10458,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "leads_badge_origem_badgeorigem",
-      "community": 129,
+      "community": 37,
       "norm_label": "badgeorigem()"
     },
     {
@@ -11008,7 +11008,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_acoes_orcamento_detalhe",
-      "community": 115,
+      "community": 139,
       "norm_label": "acoes-orcamento-detalhe.tsx"
     },
     {
@@ -11018,7 +11018,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "orcamentos_acoes_orcamento_detalhe_props",
-      "community": 115,
+      "community": 139,
       "norm_label": "props"
     },
     {
@@ -11028,7 +11028,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "orcamentos_acoes_orcamento_detalhe_acoesorcamentodetalhe",
-      "community": 115,
+      "community": 139,
       "norm_label": "acoesorcamentodetalhe()"
     },
     {
@@ -11068,7 +11068,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_acoes_wrapper",
-      "community": 115,
+      "community": 139,
       "norm_label": "acoes-wrapper.tsx"
     },
     {
@@ -11078,7 +11078,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "orcamentos_acoes_wrapper_acoeswrapperprops",
-      "community": 115,
+      "community": 139,
       "norm_label": "acoeswrapperprops"
     },
     {
@@ -11088,7 +11088,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "orcamentos_acoes_wrapper_acoeswrapper",
-      "community": 115,
+      "community": 139,
       "norm_label": "acoeswrapper()"
     },
     {
@@ -11098,7 +11098,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_badge_status_orcamento",
-      "community": 115,
+      "community": 139,
       "norm_label": "badge-status-orcamento.tsx"
     },
     {
@@ -11108,7 +11108,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "orcamentos_badge_status_orcamento_config",
-      "community": 115,
+      "community": 139,
       "norm_label": "config"
     },
     {
@@ -11118,7 +11118,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "orcamentos_badge_status_orcamento_badgestatusorcamento",
-      "community": 115,
+      "community": 139,
       "norm_label": "badgestatusorcamento()"
     },
     {
@@ -11178,7 +11178,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf",
-      "community": 133,
+      "community": 117,
       "norm_label": "botao-exportar-pdf.tsx"
     },
     {
@@ -11188,7 +11188,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_item",
-      "community": 133,
+      "community": 117,
       "norm_label": "item"
     },
     {
@@ -11198,7 +11198,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_props",
-      "community": 133,
+      "community": 117,
       "norm_label": "props"
     },
     {
@@ -11208,7 +11208,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_green_dark",
-      "community": 133,
+      "community": 117,
       "norm_label": "green_dark"
     },
     {
@@ -11218,7 +11218,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_green_mid",
-      "community": 133,
+      "community": 117,
       "norm_label": "green_mid"
     },
     {
@@ -11228,7 +11228,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_green_light",
-      "community": 133,
+      "community": 117,
       "norm_label": "green_light"
     },
     {
@@ -11238,7 +11238,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_green_accent",
-      "community": 133,
+      "community": 117,
       "norm_label": "green_accent"
     },
     {
@@ -11248,7 +11248,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_dark_text",
-      "community": 133,
+      "community": 117,
       "norm_label": "dark_text"
     },
     {
@@ -11258,7 +11258,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_gray_text",
-      "community": 133,
+      "community": 117,
       "norm_label": "gray_text"
     },
     {
@@ -11268,7 +11268,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_white",
-      "community": 133,
+      "community": 117,
       "norm_label": "white"
     },
     {
@@ -11278,7 +11278,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "orcamentos_botao_exportar_pdf_botaoexportarpdf",
-      "community": 133,
+      "community": 117,
       "norm_label": "botaoexportarpdf()"
     },
     {
@@ -11628,7 +11628,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_orcamento_detalhe",
-      "community": 115,
+      "community": 139,
       "norm_label": "orcamento-detalhe.tsx"
     },
     {
@@ -11638,7 +11638,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "orcamentos_orcamento_detalhe_itemcomproduto",
-      "community": 115,
+      "community": 139,
       "norm_label": "itemcomproduto"
     },
     {
@@ -11648,7 +11648,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "orcamentos_orcamento_detalhe_orcamentodetalheprops",
-      "community": 115,
+      "community": 139,
       "norm_label": "orcamentodetalheprops"
     },
     {
@@ -12118,7 +12118,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_orcamento_simplificado",
-      "community": 115,
+      "community": 139,
       "norm_label": "orcamento-simplificado.tsx"
     },
     {
@@ -12128,7 +12128,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "orcamentos_orcamento_simplificado_orcamentosimplificadoprops",
-      "community": 115,
+      "community": 139,
       "norm_label": "orcamentosimplificadoprops"
     },
     {
@@ -12138,7 +12138,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "orcamentos_orcamento_simplificado_orcamentosimplificado",
-      "community": 115,
+      "community": 117,
       "norm_label": "orcamentosimplificado()"
     },
     {
@@ -12228,7 +12228,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orcamentos_tabela_orcamentos",
-      "community": 115,
+      "community": 117,
       "norm_label": "tabela-orcamentos.tsx"
     },
     {
@@ -12238,7 +12238,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "orcamentos_tabela_orcamentos_orcamentolista",
-      "community": 115,
+      "community": 117,
       "norm_label": "orcamentolista"
     },
     {
@@ -12248,7 +12248,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "orcamentos_tabela_orcamentos_props",
-      "community": 115,
+      "community": 117,
       "norm_label": "props"
     },
     {
@@ -12268,7 +12268,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "painel_card_kpi",
-      "community": 112,
+      "community": 139,
       "norm_label": "card-kpi.tsx"
     },
     {
@@ -12278,7 +12278,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "painel_card_kpi_props",
-      "community": 112,
+      "community": 139,
       "norm_label": "props"
     },
     {
@@ -12518,7 +12518,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "pedidos_botao_excluir_pedido_botaoexcluirpedido",
-      "community": 120,
+      "community": 124,
       "norm_label": "botaoexcluirpedido()"
     },
     {
@@ -12608,7 +12608,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "pedidos_filtros_pedidos_filtrospedidos",
-      "community": 120,
+      "community": 124,
       "norm_label": "filtrospedidos()"
     },
     {
@@ -12638,7 +12638,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "pedidos_modal_editar_pedido_modaleditarpedido",
-      "community": 139,
+      "community": 117,
       "norm_label": "modaleditarpedido()"
     },
     {
@@ -12648,7 +12648,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pedidos_timeline_status",
-      "community": 139,
+      "community": 117,
       "norm_label": "timeline-status.tsx"
     },
     {
@@ -12658,7 +12658,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "pedidos_timeline_status_etapas",
-      "community": 139,
+      "community": 117,
       "norm_label": "etapas"
     },
     {
@@ -12668,7 +12668,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "pedidos_timeline_status_timelinestatus",
-      "community": 139,
+      "community": 117,
       "norm_label": "timelinestatus()"
     },
     {
@@ -12818,7 +12818,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pipeline_kanban_card",
-      "community": 129,
+      "community": 128,
       "norm_label": "kanban-card.tsx"
     },
     {
@@ -12828,7 +12828,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "pipeline_kanban_card_dealcard",
-      "community": 129,
+      "community": 128,
       "norm_label": "dealcard"
     },
     {
@@ -12838,7 +12838,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "pipeline_kanban_card_props",
-      "community": 129,
+      "community": 128,
       "norm_label": "props"
     },
     {
@@ -12848,7 +12848,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "pipeline_kanban_card_kanbancard",
-      "community": 129,
+      "community": 128,
       "norm_label": "kanbancard()"
     },
     {
@@ -12858,7 +12858,7 @@
       "source_location": "L214",
       "_origin": "ast",
       "id": "pipeline_kanban_card_statusbadge",
-      "community": 129,
+      "community": 128,
       "norm_label": "statusbadge()"
     },
     {
@@ -12868,7 +12868,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pipeline_kanban_coluna",
-      "community": 129,
+      "community": 128,
       "norm_label": "kanban-coluna.tsx"
     },
     {
@@ -12878,7 +12878,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "pipeline_kanban_coluna_etapa",
-      "community": 129,
+      "community": 128,
       "norm_label": "etapa"
     },
     {
@@ -12888,7 +12888,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "pipeline_kanban_coluna_props",
-      "community": 129,
+      "community": 128,
       "norm_label": "props"
     },
     {
@@ -12898,7 +12898,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "pipeline_kanban_coluna_kanbancoluna",
-      "community": 129,
+      "community": 128,
       "norm_label": "kanbancoluna()"
     },
     {
@@ -13518,7 +13518,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "produtos_tabela_produtos_tabelaprodutos",
-      "community": 153,
+      "community": 108,
       "norm_label": "tabelaprodutos()"
     },
     {
@@ -14008,7 +14008,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "tarefas_lista_tarefas_listatarefas",
-      "community": 5,
+      "community": 24,
       "norm_label": "listatarefas()"
     },
     {
@@ -14288,7 +14288,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "ui_button_buttonvariants",
-      "community": 153,
+      "community": 108,
       "norm_label": "buttonvariants"
     },
     {
@@ -14348,7 +14348,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "ui_card_carddescription",
-      "community": 130,
+      "community": 139,
       "norm_label": "carddescription()"
     },
     {
@@ -14358,7 +14358,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "ui_card_cardaction",
-      "community": 3,
+      "community": 108,
       "norm_label": "cardaction()"
     },
     {
@@ -14378,7 +14378,7 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "ui_card_cardfooter",
-      "community": 3,
+      "community": 108,
       "norm_label": "cardfooter()"
     },
     {
@@ -14438,7 +14438,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "ui_dialog_dialogoverlay",
-      "community": 3,
+      "community": 108,
       "norm_label": "dialogoverlay()"
     },
     {
@@ -14738,7 +14738,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "ui_select_selectgroup",
-      "community": 3,
+      "community": 108,
       "norm_label": "selectgroup()"
     },
     {
@@ -14778,7 +14778,7 @@
       "source_location": "L98",
       "_origin": "ast",
       "id": "ui_select_selectlabel",
-      "community": 3,
+      "community": 108,
       "norm_label": "selectlabel()"
     },
     {
@@ -14798,7 +14798,7 @@
       "source_location": "L139",
       "_origin": "ast",
       "id": "ui_select_selectseparator",
-      "community": 3,
+      "community": 108,
       "norm_label": "selectseparator()"
     },
     {
@@ -14808,7 +14808,7 @@
       "source_location": "L152",
       "_origin": "ast",
       "id": "ui_select_selectscrollupbutton",
-      "community": 3,
+      "community": 108,
       "norm_label": "selectscrollupbutton()"
     },
     {
@@ -14818,7 +14818,7 @@
       "source_location": "L171",
       "_origin": "ast",
       "id": "ui_select_selectscrolldownbutton",
-      "community": 3,
+      "community": 108,
       "norm_label": "selectscrolldownbutton()"
     },
     {
@@ -14828,7 +14828,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "ui_separator",
-      "community": 3,
+      "community": 108,
       "norm_label": "separator.tsx"
     },
     {
@@ -14838,7 +14838,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "ui_separator_separator",
-      "community": 3,
+      "community": 108,
       "norm_label": "separator()"
     },
     {
@@ -15058,7 +15058,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "usuarios_badge_perfil",
-      "community": 108,
+      "community": 151,
       "norm_label": "badge-perfil.tsx"
     },
     {
@@ -15068,7 +15068,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "usuarios_badge_perfil_configuracoes",
-      "community": 108,
+      "community": 151,
       "norm_label": "configuracoes"
     },
     {
@@ -15078,7 +15078,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "usuarios_badge_perfil_badgeperfil",
-      "community": 108,
+      "community": 151,
       "norm_label": "badgeperfil()"
     },
     {
@@ -15278,7 +15278,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_card_instancia",
-      "community": 137,
+      "community": 36,
       "norm_label": "card-instancia.tsx"
     },
     {
@@ -15288,7 +15288,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "whatsapp_card_instancia_whatsappstatus",
-      "community": 137,
+      "community": 36,
       "norm_label": "whatsappstatus"
     },
     {
@@ -15298,7 +15298,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "whatsapp_card_instancia_props",
-      "community": 137,
+      "community": 36,
       "norm_label": "props"
     },
     {
@@ -15308,7 +15308,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "whatsapp_card_instancia_status_config",
-      "community": 137,
+      "community": 36,
       "norm_label": "status_config"
     },
     {
@@ -15318,7 +15318,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "whatsapp_card_instancia_normalizarstatus",
-      "community": 137,
+      "community": 36,
       "norm_label": "normalizarstatus()"
     },
     {
@@ -15328,7 +15328,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "whatsapp_card_instancia_extrairnomevendedor",
-      "community": 137,
+      "community": 36,
       "norm_label": "extrairnomevendedor()"
     },
     {
@@ -15338,7 +15338,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "whatsapp_card_instancia_cardinstancia",
-      "community": 137,
+      "community": 36,
       "norm_label": "cardinstancia()"
     },
     {
@@ -15348,7 +15348,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_chat_area",
-      "community": 64,
+      "community": 50,
       "norm_label": "chat-area.tsx"
     },
     {
@@ -15358,7 +15358,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "whatsapp_chat_area_status_badge",
-      "community": 64,
+      "community": 50,
       "norm_label": "status_badge"
     },
     {
@@ -15368,7 +15368,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "whatsapp_chat_area_chatheaderinfo",
-      "community": 64,
+      "community": 50,
       "norm_label": "chatheaderinfo"
     },
     {
@@ -15378,7 +15378,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "whatsapp_chat_area_mensageminicial",
-      "community": 64,
+      "community": 50,
       "norm_label": "mensageminicial"
     },
     {
@@ -15388,7 +15388,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "whatsapp_chat_area_props",
-      "community": 64,
+      "community": 50,
       "norm_label": "props"
     },
     {
@@ -15928,7 +15928,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "whatsapp_modal_excluir_instancia_modalexcluirinstancia",
-      "community": 137,
+      "community": 36,
       "norm_label": "modalexcluirinstancia()"
     },
     {
@@ -16318,7 +16318,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "whatsapp_qr_code_dialog_qrcodedialog",
-      "community": 137,
+      "community": 36,
       "norm_label": "qrcodedialog()"
     },
     {
@@ -16718,7 +16718,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "whatsapp_thread_mensagens_threadmensagens",
-      "community": 64,
+      "community": 50,
       "norm_label": "threadmensagens()"
     },
     {
@@ -16888,7 +16888,7 @@
       "source_location": "L122",
       "_origin": "ast",
       "id": "whatsapp_whatsapp_shell_filtrochip",
-      "community": 3,
+      "community": 108,
       "norm_label": "filtrochip()"
     },
     {
@@ -18224,7 +18224,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_distribuicao",
-      "community": 122,
+      "community": 36,
       "norm_label": "distribuicao.ts"
     },
     {
@@ -18234,7 +18234,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "lib_distribuicao_supabaseclient",
-      "community": 122,
+      "community": 36,
       "norm_label": "supabaseclient"
     },
     {
@@ -18244,7 +18244,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "lib_distribuicao_configdistribuicao",
-      "community": 122,
+      "community": 36,
       "norm_label": "configdistribuicao"
     },
     {
@@ -18254,7 +18254,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "lib_distribuicao_vendedorelegivel",
-      "community": 122,
+      "community": 36,
       "norm_label": "vendedorelegivel"
     },
     {
@@ -18264,7 +18264,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "lib_distribuicao_cargos_eleg\u00edveis",
-      "community": 122,
+      "community": 36,
       "norm_label": "cargos_elegiveis"
     },
     {
@@ -18274,7 +18274,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "lib_distribuicao_buscarconfig",
-      "community": 122,
+      "community": 36,
       "norm_label": "buscarconfig()"
     },
     {
@@ -18284,7 +18284,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "lib_distribuicao_buscarvendedoreselegiveis",
-      "community": 122,
+      "community": 36,
       "norm_label": "buscarvendedoreselegiveis()"
     },
     {
@@ -18294,7 +18294,7 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "lib_distribuicao_contarleadsabertos",
-      "community": 122,
+      "community": 36,
       "norm_label": "contarleadsabertos()"
     },
     {
@@ -18304,7 +18304,7 @@
       "source_location": "L93",
       "_origin": "ast",
       "id": "lib_distribuicao_filtrarporlimite",
-      "community": 122,
+      "community": 36,
       "norm_label": "filtrarporlimite()"
     },
     {
@@ -18314,7 +18314,7 @@
       "source_location": "L113",
       "_origin": "ast",
       "id": "lib_distribuicao_selecionarrotativo",
-      "community": 122,
+      "community": 36,
       "norm_label": "selecionarrotativo()"
     },
     {
@@ -18324,7 +18324,7 @@
       "source_location": "L130",
       "_origin": "ast",
       "id": "lib_distribuicao_selecionarporcarga",
-      "community": 122,
+      "community": 36,
       "norm_label": "selecionarporcarga()"
     },
     {
@@ -18334,7 +18334,7 @@
       "source_location": "L146",
       "_origin": "ast",
       "id": "lib_distribuicao_distribuirlead",
-      "community": 122,
+      "community": 36,
       "norm_label": "distribuirlead()"
     },
     {
@@ -18444,7 +18444,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_evolution",
-      "community": 131,
+      "community": 36,
       "norm_label": "evolution.ts"
     },
     {
@@ -18454,7 +18454,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_evolution_getconfig",
-      "community": 131,
+      "community": 36,
       "norm_label": "getconfig()"
     },
     {
@@ -18464,7 +18464,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "lib_evolution_apiheaders",
-      "community": 131,
+      "community": 36,
       "norm_label": "apiheaders()"
     },
     {
@@ -18474,7 +18474,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "lib_evolution_apifetch",
-      "community": 131,
+      "community": 36,
       "norm_label": "apifetch()"
     },
     {
@@ -18484,7 +18484,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "lib_evolution_estadoconexao",
-      "community": 131,
+      "community": 36,
       "norm_label": "estadoconexao"
     },
     {
@@ -18494,7 +18494,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "lib_evolution_criarinstancia",
-      "community": 140,
+      "community": 36,
       "norm_label": "criarinstancia()"
     },
     {
@@ -18504,7 +18504,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "lib_evolution_obterqrcode",
-      "community": 140,
+      "community": 36,
       "norm_label": "obterqrcode()"
     },
     {
@@ -18514,7 +18514,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "lib_evolution_obterestadoconexao",
-      "community": 131,
+      "community": 36,
       "norm_label": "obterestadoconexao()"
     },
     {
@@ -18524,7 +18524,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "lib_evolution_deletarinstancia",
-      "community": 131,
+      "community": 36,
       "norm_label": "deletarinstancia()"
     },
     {
@@ -18534,7 +18534,7 @@
       "source_location": "L83",
       "_origin": "ast",
       "id": "lib_evolution_enviartexto",
-      "community": 124,
+      "community": 36,
       "norm_label": "enviartexto()"
     },
     {
@@ -18544,7 +18544,7 @@
       "source_location": "L127",
       "_origin": "ast",
       "id": "lib_evolution_enviarimagem",
-      "community": 124,
+      "community": 36,
       "norm_label": "enviarimagem()"
     },
     {
@@ -18554,7 +18554,7 @@
       "source_location": "L162",
       "_origin": "ast",
       "id": "lib_evolution_enviaraudio",
-      "community": 124,
+      "community": 36,
       "norm_label": "enviaraudio()"
     },
     {
@@ -18564,7 +18564,7 @@
       "source_location": "L194",
       "_origin": "ast",
       "id": "lib_evolution_enviardocumento",
-      "community": 124,
+      "community": 36,
       "norm_label": "enviardocumento()"
     },
     {
@@ -18584,7 +18584,7 @@
       "source_location": "L259",
       "_origin": "ast",
       "id": "lib_evolution_enviarmensagemcomretry",
-      "community": 124,
+      "community": 36,
       "norm_label": "enviarmensagemcomretry()"
     },
     {
@@ -19201,7 +19201,7 @@
       "label": "navegacaoParaPerfil()",
       "file_type": "code",
       "source_file": "lib/navegacao.ts",
-      "source_location": "L74",
+      "source_location": "L75",
       "_origin": "ast",
       "id": "lib_navegacao_navegacaoparaperfil",
       "community": 19,
@@ -19764,7 +19764,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_utils",
-      "community": 115,
+      "community": 117,
       "norm_label": "utils.ts"
     },
     {
@@ -19774,7 +19774,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "lib_utils_cn",
-      "community": 3,
+      "community": 108,
       "norm_label": "cn()"
     },
     {
@@ -19784,7 +19784,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "lib_utils_formatarmoeda",
-      "community": 115,
+      "community": 117,
       "norm_label": "formatarmoeda()"
     },
     {
@@ -19794,7 +19794,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "lib_utils_validartelefone",
-      "community": 124,
+      "community": 36,
       "norm_label": "validartelefone()"
     },
     {
@@ -20224,7 +20224,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "whatsapp_resolver_nome_conversa",
-      "community": 50,
+      "community": 122,
       "norm_label": "resolver-nome-conversa.ts"
     },
     {
@@ -20234,7 +20234,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "whatsapp_resolver_nome_conversa_namesource",
-      "community": 50,
+      "community": 122,
       "norm_label": "namesource"
     },
     {
@@ -20244,7 +20244,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "whatsapp_resolver_nome_conversa_resolvednameconversa",
-      "community": 50,
+      "community": 122,
       "norm_label": "resolvednameconversa"
     },
     {
@@ -20254,7 +20254,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "whatsapp_resolver_nome_conversa_resolvernomeconversainput",
-      "community": 50,
+      "community": 122,
       "norm_label": "resolvernomeconversainput"
     },
     {
@@ -20264,7 +20264,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "whatsapp_resolver_nome_conversa_isvalidname",
-      "community": 50,
+      "community": 122,
       "norm_label": "isvalidname()"
     },
     {
@@ -20274,7 +20274,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "whatsapp_resolver_nome_conversa_buildtelefonepatterns",
-      "community": 50,
+      "community": 122,
       "norm_label": "buildtelefonepatterns()"
     },
     {
@@ -20284,7 +20284,7 @@
       "source_location": "L99",
       "_origin": "ast",
       "id": "whatsapp_resolver_nome_conversa_resolvernomeconversa",
-      "community": 50,
+      "community": 122,
       "norm_label": "resolvernomeconversa()"
     },
     {
@@ -20311,7 +20311,7 @@
       "label": "config",
       "file_type": "code",
       "source_file": "middleware.ts",
-      "source_location": "L96",
+      "source_location": "L95",
       "_origin": "ast",
       "id": "middleware_config",
       "community": 75,
@@ -21812,7 +21812,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "types_database_quotestatus",
-      "community": 115,
+      "community": 139,
       "norm_label": "quotestatus"
     },
     {
@@ -22342,7 +22342,7 @@
       "source_location": "L709",
       "_origin": "ast",
       "id": "types_database_quoteitem",
-      "community": 115,
+      "community": 139,
       "norm_label": "quoteitem"
     },
     {
@@ -27296,9 +27296,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "target": "cadastro_clientes_actions_detalhecadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_detalhecadastro"
     },
     {
       "relation": "imports_from",
@@ -27307,9 +27307,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "target": "cadastro_clientes_badge_status",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_badge_status"
     },
     {
       "relation": "imports",
@@ -27318,9 +27318,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "target": "cadastro_clientes_badge_status_badgestatus",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_badge_status_badgestatus"
     },
     {
       "relation": "imports_from",
@@ -27329,9 +27329,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "target": "cadastro_clientes_detalhe_cadastro_view",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_detalhe_cadastro_view"
     },
     {
       "relation": "imports",
@@ -27340,9 +27340,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "target": "cadastro_clientes_detalhe_cadastro_view_detalhecadastroview",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_detalhe_cadastro_view_detalhecadastroview"
     },
     {
       "relation": "imports_from",
@@ -27351,9 +27351,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "target": "cadastro_clientes_linha_do_tempo",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_linha_do_tempo"
     },
     {
       "relation": "imports",
@@ -27362,9 +27362,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "target": "cadastro_clientes_linha_do_tempo_linhadotempo",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_linha_do_tempo_linhadotempo"
     },
     {
       "relation": "imports_from",
@@ -27373,9 +27373,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "target": "cadastro_clientes_painel_analise_industria",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_painel_analise_industria"
     },
     {
       "relation": "imports",
@@ -27384,9 +27384,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "target": "cadastro_clientes_painel_analise_industria_painelanaliseindustria",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_painel_analise_industria_painelanaliseindustria"
     },
     {
       "relation": "contains",
@@ -27394,9 +27394,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "target": "id_page_cadastroindustriadetalhepage",
-      "confidence_score": 1.0
+      "target": "id_page_cadastroindustriadetalhepage"
     },
     {
       "relation": "contains",
@@ -27404,9 +27404,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "target": "id_page_perfis_industria",
-      "confidence_score": 1.0
+      "target": "id_page_perfis_industria"
     },
     {
       "relation": "imports_from",
@@ -27415,9 +27415,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "target": "supabase_server",
-      "confidence_score": 1.0
+      "target": "supabase_server"
     },
     {
       "relation": "imports",
@@ -27426,9 +27426,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "target": "supabase_server_createclient",
-      "confidence_score": 1.0
+      "target": "supabase_server_createclient"
     },
     {
       "relation": "imports_from",
@@ -27437,9 +27437,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "target": "ui_card",
-      "confidence_score": 1.0
+      "target": "ui_card"
     },
     {
       "relation": "imports",
@@ -27448,9 +27448,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "target": "ui_card_card",
-      "confidence_score": 1.0
+      "target": "ui_card_card"
     },
     {
       "relation": "imports",
@@ -27459,9 +27459,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "target": "ui_card_cardcontent",
-      "confidence_score": 1.0
+      "target": "ui_card_cardcontent"
     },
     {
       "relation": "imports",
@@ -27470,9 +27470,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "target": "ui_card_cardheader",
-      "confidence_score": 1.0
+      "target": "ui_card_cardheader"
     },
     {
       "relation": "imports",
@@ -27481,9 +27481,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_id_page_tsx_id_page",
-      "target": "ui_card_cardtitle",
-      "confidence_score": 1.0
+      "target": "ui_card_cardtitle"
     },
     {
       "relation": "contains",
@@ -27491,9 +27491,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/actions.ts",
       "source_location": "L41",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_actions_aprovarcadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_aprovarcadastro"
     },
     {
       "relation": "contains",
@@ -27501,9 +27501,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/actions.ts",
       "source_location": "L61",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_actions_converteremcliente",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_converteremcliente"
     },
     {
       "relation": "contains",
@@ -27511,9 +27511,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/actions.ts",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_actions_exigirindustria",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_exigirindustria"
     },
     {
       "relation": "contains",
@@ -27521,9 +27521,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/actions.ts",
       "source_location": "L24",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_actions_filtrosindustria",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_filtrosindustria"
     },
     {
       "relation": "contains",
@@ -27531,9 +27531,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/actions.ts",
       "source_location": "L51",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_actions_reprovarcadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_reprovarcadastro"
     },
     {
       "relation": "contains",
@@ -27541,9 +27541,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/actions.ts",
       "source_location": "L31",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_actions_solicitarcorrecao",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_solicitarcorrecao"
     },
     {
       "relation": "imports_from",
@@ -27552,9 +27552,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/actions.ts",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "supabase_server",
-      "confidence_score": 1.0
+      "target": "supabase_server"
     },
     {
       "relation": "imports",
@@ -27563,9 +27563,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/actions.ts",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "supabase_server_createclient",
-      "confidence_score": 1.0
+      "target": "supabase_server_createclient"
     },
     {
       "relation": "calls",
@@ -27574,9 +27574,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/actions.ts",
       "source_location": "L42",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_actions_aprovarcadastro",
-      "target": "cadastro_clientes_actions_exigirindustria",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_exigirindustria"
     },
     {
       "relation": "calls",
@@ -27585,9 +27585,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/actions.ts",
       "source_location": "L62",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_actions_converteremcliente",
-      "target": "cadastro_clientes_actions_exigirindustria",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_exigirindustria"
     },
     {
       "relation": "calls",
@@ -27596,9 +27596,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/actions.ts",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_actions_exigirindustria",
-      "target": "supabase_server_createclient",
-      "confidence_score": 1.0
+      "target": "supabase_server_createclient"
     },
     {
       "relation": "calls",
@@ -27607,9 +27607,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/actions.ts",
       "source_location": "L52",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_actions_reprovarcadastro",
-      "target": "cadastro_clientes_actions_exigirindustria",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_exigirindustria"
     },
     {
       "relation": "calls",
@@ -27618,9 +27618,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/actions.ts",
       "source_location": "L32",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_actions_solicitarcorrecao",
-      "target": "cadastro_clientes_actions_exigirindustria",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_exigirindustria"
     },
     {
       "relation": "imports",
@@ -27629,9 +27629,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_page_tsx_cadastro_clientes_page",
-      "target": "cadastro_clientes_actions_filtrosindustria",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_filtrosindustria"
     },
     {
       "relation": "calls",
@@ -27651,9 +27651,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "cadastro_clientes_actions_solicitarcorrecao",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_solicitarcorrecao"
     },
     {
       "relation": "imports",
@@ -27662,9 +27662,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "cadastro_clientes_actions_aprovarcadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_aprovarcadastro"
     },
     {
       "relation": "imports",
@@ -27673,9 +27673,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "cadastro_clientes_actions_reprovarcadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_reprovarcadastro"
     },
     {
       "relation": "imports",
@@ -27684,9 +27684,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "cadastro_clientes_actions_converteremcliente",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_converteremcliente"
     },
     {
       "relation": "imports",
@@ -27695,9 +27695,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/page.tsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_page_tsx_cadastro_clientes_page",
-      "target": "cadastro_clientes_actions_listarcadastros",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_listarcadastros"
     },
     {
       "relation": "contains",
@@ -27705,9 +27705,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/page.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_page_tsx_cadastro_clientes_page",
-      "target": "cadastro_clientes_page_cadastroclientesindustriapage",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_page_cadastroclientesindustriapage"
     },
     {
       "relation": "contains",
@@ -27715,9 +27715,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/page.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_page_tsx_cadastro_clientes_page",
-      "target": "cadastro_clientes_page_perfis_industria",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_page_perfis_industria"
     },
     {
       "relation": "imports_from",
@@ -27726,9 +27726,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/page.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_page_tsx_cadastro_clientes_page",
-      "target": "cadastro_clientes_tabela_cadastros",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_tabela_cadastros"
     },
     {
       "relation": "imports",
@@ -27737,9 +27737,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/page.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_page_tsx_cadastro_clientes_page",
-      "target": "cadastro_clientes_tabela_cadastros_tabelacadastros",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_tabela_cadastros_tabelacadastros"
     },
     {
       "relation": "imports_from",
@@ -27748,9 +27748,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_page_tsx_cadastro_clientes_page",
-      "target": "supabase_server",
-      "confidence_score": 1.0
+      "target": "supabase_server"
     },
     {
       "relation": "imports",
@@ -27759,9 +27759,9 @@
       "source_file": "app/(dashboard)/configuracoes/cadastro-clientes/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_configuracoes_cadastro_clientes_page_tsx_cadastro_clientes_page",
-      "target": "supabase_server_createclient",
-      "confidence_score": 1.0
+      "target": "supabase_server_createclient"
     },
     {
       "relation": "calls",
@@ -33606,9 +33606,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "cadastro_clientes_actions_detalhecadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_detalhecadastro"
     },
     {
       "relation": "imports_from",
@@ -33617,9 +33617,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "cadastro_clientes_badge_status",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_badge_status"
     },
     {
       "relation": "imports",
@@ -33628,9 +33628,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "cadastro_clientes_badge_status_badgestatus",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_badge_status_badgestatus"
     },
     {
       "relation": "imports_from",
@@ -33639,9 +33639,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "cadastro_clientes_detalhe_cadastro_view",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_detalhe_cadastro_view"
     },
     {
       "relation": "imports",
@@ -33650,9 +33650,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "cadastro_clientes_detalhe_cadastro_view_detalhecadastroview",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_detalhe_cadastro_view_detalhecadastroview"
     },
     {
       "relation": "imports_from",
@@ -33661,9 +33661,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "cadastro_clientes_formulario_cadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_formulario_cadastro"
     },
     {
       "relation": "imports",
@@ -33672,9 +33672,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "cadastro_clientes_formulario_cadastro_formulariocadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_formulario_cadastro_formulariocadastro"
     },
     {
       "relation": "imports_from",
@@ -33683,9 +33683,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "cadastro_clientes_linha_do_tempo",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_linha_do_tempo"
     },
     {
       "relation": "imports",
@@ -33694,9 +33694,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "cadastro_clientes_linha_do_tempo_linhadotempo",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_linha_do_tempo_linhadotempo"
     },
     {
       "relation": "contains",
@@ -33704,9 +33704,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "id_page_cadastrohubdetalhepage",
-      "confidence_score": 1.0
+      "target": "id_page_cadastrohubdetalhepage"
     },
     {
       "relation": "contains",
@@ -33714,9 +33714,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "id_page_editavel",
-      "confidence_score": 1.0
+      "target": "id_page_editavel"
     },
     {
       "relation": "contains",
@@ -33724,9 +33724,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "id_page_perfis_hub",
-      "confidence_score": 1.0
+      "target": "id_page_perfis_hub"
     },
     {
       "relation": "imports_from",
@@ -33735,9 +33735,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "supabase_server",
-      "confidence_score": 1.0
+      "target": "supabase_server"
     },
     {
       "relation": "imports",
@@ -33746,9 +33746,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "supabase_server_createclient",
-      "confidence_score": 1.0
+      "target": "supabase_server_createclient"
     },
     {
       "relation": "imports_from",
@@ -33757,9 +33757,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "ui_card",
-      "confidence_score": 1.0
+      "target": "ui_card"
     },
     {
       "relation": "imports",
@@ -33768,9 +33768,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "ui_card_card",
-      "confidence_score": 1.0
+      "target": "ui_card_card"
     },
     {
       "relation": "imports",
@@ -33779,9 +33779,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "ui_card_cardcontent",
-      "confidence_score": 1.0
+      "target": "ui_card_cardcontent"
     },
     {
       "relation": "imports",
@@ -33790,9 +33790,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "ui_card_cardheader",
-      "confidence_score": 1.0
+      "target": "ui_card_cardheader"
     },
     {
       "relation": "imports",
@@ -33801,9 +33801,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_id_page_tsx_id_page",
-      "target": "ui_card_cardtitle",
-      "confidence_score": 1.0
+      "target": "ui_card_cardtitle"
     },
     {
       "relation": "contains",
@@ -33811,9 +33811,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L101",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_actions_anexardocumento",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_anexardocumento"
     },
     {
       "relation": "contains",
@@ -33821,9 +33821,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L81",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_actions_criarcadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_criarcadastro"
     },
     {
       "relation": "contains",
@@ -33831,9 +33831,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_actions_dadoscadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_dadoscadastro"
     },
     {
       "relation": "contains",
@@ -33841,9 +33841,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L64",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_actions_detalhecadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_detalhecadastro"
     },
     {
       "relation": "contains",
@@ -33851,18 +33851,18 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L157",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_actions_enviarparaindustria",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_enviarparaindustria"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L25",
+      "source_location": "L24",
       "weight": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_actions_exigirpermissaohub",
+      "target": "cadastro_clientes_actions_exigiracessohub",
       "confidence_score": 1.0
     },
     {
@@ -33871,9 +33871,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L43",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_actions_listarcadastros",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_listarcadastros"
     },
     {
       "relation": "contains",
@@ -33881,9 +33881,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L145",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_actions_removerdocumento",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_removerdocumento"
     },
     {
       "relation": "contains",
@@ -33891,9 +33891,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L93",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_actions_salvarcadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_salvarcadastro"
     },
     {
       "relation": "contains",
@@ -33901,9 +33901,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L72",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_actions_urlassinadadocumento",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_urlassinadadocumento"
     },
     {
       "relation": "imports_from",
@@ -33912,9 +33912,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_documentos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos"
     },
     {
       "relation": "imports",
@@ -33923,9 +33923,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_documentos_detalhecadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_detalhecadastro"
     },
     {
       "relation": "imports",
@@ -33934,9 +33934,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_documentos_linhacadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_linhacadastro"
     },
     {
       "relation": "imports",
@@ -33945,9 +33945,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "cadastro_clientes_documentos_tipos_arquivo_aceitos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_tipos_arquivo_aceitos"
     },
     {
       "relation": "imports_from",
@@ -33956,9 +33956,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "lib_rbac",
-      "confidence_score": 1.0
+      "target": "lib_rbac"
     },
     {
       "relation": "imports",
@@ -33967,9 +33967,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "lib_rbac_podeacao",
-      "confidence_score": 1.0
+      "target": "lib_rbac_podeacao"
     },
     {
       "relation": "imports",
@@ -33978,9 +33978,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "lib_rbac_resolverpermissoes",
-      "confidence_score": 1.0
+      "target": "lib_rbac_resolverpermissoes"
     },
     {
       "relation": "imports_from",
@@ -33989,9 +33989,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "supabase_admin",
-      "confidence_score": 1.0
+      "target": "supabase_admin"
     },
     {
       "relation": "imports",
@@ -34000,9 +34000,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "supabase_admin_createadminclient",
-      "confidence_score": 1.0
+      "target": "supabase_admin_createadminclient"
     },
     {
       "relation": "imports_from",
@@ -34011,9 +34011,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "supabase_server",
-      "confidence_score": 1.0
+      "target": "supabase_server"
     },
     {
       "relation": "imports",
@@ -34022,9 +34022,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "supabase_server_createclient",
-      "confidence_score": 1.0
+      "target": "supabase_server_createclient"
     },
     {
       "relation": "imports_from",
@@ -34033,9 +34033,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "types_database",
-      "confidence_score": 1.0
+      "target": "types_database"
     },
     {
       "relation": "imports",
@@ -34044,9 +34044,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "types_database_tipodocumentoonboarding",
-      "confidence_score": 1.0
+      "target": "types_database_tipodocumentoonboarding"
     },
     {
       "relation": "imports",
@@ -34055,19 +34055,19 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_actions_ts_cadastro_clientes_actions",
-      "target": "types_database_tipopessoaonboarding",
-      "confidence_score": 1.0
+      "target": "types_database_tipopessoaonboarding"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L102",
+      "source_location": "L100",
       "weight": 1.0,
       "source": "cadastro_clientes_actions_anexardocumento",
-      "target": "cadastro_clientes_actions_exigirpermissaohub",
+      "target": "cadastro_clientes_actions_exigiracessohub",
       "confidence_score": 1.0
     },
     {
@@ -34075,10 +34075,10 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L82",
+      "source_location": "L80",
       "weight": 1.0,
       "source": "cadastro_clientes_actions_criarcadastro",
-      "target": "cadastro_clientes_actions_exigirpermissaohub",
+      "target": "cadastro_clientes_actions_exigiracessohub",
       "confidence_score": 1.0
     },
     {
@@ -34086,10 +34086,10 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L158",
+      "source_location": "L156",
       "weight": 1.0,
       "source": "cadastro_clientes_actions_enviarparaindustria",
-      "target": "cadastro_clientes_actions_exigirpermissaohub",
+      "target": "cadastro_clientes_actions_exigiracessohub",
       "confidence_score": 1.0
     },
     {
@@ -34097,31 +34097,9 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L34",
+      "source_location": "L25",
       "weight": 1.0,
-      "source": "cadastro_clientes_actions_exigirpermissaohub",
-      "target": "lib_rbac_podeacao",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L33",
-      "weight": 1.0,
-      "source": "cadastro_clientes_actions_exigirpermissaohub",
-      "target": "lib_rbac_resolverpermissoes",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L26",
-      "weight": 1.0,
-      "source": "cadastro_clientes_actions_exigirpermissaohub",
+      "source": "cadastro_clientes_actions_exigiracessohub",
       "target": "supabase_server_createclient",
       "confidence_score": 1.0
     },
@@ -34130,10 +34108,10 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L146",
+      "source_location": "L144",
       "weight": 1.0,
       "source": "cadastro_clientes_actions_removerdocumento",
-      "target": "cadastro_clientes_actions_exigirpermissaohub",
+      "target": "cadastro_clientes_actions_exigiracessohub",
       "confidence_score": 1.0
     },
     {
@@ -34141,10 +34119,10 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
-      "source_location": "L94",
+      "source_location": "L92",
       "weight": 1.0,
       "source": "cadastro_clientes_actions_salvarcadastro",
-      "target": "cadastro_clientes_actions_exigirpermissaohub",
+      "target": "cadastro_clientes_actions_exigiracessohub",
       "confidence_score": 1.0
     },
     {
@@ -34154,9 +34132,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/page.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_page_tsx_cadastro_clientes_page",
-      "target": "cadastro_clientes_actions_listarcadastros",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_listarcadastros"
     },
     {
       "relation": "calls",
@@ -34176,9 +34154,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "cadastro_clientes_actions_listarcadastros",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_listarcadastros"
     },
     {
       "relation": "calls",
@@ -34187,9 +34165,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/actions.ts",
       "source_location": "L73",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_actions_urlassinadadocumento",
-      "target": "cadastro_clientes_actions_detalhecadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_detalhecadastro"
     },
     {
       "relation": "imports",
@@ -34198,9 +34176,9 @@
       "source_file": "components/cadastro-clientes/area-documentos.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_area_documentos",
-      "target": "cadastro_clientes_actions_urlassinadadocumento",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_urlassinadadocumento"
     },
     {
       "relation": "imports",
@@ -34209,9 +34187,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_actions_criarcadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_criarcadastro"
     },
     {
       "relation": "imports",
@@ -34220,9 +34198,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_actions_salvarcadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_salvarcadastro"
     },
     {
       "relation": "imports",
@@ -34231,9 +34209,9 @@
       "source_file": "components/cadastro-clientes/area-documentos.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_area_documentos",
-      "target": "cadastro_clientes_actions_anexardocumento",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_anexardocumento"
     },
     {
       "relation": "imports",
@@ -34242,9 +34220,9 @@
       "source_file": "components/cadastro-clientes/area-documentos.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_area_documentos",
-      "target": "cadastro_clientes_actions_removerdocumento",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_removerdocumento"
     },
     {
       "relation": "imports",
@@ -34253,9 +34231,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_actions_enviarparaindustria",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_actions_enviarparaindustria"
     },
     {
       "relation": "imports_from",
@@ -34264,9 +34242,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/novo/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_novo_page_tsx_novo_page",
-      "target": "cadastro_clientes_formulario_cadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_formulario_cadastro"
     },
     {
       "relation": "imports",
@@ -34275,9 +34253,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/novo/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_novo_page_tsx_novo_page",
-      "target": "cadastro_clientes_formulario_cadastro_formulariocadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_formulario_cadastro_formulariocadastro"
     },
     {
       "relation": "contains",
@@ -34285,9 +34263,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/novo/page.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_novo_page_tsx_novo_page",
-      "target": "novo_page_novocadastropage",
-      "confidence_score": 1.0
+      "target": "novo_page_novocadastropage"
     },
     {
       "relation": "contains",
@@ -34295,9 +34273,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/novo/page.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_novo_page_tsx_novo_page",
-      "target": "novo_page_perfis_hub",
-      "confidence_score": 1.0
+      "target": "novo_page_perfis_hub"
     },
     {
       "relation": "imports_from",
@@ -34306,9 +34284,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/novo/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_novo_page_tsx_novo_page",
-      "target": "supabase_server",
-      "confidence_score": 1.0
+      "target": "supabase_server"
     },
     {
       "relation": "imports",
@@ -34317,9 +34295,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/novo/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_novo_page_tsx_novo_page",
-      "target": "supabase_server_createclient",
-      "confidence_score": 1.0
+      "target": "supabase_server_createclient"
     },
     {
       "relation": "contains",
@@ -34327,9 +34305,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/page.tsx",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_page_tsx_cadastro_clientes_page",
-      "target": "cadastro_clientes_page_cadastroclientespage",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_page_cadastroclientespage"
     },
     {
       "relation": "contains",
@@ -34337,9 +34315,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/page.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_page_tsx_cadastro_clientes_page",
-      "target": "cadastro_clientes_page_perfis_hub",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_page_perfis_hub"
     },
     {
       "relation": "imports_from",
@@ -34348,9 +34326,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/page.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_page_tsx_cadastro_clientes_page",
-      "target": "cadastro_clientes_tabela_cadastros",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_tabela_cadastros"
     },
     {
       "relation": "imports",
@@ -34359,9 +34337,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/page.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_page_tsx_cadastro_clientes_page",
-      "target": "cadastro_clientes_tabela_cadastros_tabelacadastros",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_tabela_cadastros_tabelacadastros"
     },
     {
       "relation": "imports_from",
@@ -34370,9 +34348,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_page_tsx_cadastro_clientes_page",
-      "target": "supabase_server",
-      "confidence_score": 1.0
+      "target": "supabase_server"
     },
     {
       "relation": "imports",
@@ -34381,9 +34359,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/page.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_page_tsx_cadastro_clientes_page",
-      "target": "supabase_server_createclient",
-      "confidence_score": 1.0
+      "target": "supabase_server_createclient"
     },
     {
       "relation": "imports_from",
@@ -34392,9 +34370,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_page_tsx_cadastro_clientes_page",
-      "target": "ui_button",
-      "confidence_score": 1.0
+      "target": "ui_button"
     },
     {
       "relation": "imports",
@@ -34403,9 +34381,9 @@
       "source_file": "app/(dashboard)/hub/cadastro-clientes/page.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "app_dashboard_hub_cadastro_clientes_page_tsx_cadastro_clientes_page",
-      "target": "ui_button_button",
-      "confidence_score": 1.0
+      "target": "ui_button_button"
     },
     {
       "relation": "contains",
@@ -50684,9 +50662,9 @@
       "source_file": "components/cadastro-clientes/area-documentos.tsx",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_area_documentos",
-      "target": "cadastro_clientes_area_documentos_areadocumentos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_area_documentos_areadocumentos"
     },
     {
       "relation": "contains",
@@ -50694,9 +50672,9 @@
       "source_file": "components/cadastro-clientes/area-documentos.tsx",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_area_documentos",
-      "target": "cadastro_clientes_area_documentos_arquivoexistente",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_area_documentos_arquivoexistente"
     },
     {
       "relation": "contains",
@@ -50704,9 +50682,9 @@
       "source_file": "components/cadastro-clientes/area-documentos.tsx",
       "source_location": "L42",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_area_documentos",
-      "target": "cadastro_clientes_area_documentos_linhadocumento",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_area_documentos_linhadocumento"
     },
     {
       "relation": "imports_from",
@@ -50715,9 +50693,9 @@
       "source_file": "components/cadastro-clientes/area-documentos.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_area_documentos",
-      "target": "cadastro_clientes_documentos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos"
     },
     {
       "relation": "imports",
@@ -50726,9 +50704,9 @@
       "source_file": "components/cadastro-clientes/area-documentos.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_area_documentos",
-      "target": "cadastro_clientes_documentos_detalhecadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_detalhecadastro"
     },
     {
       "relation": "imports",
@@ -50737,9 +50715,9 @@
       "source_file": "components/cadastro-clientes/area-documentos.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_area_documentos",
-      "target": "cadastro_clientes_documentos_documentodef",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_documentodef"
     },
     {
       "relation": "imports",
@@ -50748,9 +50726,9 @@
       "source_file": "components/cadastro-clientes/area-documentos.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_area_documentos",
-      "target": "cadastro_clientes_documentos_tipos_arquivo_aceitos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_tipos_arquivo_aceitos"
     },
     {
       "relation": "imports_from",
@@ -50759,9 +50737,9 @@
       "source_file": "components/cadastro-clientes/area-documentos.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_area_documentos",
-      "target": "lib_utils",
-      "confidence_score": 1.0
+      "target": "lib_utils"
     },
     {
       "relation": "imports",
@@ -50770,9 +50748,9 @@
       "source_file": "components/cadastro-clientes/area-documentos.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_area_documentos",
-      "target": "lib_utils_cn",
-      "confidence_score": 1.0
+      "target": "lib_utils_cn"
     },
     {
       "relation": "imports_from",
@@ -50781,9 +50759,9 @@
       "source_file": "components/cadastro-clientes/area-documentos.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_area_documentos",
-      "target": "ui_button",
-      "confidence_score": 1.0
+      "target": "ui_button"
     },
     {
       "relation": "imports",
@@ -50792,9 +50770,9 @@
       "source_file": "components/cadastro-clientes/area-documentos.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_area_documentos",
-      "target": "ui_button_button",
-      "confidence_score": 1.0
+      "target": "ui_button_button"
     },
     {
       "relation": "imports_from",
@@ -50803,9 +50781,9 @@
       "source_file": "components/cadastro-clientes/detalhe-cadastro-view.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_detalhe_cadastro_view",
-      "target": "cadastro_clientes_area_documentos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_area_documentos"
     },
     {
       "relation": "imports_from",
@@ -50814,9 +50792,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_area_documentos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_area_documentos"
     },
     {
       "relation": "imports",
@@ -50825,9 +50803,9 @@
       "source_file": "components/cadastro-clientes/detalhe-cadastro-view.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_detalhe_cadastro_view",
-      "target": "cadastro_clientes_area_documentos_areadocumentos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_area_documentos_areadocumentos"
     },
     {
       "relation": "imports",
@@ -50836,9 +50814,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_area_documentos_areadocumentos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_area_documentos_areadocumentos"
     },
     {
       "relation": "calls",
@@ -50857,9 +50835,9 @@
       "source_file": "components/cadastro-clientes/badge-status.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_badge_status",
-      "target": "cadastro_clientes_badge_status_badgestatus",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_badge_status_badgestatus"
     },
     {
       "relation": "imports_from",
@@ -50868,9 +50846,9 @@
       "source_file": "components/cadastro-clientes/badge-status.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_badge_status",
-      "target": "cadastro_clientes_documentos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos"
     },
     {
       "relation": "imports",
@@ -50879,9 +50857,9 @@
       "source_file": "components/cadastro-clientes/badge-status.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_badge_status",
-      "target": "cadastro_clientes_documentos_status_label",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_status_label"
     },
     {
       "relation": "imports",
@@ -50890,9 +50868,9 @@
       "source_file": "components/cadastro-clientes/badge-status.tsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_badge_status",
-      "target": "cadastro_clientes_documentos_status_tom",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_status_tom"
     },
     {
       "relation": "imports_from",
@@ -50901,9 +50879,9 @@
       "source_file": "components/cadastro-clientes/badge-status.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_badge_status",
-      "target": "lib_utils",
-      "confidence_score": 1.0
+      "target": "lib_utils"
     },
     {
       "relation": "imports",
@@ -50912,9 +50890,9 @@
       "source_file": "components/cadastro-clientes/badge-status.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_badge_status",
-      "target": "lib_utils_cn",
-      "confidence_score": 1.0
+      "target": "lib_utils_cn"
     },
     {
       "relation": "imports_from",
@@ -50923,9 +50901,9 @@
       "source_file": "components/cadastro-clientes/badge-status.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_badge_status",
-      "target": "types_database",
-      "confidence_score": 1.0
+      "target": "types_database"
     },
     {
       "relation": "imports",
@@ -50934,9 +50912,9 @@
       "source_file": "components/cadastro-clientes/badge-status.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_badge_status",
-      "target": "types_database_onboardingstatus",
-      "confidence_score": 1.0
+      "target": "types_database_onboardingstatus"
     },
     {
       "relation": "imports_from",
@@ -50945,9 +50923,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "cadastro_clientes_badge_status",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_badge_status"
     },
     {
       "relation": "calls",
@@ -50967,9 +50945,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "cadastro_clientes_badge_status_badgestatus",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_badge_status_badgestatus"
     },
     {
       "relation": "contains",
@@ -50977,9 +50955,9 @@
       "source_file": "components/cadastro-clientes/barra-progresso.tsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_barra_progresso",
-      "target": "cadastro_clientes_barra_progresso_barraprogresso",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_barra_progresso_barraprogresso"
     },
     {
       "relation": "imports_from",
@@ -50988,9 +50966,9 @@
       "source_file": "components/cadastro-clientes/barra-progresso.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_barra_progresso",
-      "target": "lib_utils",
-      "confidence_score": 1.0
+      "target": "lib_utils"
     },
     {
       "relation": "imports",
@@ -50999,9 +50977,9 @@
       "source_file": "components/cadastro-clientes/barra-progresso.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_barra_progresso",
-      "target": "lib_utils_cn",
-      "confidence_score": 1.0
+      "target": "lib_utils_cn"
     },
     {
       "relation": "imports_from",
@@ -51010,9 +50988,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_barra_progresso",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_barra_progresso"
     },
     {
       "relation": "calls",
@@ -51032,9 +51010,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_barra_progresso_barraprogresso",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_barra_progresso_barraprogresso"
     },
     {
       "relation": "contains",
@@ -51042,9 +51020,9 @@
       "source_file": "components/cadastro-clientes/detalhe-cadastro-view.tsx",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_detalhe_cadastro_view",
-      "target": "cadastro_clientes_detalhe_cadastro_view_detalhecadastroview",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_detalhe_cadastro_view_detalhecadastroview"
     },
     {
       "relation": "contains",
@@ -51052,9 +51030,9 @@
       "source_file": "components/cadastro-clientes/detalhe-cadastro-view.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_detalhe_cadastro_view",
-      "target": "cadastro_clientes_detalhe_cadastro_view_linha",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_detalhe_cadastro_view_linha"
     },
     {
       "relation": "imports_from",
@@ -51063,9 +51041,9 @@
       "source_file": "components/cadastro-clientes/detalhe-cadastro-view.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_detalhe_cadastro_view",
-      "target": "cadastro_clientes_documentos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos"
     },
     {
       "relation": "imports",
@@ -51074,9 +51052,9 @@
       "source_file": "components/cadastro-clientes/detalhe-cadastro-view.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_detalhe_cadastro_view",
-      "target": "cadastro_clientes_documentos_detalhecadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_detalhecadastro"
     },
     {
       "relation": "imports",
@@ -51085,9 +51063,9 @@
       "source_file": "components/cadastro-clientes/detalhe-cadastro-view.tsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_detalhe_cadastro_view",
-      "target": "cadastro_clientes_documentos_documentosobrigatorios",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_documentosobrigatorios"
     },
     {
       "relation": "imports_from",
@@ -51096,9 +51074,9 @@
       "source_file": "components/cadastro-clientes/detalhe-cadastro-view.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_detalhe_cadastro_view",
-      "target": "ui_card",
-      "confidence_score": 1.0
+      "target": "ui_card"
     },
     {
       "relation": "imports",
@@ -51107,9 +51085,9 @@
       "source_file": "components/cadastro-clientes/detalhe-cadastro-view.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_detalhe_cadastro_view",
-      "target": "ui_card_card",
-      "confidence_score": 1.0
+      "target": "ui_card_card"
     },
     {
       "relation": "imports",
@@ -51118,9 +51096,9 @@
       "source_file": "components/cadastro-clientes/detalhe-cadastro-view.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_detalhe_cadastro_view",
-      "target": "ui_card_cardcontent",
-      "confidence_score": 1.0
+      "target": "ui_card_cardcontent"
     },
     {
       "relation": "imports",
@@ -51129,9 +51107,9 @@
       "source_file": "components/cadastro-clientes/detalhe-cadastro-view.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_detalhe_cadastro_view",
-      "target": "ui_card_cardheader",
-      "confidence_score": 1.0
+      "target": "ui_card_cardheader"
     },
     {
       "relation": "imports",
@@ -51140,9 +51118,9 @@
       "source_file": "components/cadastro-clientes/detalhe-cadastro-view.tsx",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_detalhe_cadastro_view",
-      "target": "ui_card_cardtitle",
-      "confidence_score": 1.0
+      "target": "ui_card_cardtitle"
     },
     {
       "relation": "calls",
@@ -51162,9 +51140,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_documentos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos"
     },
     {
       "relation": "imports",
@@ -51173,9 +51151,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_documentos_detalhecadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_detalhecadastro"
     },
     {
       "relation": "imports",
@@ -51184,9 +51162,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_documentos_documentosobrigatorios",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_documentosobrigatorios"
     },
     {
       "relation": "contains",
@@ -51194,9 +51172,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L285",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_formulario_cadastro_campo",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_formulario_cadastro_campo"
     },
     {
       "relation": "contains",
@@ -51204,9 +51182,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L297",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_formulario_cadastro_camposobrigatorios",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_formulario_cadastro_camposobrigatorios"
     },
     {
       "relation": "contains",
@@ -51214,9 +51192,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_formulario_cadastro_formstate",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_formulario_cadastro_formstate"
     },
     {
       "relation": "contains",
@@ -51224,9 +51202,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L57",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_formulario_cadastro_formulariocadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_formulario_cadastro_formulariocadastro"
     },
     {
       "relation": "contains",
@@ -51234,9 +51212,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L38",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_formulario_cadastro_fromdetalhe",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_formulario_cadastro_fromdetalhe"
     },
     {
       "relation": "contains",
@@ -51244,9 +51222,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L50",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_formulario_cadastro_obrigatoriospreenchidos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_formulario_cadastro_obrigatoriospreenchidos"
     },
     {
       "relation": "contains",
@@ -51254,9 +51232,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L307",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_formulario_cadastro_pesocampos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_formulario_cadastro_pesocampos"
     },
     {
       "relation": "contains",
@@ -51264,9 +51242,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L304",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_formulario_cadastro_totalcampos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_formulario_cadastro_totalcampos"
     },
     {
       "relation": "contains",
@@ -51274,9 +51252,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L32",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "cadastro_clientes_formulario_cadastro_vazio",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_formulario_cadastro_vazio"
     },
     {
       "relation": "imports_from",
@@ -51285,9 +51263,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "types_database",
-      "confidence_score": 1.0
+      "target": "types_database"
     },
     {
       "relation": "imports",
@@ -51296,9 +51274,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "types_database_tipopessoaonboarding",
-      "confidence_score": 1.0
+      "target": "types_database_tipopessoaonboarding"
     },
     {
       "relation": "imports_from",
@@ -51307,9 +51285,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "ui_button",
-      "confidence_score": 1.0
+      "target": "ui_button"
     },
     {
       "relation": "imports",
@@ -51318,9 +51296,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "ui_button_button",
-      "confidence_score": 1.0
+      "target": "ui_button_button"
     },
     {
       "relation": "imports_from",
@@ -51329,9 +51307,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "ui_card",
-      "confidence_score": 1.0
+      "target": "ui_card"
     },
     {
       "relation": "imports",
@@ -51340,9 +51318,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "ui_card_card",
-      "confidence_score": 1.0
+      "target": "ui_card_card"
     },
     {
       "relation": "imports",
@@ -51351,9 +51329,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "ui_card_cardcontent",
-      "confidence_score": 1.0
+      "target": "ui_card_cardcontent"
     },
     {
       "relation": "imports",
@@ -51362,9 +51340,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "ui_card_cardheader",
-      "confidence_score": 1.0
+      "target": "ui_card_cardheader"
     },
     {
       "relation": "imports",
@@ -51373,9 +51351,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "ui_card_cardtitle",
-      "confidence_score": 1.0
+      "target": "ui_card_cardtitle"
     },
     {
       "relation": "imports_from",
@@ -51384,9 +51362,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "ui_input",
-      "confidence_score": 1.0
+      "target": "ui_input"
     },
     {
       "relation": "imports",
@@ -51395,9 +51373,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "ui_input_input",
-      "confidence_score": 1.0
+      "target": "ui_input_input"
     },
     {
       "relation": "imports_from",
@@ -51406,9 +51384,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "ui_label",
-      "confidence_score": 1.0
+      "target": "ui_label"
     },
     {
       "relation": "imports",
@@ -51417,9 +51395,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "ui_label_label",
-      "confidence_score": 1.0
+      "target": "ui_label_label"
     },
     {
       "relation": "imports_from",
@@ -51428,9 +51406,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "ui_tabs",
-      "confidence_score": 1.0
+      "target": "ui_tabs"
     },
     {
       "relation": "imports",
@@ -51439,9 +51417,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "ui_tabs_tabscontent",
-      "confidence_score": 1.0
+      "target": "ui_tabs_tabscontent"
     },
     {
       "relation": "imports",
@@ -51450,9 +51428,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "ui_tabs_tabslist",
-      "confidence_score": 1.0
+      "target": "ui_tabs_tabslist"
     },
     {
       "relation": "imports",
@@ -51461,9 +51439,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro",
-      "target": "ui_tabs_tabstrigger",
-      "confidence_score": 1.0
+      "target": "ui_tabs_tabstrigger"
     },
     {
       "relation": "calls",
@@ -51472,9 +51450,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L61",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro_formulariocadastro",
-      "target": "cadastro_clientes_formulario_cadastro_fromdetalhe",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_formulario_cadastro_fromdetalhe"
     },
     {
       "relation": "calls",
@@ -51483,9 +51461,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L70",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro_formulariocadastro",
-      "target": "cadastro_clientes_formulario_cadastro_obrigatoriospreenchidos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_formulario_cadastro_obrigatoriospreenchidos"
     },
     {
       "relation": "calls",
@@ -51505,9 +51483,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L308",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro_pesocampos",
-      "target": "cadastro_clientes_formulario_cadastro_camposobrigatorios",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_formulario_cadastro_camposobrigatorios"
     },
     {
       "relation": "calls",
@@ -51516,9 +51494,9 @@
       "source_file": "components/cadastro-clientes/formulario-cadastro.tsx",
       "source_location": "L305",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_formulario_cadastro_totalcampos",
-      "target": "cadastro_clientes_formulario_cadastro_camposobrigatorios",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_formulario_cadastro_camposobrigatorios"
     },
     {
       "relation": "imports_from",
@@ -51527,9 +51505,9 @@
       "source_file": "components/cadastro-clientes/linha-do-tempo.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_linha_do_tempo",
-      "target": "cadastro_clientes_documentos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos"
     },
     {
       "relation": "imports",
@@ -51538,9 +51516,9 @@
       "source_file": "components/cadastro-clientes/linha-do-tempo.tsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_linha_do_tempo",
-      "target": "cadastro_clientes_documentos_detalhecadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_detalhecadastro"
     },
     {
       "relation": "imports",
@@ -51549,9 +51527,9 @@
       "source_file": "components/cadastro-clientes/linha-do-tempo.tsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_linha_do_tempo",
-      "target": "cadastro_clientes_documentos_evento_label",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_evento_label"
     },
     {
       "relation": "contains",
@@ -51559,9 +51537,9 @@
       "source_file": "components/cadastro-clientes/linha-do-tempo.tsx",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_linha_do_tempo",
-      "target": "cadastro_clientes_linha_do_tempo_fmt",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_linha_do_tempo_fmt"
     },
     {
       "relation": "contains",
@@ -51569,9 +51547,9 @@
       "source_file": "components/cadastro-clientes/linha-do-tempo.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_linha_do_tempo",
-      "target": "cadastro_clientes_linha_do_tempo_icone",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_linha_do_tempo_icone"
     },
     {
       "relation": "contains",
@@ -51579,9 +51557,9 @@
       "source_file": "components/cadastro-clientes/linha-do-tempo.tsx",
       "source_location": "L26",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_linha_do_tempo",
-      "target": "cadastro_clientes_linha_do_tempo_linhadotempo",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_linha_do_tempo_linhadotempo"
     },
     {
       "relation": "imports_from",
@@ -51590,9 +51568,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "cadastro_clientes_documentos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos"
     },
     {
       "relation": "imports",
@@ -51601,9 +51579,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "cadastro_clientes_documentos_detalhecadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_detalhecadastro"
     },
     {
       "relation": "contains",
@@ -51611,9 +51589,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "cadastro_clientes_painel_analise_industria_painelanaliseindustria",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_painel_analise_industria_painelanaliseindustria"
     },
     {
       "relation": "imports_from",
@@ -51622,9 +51600,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "ui_button",
-      "confidence_score": 1.0
+      "target": "ui_button"
     },
     {
       "relation": "imports",
@@ -51633,9 +51611,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "ui_button_button",
-      "confidence_score": 1.0
+      "target": "ui_button_button"
     },
     {
       "relation": "imports_from",
@@ -51644,9 +51622,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "ui_card",
-      "confidence_score": 1.0
+      "target": "ui_card"
     },
     {
       "relation": "imports",
@@ -51655,9 +51633,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "ui_card_card",
-      "confidence_score": 1.0
+      "target": "ui_card_card"
     },
     {
       "relation": "imports",
@@ -51666,9 +51644,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "ui_card_cardcontent",
-      "confidence_score": 1.0
+      "target": "ui_card_cardcontent"
     },
     {
       "relation": "imports",
@@ -51677,9 +51655,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "ui_card_cardheader",
-      "confidence_score": 1.0
+      "target": "ui_card_cardheader"
     },
     {
       "relation": "imports",
@@ -51688,9 +51666,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "ui_card_cardtitle",
-      "confidence_score": 1.0
+      "target": "ui_card_cardtitle"
     },
     {
       "relation": "imports_from",
@@ -51699,9 +51677,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "ui_dialog",
-      "confidence_score": 1.0
+      "target": "ui_dialog"
     },
     {
       "relation": "imports",
@@ -51710,9 +51688,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "ui_dialog_dialog",
-      "confidence_score": 1.0
+      "target": "ui_dialog_dialog"
     },
     {
       "relation": "imports",
@@ -51721,9 +51699,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "ui_dialog_dialogcontent",
-      "confidence_score": 1.0
+      "target": "ui_dialog_dialogcontent"
     },
     {
       "relation": "imports",
@@ -51732,9 +51710,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "ui_dialog_dialogdescription",
-      "confidence_score": 1.0
+      "target": "ui_dialog_dialogdescription"
     },
     {
       "relation": "imports",
@@ -51743,9 +51721,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "ui_dialog_dialogfooter",
-      "confidence_score": 1.0
+      "target": "ui_dialog_dialogfooter"
     },
     {
       "relation": "imports",
@@ -51754,9 +51732,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "ui_dialog_dialogheader",
-      "confidence_score": 1.0
+      "target": "ui_dialog_dialogheader"
     },
     {
       "relation": "imports",
@@ -51765,9 +51743,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "ui_dialog_dialogtitle",
-      "confidence_score": 1.0
+      "target": "ui_dialog_dialogtitle"
     },
     {
       "relation": "imports_from",
@@ -51776,9 +51754,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "ui_textarea",
-      "confidence_score": 1.0
+      "target": "ui_textarea"
     },
     {
       "relation": "imports",
@@ -51787,9 +51765,9 @@
       "source_file": "components/cadastro-clientes/painel-analise-industria.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_painel_analise_industria",
-      "target": "ui_textarea_textarea",
-      "confidence_score": 1.0
+      "target": "ui_textarea_textarea"
     },
     {
       "relation": "imports_from",
@@ -51798,9 +51776,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "cadastro_clientes_documentos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos"
     },
     {
       "relation": "imports",
@@ -51809,9 +51787,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "cadastro_clientes_documentos_linhacadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_linhacadastro"
     },
     {
       "relation": "imports",
@@ -51820,9 +51798,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "cadastro_clientes_documentos_status_label",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_status_label"
     },
     {
       "relation": "contains",
@@ -51830,9 +51808,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "cadastro_clientes_tabela_cadastros_fmt",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_tabela_cadastros_fmt"
     },
     {
       "relation": "contains",
@@ -51840,9 +51818,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L22",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "cadastro_clientes_tabela_cadastros_tabelacadastros",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_tabela_cadastros_tabelacadastros"
     },
     {
       "relation": "imports_from",
@@ -51851,9 +51829,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "types_database",
-      "confidence_score": 1.0
+      "target": "types_database"
     },
     {
       "relation": "imports",
@@ -51862,9 +51840,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "types_database_onboardingstatus",
-      "confidence_score": 1.0
+      "target": "types_database_onboardingstatus"
     },
     {
       "relation": "imports_from",
@@ -51873,9 +51851,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "ui_button",
-      "confidence_score": 1.0
+      "target": "ui_button"
     },
     {
       "relation": "imports",
@@ -51884,9 +51862,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "ui_button_button",
-      "confidence_score": 1.0
+      "target": "ui_button_button"
     },
     {
       "relation": "imports_from",
@@ -51895,9 +51873,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "ui_input",
-      "confidence_score": 1.0
+      "target": "ui_input"
     },
     {
       "relation": "imports",
@@ -51906,9 +51884,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "ui_input_input",
-      "confidence_score": 1.0
+      "target": "ui_input_input"
     },
     {
       "relation": "imports_from",
@@ -51917,9 +51895,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "ui_select",
-      "confidence_score": 1.0
+      "target": "ui_select"
     },
     {
       "relation": "imports",
@@ -51928,9 +51906,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "ui_select_selectcontent",
-      "confidence_score": 1.0
+      "target": "ui_select_selectcontent"
     },
     {
       "relation": "imports",
@@ -51939,9 +51917,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "ui_select_selectitem",
-      "confidence_score": 1.0
+      "target": "ui_select_selectitem"
     },
     {
       "relation": "imports",
@@ -51950,9 +51928,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "ui_select_selecttrigger",
-      "confidence_score": 1.0
+      "target": "ui_select_selecttrigger"
     },
     {
       "relation": "imports",
@@ -51961,9 +51939,9 @@
       "source_file": "components/cadastro-clientes/tabela-cadastros.tsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_tabela_cadastros",
-      "target": "ui_select_selectvalue",
-      "confidence_score": 1.0
+      "target": "ui_select_selectvalue"
     },
     {
       "relation": "contains",
@@ -55950,9 +55928,9 @@
       "source_file": "components/layout/header.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "layout_header",
-      "target": "layout_sino_notificacoes",
-      "confidence_score": 1.0
+      "target": "layout_sino_notificacoes"
     },
     {
       "relation": "imports",
@@ -55961,9 +55939,9 @@
       "source_file": "components/layout/header.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "layout_header",
-      "target": "layout_sino_notificacoes_sinonotificacoes",
-      "confidence_score": 1.0
+      "target": "layout_sino_notificacoes_sinonotificacoes"
     },
     {
       "relation": "imports_from",
@@ -56362,9 +56340,9 @@
       "source_file": "components/layout/sino-notificacoes.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "layout_sino_notificacoes",
-      "target": "cadastro_clientes_notificacoes_actions",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_notificacoes_actions"
     },
     {
       "relation": "imports",
@@ -56373,9 +56351,9 @@
       "source_file": "components/layout/sino-notificacoes.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "layout_sino_notificacoes",
-      "target": "cadastro_clientes_notificacoes_actions_listarnotificacoes",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_notificacoes_actions_listarnotificacoes"
     },
     {
       "relation": "imports",
@@ -56384,9 +56362,9 @@
       "source_file": "components/layout/sino-notificacoes.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "layout_sino_notificacoes",
-      "target": "cadastro_clientes_notificacoes_actions_marcarnotificacaolida",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_notificacoes_actions_marcarnotificacaolida"
     },
     {
       "relation": "imports",
@@ -56395,9 +56373,9 @@
       "source_file": "components/layout/sino-notificacoes.tsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "layout_sino_notificacoes",
-      "target": "cadastro_clientes_notificacoes_actions_notificacaoui",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_notificacoes_actions_notificacaoui"
     },
     {
       "relation": "contains",
@@ -56405,9 +56383,9 @@
       "source_file": "components/layout/sino-notificacoes.tsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "layout_sino_notificacoes",
-      "target": "layout_sino_notificacoes_fmt",
-      "confidence_score": 1.0
+      "target": "layout_sino_notificacoes_fmt"
     },
     {
       "relation": "contains",
@@ -56415,9 +56393,9 @@
       "source_file": "components/layout/sino-notificacoes.tsx",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "layout_sino_notificacoes",
-      "target": "layout_sino_notificacoes_sinonotificacoes",
-      "confidence_score": 1.0
+      "target": "layout_sino_notificacoes_sinonotificacoes"
     },
     {
       "relation": "imports_from",
@@ -56426,9 +56404,9 @@
       "source_file": "components/layout/sino-notificacoes.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "layout_sino_notificacoes",
-      "target": "lib_utils",
-      "confidence_score": 1.0
+      "target": "lib_utils"
     },
     {
       "relation": "imports",
@@ -56437,9 +56415,9 @@
       "source_file": "components/layout/sino-notificacoes.tsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "layout_sino_notificacoes",
-      "target": "lib_utils_cn",
-      "confidence_score": 1.0
+      "target": "lib_utils_cn"
     },
     {
       "relation": "contains",
@@ -74087,9 +74065,9 @@
       "source_file": "lib/cadastro-clientes/documentos.ts",
       "source_location": "L84",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_documentos",
-      "target": "cadastro_clientes_documentos_detalhecadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_detalhecadastro"
     },
     {
       "relation": "contains",
@@ -74097,9 +74075,9 @@
       "source_file": "lib/cadastro-clientes/documentos.ts",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_documentos",
-      "target": "cadastro_clientes_documentos_documentodef",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_documentodef"
     },
     {
       "relation": "contains",
@@ -74107,9 +74085,9 @@
       "source_file": "lib/cadastro-clientes/documentos.ts",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_documentos",
-      "target": "cadastro_clientes_documentos_documentos_pf",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_documentos_pf"
     },
     {
       "relation": "contains",
@@ -74117,9 +74095,9 @@
       "source_file": "lib/cadastro-clientes/documentos.ts",
       "source_location": "L22",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_documentos",
-      "target": "cadastro_clientes_documentos_documentos_pj",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_documentos_pj"
     },
     {
       "relation": "contains",
@@ -74127,9 +74105,9 @@
       "source_file": "lib/cadastro-clientes/documentos.ts",
       "source_location": "L31",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_documentos",
-      "target": "cadastro_clientes_documentos_documentosobrigatorios",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_documentosobrigatorios"
     },
     {
       "relation": "contains",
@@ -74137,9 +74115,9 @@
       "source_file": "lib/cadastro-clientes/documentos.ts",
       "source_location": "L54",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_documentos",
-      "target": "cadastro_clientes_documentos_evento_label",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_evento_label"
     },
     {
       "relation": "contains",
@@ -74147,9 +74125,9 @@
       "source_file": "lib/cadastro-clientes/documentos.ts",
       "source_location": "L68",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_documentos",
-      "target": "cadastro_clientes_documentos_linhacadastro",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_linhacadastro"
     },
     {
       "relation": "contains",
@@ -74157,9 +74135,9 @@
       "source_file": "lib/cadastro-clientes/documentos.ts",
       "source_location": "L35",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_documentos",
-      "target": "cadastro_clientes_documentos_status_label",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_status_label"
     },
     {
       "relation": "contains",
@@ -74167,9 +74145,9 @@
       "source_file": "lib/cadastro-clientes/documentos.ts",
       "source_location": "L45",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_documentos",
-      "target": "cadastro_clientes_documentos_status_tom",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_status_tom"
     },
     {
       "relation": "contains",
@@ -74177,9 +74155,9 @@
       "source_file": "lib/cadastro-clientes/documentos.ts",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_documentos",
-      "target": "cadastro_clientes_documentos_tipos_arquivo_aceitos",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_documentos_tipos_arquivo_aceitos"
     },
     {
       "relation": "imports_from",
@@ -74188,9 +74166,9 @@
       "source_file": "lib/cadastro-clientes/documentos.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_documentos",
-      "target": "types_database",
-      "confidence_score": 1.0
+      "target": "types_database"
     },
     {
       "relation": "imports",
@@ -74199,9 +74177,9 @@
       "source_file": "lib/cadastro-clientes/documentos.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_documentos",
-      "target": "types_database_onboardingstatus",
-      "confidence_score": 1.0
+      "target": "types_database_onboardingstatus"
     },
     {
       "relation": "imports",
@@ -74210,9 +74188,9 @@
       "source_file": "lib/cadastro-clientes/documentos.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_documentos",
-      "target": "types_database_tipodocumentoonboarding",
-      "confidence_score": 1.0
+      "target": "types_database_tipodocumentoonboarding"
     },
     {
       "relation": "imports",
@@ -74221,9 +74199,9 @@
       "source_file": "lib/cadastro-clientes/documentos.ts",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_documentos",
-      "target": "types_database_tipopessoaonboarding",
-      "confidence_score": 1.0
+      "target": "types_database_tipopessoaonboarding"
     },
     {
       "relation": "contains",
@@ -74231,9 +74209,9 @@
       "source_file": "lib/cadastro-clientes/notificacoes-actions.ts",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_notificacoes_actions",
-      "target": "cadastro_clientes_notificacoes_actions_listarnotificacoes",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_notificacoes_actions_listarnotificacoes"
     },
     {
       "relation": "contains",
@@ -74241,9 +74219,9 @@
       "source_file": "lib/cadastro-clientes/notificacoes-actions.ts",
       "source_location": "L24",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_notificacoes_actions",
-      "target": "cadastro_clientes_notificacoes_actions_marcarnotificacaolida",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_notificacoes_actions_marcarnotificacaolida"
     },
     {
       "relation": "contains",
@@ -74251,9 +74229,9 @@
       "source_file": "lib/cadastro-clientes/notificacoes-actions.ts",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_notificacoes_actions",
-      "target": "cadastro_clientes_notificacoes_actions_notificacaoui",
-      "confidence_score": 1.0
+      "target": "cadastro_clientes_notificacoes_actions_notificacaoui"
     },
     {
       "relation": "imports_from",
@@ -74262,9 +74240,9 @@
       "source_file": "lib/cadastro-clientes/notificacoes-actions.ts",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_notificacoes_actions",
-      "target": "supabase_server",
-      "confidence_score": 1.0
+      "target": "supabase_server"
     },
     {
       "relation": "imports",
@@ -74273,9 +74251,9 @@
       "source_file": "lib/cadastro-clientes/notificacoes-actions.ts",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cadastro_clientes_notificacoes_actions",
-      "target": "supabase_server_createclient",
-      "confidence_score": 1.0
+      "target": "supabase_server_createclient"
     },
     {
       "relation": "calls",
@@ -80624,9 +80602,9 @@
       "source_file": "types/database.ts",
       "source_location": "L872",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "types_database",
-      "target": "types_database_hubclientonboarding",
-      "confidence_score": 1.0
+      "target": "types_database_hubclientonboarding"
     },
     {
       "relation": "contains",
@@ -80634,9 +80612,9 @@
       "source_file": "types/database.ts",
       "source_location": "L901",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "types_database",
-      "target": "types_database_hubclientonboardingfile",
-      "confidence_score": 1.0
+      "target": "types_database_hubclientonboardingfile"
     },
     {
       "relation": "contains",
@@ -80774,9 +80752,9 @@
       "source_file": "types/database.ts",
       "source_location": "L918",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "types_database",
-      "target": "types_database_notification",
-      "confidence_score": 1.0
+      "target": "types_database_notification"
     },
     {
       "relation": "contains",
@@ -80784,9 +80762,9 @@
       "source_file": "types/database.ts",
       "source_location": "L914",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "types_database",
-      "target": "types_database_onboardingeventotipo",
-      "confidence_score": 1.0
+      "target": "types_database_onboardingeventotipo"
     },
     {
       "relation": "contains",
@@ -80794,9 +80772,9 @@
       "source_file": "types/database.ts",
       "source_location": "L863",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "types_database",
-      "target": "types_database_onboardingstatus",
-      "confidence_score": 1.0
+      "target": "types_database_onboardingstatus"
     },
     {
       "relation": "contains",
@@ -81134,9 +81112,9 @@
       "source_file": "types/database.ts",
       "source_location": "L868",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "types_database",
-      "target": "types_database_tipodocumentoonboarding",
-      "confidence_score": 1.0
+      "target": "types_database_tipodocumentoonboarding"
     },
     {
       "relation": "contains",
@@ -81144,9 +81122,9 @@
       "source_file": "types/database.ts",
       "source_location": "L866",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "types_database",
-      "target": "types_database_tipopessoaonboarding",
-      "confidence_score": 1.0
+      "target": "types_database_tipopessoaonboarding"
     },
     {
       "relation": "contains",
@@ -81303,5 +81281,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "5f8fc4f838f768b05e5ff590d753088c251f8935"
+  "built_at_commit": "0476980d30898e0c7ecfc77ebf0cead0c02a55de"
 }
