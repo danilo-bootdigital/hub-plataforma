@@ -100,7 +100,7 @@ export default async function PreviewPdfPage({
         nome, nome_fantasia, cnpj, telefone, email, endereco, logo_url, site, instagram
       ),
       itens:quote_items!quote_id(
-        id, descricao, quantidade, preco_unitario, desconto_item, subtotal, product_id
+        id, descricao, quantidade, preco_unitario, desconto_item, subtotal, product_id, portfolio_id
       )
     `)
     .eq('id', id)
@@ -179,6 +179,18 @@ export default async function PreviewPdfPage({
             }
           : i
       })
+    }
+
+    // Portfólio de origem por item (DEC-013/017): itens podem vir de portfólios
+    // diferentes. Resolvido via admin (portfólios têm RLS) e exibido na ficha.
+    const portIds = [...new Set(itensQuote.map((i) => i.portfolio_id).filter(Boolean))] as string[]
+    if (portIds.length > 0) {
+      const { data: ports } = await admin.from('portfolios').select('id, nome').in('id', portIds)
+      const portMap = new Map((ports ?? []).map((p) => [p.id, p.nome]))
+      itensEnriquecidos = itensEnriquecidos.map((i) => ({
+        ...i,
+        portfolio_nome: i.portfolio_id ? portMap.get(i.portfolio_id as string) ?? null : null,
+      }))
     }
 
     dadosTemplate = { ...orcamento, itens: itensEnriquecidos, hub: hubIdentidade }

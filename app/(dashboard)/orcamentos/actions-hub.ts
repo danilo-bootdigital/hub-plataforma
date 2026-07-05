@@ -13,10 +13,12 @@ import { STATUS_ORCAMENTO_ORDEM, rotuloStatus } from '@/lib/orcamentos/eventos-t
 // TODA validação é server-side: Cliente em Carteira do Hub, Portfólio autorizado/ativo,
 // produtos do Portfólio, e PREÇO do vínculo product_portfolios (ignora preço do front).
 
-export type ItemOrcamentoHub = { product_id: string; quantidade: number; desconto_item?: number }
+// Cada item carrega seu portfolio_id (vínculo product_portfolios) — o usuário não
+// escolhe portfólio; ele vem do produto adicionado pela busca. Itens de um mesmo
+// orçamento podem vir de portfólios diferentes.
+export type ItemOrcamentoHub = { product_id: string; portfolio_id: string; quantidade: number; desconto_item?: number }
 export type DadosOrcamentoHub = {
   contato_id: string
-  portfolio_id: string
   deal_id?: string | null // atendimento de origem (opcional; preservado quando vem de Atendimentos)
   itens: ItemOrcamentoHub[]
   forma_pagamento?: string | null
@@ -49,11 +51,11 @@ async function getHubUser() {
   return { perfil: perfil as { id: string; organization_id: string; cargo: string; hub_id: string } }
 }
 
-// Valida a cadeia (Cliente→Carteira→Hub, Portfólio autorizado, produtos do Portfólio)
-// e recalcula itens/totais SEMPRE no servidor, com o preço vindo do vínculo.
+// Valida a cadeia (Cliente→Carteira→Hub; e, POR ITEM, o vínculo product_portfolios
+// em Portfólio AUTORIZADO+ativo do Hub) e recalcula itens/totais SEMPRE no servidor,
+// com o preço vindo do vínculo. O usuário não escolhe portfólio — cada item traz o seu.
 async function validarECalcular(admin: AdminClient, org: string, hub: string, dados: DadosOrcamentoHub) {
   if (!dados.contato_id) throw new Error('Selecione o Cliente.')
-  if (!dados.portfolio_id) throw new Error('Selecione o Portfólio.')
   if (!dados.itens?.length) throw new Error('Adicione ao menos um item.')
   const descontoGeral = Math.min(100, Math.max(0, Number(dados.desconto_geral) || 0))
   const frete = Math.max(0, Number(dados.frete) || 0)
@@ -68,34 +70,41 @@ async function validarECalcular(admin: AdminClient, org: string, hub: string, da
     throw new Error('Cliente não pertence a uma Carteira operada pelo seu Hub.')
   }
 
-  // 2) Portfólio autorizado ao Hub e ativo.
-  const { data: pf } = await admin
-    .from('portfolios').select('id, ativo').eq('id', dados.portfolio_id).eq('organization_id', org).maybeSingle()
-  if (!pf || !pf.ativo) throw new Error('Portfólio inválido ou inativo.')
-  const { data: aut } = await admin
-    .from('hub_portfolios').select('id')
-    .eq('hub_id', hub).eq('portfolio_id', dados.portfolio_id).eq('status', 'ativo').eq('organization_id', org).maybeSingle()
-  if (!aut) throw new Error('Portfólio não autorizado ao seu Hub.')
+  // 2) Portfólios distintos dos itens: TODOS autorizados ao Hub e ativos (segurança).
+  const portfolioIds = [...new Set(dados.itens.map((i) => i.portfolio_id).filter(Boolean))]
+  const productIds = [...new Set(dados.itens.map((i) => i.product_id).filter(Boolean))]
+  if (portfolioIds.length === 0 || productIds.length === 0) throw new Error('Itens inválidos.')
 
-  // 3) Produtos do Portfólio + PREÇO do vínculo (server-side).
-  const ids = [...new Set(dados.itens.map((i) => i.product_id).filter(Boolean))]
-  if (ids.length === 0) throw new Error('Itens inválidos.')
+  const { data: pfs } = await admin
+    .from('portfolios').select('id, ativo').eq('organization_id', org).in('id', portfolioIds)
+  const pfMap = new Map((pfs ?? []).map((p) => [p.id, p]))
+  const { data: auts } = await admin
+    .from('hub_portfolios').select('portfolio_id')
+    .eq('hub_id', hub).eq('organization_id', org).eq('status', 'ativo').in('portfolio_id', portfolioIds)
+  const autSet = new Set((auts ?? []).map((a) => a.portfolio_id as string))
+  for (const pid of portfolioIds) {
+    const pf = pfMap.get(pid)
+    if (!pf || !pf.ativo) throw new Error('Há um Portfólio inválido ou inativo entre os itens.')
+    if (!autSet.has(pid)) throw new Error('Há um Portfólio não autorizado ao seu Hub entre os itens.')
+  }
+
+  // 3) Vínculo (product_id + portfolio_id) autorizado/ativo + PREÇO do vínculo (server-side).
   const { data: vincs } = await admin
     .from('product_portfolios')
-    .select('product_id, preco_unitario, ativo, produto:product_id(nome, apresentacao, preco_unitario)')
-    .eq('portfolio_id', dados.portfolio_id).eq('organization_id', org).in('product_id', ids) as unknown as
-    { data: { product_id: string; preco_unitario: number | null; ativo: boolean; produto: { nome: string; apresentacao: string | null; preco_unitario: number } | null }[] | null }
-  const vmap = new Map((vincs ?? []).map((v) => [v.product_id, v]))
+    .select('product_id, portfolio_id, preco_unitario, ativo, produto:product_id(nome, apresentacao, preco_unitario)')
+    .eq('organization_id', org).in('portfolio_id', portfolioIds).in('product_id', productIds) as unknown as
+    { data: { product_id: string; portfolio_id: string; preco_unitario: number | null; ativo: boolean; produto: { nome: string; apresentacao: string | null; preco_unitario: number } | null }[] | null }
+  const vmap = new Map((vincs ?? []).map((v) => [`${v.product_id}::${v.portfolio_id}`, v]))
 
   const itens = dados.itens.map((it) => {
-    const v = vmap.get(it.product_id)
-    if (!v || v.ativo === false) throw new Error('Há um produto fora do Portfólio selecionado.')
+    const v = vmap.get(`${it.product_id}::${it.portfolio_id}`)
+    if (!v || v.ativo === false) throw new Error('Há um produto fora dos Portfólios autorizados do seu Hub.')
     const quantidade = Math.max(1, Math.floor(Number(it.quantidade) || 0))
     const desconto_item = Math.min(100, Math.max(0, Number(it.desconto_item) || 0))
     const preco_unitario = Number(v.preco_unitario ?? v.produto?.preco_unitario ?? 0) // preço do vínculo
     const subtotal = quantidade * preco_unitario * (1 - desconto_item / 100)
     const descricao = [v.produto?.nome, v.produto?.apresentacao].filter(Boolean).join(' — ') || 'Produto'
-    return { product_id: it.product_id, descricao, quantidade, preco_unitario, desconto_item, subtotal }
+    return { product_id: it.product_id, portfolio_id: it.portfolio_id, descricao, quantidade, preco_unitario, desconto_item, subtotal }
   })
 
   const valorSubtotal = itens.reduce((s, i) => s + i.subtotal, 0)
@@ -111,6 +120,8 @@ export async function criarOrcamentoHub(dados: DadosOrcamentoHub): Promise<strin
 
   const { itens, valorSubtotal, valorTotal, descontoGeral, frete } = await validarECalcular(admin, org, hub, dados)
   const status: QuoteStatus = dados.finalizar ? 'aguardando_aprovacao_interna' : 'rascunho'
+  // Compat (DEC-013/017): quotes.portfolio_id = portfólio do 1º item (PDF/tabela/detalhe).
+  const portfolioCabecalho = itens[0]?.portfolio_id ?? null
 
   const { data: orc, error } = await admin
     .from('quotes')
@@ -118,7 +129,7 @@ export async function criarOrcamentoHub(dados: DadosOrcamentoHub): Promise<strin
       organization_id: org,
       responsavel_id: perfil.id,
       hub_id: hub,
-      portfolio_id: dados.portfolio_id,
+      portfolio_id: portfolioCabecalho,
       contato_id: dados.contato_id,
       deal_id: dados.deal_id ?? null, // preserva o atendimento de origem, quando houver
       supplier_id: null,
@@ -139,7 +150,7 @@ export async function criarOrcamentoHub(dados: DadosOrcamentoHub): Promise<strin
 
   const { error: eItens } = await admin.from('quote_items').insert(
     itens.map((i) => ({
-      quote_id: orc.id, product_id: i.product_id, descricao: i.descricao,
+      quote_id: orc.id, product_id: i.product_id, portfolio_id: i.portfolio_id, descricao: i.descricao,
       quantidade: i.quantidade, preco_unitario: i.preco_unitario, desconto_item: i.desconto_item, subtotal: i.subtotal,
     }))
   )
@@ -148,20 +159,21 @@ export async function criarOrcamentoHub(dados: DadosOrcamentoHub): Promise<strin
     throw new Error(`Erro ao inserir itens: ${eItens.message}`)
   }
 
+  const nPortfolios = new Set(itens.map((i) => i.portfolio_id)).size
   await admin.from('audit_logs').insert({
     organization_id: org, usuario_id: perfil.id,
     acao: dados.finalizar ? 'CRIACAO_ORCAMENTO_HUB' : 'RASCUNHO_ORCAMENTO_HUB',
     tabela_afetada: 'quotes', registro_id: orc.id,
     dados_anteriores: null,
-    dados_novos: { hub_id: hub, portfolio_id: dados.portfolio_id, contato_id: dados.contato_id, itens: itens.length, valor_total: valorTotal },
+    dados_novos: { hub_id: hub, portfolio_id: portfolioCabecalho, portfolios: nPortfolios, contato_id: dados.contato_id, itens: itens.length, valor_total: valorTotal },
   })
 
   // T-1 — rastreamento
   await registrarEventoOrcamento(orc.id, {
     tipo: 'criado',
-    descricao: `Orçamento criado com ${itens.length} ${itens.length === 1 ? 'item' : 'itens'}.`,
-    valorNovo: { status, portfolio_id: dados.portfolio_id, contato_id: dados.contato_id, valor_total: valorTotal },
-    metadata: { itens: itens.length, finalizar: !!dados.finalizar },
+    descricao: `Orçamento criado com ${itens.length} ${itens.length === 1 ? 'item' : 'itens'}${nPortfolios > 1 ? ` (${nPortfolios} portfólios)` : ''}.`,
+    valorNovo: { status, portfolio_id: portfolioCabecalho, contato_id: dados.contato_id, valor_total: valorTotal },
+    metadata: { itens: itens.length, portfolios: nPortfolios, finalizar: !!dados.finalizar },
   })
 
   revalidatePath('/hub/orcamentos')
@@ -196,11 +208,13 @@ export async function editarOrcamentoHub(orcamentoId: string, dados: DadosOrcame
   const { itens, valorSubtotal, valorTotal, descontoGeral, frete } = await validarECalcular(admin, org, hub, dados)
   // "Gerar orçamento" (re)envia para aprovação; "Salvar alterações" mantém o status atual.
   const status: QuoteStatus = dados.finalizar ? 'aguardando_aprovacao_interna' : atual.status
+  // Compat: quotes.portfolio_id = portfólio do 1º item.
+  const portfolioCabecalho = itens[0]?.portfolio_id ?? null
 
   const { error: eUpd } = await admin
     .from('quotes')
     .update({
-      portfolio_id: dados.portfolio_id,
+      portfolio_id: portfolioCabecalho,
       contato_id: dados.contato_id,
       forma_pagamento: dados.forma_pagamento?.trim() || null,
       prazo_entrega: dados.prazo_entrega?.trim() || null,
@@ -222,7 +236,7 @@ export async function editarOrcamentoHub(orcamentoId: string, dados: DadosOrcame
   if (eDel) throw new Error(`Erro ao atualizar itens: ${eDel.message}`)
   const { error: eItens } = await admin.from('quote_items').insert(
     itens.map((i) => ({
-      quote_id: orcamentoId, product_id: i.product_id, descricao: i.descricao,
+      quote_id: orcamentoId, product_id: i.product_id, portfolio_id: i.portfolio_id, descricao: i.descricao,
       quantidade: i.quantidade, preco_unitario: i.preco_unitario, desconto_item: i.desconto_item, subtotal: i.subtotal,
     }))
   )
@@ -233,7 +247,7 @@ export async function editarOrcamentoHub(orcamentoId: string, dados: DadosOrcame
     acao: 'EDICAO_ORCAMENTO_HUB',
     tabela_afetada: 'quotes', registro_id: orcamentoId,
     dados_anteriores: { status: atual.status },
-    dados_novos: { hub_id: hub, portfolio_id: dados.portfolio_id, contato_id: dados.contato_id, itens: itens.length, valor_total: valorTotal, status },
+    dados_novos: { hub_id: hub, portfolio_id: portfolioCabecalho, contato_id: dados.contato_id, itens: itens.length, valor_total: valorTotal, status },
   })
 
   // T-1 — rastreamento granular (compara estado anterior × novo; só emite mudanças reais).

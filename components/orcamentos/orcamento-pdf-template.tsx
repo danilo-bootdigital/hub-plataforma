@@ -73,6 +73,8 @@ type OrcamentoItem = {
   quantidade_por_caixa?: number | null
   aplicadores?: string | null
   exige_receita?: boolean | null
+  // Portfólio de origem do item (DEC-013/017) — itens podem vir de portfólios diferentes.
+  portfolio_nome?: string | null
 }
 
 type OrcamentoTemplateData = {
@@ -215,6 +217,7 @@ const laboratorioItem = (
 // Linha técnica compacta com TODOS os campos da ficha (só os preenchidos).
 const fichaLinha = (item: OrcamentoItem): string => {
   const partes: (string | false | null | undefined)[] = [
+    item.portfolio_nome && `Portfólio: ${item.portfolio_nome}`,
     item.apresentacao && `Apresentação: ${item.apresentacao}`,
     item.composicao && `Composição: ${item.composicao}`,
     item.via_administracao && `Via adm.: ${item.via_administracao}`,
@@ -459,11 +462,24 @@ function SecaoCards({ data }: { data: OrcamentoTemplateData }) {
 }
 
 function SecaoProdutosHub({ itens }: { itens: OrcamentoItem[] }) {
+  // Resumo do portfólio de origem: nome único ou "Múltiplos Portfólios" (DEC-013/017).
+  const portfoliosDistintos = [...new Set(itens.map((i) => i.portfolio_nome?.trim()).filter(Boolean))] as string[]
+  const resumoPortfolios =
+    portfoliosDistintos.length === 0
+      ? null
+      : portfoliosDistintos.length === 1
+        ? portfoliosDistintos[0]
+        : 'Múltiplos Portfólios'
   return (
     <section data-pdf-products className="flex flex-col gap-0">
-      <div className="bg-[#e8f5e8] text-slate-700 px-4 py-2.5 rounded-t-md flex items-center gap-2 shadow-sm">
-        <IconeCarrinho />
-        <h2 className="text-[14px] font-extrabold tracking-wide">PRODUTOS</h2>
+      <div className="bg-[#e8f5e8] text-slate-700 px-4 py-2.5 rounded-t-md flex items-center justify-between gap-2 shadow-sm">
+        <span className="flex items-center gap-2">
+          <IconeCarrinho />
+          <h2 className="text-[14px] font-extrabold tracking-wide">PRODUTOS</h2>
+        </span>
+        {resumoPortfolios && (
+          <span className="text-[11px] font-bold text-slate-600">{resumoPortfolios}</span>
+        )}
       </div>
       <div className="border border-t-0 border-slate-200 rounded-b-md overflow-hidden bg-white">
         <table className="w-full text-[12.5px] border-collapse">

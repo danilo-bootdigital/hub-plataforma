@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { notFound, redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
@@ -60,6 +61,7 @@ export default async function OrcamentoDetalhePage({ params }: { params: Promise
         desconto_item,
         subtotal,
         product_id,
+        portfolio_id,
         produto:products!product_id(apresentacao)
       )
     `)
@@ -98,6 +100,22 @@ export default async function OrcamentoDetalhePage({ params }: { params: Promise
     orcamento.hub_id !== perfil.hub_id
   ) {
     notFound()
+  }
+
+  // Portfólio de origem por item (DEC-013/017): itens podem vir de portfólios
+  // diferentes. Portfólios têm RLS; o nome é resolvido via admin — o acesso ao
+  // orçamento já foi validado acima (RLS + organização + escopo de hub).
+  const itensArr: Array<Record<string, unknown> & { portfolio_id?: string | null }> =
+    Array.isArray(orcamento.itens) ? orcamento.itens : []
+  const portIds = [...new Set(itensArr.map((i) => i.portfolio_id).filter(Boolean))] as string[]
+  if (portIds.length > 0) {
+    const admin = createAdminClient()
+    const { data: ports } = await admin.from('portfolios').select('id, nome').in('id', portIds)
+    const pmap = new Map((ports ?? []).map((p) => [p.id, p.nome]))
+    orcamento.itens = itensArr.map((i) => ({
+      ...i,
+      portfolio_nome: i.portfolio_id ? pmap.get(i.portfolio_id) ?? null : null,
+    }))
   }
 
   // Verificar se o usuário pode editar este orçamento
