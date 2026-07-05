@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+import { registrarEventoOrcamento } from '@/lib/orcamentos/eventos'
 
 const BUCKET = 'orcamento-receitas'
 const TAMANHO_MAX = 10 * 1024 * 1024 // 10MB
@@ -268,6 +269,8 @@ export async function anexarReceitaAssinada(formData: FormData): Promise<{ id: s
     id = data.id
   }
 
+  await registrarEventoOrcamento(quoteId, { tipo: 'receita_anexada', descricao: `Receita anexada (${file.name}).`, origem: 'hub_form', metadata: { receita_id: id } })
+
   revalidatePath(`/orcamentos/${quoteId}`)
   return { id }
 }
@@ -296,6 +299,8 @@ export async function validarReceita(params: {
     .eq('id', receitaId)
     .eq('organization_id', perfil.organization_id)
   if (error) throw new Error(`Erro ao validar receita: ${error.message}`)
+
+  await registrarEventoOrcamento(quoteId, { tipo: 'receita_validada', descricao: decisao === 'validada' ? 'Receita validada.' : 'Receita rejeitada.', valorNovo: decisao, origem: 'hub_form', metadata: { receita_id: receitaId } })
 
   revalidatePath(`/orcamentos/${quoteId}`)
 }
