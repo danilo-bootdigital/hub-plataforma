@@ -407,10 +407,10 @@ Decisões de produto: **(1)** branding é **white-label** (cores/logo/favicon te
 - **Config-1 — Identidade (dados):** campos + upload logo/favicon + salvar. *(implementada; migration `067`)*
 - **Config-2 — White-label (theming):** cores + CSS vars + favicon/title + componentes-chave. *(implementada — abrangência "destaques")*
 - **Config-3 — IA config:** `hub_ia_config` + editor (Salvar/Restaurar). *(implementada; migration `068`)*
-- **Config-4 — Assistente + Testar Prompt:** montagem do system prompt + Testar (Claude real) + consumidor WhatsApp (sugestão ao atendente).
+- **Config-4 — Assistente + Testar Prompt:** **ARQUIVADA (não será implementada).** Decisão de produto (2026-07-05): a **IA não responde WhatsApp** — sem consumidor automático. A `hub_ia_config` permanece apenas como **configuração** (base para um eventual consumidor futuro a ser definido, nunca resposta automática de WhatsApp). O botão "Testar Prompt" foi removido da tela.
 
 - **Motivo:** dar ao Proprietário um centro de configurações profissional (marca própria + IA), com aparência de SaaS premium, preservando a fronteira Indústria×Hub.
-- **Impacto:** aditivo (colunas em `hubs` na migration `067`; nova `hub_ia_config` na Config-3; bucket `public-assets` reusado; theming incremental; novo consumidor de IA). Não altera enum de perfis nem remove nada.
-- **Decisões pendentes (fases futuras):** abrangência do white-label (destaques × total) na Config-2; modo do assistente (sugestão × automático) na Config-4.
+- **Impacto:** aditivo (colunas em `hubs` na migration `067`; nova `hub_ia_config` na `068`; bucket `public-assets` reusado; theming incremental). Não altera enum de perfis nem remove nada.
+- **Decisão registrada:** IA **não** responde WhatsApp (Config-4 arquivada). White-label entregue na abrangência "destaques" (ampliação p/ "total" fica em aberto, se desejado).
 - **Data:** 2026-07-05
-- **Status:** Aprovada / vigente — **Config-1 e Config-2 implementadas** (migration `067` aplicada no HUB DEV; theming white-label "destaques"); Config-3..4 planejadas.
+- **Status:** Aprovada / vigente — **Config-1, Config-2 e Config-3 implementadas e em produção** (migrations `067`/`068` aplicadas no HUB DEV). **Config-4 arquivada** por decisão de produto.
