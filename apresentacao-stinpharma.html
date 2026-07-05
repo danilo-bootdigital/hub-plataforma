@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hub Plataforma — Apresentação StinPharma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0F2D4A;
+    --teal-dark: #0D7B6E;
+    --teal-mid: #14A896;
+    --teal-light: #5EEAD4;
+    --white: #FFFFFF;
+    --gray-bg: #F8FAFC;
+    --text-dark: #1E293B;
+    --text-mid: #475569;
+    --red: #DC2626;
+    --green: #16A34A;
+    --amber: #D97706;
+    --font-title: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: var(--font-body);
+  }
+
+  .presentation {
+    width: 100vw; height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    transform: translateX(60px);
+    overflow: hidden;
+  }
+
+  .slide.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateX(0);
+  }
+
+  .slide.exit-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    pointer-events: none;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    position: fixed;
+    bottom: 28px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-prev { left: 32px; }
+  .nav-next { right: 32px; }
+
+  .nav-btn {
+    background: rgba(255,255,255,0.15);
+    border: 1.5px solid rgba(255,255,255,0.3);
+    color: #fff;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: background 0.2s, transform 0.15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .nav-btn:hover {
+    background: rgba(255,255,255,0.28);
+    transform: scale(1.08);
+  }
+
+  .nav-indicator {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.06em;
+    background: rgba(0,0,0,0.25);
+    padding: 6px 16px;
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+  }
+
+  /* ──────────────────────────────────────
+     SLIDE 1 — CAPA
+  ────────────────────────────────────── */
+  .slide-1 {
+    background: var(--navy);
+    flex-direction: row;
+  }
+
+  .s1-left {
+    width: 38%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 48px 64px 72px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .s1-logo {
+    font-family: var(--font-title);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 8px;
+  }
+
+  .s1-brand {
+    font-family: var(--font-title);
+    font-size: 38px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .s1-tagline {
+    font-size: 15px;
+    color: rgba(94,234,212,0.8);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    border-left: 3px solid var(--teal-mid);
+    padding-left: 14px;
+  }
+
+  .s1-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 72px 64px 48px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .s1-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal-mid);
+    margin-bottom: 20px;
+  }
+
+  .s1-headline {
+    font-family: var(--font-title);
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+
+  .s1-headline span { color: var(--teal-light); }
+
+  .s1-sub {
+    font-size: 18px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6;
+    max-width: 520px;
+  }
+
+  .s1-divider {
+    width: 1px;
+    height: 60%;
+    background: linear-gradient(to bottom, transparent, rgba(94,234,212,0.3), transparent);
+    align-self: center;
+  }
+
+  .s1-blob {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(20,168,150,0.18) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .s1-blob-2 {
+    position: absolute;
+    width: 350px; height: 350px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(94,234,212,0.10) 0%, transparent 70%);
+    bottom: -80px; left: 30%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .s1-footer {
+    position: absolute;
+    bottom: 80px;
+    right: 72px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.12em;
+    z-index: 2;
+  }
+
+  /* ──────────────────────────────────────
+     SLIDE 2 — PROBLEMA
+  ────────────────────────────────────── */
+  .slide-2 {
+    background: var(--gray-bg);
+    padding: 56px 72px 80px;
+    flex-direction: column;
+  }
+
+  .slide-title {
+    font-family: var(--font-title);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+
+  .slide-subtitle {
+    font-size: 15px;
+    color: var(--text-mid);
+    margin-bottom: 40px;
+  }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    flex: 1;
+  }
+
+  .pain-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 28px 24px;
+    border: 1px solid #E2E8F0;
+    border-top: 4px solid var(--red);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+
+  .pain-icon { font-size: 28px; }
+
+  .pain-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--red);
+    font-family: var(--font-body);
+  }
+
+  .pain-desc {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  /* ──────────────────────────────────────
+     SLIDE 3 — VISÃO
+  ────────────────────────────────────── */
+  .slide-3 {
+    background: var(--white);
+    padding: 48px 72px 80px;
+    flex-direction: column;
+  }
+
+  .hero-quote {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a4a6e 100%);
+    border-radius: 20px;
+    padding: 36px 48px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-quote::before {
+    content: '"';
+    position: absolute;
+    font-family: var(--font-title);
+    font-size: 200px;
+    color: rgba(94,234,212,0.08);
+    top: -40px; left: 20px;
+    line-height: 1;
+  }
+
+  .hero-quote p {
+    font-family: var(--font-title);
+    font-size: 24px;
+    color: var(--white);
+    line-height: 1.55;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-quote p span { color: var(--teal-light); }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    flex: 1;
+  }
+
+  .pillar-card {
+    background: var(--gray-bg);
+    border-radius: 16px;
+    padding: 28px 20px;
+    border: 1px solid #E2E8F0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.2s;
+  }
+
+  .pillar-icon { font-size: 30px; }
+
+  .pillar-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+
+  .pillar-text {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  /* ──────────────────────────────────────
+     SLIDE 4 — ECOSSISTEMA
+  ────────────────────────────────────── */
+  .slide-4 {
+    background: var(--gray-bg);
+    padding: 40px 72px 80px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .slide-4 .slide-title { align-self: flex-start; }
+
+  .ecosystem-svg-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* ──────────────────────────────────────
+     SLIDE 5 — ESTRUTURA COMERCIAL
+  ────────────────────────────────────── */
+  .slide-5 {
+    background: var(--white);
+    padding: 40px 72px 80px;
+    flex-direction: column;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    flex: 1;
+  }
+
+  .entity-section {
+    background: var(--gray-bg);
+    border-radius: 18px;
+    padding: 28px 24px;
+    border: 1px solid #E2E8F0;
+  }
+
+  .entity-section-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--teal-light);
+  }
+
+  .entity-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+
+  .entity-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--teal-mid);
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .entity-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+
+  .entity-desc {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+
+  /* ──────────────────────────────────────
+     SLIDE 6 — CATÁLOGO
+  ────────────────────────────────────── */
+  .slide-6 {
+    background: var(--gray-bg);
+    padding: 40px 72px 80px;
+    flex-direction: column;
+  }
+
+  .tree-bar {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 32px;
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 16px 24px;
+    overflow: hidden;
+  }
+
+  .tree-node {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    white-space: nowrap;
+  }
+
+  .tree-arrow {
+    color: var(--teal-light);
+    margin: 0 14px;
+    font-size: 18px;
+  }
+
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .catalog-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 24px 20px;
+    border: 1px solid #E2E8F0;
+    border-top: 4px solid var(--teal-mid);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  .catalog-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+  }
+
+  .catalog-card-text {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .highlight-box {
+    background: linear-gradient(135deg, var(--teal-dark), var(--teal-mid));
+    border-radius: 12px;
+    padding: 16px 24px;
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  /* ──────────────────────────────────────
+     SLIDE 7 — CICLO COMERCIAL
+  ────────────────────────────────────── */
+  .slide-7 {
+    background: var(--white);
+    padding: 40px 72px 80px;
+    flex-direction: column;
+  }
+
+  .flow-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 32px;
+    overflow-x: auto;
+    padding: 20px 0;
+  }
+
+  .flow-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .flow-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--teal-dark);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .flow-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-dark);
+    text-align: center;
+    max-width: 80px;
+  }
+
+  .flow-sublabel {
+    font-size: 10px;
+    color: var(--text-mid);
+    text-align: center;
+    max-width: 80px;
+  }
+
+  .flow-arrow {
+    font-size: 18px;
+    color: var(--teal-light);
+    margin: 0 8px;
+    align-self: center;
+    margin-bottom: 28px;
+    flex-shrink: 0;
+  }
+
+  .resp-table {
+    flex: 1;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #E2E8F0;
+  }
+
+  .resp-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .resp-table th {
+    background: var(--navy);
+    color: var(--white);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .resp-table td {
+    padding: 11px 16px;
+    border-bottom: 1px solid #F1F5F9;
+    color: var(--text-mid);
+  }
+
+  .resp-table tr:nth-child(even) td { background: #F8FAFC; }
+  .resp-table tr:last-child td { border-bottom: none; }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .badge-hub { background: #DBEAFE; color: #1D4ED8; }
+  .badge-ind { background: #D1FAE5; color: #065F46; }
+  .badge-ass { background: #FEF3C7; color: #92400E; }
+  .badge-cli { background: #FCE7F3; color: #9D174D; }
+
+  /* ──────────────────────────────────────
+     SLIDE 8 — ORÇAMENTO & PEDIDO
+  ────────────────────────────────────── */
+  .slide-8 {
+    background: var(--gray-bg);
+    padding: 40px 72px 80px;
+    flex-direction: column;
+  }
+
+  .orc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    flex: 1;
+  }
+
+  .orc-panel {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 28px 24px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  }
+
+  .orc-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--teal-light);
+  }
+
+  .orc-panel-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+
+  .icon-blue { background: #EFF6FF; }
+  .icon-green { background: #F0FDF4; }
+
+  .orc-panel-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+
+  .orc-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+  }
+
+  .orc-check {
+    color: var(--teal-mid);
+    font-size: 15px;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .orc-text {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+
+  .orc-text strong { color: var(--text-dark); }
+
+  .cycle-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 14px 0;
+  }
+
+  .cycle-pill {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--gray-bg);
+    color: var(--text-mid);
+    border: 1px solid #E2E8F0;
+  }
+
+  .cycle-pill.active-pill {
+    background: var(--teal-dark);
+    color: var(--white);
+    border-color: var(--teal-dark);
+  }
+
+  /* ──────────────────────────────────────
+     SLIDE 9 — RBAC
+  ────────────────────────────────────── */
+  .slide-9 {
+    background: var(--navy);
+    padding: 40px 72px 80px;
+    flex-direction: column;
+  }
+
+  .slide-9 .slide-title { color: var(--white); }
+  .slide-9 .slide-subtitle { color: rgba(255,255,255,0.55); }
+
+  .rbac-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    flex: 1;
+  }
+
+  .rbac-card {
+    border-radius: 18px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .rbac-admin { background: linear-gradient(135deg, #1a3a5c, #1e4a73); border: 1px solid rgba(94,234,212,0.2); }
+  .rbac-gestor { background: linear-gradient(135deg, #0a3d35, #0d5248); border: 1px solid rgba(94,234,212,0.2); }
+  .rbac-prop { background: linear-gradient(135deg, #2d1a4a, #3d2460); border: 1px solid rgba(94,234,212,0.2); }
+  .rbac-ass { background: linear-gradient(135deg, #3a2a0a, #4a3a10); border: 1px solid rgba(94,234,212,0.2); }
+
+  .rbac-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .rbac-icon {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .rbac-title {
+    font-family: var(--font-title);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .rbac-scope {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    opacity: 0.8;
+  }
+
+  .rbac-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+  }
+
+  .rbac-items {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .rbac-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .rbac-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal-light);
+    flex-shrink: 0;
+  }
+
+  .rbac-footer {
+    text-align: center;
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    font-style: italic;
+  }
+
+  /* ──────────────────────────────────────
+     SLIDE 10 — SEGURANÇA
+  ────────────────────────────────────── */
+  .slide-10 {
+    background: var(--navy);
+    padding: 40px 72px 80px;
+    flex-direction: column;
+  }
+
+  .slide-10 .slide-title { color: var(--white); }
+  .slide-10 .slide-subtitle { color: rgba(255,255,255,0.55); }
+
+  .sec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    flex: 1;
+  }
+
+  .sec-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(94,234,212,0.15);
+    border-radius: 18px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .sec-num {
+    font-family: var(--font-title);
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--teal-light);
+    line-height: 1;
+    opacity: 0.6;
+  }
+
+  .sec-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .sec-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+  }
+
+  /* ──────────────────────────────────────
+     SLIDE 11 — ROADMAP
+  ────────────────────────────────────── */
+  .slide-11 {
+    background: var(--gray-bg);
+    padding: 40px 72px 80px;
+    flex-direction: column;
+  }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-bottom: 32px;
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid #E2E8F0;
+    overflow: hidden;
+  }
+
+  .tl-phase {
+    padding: 24px 20px;
+    border-right: 1px solid #E2E8F0;
+    position: relative;
+  }
+
+  .tl-phase:last-child { border-right: none; }
+
+  .tl-phase::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+
+  .tl-today::before { background: var(--teal-dark); }
+  .tl-next::before { background: var(--teal-mid); }
+  .tl-mid::before { background: var(--amber); }
+  .tl-future::before { background: #8B5CF6; }
+
+  .tl-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .tl-today .tl-label { color: var(--teal-dark); }
+  .tl-next .tl-label { color: var(--teal-mid); }
+  .tl-mid .tl-label { color: var(--amber); }
+  .tl-future .tl-label { color: #8B5CF6; }
+
+  .tl-items { display: flex; flex-direction: column; gap: 6px; }
+
+  .tl-item {
+    font-size: 12px;
+    color: var(--text-mid);
+    padding: 3px 0;
+    border-bottom: 1px solid #F1F5F9;
+    line-height: 1.4;
+  }
+
+  .tl-item:last-child { border-bottom: none; }
+
+  .opp-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    flex: 1;
+  }
+
+  .opp-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 20px 16px;
+    border: 1px solid #E2E8F0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  .opp-icon { font-size: 24px; }
+
+  .opp-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+
+  .opp-desc {
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+
+  /* ──────────────────────────────────────
+     SLIDE 12 — FECHAMENTO
+  ────────────────────────────────────── */
+  .slide-12 {
+    background: var(--navy);
+    flex-direction: row;
+  }
+
+  .s12-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 56px 80px 72px;
+    position: relative;
+  }
+
+  .s12-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 20px;
+  }
+
+  .s12-headline {
+    font-family: var(--font-title);
+    font-size: 44px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .s12-sub {
+    font-size: 20px;
+    color: var(--teal-light);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    margin-bottom: 36px;
+  }
+
+  .check-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 15px;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .check-mark {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(94,234,212,0.15);
+    border: 1.5px solid var(--teal-light);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--teal-light);
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  .s12-right {
+    width: 40%;
+    background: linear-gradient(160deg, var(--teal-dark) 0%, var(--teal-mid) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 56px 80px 48px;
+    position: relative;
+  }
+
+  .s12-right-title {
+    font-family: var(--font-title);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 32px;
+  }
+
+  .step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .step-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+
+  .step-text {
+    font-size: 15px;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.5;
+    padding-top: 6px;
+  }
+
+  .s12-blob {
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(94,234,212,0.15) 0%, transparent 70%);
+    bottom: -80px; left: -80px;
+  }
+</style>
+</head>
+<body>
+
+<div class="presentation" id="presentation">
+
+  <!-- SLIDE 1 — CAPA -->
+  <section class="slide slide-1 active" data-index="0">
+    <div class="s1-blob"></div>
+    <div class="s1-blob-2"></div>
+    <div class="s1-left">
+      <div class="s1-logo">Hub Plataforma</div>
+      <div class="s1-brand">HUB<br>PLATAFORMA</div>
+      <div class="s1-tagline">Gestão Comercial da Indústria</div>
+    </div>
+    <div class="s1-divider"></div>
+    <div class="s1-right">
+      <div class="s1-eyebrow">Apresentação Executiva · StinPharma</div>
+      <h1 class="s1-headline">Transformando<br>a Operação<br>Comercial da <span>StinPharma</span></h1>
+      <p class="s1-sub">Uma plataforma centralizada para gerir Clientes, Carteiras, Portfólio de Produtos, Orçamentos e Pedidos — com controle total nas mãos da Indústria.</p>
+    </div>
+    <div class="s1-footer">2026 · Apresentação Executiva</div>
+  </section>
+
+  <!-- SLIDE 2 — PROBLEMA -->
+  <section class="slide slide-2" data-index="1">
+    <h2 class="slide-title">Como está hoje — sem uma plataforma</h2>
+    <p class="slide-subtitle">Os principais pontos de atrito na operação comercial atual</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">📊</div>
+        <div class="pain-title">Planilhas e e-mails</div>
+        <p class="pain-desc">Clientes espalhados em arquivos locais, sem rastreio de histórico, com registros duplicados e sem padronização entre representantes.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">👁️</div>
+        <div class="pain-title">Sem visibilidade</div>
+        <p class="pain-desc">O Gestor não sabe em que etapa está cada negociação. O pipeline comercial é uma caixa-preta — impossível prever fechamentos.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🔓</div>
+        <div class="pain-title">Sem controle de acesso</div>
+        <p class="pain-desc">Qualquer vendedor vê dados de qualquer cliente. Não há escopo, não há separação por Hub ou Carteira. Risco de exposição total.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📦</div>
+        <div class="pain-title">Catálogo desatualizado</div>
+        <p class="pain-desc">Preços e produtos divergentes entre representantes. Sem uma fonte única de verdade, orçamentos são inconsistentes e comprometem negociações.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🚶</div>
+        <div class="pain-title">Dependência de pessoas</div>
+        <p class="pain-desc">Vendedor sai, histórico vai junto. Toda a relação com o cliente — e-mails, acordos, condições — desaparece com a saída do profissional.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🔄</div>
+        <div class="pain-title">Processo informal</div>
+        <p class="pain-desc">Da prospecção ao pedido, nenhum fluxo padronizado. Sem aprovações formais, sem auditoria, sem rastreabilidade. Cada um faz do seu jeito.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3 — VISÃO -->
+  <section class="slide slide-3" data-index="2">
+    <h2 class="slide-title">O que é o Hub Plataforma</h2>
+    <div class="hero-quote">
+      <p>"A plataforma de gestão comercial da <span>StinPharma</span> — do primeiro contato ao pedido, <span>tudo em um único lugar.</span>"</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar-card">
+        <div class="pillar-icon">🏭</div>
+        <div class="pillar-title">Indústria no Centro</div>
+        <p class="pillar-text">A StinPharma é dona dos dados. Hubs e Assistentes operam sob sua autorização total. Nenhum representante acessa o que não lhe pertence.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🔄</div>
+        <div class="pillar-title">Ciclo Completo</div>
+        <p class="pillar-text">Da Solicitação de Novo Cliente até o Pedido entregue e financeiro fechado. Nenhuma etapa fora da plataforma.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">👥</div>
+        <div class="pillar-title">Multiusuário com Perfis</div>
+        <p class="pillar-text">Admin, Gestor, Proprietário do Hub e Assistente — cada um vê e opera exatamente o seu escopo. Nada mais, nada menos.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">📈</div>
+        <div class="pillar-title">Escalável</div>
+        <p class="pillar-text">Novos Hubs, Carteiras e Portfólios sem limite. A Indústria controla tudo de um único painel centralizado.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4 — ECOSSISTEMA -->
+  <section class="slide slide-4" data-index="3">
+    <h2 class="slide-title" style="margin-bottom:4px;">Ecossistema Hub Plataforma</h2>
+    <p class="slide-subtitle" style="margin-bottom:0;">Visão geral das entidades e suas relações</p>
+    <div class="ecosystem-svg-wrap">
+      <svg viewBox="0 0 900 520" width="900" height="520" xmlns="http://www.w3.org/2000/svg" font-family="Inter,sans-serif">
+        <!-- Lines first (behind nodes) -->
+        <line x1="450" y1="220" x2="200" y2="100" stroke="#5EEAD4" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.5"/>
+        <line x1="450" y1="220" x2="700" y2="100" stroke="#5EEAD4" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.5"/>
+        <line x1="450" y1="220" x2="110" y2="260" stroke="#5EEAD4" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.5"/>
+        <line x1="450" y1="220" x2="790" y2="260" stroke="#5EEAD4" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.5"/>
+        <line x1="450" y1="220" x2="150" y2="420" stroke="#5EEAD4" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.5"/>
+        <line x1="450" y1="220" x2="750" y2="420" stroke="#5EEAD4" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.5"/>
+        <line x1="450" y1="220" x2="310" y2="450" stroke="#5EEAD4" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.5"/>
+        <line x1="450" y1="220" x2="590" y2="450" stroke="#5EEAD4" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.5"/>
+
+        <!-- Central node -->
+        <ellipse cx="450" cy="220" rx="110" ry="52" fill="#0D7B6E"/>
+        <text x="450" y="213" text-anchor="middle" font-size="15" font-weight="700" fill="white">HUB</text>
+        <text x="450" y="232" text-anchor="middle" font-size="15" font-weight="700" fill="white">PLATAFORMA</text>
+
+        <!-- Satellite nodes -->
+        <!-- Indústria -->
+        <rect x="114" y="68" rx="14" ry="14" width="172" height="44" fill="#0F2D4A" stroke="#5EEAD4" stroke-width="1.5"/>
+        <text x="200" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="white">🏭 Indústria</text>
+        <text x="200" y="108" text-anchor="middle" font-size="10" fill="#5EEAD4">(Tenant Raiz)</text>
+
+        <!-- Hubs -->
+        <rect x="614" y="68" rx="14" ry="14" width="172" height="44" fill="#0F2D4A" stroke="#5EEAD4" stroke-width="1.5"/>
+        <text x="700" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="white">🏢 Hubs</text>
+        <text x="700" y="108" text-anchor="middle" font-size="10" fill="#5EEAD4">(Unidades de Negócio)</text>
+
+        <!-- Carteiras -->
+        <rect x="20" y="238" rx="14" ry="14" width="180" height="44" fill="#0F2D4A" stroke="#14A896" stroke-width="1.5"/>
+        <text x="110" y="262" text-anchor="middle" font-size="13" font-weight="600" fill="white">🗂️ Carteiras</text>
+        <text x="110" y="276" text-anchor="middle" font-size="10" fill="#5EEAD4">(Grupos de Clientes)</text>
+
+        <!-- Clientes -->
+        <rect x="700" y="238" rx="14" ry="14" width="180" height="44" fill="#0F2D4A" stroke="#14A896" stroke-width="1.5"/>
+        <text x="790" y="262" text-anchor="middle" font-size="13" font-weight="600" fill="white">👤 Clientes</text>
+        <text x="790" y="276" text-anchor="middle" font-size="10" fill="#5EEAD4">(Aprovados pela Indústria)</text>
+
+        <!-- Portfólio -->
+        <rect x="55" y="398" rx="14" ry="14" width="190" height="44" fill="#0a3d35" stroke="#5EEAD4" stroke-width="1.5"/>
+        <text x="150" y="422" text-anchor="middle" font-size="13" font-weight="600" fill="white">📦 Portfólio</text>
+        <text x="150" y="436" text-anchor="middle" font-size="10" fill="#5EEAD4">(Produtos Autorizados)</text>
+
+        <!-- Orçamentos & Pedidos -->
+        <rect x="656" y="398" rx="14" ry="14" width="190" height="44" fill="#0a3d35" stroke="#5EEAD4" stroke-width="1.5"/>
+        <text x="751" y="417" text-anchor="middle" font-size="12" font-weight="600" fill="white">📋 Orçamentos</text>
+        <text x="751" y="431" text-anchor="middle" font-size="12" font-weight="600" fill="white">&amp; Pedidos</text>
+
+        <!-- Pipeline -->
+        <rect x="218" y="428" rx="14" ry="14" width="185" height="44" fill="#2d1a4a" stroke="#8B5CF6" stroke-width="1.5"/>
+        <text x="310" y="452" text-anchor="middle" font-size="13" font-weight="600" fill="white">🔁 Pipeline</text>
+        <text x="310" y="466" text-anchor="middle" font-size="10" fill="#C4B5FD">(Comercial)</text>
+
+        <!-- Perfis & RBAC -->
+        <rect x="498" y="428" rx="14" ry="14" width="185" height="44" fill="#2d1a4a" stroke="#8B5CF6" stroke-width="1.5"/>
+        <text x="590" y="452" text-anchor="middle" font-size="13" font-weight="600" fill="white">🔐 Perfis &amp; RBAC</text>
+        <text x="590" y="466" text-anchor="middle" font-size="10" fill="#C4B5FD">(Acesso por Escopo)</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- SLIDE 5 — ESTRUTURA COMERCIAL -->
+  <section class="slide slide-5" data-index="4">
+    <h2 class="slide-title">Estrutura Comercial — O que o sistema gerencia</h2>
+    <p class="slide-subtitle">Entidades e responsabilidades dentro da plataforma</p>
+    <div class="two-col">
+      <div class="entity-section">
+        <div class="entity-section-title">🏭 Propriedade da Indústria</div>
+        <div class="entity-item">
+          <div class="entity-dot"></div>
+          <div><div class="entity-name">Indústria</div><div class="entity-desc">Tenant raiz, dona de todos os dados. Governa Hubs, Portfólios, Clientes e regras comerciais.</div></div>
+        </div>
+        <div class="entity-item">
+          <div class="entity-dot"></div>
+          <div><div class="entity-name">Hub</div><div class="entity-desc">Unidade operacional. Status: ATIVO / INATIVO / SUSPENSO / BLOQUEADO. Dados permanecem mesmo inativo.</div></div>
+        </div>
+        <div class="entity-item">
+          <div class="entity-dot"></div>
+          <div><div class="entity-name">Carteira</div><div class="entity-desc">Agrupa Clientes. Modos OPEN (compartilhada) ou DISTRIBUTED (atribuição individual por Assistente).</div></div>
+        </div>
+        <div class="entity-item">
+          <div class="entity-dot"></div>
+          <div><div class="entity-name">Cliente</div><div class="entity-desc">Nasce de uma Solicitação aprovada; pertence à Indústria — não ao representante. Zero risco de levar carteira.</div></div>
+        </div>
+        <div class="entity-item">
+          <div class="entity-dot"></div>
+          <div><div class="entity-name">Representante</div><div class="entity-desc">Empresa parceira que opera um ou mais Hubs. Entidade de relacionamento, não de acesso técnico.</div></div>
+        </div>
+      </div>
+      <div class="entity-section">
+        <div class="entity-section-title">⚡ Operação do Hub</div>
+        <div class="entity-item">
+          <div class="entity-dot" style="background:#8B5CF6"></div>
+          <div><div class="entity-name">Proprietário do Hub</div><div class="entity-desc">Gestor do Hub; visualiza e edita tudo dentro do Hub; redistribui Clientes; concede permissões a Assistentes.</div></div>
+        </div>
+        <div class="entity-item">
+          <div class="entity-dot" style="background:#8B5CF6"></div>
+          <div><div class="entity-name">Assistente de Venda</div><div class="entity-desc">Operador comercial; cria Atendimentos e Orçamentos dentro do seu escopo de Carteira e Cliente.</div></div>
+        </div>
+        <div class="entity-item">
+          <div class="entity-dot" style="background:#8B5CF6"></div>
+          <div><div class="entity-name">Equipe</div><div class="entity-desc">Agrupamento interno opcional de Assistentes dentro de um Hub. Facilita gestão de permissões em escala.</div></div>
+        </div>
+        <div class="entity-item">
+          <div class="entity-dot" style="background:#D97706"></div>
+          <div><div class="entity-name">Solicitação de Novo Cliente</div><div class="entity-desc">Ponto de entrada do funil comercial. O Hub solicita; a Indústria aprova ou descarta. Substitui o Lead informal.</div></div>
+        </div>
+        <div class="entity-item">
+          <div class="entity-dot" style="background:#D97706"></div>
+          <div><div class="entity-name">Atendimento Comercial</div><div class="entity-desc">Negociação em andamento para um Cliente. Contém Orçamentos. Substitui o conceito de Deal informal.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6 — CATÁLOGO -->
+  <section class="slide slide-6" data-index="5">
+    <h2 class="slide-title">Catálogo de Produtos — Controle Total pela Indústria</h2>
+    <p class="slide-subtitle">Hierarquia do catálogo e regras de autorização</p>
+    <div class="tree-bar">
+      <span class="tree-node">🏭 Indústria</span>
+      <span class="tree-arrow">→</span>
+      <span class="tree-node">📁 Portfólio</span>
+      <span class="tree-arrow">→</span>
+      <span class="tree-node">🗂️ Categoria</span>
+      <span class="tree-arrow">→</span>
+      <span class="tree-node">📂 Subcategoria</span>
+      <span class="tree-arrow">→</span>
+      <span class="tree-node">💊 Produto</span>
+    </div>
+    <div class="catalog-grid">
+      <div class="catalog-card">
+        <div class="catalog-card-title">📁 Portfólio</div>
+        <p class="catalog-card-text">Agrupamento comercial de produtos. A StinPharma define quais Hubs têm acesso a cada Portfólio — controle total de distribuição por canal.</p>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-card-title">🗂️ Categoria / Subcategoria</div>
+        <p class="catalog-card-text">Classificam os Produtos dentro do Portfólio. Organização interna para facilitar a navegação, seleção e relatórios de desempenho por linha.</p>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-card-title">💊 Produto</div>
+        <p class="catalog-card-text">Único na Indústria. Um produto pode estar em múltiplos Portfólios (relação N:N). Preço comercial definido por Portfólio — não duplicado no produto.</p>
+      </div>
+      <div class="catalog-card">
+        <div class="catalog-card-title">🔐 Autorização Hub ↔ Portfólio</div>
+        <p class="catalog-card-text">A Indústria autoriza quais Hubs operam quais Portfólios. O Assistente herda automaticamente a autorização do Hub em que atua.</p>
+      </div>
+    </div>
+    <div class="highlight-box">
+      O Hub <strong>NÃO</strong> cria produtos. Apenas utiliza o que a StinPharma autoriza.
+    </div>
+  </section>
+
+  <!-- SLIDE 7 — CICLO COMERCIAL -->
+  <section class="slide slide-7" data-index="6">
+    <h2 class="slide-title">Ciclo Comercial Completo</h2>
+    <p class="slide-subtitle" style="margin-bottom:16px;">Da Solicitação ao Pedido entregue — fluxo padronizado e auditável</p>
+    <div class="flow-wrap">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-label">Solicitação</div>
+        <div class="flow-sublabel">Hub registra interesse</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-label">Aprovação</div>
+        <div class="flow-sublabel">Indústria aprova</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-label">Cliente</div>
+        <div class="flow-sublabel">Entra na Carteira</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-label">Atendimento</div>
+        <div class="flow-sublabel">Assistente abre negociação</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div class="flow-label">Orçamento</div>
+        <div class="flow-sublabel">Proposta emitida</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-num">6</div>
+        <div class="flow-label">Aceite</div>
+        <div class="flow-sublabel">Cliente aprova</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-num">7</div>
+        <div class="flow-label">Pré-pedido</div>
+        <div class="flow-sublabel">Consolidação</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-num" style="background:var(--green)">8</div>
+        <div class="flow-label">Pedido</div>
+        <div class="flow-sublabel">Financeiro → Entrega</div>
+      </div>
+    </div>
+    <div class="resp-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Etapa</th>
+            <th>Cria / Inicia</th>
+            <th>Aprova / Avança</th>
+            <th>Visualiza</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Solicitação de Novo Cliente</td>
+            <td><span class="badge badge-hub">Proprietário Hub / Assistente</span></td>
+            <td><span class="badge badge-ind">Gestor (Indústria)</span></td>
+            <td><span class="badge badge-ind">Gestor + Proprietário Hub</span></td>
+          </tr>
+          <tr>
+            <td>Atendimento Comercial</td>
+            <td><span class="badge badge-ass">Assistente</span></td>
+            <td><span class="badge badge-hub">Proprietário Hub</span></td>
+            <td><span class="badge badge-hub">Proprietário Hub + Assistente (próprio)</span></td>
+          </tr>
+          <tr>
+            <td>Orçamento</td>
+            <td><span class="badge badge-ass">Assistente</span></td>
+            <td><span class="badge badge-cli">Cliente (aceite externo)</span></td>
+            <td><span class="badge badge-hub">Proprietário Hub + Assistente (próprio)</span></td>
+          </tr>
+          <tr>
+            <td>Pré-pedido</td>
+            <td><span class="badge badge-ass">Assistente (conversão)</span></td>
+            <td><span class="badge badge-ind">Gestor (Indústria)</span></td>
+            <td><span class="badge badge-ind">Gestor + Proprietário Hub</span></td>
+          </tr>
+          <tr>
+            <td>Pedido — etapa comercial</td>
+            <td><span class="badge badge-ind">Gestor (geração)</span></td>
+            <td><span class="badge badge-ind">Gestor</span></td>
+            <td><span class="badge badge-ind">Gestor + Proprietário Hub</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SLIDE 8 — ORÇAMENTO & PEDIDO -->
+  <section class="slide slide-8" data-index="7">
+    <h2 class="slide-title">Orçamentos e Pedidos — Como funciona</h2>
+    <p class="slide-subtitle">Detalhamento dos dois principais documentos comerciais da plataforma</p>
+    <div class="orc-grid">
+      <div class="orc-panel">
+        <div class="orc-panel-header">
+          <div class="orc-panel-icon icon-blue">📋</div>
+          <div class="orc-panel-title">Orçamento</div>
+        </div>
+        <div class="orc-item">
+          <div class="orc-check">●</div>
+          <div class="orc-text">Criado pelo <strong>Assistente</strong> dentro de um Atendimento Comercial ativo.</div>
+        </div>
+        <div class="orc-item">
+          <div class="orc-check">●</div>
+          <div class="orc-text">Composto por Produtos do <strong>Portfólio autorizado</strong> para o Hub.</div>
+        </div>
+        <div style="margin:8px 0 4px">
+          <div style="font-size:12px;font-weight:700;color:var(--text-mid);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.08em;">Ciclo de Status</div>
+          <div class="cycle-pills">
+            <span class="cycle-pill">Rascunho</span>
+            <span class="cycle-pill">→</span>
+            <span class="cycle-pill">Emitido</span>
+            <span class="cycle-pill">→</span>
+            <span class="cycle-pill">Enviado</span>
+            <span class="cycle-pill">→</span>
+            <span class="cycle-pill active-pill">Aprovado</span>
+            <span class="cycle-pill">ou</span>
+            <span class="cycle-pill" style="border-color:var(--red);color:var(--red)">Recusado</span>
+          </div>
+        </div>
+        <div class="orc-item">
+          <div class="orc-check">●</div>
+          <div class="orc-text"><strong>Proprietário do Hub</strong> visualiza e edita qualquer Orçamento do Hub.</div>
+        </div>
+        <div class="orc-item">
+          <div class="orc-check">●</div>
+          <div class="orc-text">Após conversão: <strong>somente leitura</strong> — imutável para preservar histórico.</div>
+        </div>
+        <div class="orc-item">
+          <div class="orc-check">●</div>
+          <div class="orc-text">Aprovação é do <strong>Cliente</strong> — não há aprovação interna obrigatória.</div>
+        </div>
+      </div>
+      <div class="orc-panel">
+        <div class="orc-panel-header">
+          <div class="orc-panel-icon icon-green">📦</div>
+          <div class="orc-panel-title">Pedido</div>
+        </div>
+        <div class="orc-item">
+          <div class="orc-check">●</div>
+          <div class="orc-text">Gerado a partir do <strong>Pré-pedido</strong> (Orçamento aprovado pelo Cliente e confirmado pelo Gestor).</div>
+        </div>
+        <div style="margin:8px 0 4px">
+          <div style="font-size:12px;font-weight:700;color:var(--text-mid);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.08em;">Ciclo de Status</div>
+          <div class="cycle-pills" style="flex-wrap:wrap;">
+            <span class="cycle-pill">Pendente</span>
+            <span class="cycle-pill">→ Em produção</span>
+            <span class="cycle-pill">→ Pronto</span>
+            <span class="cycle-pill">→ Enviado</span>
+            <span class="cycle-pill">→ Entregue</span>
+            <span class="cycle-pill active-pill">→ Concluído</span>
+          </div>
+        </div>
+        <div class="orc-item">
+          <div class="orc-check">●</div>
+          <div class="orc-text"><strong>Gestor</strong> edita a etapa comercial do Pedido.</div>
+        </div>
+        <div class="orc-item">
+          <div class="orc-check">●</div>
+          <div class="orc-text"><strong>Financeiro</strong> edita a etapa financeira (pagamento, cobrança).</div>
+        </div>
+        <div class="orc-item">
+          <div class="orc-check">●</div>
+          <div class="orc-text"><strong>Transportadora</strong> executa e registra a entrega física.</div>
+        </div>
+        <div class="orc-item">
+          <div class="orc-check">●</div>
+          <div class="orc-text">Histórico preservado mesmo após conclusão — <strong>auditoria permanente</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 9 — RBAC -->
+  <section class="slide slide-9" data-index="8">
+    <h2 class="slide-title">Quem faz o quê — Perfis e Acessos</h2>
+    <p class="slide-subtitle">4 perfis fixos com escopos bem definidos</p>
+    <div class="rbac-grid">
+      <div class="rbac-card rbac-admin">
+        <div class="rbac-header">
+          <div class="rbac-icon">👑</div>
+          <div>
+            <div class="rbac-title">Administrador</div>
+            <div class="rbac-scope">Escopo: Indústria completa</div>
+          </div>
+        </div>
+        <p class="rbac-desc">Governa usuários, configurações e o ciclo de vida completo dos Hubs. Tem acesso irrestrito a toda a plataforma.</p>
+        <div class="rbac-items">
+          <div class="rbac-item"><div class="rbac-dot"></div>Criar, suspender e bloquear Hubs</div>
+          <div class="rbac-item"><div class="rbac-dot"></div>Gerenciar todos os usuários</div>
+          <div class="rbac-item"><div class="rbac-dot"></div>Configurações globais da Indústria</div>
+        </div>
+      </div>
+      <div class="rbac-card rbac-gestor">
+        <div class="rbac-header">
+          <div class="rbac-icon">📊</div>
+          <div>
+            <div class="rbac-title">Gestor</div>
+            <div class="rbac-scope">Escopo: Indústria (operacional)</div>
+          </div>
+        </div>
+        <p class="rbac-desc">Gerencia catálogo, Clientes, Carteiras e Pipeline. Aprova Solicitações de Novos Clientes e Pré-pedidos. Define regras comerciais.</p>
+        <div class="rbac-items">
+          <div class="rbac-item"><div class="rbac-dot"></div>Aprovar Solicitações e Pré-pedidos</div>
+          <div class="rbac-item"><div class="rbac-dot"></div>Gerenciar Portfólio e Preços</div>
+          <div class="rbac-item"><div class="rbac-dot"></div>Visualizar Pipeline completo</div>
+        </div>
+      </div>
+      <div class="rbac-card rbac-prop">
+        <div class="rbac-header">
+          <div class="rbac-icon">🏢</div>
+          <div>
+            <div class="rbac-title">Proprietário do Hub</div>
+            <div class="rbac-scope">Escopo: seu Hub</div>
+          </div>
+        </div>
+        <p class="rbac-desc">Visualiza e edita qualquer Orçamento do Hub. Assume qualquer Atendimento. Redistribui Clientes e Carteiras entre Assistentes.</p>
+        <div class="rbac-items">
+          <div class="rbac-item"><div class="rbac-dot"></div>Gerenciar todos os Atendimentos do Hub</div>
+          <div class="rbac-item"><div class="rbac-dot"></div>Redistribuir Clientes e Carteiras</div>
+          <div class="rbac-item"><div class="rbac-dot"></div>Conceder permissões a Assistentes</div>
+        </div>
+      </div>
+      <div class="rbac-card rbac-ass">
+        <div class="rbac-header">
+          <div class="rbac-icon">🤝</div>
+          <div>
+            <div class="rbac-title">Assistente de Venda</div>
+            <div class="rbac-scope">Escopo: próprio (Carteira atribuída)</div>
+          </div>
+        </div>
+        <p class="rbac-desc">Cria e emite Orçamentos dos seus próprios Atendimentos. Acompanha o funil. Converte Orçamento aceito em Pré-pedido para aprovação.</p>
+        <div class="rbac-items">
+          <div class="rbac-item"><div class="rbac-dot"></div>Criar e emitir Orçamentos próprios</div>
+          <div class="rbac-item"><div class="rbac-dot"></div>Registrar Solicitações de Novo Cliente</div>
+          <div class="rbac-item"><div class="rbac-dot"></div>Converter Orçamento em Pré-pedido</div>
+        </div>
+      </div>
+    </div>
+    <div class="rbac-footer">Escopo garante que cada usuário vê e opera apenas o que é seu — nem mais, nem menos.</div>
+  </section>
+
+  <!-- SLIDE 10 — SEGURANÇA -->
+  <section class="slide slide-10" data-index="9">
+    <h2 class="slide-title">Segurança — Dados, Controle e Rastreabilidade</h2>
+    <p class="slide-subtitle">Pilares de segurança da arquitetura</p>
+    <div class="sec-grid">
+      <div class="sec-card">
+        <div class="sec-num">01</div>
+        <div class="sec-title">Dados são da StinPharma</div>
+        <p class="sec-desc">Clientes, Produtos e Orçamentos pertencem à Indústria — não ao representante. Desative o Hub: os dados ficam. Reative quando quiser. <strong style="color:var(--teal-light)">Zero risco de "levar a carteira".</strong></p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-num">02</div>
+        <div class="sec-title">Controle de Acesso por Perfil (RBAC)</div>
+        <p class="sec-desc">4 perfis fixos. RLS (Row Level Security) aplicado diretamente no banco de dados. Cada usuário vê <strong style="color:var(--teal-light)">exatamente o seu escopo</strong> — nada mais. A segurança é estrutural, não depende de configuração manual.</p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-num">03</div>
+        <div class="sec-title">Isolamento por Tenant</div>
+        <p class="sec-desc">Dados da StinPharma jamais cruzam com outra indústria. Arquitetura multi-tenant segura com escopo por <code style="color:var(--teal-light);font-size:13px;">organization_id</code>. Cada Tenant é uma ilha isolada.</p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-num">04</div>
+        <div class="sec-title">Auditoria Total</div>
+        <p class="sec-desc">Toda mudança de estado de Hub é registrada. Orçamentos são <strong style="color:var(--teal-light)">imutáveis após conversão</strong>. Histórico de Atendimentos e Pedidos permanente — disponível mesmo após conclusão.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 11 — ROADMAP -->
+  <section class="slide slide-11" data-index="10">
+    <h2 class="slide-title">O que pode acontecer — Próxima Evolução</h2>
+    <p class="slide-subtitle">Roadmap da plataforma e oportunidades para a StinPharma</p>
+    <div class="timeline">
+      <div class="tl-phase tl-today">
+        <div class="tl-label">Hoje</div>
+        <div class="tl-items">
+          <div class="tl-item">Clientes e Carteiras</div>
+          <div class="tl-item">Hubs e Portfólios</div>
+          <div class="tl-item">Produtos com ficha completa</div>
+          <div class="tl-item">Orçamentos</div>
+          <div class="tl-item">Pedidos com ciclo completo</div>
+          <div class="tl-item">Pipeline Comercial</div>
+          <div class="tl-item">RBAC com 4 perfis</div>
+        </div>
+      </div>
+      <div class="tl-phase tl-next">
+        <div class="tl-label">Próximo</div>
+        <div class="tl-items">
+          <div class="tl-item">Atendimento Comercial oficial</div>
+          <div class="tl-item">Portfólio N:N ativo</div>
+          <div class="tl-item">Preço por Portfólio</div>
+          <div class="tl-item">Solicitação de Cliente refinada</div>
+          <div class="tl-item">Permissões por Função</div>
+        </div>
+      </div>
+      <div class="tl-phase tl-mid">
+        <div class="tl-label">Médio Prazo</div>
+        <div class="tl-items">
+          <div class="tl-item">Pré-pedido automatizado</div>
+          <div class="tl-item">App mobile para Assistentes</div>
+          <div class="tl-item">Permissões granulares</div>
+          <div class="tl-item">Dashboard de pipeline</div>
+          <div class="tl-item">Notificações em tempo real</div>
+        </div>
+      </div>
+      <div class="tl-phase tl-future">
+        <div class="tl-label">Futuro</div>
+        <div class="tl-items">
+          <div class="tl-item">Integração ERP</div>
+          <div class="tl-item">Emissão de NF-e</div>
+          <div class="tl-item">Compliance Pharma</div>
+          <div class="tl-item">Rastreio de receituários</div>
+          <div class="tl-item">BI Comercial integrado</div>
+        </div>
+      </div>
+    </div>
+    <div class="opp-grid">
+      <div class="opp-card">
+        <div class="opp-icon">🌎</div>
+        <div class="opp-title">Escala Nacional</div>
+        <p class="opp-desc">Novos Hubs sem custo marginal de infraestrutura</p>
+      </div>
+      <div class="opp-card">
+        <div class="opp-icon">📦</div>
+        <div class="opp-title">Lançamento de Portfólios</div>
+        <p class="opp-desc">Autorizar Hubs seletivamente por linha de produto</p>
+      </div>
+      <div class="opp-card">
+        <div class="opp-icon">📈</div>
+        <div class="opp-title">Inteligência Comercial</div>
+        <p class="opp-desc">Pipeline vira relatório de desempenho por Hub</p>
+      </div>
+      <div class="opp-card">
+        <div class="opp-icon">🤝</div>
+        <div class="opp-title">Representantes Externos</div>
+        <p class="opp-desc">Operam como Hubs com dados 100% protegidos</p>
+      </div>
+      <div class="opp-card">
+        <div class="opp-icon">💊</div>
+        <div class="opp-title">Compliance Pharma</div>
+        <p class="opp-desc">Rastreabilidade de pedidos e controle de receituários</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 12 — FECHAMENTO -->
+  <section class="slide slide-12" data-index="11">
+    <div class="s12-left">
+      <div class="s12-eyebrow">Hub Plataforma · StinPharma</div>
+      <h2 class="s12-headline">O Hub Plataforma<br>é a plataforma<br>da StinPharma.</h2>
+      <p class="s12-sub">Centralizada. Segura. Escalável.</p>
+      <div class="check-list">
+        <div class="check-item">
+          <div class="check-mark">✓</div>
+          <span>Dados são seus — sempre, mesmo se o Hub for desativado</span>
+        </div>
+        <div class="check-item">
+          <div class="check-mark">✓</div>
+          <span>Equipe com perfis e escopos claramente definidos</span>
+        </div>
+        <div class="check-item">
+          <div class="check-mark">✓</div>
+          <span>Pipeline visível para o Gestor em tempo real</span>
+        </div>
+        <div class="check-item">
+          <div class="check-mark">✓</div>
+          <span>Catálogo de Produtos controlado exclusivamente pela Indústria</span>
+        </div>
+        <div class="check-item">
+          <div class="check-mark">✓</div>
+          <span>Escalável para novos Hubs sem limite operacional</span>
+        </div>
+      </div>
+      <div class="s12-blob"></div>
+    </div>
+    <div class="s12-right">
+      <h3 class="s12-right-title">Próximos Passos</h3>
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text">Validar o fluxo completo com a equipe StinPharma</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text">Configurar os Hubs e Carteiras da operação atual</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text">Cadastrar o Portfólio de Produtos da StinPharma</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-text">Treinar Assistentes e Gestores na plataforma</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- NAV -->
+<div class="nav nav-prev">
+  <button class="nav-btn" id="btn-prev" title="Slide anterior (←)">&#8592;</button>
+</div>
+<div class="nav nav-next">
+  <button class="nav-btn" id="btn-next" title="Próximo slide (→)">&#8594;</button>
+</div>
+<div class="nav-indicator" id="nav-indicator">1 / 12</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const indicator = document.getElementById('nav-indicator');
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
+  let current = 0;
+  const total = slides.length;
+
+  function goTo(index, direction) {
+    if (index < 0 || index >= total) return;
+
+    const prev = slides[current];
+    const next = slides[index];
+
+    prev.classList.remove('active');
+    prev.classList.add(direction === 1 ? 'exit-left' : 'exit-right');
+
+    // Remove exit class after transition
+    setTimeout(() => {
+      prev.classList.remove('exit-left', 'exit-right');
+    }, 500);
+
+    next.style.transform = direction === 1 ? 'translateX(60px)' : 'translateX(-60px)';
+    next.style.opacity = '0';
+    next.classList.add('active');
+
+    // Force reflow
+    next.getBoundingClientRect();
+
+    next.style.transform = '';
+    next.style.opacity = '';
+
+    current = index;
+    indicator.textContent = (current + 1) + ' / ' + total;
+    updateNavBtns();
+  }
+
+  function updateNavBtns() {
+    btnPrev.style.opacity = current === 0 ? '0.3' : '1';
+    btnNext.style.opacity = current === total - 1 ? '0.3' : '1';
+  }
+
+  btnPrev.addEventListener('click', () => goTo(current - 1, -1));
+  btnNext.addEventListener('click', () => goTo(current + 1, 1));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(current + 1, 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1, -1); }
+    if (e.key === 'Home') goTo(0, -1);
+    if (e.key === 'End') goTo(total - 1, 1);
+  });
+
+  updateNavBtns();
+</script>
+
+</body>
+</html>

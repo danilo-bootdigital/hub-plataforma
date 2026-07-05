@@ -23,7 +23,20 @@ export function SinoNotificacoes() {
     setRows(r.rows); setNaoLidas(r.nao_lidas)
   }
 
-  useEffect(() => { carregar() }, [])
+  // Atualiza ao montar, a cada 60s e quando a aba volta ao foco (o Header vive no
+  // layout persistente, então sem isso o badge ficaria congelado no valor do load).
+  useEffect(() => {
+    carregar()
+    const intervalo = setInterval(carregar, 60_000)
+    function aoFocar() { if (document.visibilityState === 'visible') carregar() }
+    document.addEventListener('visibilitychange', aoFocar)
+    window.addEventListener('focus', aoFocar)
+    return () => {
+      clearInterval(intervalo)
+      document.removeEventListener('visibilitychange', aoFocar)
+      window.removeEventListener('focus', aoFocar)
+    }
+  }, [])
 
   // Recarrega ao abrir; fecha ao clicar fora.
   useEffect(() => {
