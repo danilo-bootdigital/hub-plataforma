@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { ChevronDown, Menu } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { navegacaoParaPerfil, type ItemNavegacao } from '@/lib/navegacao'
+import { itemAtivo, useGrupoAberto } from './menu-shared'
 
 type Perm = { total?: boolean; permissoes?: Record<string, string[]> } | null
 
@@ -15,11 +16,6 @@ type Props = {
   logoUrl?: string | null
   cargo?: string | null
   permissoes?: Perm
-}
-
-function itemAtivo(href: string | undefined, pathname: string): boolean {
-  if (!href) return false
-  return pathname === href || pathname.startsWith(href + '/')
 }
 
 // Link de menu (1º nível ou subitem). `aninhado` reduz o padding vertical.
@@ -66,15 +62,14 @@ function GrupoMenu({
 }) {
   const Icone = item.icone
   const filhos = item.children ?? []
-  const algumAtivo = filhos.some((c) => itemAtivo(c.href, pathname))
-  const [aberto, setAberto] = useState(algumAtivo)
+  const { aberto, alternar, algumAtivo } = useGrupoAberto(item, pathname)
 
   return (
     <li>
       <button
         type="button"
         aria-expanded={aberto}
-        onClick={() => setAberto((v) => !v)}
+        onClick={alternar}
         className={cn(
           'flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
           algumAtivo ? 'text-slate-900' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
