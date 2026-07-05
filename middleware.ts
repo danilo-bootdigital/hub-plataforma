@@ -67,6 +67,7 @@ export async function middleware(request: NextRequest) {
     const ROTA_MODULO: Array<[string, string]> = [
       ['/assistente/clientes', 'clientes'],
       ['/assistente/orcamentos', 'orcamentos'],
+      ['/hub/orcamentos', 'orcamentos'],
       ['/assistente/prepedidos', 'pedidos'],
       ['/hub/produtos', 'produtos'],
     ]

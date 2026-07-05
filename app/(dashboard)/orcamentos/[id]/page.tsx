@@ -81,9 +81,22 @@ export default async function OrcamentoDetalhePage({ params }: { params: Promise
 
   const { data: perfil } = await supabase
     .from('profiles')
-    .select('id, cargo, hub_id')
+    .select('id, cargo, hub_id, organization_id')
     .eq('id', user.id)
     .single()
+
+  // Segurança de escopo (não confiar nos botões): isola por organização e, para os
+  // perfis do Hub (proprietario_hub/assistente), exige o MESMO hub_id do orçamento.
+  // Orçamentos legados sem hub_id ficam invisíveis ao Hub (visíveis só à Indústria).
+  if (!perfil || orcamento.organization_id !== perfil.organization_id) {
+    notFound()
+  }
+  if (
+    (perfil.cargo === 'proprietario_hub' || perfil.cargo === 'assistente') &&
+    orcamento.hub_id !== perfil.hub_id
+  ) {
+    notFound()
+  }
 
   // Verificar se o usuário pode editar este orçamento
   const podeEditar = perfil ? canEditQuote({

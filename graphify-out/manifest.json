@@ -169,14 +169,9 @@
     "ast_hash": "abef321c7a0ee48e879d7a94eabb6c58",
     "semantic_hash": "abef321c7a0ee48e879d7a94eabb6c58"
   },
-  "app/(dashboard)/orcamentos/[id]/page.backup.tsx": {
-    "mtime": 1782909688.125557,
-    "ast_hash": "79d8df90a56567416e973efeef4ce0b6",
-    "semantic_hash": "79d8df90a56567416e973efeef4ce0b6"
-  },
   "app/(dashboard)/orcamentos/[id]/page.tsx": {
-    "mtime": 1782952469.8859553,
-    "ast_hash": "dfce965eea45e6e59fd6af8b1b0862ad",
+    "mtime": 1783255539.4407892,
+    "ast_hash": "ee91fcabc1c68e3c5fe0be86aef2c515",
     "semantic_hash": ""
   },
   "app/(dashboard)/orcamentos/actions-orcamento.ts": {
@@ -190,8 +185,8 @@
     "semantic_hash": "67d877bfe3b07bbd89dc010e0aab2812"
   },
   "app/(dashboard)/orcamentos/novo/page.tsx": {
-    "mtime": 1782925513.3953063,
-    "ast_hash": "b0d13dc5d03e9812441aa6116e421166",
+    "mtime": 1783255503.1857026,
+    "ast_hash": "1f0809a5d07e4416b437ace64b39bf02",
     "semantic_hash": ""
   },
   "app/(dashboard)/orcamentos/page.tsx": {
@@ -339,11 +334,6 @@
     "ast_hash": "934ac700b01f537d0b70cbf1675241e6",
     "semantic_hash": "934ac700b01f537d0b70cbf1675241e6"
   },
-  "app/api/debug-env/route.ts": {
-    "mtime": 1782909688.0823553,
-    "ast_hash": "058ff1a117d8843ed3b5da44933c6058",
-    "semantic_hash": "058ff1a117d8843ed3b5da44933c6058"
-  },
   "app/api/exportacao-log/route.ts": {
     "mtime": 1782909688.082768,
     "ast_hash": "7664692ac740061f573751c1c7f9a79d",
@@ -368,11 +358,6 @@
     "mtime": 1782909688.1147783,
     "ast_hash": "14985de28c1151ddbf56ef081a963655",
     "semantic_hash": "14985de28c1151ddbf56ef081a963655"
-  },
-  "app/api/webhook/evolution/route-improved.ts": {
-    "mtime": 1782909688.1096478,
-    "ast_hash": "a65876c4d6d17d6b633582f45daea095",
-    "semantic_hash": "a65876c4d6d17d6b633582f45daea095"
   },
   "app/api/webhook/evolution/route.ts": {
     "mtime": 1782909688.1103969,
@@ -413,11 +398,6 @@
     "mtime": 1782909687.9410295,
     "ast_hash": "d5f1666b21c08d0568824f19541e45df",
     "semantic_hash": "d5f1666b21c08d0568824f19541e45df"
-  },
-  "app/proposta/[token]/page.disabled.tsx": {
-    "mtime": 1782909688.080205,
-    "ast_hash": "0f9611f80eb0a4e1f15c37d56899fe66",
-    "semantic_hash": "0f9611f80eb0a4e1f15c37d56899fe66"
   },
   "app/providers-layout.tsx": {
     "mtime": 1782909687.9415781,
@@ -519,16 +499,6 @@
     "ast_hash": "b190e14f023d75dfb57b4f72002ca310",
     "semantic_hash": "b190e14f023d75dfb57b4f72002ca310"
   },
-  "components/hooks/use-orcamento-data.tsx": {
-    "mtime": 1782909687.99205,
-    "ast_hash": "57bad01d7a5ac350ab6fd86a86414307",
-    "semantic_hash": "57bad01d7a5ac350ab6fd86a86414307"
-  },
-  "components/hooks/use-user-role.tsx": {
-    "mtime": 1782909687.9927185,
-    "ast_hash": "5428d42adaff0f384c197a446479c1bd",
-    "semantic_hash": "5428d42adaff0f384c197a446479c1bd"
-  },
   "components/layout/botao-sair.tsx": {
     "mtime": 1782909687.9668264,
     "ast_hash": "f42ed6bd5c6b388e743ec09f287fe177",
@@ -594,20 +564,10 @@
     "ast_hash": "d5ec61a66a86f28d62d392d1647133bf",
     "semantic_hash": "d5ec61a66a86f28d62d392d1647133bf"
   },
-  "components/orcamentos/acoes-wrapper.tsx": {
-    "mtime": 1782909688.039966,
-    "ast_hash": "e1d2b72dc279d7533eb5979febcf69c0",
-    "semantic_hash": "e1d2b72dc279d7533eb5979febcf69c0"
-  },
   "components/orcamentos/badge-status-orcamento.tsx": {
     "mtime": 1782909688.035279,
     "ast_hash": "dda02b3e302694c297c3a4a834144d4d",
     "semantic_hash": "dda02b3e302694c297c3a4a834144d4d"
-  },
-  "components/orcamentos/botao-baixar-pdf-placeholder.tsx": {
-    "mtime": 1782909688.0356982,
-    "ast_hash": "72e4b53f2b3d96ffcb7ca06f6a505332",
-    "semantic_hash": "72e4b53f2b3d96ffcb7ca06f6a505332"
   },
   "components/orcamentos/botao-baixar-pdf.tsx": {
     "mtime": 1782909688.0318613,
@@ -649,20 +609,10 @@
     "ast_hash": "9164b6e29ad2f02d4910408deaaddee5",
     "semantic_hash": ""
   },
-  "components/orcamentos/orcamento-pdf-generator.ts": {
-    "mtime": 1782909688.0347085,
-    "ast_hash": "ac648b571371368905d27a64ab9402f8",
-    "semantic_hash": ""
-  },
   "components/orcamentos/orcamento-pdf-template.tsx": {
     "mtime": 1782944173.2916245,
     "ast_hash": "1a47dc3a910d39f38f9bf450c22ca3bc",
     "semantic_hash": ""
-  },
-  "components/orcamentos/orcamento-simplificado.tsx": {
-    "mtime": 1782909688.0314548,
-    "ast_hash": "eba816a696b530a42b58baa7f4486784",
-    "semantic_hash": "eba816a696b530a42b58baa7f4486784"
   },
   "components/orcamentos/tabela-orcamentos.tsx": {
     "mtime": 1782909688.0365677,
@@ -824,11 +774,6 @@
     "ast_hash": "374cf1769f1e699f9f0acd51c0d00d89",
     "semantic_hash": "374cf1769f1e699f9f0acd51c0d00d89"
   },
-  "components/test.tsx": {
-    "mtime": 1782909687.9421668,
-    "ast_hash": "816c450980bc75a637b451af04905fa1",
-    "semantic_hash": "816c450980bc75a637b451af04905fa1"
-  },
   "components/ui/alert.tsx": {
     "mtime": 1782909688.0055664,
     "ast_hash": "d2eaa1f087e5d79186829a643bfedcd4",
@@ -964,25 +909,10 @@
     "ast_hash": "e27e512ecc78ed42daba09e57238e19a",
     "semantic_hash": "e27e512ecc78ed42daba09e57238e19a"
   },
-  "components/whatsapp/filtros-conversas.tsx": {
-    "mtime": 1782909688.057799,
-    "ast_hash": "d56972b22d1bacadeb529f126da5b7de",
-    "semantic_hash": "d56972b22d1bacadeb529f126da5b7de"
-  },
   "components/whatsapp/form-envio-mensagem.tsx": {
     "mtime": 1782909688.0599892,
     "ast_hash": "ba0443a0010f2d74d615e4d30467a2e0",
     "semantic_hash": ""
-  },
-  "components/whatsapp/header-kpis.tsx": {
-    "mtime": 1782909688.051821,
-    "ast_hash": "a0e74e3114031e713b83f90e5304da12",
-    "semantic_hash": "a0e74e3114031e713b83f90e5304da12"
-  },
-  "components/whatsapp/item-conversa.tsx": {
-    "mtime": 1782909688.0623791,
-    "ast_hash": "affccfd45c5589203a2923f7f27c340d",
-    "semantic_hash": "affccfd45c5589203a2923f7f27c340d"
   },
   "components/whatsapp/lista-conversas.tsx": {
     "mtime": 1782909688.0650063,
@@ -1063,16 +993,6 @@
     "mtime": 1782909688.0671425,
     "ast_hash": "286610ebf15382cd38bdb44b622111e5",
     "semantic_hash": "286610ebf15382cd38bdb44b622111e5"
-  },
-  "components/whatsapp/send-message-form.tsx": {
-    "mtime": 1782909688.0713193,
-    "ast_hash": "ee20e3385261c4e5d2a105d9905e1563",
-    "semantic_hash": "ee20e3385261c4e5d2a105d9905e1563"
-  },
-  "components/whatsapp/sidebar-instancias.tsx": {
-    "mtime": 1782909688.0733652,
-    "ast_hash": "de475b2922bda9d9763d658b8d099201",
-    "semantic_hash": "de475b2922bda9d9763d658b8d099201"
   },
   "components/whatsapp/thread-mensagens.tsx": {
     "mtime": 1782909688.067986,
@@ -1250,8 +1170,8 @@
     "semantic_hash": "992263d64f6c1f3fa6505cc36c4d7900"
   },
   "middleware.ts": {
-    "mtime": 1783134875.7580664,
-    "ast_hash": "9fa2f92fa823fce59c0c073b91c9259f",
+    "mtime": 1783255545.5716076,
+    "ast_hash": "d710b25e6473cef28a55e6a97402cfdb",
     "semantic_hash": ""
   },
   "next-env.d.ts": {
@@ -1644,11 +1564,6 @@
     "ast_hash": "2e10d699e2fbe17a406f05a736eef9b7",
     "semantic_hash": ""
   },
-  "app/(dashboard)/orcamentos/[id]/page-backup.tsx": {
-    "mtime": 1782909688.123796,
-    "ast_hash": "2a197cfe2f4243c44ee4c468e506b9fe",
-    "semantic_hash": ""
-  },
   "app/(dashboard)/whatsapp/actions-mensagens.ts": {
     "mtime": 1782909688.1045482,
     "ast_hash": "c9f3eb7a64332d33c9a0112e30c78cfb",
@@ -1825,13 +1740,13 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/assistente/atendimentos/page.tsx": {
-    "mtime": 1782909688.1180077,
-    "ast_hash": "4f337b57b31358691a5ecdea3f55c758",
+    "mtime": 1783255530.5027227,
+    "ast_hash": "6e60794774832ddb4952768922dc7ae2",
     "semantic_hash": ""
   },
   "components/atendimentos/tabela-atendimentos.tsx": {
-    "mtime": 1782909687.967247,
-    "ast_hash": "8466e2c4150fda0fdbb4cb637a02b910",
+    "mtime": 1783255525.5400114,
+    "ast_hash": "f8a27b52af96c1d7af30cf7b9b6fc738",
     "semantic_hash": ""
   },
   "components/hub-clientes/tabela-clientes-assistente.tsx": {
@@ -1845,8 +1760,8 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/assistente/orcamentos/actions.ts": {
-    "mtime": 1782909688.1190944,
-    "ast_hash": "8e08cba4d7c1b9c2cac793a2eb32cde3",
+    "mtime": 1783255581.9310813,
+    "ast_hash": "bf0073846165f3857a44b29574d91f10",
     "semantic_hash": ""
   },
   "app/(dashboard)/assistente/orcamentos/page.tsx": {
@@ -1930,8 +1845,8 @@
     "semantic_hash": ""
   },
   "components/prepedidos/botao-gerar-pedido.tsx": {
-    "mtime": 1782909688.0001807,
-    "ast_hash": "07a771244216c5e3d04f42df1dff4304",
+    "mtime": 1783255567.6735187,
+    "ast_hash": "2a831c334a350f46a36b394716943edd",
     "semantic_hash": ""
   },
   "components/hubs/campo-senha.tsx": {
@@ -2260,13 +2175,13 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/orcamentos/actions-hub.ts": {
-    "mtime": 1782923658.0736053,
-    "ast_hash": "1f87b52da4f485eebe40f978fa1ee0a4",
+    "mtime": 1783255473.5262628,
+    "ast_hash": "d5928625e49fb139a69e212bbb6b8018",
     "semantic_hash": ""
   },
   "components/orcamentos/form-orcamento-hub.tsx": {
-    "mtime": 1782925596.245377,
-    "ast_hash": "9045120339b910e177571d7e8678bd82",
+    "mtime": 1783255489.8515663,
+    "ast_hash": "96a103640c801eb50b57bc18482fade9",
     "semantic_hash": ""
   },
   "hubdev/bootstrap/expand_orcamento_hub.sql": {
@@ -2885,7 +2800,7 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/configuracoes-ia/editor-ia-comercial.tsx": {
-    "mtime": 1783252371.4549742,
+    "mtime": 1783252451.0933433,
     "ast_hash": "5c734074d6fca521c2a54ed4728f5e71",
     "semantic_hash": ""
   },
@@ -2897,6 +2812,11 @@
   "supabase/migrations/068_hub_ia_config.sql": {
     "mtime": 1783251368.392849,
     "ast_hash": "6e1cb69f6959395f19bbde6aaf020657",
+    "semantic_hash": ""
+  },
+  "app/(dashboard)/assistente/prepedidos/actions.ts": {
+    "mtime": 1783255561.374471,
+    "ast_hash": "3ecbfd631f3102847f7942074f651aa6",
     "semantic_hash": ""
   }
 }

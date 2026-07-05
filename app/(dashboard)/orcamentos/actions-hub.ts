@@ -14,6 +14,7 @@ export type ItemOrcamentoHub = { product_id: string; quantidade: number; descont
 export type DadosOrcamentoHub = {
   contato_id: string
   portfolio_id: string
+  deal_id?: string | null // atendimento de origem (opcional; preservado quando vem de Atendimentos)
   itens: ItemOrcamentoHub[]
   forma_pagamento?: string | null
   prazo_entrega?: string | null
@@ -116,6 +117,7 @@ export async function criarOrcamentoHub(dados: DadosOrcamentoHub): Promise<strin
       hub_id: hub,
       portfolio_id: dados.portfolio_id,
       contato_id: dados.contato_id,
+      deal_id: dados.deal_id ?? null, // preserva o atendimento de origem, quando houver
       supplier_id: null,
       forma_pagamento: dados.forma_pagamento?.trim() || null,
       prazo_entrega: dados.prazo_entrega?.trim() || null,

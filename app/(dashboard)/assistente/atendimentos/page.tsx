@@ -68,6 +68,7 @@ export default async function AssistenteAtendimentosPage() {
     const contato = d.contato_id ? contatoMap.get(d.contato_id) : undefined
     return {
       id: d.id,
+      contato_id: d.contato_id,
       cliente_nome: contato?.nome ?? '—',
       carteira_nome: contato?.carteira_id ? carteiraMap.get(contato.carteira_id) ?? '—' : '—',
       etapa: estagioMap.get(d.estagio_id) ?? '—',
