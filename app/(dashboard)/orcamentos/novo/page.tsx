@@ -56,7 +56,6 @@ export default async function NovoOrcamentoPage({
       </div>
       <FormOrcamentoHub
         clientes={clientes}
-        hubNome={h?.nome ?? ''}
         contatoInicial={sp.contato_id ?? null}
         dealId={sp.deal_id ?? null}
       />

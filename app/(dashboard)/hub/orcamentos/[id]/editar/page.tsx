@@ -120,7 +120,6 @@ export default async function EditarOrcamentoHubPage({ params }: { params: Promi
       </div>
       <FormOrcamentoHub
         clientes={clientes}
-        hubNome={h?.nome ?? ''}
         orcamentoId={id}
         inicial={inicial}
       />

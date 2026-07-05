@@ -60,28 +60,21 @@ function normalizar(s: string) {
   return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
 }
 
-// Ficha read-only com os campos que compõem o produto (do vínculo/portfólio).
-function FichaProduto({ p }: { p: LinhaProdutoHub }) {
+// Ficha compacta do item adicionado — apenas os campos definidos pela regra do produto
+// (via de administração, volume, unidade, qtd por caixa, valor da caixa, exige receita).
+function FichaItem({ p }: { p: LinhaProdutoHub }) {
   const campos: [string, string | null][] = [
-    ['Categoria', p.categoria],
-    ['Subcategoria', p.subcategoria],
-    ['Apresentação', p.apresentacao],
-    ['Composição', p.composicao],
     ['Via de administração', p.via_administracao],
-    ['Via de apresentação', p.via_apresentacao],
     ['Volume', p.volume],
     ['Unidade', p.unidade],
     ['Qtd por caixa', p.quantidade_por_caixa != null ? String(p.quantidade_por_caixa) : null],
-    ['Aplicadores', p.aplicadores],
     ['Valor da caixa', p.valor_caixa != null ? formatarMoeda(p.valor_caixa) : null],
     ['Exige receita', p.exige_receita == null ? null : p.exige_receita ? 'Sim' : 'Não'],
-    ['Descrição', p.descricao],
-    ['Observações da receita', p.observacoes_receita],
   ]
   const preenchidos = campos.filter(([, v]) => v != null && String(v).trim() !== '')
   if (!preenchidos.length) return null
   return (
-    <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs sm:grid-cols-3 lg:grid-cols-4">
+    <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs sm:grid-cols-3">
       {preenchidos.map(([k, v]) => (
         <div key={k}>
           <p className="text-slate-400">{k}</p>
@@ -104,14 +97,12 @@ function casa(p: LinhaProdutoHub, q: string) {
 
 export function FormOrcamentoHub({
   clientes,
-  hubNome,
   orcamentoId,
   inicial,
   contatoInicial,
   dealId,
 }: {
   clientes: ClienteOpc[]
-  hubNome: string
   orcamentoId?: string
   inicial?: InicialOrcamentoHub
   contatoInicial?: string | null
@@ -214,8 +205,6 @@ export function FormOrcamentoHub({
   const freteNum = Math.max(0, Number(frete.replace(',', '.')) || 0)
   const subtotalItens = itens.reduce((s, i) => s + i.quantidade * i.preco_unitario * (1 - i.desconto_item / 100), 0)
   const valorFinal = Math.max(0, subtotalItens * (1 - descGeralNum / 100) + freteNum)
-  const portfoliosDistintos = [...new Set(itens.map((i) => i.portfolio_nome).filter(Boolean))]
-  const resumoPortfolios = portfoliosDistintos.length === 0 ? '—' : portfoliosDistintos.length === 1 ? portfoliosDistintos[0]! : 'Múltiplos Portfólios'
 
   function montarDados(finalizar: boolean): DadosOrcamentoHub | null {
     if (!clienteId) { toast.error('Selecione o Cliente.'); return null }
@@ -270,7 +259,6 @@ export function FormOrcamentoHub({
                   <div className="text-sm">
                     <p className="font-semibold text-slate-900">{cliente.nome}</p>
                     <p className="text-slate-500">{cliente.telefone ?? 'sem telefone'}</p>
-                    <p className="text-slate-500">Carteira: <span className="text-slate-700">{cliente.carteira_nome ?? '—'}</span></p>
                   </div>
                 </div>
                 <Button type="button" variant="ghost" size="sm" onClick={() => { setClienteId(null); setBuscaCli('') }}>Trocar</Button>
@@ -309,7 +297,7 @@ export function FormOrcamentoHub({
               <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
               <Input
                 className="pl-9"
-                placeholder="Buscar por nome, apresentação, princípio ativo, categoria, portfólio, via, volume…"
+                placeholder="Buscar produto autorizado…"
                 value={buscaProd}
                 onChange={(e) => setBuscaProd(e.target.value)}
                 autoComplete="off"
@@ -328,8 +316,9 @@ export function FormOrcamentoHub({
                     <div className="min-w-0 flex-1">
                       <p className="truncate font-medium text-slate-900">{p.nome}</p>
                       <p className="truncate text-xs text-slate-500">
-                        {[p.apresentacao, p.portfolio, p.via_administracao, p.volume, p.unidade].filter(Boolean).join(' · ')}
+                        {[p.apresentacao, p.via_administracao, p.volume, p.unidade].filter(Boolean).join(' · ')}
                       </p>
+                      {p.portfolio && <p className="truncate text-[11px] text-slate-400">{p.portfolio}</p>}
                     </div>
                     <span className="shrink-0 tabular-nums text-slate-700">{p.preco != null ? formatarMoeda(p.preco) : '—'}</span>
                     <Button type="button" variant="outline" size="sm" className="shrink-0 gap-1" onClick={() => adicionarItem(p)}>
@@ -351,18 +340,10 @@ export function FormOrcamentoHub({
                   return (
                     <div key={i.product_id} className="space-y-3 rounded-lg border border-slate-200 p-3">
                       <div className="flex items-start justify-between gap-2">
-                        <div className="min-w-0">
-                          <p className="font-medium text-slate-900">{p?.nome ?? i.nome}</p>
-                          <div className="mt-0.5 flex flex-wrap items-center gap-1.5 text-xs text-slate-500">
-                            {(p?.apresentacao ?? i.apresentacao) && <span>{p?.apresentacao ?? i.apresentacao}</span>}
-                            {i.portfolio_nome && (
-                              <span className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600">{i.portfolio_nome}</span>
-                            )}
-                          </div>
-                        </div>
+                        <p className="min-w-0 font-medium text-slate-900">{p?.nome ?? i.nome}</p>
                         <Button type="button" variant="ghost" size="sm" onClick={() => removerItem(i.product_id)}><Trash2 className="size-4 text-slate-400" /></Button>
                       </div>
-                      {p && <FichaProduto p={p} />}
+                      {p && <FichaItem p={p} />}
                       <div className="grid grid-cols-2 gap-3 border-t border-slate-100 pt-3 sm:grid-cols-4">
                         <div className="space-y-1">
                           <Label className="text-xs">Quantidade</Label>
@@ -408,10 +389,8 @@ export function FormOrcamentoHub({
         <Card className="lg:col-span-12">
           <CardHeader><CardTitle>4. Resumo</CardTitle></CardHeader>
           <CardContent className="space-y-3">
-            <div className="grid gap-2 text-sm sm:grid-cols-4">
+            <div className="grid gap-2 text-sm sm:grid-cols-2">
               <p className="text-slate-500">Cliente: <span className="text-slate-800">{cliente?.nome ?? '—'}</span></p>
-              <p className="text-slate-500">Portfólio: <span className="text-slate-800">{resumoPortfolios}</span></p>
-              <p className="text-slate-500">Hub: <span className="text-slate-800">{hubNome || '—'}</span></p>
               <p className="text-slate-500">Itens: <span className="text-slate-800">{itens.length}</span></p>
             </div>
             <div className="space-y-1 border-t border-slate-100 pt-3 text-sm">
