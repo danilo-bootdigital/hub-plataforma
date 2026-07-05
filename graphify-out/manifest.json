@@ -170,7 +170,7 @@
     "semantic_hash": "abef321c7a0ee48e879d7a94eabb6c58"
   },
   "app/(dashboard)/orcamentos/[id]/page.tsx": {
-    "mtime": 1783255539.4407892,
+    "mtime": 1783256397.6878715,
     "ast_hash": "ee91fcabc1c68e3c5fe0be86aef2c515",
     "semantic_hash": ""
   },
@@ -185,7 +185,7 @@
     "semantic_hash": "67d877bfe3b07bbd89dc010e0aab2812"
   },
   "app/(dashboard)/orcamentos/novo/page.tsx": {
-    "mtime": 1783255503.1857026,
+    "mtime": 1783256397.6888638,
     "ast_hash": "1f0809a5d07e4416b437ace64b39bf02",
     "semantic_hash": ""
   },
@@ -320,8 +320,8 @@
     "semantic_hash": "e710d9a6203bedfa5b41c9526aab555a"
   },
   "app/(pdf)/orcamentos/[id]/preview-pdf/page.tsx": {
-    "mtime": 1782958020.0648122,
-    "ast_hash": "880197279fe4e3d4516ade616682e516",
+    "mtime": 1783256897.7011573,
+    "ast_hash": "c72090dcad37b91f7260a23e04a9ebd7",
     "semantic_hash": ""
   },
   "app/actions/proposta-publica.ts": {
@@ -340,8 +340,8 @@
     "semantic_hash": "7664692ac740061f573751c1c7f9a79d"
   },
   "app/api/orcamentos/[id]/pdf/route.ts": {
-    "mtime": 1782958930.6616833,
-    "ast_hash": "46e90b4e17406d2ca7a1155a49e1e417",
+    "mtime": 1783256869.2933502,
+    "ast_hash": "fb8305b27fe633cab2d8ed2284dcf58e",
     "semantic_hash": ""
   },
   "app/api/orcamentos/acao/route.ts": {
@@ -1170,7 +1170,7 @@
     "semantic_hash": "992263d64f6c1f3fa6505cc36c4d7900"
   },
   "middleware.ts": {
-    "mtime": 1783255545.5716076,
+    "mtime": 1783256397.7148323,
     "ast_hash": "d710b25e6473cef28a55e6a97402cfdb",
     "semantic_hash": ""
   },
@@ -1740,12 +1740,12 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/assistente/atendimentos/page.tsx": {
-    "mtime": 1783255530.5027227,
+    "mtime": 1783256397.6863081,
     "ast_hash": "6e60794774832ddb4952768922dc7ae2",
     "semantic_hash": ""
   },
   "components/atendimentos/tabela-atendimentos.tsx": {
-    "mtime": 1783255525.5400114,
+    "mtime": 1783256397.6894567,
     "ast_hash": "f8a27b52af96c1d7af30cf7b9b6fc738",
     "semantic_hash": ""
   },
@@ -1760,7 +1760,7 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/assistente/orcamentos/actions.ts": {
-    "mtime": 1783255581.9310813,
+    "mtime": 1783256397.6868176,
     "ast_hash": "bf0073846165f3857a44b29574d91f10",
     "semantic_hash": ""
   },
@@ -1845,7 +1845,7 @@
     "semantic_hash": ""
   },
   "components/prepedidos/botao-gerar-pedido.tsx": {
-    "mtime": 1783255567.6735187,
+    "mtime": 1783256397.6905684,
     "ast_hash": "2a831c334a350f46a36b394716943edd",
     "semantic_hash": ""
   },
@@ -2175,12 +2175,12 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/orcamentos/actions-hub.ts": {
-    "mtime": 1783255473.5262628,
+    "mtime": 1783256397.68845,
     "ast_hash": "d5928625e49fb139a69e212bbb6b8018",
     "semantic_hash": ""
   },
   "components/orcamentos/form-orcamento-hub.tsx": {
-    "mtime": 1783255489.8515663,
+    "mtime": 1783256397.6900747,
     "ast_hash": "96a103640c801eb50b57bc18482fade9",
     "semantic_hash": ""
   },
@@ -2815,7 +2815,7 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/assistente/prepedidos/actions.ts": {
-    "mtime": 1783255561.374471,
+    "mtime": 1783256397.687232,
     "ast_hash": "3ecbfd631f3102847f7942074f651aa6",
     "semantic_hash": ""
   }
