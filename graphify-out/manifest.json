@@ -535,18 +535,18 @@
     "semantic_hash": "f42ed6bd5c6b388e743ec09f287fe177"
   },
   "components/layout/header.tsx": {
-    "mtime": 1783129448.8500564,
+    "mtime": 1783136798.4620037,
     "ast_hash": "f76b51a14ff5e1af32495499844ac265",
     "semantic_hash": ""
   },
   "components/layout/sidebar-mobile.tsx": {
-    "mtime": 1782909687.9663956,
-    "ast_hash": "91e2db2c6fc4db6a1213a5aeb41b101b",
+    "mtime": 1783210703.214714,
+    "ast_hash": "17ccdb7cb6bf7bcbccf114dd0ee8541d",
     "semantic_hash": ""
   },
   "components/layout/sidebar.tsx": {
-    "mtime": 1782909687.965697,
-    "ast_hash": "0ac9a30e7ccf77dfd0d9bd7ffa29055a",
+    "mtime": 1783210684.447228,
+    "ast_hash": "3cdb05e53692ecb0f383f46be9aa2c68",
     "semantic_hash": ""
   },
   "components/leads/badge-origem.tsx": {
@@ -1140,8 +1140,8 @@
     "semantic_hash": "35ac2dad0755e14c603fb7ceb00a8aa6"
   },
   "lib/navegacao.ts": {
-    "mtime": 1783134871.7483723,
-    "ast_hash": "b60fed385e728be598424a9c7638b421",
+    "mtime": 1783210662.9432235,
+    "ast_hash": "8ede650f120dca3f93f099ed94a29d6e",
     "semantic_hash": ""
   },
   "lib/nome-contato.ts": {
@@ -1610,7 +1610,7 @@
     "semantic_hash": "02fc19ad21338c2ab820a70136310db4"
   },
   "types/database.ts": {
-    "mtime": 1783128960.463578,
+    "mtime": 1783136798.5059829,
     "ast_hash": "aba7b581e44b0f7f3b8b0d084200460d",
     "semantic_hash": ""
   },
@@ -2755,97 +2755,97 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/cadastro-clientes/[id]/page.tsx": {
-    "mtime": 1783129409.536147,
+    "mtime": 1783136798.449288,
     "ast_hash": "b2149b843d7d06b426d02a62b064d924",
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/cadastro-clientes/actions.ts": {
-    "mtime": 1783129063.4014182,
+    "mtime": 1783136798.4499815,
     "ast_hash": "2deacbfdc079a2fff8e781e262db0865",
     "semantic_hash": ""
   },
   "app/(dashboard)/configuracoes/cadastro-clientes/page.tsx": {
-    "mtime": 1783129351.6823308,
+    "mtime": 1783136798.4505758,
     "ast_hash": "ae0f46247f3928c693fa286ad51d2846",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/cadastro-clientes/[id]/page.tsx": {
-    "mtime": 1783129334.119033,
+    "mtime": 1783136798.4516864,
     "ast_hash": "53dd0e12e7645ecdfb42cbc72b232448",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/cadastro-clientes/actions.ts": {
-    "mtime": 1783134907.1168392,
+    "mtime": 1783136798.452812,
     "ast_hash": "0115c6db7a1d74ae3b40957648f2d2a7",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/cadastro-clientes/novo/page.tsx": {
-    "mtime": 1783129297.2519312,
+    "mtime": 1783136798.4539847,
     "ast_hash": "7ded4e315a92ea6400bc8b301f14b47c",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/cadastro-clientes/page.tsx": {
-    "mtime": 1783129289.8271863,
+    "mtime": 1783136798.4554806,
     "ast_hash": "e14e577cb2db4970cfd2f7a8e20ec6c4",
     "semantic_hash": ""
   },
   "components/cadastro-clientes/area-documentos.tsx": {
-    "mtime": 1783129147.93802,
+    "mtime": 1783136798.456396,
     "ast_hash": "b9bfc08049597b58f0fb76a9e38d9389",
     "semantic_hash": ""
   },
   "components/cadastro-clientes/badge-status.tsx": {
-    "mtime": 1783129103.8955169,
+    "mtime": 1783136798.4573627,
     "ast_hash": "57c9f2ad8b4c3cac4b99288900b6d770",
     "semantic_hash": ""
   },
   "components/cadastro-clientes/barra-progresso.tsx": {
-    "mtime": 1783129109.8371708,
+    "mtime": 1783136798.45801,
     "ast_hash": "750bf330855a5b952f9eb4dbc03198f7",
     "semantic_hash": ""
   },
   "components/cadastro-clientes/detalhe-cadastro-view.tsx": {
-    "mtime": 1783129317.586299,
+    "mtime": 1783136798.458699,
     "ast_hash": "d2dce746dbb969f31cfbc533727c22b7",
     "semantic_hash": ""
   },
   "components/cadastro-clientes/formulario-cadastro.tsx": {
-    "mtime": 1783129231.7049963,
+    "mtime": 1783136798.4595304,
     "ast_hash": "c5915efe849a94ae14f8854ecaffc9cb",
     "semantic_hash": ""
   },
   "components/cadastro-clientes/linha-do-tempo.tsx": {
-    "mtime": 1783129120.2878478,
+    "mtime": 1783136798.4602191,
     "ast_hash": "bb23bb8e24cb9521bd6b613f1f253dba",
     "semantic_hash": ""
   },
   "components/cadastro-clientes/painel-analise-industria.tsx": {
-    "mtime": 1783129396.2277288,
+    "mtime": 1783136798.4607372,
     "ast_hash": "c9d46dfd6f4ba0f87301e7890911da71",
     "semantic_hash": ""
   },
   "components/cadastro-clientes/tabela-cadastros.tsx": {
-    "mtime": 1783129278.6444938,
+    "mtime": 1783136798.4613106,
     "ast_hash": "55d5561d7d0253b80cc690e112f4f93a",
     "semantic_hash": ""
   },
   "components/layout/sino-notificacoes.tsx": {
-    "mtime": 1783129438.5835226,
+    "mtime": 1783136798.4627233,
     "ast_hash": "1436f6da4beea3c04d75a0060c09d628",
     "semantic_hash": ""
   },
   "lib/cadastro-clientes/documentos.ts": {
-    "mtime": 1783129016.111126,
+    "mtime": 1783136798.5016627,
     "ast_hash": "0efd982fa13a18bebb91724d5767b434",
     "semantic_hash": ""
   },
   "lib/cadastro-clientes/notificacoes-actions.ts": {
-    "mtime": 1783129069.5815787,
+    "mtime": 1783136798.5027497,
     "ast_hash": "371eae8463a321700b3ab4d0d177aa8e",
     "semantic_hash": ""
   },
   "supabase/migrations/064_hub_client_onboarding.sql": {
-    "mtime": 1783129627.5937765,
+    "mtime": 1783136798.5051632,
     "ast_hash": "43b4526372177ce92215c4631d6b7034",
     "semantic_hash": ""
   }

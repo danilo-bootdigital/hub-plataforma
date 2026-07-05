@@ -1140,8 +1140,8 @@
     "semantic_hash": "35ac2dad0755e14c603fb7ceb00a8aa6"
   },
   "lib/navegacao.ts": {
-    "mtime": 1783129472.3579388,
-    "ast_hash": "816088a681cb9bd19100ea32c1c8f25a",
+    "mtime": 1783134871.7483723,
+    "ast_hash": "b60fed385e728be598424a9c7638b421",
     "semantic_hash": ""
   },
   "lib/nome-contato.ts": {
@@ -1250,8 +1250,8 @@
     "semantic_hash": "992263d64f6c1f3fa6505cc36c4d7900"
   },
   "middleware.ts": {
-    "mtime": 1783129476.5575125,
-    "ast_hash": "0341ee531cc77ecf496725b51661fcd3",
+    "mtime": 1783134875.7580664,
+    "ast_hash": "9fa2f92fa823fce59c0c073b91c9259f",
     "semantic_hash": ""
   },
   "next-env.d.ts": {
@@ -2775,8 +2775,8 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/cadastro-clientes/actions.ts": {
-    "mtime": 1783129049.292057,
-    "ast_hash": "cbe8ac06f72488ec0ce4765492753c70",
+    "mtime": 1783134907.1168392,
+    "ast_hash": "0115c6db7a1d74ae3b40957648f2d2a7",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/cadastro-clientes/novo/page.tsx": {
