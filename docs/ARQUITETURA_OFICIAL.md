@@ -4,7 +4,7 @@
 > **Documento máximo e Constituição do projeto.** É a referência arquitetural **suprema** de toda a Plataforma.
 > **Resolução de divergências:** em caso de conflito entre este documento e qualquer outro documento, artefato, código ou comunicação, **esta Constituição prevalece** — e a divergência deve ser corrigida no documento subordinado, nunca aqui.
 > Esta Constituição só pode ser alterada por uma nova decisão registrada em [`DECISIONS.md`](DECISIONS.md).
-> Última consolidação: **2026-06-26** (Governança — Sprints G0–G3).
+> Última consolidação: **2026-07-05** (DEC-022 — Separação Administração × Operação).
 
 ---
 
@@ -98,6 +98,8 @@ Entidades oficiais do domínio (DEC-006) e situação atual:
 - **Isolamento:** dados de uma Indústria não cruzam para outra (escopo por `organization_id`). A Carteira é o agrupamento operacional de Clientes sob autorização de um Hub. O RLS **existente** preserva o escopo por Indústria; as policies das tabelas novas (`hubs`, `carteiras`) serão definidas na fase **Migrate**.
 
 > **Operação e papéis (DEC-011):** a estrutura operacional `Indústria → Representante (empresa) → Hub → Proprietário do Hub → Assistentes`, os modos de Carteira (OPEN/DISTRIBUTED), os estados do Hub (ATIVO/INATIVO/SUSPENSO/BLOQUEADO) e o controle de acesso estão definidos na **DEC-011** e detalhados em [`DOMINIO.md`](DOMINIO.md) e [`FUNCIONAL.md`](FUNCIONAL.md). A Indústria permanece o tenant raiz e dona dos dados; Representante/Hub são operadores autorizados.
+
+> **Separação Administração × Operação (DEC-022) — princípio supremo:** a **Indústria administra** a plataforma; o **Hub opera**. A Indústria **não participa da operação comercial** (Pipeline, Atendimento, WhatsApp, Orçamentos, Receitas, Pré-pedidos, Pedidos, Financeiro operacional) — nem por menu, nem por URL. A Indústria: (a) mantém o catálogo (Produto/Portfólio/Categoria/Subcategoria) e as autorizações Hub↔Portfólio; (b) **analisa/aprova o cadastro do Cliente**, **organiza a Carteira** e **direciona/autoriza a qual Hub** aquele Cliente aparece; (c) governa Hubs, Usuários, Permissões, Relatórios gerenciais e Auditoria. **O Orçamento é 100% operação do Hub** — a antiga *aprovação interna de orçamento pela Indústria* é **removida da arquitetura**. Detalhamento e matriz RBAC/menus na **DEC-022**.
 
 ## 9. Ambiente oficial de desenvolvimento
 

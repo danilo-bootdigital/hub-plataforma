@@ -414,3 +414,31 @@ Decisões de produto: **(1)** branding é **white-label** (cores/logo/favicon te
 - **Decisão registrada:** IA **não** responde WhatsApp (Config-4 arquivada). White-label entregue na abrangência "destaques" (ampliação p/ "total" fica em aberto, se desejado).
 - **Data:** 2026-07-05
 - **Status:** Aprovada / vigente — **Config-1, Config-2 e Config-3 implementadas e em produção** (migrations `067`/`068` aplicadas no HUB DEV). **Config-4 arquivada** por decisão de produto.
+
+---
+
+## DEC-022 — Separação Administração (Indústria) × Operação (Hub)
+
+**Decisão suprema e definitiva.** A **Indústria administra** a plataforma; o **Hub opera**. A Indústria **não participa da operação comercial** — nem por menu, nem por URL, nem por Server Action/API. Emenda e rebaixa o acesso operacional dos perfis `admin`/`gestor` previsto de forma difusa em DEC-011/015/016/017. Em qualquer divergência sobre acesso operacional, esta DEC prevalece.
+
+### 1. Fronteira de acesso
+- **Indústria (`admin`/`gestor`) — administração apenas:** catálogo (Produto/Portfólio/Categoria/Subcategoria), autorizações Hub↔Portfólio, Hubs, Carteiras (governança), Usuários da Indústria, Permissões, Relatórios gerenciais, Auditoria, IA/Identidade da plataforma. **Análise/aprovação de Cadastro de Cliente** e **direcionamento a qual Hub** o Cliente aparece.
+- **Hub (`proprietario_hub`/`assistente`) — operação 100%:** Pipeline/Atendimento, WhatsApp, Clientes operacionais, Orçamentos, Receitas, Pré-pedidos, Pedidos, Dashboard operacional, e a configuração do próprio Hub (Identidade/IA/Funções).
+
+### 2. Decisões consolidadas (2026-07-05)
+- **Indústria NÃO aprova orçamento.** A etapa de *aprovação interna de orçamento pela Indústria* (`aprovar_interna`, status `aguardando_aprovacao_interna` como gate da Indústria) é **removida da arquitetura**. O **Orçamento é 100% operação do Hub**, de ponta a ponta.
+- **Papel da Indústria no Cliente:** aprova/analisa o cadastro; **organiza a Carteira**; **direciona/autoriza a qual Hub** aquele cadastro/cliente deve aparecer (emenda operacional a DEC-020).
+- **Pré-pedido: mantido** por ora. A decisão de manter o Pré-pedido ou migrar para "pedido direto" fica para **após a reunião de apresentação** — nada é removido até lá.
+
+### 3. Enforcement (3 camadas — a implementar em Sprint)
+1. **Menu (`lib/navegacao.ts`):** itens operacionais passam a `perfis: ['proprietario_hub','assistente']`; itens administrativos, `perfis: ['admin','gestor']`. Fim do "sem `perfis` = todos os perfis legados".
+2. **Middleware (`middleware.ts`):** bloquear `admin`/`gestor` em rotas operacionais (redirect ao dashboard gerencial) e o Hub em rotas administrativas.
+3. **Guards de página + Server Actions/APIs:** helper de escopo (operacional = Hub-only; administrativo = Indústria-only), não confiando só no menu/botões.
+
+### 4. Escopo do documento
+Matriz RBAC completa, estrutura de menus por perfil, módulos exclusivos/compartilhados e ordem de eliminação do legado estão no documento de arquitetura consolidado (apresentação) e serão refletidos em `DOMINIO.md`/`FUNCIONAL.md` na execução.
+
+- **Motivo:** eliminar a mistura Administração×Operação, dando à Indústria um sistema puramente administrativo e ao Hub a operação integral — coerência de domínio, segurança (sem vazamento operacional cross-perfil) e clareza de produto.
+- **Impacto:** **não destrutivo em Expand** — reorganiza menu/RBAC/guards; remove a aprovação interna de orçamento; nenhum dado é apagado. A retirada dos módulos legados (Fornecedor, `/assistente/orcamentos`, Pré-pedido) segue as DECs próprias, na fase Contract.
+- **Data:** 2026-07-05
+- **Status:** **Aprovada / vigente** — arquitetura oficial. Implementação pendente (Sprint de separação), a iniciar após aprovação da arquitetura. Pré-pedido em avaliação (pós-reunião).
