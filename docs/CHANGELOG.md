@@ -6,6 +6,14 @@
 
 ---
 
+## 2026-07-05 — Configurações do Hub: editor do Assistente de IA (Config-3 — DEC-021)
+
+- **Objetivo:** tela **Configurações → IA / Prompt** ganha o editor do **assistente comercial** do Hub (9 campos da spec) em abas, ao lado do editor de **Extração de Receita** (DEC-019, preservado). O consumo dos campos por um assistente conversacional é a Config-4.
+- **Banco (`supabase/migrations/068_hub_ia_config.sql`, aditivo/idempotente):** tabela `hub_ia_config` (1 linha/Hub) com `prompt_mestre, objetivo, regras, tom_de_voz, restricoes, contexto_negocio, produtos_prioritarios, informacoes_proibidas, observacoes`; RLS (leitura do próprio Hub via `get_hub_id()`); RPCs `hub_ia_config_get`/`hub_ia_config_salvar` (SECURITY DEFINER; salvar só `proprietario_hub`). **A APLICAR via SQL Editor no HUB DEV** antes do deploy.
+- **Aplicação Web:** `hub/configuracoes-ia/` — `page.tsx` com abas (Tabs) Assistente Comercial × Extração de Receita; `actions.ts` (`getIaComercial`/`salvarIaComercial`); `ia-comercial.ts` (tipo + `IA_COMERCIAL_VAZIO`); `editor-ia-comercial.tsx` (9 textareas + **Salvar** + **Restaurar padrão**; "Testar Prompt" desabilitado → Config-4). Página resiliente se a 068 ainda não estiver aplicada (get retorna vazio).
+- **Escopo/RBAC:** só `proprietario_hub`. `tsc` 0 erros; `build` OK (69/69).
+- **Próximo:** Config-4 — montagem do system prompt + Testar Prompt (Claude real) + consumidor WhatsApp.
+
 ## 2026-07-05 — Configurações do Hub: White-label / theming (Config-2 — DEC-021)
 
 - **Objetivo:** aplicar a marca do Hub (cor + logo + favicon + título) na Aplicação Web — cada Hub vê a plataforma "na sua marca". Abrangência **destaques** (realces da navegação + botões primários). Indústria e Hubs sem cor: **inalterados** (fallback ao verde do sistema).

@@ -406,7 +406,7 @@ Decisões de produto: **(1)** branding é **white-label** (cores/logo/favicon te
 ### 3. Faseamento (Sprints Expand)
 - **Config-1 — Identidade (dados):** campos + upload logo/favicon + salvar. *(implementada; migration `067`)*
 - **Config-2 — White-label (theming):** cores + CSS vars + favicon/title + componentes-chave. *(implementada — abrangência "destaques")*
-- **Config-3 — IA config:** `hub_ia_config` + editor (Salvar/Restaurar).
+- **Config-3 — IA config:** `hub_ia_config` + editor (Salvar/Restaurar). *(implementada; migration `068`)*
 - **Config-4 — Assistente + Testar Prompt:** montagem do system prompt + Testar (Claude real) + consumidor WhatsApp (sugestão ao atendente).
 
 - **Motivo:** dar ao Proprietário um centro de configurações profissional (marca própria + IA), com aparência de SaaS premium, preservando a fronteira Indústria×Hub.
