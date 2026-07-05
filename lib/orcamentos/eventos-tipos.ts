@@ -46,3 +46,28 @@ export function rotuloEvento(tipo: string): string {
 export function rotuloCargo(cargo: string | null): string {
   return cargo ? (CARGO_LABEL[cargo] ?? cargo) : '—'
 }
+
+// Status atuais do orçamento (T-1: usa a lista vigente; a máquina oficial vem na T-2).
+export const STATUS_ORCAMENTO_ORDEM: string[] = [
+  'rascunho',
+  'aguardando_aprovacao_interna',
+  'aprovado_internamente',
+  'rejeitado_internamente',
+  'enviado_ao_cliente',
+  'aguardando_confirmacao_vendedor',
+  'aprovado_pelo_cliente',
+  'recusado_pelo_cliente',
+]
+export const STATUS_ORCAMENTO_LABEL: Record<string, string> = {
+  rascunho: 'Rascunho',
+  aguardando_aprovacao_interna: 'Aguardando aprovação interna',
+  aprovado_internamente: 'Aprovado internamente',
+  rejeitado_internamente: 'Rejeitado internamente',
+  enviado_ao_cliente: 'Enviado ao cliente',
+  aguardando_confirmacao_vendedor: 'Aguardando confirmação',
+  aprovado_pelo_cliente: 'Aprovado pelo cliente',
+  recusado_pelo_cliente: 'Recusado pelo cliente',
+}
+export function rotuloStatus(status: string): string {
+  return STATUS_ORCAMENTO_LABEL[status] ?? status
+}

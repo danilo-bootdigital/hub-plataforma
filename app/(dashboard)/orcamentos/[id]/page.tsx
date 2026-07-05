@@ -10,6 +10,8 @@ import { ExportarPdfButton } from '@/components/orcamentos/exportar-pdf-button'
 import { BotaoPreviewPdfNovo } from '@/components/orcamentos/botao-preview-pdf-novo'
 import { canEditQuote } from '@/lib/quote-permissions'
 import type { QuoteStatus, UserRole } from '@/types/database'
+import { ControleStatusOrcamento } from '@/components/orcamentos/controle-status-orcamento'
+import { resolverPermissoes, podeAcao } from '@/lib/rbac'
 
 export default async function OrcamentoDetalhePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -121,6 +123,13 @@ export default async function OrcamentoDetalhePage({ params }: { params: Promise
       orcamento.status === 'aguardando_aprovacao_interna')
   )
 
+  // Controle de status (T-1/T-2): Proprietário sempre; Assistente conforme Função.
+  // Indústria/outro Hub nem chegam aqui (middleware DEC-022 + guard de hub_id acima).
+  const permAssistente = perfil?.cargo === 'assistente' ? await resolverPermissoes() : null
+  const podeAlterarStatus =
+    perfil?.cargo === 'proprietario_hub' ||
+    (perfil?.cargo === 'assistente' && podeAcao(permAssistente, 'orcamentos', 'editar'))
+
   // Dados do cliente para exibir no header
   const cliente = orcamento.lead ?? orcamento.contato
   const nomeCliente = cliente?.nome ?? 'Cliente não vinculado'
@@ -152,6 +161,9 @@ export default async function OrcamentoDetalhePage({ params }: { params: Promise
 
         {/* Right: Actions */}
         <div className="flex items-center gap-2">
+          {podeAlterarStatus && (
+            <ControleStatusOrcamento orcamentoId={id} statusAtual={orcamento.status} />
+          )}
           <AcoesOrcamento
             orcamentoId={id}
             status={orcamento.status}

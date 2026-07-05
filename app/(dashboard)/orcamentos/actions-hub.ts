@@ -6,6 +6,8 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import type { QuoteStatus } from '@/types/database'
 import { registrarEventoOrcamento } from '@/lib/orcamentos/eventos'
+import { resolverPermissoes, podeAcao } from '@/lib/rbac'
+import { STATUS_ORCAMENTO_ORDEM, rotuloStatus } from '@/lib/orcamentos/eventos-tipos'
 
 // Orçamento do HUB (DEC-013/014/016/017). Somente proprietario_hub/assistente.
 // TODA validação é server-side: Cliente em Carteira do Hub, Portfólio autorizado/ativo,
@@ -273,4 +275,49 @@ export async function editarOrcamentoHub(orcamentoId: string, dados: DadosOrcame
   revalidatePath(`/orcamentos/${orcamentoId}`)
   revalidatePath('/orcamentos')
   return orcamentoId
+}
+
+// T-1/T-2 — alteração controlada de status pelo Hub (Proprietário sempre; Assistente
+// conforme Função 'orcamentos'/'editar'). Bloqueia Indústria (getHubUser) e outro Hub
+// (hub_id). Registra o evento status_alterado (valor_anterior/novo) no rastreamento.
+// NÃO altera a lista oficial de status (usa a vigente) — a máquina oficial vem na T-2.
+export async function alterarStatusOrcamentoHub(orcamentoId: string, novoStatus: QuoteStatus): Promise<void> {
+  const { perfil } = await getHubUser() // bloqueia Indústria; exige hub_id
+  const org = perfil.organization_id
+  const hub = perfil.hub_id
+
+  if (!orcamentoId) throw new Error('Orçamento inválido.')
+  if (!STATUS_ORCAMENTO_ORDEM.includes(novoStatus)) throw new Error('Status inválido.')
+
+  // Assistente precisa de permissão de Função ('orcamentos'/'editar'); Proprietário = total.
+  if (perfil.cargo === 'assistente') {
+    const perm = await resolverPermissoes()
+    if (!podeAcao(perm, 'orcamentos', 'editar')) {
+      throw new Error('Sem permissão para alterar o status do orçamento.')
+    }
+  }
+
+  const admin = createAdminClient()
+  const { data: atual } = await admin
+    .from('quotes').select('id, hub_id, status')
+    .eq('id', orcamentoId).eq('organization_id', org).maybeSingle() as unknown as
+    { data: { id: string; hub_id: string | null; status: QuoteStatus } | null }
+  if (!atual || atual.hub_id !== hub) throw new Error('Orçamento não pertence ao seu Hub.')
+  if (atual.status === novoStatus) return // no-op: nada mudou
+
+  const { error } = await admin
+    .from('quotes').update({ status: novoStatus, atualizado_em: new Date().toISOString() })
+    .eq('id', orcamentoId).eq('organization_id', org).eq('hub_id', hub)
+  if (error) throw new Error(`Erro ao alterar status: ${error.message}`)
+
+  await registrarEventoOrcamento(orcamentoId, {
+    tipo: 'status_alterado',
+    descricao: `Status alterado de ${rotuloStatus(atual.status)} para ${rotuloStatus(novoStatus)}.`,
+    valorAnterior: atual.status,
+    valorNovo: novoStatus,
+    origem: 'hub_form',
+  })
+
+  revalidatePath(`/orcamentos/${orcamentoId}`)
+  revalidatePath('/hub/orcamentos')
 }
