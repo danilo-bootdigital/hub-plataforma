@@ -540,13 +540,13 @@
     "semantic_hash": ""
   },
   "components/layout/sidebar-mobile.tsx": {
-    "mtime": 1783226488.5187976,
-    "ast_hash": "17ccdb7cb6bf7bcbccf114dd0ee8541d",
+    "mtime": 1783227235.4978418,
+    "ast_hash": "4ea886d3d25df7e7a8f9cb34be823daa",
     "semantic_hash": ""
   },
   "components/layout/sidebar.tsx": {
-    "mtime": 1783226488.5193317,
-    "ast_hash": "3cdb05e53692ecb0f383f46be9aa2c68",
+    "mtime": 1783227235.4983213,
+    "ast_hash": "6190d8ec8023645a671d8d36842ee306",
     "semantic_hash": ""
   },
   "components/leads/badge-origem.tsx": {
@@ -2295,17 +2295,17 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/identidade/actions.ts": {
-    "mtime": 1783226548.9774282,
+    "mtime": 1783227235.1947823,
     "ast_hash": "1b18c20545c7275bad89a11d0ab1e372",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/identidade/page.tsx": {
-    "mtime": 1783226560.1213381,
+    "mtime": 1783227235.1951432,
     "ast_hash": "ef46845beea8785f76f77771ab171f44",
     "semantic_hash": ""
   },
   "components/hub/form-identidade-hub.tsx": {
-    "mtime": 1783226599.2514293,
+    "mtime": 1783227235.19679,
     "ast_hash": "ea89ba270c1470df9a4df0ba4a5d0583",
     "semantic_hash": ""
   },
@@ -2770,8 +2770,8 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/cadastro-clientes/actions.ts": {
-    "mtime": 1783226488.5173874,
-    "ast_hash": "0115c6db7a1d74ae3b40957648f2d2a7",
+    "mtime": 1783227235.4960208,
+    "ast_hash": "47c73dca1c54401b789af7bc9a6d42b9",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/cadastro-clientes/novo/page.tsx": {
@@ -2805,8 +2805,8 @@
     "semantic_hash": ""
   },
   "components/cadastro-clientes/formulario-cadastro.tsx": {
-    "mtime": 1783226488.5178936,
-    "ast_hash": "c5915efe849a94ae14f8854ecaffc9cb",
+    "mtime": 1783227235.4970803,
+    "ast_hash": "af4cafb28a5cc63107d832db09a51421",
     "semantic_hash": ""
   },
   "components/cadastro-clientes/linha-do-tempo.tsx": {
@@ -2825,8 +2825,8 @@
     "semantic_hash": ""
   },
   "components/layout/sino-notificacoes.tsx": {
-    "mtime": 1783226488.519774,
-    "ast_hash": "1436f6da4beea3c04d75a0060c09d628",
+    "mtime": 1783227235.4988031,
+    "ast_hash": "ebcdbc514a6ffabca1d99fbdb7a3922f",
     "semantic_hash": ""
   },
   "lib/cadastro-clientes/documentos.ts": {
@@ -2850,8 +2850,23 @@
     "semantic_hash": ""
   },
   "supabase/migrations/067_hub_identidade_branding.sql": {
-    "mtime": 1783226518.8817933,
+    "mtime": 1783227235.2133324,
     "ast_hash": "140e26e8daf6a4bd6d798cf9a51a027a",
+    "semantic_hash": ""
+  },
+  "components/layout/menu-shared.ts": {
+    "mtime": 1783227235.4973626,
+    "ast_hash": "01a0d70ab659bf454de1c58f2bd7a655",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/066_hub_onboarding_cleanups.sql": {
+    "mtime": 1783227235.518791,
+    "ast_hash": "60acf48399750ea0028c491c72b28613",
+    "semantic_hash": ""
+  },
+  "apresentacao-stinpharma.html": {
+    "mtime": 1783227235.4964378,
+    "ast_hash": "cf31571d17ed2e6aa89d2f0ee16f2a98",
     "semantic_hash": ""
   }
 }

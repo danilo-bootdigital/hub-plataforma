@@ -125,8 +125,8 @@
     "semantic_hash": "963eea8a4156261b217516eef8f471ec"
   },
   "app/(dashboard)/layout.tsx": {
-    "mtime": 1782909687.9565444,
-    "ast_hash": "d09da5a8d03619934fdece6dbb3326c8",
+    "mtime": 1783227761.5798054,
+    "ast_hash": "40f286c5dcd2f372bc4931b91b3fe63c",
     "semantic_hash": ""
   },
   "app/(dashboard)/leads/[id]/page.tsx": {
@@ -540,13 +540,13 @@
     "semantic_hash": ""
   },
   "components/layout/sidebar-mobile.tsx": {
-    "mtime": 1783227235.4978418,
-    "ast_hash": "4ea886d3d25df7e7a8f9cb34be823daa",
+    "mtime": 1783227797.1143534,
+    "ast_hash": "55b8f48dd3743bef4d5e4503783d6b03",
     "semantic_hash": ""
   },
   "components/layout/sidebar.tsx": {
-    "mtime": 1783227235.4983213,
-    "ast_hash": "6190d8ec8023645a671d8d36842ee306",
+    "mtime": 1783227780.785705,
+    "ast_hash": "37d39133bca20d4f078d98a933ba6643",
     "semantic_hash": ""
   },
   "components/leads/badge-origem.tsx": {
@@ -2295,17 +2295,17 @@
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/identidade/actions.ts": {
-    "mtime": 1783227235.1947823,
+    "mtime": 1783227265.6665413,
     "ast_hash": "1b18c20545c7275bad89a11d0ab1e372",
     "semantic_hash": ""
   },
   "app/(dashboard)/hub/identidade/page.tsx": {
-    "mtime": 1783227235.1951432,
+    "mtime": 1783227265.6668768,
     "ast_hash": "ef46845beea8785f76f77771ab171f44",
     "semantic_hash": ""
   },
   "components/hub/form-identidade-hub.tsx": {
-    "mtime": 1783227235.19679,
+    "mtime": 1783227265.6673334,
     "ast_hash": "ea89ba270c1470df9a4df0ba4a5d0583",
     "semantic_hash": ""
   },
@@ -2850,7 +2850,7 @@
     "semantic_hash": ""
   },
   "supabase/migrations/067_hub_identidade_branding.sql": {
-    "mtime": 1783227235.2133324,
+    "mtime": 1783227265.6864235,
     "ast_hash": "140e26e8daf6a4bd6d798cf9a51a027a",
     "semantic_hash": ""
   },
@@ -2867,6 +2867,16 @@
   "apresentacao-stinpharma.html": {
     "mtime": 1783227235.4964378,
     "ast_hash": "cf31571d17ed2e6aa89d2f0ee16f2a98",
+    "semantic_hash": ""
+  },
+  "lib/branding.ts": {
+    "mtime": 1783227729.199171,
+    "ast_hash": "a76fe9cacd912fb856a964e94b400e64",
+    "semantic_hash": ""
+  },
+  "lib/hub-branding.ts": {
+    "mtime": 1783227740.083412,
+    "ast_hash": "e6b87498e74886b73af1adfc6ce0d2ae",
     "semantic_hash": ""
   }
 }

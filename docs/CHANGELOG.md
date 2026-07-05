@@ -6,6 +6,19 @@
 
 ---
 
+## 2026-07-05 — Configurações do Hub: White-label / theming (Config-2 — DEC-021)
+
+- **Objetivo:** aplicar a marca do Hub (cor + logo + favicon + título) na Aplicação Web — cada Hub vê a plataforma "na sua marca". Abrangência **destaques** (realces da navegação + botões primários). Indústria e Hubs sem cor: **inalterados** (fallback ao verde do sistema).
+- **Sem banco:** usa as colunas da migration `067` (já aplicada). 100% frontend.
+- **Aplicação Web:**
+  - `app/globals.css`: novas vars `--brand-primary`/`--brand-accent` (default = verde do sistema).
+  - `lib/branding.ts` (`estiloMarca`): monta as CSS vars a partir de `cor_primaria` (via `color-mix`); vazio quando não há cor → mantém o default.
+  - `lib/hub-branding.ts` (`getBrandingAtual`, `cache()`): branding efetivo do usuário — Hub vê a própria marca; Indústria, o logo da organização.
+  - `app/(dashboard)/layout.tsx`: injeta as vars no root do dashboard + `generateMetadata` (título e favicon por Hub); passa o logo do Hub à Sidebar/Header.
+  - `components/layout/sidebar.tsx` + `sidebar-mobile.tsx`: realces de item ativo migram de `emerald-*` fixo para `var(--brand-*)`.
+- **Escopo:** só usuários do Hub (`proprietario_hub`/`assistente`) tematizam; Indústria mantém o padrão. `tsc` 0 erros; `build` OK (69/69).
+- **Próximo:** Config-3 (editor de IA) e Config-4 (assistente + Testar Prompt). Abrangência "total" do white-label pode ser ampliada depois.
+
 ## 2026-07-05 — Configurações do Hub: Identidade (Config-1 — DEC-021)
 
 - **Objetivo:** preencher a tela **Configurações → Identidade** com os campos da spec (base da DEC-021). White-label (theming) é a Config-2; aqui só os campos + upload + salvar.
