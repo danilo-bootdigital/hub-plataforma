@@ -277,7 +277,7 @@ function Cabecalho({ data, org }: { data: OrcamentoTemplateData; org: Identidade
       </div>
 
       {/* Bloco centro: contatos */}
-      <div className="md:col-span-5 flex flex-col gap-1 text-[11px] text-slate-700 md:border-l md:border-slate-300 md:pl-3">
+      <div className="md:col-span-4 min-w-0 flex flex-col gap-1 text-[11px] text-slate-700 md:border-l md:border-slate-300 md:pl-3">
         {org?.telefone && (
           <div className="flex items-center gap-2">
             <span className="text-slate-500" aria-hidden><IconeTelefone /></span>
@@ -305,8 +305,8 @@ function Cabecalho({ data, org }: { data: OrcamentoTemplateData; org: Identidade
       </div>
 
       {/* Bloco direita: ORÇAMENTO + dados */}
-      <div className="md:col-span-3 flex flex-col items-start md:items-end gap-1">
-        <h1 className="text-4xl font-black text-slate-800 leading-none tracking-tight">ORÇAMENTO</h1>
+      <div className="md:col-span-4 min-w-0 flex flex-col items-start md:items-end gap-1">
+        <h1 className="text-3xl font-black text-slate-800 leading-none tracking-tight whitespace-nowrap">ORÇAMENTO</h1>
         <div className="h-0.5 w-20 bg-slate-300 md:self-end mt-0.5 mb-1" />
         <div className="flex items-center gap-2 text-[11px] text-slate-600">
           <span className="text-slate-500" aria-hidden><IconeCalendario /></span>
