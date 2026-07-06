@@ -1,14 +1,13 @@
--- =============================================================================
--- Sprint EXPAND — Ficha completa do Produto na listagem do Hub (DEC-012/013)
--- [ADITIVO / IDEMPOTENTE] — só CREATE OR REPLACE de hub_produtos_listar.
--- =============================================================================
--- Objetivo: a listagem operacional do Hub (usada no Orçamento) passa a devolver
--- TODOS os campos que compõem o produto, para exibir a ficha ao adicionar o item.
--- Acrescenta ao retorno: descricao, composicao, subcategoria, via_apresentacao,
--- quantidade_por_caixa, aplicadores, valor_caixa, exige_receita, observacoes_receita.
--- Assinatura, permissões, filtros, ordenação e paginação: INALTERADOS.
--- Alvo: HUB DEV (pnkgwfgjhijksfmofiot) — SQL Editor.
--- =============================================================================
+-- Migration 071: ampliar a busca (p_busca) do RPC hub_produtos_listar (follow-up #13)
+-- ============================================================================
+-- CREATE OR REPLACE idempotente. Antes, p_busca filtrava só nome/apresentação/
+-- categoria/composição. Passa a cobrir também subcategoria, portfólio, via de
+-- administração, volume e unidade — para a busca de produtos no Orçamento (DEC-013/017)
+-- encontrar por esses termos. Assinatura, permissões, filtros, ordenação, paginação
+-- e o conjunto de colunas retornadas: INALTERADOS.
+--
+-- Aplicar no HUB DEV (pnkgwfgjhijksfmofiot) via SQL Editor.
+-- ============================================================================
 
 create or replace function hub_produtos_listar(
   p_busca         text default null,
