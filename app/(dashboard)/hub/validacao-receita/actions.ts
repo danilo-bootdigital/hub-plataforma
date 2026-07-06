@@ -433,8 +433,11 @@ export async function salvarPromptIa(system: string, instrucao: string): Promise
 // dos Portfólios AUTORIZADOS ao Hub do usuário. Dedup por product_id (aparece por vínculo).
 export async function buscarProdutosParaValidacao(busca: string): Promise<Array<{ id: string; nome: string }>> {
   await getUsuarioEOrg() // garante sessão (senão redireciona ao login)
+  // limit 50: a busca do RPC casa vários campos (nome/apresentação/via/volume/portfólio…)
+  // e o resultado é deduplicado por product_id — um teto baixo poderia empurrar o produto
+  // procurado (que casa pelo nome) para fora da janela ordenada por nome.
   const { rows } = await listarProdutosHub({
-    busca: busca?.trim() || undefined, limit: 20, orderBy: 'nome', orderDir: 'asc',
+    busca: busca?.trim() || undefined, limit: 50, orderBy: 'nome', orderDir: 'asc',
   })
   const vistos = new Set<string>()
   const out: Array<{ id: string; nome: string }> = []
