@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { formatarMoeda } from '@/lib/utils'
+import { CartaoTabela, tabela } from '@/components/layout/listagem'
 
 // Tabela de Orçamentos do HUB (área operacional /hub/orcamentos).
 // Escopo já garantido no servidor por hub_id — aqui é só apresentação.
@@ -48,42 +49,42 @@ function formatarData(iso: string) {
 
 export function TabelaOrcamentosHub({ orcamentos }: { orcamentos: OrcamentoHubRow[] }) {
   return (
-    <div className="overflow-x-auto rounded-lg border bg-white">
-      <table className="w-full text-sm">
+    <CartaoTabela>
+      <table className={tabela.root}>
         <thead>
-          <tr className="border-b bg-slate-50 text-left">
-            <th className="px-4 py-3 font-medium text-slate-600">Nº</th>
-            <th className="px-4 py-3 font-medium text-slate-600">Cliente</th>
-            <th className="px-4 py-3 font-medium text-slate-600">Portfólio</th>
-            <th className="px-4 py-3 font-medium text-slate-600">Status</th>
-            <th className="px-4 py-3 text-right font-medium text-slate-600">Valor</th>
-            <th className="px-4 py-3 font-medium text-slate-600">Criado em</th>
-            <th className="px-4 py-3 font-medium text-slate-600">Responsável</th>
-            <th className="w-32 px-4 py-3">Ações</th>
+          <tr className={tabela.theadTr}>
+            <th className={tabela.th}>Nº</th>
+            <th className={tabela.th}>Cliente</th>
+            <th className={tabela.th}>Portfólio</th>
+            <th className={tabela.th}>Status</th>
+            <th className={`${tabela.th} text-right`}>Valor</th>
+            <th className={tabela.th}>Criado em</th>
+            <th className={tabela.th}>Responsável</th>
+            <th className={`${tabela.th} w-32`}>Ações</th>
           </tr>
         </thead>
         <tbody>
           {orcamentos.length === 0 && (
             <tr>
-              <td colSpan={8} className="px-4 py-8 text-center text-slate-400">
+              <td colSpan={8} className={tabela.vazio}>
                 Nenhum orçamento no seu Hub ainda.
               </td>
             </tr>
           )}
           {orcamentos.map((o) => (
-            <tr key={o.id} className="border-b last:border-0">
-              <td className="px-4 py-3 text-slate-700">{o.numero ?? '—'}</td>
-              <td className="px-4 py-3 font-medium text-slate-800">{o.cliente_nome}</td>
-              <td className="px-4 py-3 text-slate-600">{o.portfolio_nome}</td>
-              <td className="px-4 py-3">
+            <tr key={o.id} className={tabela.tr}>
+              <td className={`${tabela.td} text-slate-700`}>{o.numero ?? '—'}</td>
+              <td className={`${tabela.td} font-medium text-slate-800`}>{o.cliente_nome}</td>
+              <td className={`${tabela.td} text-slate-600`}>{o.portfolio_nome}</td>
+              <td className={tabela.td}>
                 <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${STATUS_CLASSE[o.status] ?? 'bg-slate-100 text-slate-600'}`}>
                   {STATUS_LABEL[o.status] ?? o.status}
                 </span>
               </td>
-              <td className="px-4 py-3 text-right text-slate-700">{formatarMoeda(o.valor_total)}</td>
-              <td className="px-4 py-3 text-slate-500">{formatarData(o.criado_em)}</td>
-              <td className="px-4 py-3 text-slate-600">{o.responsavel_nome}</td>
-              <td className="px-4 py-3">
+              <td className={`${tabela.td} text-right text-slate-700`}>{formatarMoeda(o.valor_total)}</td>
+              <td className={`${tabela.td} text-slate-500`}>{formatarData(o.criado_em)}</td>
+              <td className={`${tabela.td} text-slate-600`}>{o.responsavel_nome}</td>
+              <td className={tabela.td}>
                 <div className="flex items-center gap-3">
                   <Link href={`/orcamentos/${o.id}`} className="text-emerald-700 hover:underline">
                     Abrir
@@ -99,6 +100,6 @@ export function TabelaOrcamentosHub({ orcamentos }: { orcamentos: OrcamentoHubRo
           ))}
         </tbody>
       </table>
-    </div>
+    </CartaoTabela>
   )
 }
