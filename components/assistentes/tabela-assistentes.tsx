@@ -6,7 +6,7 @@ import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Pencil, Check, X } from 'lucide-react'
-import { editarAssistente, alterarStatusAssistente, atribuirFuncaoAssistente } from '@/app/(dashboard)/hub/assistentes/actions'
+import { atualizarAcessoAssistente, alterarStatusAssistente, atribuirFuncaoAssistente } from '@/app/(dashboard)/hub/assistentes/actions'
 
 export type AssistenteRow = {
   id: string
@@ -32,12 +32,16 @@ export function TabelaAssistentes({ assistentes, funcoes }: { assistentes: Assis
   const [editandoId, setEditandoId] = useState<string | null>(null)
   const [editNome, setEditNome] = useState('')
   const [editTelefone, setEditTelefone] = useState('')
+  const [editEmail, setEditEmail] = useState('')
+  const [editSenha, setEditSenha] = useState('')
   const router = useRouter()
 
   function iniciarEdicao(a: AssistenteRow) {
     setEditandoId(a.id)
     setEditNome(a.nome)
     setEditTelefone(a.telefone ?? '')
+    setEditEmail(a.email ?? '')
+    setEditSenha('')
   }
 
   function salvarEdicao(id: string) {
@@ -45,11 +49,23 @@ export function TabelaAssistentes({ assistentes, funcoes }: { assistentes: Assis
       toast.error('Nome é obrigatório.')
       return
     }
+    // Senha NÃO é trimada (mantém a senha literal); mín. 6 se informada.
+    if (editSenha && editSenha.length < 6) {
+      toast.error('Senha deve ter no mínimo 6 caracteres.')
+      return
+    }
     startTransition(async () => {
       try {
-        await editarAssistente(id, editNome.trim(), editTelefone.trim() || null)
+        // Uma única action: nome/telefone/e-mail/senha (atômica no servidor).
+        await atualizarAcessoAssistente(id, {
+          nome: editNome.trim(),
+          telefone: editTelefone.trim() || null,
+          email: editEmail.trim(),
+          senha: editSenha || null,
+        })
         toast.success('Assistente atualizado.')
         setEditandoId(null)
+        setEditSenha('')
         router.refresh()
       } catch (err: unknown) {
         toast.error(err instanceof Error ? err.message : 'Erro ao editar.')
@@ -114,7 +130,29 @@ export function TabelaAssistentes({ assistentes, funcoes }: { assistentes: Assis
                     <span className="font-medium text-slate-800">{a.nome}</span>
                   )}
                 </td>
-                <td className="px-4 py-3 text-slate-600">{a.email || '—'}</td>
+                <td className="px-4 py-3 text-slate-600">
+                  {emEdicao ? (
+                    <div className="flex flex-col gap-1">
+                      <Input
+                        type="email"
+                        value={editEmail}
+                        onChange={(e) => setEditEmail(e.target.value)}
+                        placeholder="email@exemplo.com"
+                        className="h-8"
+                      />
+                      <Input
+                        type="password"
+                        value={editSenha}
+                        onChange={(e) => setEditSenha(e.target.value)}
+                        placeholder="Nova senha (opcional)"
+                        autoComplete="new-password"
+                        className="h-8"
+                      />
+                    </div>
+                  ) : (
+                    a.email || '—'
+                  )}
+                </td>
                 <td className="px-4 py-3 text-slate-600">
                   {emEdicao ? (
                     <Input value={editTelefone} onChange={(e) => setEditTelefone(e.target.value)} className="h-8" />
