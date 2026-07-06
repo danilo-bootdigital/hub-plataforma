@@ -27,37 +27,58 @@ export async function Header({ logoUrl, permissoes }: { logoUrl?: string | null;
     .toUpperCase() ?? '?'
 
   return (
-    <header className="flex h-16 items-center justify-between border-b bg-white px-4 md:px-6">
+    <header className="flex h-16 items-center border-b bg-white px-4 md:px-8">
       <SidebarMobile logoUrl={logoUrl} cargo={profile?.cargo} permissoes={permissoes} />
 
-      <div className="flex items-center gap-3 md:gap-4">
+      {/* BLOCO 1 — Badge do perfil (largura fixa ~220px) */}
+      <div className="hidden w-[220px] shrink-0 items-center sm:flex">
+        {profile?.cargo && <BadgePerfil perfil={profile.cargo as UserRole} />}
+      </div>
+
+      <Divisor />
+
+      {/* BLOCO 2 — Nome do usuário + status Online (largura flexível) */}
+      <div className="flex flex-1 flex-col justify-center sm:px-2">
+        <div className="hidden sm:block">
+          <p className="text-sm font-medium leading-tight text-slate-700">
+            {profile?.nome ?? user?.email}
+          </p>
+          <p className="mt-0.5 flex items-center gap-1.5 text-xs font-medium text-emerald-600">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            Online
+          </p>
+        </div>
+      </div>
+
+      <Divisor />
+
+      {/* BLOCO 3 — Notificações + Avatar (próximos, gap ~16px) */}
+      <div className="flex items-center gap-4 sm:px-2">
         {profile?.cargo && (
           <BotaoDisponibilidade
             disponivel={profile.disponivel ?? true}
             cargo={profile.cargo as UserRole}
           />
         )}
-        {profile?.cargo && (
-          <span className="hidden sm:block">
-            <BadgePerfil perfil={profile.cargo as UserRole} />
-          </span>
-        )}
-        <div className="flex items-center gap-3">
-          <div className="hidden sm:block text-right">
-            <p className="text-sm font-medium text-slate-700 leading-tight">
-              {profile?.nome ?? user?.email}
-            </p>
-            <p className="text-xs text-slate-400">Online</p>
-          </div>
-          <Avatar className="h-9 w-9 border-2 border-slate-100">
-            <AvatarFallback className="bg-emerald-100 text-emerald-700 text-sm font-semibold">
-              {iniciais}
-            </AvatarFallback>
-          </Avatar>
-        </div>
         <SinoNotificacoes />
+        <Avatar className="h-9 w-9 border-2 border-slate-100">
+          <AvatarFallback className="bg-emerald-100 text-emerald-700 text-sm font-semibold">
+            {iniciais}
+          </AvatarFallback>
+        </Avatar>
+      </div>
+
+      <Divisor />
+
+      {/* BLOCO 4 — Botão Sair (totalmente à direita) */}
+      <div className="flex items-center">
         <BotaoSair />
       </div>
     </header>
   )
+}
+
+/** Divisor vertical discreto entre os grupos do cabeçalho (#E5E7EB). */
+function Divisor() {
+  return <div className="mx-4 hidden h-8 w-px bg-[#E5E7EB] sm:block md:mx-6" />
 }
