@@ -80,40 +80,53 @@ export default async function EditarOrcamentoHubPage({ params }: { params: Promi
     ? await admin.from('portfolios').select('nome').eq('id', orc.portfolio_id).maybeSingle()
     : { data: null }
 
-  // Ficha dos produtos (products tem RLS admin/gestor) — exibida na tabela de itens.
   const productIds = [...new Set(itensBase.map((i) => i.product_id).filter(Boolean))]
+  const headerPortfolio = orc.portfolio_id ?? null // capturado fora dos closures (narrowing)
   type FichaProd = { nome: string | null; apresentacao: string | null; via_administracao: string | null; volume: string | null; unidade: string | null; quantidade_por_caixa: number | null; valor_caixa: number | null; exige_receita: boolean | null }
-  const fichaMap = new Map<string, FichaProd>()
-  if (productIds.length > 0) {
+
+  // Ficha dos produtos (products tem RLS admin/gestor) — exibida na tabela de itens.
+  async function carregarFicha() {
+    const map = new Map<string, FichaProd>()
+    if (productIds.length === 0) return map
     const { data: prods } = await admin
       .from('products')
       .select('id, nome, apresentacao, via_administracao, volume, unidade, quantidade_por_caixa, valor_caixa, exige_receita')
       .in('id', productIds)
-    for (const p of (prods ?? []) as unknown as ({ id: string } & FichaProd)[]) fichaMap.set(p.id, p)
+    for (const p of (prods ?? []) as unknown as ({ id: string } & FichaProd)[]) map.set(p.id, p)
+    return map
   }
 
   // Itens legados sem portfolio_id e sem cabeçalho: resolve por um vínculo autorizado/ativo
   // do Hub para o produto (evita gravar portfolio_id vazio, que o backend rejeitaria — #1).
-  const vincHubMap = new Map<string, { portfolio_id: string; nome: string | null }>()
-  const semPortfolio = orc.portfolio_id ? [] : [...new Set(itensBase.filter((i) => !i.portfolio_id).map((i) => i.product_id))]
-  if (semPortfolio.length > 0) {
+  // Ordena por portfolio_id para a escolha ser determinística entre carregamentos.
+  async function resolverVinculos() {
+    const map = new Map<string, { portfolio_id: string; nome: string | null }>()
+    const semPortfolio = headerPortfolio ? [] : [...new Set(itensBase.filter((i) => !i.portfolio_id).map((i) => i.product_id))]
+    if (semPortfolio.length === 0) return map
     const { data: aut } = await admin
       .from('hub_portfolios').select('portfolio_id')
       .eq('hub_id', hub).eq('organization_id', org).eq('status', 'ativo')
     const autIds = (aut ?? []).map((a) => a.portfolio_id as string)
-    if (autIds.length > 0) {
-      const { data: vincs } = await admin
-        .from('product_portfolios')
-        .select('product_id, portfolio_id, portfolios:portfolio_id(nome)')
-        .eq('organization_id', org).eq('ativo', true)
-        .in('product_id', semPortfolio).in('portfolio_id', autIds)
-      for (const v of (vincs ?? []) as unknown as { product_id: string; portfolio_id: string; portfolios: { nome: string } | null }[]) {
-        if (!vincHubMap.has(v.product_id)) vincHubMap.set(v.product_id, { portfolio_id: v.portfolio_id, nome: v.portfolios?.nome ?? null })
-      }
+    if (autIds.length === 0) return map
+    const { data: vincs } = await admin
+      .from('product_portfolios')
+      .select('product_id, portfolio_id, portfolios:portfolio_id(nome)')
+      .eq('organization_id', org).eq('ativo', true)
+      .in('product_id', semPortfolio).in('portfolio_id', autIds)
+      .order('portfolio_id', { ascending: true })
+    for (const v of (vincs ?? []) as unknown as { product_id: string; portfolio_id: string; portfolios: { nome: string } | null }[]) {
+      if (!map.has(v.product_id)) map.set(v.product_id, { portfolio_id: v.portfolio_id, nome: v.portfolios?.nome ?? null })
     }
+    return map
   }
 
-  const { data: h } = await admin.from('hubs').select('nome').eq('id', hub).single()
+  // Independentes entre si → em paralelo (reduz latência de abertura da tela).
+  const [fichaMap, vincHubMap, hRes] = await Promise.all([
+    carregarFicha(),
+    resolverVinculos(),
+    admin.from('hubs').select('nome').eq('id', hub).single(),
+  ])
+  const h = hRes.data
 
   const inicial: InicialOrcamentoHub = {
     contato_id: orc.contato_id ?? null,

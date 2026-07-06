@@ -261,9 +261,18 @@ export async function editarOrcamentoHub(orcamentoId: string, dados: DadosOrcame
   if ((atual.observacoes ?? '') !== (dados.observacoes?.trim() || '')) {
     await registrarEventoOrcamento(orcamentoId, { tipo: 'observacao_adicionada', descricao: 'Observações internas atualizadas.', valorAnterior: atual.observacoes ?? '', valorNovo: dados.observacoes?.trim() || '' })
   }
-  // Diff de itens por vínculo (product_id + portfolio_id): o mesmo produto pode vir
-  // de portfólios diferentes (DEC-013), então a chave é composta.
-  const chaveItem = (i: { product_id: string; portfolio_id?: string | null }) => `${i.product_id}::${i.portfolio_id ?? ''}`
+  // Diff de itens (T-1). Chave por product_id, salvo quando o mesmo produto aparece em
+  // mais de um portfólio no orçamento — aí usa o vínculo composto (product_id+portfolio_id)
+  // para desambiguar. Assim, orçamentos legados (itens com portfolio_id NULL no banco,
+  // resolvidos só na submissão) casam corretamente e não poluem a timeline.
+  const temProdutoDuplicado = (arr: { product_id: string }[]) => {
+    const vistos = new Set<string>()
+    for (const i of arr) { if (vistos.has(i.product_id)) return true; vistos.add(i.product_id) }
+    return false
+  }
+  const usarComposta = temProdutoDuplicado(itens) || temProdutoDuplicado(itensAntigos ?? [])
+  const chaveItem = (i: { product_id: string; portfolio_id?: string | null }) =>
+    usarComposta ? `${i.product_id}::${i.portfolio_id ?? ''}` : i.product_id
   const antigos = new Map((itensAntigos ?? []).map((i) => [chaveItem(i), i]))
   const novos = new Map(itens.map((i) => [chaveItem(i), i]))
   for (const [k, n] of novos) {
@@ -273,13 +282,13 @@ export async function editarOrcamentoHub(orcamentoId: string, dados: DadosOrcame
       continue
     }
     if (Number(a.quantidade) !== n.quantidade) {
-      await registrarEventoOrcamento(orcamentoId, { tipo: 'quantidade_alterada', descricao: `Quantidade de ${n.descricao} alterada de ${a.quantidade} para ${n.quantidade}.`, valorAnterior: Number(a.quantidade), valorNovo: n.quantidade, metadata: { product_id: n.product_id } })
+      await registrarEventoOrcamento(orcamentoId, { tipo: 'quantidade_alterada', descricao: `Quantidade de ${n.descricao} alterada de ${a.quantidade} para ${n.quantidade}.`, valorAnterior: Number(a.quantidade), valorNovo: n.quantidade, metadata: { product_id: n.product_id, portfolio_id: n.portfolio_id } })
     }
     if (Number(a.preco_unitario) !== n.preco_unitario) {
-      await registrarEventoOrcamento(orcamentoId, { tipo: 'preco_alterado', descricao: `Preço de ${n.descricao} alterado.`, valorAnterior: Number(a.preco_unitario), valorNovo: n.preco_unitario, metadata: { product_id: n.product_id } })
+      await registrarEventoOrcamento(orcamentoId, { tipo: 'preco_alterado', descricao: `Preço de ${n.descricao} alterado.`, valorAnterior: Number(a.preco_unitario), valorNovo: n.preco_unitario, metadata: { product_id: n.product_id, portfolio_id: n.portfolio_id } })
     }
     if (Number(a.desconto_item ?? 0) !== n.desconto_item) {
-      await registrarEventoOrcamento(orcamentoId, { tipo: 'desconto_aplicado', descricao: `Desconto do item ${n.descricao} alterado para ${n.desconto_item}%.`, valorAnterior: Number(a.desconto_item ?? 0), valorNovo: n.desconto_item, metadata: { product_id: n.product_id, nivel: 'item' } })
+      await registrarEventoOrcamento(orcamentoId, { tipo: 'desconto_aplicado', descricao: `Desconto do item ${n.descricao} alterado para ${n.desconto_item}%.`, valorAnterior: Number(a.desconto_item ?? 0), valorNovo: n.desconto_item, metadata: { product_id: n.product_id, portfolio_id: n.portfolio_id, nivel: 'item' } })
     }
   }
   for (const [k, a] of antigos) {

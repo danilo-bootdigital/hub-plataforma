@@ -31,7 +31,7 @@ export function OrcamentoDetalhe({ orcamento }: OrcamentoDetalheProps) {
   // diferentes. Mostra a coluna quando há essa informação e resume no cabeçalho
   // (contando também itens legados sem portfólio como categoria distinta).
   const temPortfolio = itens.some((i) => i.portfolio_nome?.trim())
-  const resumoPortfolios = resumirPortfolios(itens.map((i) => i.portfolio_nome))
+  const resumoPortfolios = resumirPortfolios(itens.map((i) => ({ portfolio_id: i.portfolio_id, portfolio_nome: i.portfolio_nome })))
   const enderecoEntrega = orcamento.endereco_entrega?.trim() || null
   const enderecoCliente = orcamento.lead?.endereco?.trim() || null
   const transportadora = orcamento.carrier?.nome?.trim() || null

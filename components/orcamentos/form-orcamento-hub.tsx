@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useEffect, useTransition } from 'react'
+import { useState, useMemo, useEffect, useRef, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -57,6 +57,7 @@ export type InicialOrcamentoHub = {
 }
 
 type ItemState = {
+  uid: string // identidade estável da linha (independe de product/portfolio — evita colisão)
   product_id: string
   portfolio_id: string
   portfolio_nome: string | null
@@ -131,7 +132,7 @@ export function FormOrcamentoHub({
     let vivo = true
     const t = setTimeout(() => {
       setBuscandoProd(true)
-      listarProdutosHub({ busca: buscaProd.trim() || undefined, status: 'ativo', limit: 30, orderBy: 'nome', orderDir: 'asc' })
+      listarProdutosHub({ busca: buscaProd.trim() || undefined, status: 'ativo', limit: 50, orderBy: 'nome', orderDir: 'asc' })
         .then((r) => { if (vivo) setResultadosRaw(r.rows) })
         .catch(() => { if (vivo) { setResultadosRaw([]); toast.error('Não foi possível buscar os produtos. Tente novamente.') } })
         .finally(() => { if (vivo) setBuscandoProd(false) })
@@ -139,9 +140,13 @@ export function FormOrcamentoHub({
     return () => { vivo = false; clearTimeout(t) }
   }, [buscaProd])
 
-  // Bloco 2 — Itens (cada item carrega sua ficha para exibição na tabela — DEC-013/017)
+  // Bloco 2 — Itens (cada item carrega sua ficha para exibição na tabela — DEC-013/017).
+  // uid estável por linha: itens iniciais usam o índice (determinístico p/ hidratação);
+  // itens adicionados usam um contador incremental.
+  const uidRef = useRef(0)
   const [itens, setItens] = useState<ItemState[]>(
-    inicial?.itens.map((i) => ({
+    inicial?.itens.map((i, idx) => ({
+      uid: `ini-${idx}`,
       product_id: i.product_id,
       portfolio_id: i.portfolio_id,
       portfolio_nome: i.portfolio_nome,
@@ -184,6 +189,7 @@ export function FormOrcamentoHub({
     setItens((prev) => [
       ...prev,
       {
+        uid: `novo-${uidRef.current++}`,
         product_id: p.product_id,
         portfolio_id: p.portfolio_id,
         portfolio_nome: p.portfolio,
@@ -201,11 +207,11 @@ export function FormOrcamentoHub({
       },
     ])
   }
-  function atualizarItem(chave: string, patch: Partial<ItemState>) {
-    setItens((prev) => prev.map((i) => (chaveVinculo(i.product_id, i.portfolio_id) === chave ? { ...i, ...patch } : i)))
+  function atualizarItem(uid: string, patch: Partial<ItemState>) {
+    setItens((prev) => prev.map((i) => (i.uid === uid ? { ...i, ...patch } : i)))
   }
-  function removerItem(chave: string) {
-    setItens((prev) => prev.filter((i) => chaveVinculo(i.product_id, i.portfolio_id) !== chave))
+  function removerItem(uid: string) {
+    setItens((prev) => prev.filter((i) => i.uid !== uid))
   }
 
   // Bloco 5 — Resumo (cálculo espelha o backend; backend é a fonte de verdade)
@@ -374,25 +380,24 @@ export function FormOrcamentoHub({
                 </thead>
                 <tbody>
                   {itens.map((i) => {
-                    const chave = chaveVinculo(i.product_id, i.portfolio_id)
                     const sub = i.quantidade * i.preco_unitario * (1 - i.desconto_item / 100)
                     const det = detalhesProduto(i)
                     return (
-                      <tr key={chave} className="border-b border-slate-100 align-top last:border-0 hover:bg-slate-50/50">
+                      <tr key={i.uid} className="border-b border-slate-100 align-top last:border-0 hover:bg-slate-50/50">
                         <td className="px-4 py-2.5">
                           <p className="font-medium text-slate-900">{i.nome}</p>
                           {det && <p className="mt-0.5 text-xs text-slate-500">{det}</p>}
                         </td>
                         <td className="px-3 py-2.5 text-center">
-                          <Input type="number" min={1} step={1} value={i.quantidade} onChange={(e) => atualizarItem(chave, { quantidade: Math.max(1, Math.floor(Number(e.target.value) || 1)) })} className="mx-auto h-8 w-20 text-center" />
+                          <Input type="number" min={1} step={1} value={i.quantidade} onChange={(e) => atualizarItem(i.uid, { quantidade: Math.max(1, Math.floor(Number(e.target.value) || 1)) })} className="mx-auto h-8 w-20 text-center" />
                         </td>
                         <td className="px-3 py-2.5 text-right tabular-nums text-slate-600">{formatarMoeda(i.preco_unitario)}</td>
                         <td className="px-3 py-2.5 text-center">
-                          <Input type="number" min={0} max={100} step={1} value={i.desconto_item} onChange={(e) => atualizarItem(chave, { desconto_item: Math.min(100, Math.max(0, Number(e.target.value) || 0)) })} className="mx-auto h-8 w-20 text-center" />
+                          <Input type="number" min={0} max={100} step={1} value={i.desconto_item} onChange={(e) => atualizarItem(i.uid, { desconto_item: Math.min(100, Math.max(0, Number(e.target.value) || 0)) })} className="mx-auto h-8 w-20 text-center" />
                         </td>
                         <td className="px-3 py-2.5 text-right font-semibold tabular-nums text-slate-900">{formatarMoeda(sub)}</td>
                         <td className="px-3 py-2.5 text-center">
-                          <Button type="button" variant="ghost" size="sm" onClick={() => removerItem(chave)}><Trash2 className="size-4 text-slate-400" /></Button>
+                          <Button type="button" variant="ghost" size="sm" onClick={() => removerItem(i.uid)}><Trash2 className="size-4 text-slate-400" /></Button>
                         </td>
                       </tr>
                     )
