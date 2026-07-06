@@ -8,6 +8,7 @@ import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { BadgeStatusOrcamento } from './badge-status-orcamento'
+import { CartaoTabela, tabela } from '@/components/layout/listagem'
 import { formatarMoeda } from '@/lib/utils'
 import { excluirOrcamento } from '@/app/(dashboard)/orcamentos/actions'
 import { Trash2, Search } from 'lucide-react'
@@ -115,24 +116,24 @@ export function TabelaOrcamentos({ orcamentos }: Props) {
       </div>
 
       {/* Tabela */}
-      <div className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
-        <table className="w-full text-sm">
+      <CartaoTabela>
+        <table className={tabela.root}>
           <thead>
-            <tr className="border-b border-slate-100 bg-slate-50/50 text-left">
-              <th className="px-5 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">#</th>
-              <th className="px-5 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">Cliente / Lead</th>
-              <th className="px-5 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">Negociação</th>
-              <th className="px-5 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">Valor</th>
-              <th className="px-5 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">Status</th>
-              <th className="px-5 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">Responsável</th>
-              <th className="px-5 py-3.5 text-xs font-semibold text-slate-500 uppercase tracking-wide">Data</th>
-              <th className="px-5 py-3.5 w-12"></th>
+            <tr className={tabela.theadTr}>
+              <th className={tabela.th}>#</th>
+              <th className={tabela.th}>Cliente / Lead</th>
+              <th className={tabela.th}>Negociação</th>
+              <th className={tabela.th}>Valor</th>
+              <th className={tabela.th}>Status</th>
+              <th className={tabela.th}>Responsável</th>
+              <th className={tabela.th}>Data</th>
+              <th className={`${tabela.th} w-12`}></th>
             </tr>
           </thead>
           <tbody>
             {filtrados.length === 0 && (
               <tr>
-                <td colSpan={8} className="px-5 py-12 text-center text-slate-400">
+                <td colSpan={8} className={tabela.vazio}>
                   Nenhum orçamento encontrado.
                 </td>
               </tr>
@@ -140,7 +141,7 @@ export function TabelaOrcamentos({ orcamentos }: Props) {
             {filtrados.map((o) => (
               <tr
                 key={o.id}
-                className="border-b border-slate-100 last:border-0 transition-colors hover:bg-slate-50/50 cursor-pointer"
+                className={`${tabela.tr} cursor-pointer`}
                 onDoubleClick={() => handleDoubleClick(o.id)}
                 onClick={() => handleSingleClick(o.id)}
               >
@@ -181,7 +182,7 @@ export function TabelaOrcamentos({ orcamentos }: Props) {
             ))}
           </tbody>
         </table>
-      </div>
+      </CartaoTabela>
 
       {busca || dataInicio || dataFim ? (
         <p className="text-xs text-slate-400">

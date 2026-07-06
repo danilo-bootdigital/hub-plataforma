@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { TabelaOrcamentos } from '@/components/orcamentos/tabela-orcamentos'
 import { Paginacao } from '@/components/ui/paginacao'
+import { CabecalhoPagina } from '@/components/layout/listagem'
 import { Plus } from 'lucide-react'
 import type { QuoteStatus } from '@/types/database'
 
@@ -82,22 +83,20 @@ export default async function OrcamentosPage({ searchParams }: { searchParams: S
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900">Orçamentos</h1>
-          <p className="mt-1 text-sm text-slate-500">
-            Propostas comerciais vinculadas a leads e negociações.
-          </p>
-        </div>
-        {podeCriar && (
-          <Link href="/orcamentos/novo">
-            <Button size="sm" className="gap-1.5">
-              <Plus className="h-4 w-4" />
-              Novo orçamento
-            </Button>
-          </Link>
-        )}
-      </div>
+      <CabecalhoPagina
+        titulo="Orçamentos"
+        descricao="Propostas comerciais vinculadas a leads e negociações."
+        acao={
+          podeCriar && (
+            <Link href="/orcamentos/novo">
+              <Button size="sm" className="gap-1.5">
+                <Plus className="h-4 w-4" />
+                Novo orçamento
+              </Button>
+            </Link>
+          )
+        }
+      />
       <TabelaOrcamentos orcamentos={orcamentos} />
 
       <Paginacao

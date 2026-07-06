@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
+import { CabecalhoPagina } from '@/components/layout/listagem'
 import { TabelaOrcamentosHub, type OrcamentoHubRow } from '@/components/orcamentos-hub/tabela-orcamentos-hub'
 
 // Área operacional de Orçamentos do HUB (DEC-017). Separada da lista legada
@@ -68,18 +69,18 @@ export default async function HubOrcamentosPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900">Orçamentos</h1>
-          <p className="mt-1 text-sm text-slate-500">Orçamentos do seu Hub, por Portfólio.</p>
-        </div>
-        <Link href="/orcamentos/novo">
-          <Button size="sm" className="gap-1.5">
-            <Plus className="h-4 w-4" />
-            Novo orçamento
-          </Button>
-        </Link>
-      </div>
+      <CabecalhoPagina
+        titulo="Orçamentos"
+        descricao="Orçamentos do seu Hub, por Portfólio."
+        acao={
+          <Link href="/orcamentos/novo">
+            <Button size="sm" className="gap-1.5">
+              <Plus className="h-4 w-4" />
+              Novo orçamento
+            </Button>
+          </Link>
+        }
+      />
       <TabelaOrcamentosHub orcamentos={orcamentos} />
     </div>
   )
