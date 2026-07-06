@@ -10,8 +10,7 @@ import { toast } from 'sonner'
 import { Plus } from 'lucide-react'
 import { criarHub } from '@/app/(dashboard)/configuracoes/hubs/actions'
 import { CampoSenha } from '@/components/hubs/campo-senha'
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+import { EMAIL_RE } from '@/lib/email'
 
 type ProprietarioDisponivel = { id: string; nome: string; email: string | null }
 

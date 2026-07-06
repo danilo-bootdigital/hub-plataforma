@@ -196,7 +196,7 @@ export function TabelaHubs({ hubs, proprietarios }: { hubs: HubRow[]; proprietar
                           <Layers className="h-4 w-4 text-slate-500" />
                         </Button>
                       </Link>
-                      <Button size="icon" variant="ghost" title="Alterar senha do proprietário" onClick={() => setSenhaHubId(h.id)}>
+                      <Button size="icon" variant="ghost" title="Alterar e-mail/senha do proprietário" onClick={() => setSenhaHubId(h.id)}>
                         <KeyRound className="h-4 w-4 text-slate-500" />
                       </Button>
                     </div>
@@ -211,6 +211,7 @@ export function TabelaHubs({ hubs, proprietarios }: { hubs: HubRow[]; proprietar
     {senhaHubId && (
       <ModalAlterarSenha
         hubId={senhaHubId}
+        emailAtual={hubs.find((h) => h.id === senhaHubId)?.email ?? ''}
         aberto={true}
         onOpenChange={(v) => { if (!v) setSenhaHubId(null) }}
       />

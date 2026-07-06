@@ -2,6 +2,8 @@
 
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { atualizarCredenciaisAuth } from '@/lib/supabase/credenciais'
+import { EMAIL_RE } from '@/lib/email'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
@@ -43,8 +45,6 @@ async function registrarAuditoria(
     dados_novos: novos,
   })
 }
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 // Cadastro de Hub + criação do usuário proprietário numa ÚNICA operação lógica.
 // Não existe Hub sem proprietário, nem proprietário sem Hub.
@@ -211,11 +211,47 @@ export async function alterarSenhaProprietario(hubId: string, novaSenha: string)
   if (!owner) throw new Error('Este Hub não possui proprietário vinculado.')
 
   const admin = createAdminClient()
-  const { error } = await admin.auth.admin.updateUserById(owner.id, { password: novaSenha })
-  if (error) throw new Error('Não foi possível alterar a senha.')
+  await atualizarCredenciaisAuth(admin, owner.id, { senha: novaSenha })
 
   // Auditoria sem expor a senha.
   await registrarAuditoria(supabase, perfil, 'ALTERACAO_SENHA_PROPRIETARIO', hubId, null, { proprietario_id: owner.id })
+  revalidatePath('/configuracoes/hubs')
+}
+
+// Alteração de e-mail (login) do proprietário do Hub (ação administrativa da Indústria).
+// Atualiza o Supabase Auth (e-mail já confirmado) e sincroniza profiles.email e hubs.email
+// (definidos iguais na criação do Hub).
+export async function alterarEmailProprietario(hubId: string, novoEmail: string) {
+  const { supabase, perfil } = await getAdminOuGestor()
+
+  const email = (novoEmail || '').trim().toLowerCase()
+  if (!email) throw new Error('E-mail é obrigatório.')
+  if (!EMAIL_RE.test(email)) throw new Error('E-mail inválido.')
+
+  const { data: owner } = await supabase
+    .from('profiles')
+    .select('id')
+    .eq('organization_id', perfil.organization_id)
+    .eq('cargo', 'proprietario_hub')
+    .eq('hub_id', hubId)
+    .maybeSingle()
+  if (!owner) throw new Error('Este Hub não possui proprietário vinculado.')
+
+  const admin = createAdminClient()
+  await atualizarCredenciaisAuth(admin, owner.id, { email })
+  // Sincroniza Profile e Hub — erros verificados para não divergir do Auth silenciosamente.
+  const { error: profErr } = await admin
+    .from('profiles')
+    .update({ email, atualizado_em: new Date().toISOString() })
+    .eq('id', owner.id)
+  if (profErr) throw new Error('E-mail alterado no login, mas falhou ao sincronizar o perfil. Tente novamente.')
+  const { error: hubErr } = await supabase
+    .from('hubs')
+    .update({ email, atualizado_em: new Date().toISOString() })
+    .eq('id', hubId)
+  if (hubErr) throw new Error('E-mail alterado, mas falhou ao sincronizar o cadastro do Hub. Tente novamente.')
+
+  await registrarAuditoria(supabase, perfil, 'ALTERACAO_EMAIL_PROPRIETARIO', hubId, null, { proprietario_id: owner.id, email })
   revalidatePath('/configuracoes/hubs')
 }
 
