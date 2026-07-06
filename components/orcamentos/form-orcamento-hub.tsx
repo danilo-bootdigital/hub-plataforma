@@ -113,9 +113,10 @@ export function FormOrcamentoHub({
     (contatoInicial && clientes.some((c) => c.id === contatoInicial) ? contatoInicial : null)
   )
   const cliente = clientes.find((c) => c.id === clienteId) ?? null
+  // Não lista clientes ao abrir: só filtra enquanto o usuário digita (dropdown).
   const clientesFiltrados = useMemo(() => {
     const q = normalizar(buscaCli.trim())
-    if (!q) return clientes.slice(0, 30)
+    if (!q) return []
     return clientes
       .filter((c) => normalizar([c.nome, c.telefone, c.cpf_cnpj, c.carteira_nome].filter(Boolean).join(' ')).includes(q))
       .slice(0, 30)
@@ -261,64 +262,61 @@ export function FormOrcamentoHub({
 
   return (
     <div className="space-y-4">
-      {/* Linha 1 — Cliente (40%) + Dados comerciais (60%), mesma altura */}
-      <div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-12">
-        {/* 1. Cliente */}
-        <Card className="flex h-full flex-col lg:col-span-5">
-          <CardHeader><CardTitle>1. Cliente</CardTitle></CardHeader>
-          <CardContent className="flex-1 space-y-3">
-            {cliente ? (
-              <div className="flex items-start justify-between rounded-lg border border-slate-200 bg-slate-50 p-3">
-                <div className="flex items-start gap-3">
-                  <div className="mt-0.5 rounded-full bg-slate-200 p-2 text-slate-600"><User className="size-4" /></div>
-                  <div className="text-sm">
-                    <p className="font-semibold text-slate-900">{cliente.nome}</p>
-                    <p className="text-slate-500">{cliente.telefone ?? 'sem telefone'}</p>
-                  </div>
+      {/* Linha 1 — Cliente (busca única) e, após selecionar, dados comerciais na mesma linha */}
+      {!cliente ? (
+        /* Só a busca de cliente — sem listagem automática; dropdown ao digitar.
+           Sem Card aqui: o Card tem overflow-hidden e cortaria o dropdown flutuante. */
+        <div className="relative max-w-2xl">
+          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
+          <Input
+            id="busca-cli"
+            className="h-10 pl-9"
+            placeholder="Buscar cliente (nome, telefone ou CPF/CNPJ)…"
+            value={buscaCli}
+            onChange={(e) => setBuscaCli(e.target.value)}
+            autoComplete="off"
+          />
+          {buscaCli.trim() && (
+            <div className="absolute inset-x-0 top-full z-30 mt-1 max-h-72 divide-y divide-slate-100 overflow-y-auto rounded-lg border border-slate-200 bg-white shadow-lg">
+              {clientesFiltrados.length === 0 ? (
+                <p className="p-3 text-sm text-slate-500">Nenhum cliente encontrado no seu Hub.</p>
+              ) : clientesFiltrados.map((c) => (
+                <button key={c.id} type="button" onClick={() => setClienteId(c.id)} className="flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-slate-50">
+                  <span><span className="font-medium text-slate-900">{c.nome}</span><span className="ml-2 text-slate-500">{c.telefone ?? ''}</span></span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      ) : (
+        /* Cliente selecionado (card compacto) + dados comerciais em uma única linha */
+        <Card>
+          <CardContent className="py-4">
+            <div className="flex flex-wrap items-end gap-3">
+              <div className="flex shrink-0 items-center gap-2.5 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
+                <div className="rounded-full bg-slate-200 p-1.5 text-slate-600"><User className="size-4" /></div>
+                <div className="text-sm leading-tight">
+                  <p className="font-semibold text-slate-900">{cliente.nome}</p>
+                  <p className="text-xs text-slate-500">{cliente.telefone ?? 'sem telefone'}</p>
                 </div>
-                <Button type="button" variant="ghost" size="sm" onClick={() => { setClienteId(null); setBuscaCli('') }}>Trocar</Button>
+                <Button type="button" variant="ghost" size="sm" className="ml-1 h-7 px-2 text-xs" onClick={() => { setClienteId(null); setBuscaCli('') }}>Trocar cliente</Button>
               </div>
-            ) : (
-              <>
-                <Label htmlFor="busca-cli">Buscar cliente (nome, telefone ou CPF/CNPJ)</Label>
-                <div className="relative">
-                  <Search className="pointer-events-none absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
-                  <Input id="busca-cli" className="pl-8" placeholder="Digite para buscar…" value={buscaCli} onChange={(e) => setBuscaCli(e.target.value)} autoComplete="off" />
-                </div>
-                <div className="max-h-64 divide-y divide-slate-100 overflow-y-auto rounded-lg border border-slate-200">
-                  {clientesFiltrados.length === 0 ? (
-                    <p className="p-3 text-sm text-slate-500">Nenhum cliente encontrado no seu Hub.</p>
-                  ) : clientesFiltrados.map((c) => (
-                    <button key={c.id} type="button" onClick={() => setClienteId(c.id)} className="flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-slate-50">
-                      <span><span className="font-medium text-slate-900">{c.nome}</span><span className="ml-2 text-slate-500">{c.telefone ?? ''}</span></span>
-                    </button>
-                  ))}
-                </div>
-              </>
-            )}
-          </CardContent>
-        </Card>
 
-        {/* 2. Dados comerciais */}
-        <Card className="flex h-full flex-col lg:col-span-7">
-          <CardHeader><CardTitle>2. Dados comerciais</CardTitle></CardHeader>
-          <CardContent className="flex-1">
-            <div className="grid gap-3 sm:grid-cols-2">
-              <div className="space-y-1.5"><Label htmlFor="forma">Forma de pagamento</Label><Input id="forma" value={formaPagamento} onChange={(e) => setFormaPagamento(e.target.value)} /></div>
-              <div className="space-y-1.5"><Label htmlFor="prazo">Prazo de entrega</Label><Input id="prazo" value={prazoEntrega} onChange={(e) => setPrazoEntrega(e.target.value)} /></div>
-              <div className="space-y-1.5"><Label htmlFor="transp">Transportadora</Label><Input id="transp" value={transportadora} onChange={(e) => setTransportadora(e.target.value)} /></div>
-              <div className="space-y-1.5"><Label htmlFor="frete">Frete (R$)</Label><Input id="frete" inputMode="decimal" value={frete} onChange={(e) => setFrete(e.target.value)} placeholder="0,00" /></div>
-              <div className="space-y-1.5"><Label htmlFor="desc-geral">Desconto geral (%)</Label><Input id="desc-geral" inputMode="decimal" value={descontoGeral} onChange={(e) => setDescontoGeral(e.target.value)} placeholder="0" /></div>
-              <div className="space-y-1.5 sm:col-span-2"><Label htmlFor="endereco">Endereço de entrega</Label><Input id="endereco" value={enderecoEntrega} onChange={(e) => setEnderecoEntrega(e.target.value)} /></div>
+              <div className="w-[220px] space-y-1"><Label htmlFor="forma" className="text-xs">Forma de pagamento</Label><Input id="forma" className="h-9" value={formaPagamento} onChange={(e) => setFormaPagamento(e.target.value)} /></div>
+              <div className="w-[180px] space-y-1"><Label htmlFor="prazo" className="text-xs">Prazo de entrega</Label><Input id="prazo" className="h-9" value={prazoEntrega} onChange={(e) => setPrazoEntrega(e.target.value)} /></div>
+              <div className="w-[220px] space-y-1"><Label htmlFor="transp" className="text-xs">Transportadora</Label><Input id="transp" className="h-9" value={transportadora} onChange={(e) => setTransportadora(e.target.value)} /></div>
+              <div className="w-[140px] space-y-1"><Label htmlFor="frete" className="text-xs">Frete (R$)</Label><Input id="frete" className="h-9" inputMode="decimal" value={frete} onChange={(e) => setFrete(e.target.value)} placeholder="0,00" /></div>
+              <div className="w-[140px] space-y-1"><Label htmlFor="desc-geral" className="text-xs">Desconto geral (%)</Label><Input id="desc-geral" className="h-9" inputMode="decimal" value={descontoGeral} onChange={(e) => setDescontoGeral(e.target.value)} placeholder="0" /></div>
+              <div className="min-w-[220px] flex-1 space-y-1"><Label htmlFor="endereco" className="text-xs">Endereço de entrega</Label><Input id="endereco" className="h-9" value={enderecoEntrega} onChange={(e) => setEnderecoEntrega(e.target.value)} /></div>
             </div>
           </CardContent>
         </Card>
-      </div>
+      )}
 
-      {/* Linha 2 — Adicionar produtos (largura total) */}
+      {/* Linha 2 — Adicionar produtos (largura total) — área operacional dominante */}
       <Card>
         <CardHeader>
-          <CardTitle>3. Adicionar produtos</CardTitle>
+          <CardTitle>Adicionar produtos</CardTitle>
           <p className="text-sm text-slate-500">Busque em todos os produtos autorizados ao seu Hub — o portfólio de cada item é preenchido automaticamente.</p>
         </CardHeader>
         <CardContent className="space-y-3">
@@ -332,7 +330,7 @@ export function FormOrcamentoHub({
               autoComplete="off"
             />
           </div>
-          <div className="max-h-80 divide-y divide-slate-100 overflow-y-auto rounded-lg border border-slate-200">
+          <div className="max-h-[480px] divide-y divide-slate-100 overflow-y-auto rounded-lg border border-slate-200">
             {buscandoProd ? (
               <p className="flex items-center gap-2 p-3 text-sm text-slate-500"><Loader2 className="size-4 animate-spin" /> Buscando…</p>
             ) : resultados.length === 0 ? (
@@ -359,7 +357,7 @@ export function FormOrcamentoHub({
       {/* Linha 3 — Produtos adicionados (tabela, largura total) */}
       <Card>
         <CardHeader>
-          <CardTitle>4. Produtos adicionados</CardTitle>
+          <CardTitle>Produtos adicionados</CardTitle>
           <p className="text-sm text-slate-500">{itens.length} {itens.length === 1 ? 'item' : 'itens'}</p>
         </CardHeader>
         <CardContent className="p-0">
@@ -413,7 +411,7 @@ export function FormOrcamentoHub({
       <div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-12">
         {/* 5. Observações */}
         <Card className="flex h-full flex-col lg:col-span-7">
-          <CardHeader><CardTitle>5. Observações</CardTitle></CardHeader>
+          <CardHeader><CardTitle>Observações</CardTitle></CardHeader>
           <CardContent className="flex-1 grid gap-3 sm:grid-cols-2">
             <div className="space-y-1.5"><Label htmlFor="obs-cli">Observações para o cliente</Label><Textarea id="obs-cli" rows={4} value={observacoesCliente} onChange={(e) => setObservacoesCliente(e.target.value)} /></div>
             <div className="space-y-1.5"><Label htmlFor="obs">Observações internas</Label><Textarea id="obs" rows={4} value={observacoes} onChange={(e) => setObservacoes(e.target.value)} /></div>
@@ -422,7 +420,7 @@ export function FormOrcamentoHub({
 
         {/* 6. Resumo financeiro + ações */}
         <Card className="flex h-full flex-col lg:col-span-5">
-          <CardHeader><CardTitle>6. Resumo financeiro</CardTitle></CardHeader>
+          <CardHeader><CardTitle>Resumo financeiro</CardTitle></CardHeader>
           <CardContent className="flex flex-1 flex-col gap-3">
             <div className="space-y-1 text-sm">
               <div className="flex justify-between"><span className="text-slate-500">Itens</span><span className="text-slate-800">{itens.length}</span></div>
