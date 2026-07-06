@@ -75,6 +75,7 @@ type OrcamentoItem = {
   aplicadores?: string | null
   exige_receita?: boolean | null
   // Portfólio de origem do item (DEC-013/017) — itens podem vir de portfólios diferentes.
+  portfolio_id?: string | null
   portfolio_nome?: string | null
 }
 
@@ -464,7 +465,7 @@ function SecaoCards({ data }: { data: OrcamentoTemplateData }) {
 
 function SecaoProdutosHub({ itens }: { itens: OrcamentoItem[] }) {
   // Resumo do portfólio de origem: nome único ou "Múltiplos Portfólios" (DEC-013/017).
-  const resumoPortfolios = resumirPortfolios(itens.map((i) => i.portfolio_nome))
+  const resumoPortfolios = resumirPortfolios(itens.map((i) => ({ portfolio_id: i.portfolio_id, portfolio_nome: i.portfolio_nome })))
   return (
     <section data-pdf-products className="flex flex-col gap-0">
       <div className="bg-[#e8f5e8] text-slate-700 px-4 py-2.5 rounded-t-md flex items-center justify-between gap-2 shadow-sm">

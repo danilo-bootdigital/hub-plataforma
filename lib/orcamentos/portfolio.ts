@@ -14,14 +14,15 @@ type AdminLike = {
 }
 
 // Resume o portfólio de origem dos itens: nome único, "Múltiplos Portfólios" quando
-// há mais de um (contando também itens sem portfólio como uma categoria distinta), ou
-// null quando nenhum item tem portfólio.
-export function resumirPortfolios(nomes: (string | null | undefined)[]): string | null {
-  if (nomes.length === 0) return null
-  const distintos = new Set(nomes.map((n) => n?.trim() || '—'))
-  if (distintos.size === 1) {
-    const unico = [...distintos][0]
-    return unico === '—' ? null : unico
+// há mais de um, ou null quando nenhum item tem portfólio. A distinção é por
+// portfolio_id (não pelo nome) — assim um nome que não resolve (portfólio removido/
+// renomeado) NÃO é contado como portfólio extra e não gera "Múltiplos" espúrio.
+export function resumirPortfolios(itens: { portfolio_id?: string | null; portfolio_nome?: string | null }[]): string | null {
+  if (itens.length === 0) return null
+  const ids = new Set(itens.map((i) => i.portfolio_id || '∅'))
+  if (ids.size === 1) {
+    // Único portfólio (ou nenhum): mostra o nome se houver item com portfólio.
+    return itens.find((i) => i.portfolio_id)?.portfolio_nome?.trim() || null
   }
   return 'Múltiplos Portfólios'
 }
