@@ -1,11 +1,11 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import { Package } from 'lucide-react'
 import { subDays } from 'date-fns'
 import { BadgeStatusPedido } from '@/components/pedidos/badge-status-pedido'
 import { BotaoExcluirPedido } from '@/components/pedidos/botao-excluir-pedido'
 import { FiltrosPedidos } from '@/components/pedidos/filtros-pedidos'
+import { CabecalhoPagina, CartaoTabela, tabela } from '@/components/layout/listagem'
 
 function calcularPeriodo(periodo: string | null, inicioCustom: string | null, fimCustom: string | null) {
   const agora = new Date()
@@ -114,71 +114,62 @@ export default async function PedidosPage({
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900">Pedidos</h1>
-          <p className="mt-1 text-sm text-slate-500">
-            Acompanhe o status operacional dos pedidos aprovados.
-          </p>
-        </div>
-      </div>
+      <CabecalhoPagina
+        titulo="Pedidos"
+        descricao="Acompanhe o status operacional dos pedidos aprovados."
+      />
 
       <FiltrosPedidos fornecedores={fornecedores} />
 
-      {pedidosFiltrados.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-slate-200 py-16">
-          <Package className="h-12 w-12 text-slate-300" />
-          <p className="mt-3 text-sm text-slate-500">
-            {temFiltros ? 'Nenhum pedido encontrado para os filtros selecionados.' : 'Nenhum pedido ainda.'}
-          </p>
-          <p className="text-xs text-slate-400">
-            {temFiltros ? 'Ajuste os filtros para ver mais resultados.' : 'Pedidos são gerados automaticamente ao aprovar um orçamento.'}
-          </p>
-        </div>
-      ) : (
-        <div className="overflow-x-auto rounded-lg border border-slate-200">
-          <table className="w-full text-sm">
-            <thead className="bg-slate-50 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
+      <CartaoTabela>
+        <table className={tabela.root}>
+          <thead>
+            <tr className={tabela.theadTr}>
+              <th className={tabela.th}>#</th>
+              <th className={tabela.th}>Cliente</th>
+              <th className={tabela.th}>Fornecedor</th>
+              <th className={tabela.th}>Valor</th>
+              <th className={tabela.th}>Status</th>
+              <th className={tabela.th}>Responsável</th>
+              <th className={tabela.th}>Data</th>
+              <th className={tabela.th}>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pedidosFiltrados.length === 0 && (
               <tr>
-                <th className="px-4 py-3">#</th>
-                <th className="px-4 py-3">Cliente</th>
-                <th className="px-4 py-3">Fornecedor</th>
-                <th className="px-4 py-3">Valor</th>
-                <th className="px-4 py-3">Status</th>
-                <th className="px-4 py-3">Responsável</th>
-                <th className="px-4 py-3">Data</th>
-                <th className="px-4 py-3">Ações</th>
+                <td colSpan={8} className={tabela.vazio}>
+                  {temFiltros ? 'Nenhum pedido encontrado para os filtros selecionados.' : 'Nenhum pedido ainda.'}
+                </td>
               </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {pedidosFiltrados.map((pedido) => (
-                <tr key={pedido.id} className="hover:bg-slate-50 transition-colors">
-                  <td className="px-4 py-3">
-                    <Link href={`/pedidos/${pedido.id}`} className="font-medium text-blue-600 hover:underline">
-                      #{pedido.numero}
-                    </Link>
-                  </td>
-                  <td className="px-4 py-3 text-slate-700">{pedido.cliente}</td>
-                  <td className="px-4 py-3 text-slate-600">{pedido.fornecedorNome}</td>
-                  <td className="px-4 py-3 text-slate-700">
-                    {Number(pedido.valor_total).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                  </td>
-                  <td className="px-4 py-3">
-                    <BadgeStatusPedido status={pedido.status} />
-                  </td>
-                  <td className="px-4 py-3 text-slate-600">{pedido.responsavelNome}</td>
-                  <td className="px-4 py-3 text-slate-500 text-xs">
-                    {new Date(pedido.criado_em).toLocaleDateString('pt-BR')}
-                  </td>
-                  <td className="px-4 py-3">
-                    <BotaoExcluirPedido pedidoId={pedido.id} numero={pedido.numero} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+            )}
+            {pedidosFiltrados.map((pedido) => (
+              <tr key={pedido.id} className={tabela.tr}>
+                <td className={tabela.td}>
+                  <Link href={`/pedidos/${pedido.id}`} className="font-medium text-blue-600 hover:underline">
+                    #{pedido.numero}
+                  </Link>
+                </td>
+                <td className={`${tabela.td} text-slate-700`}>{pedido.cliente}</td>
+                <td className={`${tabela.td} text-slate-600`}>{pedido.fornecedorNome}</td>
+                <td className={`${tabela.td} text-slate-700`}>
+                  {Number(pedido.valor_total).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                </td>
+                <td className={tabela.td}>
+                  <BadgeStatusPedido status={pedido.status} />
+                </td>
+                <td className={`${tabela.td} text-slate-600`}>{pedido.responsavelNome}</td>
+                <td className={`${tabela.td} text-xs text-slate-500`}>
+                  {new Date(pedido.criado_em).toLocaleDateString('pt-BR')}
+                </td>
+                <td className={tabela.td}>
+                  <BotaoExcluirPedido pedidoId={pedido.id} numero={pedido.numero} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </CartaoTabela>
     </div>
   )
 }

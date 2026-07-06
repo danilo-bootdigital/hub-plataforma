@@ -5,6 +5,7 @@ import { ModalNovoContato } from '@/components/clientes/modal-novo-contato'
 import { BotaoImportarExportar } from '@/components/clientes/botao-importar-exportar'
 import { BuscaContatos } from '@/components/clientes/busca-contatos'
 import { Paginacao } from '@/components/ui/paginacao'
+import { CabecalhoPagina } from '@/components/layout/listagem'
 import type { Contact, Company } from '@/types/database'
 
 type ContatoComEmpresa = Contact & {
@@ -68,18 +69,16 @@ export default async function ContatosPage({ searchParams }: { searchParams: Sea
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900">Clientes</h1>
-          <p className="mt-1 text-sm text-slate-500">
-            Base de clientes da Indústria, organizada por Carteira.
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <BotaoImportarExportar />
-          <ModalNovoContato carteiras={(carteiras ?? []) as { id: string; nome: string }[]} />
-        </div>
-      </div>
+      <CabecalhoPagina
+        titulo="Clientes"
+        descricao="Base de clientes da Indústria, organizada por Carteira."
+        acao={
+          <div className="flex items-center gap-3">
+            <BotaoImportarExportar />
+            <ModalNovoContato carteiras={(carteiras ?? []) as { id: string; nome: string }[]} />
+          </div>
+        }
+      />
 
       <BuscaContatos />
 

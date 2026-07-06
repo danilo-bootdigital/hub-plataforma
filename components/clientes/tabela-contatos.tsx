@@ -8,6 +8,7 @@ import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Trash2 } from 'lucide-react'
 import { excluirContatosEmLote } from '@/app/(dashboard)/clientes/actions'
+import { CartaoTabela, tabela } from '@/components/layout/listagem'
 import type { Contact, Company } from '@/types/database'
 
 type ContatoComEmpresa = Contact & {
@@ -103,12 +104,12 @@ export function TabelaContatos({ contatos, isAdmin }: Props) {
         </div>
       )}
 
-      <div className="overflow-x-auto rounded-lg border bg-white">
-        <table className="w-full text-sm">
+      <CartaoTabela>
+        <table className={tabela.root}>
           <thead>
-            <tr className="border-b bg-slate-50 text-left">
+            <tr className={tabela.theadTr}>
               {isAdmin && (
-                <th className="px-3 py-3 w-10">
+                <th className={`${tabela.th} w-10`}>
                   <input
                     type="checkbox"
                     checked={todosSelecionados}
@@ -117,19 +118,19 @@ export function TabelaContatos({ contatos, isAdmin }: Props) {
                   />
                 </th>
               )}
-              <th className="px-4 py-3 font-medium text-slate-600">Nome</th>
-              <th className="px-4 py-3 font-medium text-slate-600">Carteira</th>
-              <th className="px-4 py-3 font-medium text-slate-600">Empresa</th>
-              <th className="px-4 py-3 font-medium text-slate-600">Telefone</th>
-              <th className="px-4 py-3 font-medium text-slate-600">E-mail</th>
-              <th className="px-4 py-3 font-medium text-slate-600">Cargo</th>
-              <th className="px-4 py-3 font-medium text-slate-600">Cadastrado em</th>
+              <th className={tabela.th}>Nome</th>
+              <th className={tabela.th}>Carteira</th>
+              <th className={tabela.th}>Empresa</th>
+              <th className={tabela.th}>Telefone</th>
+              <th className={tabela.th}>E-mail</th>
+              <th className={tabela.th}>Cargo</th>
+              <th className={tabela.th}>Cadastrado em</th>
             </tr>
           </thead>
           <tbody>
             {contatos.length === 0 && (
               <tr>
-                <td colSpan={isAdmin ? 8 : 7} className="px-4 py-8 text-center text-slate-400">
+                <td colSpan={isAdmin ? 8 : 7} className={tabela.vazio}>
                   Nenhum cliente encontrado.
                 </td>
               </tr>
@@ -137,11 +138,11 @@ export function TabelaContatos({ contatos, isAdmin }: Props) {
             {contatos.map((contato) => (
               <tr
                 key={contato.id}
-                className="border-b last:border-0 hover:bg-slate-50 cursor-pointer"
+                className={`${tabela.tr} cursor-pointer`}
                 onClick={() => router.push(`/clientes/${contato.id}`)}
               >
                 {isAdmin && (
-                  <td className="px-3 py-3 w-10">
+                  <td className={`${tabela.td} w-10`}>
                     <input
                       type="checkbox"
                       checked={selecionados.has(contato.id)}
@@ -151,24 +152,24 @@ export function TabelaContatos({ contatos, isAdmin }: Props) {
                     />
                   </td>
                 )}
-                <td className="px-4 py-3 font-medium text-slate-900">{contato.nome}</td>
-                <td className="px-4 py-3 text-slate-600">
+                <td className={`${tabela.td} font-medium text-slate-900`}>{contato.nome}</td>
+                <td className={`${tabela.td} text-slate-600`}>
                   {contato.carteira?.nome
                     ? <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700">{contato.carteira.nome}</span>
                     : <span className="text-xs text-amber-600">Sem carteira</span>}
                 </td>
-                <td className="px-4 py-3 text-slate-600">{contato.empresa?.nome ?? '—'}</td>
-                <td className="px-4 py-3 text-slate-600">{contato.telefone ?? '—'}</td>
-                <td className="px-4 py-3 text-slate-600">{contato.email ?? '—'}</td>
-                <td className="px-4 py-3 text-slate-600">{contato.cargo ?? '—'}</td>
-                <td className="px-4 py-3 text-slate-600">
+                <td className={`${tabela.td} text-slate-600`}>{contato.empresa?.nome ?? '—'}</td>
+                <td className={`${tabela.td} text-slate-600`}>{contato.telefone ?? '—'}</td>
+                <td className={`${tabela.td} text-slate-600`}>{contato.email ?? '—'}</td>
+                <td className={`${tabela.td} text-slate-600`}>{contato.cargo ?? '—'}</td>
+                <td className={`${tabela.td} text-slate-600`}>
                   {format(new Date(contato.criado_em), 'dd/MM/yyyy', { locale: ptBR })}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
+      </CartaoTabela>
     </div>
   )
 }
