@@ -12,5 +12,6 @@
     "rootDir": "lib",
     "types": ["node"]
   },
-  "include": ["lib/mensageria/**/*.ts"]
+  "include": ["lib/mensageria/**/*.ts"],
+  "exclude": ["lib/mensageria/poller/supabase-deps.ts"]
 }
