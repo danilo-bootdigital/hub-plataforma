@@ -19,13 +19,50 @@ export interface HttpRequestInit {
 }
 export type HttpClient = (url: string, init?: HttpRequestInit) => Promise<HttpResponse>
 
-// Cliente padrão sobre o fetch global (Node 18+). Acessado via globalThis para não
-// depender da lib DOM no typecheck. NUNCA é usado nos testes (http é injetado).
-export const defaultHttp: HttpClient = async (url, init) => {
-  const fetchFn = (globalThis as { fetch?: (u: string, i?: unknown) => Promise<HttpResponse> }).fetch
-  if (!fetchFn) throw new Error('fetch global indisponível neste runtime')
-  return fetchFn(url, init)
+// Timeout padrão do HTTP real (ms). Seguro para a Graph API (Meta recomenda margem
+// ampla; sendMessage/fetchMedia são interativos). Configurável por env/argumento.
+export const DEFAULT_HTTP_TIMEOUT_MS = 15000
+
+// fetch subjacente (globalThis.fetch em produção; injetável nos testes). Recebe o
+// AbortSignal montado pelo wrapper — nunca é o caller quem cria o signal.
+export type FetchImpl = (
+  url: string,
+  init?: HttpRequestInit & { signal?: AbortSignal },
+) => Promise<HttpResponse>
+
+export interface DefaultHttpOpts {
+  timeoutMs?: number   // default: WHATSAPP_HTTP_TIMEOUT_MS ou DEFAULT_HTTP_TIMEOUT_MS
+  fetchImpl?: FetchImpl // default: globalThis.fetch
 }
+
+// Fábrica do cliente padrão sobre o fetch global (Node 18+). Aplica um timeout via
+// AbortController a TODA requisição (sendMessage e fetchMedia usam este caminho).
+// O signal é interno: se o timer estourar, a requisição é abortada e vira um erro
+// claro de timeout. NUNCA é usado nos testes de sendMessage/fetchMedia (http mockado);
+// os testes de timeout injetam um fetchImpl que respeita o signal.
+export function createDefaultHttp(opts?: DefaultHttpOpts): HttpClient {
+  const envTimeout = Number(process.env.WHATSAPP_HTTP_TIMEOUT_MS)
+  const timeoutMs = opts?.timeoutMs ?? (Number.isFinite(envTimeout) && envTimeout > 0 ? envTimeout : DEFAULT_HTTP_TIMEOUT_MS)
+  return async (url, init) => {
+    const fetchFn = opts?.fetchImpl
+      ?? (globalThis as { fetch?: FetchImpl }).fetch
+    if (!fetchFn) throw new Error('fetch global indisponível neste runtime')
+    const controller = new AbortController()
+    let timedOut = false
+    const timer = setTimeout(() => { timedOut = true; controller.abort() }, timeoutMs)
+    try {
+      return await fetchFn(url, { ...init, signal: controller.signal })
+    } catch (err) {
+      if (timedOut) throw new Error(`Cloud API HTTP timeout após ${timeoutMs}ms: ${url}`)
+      throw err
+    } finally {
+      clearTimeout(timer)
+    }
+  }
+}
+
+// Instância padrão (env + fetch global). Não faz I/O no import.
+export const defaultHttp: HttpClient = createDefaultHttp()
 
 function authHeaders(config: CloudApiConfig, extra?: Record<string, string>): Record<string, string> {
   return { Authorization: `Bearer ${config.token}`, ...(extra ?? {}) }

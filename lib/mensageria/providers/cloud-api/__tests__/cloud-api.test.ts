@@ -7,7 +7,8 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { createHmac } from 'node:crypto'
 import { createCloudApiAdapter, registerCloudApi, cloudApiAdapter, CLOUD_API_CODE } from '../index'
-import type { HttpClient, HttpRequestInit, HttpResponse } from '../client'
+import type { HttpClient, HttpRequestInit, HttpResponse, FetchImpl } from '../client'
+import { createDefaultHttp } from '../client'
 import { _resetRegistry, resolveProvider, listProviders } from '../../registry'
 
 const cfg = {
@@ -146,6 +147,59 @@ test('sendMessage: tipo não-texto é rejeitado na Fatia 0', async () => {
   )
 })
 
+// ---------- sendMessage: erros HTTP lançam com o corpo (4xx/5xx/429) ----------
+for (const { nome, status, corpo } of [
+  { nome: '4xx', status: 400, corpo: '{"error":{"message":"parametro invalido","code":100}}' },
+  { nome: '5xx', status: 500, corpo: '{"error":{"message":"internal","code":1}}' },
+  { nome: '429', status: 429, corpo: '{"error":{"message":"rate limit","code":80007}}' },
+]) {
+  test(`sendMessage: ${nome} lança erro com HTTP status e corpo`, async () => {
+    const { http } = makeHttp([{ ok: false, status, text: corpo }])
+    const a = createCloudApiAdapter({ config: cfg, http })
+    await assert.rejects(
+      a.sendMessage({ externalAccountId: 'PNID1' }, '5511999999999', { tipo: 'texto', corpo: 'oi' }),
+      (err: Error) => {
+        assert.match(err.message, new RegExp(`HTTP ${status}`))
+        assert.ok(err.message.includes(corpo), 'mensagem deve conter o corpo da resposta')
+        return true
+      },
+    )
+  })
+}
+
+// ---------- createDefaultHttp: timeout via AbortController ----------
+function okResponse(): HttpResponse {
+  return { ok: true, status: 200, json: async () => ({}), text: async () => '', arrayBuffer: async () => new ArrayBuffer(0) }
+}
+
+test('createDefaultHttp: requisição OK injeta AbortSignal (não abortado) e devolve resposta', async () => {
+  let seen: AbortSignal | undefined
+  const fetchImpl: FetchImpl = async (_url, init) => { seen = init?.signal; return okResponse() }
+  const http = createDefaultHttp({ timeoutMs: 1000, fetchImpl })
+  const res = await http('https://graph.test/x', { method: 'GET' })
+  assert.equal(res.ok, true)
+  assert.ok(seen instanceof AbortSignal)
+  assert.equal(seen!.aborted, false)
+})
+
+test('createDefaultHttp: timeout aborta a requisição e lança erro de timeout', async () => {
+  let sig: AbortSignal | undefined
+  // fetch que só resolve/rejeita quando o signal abortar (simula rede pendurada)
+  const hangingFetch: FetchImpl = (_url, init) => new Promise((_resolve, reject) => {
+    sig = init?.signal
+    init?.signal?.addEventListener('abort', () => reject(new Error('AbortError')))
+  })
+  const http = createDefaultHttp({ timeoutMs: 10, fetchImpl: hangingFetch })
+  await assert.rejects(http('https://graph.test/lento'), /timeout após 10ms/)
+  assert.equal(sig?.aborted, true, 'o signal deve ter sido abortado pelo timer')
+})
+
+test('createDefaultHttp: erro de rede (não-timeout) propaga o erro original', async () => {
+  const boom: FetchImpl = async () => { throw new Error('ECONNRESET') }
+  const http = createDefaultHttp({ timeoutMs: 1000, fetchImpl: boom })
+  await assert.rejects(http('https://graph.test/x'), /ECONNRESET/)
+})
+
 // ---------- fetchMedia (mock, 2 passos) ----------
 test('fetchMedia: baixa metadados + binário e normaliza FetchedMedia', async () => {
   const bytes = new Uint8Array([1, 2, 3])
@@ -160,6 +214,31 @@ test('fetchMedia: baixa metadados + binário e normaliza FetchedMedia', async ()
   assert.equal(fm.mime, 'image/png')
   assert.equal(calls[0].url, 'https://graph.test/v21.0/MEDIA1')
   assert.equal(calls[1].url, 'https://media.test/x')
+})
+
+test('fetchMedia: não quebra através de createDefaultHttp (timeout wrapper) — fluxo de 2 passos', async () => {
+  const bytes = new Uint8Array([9, 8, 7])
+  let i = 0
+  const fetchImpl: FetchImpl = async (url) => {
+    i++
+    if (i === 1) return { ok: true, status: 200, json: async () => ({ url: 'https://media.test/y', mime_type: 'image/webp' }), text: async () => '', arrayBuffer: async () => new ArrayBuffer(0) }
+    assert.equal(url, 'https://media.test/y')
+    return { ok: true, status: 200, json: async () => ({}), text: async () => '', arrayBuffer: async () => bytes.buffer }
+  }
+  const http = createDefaultHttp({ timeoutMs: 1000, fetchImpl })
+  const a = createCloudApiAdapter({ config: cfg, http })
+  const fm = await a.fetchMedia({ providerMediaId: 'MEDIA9' })
+  assert.equal(fm.mime, 'image/webp')
+  assert.equal(fm.bytes.length, 3)
+})
+
+test('fetchMedia: timeout no download aborta (não trava)', async () => {
+  const hangingFetch: FetchImpl = (_url, init) => new Promise((_resolve, reject) => {
+    init?.signal?.addEventListener('abort', () => reject(new Error('AbortError')))
+  })
+  const http = createDefaultHttp({ timeoutMs: 10, fetchImpl: hangingFetch })
+  const a = createCloudApiAdapter({ config: cfg, http })
+  await assert.rejects(a.fetchMedia({ providerMediaId: 'MEDIA_LENTA' }), /timeout após 10ms/)
 })
 
 // ---------- registry ----------
