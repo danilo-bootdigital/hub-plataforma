@@ -13,5 +13,5 @@
     "types": ["node"]
   },
   "include": ["lib/mensageria/**/*.ts"],
-  "exclude": ["lib/mensageria/poller/supabase-deps.ts"]
+  "exclude": ["lib/mensageria/poller/supabase-deps.ts", "lib/mensageria/envio/acao-enviar-texto.ts"]
 }
