@@ -1,7 +1,7 @@
 import {
   LayoutDashboard, Users, UserCheck,
   FileText,
-  BarChart3, Settings, Package, Building2, Briefcase, Network, Wallet, Contact, ClipboardList, PackageCheck, Layers, ShieldCheck, ClipboardCheck, Sparkles, UserPlus, MessageCircle, type LucideIcon
+  BarChart3, Settings, Package, Building2, Briefcase, Network, Wallet, Contact, ClipboardList, PackageCheck, Layers, ShieldCheck, ClipboardCheck, Sparkles, UserPlus, MessageCircle, KanbanSquare, type LucideIcon
 } from 'lucide-react'
 import type { UserRole } from '@/types/database'
 
@@ -52,6 +52,9 @@ export const navegacao: ItemNavegacao[] = [
   { label: 'Produtos', href: '/hub/produtos', icone: Package, perfis: ['proprietario_hub', 'assistente'], modulo: 'produtos' },
   // Orçamentos — área operacional do Hub (DEC-017); escopo por hub_id no servidor.
   { label: 'Orçamentos', href: '/hub/orcamentos', icone: FileText, perfis: ['proprietario_hub', 'assistente'], modulo: 'orcamentos' },
+  // Pipeline / Kanban — visão operacional dos Orçamentos por etapa (MVP). Mesma
+  // regra de visibilidade dos Orçamentos (módulo 'orcamentos'); escopo por hub_id.
+  { label: 'Pipeline', href: '/hub/pipeline', icone: KanbanSquare, perfis: ['proprietario_hub', 'assistente'], modulo: 'orcamentos' },
   // Validação de Receita — módulo do Hub (DEC-019). Proprietário sempre; Assistente se a Função conceder 'visualizar' em 'receita'.
   { label: 'Validação de Receita', href: '/hub/validacao-receita', icone: ClipboardCheck, perfis: ['proprietario_hub', 'assistente'], modulo: 'receita' },
   // Cadastro de Clientes — pré-cadastro do Hub (DEC-020). Proprietário e Assistente
