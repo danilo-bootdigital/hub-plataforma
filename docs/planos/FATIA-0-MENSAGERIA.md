@@ -446,3 +446,13 @@ Sequência com dependências e esforço relativo (P=pequeno, M=médio, G=grande)
 - Refletir a DEC-023 em `DOMINIO.md`, `FUNCIONAL.md`, `PERMISSOES.md`.
 - Abrir a **Sprint da Fatia 0** em `SPRINTS.md` e `ROADMAP.md`.
 - A **Fatia 1** permanece bloqueada pela **DEC-014** (desacoplar `supplier_id` do Orçamento) — não iniciar antes.
+
+## Requisitos da Etapa 8B (herdados da auditoria arquitetural da 8A)
+> A auditoria do poller (8A) confirmou a mecânica de fila correta e tratou já na 8A o crash-loop
+> (tentativa contada no claim + dead-letter de presos expirados). Os pontos abaixo ficam como
+> **requisitos obrigatórios da 8B** (não são defeitos da 8A):
+- **Visibilidade > pior caso de processamento** (incluindo `fetchMedia`): calibrar `p_visibilidade_seg` acima do tempo máximo do handler, senão há reprocessamento concorrente — **mitigado por idempotência** (mensagem única por `provider, provider_message_id`; conversa única por `account_id, channel_identity_id`), que a 8B deve garantir.
+- **Vazão:** `drenarInbox` em **loop-até-vazio** por invocação e/ou lote maior; para picos, múltiplos workers/execuções concorrentes (seguras por SKIP LOCKED). O cron 1×/min + 1 passada + lote 20 tem teto baixo.
+- **Índice alinhado ao `ORDER BY created_at`** se houver backlog real (ex.: `(status, proxima_tentativa_em, created_at)` ou índice parcial), pois hoje o `idx_comm_inbound_fila(status, proxima_tentativa_em)` cobre o filtro mas não a ordenação.
+- **Retenção/expurgo** do inbox (linhas `processado`/`erro` e `payload` bruto) — Etapa 12; evita bloat de tabela/índice.
+- **Alerta operacional** para `status='erro'` (dead-letter) — Etapa 12; dead-letters não são reprocessados.
