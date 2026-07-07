@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-# DEC-023 · Fatia 0 — Integração ponta a ponta em Postgres EFÊMERO.
-# Aplica 072→073→074→075, roda o driver TS e2e (componentes reais → RPCs reais)
-# e os cenários SQL (SKIP LOCKED concorrente + crash-recovery). Destrói o ambiente.
-# NUNCA conecta em HUB DEV/produção.
+# DEC-023 · Fatia 0 + E9 — Integração ponta a ponta em Postgres EFÊMERO.
+# Aplica 072→077, roda o driver TS e2e (componentes reais → RPCs reais): inbound
+# (webhook→poller→persistência) E outbound (dispatcher→provider mock→confirmar,
+# idempotência, reconciliação sent/delivered/read, race adiar→confirmar, órfão
+# ignorado, regressão de status, dedup) + cenários SQL (SKIP LOCKED + crash-recovery).
+# Destrói o ambiente. NUNCA conecta em HUB DEV/produção.
 set -u
 FAIL=0
 BASE="$(mktemp -d /tmp/pge2e.XXXXXX)"; DATA="$BASE/data"; PORT=55445

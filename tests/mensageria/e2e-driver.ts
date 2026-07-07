@@ -1,8 +1,14 @@
-// Mensageria — Driver de INTEGRAÇÃO ponta a ponta (DEC-023 · Fatia 0).
+// Mensageria — Driver de INTEGRAÇÃO ponta a ponta (DEC-023 · Fatia 0 + E9).
 // Liga os COMPONENTES REAIS (webhook-receiver → poller → adapter Cloud API →
-// normalizador → RPCs 073/074) contra um Postgres EFÊMERO real, via psql (child_process).
-// NÃO usa mock/in-memory: as deps de banco chamam as RPCs reais. Roda como script:
+// normalizador → RPCs 073/074 + dispatcher/envio → RPCs 076/077) contra um Postgres
+// EFÊMERO real, via psql (child_process). NÃO usa mock/in-memory (exceto sendMessage do
+// provider, sem rede): as deps de banco chamam as RPCs reais. Roda como script:
 // exit 0 = tudo passou; exit 1 = alguma asserção falhou. Conexão via env libpq (PGHOST/PGPORT).
+//
+// Reconciliação de status: o e2e valida o fluxo NOMINAL (sent → delivered → read),
+// drenando um status por lote. A resistência a processamento FORA DE ORDEM não é
+// re-exercitada aqui — é garantia da monotonicidade por estado da RPC 077 e permanece
+// coberta pelos testes unitários (dry-run 077 + processar-evento/transicao).
 
 import { execFileSync } from 'node:child_process'
 import { createHmac } from 'node:crypto'
@@ -10,6 +16,7 @@ import { receberWebhook, type InboxRow } from '../../lib/mensageria/webhook-rece
 import { drenarInbox, type EventoReivindicado, type PollerDeps } from '../../lib/mensageria/poller/poller'
 import type { TransicaoPatch } from '../../lib/mensageria/poller/transicao'
 import { criarProcessarEvento, type PersistirArgs, type ResultadoPersistencia, type AplicarStatusArgs, type ResultadoAplicarStatus } from '../../lib/mensageria/persistencia/processar-evento'
+import { despacharEnvio, type DispatcherDeps, type RegistrarEnvioResult } from '../../lib/mensageria/envio/dispatcher'
 import { createCloudApiAdapter } from '../../lib/mensageria/providers/cloud-api'
 import type { ProviderAdapter } from '../../lib/mensageria/providers/tipos'
 
@@ -62,6 +69,40 @@ const sig = (raw: string) => 'sha256=' + createHmac('sha256', APP_SECRET).update
 
 const webhookDeps = { resolve, inserirInbox }
 const pollerDeps: PollerDeps = { claim, processar: criarProcessarEvento({ resolveAdapter: resolve, persistir, aplicarStatus, agora: () => Date.now() }), aplicar, agora: () => Date.now() }
+
+// ---------- ENVIO OUTBOUND: provider MOCK (só sendMessage) + dispatcher deps REAIS ----------
+// O provider real assinaria/parsearia webhook; para o ENVIO mockamos apenas sendMessage
+// (nenhuma chamada de rede), registrando as chamadas e devolvendo um wamid controlado.
+let proximoWamid = 'wamid.OUT1'
+const envioProviderCalls: Array<{ to: string; corpo?: string }> = []
+const providerMock: ProviderAdapter = {
+  ...adapter,
+  sendMessage: async (_acc, to, content) => { envioProviderCalls.push({ to, corpo: content.corpo }); return { providerMessageId: proximoWamid, status: 'enviada' } },
+}
+const dispatcherDeps: DispatcherDeps = {
+  registrarEnvio: async ({ conversationId, corpo, idempotencyKey }) =>
+    JSON.parse(psql(`SELECT (communication_registrar_envio(${lit(conversationId)}, ${lit(corpo)}, ${lit(idempotencyKey)}))::text`)) as RegistrarEnvioResult,
+  confirmarEnvio: async ({ messageId, providerMessageId }) => { psql(`SELECT communication_confirmar_envio(${lit(messageId)}, ${lit(providerMessageId)})`) },
+  registrarFalha: async ({ messageId, erro }) => { psql(`SELECT communication_registrar_falha(${lit(messageId)}, ${lit(erro)})`) },
+  resolveProvider: (code) => { if (code === 'cloud_api') return providerMock; throw new Error('provider desconhecido') },
+}
+
+// Payload de STATUS do Cloud API (statuses[]). O adapter deriva externalEventId = `${wamid}:${status}`.
+function payloadStatus(wamid: string, status: string, phone = 'PNID1') {
+  return { object: 'whatsapp_business_account', entry: [{ id: 'WABA', changes: [{ field: 'messages', value: {
+    metadata: { phone_number_id: phone },
+    statuses: [{ id: wamid, status, timestamp: '1700000100', recipient_id: '5511999998888' }],
+  } }] }] }
+}
+async function entregarStatus(wamid: string, status: string): Promise<void> {
+  const raw = JSON.stringify(payloadStatus(wamid, status))
+  await receberWebhook(webhookDeps, { provider: 'cloud_api', method: 'POST', query: {}, headers: { 'x-hub-signature-256': sig(raw) }, rawBody: raw })
+}
+// drenagem imediata (backoff/visibilidade 0 → reclaim instantâneo, determinístico em teste)
+const drenar = () => drenarInbox(pollerDeps, { lote: 20, visibilidadeSeg: 0, maxTentativas: 5, backoffBaseSeg: 0 })
+const statusInbox = (wamid: string, status: string) => psql(`SELECT status FROM communication_inbound_events WHERE external_event_id=${lit(`${wamid}:${status}`)}`)
+const statusMsg = (wamid: string) => psql(`SELECT status FROM communication_messages WHERE provider_message_id=${lit(wamid)}`)
+const eventosMsg = (wamid: string, evento: string) => n(`SELECT count(*) FROM communication_message_events e JOIN communication_messages m ON m.id=e.message_id WHERE m.provider_message_id=${lit(wamid)} AND e.evento=${lit(evento)}`)
 
 // ---------- asserts ----------
 let falhas = 0
@@ -136,6 +177,103 @@ async function main() {
   eq(n(`SELECT count(*) FROM communication_conversations`), 1, 'ainda 1 conversa (mesmo contato)')
   eq(n(`SELECT count(*) FROM communication_messages WHERE direction='inbound'`), 2, '2 mensagens inbound')
   eq(n(`SELECT unread_count FROM communication_conversations LIMIT 1`), 2, 'unread_count = 2')
+
+  // ============================ ENVIO OUTBOUND (E9) ============================
+  const conv = psql(`SELECT id FROM communication_conversations LIMIT 1`)
+
+  // ===== 7. HAPPY PATH de envio: registrar_envio → dispatcher → provider → confirmar_envio =====
+  console.log('[7] Envio happy path (dispatcher → provider mock → confirmar)')
+  proximoWamid = 'wamid.OUT1'
+  const d1 = await despacharEnvio(dispatcherDeps, { conversationId: conv, corpo: 'resposta 1', idempotencyKey: 'idem-OUT1' })
+  eq(d1.ok, true, 'dispatch ok')
+  eq(d1.status, 'enviada', 'dispatch status=enviada')
+  eq(envioProviderCalls.length, 1, 'provider.sendMessage chamado 1x')
+  eq(envioProviderCalls[0].to, '5511999998888', 'to = wa_id do destinatário')
+  eq(n(`SELECT count(*) FROM communication_messages WHERE direction='outbound' AND provider_message_id='wamid.OUT1' AND status='enviada'`), 1, 'outbound enviada com wamid')
+  eq(eventosMsg('wamid.OUT1', 'enfileirada'), 1, 'event enfileirada')
+  eq(eventosMsg('wamid.OUT1', 'enviada'), 1, 'event enviada')
+
+  // ===== 8. IDEMPOTÊNCIA: mesma idempotency_key → 1 mensagem, provider NÃO chamado de novo =====
+  console.log('[8] Idempotência de envio (mesma idempotency_key)')
+  const chamadasAntes = envioProviderCalls.length
+  const d2 = await despacharEnvio(dispatcherDeps, { conversationId: conv, corpo: 'resposta 1', idempotencyKey: 'idem-OUT1' })
+  eq(d2.ok, true, 'replay ok')
+  eq(d2.status, 'ja_enfileirada', 'replay status=ja_enfileirada')
+  eq(envioProviderCalls.length, chamadasAntes, 'provider NÃO chamado no replay')
+  eq(n(`SELECT count(*) FROM communication_messages WHERE idempotency_key='idem-OUT1'`), 1, 'apenas 1 mensagem para a chave')
+
+  // ===== 9. UNREAD zerado + conversa em_atendimento após outbound =====
+  console.log('[9] unread_count zerado e conversa em_atendimento')
+  eq(n(`SELECT unread_count FROM communication_conversations WHERE id='${conv}'`), 0, 'unread_count = 0 após envio')
+  eq(psql(`SELECT status FROM communication_conversations WHERE id='${conv}'`), 'em_atendimento', 'conversa em_atendimento')
+
+  // ===== 10. RECONCILIAÇÃO completa: sent → delivered → read =====
+  console.log('[10] Reconciliação sent → delivered → read')
+  // drena após cada status: a ordem de processamento DENTRO de um lote não é garantida
+  // (RETURNING não segue o ORDER BY do claim); um por lote torna a progressão determinística.
+  await entregarStatus('wamid.OUT1', 'sent'); await drenar()       // enviada sobre enviada → ignorado_duplicado
+  await entregarStatus('wamid.OUT1', 'delivered'); await drenar()
+  await entregarStatus('wamid.OUT1', 'read'); await drenar()
+  eq(statusMsg('wamid.OUT1'), 'lida', 'status final = lida')
+  eq(eventosMsg('wamid.OUT1', 'entregue'), 1, '1 event entregue')
+  eq(eventosMsg('wamid.OUT1', 'lida'), 1, '1 event lida')
+  eq(statusInbox('wamid.OUT1', 'delivered'), 'processado', 'inbox delivered processado')
+  eq(statusInbox('wamid.OUT1', 'read'), 'processado', 'inbox read processado')
+
+  // ===== 11. DUPLICATE WEBHOOK: reentrega do mesmo status → dedup no inbox, sem novo event =====
+  console.log('[11] Duplicate webhook de status (dedup, sem novo event)')
+  const evLidaAntes = eventosMsg('wamid.OUT1', 'lida')
+  await entregarStatus('wamid.OUT1', 'read')  // mesmo external_event_id → ON CONFLICT DO NOTHING
+  await drenar()
+  eq(n(`SELECT count(*) FROM communication_inbound_events WHERE external_event_id='wamid.OUT1:read'`), 1, 'inbox não duplica o status')
+  eq(eventosMsg('wamid.OUT1', 'lida'), evLidaAntes, 'nenhum event de lida extra')
+
+  // ===== 12. REGRESSÃO de status: read depois delivered → permanece read =====
+  // wamid dedicado; delivered chega DEPOIS de read (external_event_ids distintos, sem dedup).
+  console.log('[12] Regressão de status (read → delivered permanece read)')
+  proximoWamid = 'wamid.OUTREG'
+  const dR = await despacharEnvio(dispatcherDeps, { conversationId: conv, corpo: 'reg', idempotencyKey: 'idem-REG' })
+  eq(dR.status, 'enviada', 'OUTREG enviada')
+  await entregarStatus('wamid.OUTREG', 'read'); await drenar()
+  eq(statusMsg('wamid.OUTREG'), 'lida', 'OUTREG lida')
+  await entregarStatus('wamid.OUTREG', 'delivered'); await drenar()
+  eq(statusMsg('wamid.OUTREG'), 'lida', 'permanece lida após delivered tardio')
+  eq(eventosMsg('wamid.OUTREG', 'entregue'), 0, 'nenhum event de entregue (regressão ignorada)')
+  eq(statusInbox('wamid.OUTREG', 'delivered'), 'processado', 'inbox delivered tardio processado (não erro)')
+
+  // ===== 13. RACE: status chega ANTES do confirmar_envio → adiar → confirmar → reconcilia, sem dead-letter =====
+  console.log('[13] Race: status antes do confirmar_envio → adiar → confirmar → entregue')
+  const rr = JSON.parse(psql(`SELECT (communication_registrar_envio(${lit(conv)}, $x$corrida$x$, $x$idem-RACE$x$))::text`)) as RegistrarEnvioResult
+  const MR = rr.message_id as string
+  // provider "enviou" (wamid.RACE) mas confirmar_envio AINDA não rodou
+  await entregarStatus('wamid.RACE', 'delivered')
+  await drenar() // aplicar_status não acha o wamid → jovem → ADIAR (sem consumir tentativa)
+  eq(statusInbox('wamid.RACE', 'delivered'), 'pendente', 'status jovem órfão → adiado (pendente)')
+  eq(psql(`SELECT status FROM communication_messages WHERE id='${MR}'`), 'enfileirada', 'mensagem ainda enfileirada')
+  // agora chega o confirmar_envio
+  psql(`SELECT communication_confirmar_envio(${lit(MR)}, $x$wamid.RACE$x$)`)
+  eq(psql(`SELECT status FROM communication_messages WHERE id='${MR}'`), 'enviada', 'mensagem confirmada = enviada')
+  await drenar() // agora o status é reconciliado
+  eq(statusMsg('wamid.RACE'), 'entregue', 'reconciliado após confirmar → entregue')
+  eq(statusInbox('wamid.RACE', 'delivered'), 'processado', 'inbox do status agora processado')
+  eq(n(`SELECT count(*) FROM communication_inbound_events WHERE external_event_id='wamid.RACE:delivered' AND status='erro'`), 0, 'NUNCA vira dead-letter')
+
+  // ===== 14. STATUS ÓRFÃO envelhecido → ignorado (nunca erro) =====
+  console.log('[14] Status órfão envelhecido → ignorado (nunca erro)')
+  await entregarStatus('wamid.ORFAO', 'read')
+  await drenar() // jovem → adiar
+  eq(statusInbox('wamid.ORFAO', 'read'), 'pendente', 'órfão jovem → adiado')
+  // envelhece o evento além da janela (5 min) e redrena
+  psql(`UPDATE communication_inbound_events SET created_at = now() - interval '10 minutes' WHERE external_event_id='wamid.ORFAO:read'`)
+  await drenar()
+  eq(statusInbox('wamid.ORFAO', 'read'), 'processado', 'órfão envelhecido → ignorado (processado)')
+  eq(n(`SELECT count(*) FROM communication_inbound_events WHERE external_event_id='wamid.ORFAO:read' AND status='erro'`), 0, 'órfão NUNCA vira erro')
+
+  // ===== 15. REGRESSÃO nos inbound existentes (nada quebrou) =====
+  console.log('[15] Regressão: cenários inbound intactos')
+  eq(n(`SELECT count(*) FROM communication_conversations`), 1, 'ainda 1 conversa')
+  eq(n(`SELECT count(*) FROM communication_messages WHERE direction='inbound'`), 2, 'ainda 2 mensagens inbound')
+  eq(n(`SELECT count(*) FROM communication_messages WHERE direction='outbound'`), 3, '3 mensagens outbound (OUT1, OUTREG, RACE)')
 
   console.log(`\n== ${falhas === 0 ? '✅ TODOS OS CENÁRIOS E2E PASSARAM' : `❌ ${falhas} ASSERÇÃO(ÕES) FALHARAM`} ==`)
   process.exit(falhas === 0 ? 0 : 1)
