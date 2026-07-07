@@ -1,7 +1,7 @@
 import {
   LayoutDashboard, Users, UserCheck,
   FileText,
-  BarChart3, Settings, Package, Building2, Briefcase, Network, Wallet, Contact, ClipboardList, PackageCheck, Layers, ShieldCheck, ClipboardCheck, Sparkles, UserPlus, type LucideIcon
+  BarChart3, Settings, Package, Building2, Briefcase, Network, Wallet, Contact, ClipboardList, PackageCheck, Layers, ShieldCheck, ClipboardCheck, Sparkles, UserPlus, MessageCircle, type LucideIcon
 } from 'lucide-react'
 import type { UserRole } from '@/types/database'
 
@@ -60,6 +60,8 @@ export const navegacao: ItemNavegacao[] = [
   { label: 'Assistentes', href: '/hub/assistentes', icone: Users, perfis: ['proprietario_hub'] },
   { label: 'Carteiras', href: '/hub/carteiras', icone: Wallet, perfis: ['proprietario_hub'] },
   { label: 'Clientes', href: '/hub/clientes', icone: Contact, perfis: ['proprietario_hub'] },
+  // Mensageria (DEC-023 · E11) — UI operacional do Hub; escopo por hub_id via RLS.
+  { label: 'Mensageria', href: '/mensageria', icone: MessageCircle, perfis: ['proprietario_hub', 'assistente'] },
   // Configurações — grupo recolhível do Proprietário do Hub. Reúne as telas
   // administrativas do HUB (identidade, IA e funções) num único item de 1º nível.
   // Rotas preservadas: nenhum caminho muda, apenas a organização do menu.
