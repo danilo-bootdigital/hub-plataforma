@@ -56,3 +56,23 @@ test('maxTentativas customizado é respeitado', () => {
   assert.equal(p.status, 'erro')
   assert.equal(p.tentativas, 2)
 })
+
+test('adiar → pendente com backoff e DEVOLVE a tentativa (tentativas-1)', () => {
+  const p = proximaTransicao({ tentativas: 1, outcome: 'adiar', agoraMs: T0 })
+  assert.equal(p.status, 'pendente')
+  assert.equal(p.tentativas, 0) // devolvida (contada no claim)
+  assert.equal(p.proxima_tentativa_em, new Date(T0 + 60_000).toISOString())
+  assert.equal(p.processado_em, null)
+  assert.equal(p.erro, null)
+})
+
+test('adiar NUNCA dead-leta, mesmo com tentativas>=max', () => {
+  const p = proximaTransicao({ tentativas: 5, outcome: 'adiar', agoraMs: T0, maxTentativas: 5 })
+  assert.equal(p.status, 'pendente') // não vira 'erro'
+  assert.equal(p.tentativas, 4)
+})
+
+test('adiar não deixa tentativas negativas', () => {
+  const p = proximaTransicao({ tentativas: 0, outcome: 'adiar', agoraMs: T0 })
+  assert.equal(p.tentativas, 0)
+})

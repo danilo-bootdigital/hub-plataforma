@@ -3,7 +3,7 @@
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { criarProcessarEvento, type PersistirArgs, type ResultadoPersistencia } from '../processar-evento'
+import { criarProcessarEvento, type PersistirArgs, type ResultadoPersistencia, type AplicarStatusArgs, type ResultadoAplicarStatus } from '../processar-evento'
 import { drenarInbox, type EventoReivindicado, type PollerDeps } from '../../poller/poller'
 import type { TransicaoPatch } from '../../poller/transicao'
 import type {
@@ -30,13 +30,25 @@ function fakeAdapter(msgOver: Record<string, unknown> = {}): ProviderAdapter {
   }
 }
 
-function deps(over: { persistirResultado?: ResultadoPersistencia; adapter?: ProviderAdapter } = {}) {
+const T0 = 1_700_000_000_000
+
+function deps(over: {
+  persistirResultado?: ResultadoPersistencia
+  adapter?: ProviderAdapter
+  aplicarStatusResultado?: ResultadoAplicarStatus
+  agoraMs?: number
+  graceStatusMs?: number
+} = {}) {
   const chamadas: PersistirArgs[] = []
+  const statusChamadas: AplicarStatusArgs[] = []
   const d = criarProcessarEvento({
     resolveAdapter: (code) => { if (code === 'cloud_api') return over.adapter ?? fakeAdapter(); throw new Error('não registrado') },
     persistir: async (args) => { chamadas.push(args); return over.persistirResultado ?? 'criada' },
+    aplicarStatus: async (args) => { statusChamadas.push(args); return over.aplicarStatusResultado ?? 'aplicado' },
+    agora: () => over.agoraMs ?? T0,
+    graceStatusMs: over.graceStatusMs,
   })
-  return { processar: d, chamadas }
+  return { processar: d, chamadas, statusChamadas }
 }
 
 test('mensagem → normaliza e persiste (ok)', async () => {
@@ -68,11 +80,49 @@ test('normalizador rejeita → falha, sem persistir', async () => {
   assert.equal(chamadas.length, 0)
 })
 
-test('status event → ignorado (ok, sem persistir)', async () => {
-  const { processar, chamadas } = deps()
+test('status event aplicado → ok, chama aplicarStatus (não persiste mensagem)', async () => {
+  const { processar, chamadas, statusChamadas } = deps({ aplicarStatusResultado: 'aplicado' })
   const r = await processar(ev({ external_event_id: 'evt-st' }))
   assert.deepEqual(r, { ok: true })
   assert.equal(chamadas.length, 0)
+  assert.equal(statusChamadas.length, 1)
+  assert.equal(statusChamadas[0].provider, 'cloud_api')
+  assert.equal(statusChamadas[0].providerMessageId, 'wamid.1')
+  assert.equal(statusChamadas[0].status, 'entregue')
+})
+
+for (const resultado of ['ignorado_duplicado', 'ignorado_regressao'] as const) {
+  test(`status ${resultado} → ok (idempotente)`, async () => {
+    const { processar } = deps({ aplicarStatusResultado: resultado })
+    assert.deepEqual(await processar(ev({ external_event_id: 'evt-st' })), { ok: true })
+  })
+}
+
+test('status mensagem_nao_encontrada JOVEM → adiar (não consome tentativa)', async () => {
+  const { processar } = deps({ aplicarStatusResultado: 'mensagem_nao_encontrada', agoraMs: T0 })
+  const r = await processar(ev({ external_event_id: 'evt-st', recebido_em: new Date(T0 - 1_000).toISOString() }))
+  assert.equal(r.ok, 'adiar')
+})
+
+test('status mensagem_nao_encontrada ENVELHECIDO → ignorado (terminal)', async () => {
+  const { processar } = deps({ aplicarStatusResultado: 'mensagem_nao_encontrada', agoraMs: T0 })
+  const r = await processar(ev({ external_event_id: 'evt-st', recebido_em: new Date(T0 - 10 * 60_000).toISOString() }))
+  assert.equal(r.ok, 'ignorado')
+})
+
+test('status mensagem_nao_encontrada sem recebido_em → ignorado (evita loop infinito)', async () => {
+  const { processar } = deps({ aplicarStatusResultado: 'mensagem_nao_encontrada', agoraMs: T0 })
+  const r = await processar(ev({ external_event_id: 'evt-st' }))  // recebido_em ausente
+  assert.equal(r.ok, 'ignorado')
+})
+
+test('status com providerMessageId ausente → falha (normalizador rejeita), sem aplicarStatus', async () => {
+  const adapter = fakeAdapter()
+  adapter.mapStatus = () => [{ externalEventId: 'evt-st', accountExternalId: 'PNID1', providerMessageId: '', status: 'entregue' }]
+  const { processar, statusChamadas } = deps({ adapter })
+  const r = await processar(ev({ external_event_id: 'evt-st' }))
+  assert.ok(!(r.ok === true) && r.ok === false && /normaliz/.test((r as { erro: string }).erro))
+  assert.equal(statusChamadas.length, 0)
 })
 
 test('provider não registrado → falha', async () => {
@@ -103,6 +153,8 @@ test('integração: drenarInbox processa payload REAL do Cloud API e persiste no
   const processar = criarProcessarEvento({
     resolveAdapter: (code) => { if (code === 'cloud_api') return cloud; throw new Error('x') },
     persistir: async (a) => { persistidas.push(a); return 'criada' },
+    aplicarStatus: async () => 'aplicado',
+    agora: () => 1_700_000_000_000,
   })
   const pollerDeps: PollerDeps = {
     claim: async () => [ev({ external_event_id: 'wamid.REAL', payload: payloadReal })],

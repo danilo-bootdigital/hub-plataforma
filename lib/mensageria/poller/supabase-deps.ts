@@ -6,7 +6,7 @@
 import '@/lib/mensageria/providers/register-all' // auto-registra adapters no registry
 import { resolveProvider } from '@/lib/mensageria/providers/registry'
 import { createAdminClient } from '@/lib/supabase/admin'
-import { criarProcessarEvento, type PersistirArgs, type ResultadoPersistencia } from '@/lib/mensageria/persistencia/processar-evento'
+import { criarProcessarEvento, type PersistirArgs, type ResultadoPersistencia, type AplicarStatusArgs, type ResultadoAplicarStatus } from '@/lib/mensageria/persistencia/processar-evento'
 import type { PollerDeps, EventoReivindicado } from '@/lib/mensageria/poller/poller'
 import type { TransicaoPatch } from '@/lib/mensageria/poller/transicao'
 
@@ -25,6 +25,7 @@ async function claim(admin: AdminClient, limite: number, visibilidadeSeg: number
     account_external_id: (row.account_external_id as string | null) ?? null,
     payload: row.payload,
     tentativas: Number(row.tentativas),
+    recebido_em: (row.created_at as string | null) ?? null,
   }))
 }
 
@@ -43,6 +44,19 @@ async function persistir(admin: AdminClient, args: PersistirArgs): Promise<Resul
   })
   if (error) throw new Error(`persistir RPC: ${error.message}`)
   return data as ResultadoPersistencia
+}
+
+async function aplicarStatus(admin: AdminClient, args: AplicarStatusArgs): Promise<ResultadoAplicarStatus> {
+  const { data, error } = await admin.rpc('communication_aplicar_status', {
+    p_provider: args.provider,
+    p_provider_message_id: args.providerMessageId,
+    p_status: args.status,
+    p_erro: args.erro ?? null,
+    p_ocorrido_em: args.ocorridoEm ?? null,
+  })
+  if (error) throw new Error(`aplicar_status RPC: ${error.message}`)
+  const resultado = (data as { resultado?: string } | null)?.resultado
+  return (resultado ?? 'mensagem_nao_encontrada') as ResultadoAplicarStatus
 }
 
 async function aplicar(admin: AdminClient, id: string, patch: TransicaoPatch): Promise<void> {
@@ -67,6 +81,8 @@ export function criarPollerDepsSupabase(): PollerDeps {
     processar: criarProcessarEvento({
       resolveAdapter: resolveProvider,
       persistir: (a) => persistir(admin, a),
+      aplicarStatus: (a) => aplicarStatus(admin, a),
+      agora: () => Date.now(),
     }),
     aplicar: (id, patch) => aplicar(admin, id, patch),
     agora: () => Date.now(),

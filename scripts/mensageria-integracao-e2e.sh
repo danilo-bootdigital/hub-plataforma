@@ -28,7 +28,7 @@ CREATE OR REPLACE FUNCTION auth.uid() RETURNS uuid LANGUAGE sql AS 'SELECT NULL:
 CREATE OR REPLACE FUNCTION get_hub_id() RETURNS uuid LANGUAGE sql AS 'SELECT NULL::uuid';
 CREATE OR REPLACE FUNCTION get_organization_id() RETURNS uuid LANGUAGE sql AS 'SELECT NULL::uuid';
 SQL
-for m in 072_mensageria_communication 073_mensageria_poller_claim 074_mensageria_persistir_mensagem 075_mensageria_rpc_grants_fix; do
+for m in 072_mensageria_communication 073_mensageria_poller_claim 074_mensageria_persistir_mensagem 075_mensageria_rpc_grants_fix 076_mensageria_envio 077_mensageria_aplicar_status; do
   Q -v ON_ERROR_STOP=1 -q -f "supabase/migrations/$m.sql" >/dev/null 2>&1 && echo "  ✅ $m" || { echo "  ❌ $m FALHOU"; exit 1; }
 done
 Q -v ON_ERROR_STOP=1 -q -c "INSERT INTO hubs DEFAULT VALUES;" \

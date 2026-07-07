@@ -12,7 +12,7 @@ export const POLLER_DEFAULTS = {
 
 export interface TransicaoInput {
   tentativas: number           // tentativas JÁ CONTADAS no claim (inclui a atual)
-  outcome: 'ok' | 'falha'
+  outcome: 'ok' | 'falha' | 'adiar'
   erro?: string
   agoraMs: number              // Date.now() injetado
   maxTentativas?: number
@@ -45,6 +45,20 @@ export function proximaTransicao(input: TransicaoInput): TransicaoPatch {
       tentativas: input.tentativas,
       proxima_tentativa_em: null,
       processado_em: new Date(input.agoraMs).toISOString(),
+      erro: null,
+    }
+  }
+
+  // Adiar (E9.5): reagenda com backoff mas DEVOLVE a tentativa contada no claim
+  // (tentativas-1) → não caminha para o dead-letter. O término é por IDADE do evento
+  // (decidido em processar-evento), não por esgotar tentativas.
+  if (input.outcome === 'adiar') {
+    const backoffSeg = calcularBackoffSeg(input.tentativas, base, cap)
+    return {
+      status: 'pendente',
+      tentativas: Math.max(0, input.tentativas - 1),
+      proxima_tentativa_em: new Date(input.agoraMs + backoffSeg * 1000).toISOString(),
+      processado_em: null,
       erro: null,
     }
   }

@@ -13,9 +13,19 @@ export interface EventoReivindicado {
   account_external_id: string | null
   payload: unknown
   tentativas: number
+  recebido_em?: string | null   // created_at do inbox (ISO); base da idade em adiar/ignorado (E9.5)
 }
 
-export type ResultadoProcessamento = { ok: true } | { ok: false; erro: string }
+// Desfecho do processamento de um evento:
+//  - ok:true      → processado (ack)
+//  - ok:'ignorado'→ terminal, tratado como processado (ack) — ex.: status sem mensagem, evento velho
+//  - ok:'adiar'   → reagenda SEM consumir tentativa e sem dead-letter — ex.: status jovem aguardando envio
+//  - ok:false     → falha (backoff → dead-letter no teto)
+export type ResultadoProcessamento =
+  | { ok: true }
+  | { ok: false; erro: string }
+  | { ok: 'adiar'; motivo: string }
+  | { ok: 'ignorado'; motivo: string }
 
 export interface PollerDeps {
   claim: (limite: number, visibilidadeSeg: number, maxTentativas: number) => Promise<EventoReivindicado[]>
@@ -57,10 +67,17 @@ export async function drenarInbox(deps: PollerDeps, opts: PollerOpts = {}): Prom
       outcome = { ok: false, erro: e instanceof Error ? e.message : 'erro no processamento' }
     }
 
+    // ok/ignorado → processado; adiar → reagenda sem consumir tentativa; false → falha
+    let modo: 'ok' | 'falha' | 'adiar'
+    let erroMsg: string | undefined
+    if (outcome.ok === true || outcome.ok === 'ignorado') modo = 'ok'
+    else if (outcome.ok === 'adiar') modo = 'adiar'
+    else { modo = 'falha'; erroMsg = outcome.erro }
+
     const patch = proximaTransicao({
       tentativas: ev.tentativas,
-      outcome: outcome.ok ? 'ok' : 'falha',
-      erro: outcome.ok ? undefined : outcome.erro,
+      outcome: modo,
+      erro: erroMsg,
       agoraMs: deps.agora(),
       maxTentativas,
       backoffBaseSeg: opts.backoffBaseSeg,

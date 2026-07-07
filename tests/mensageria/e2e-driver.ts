@@ -9,7 +9,7 @@ import { createHmac } from 'node:crypto'
 import { receberWebhook, type InboxRow } from '../../lib/mensageria/webhook-receiver'
 import { drenarInbox, type EventoReivindicado, type PollerDeps } from '../../lib/mensageria/poller/poller'
 import type { TransicaoPatch } from '../../lib/mensageria/poller/transicao'
-import { criarProcessarEvento, type PersistirArgs, type ResultadoPersistencia } from '../../lib/mensageria/persistencia/processar-evento'
+import { criarProcessarEvento, type PersistirArgs, type ResultadoPersistencia, type AplicarStatusArgs, type ResultadoAplicarStatus } from '../../lib/mensageria/persistencia/processar-evento'
 import { createCloudApiAdapter } from '../../lib/mensageria/providers/cloud-api'
 import type { ProviderAdapter } from '../../lib/mensageria/providers/tipos'
 
@@ -40,11 +40,15 @@ async function claim(limite: number, visibilidadeSeg: number, maxTentativas: num
   return rows.map((r) => ({
     id: String(r.id), provider: String(r.provider), external_event_id: String(r.external_event_id),
     account_external_id: (r.account_external_id as string | null) ?? null, payload: r.payload, tentativas: Number(r.tentativas),
+    recebido_em: (r.created_at as string | null) ?? null,
   }))
 }
 async function persistir(args: PersistirArgs): Promise<ResultadoPersistencia> {
   const m = args.msg
   return psql(`SELECT communication_persistir_mensagem(${lit(args.provider)}, ${lit(args.accountExternalId)}, ${lit(m.externalUserId)}, ${lit(m.telefone)}, ${lit(m.displayName)}, ${lit(m.tipo)}, ${lit(m.corpo)}, ${lit(m.providerMessageId)}, ${ts(m.ocorridoEm)})`) as ResultadoPersistencia
+}
+async function aplicarStatus(args: AplicarStatusArgs): Promise<ResultadoAplicarStatus> {
+  return psql(`SELECT (communication_aplicar_status(${lit(args.provider)}, ${lit(args.providerMessageId)}, ${lit(args.status)}, ${lit(args.erro)}, ${ts(args.ocorridoEm)}))->>'resultado'`) as ResultadoAplicarStatus
 }
 async function aplicar(id: string, p: TransicaoPatch): Promise<void> {
   psql(`UPDATE communication_inbound_events SET status=${lit(p.status)}, tentativas=${p.tentativas}, proxima_tentativa_em=${ts(p.proxima_tentativa_em)}, processado_em=${ts(p.processado_em)}, erro=${lit(p.erro)} WHERE id=${lit(id)}`)
@@ -57,7 +61,7 @@ const resolve = (code: string): ProviderAdapter => { if (code === 'cloud_api') r
 const sig = (raw: string) => 'sha256=' + createHmac('sha256', APP_SECRET).update(raw).digest('hex')
 
 const webhookDeps = { resolve, inserirInbox }
-const pollerDeps: PollerDeps = { claim, processar: criarProcessarEvento({ resolveAdapter: resolve, persistir }), aplicar, agora: () => Date.now() }
+const pollerDeps: PollerDeps = { claim, processar: criarProcessarEvento({ resolveAdapter: resolve, persistir, aplicarStatus, agora: () => Date.now() }), aplicar, agora: () => Date.now() }
 
 // ---------- asserts ----------
 let falhas = 0

@@ -3,14 +3,20 @@
 // reivindicado (payload BRUTO), re-parseia via adapter, acha o evento pelo external_event_id,
 // normaliza (8B.1) e persiste (RPC communication_persistir_mensagem, injetada como `persistir`).
 //
-// ESCOPO 8B.2: só orquestração de persistência. NÃO baixa mídia, NÃO cria attachment,
-// NÃO envia, NÃO agenda. Status events são ignorados (reconciliação é do envio/E9).
+// ESCOPO 8B.2: só orquestração de persistência de MENSAGEM. NÃO baixa mídia, NÃO cria
+// attachment, NÃO envia, NÃO agenda.
+// E9.5: o ramo de STATUS passa a reconciliar via RPC communication_aplicar_status
+// (injetada como `aplicarStatus`), com a política aprovada de adiar/ignorado.
 
 import type { EventoReivindicado, ResultadoProcessamento } from '../poller/poller'
-import type { ProviderAdapter, NormalizedInboundMessage } from '../providers/tipos'
-import { normalizarMensagem } from '../normalizacao/normalizador'
+import type { ProviderAdapter, NormalizedInboundMessage, DeliveryStatusValor } from '../providers/tipos'
+import { normalizarMensagem, normalizarStatus } from '../normalizacao/normalizador'
 
 export type ResultadoPersistencia = 'criada' | 'duplicada' | 'conta_nao_encontrada'
+
+// Resultado da RPC communication_aplicar_status (077), campo `resultado`.
+export type ResultadoAplicarStatus =
+  | 'aplicado' | 'ignorado_duplicado' | 'ignorado_regressao' | 'mensagem_nao_encontrada'
 
 export interface PersistirArgs {
   provider: string
@@ -18,9 +24,25 @@ export interface PersistirArgs {
   msg: NormalizedInboundMessage
 }
 
+export interface AplicarStatusArgs {
+  provider: string
+  providerMessageId: string
+  status: DeliveryStatusValor
+  erro?: string
+  ocorridoEm?: string
+}
+
+// Janela de espera para status cujo wamid ainda não tem mensagem correspondente
+// (corrida com confirmar_envio / caminho confirmacao_falhou). Dentro dela: adiar;
+// depois: ignorar. Default 5 min; injetável para teste.
+export const GRACE_STATUS_MS = 5 * 60_000
+
 export interface ProcessarDeps {
   resolveAdapter: (code: string) => ProviderAdapter          // registry.resolveProvider
   persistir: (args: PersistirArgs) => Promise<ResultadoPersistencia> // RPC communication_persistir_mensagem
+  aplicarStatus: (args: AplicarStatusArgs) => Promise<ResultadoAplicarStatus> // RPC communication_aplicar_status
+  agora: () => number                                        // Date.now injetável (idade do evento)
+  graceStatusMs?: number                                     // default GRACE_STATUS_MS
 }
 
 export function criarProcessarEvento(deps: ProcessarDeps): (ev: EventoReivindicado) => Promise<ResultadoProcessamento> {
@@ -52,9 +74,31 @@ export function criarProcessarEvento(deps: ProcessarDeps): (ev: EventoReivindica
       return { ok: true }
     }
 
-    // (b) é um STATUS? Ignorado nesta fase (reconciliação de status é do envio/E9).
+    // (b) é um STATUS de entrega? Reconcilia via RPC communication_aplicar_status (E9.5).
     const statusEvento = adapter.mapStatus(ev.payload).find((s) => s.externalEventId === ev.external_event_id)
     if (statusEvento) {
+      const norm = normalizarStatus(statusEvento)
+      if (!norm.ok) {
+        return { ok: false, erro: `normalização (status): ${norm.motivo}` }
+      }
+      const resultado = await deps.aplicarStatus({
+        provider: ev.provider,
+        providerMessageId: norm.valor.providerMessageId,
+        status: norm.valor.status,
+        ...(norm.valor.erro ? { erro: norm.valor.erro } : {}),
+        ...(norm.valor.ocorridoEm ? { ocorridoEm: norm.valor.ocorridoEm } : {}),
+      })
+      if (resultado === 'mensagem_nao_encontrada') {
+        // Corrida: o status chegou antes de a mensagem ter wamid gravado. Jovem → adiar
+        // (sem consumir tentativa); envelhecido → ignorar (terminal). A idade é wall-clock.
+        const grace = deps.graceStatusMs ?? GRACE_STATUS_MS
+        const recebidoMs = ev.recebido_em ? Date.parse(ev.recebido_em) : NaN
+        const jovem = Number.isFinite(recebidoMs) && (deps.agora() - recebidoMs) < grace
+        return jovem
+          ? { ok: 'adiar', motivo: 'status sem mensagem correspondente (aguardando confirmação de envio)' }
+          : { ok: 'ignorado', motivo: 'status sem mensagem correspondente após janela de espera' }
+      }
+      // aplicado | ignorado_duplicado | ignorado_regressao → processado (idempotente)
       return { ok: true }
     }
 

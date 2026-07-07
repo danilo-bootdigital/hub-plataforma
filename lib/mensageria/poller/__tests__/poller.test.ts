@@ -69,6 +69,21 @@ test('claim recebe lote, visibilidade e maxTentativas das opções', async () =>
   assert.deepEqual(claims[0], { limite: 7, visibilidadeSeg: 42, maxTentativas: 3 })
 })
 
+test('ignorado → processado (ack, como ok)', async () => {
+  const { d, aplicados } = deps([evento('1', 2)], async () => ({ ok: 'ignorado', motivo: 'm' }))
+  const r = await drenarInbox(d)
+  assert.deepEqual(r, { reivindicados: 1, processados: 1, reagendados: 0, deadletter: 0 })
+  assert.equal(aplicados[0].patch.status, 'processado')
+})
+
+test('adiar → reagendado (pendente), devolve a tentativa e nunca dead-leta', async () => {
+  const { d, aplicados } = deps([evento('1', 5)], async () => ({ ok: 'adiar', motivo: 'm' }))
+  const r = await drenarInbox(d)
+  assert.deepEqual(r, { reivindicados: 1, processados: 0, reagendados: 1, deadletter: 0 })
+  assert.equal(aplicados[0].patch.status, 'pendente') // mesmo com tentativas=5
+  assert.equal(aplicados[0].patch.tentativas, 4)       // devolvida
+})
+
 test('mix: 1 ok + 1 falha-retry + 1 dead-letter', async () => {
   const evs = [evento('ok', 1), evento('retry', 1), evento('dead', 5)]
   const { d, aplicados } = deps(evs, async (ev) => (ev.id === 'ok' ? { ok: true } : { ok: false, erro: 'e' }))
