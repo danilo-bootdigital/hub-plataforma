@@ -7,7 +7,6 @@ export type PipelineStatus =
   | 'novo_orcamento'
   | 'orcamento_enviado'
   | 'aguardando_receita'
-  | 'receita_em_analise'
   | 'aguardando_comprovante_pagamento'
   | 'pagamento_confirmado'
   | 'pedido_enviado_industria'
@@ -22,10 +21,9 @@ export const PIPELINE_STAGES: EtapaPipeline[] = [
   { key: 'novo_orcamento', label: 'Novo orçamento', order: 1 },
   { key: 'orcamento_enviado', label: 'Orçamento enviado', order: 2 },
   { key: 'aguardando_receita', label: 'Aguardando receita', order: 3 },
-  { key: 'receita_em_analise', label: 'Receita em análise', order: 4 },
-  { key: 'aguardando_comprovante_pagamento', label: 'Aguardando comprovante de pagamento', order: 5 },
-  { key: 'pagamento_confirmado', label: 'Pagamento confirmado', order: 6 },
-  { key: 'pedido_enviado_industria', label: 'Pedido enviado à indústria', order: 7 },
+  { key: 'aguardando_comprovante_pagamento', label: 'Aguardando comprovante de pagamento', order: 4 },
+  { key: 'pagamento_confirmado', label: 'Pagamento confirmado', order: 5 },
+  { key: 'pedido_enviado_industria', label: 'Pedido enviado à indústria', order: 6 },
 ]
 
 const CHAVES = new Set<string>(PIPELINE_STAGES.map((e) => e.key))
