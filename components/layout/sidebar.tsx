@@ -41,7 +41,7 @@ function LinkMenu({ item, pathname, aninhado }: { item: ItemNavegacao; pathname:
       <span className="flex-1">{item.label}</span>
       {/* Badge placeholder for future notifications */}
       {item.href === '/caixa-de-entrada' && (
-        <span className="flex h-5 min-w-[20px] items-center justify-center rounded-full bg-emerald-100 px-1.5 text-[11px] font-semibold text-emerald-700">
+        <span className="flex h-5 min-w-[20px] items-center justify-center rounded-full bg-[var(--brand-accent)] px-1.5 text-[11px] font-semibold text-[var(--brand-primary)]">
           12
         </span>
       )}

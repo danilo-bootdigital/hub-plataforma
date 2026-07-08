@@ -4,7 +4,7 @@ import { Header } from '@/components/layout/header'
 import { requireAuth } from '@/lib/auth/server'
 import { resolverPermissoes } from '@/lib/rbac'
 import { getBrandingAtual } from '@/lib/hub-branding'
-import { estiloMarca } from '@/lib/branding'
+import { estiloMarca, estiloIndustria } from '@/lib/branding'
 
 // Título + favicon dinâmicos por Hub (white-label — DEC-021 Config-2).
 export async function generateMetadata(): Promise<Metadata> {
@@ -30,7 +30,10 @@ export default async function DashboardLayout({
   const branding = await getBrandingAtual()
 
   return (
-    <div className="flex h-screen bg-slate-50" style={estiloMarca(branding.corPrimaria)}>
+    <div
+      className="flex h-screen bg-slate-50"
+      style={branding.ehHub ? estiloMarca(branding.corPrimaria) : estiloIndustria()}
+    >
       <Sidebar logoUrl={branding.logoUrl} cargo={profile?.cargo} permissoes={permissoes} />
       <div className="flex flex-1 flex-col overflow-hidden min-w-0">
         <Header logoUrl={branding.logoUrl} permissoes={permissoes} />

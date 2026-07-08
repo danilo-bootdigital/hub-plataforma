@@ -62,7 +62,7 @@ export async function Header({ logoUrl, permissoes }: { logoUrl?: string | null;
         )}
         <SinoNotificacoes />
         <Avatar className="h-9 w-9 border-2 border-slate-100">
-          <AvatarFallback className="bg-emerald-100 text-emerald-700 text-sm font-semibold">
+          <AvatarFallback className="bg-[var(--brand-accent)] text-[var(--brand-primary)] text-sm font-semibold">
             {iniciais}
           </AvatarFallback>
         </Avatar>
