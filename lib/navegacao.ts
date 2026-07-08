@@ -1,7 +1,7 @@
 import {
   LayoutDashboard, Users, UserCheck,
   FileText,
-  BarChart3, Settings, Package, Building2, Briefcase, Network, Wallet, Contact, ClipboardList, PackageCheck, Layers, ShieldCheck, ClipboardCheck, Sparkles, UserPlus, type LucideIcon
+  BarChart3, Settings, Package, Building2, Briefcase, Network, Wallet, Contact, ClipboardList, PackageCheck, Layers, ShieldCheck, ClipboardCheck, Sparkles, UserPlus, MessageCircle, KanbanSquare, type LucideIcon
 } from 'lucide-react'
 import type { UserRole } from '@/types/database'
 
@@ -52,6 +52,9 @@ export const navegacao: ItemNavegacao[] = [
   { label: 'Produtos', href: '/hub/produtos', icone: Package, perfis: ['proprietario_hub', 'assistente'], modulo: 'produtos' },
   // Orçamentos — área operacional do Hub (DEC-017); escopo por hub_id no servidor.
   { label: 'Orçamentos', href: '/hub/orcamentos', icone: FileText, perfis: ['proprietario_hub', 'assistente'], modulo: 'orcamentos' },
+  // Pipeline / Kanban — visão operacional dos Orçamentos por etapa (MVP). Mesma
+  // regra de visibilidade dos Orçamentos (módulo 'orcamentos'); escopo por hub_id.
+  { label: 'Pipeline', href: '/hub/pipeline', icone: KanbanSquare, perfis: ['proprietario_hub', 'assistente'], modulo: 'orcamentos' },
   // Validação de Receita — módulo do Hub (DEC-019). Proprietário sempre; Assistente se a Função conceder 'visualizar' em 'receita'.
   { label: 'Validação de Receita', href: '/hub/validacao-receita', icone: ClipboardCheck, perfis: ['proprietario_hub', 'assistente'], modulo: 'receita' },
   // Cadastro de Clientes — pré-cadastro do Hub (DEC-020). Proprietário e Assistente
@@ -60,6 +63,8 @@ export const navegacao: ItemNavegacao[] = [
   { label: 'Assistentes', href: '/hub/assistentes', icone: Users, perfis: ['proprietario_hub'] },
   { label: 'Carteiras', href: '/hub/carteiras', icone: Wallet, perfis: ['proprietario_hub'] },
   { label: 'Clientes', href: '/hub/clientes', icone: Contact, perfis: ['proprietario_hub'] },
+  // Mensageria (DEC-023 · E11) — UI operacional do Hub; escopo por hub_id via RLS.
+  { label: 'Mensageria', href: '/mensageria', icone: MessageCircle, perfis: ['proprietario_hub', 'assistente'] },
   // Configurações — grupo recolhível do Proprietário do Hub. Reúne as telas
   // administrativas do HUB (identidade, IA e funções) num único item de 1º nível.
   // Rotas preservadas: nenhum caminho muda, apenas a organização do menu.

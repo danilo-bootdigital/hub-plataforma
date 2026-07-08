@@ -45,3 +45,4 @@ next-env.d.ts
 .serena/
 supabase/.temp/
 .tmp-conferencia/
+.tmp-mensageria/

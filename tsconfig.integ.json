@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmitOnError": true,
+    "outDir": ".tmp-integ",
+    "rootDir": ".",
+    "types": ["node"]
+  },
+  "include": ["tests/mensageria/**/*.ts", "lib/mensageria/**/*.ts"],
+  "exclude": ["lib/mensageria/poller/supabase-deps.ts", "lib/mensageria/envio/acao-enviar-texto.ts"]
+}

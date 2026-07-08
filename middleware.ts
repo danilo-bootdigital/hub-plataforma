@@ -99,6 +99,7 @@ export async function middleware(request: NextRequest) {
       ['/assistente/clientes', 'clientes'],
       ['/assistente/orcamentos', 'orcamentos'],
       ['/hub/orcamentos', 'orcamentos'],
+      ['/hub/pipeline', 'orcamentos'],
       ['/assistente/prepedidos', 'pedidos'],
       ['/hub/produtos', 'produtos'],
     ]

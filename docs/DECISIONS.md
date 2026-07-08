@@ -13,7 +13,7 @@
 3. **Identificador sequencial.** Toda decisão futura recebe o próximo identificador sequencial (**DEC-011, DEC-012, …**). Identificadores nunca são reutilizados nem reaproveitados.
 4. **Status possíveis:** `Aprovada / vigente` · `Substituída por DEC-XXX` · `Revogada`.
 
-> A próxima decisão a ser registrada será a **DEC-014**.
+> A próxima decisão a ser registrada será a **DEC-024**.
 
 ---
 
@@ -442,3 +442,103 @@ Matriz RBAC completa, estrutura de menus por perfil, módulos exclusivos/compart
 - **Impacto:** **não destrutivo em Expand** — reorganiza menu/RBAC/guards; remove a aprovação interna de orçamento; nenhum dado é apagado. A retirada dos módulos legados (Fornecedor, `/assistente/orcamentos`, Pré-pedido) segue as DECs próprias, na fase Contract.
 - **Data:** 2026-07-05
 - **Status:** **Aprovada / vigente / em produção** — separação de ACESSO implementada (menu com `perfis` explícitos + middleware bloqueando a Indústria em toda operação e o Hub na administração; cobre páginas, Server Actions e APIs por path). Não-destrutivo: legado preservado. **Follow-up (fluxo, não acesso):** com a Indústria fora do orçamento, o passo "Gerar → `aguardando_aprovacao_interna`" fica sem aprovador — definir como o Hub avança (decisão de fluxo, não coberta por esta DEC). Pré-pedido mantido (avaliação pós-reunião).
+
+---
+
+## DEC-023 — Mensageria (comunicação omnichannel do Hub, agnóstica de canal e de provider)
+
+Cria o módulo **Mensageria**: a camada única responsável por **centralizar todas as comunicações do Hub**, com arquitetura **omnichannel** desde o nascimento. O antigo recorte "módulo WhatsApp" é **descartado**: **WhatsApp deixa de existir como conceito de domínio** e passa a ser apenas **um canal/provider suportado** pela Mensageria — o primeiro. **Nenhuma** parte do domínio pode se acoplar a um canal ou a um provider específico.
+
+- **Primeiro canal:** **WhatsApp Business Platform (Cloud API da Meta)**.
+- **Canais futuros (sem alterar o domínio):** Instagram Direct, Facebook Messenger, Telegram, Chat do Site, E-mail, SMS, RCS e novos providers.
+- **Evolution API:** apenas **referência técnica do legado** (aproveitar conhecimento adquirido — mídia, ordenação, reprocessamento, casos de borda). **Nunca** dependência arquitetural.
+
+O domínio (schema, regras de negócio, orçamento, pipeline, receita, escopo por Hub) é **totalmente independente** de canal e de provider, e permite **adicionar canais ou trocar providers sem alterar regra de negócio**.
+
+Subordina-se à **DEC-022** (operação 100% do Hub — `admin`/`gestor` **não** acessam o módulo). Coerente com **DEC-015/016** (RBAC Perfil→Função→Permissões), **DEC-021** (IA não responde mensagens automaticamente), **DEC-014** (bloqueador `supplier_id` no Orçamento) e **DEC-018/019/020** (padrões de dado sensível de saúde: bucket privado, signed URL, service role, `get_hub_id()`).
+
+### 1. Posicionamento conceitual (centro é Contato/Cliente)
+- **O centro do sistema é Contato/Cliente**, não a Mensageria. Fluxo comercial oficial: **Contato/Cliente → Orçamento → Pipeline → Pedido → Financeiro → Histórico.**
+- A **Mensageria participa** do fluxo, mas **não é obrigatória**.
+- **Canais de origem** de uma operação: Mensageria (WhatsApp e futuros), cadastro manual, telefone, atendimento presencial, e-mail, indicação e integrações futuras. **Nenhum canal é obrigatório.**
+- **Regras de independência comercial:**
+  - O Orçamento **pode** nascer de uma conversa da Mensageria.
+  - O Orçamento **também deve poder** ser criado **manualmente, sem conversa vinculada**.
+  - O **Pipeline** reflete o estado comercial do Orçamento/Pedido e **não depende** da Mensageria.
+  - A Mensageria **enriquece o atendimento e acelera a conversão**, mas **não bloqueia** fluxos comerciais originados fora dela.
+
+### 2. Abstração de canal e de provider
+- **Duas dimensões ortogonais, ambas abstratas:**
+  - **Canal** (`channel`) = o meio de comunicação (whatsapp, instagram, messenger, telegram, webchat, email, sms, rcs …). Conceito de domínio, universal.
+  - **Provider** (`provider`) = o adaptador técnico que atende um ou mais canais (ex.: Cloud API atende WhatsApp; um provider de e-mail atende o canal e-mail). Detalhe de integração.
+- **Provider Adapter (porta única):** todo contato com o mundo externo passa por uma **interface única** que expõe operações **permanentes do domínio**: conectar/desconectar uma conta de canal, **enviar** mensagem, **receber e normalizar** mensagens/eventos, reportar **status de entrega/leitura**. O domínio conhece **apenas** essa interface.
+- **Nenhuma regra de negócio conhece** Meta, Cloud API, WhatsApp, Evolution, Telegram ou qualquer outro nome de provider/canal concreto. Esses nomes existem **somente** como dado (catálogo) e dentro dos adaptadores.
+- **Especificidades ficam no adaptador:** mecanismo de conexão (QR, tokens/credenciais, número/página verificados), formato de webhook, janelas de atendimento e modelos de mensagem (*templates*) são **do provider**, nunca do domínio.
+
+### 3. Modelo de domínio (aditivo — conceitos universais)
+> Refinamento do modelo sugerido: separei **catálogo (canal/provider)** de **conta conectada**, isolei a **identidade** do participante e separei o **inbox bruto idempotente** dos **eventos de ciclo de vida da mensagem**. Nomes de tabela em inglês (padrão técnico da plataforma: `contacts`, `quotes`, `hubs`); a **interface é 100% em português**.
+
+**Catálogos (referência global, sem `hub_id`, somente leitura para a operação):**
+- **`communication_channels`** — tipos de canal suportados (whatsapp, instagram, messenger, telegram, webchat, email, sms, rcs). Adicionar canal = **inserir linha**, sem mudar domínio.
+- **`message_providers`** — providers/adaptadores (ex.: `cloud_api`; `evolution` marcado como **legado/referência**; futuros). Cada provider declara os canais que atende.
+
+**Entidades operacionais (todas com `hub_id` + RLS):**
+- **`communication_accounts`** — a conta/caixa conectada de um Hub: `hub_id`, `channel`, `provider`, identificador externo da conta (nº/página/handle), status. **Credenciais tratadas pelo adaptador, fora do domínio.**
+- **`channel_identities`** — identidade do participante externo → Contato canônico: `hub_id`, `channel`, `provider`, `external_user_id`, `telefone?`, `display_name`, **`contact_id` (→ `contacts`)**. Resolve `provider → external_user_id → telefone → contact_id`. **Não é cadastro paralelo** — `contacts` continua canônico.
+- **`conversations`** — `hub_id`, `account_id`, `channel`, `contact_id`, `assigned_user_id`, `status`, `unread_count`, `last_message_at`, `created_at`, `updated_at`.
+- **`conversation_participants`** — participantes da conversa (`channel_identity_id` para externos, `user_id` para usuários do Hub, com papel). Suporta 1:1 e **futuros grupos**, sem remodelar.
+- **`messages`** — `hub_id`, `conversation_id`, `direction` (inbound/outbound), participante remetente, tipo, corpo/normalizado, `provider`, `provider_message_id`, `status`, timestamps.
+- **`message_attachments`** — metadados de mídia: `hub_id`, `message_id`, `storage_path`, `mime`, `tamanho`, **`sensivel_saude` (flag)**. Arquivo no bucket privado (banco só metadados).
+- **`message_events`** — **ciclo de vida por mensagem** (enfileirada → enviada → entregue → lida → falha) + `erro`.
+- **`inbound_events`** — **inbox bruto idempotente** (webhooks de entrada): `provider`, **`external_event_id` (UNIQUE por provider)**, `payload`, `status`, `processado_em`, `erro`. Garante **deduplicação completa** antes de qualquer normalização.
+
+**Status do atendimento (universal, independente de canal):** `Novo`, `Em atendimento`, `Aguardando cliente`, `Aguardando receita`, `Orçamento enviado`, `Pedido em andamento`, `Finalizado`, `Perdido`.
+
+### 4. Escopo por Hub (RLS)
+- **Toda entidade operacional** (`communication_accounts`, `channel_identities`, `conversations`, `conversation_participants`, `messages`, `message_attachments`, `message_events`, `inbound_events`) possui **`hub_id`** e **RLS desde a primeira migration**, via **`get_hub_id()`** (DEC-020). A garantia é a RLS no banco; `hub_id` como coluna, sozinho, é falsa segurança.
+- Catálogos (`communication_channels`, `message_providers`) são referência global (sem `hub_id`).
+
+### 5. Permissões (RBAC — DEC-015 / DEC-016 / DEC-022)
+- Usa **integralmente a DEC-015** — **sem** sistema de permissões próprio. **Emenda à DEC-015 §204:** o módulo RBAC previsto como `whatsapp` passa oficialmente a se chamar **`mensageria`**, **preservando exatamente o mesmo RBAC** (o texto da DEC-015 permanece imutável; a renomeação vive nesta DEC, como a DEC-016 emendou a DEC-015). WhatsApp deixa de ser módulo/conceito e passa a ser um canal/provider dentro de `mensageria`. Ações do módulo: `visualizar, criar, editar, excluir` + operacionais `atribuir`, `transferir`, `configurar`.
+- **Proprietário do Hub:** vê **todas** as conversas do próprio Hub (escopo `hub`); distribui/transfere, assume atendimento, configura contas/mensagens/regras.
+- **Assistente:** vê **apenas** as conversas permitidas pela **Função** configurada (DEC-015); atende e altera status conforme a Função; não vê configurações sensíveis nem conversas fora do seu escopo.
+- **Indústria (`admin`/`gestor`): sem acesso** (DEC-022) — bloqueio em menu + middleware + guard de página/Server Action.
+
+### 6. Identidade dos contatos
+- **Sem cadastro paralelo.** A Mensageria **identifica participantes**; não cria clientes.
+- Cadeia de resolução (via `channel_identities`): **`provider → external_user_id → telefone → contact_id`**.
+- **`contacts` continua a entidade canônica** de Contato/Cliente.
+
+### 7. Eventos e idempotência
+- **Inbox idempotente** (`inbound_events`): registra `external_event_id`, `provider`, `status`, `processado_em`, `erro`; **`external_event_id` único por provider** garante **deduplicação completa** — impede mensagens duplicadas e corrupção de `unread_count`/`last_message_at` em reentregas.
+- Só após dedup+normalização o evento vira `messages`/`message_events`. Nada do provider vai direto para a tela: `Provider (Adaptador) → Inbox → Normalizador → Banco → Interface`.
+- **Separação `inbound_events` × `message_events` mantida** — representam responsabilidades distintas (webhook bruto de entrada vs. ciclo de vida da mensagem), deixando a arquitetura mais limpa.
+
+### 8. LGPD — requisito de MVP (não item futuro)
+Contexto farmacêutico: conversas podem conter **receita médica e dados sensíveis de saúde**.
+- Mídia sensível (receita) **não** é tratada como anexo comum: **bucket privado**, **signed URL** (TTL curto), acesso via **service role**; banco só metadados (`message_attachments.sensivel_saude`).
+- Todo anexo sensível tem **escopo por `hub_id`**, vínculo com o Contato e **restrição por RBAC**.
+- Exigidos desde o MVP: **controle de acesso**, **política de retenção**, **trilha de auditoria** (`audit_logs`) e **política clara de armazenamento**.
+
+### 9. Faseamento
+- **Fatia 0 — Arquitetura e encanamento (independente; pode avançar já):** domínio + banco (catálogos + entidades operacionais); `conversations`/`messages`/`message_attachments`; providers via **Provider Adapter**; **RLS** desde a 1ª migration; inbox idempotente (`inbound_events`) + `message_events`; **integração do primeiro provider (Cloud API)**: conectar conta, receber, enviar, normalizar, status; listar/abrir conversa, marcar lida, atribuir/transferir, filtros por responsável/status. **Nada comercial ainda.**
+- **Fatia 1 — Comercial (BLOQUEADA pela DEC-014):** vincular conversa ao Contato; **criar Orçamento a partir da conversa**; mover para o Pipeline; Pedido.
+  - Depende da resolução da **DEC-014** (desacoplar `supplier_id` obrigatório).
+  - **Não** criar exceção no domínio do Orçamento (sem rascunho sem `supplier_id`; sem exceção temporária no modelo).
+  - **Não** retirar o Orçamento do escopo estratégico — apenas **declarar o bloqueio** até a DEC-014 ser resolvida.
+  - **A criação manual de Orçamento (sem conversa) é independente desta DEC** (§1) e não fica bloqueada.
+- **Pós-MVP:** novos canais (Instagram, Messenger, Telegram, Webchat, E-mail, SMS, RCS); mensagens automáticas, campanhas, modelos de mensagem, SLA, relatórios. **IA de resposta permanece fora** (DEC-021).
+
+### 10. Bloqueadores e riscos
+- **DEC-014 (bloqueador da Fatia 1):** Orçamento hoje exige `supplier_id`; migrar a montagem para Produtos dos Portfólios autorizados ao Hub antes do "criar orçamento a partir da conversa".
+- **LGPD / dado de saúde:** mitigado pelos requisitos do §8 já no MVP.
+- **Integração com providers:** políticas e restrições (verificação de conta, janelas de atendimento, templates, reentrega) **absorvidas pelo adaptador** — não vazam para o domínio; mitigadas pela abstração e pelo inbox idempotente.
+- **Vazamento cross-Hub:** mitigado por RLS desde a 1ª migration.
+- **Custo/limites por provider:** dependentes do provider; tratados na implementação, sem impacto na regra de negócio.
+- **Complexidade omnichannel:** mitigada por entregar **um** canal (WhatsApp/Cloud API) na Fatia 0 sobre o modelo genérico, provando a abstração antes de somar canais.
+- **Schema drift:** migrations aplicadas via **SQL Editor** no HUB DEV (`pnkgwfgjhijksfmofiot`) — CLI linkado a projeto incorreto (RISCOS.md).
+
+- **Motivo:** comunicação é infraestrutura de longo prazo do Hub; modelá-la como **Mensageria omnichannel** (canal e provider como dado/adaptador, não como domínio) evita reescrita a cada novo canal, preserva o centro Contato/Cliente, respeita o fluxo comercial e as fronteiras (DEC-015/016/022) e permite adotar a Cloud API como primeiro provider sem acoplamento.
+- **Impacto:** aditivo (catálogos + entidades operacionais + bucket privado reusado + módulo RBAC `mensageria`). Não altera enum de perfis nem remove nada; emenda a nomenclatura do módulo previsto na DEC-015 §204 (`whatsapp` → `mensageria`), preservando o mesmo RBAC. A Fatia 1 depende da DEC-014; a criação manual de Orçamento independe desta DEC. Exigirá atualização posterior de `DOMINIO.md`, `FUNCIONAL.md` e `PERMISSOES.md`.
+- **Data:** 2026-07-06
+- **Status:** Aprovada / vigente — implementação pendente (Sprint futura, Expand). Fatia 1 (comercial) condicionada à resolução da DEC-014.

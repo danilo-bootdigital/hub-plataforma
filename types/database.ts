@@ -928,3 +928,153 @@ export type Notification = {
   entidade_id: string | null
   created_at: string
 }
+
+// ============================================================================
+// Mensageria (DEC-023 · Migration 072) — namespace communication_*
+// Módulo omnichannel. Prefixo Communication*/Comm* para não colidir com os
+// tipos legados Conversation/Message. Espelha 072_mensageria_communication.sql.
+// ============================================================================
+
+// Unions (espelham os CHECK da migration 072)
+export type CommAccountStatus = 'ativo' | 'inativo' | 'erro'
+export type CommInboundStatus = 'pendente' | 'processando' | 'processado' | 'erro' | 'ignorado'
+// Fatia 0: apenas estado de ATENDIMENTO (estado comercial vive no Pipeline/Orçamento — DEC-023 §1)
+export type CommConversationStatus =
+  | 'novo' | 'em_atendimento' | 'aguardando_cliente' | 'finalizado' | 'perdido'
+export type CommParticipantTipo = 'externo' | 'usuario'
+export type CommParticipantPapel = 'cliente' | 'atendente' | 'observador'
+export type CommMessageDirection = 'inbound' | 'outbound'
+export type CommMessageTipo = 'texto' | 'imagem' | 'audio' | 'video' | 'documento' | 'localizacao' | 'contato' | 'sistema'
+export type CommMessageStatus = 'recebida' | 'enfileirada' | 'enviada' | 'entregue' | 'lida' | 'falha'
+export type CommMessageEventTipo = 'recebida' | 'enfileirada' | 'enviada' | 'entregue' | 'lida' | 'falha'
+// Códigos-seed (catálogos são extensíveis; os campos channel/provider são string)
+export type CommChannelCode = 'whatsapp' | 'instagram' | 'messenger' | 'telegram' | 'webchat' | 'email' | 'sms' | 'rcs'
+export type CommProviderCode = 'cloud_api' | 'evolution'
+
+// Catálogos globais (sem hub_id)
+export type CommunicationChannel = {
+  code: string
+  nome: string
+  ativo: boolean
+  ordem: number
+  created_at: string
+}
+
+export type CommunicationProvider = {
+  code: string
+  nome: string
+  channels: string[]
+  ativo: boolean
+  is_legacy: boolean
+  created_at: string
+}
+
+// Entidades operacionais (todas com hub_id + RLS)
+export type CommunicationAccount = {
+  id: string
+  hub_id: string
+  channel: string
+  provider: string
+  external_account_id: string
+  display_label: string | null
+  status: CommAccountStatus
+  metadata: Record<string, unknown>
+  created_at: string
+  updated_at: string
+}
+
+export type CommunicationChannelIdentity = {
+  id: string
+  hub_id: string
+  channel: string
+  provider: string
+  external_user_id: string
+  telefone: string | null
+  display_name: string | null
+  contact_id: string | null
+  created_at: string
+  updated_at: string
+}
+
+export type CommunicationInboundEvent = {
+  id: string
+  provider: string
+  external_event_id: string
+  hub_id: string | null
+  account_external_id: string | null
+  payload: Record<string, unknown>
+  status: CommInboundStatus
+  processado_em: string | null
+  erro: string | null
+  tentativas: number
+  proxima_tentativa_em: string | null
+  created_at: string
+}
+
+export type CommunicationConversation = {
+  id: string
+  hub_id: string
+  account_id: string
+  channel: string
+  channel_identity_id: string
+  contact_id: string | null
+  assigned_user_id: string | null
+  status: CommConversationStatus
+  unread_count: number
+  last_message_at: string | null
+  arquivada: boolean
+  created_at: string
+  updated_at: string
+}
+
+export type CommunicationConversationParticipant = {
+  id: string
+  hub_id: string
+  conversation_id: string
+  tipo: CommParticipantTipo
+  channel_identity_id: string | null
+  user_id: string | null
+  papel: CommParticipantPapel
+  created_at: string
+}
+
+export type CommunicationMessage = {
+  id: string
+  hub_id: string
+  conversation_id: string
+  direction: CommMessageDirection
+  sender_participant_id: string | null
+  tipo: CommMessageTipo
+  corpo: string | null
+  provider: string
+  provider_message_id: string | null
+  status: CommMessageStatus
+  enviada_em: string | null
+  payload_ref: string | null
+  created_at: string
+  updated_at: string
+}
+
+export type CommunicationMessageAttachment = {
+  id: string
+  hub_id: string
+  message_id: string
+  storage_path: string | null
+  mime: string | null
+  tamanho: number | null
+  nome_arquivo: string | null
+  sensivel_saude: boolean
+  provider_media_id: string | null
+  created_at: string
+}
+
+export type CommunicationMessageEvent = {
+  id: string
+  hub_id: string
+  message_id: string
+  evento: CommMessageEventTipo
+  provider: string | null
+  erro: string | null
+  ocorrido_em: string
+  created_at: string
+}

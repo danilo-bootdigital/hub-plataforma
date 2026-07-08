@@ -13,7 +13,8 @@
     "deploy:verify": "./scripts/verify-deploy-env.sh",
     "deploy:test": "./scripts/verify-deploy.sh",
     "deploy:webhook": "./scripts/setup-webhook.sh",
-    "test:conferencia": "tsc -p tsconfig.conferencia.json && node -e \"require('fs').writeFileSync('.tmp-conferencia/package.json','{\\\"type\\\":\\\"commonjs\\\"}')\" && node --test .tmp-conferencia/conferencia/__tests__/motor-regras.test.js .tmp-conferencia/ia/__tests__/extrator.test.js"
+    "test:conferencia": "tsc -p tsconfig.conferencia.json && node -e \"require('fs').writeFileSync('.tmp-conferencia/package.json','{\\\"type\\\":\\\"commonjs\\\"}')\" && node --test .tmp-conferencia/conferencia/__tests__/motor-regras.test.js .tmp-conferencia/ia/__tests__/extrator.test.js",
+    "test:mensageria": "tsc -p tsconfig.mensageria.json && node -e \"require('fs').writeFileSync('.tmp-mensageria/package.json','{\\\"type\\\":\\\"commonjs\\\"}')\" && node --test .tmp-mensageria/mensageria/providers/__tests__/contrato.test.js .tmp-mensageria/mensageria/providers/cloud-api/__tests__/cloud-api.test.js .tmp-mensageria/mensageria/__tests__/webhook-receiver.test.js .tmp-mensageria/mensageria/poller/__tests__/transicao.test.js .tmp-mensageria/mensageria/poller/__tests__/poller.test.js .tmp-mensageria/mensageria/normalizacao/__tests__/normalizador.test.js .tmp-mensageria/mensageria/persistencia/__tests__/processar-evento.test.js .tmp-mensageria/mensageria/poller/__tests__/cron-auth.test.js .tmp-mensageria/mensageria/poller/__tests__/loop.test.js .tmp-mensageria/mensageria/envio/__tests__/dispatcher.test.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.109.1",

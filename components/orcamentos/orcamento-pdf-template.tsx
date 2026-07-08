@@ -260,7 +260,7 @@ type IdentidadePdf = {
 
 function Cabecalho({ data, org }: { data: OrcamentoTemplateData; org: IdentidadePdf }) {
   return (
-    <header className="grid grid-cols-1 md:grid-cols-12 gap-2 items-center border-b-2 border-emerald-600 pb-4">
+    <header className="grid grid-cols-1 md:grid-cols-12 gap-2 items-center border-b-2 border-[#1a4873] pb-4">
       {/* Bloco esquerda: logo + empresa */}
       <div className="md:col-span-4 flex flex-col gap-0.5">
         {org?.logo_url ? (
@@ -344,14 +344,14 @@ function SecaoCards({ data }: { data: OrcamentoTemplateData }) {
   const temNota = !!(data.nota_nome || data.nota_documento)
 
   return (
-    <section className="grid grid-cols-1 md:grid-cols-3 gap-4 print:break-inside-avoid">
+    <section className="flex flex-col gap-4 print:break-inside-avoid">
       {/* Card 1: DADOS DO CLIENTE / CONTATO */}
       <article className="border border-slate-200 shadow-sm rounded-md overflow-hidden bg-white">
-        <div className="bg-[#e8f5e8] text-slate-700 px-3 py-2 flex items-center gap-2">
+        <div className="bg-[#F2D0C7] text-[#1a4873] px-3 py-2 flex items-center gap-2">
           <IconeCliente />
           <h2 className="text-[12px] font-bold tracking-wide">DADOS DO CLIENTE / CONTATO</h2>
         </div>
-        <div className="p-4 flex flex-col gap-1">
+        <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
           <CampoRotulo rotulo="Nome" valor={cliente?.nome} />
           <CampoRotulo rotulo="CPF" valor={formatDocumento(data.contato?.cpf_cnpj || data.lead?.cpf_cnpj)} />
           <CampoRotulo rotulo="E-mail" valor={data.contato?.email || data.lead?.email} />
@@ -379,7 +379,7 @@ function SecaoCards({ data }: { data: OrcamentoTemplateData }) {
             />
           )}
           {data.contato?.endereco && (
-            <div className="flex flex-col gap-0.5">
+            <div className="flex flex-col gap-0.5 sm:col-span-2">
               <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide leading-tight">Endereço</span>
               <span className="text-[11px] text-slate-800 break-words leading-snug">
                 {data.contato.endereco}
@@ -397,11 +397,11 @@ function SecaoCards({ data }: { data: OrcamentoTemplateData }) {
       {/* Card 2: DADOS PARA EMISSÃO DA NOTA */}
       {temNota && (
         <article className="border border-slate-200 shadow-sm rounded-md overflow-hidden bg-white">
-          <div className="bg-[#e8f5e8] text-slate-700 px-3 py-2 flex items-center gap-2">
+          <div className="bg-[#F2D0C7] text-[#1a4873] px-3 py-2 flex items-center gap-2">
             <IconeDocumento />
             <h2 className="text-[12px] font-bold tracking-wide">DADOS PARA EMISSÃO DA NOTA</h2>
           </div>
-          <div className="p-4 flex flex-col gap-1">
+          <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
             <CampoRotulo rotulo="Tipo" valor={isPF ? 'Pessoa Física' : 'Pessoa Jurídica'} />
             {isPF ? (
               <>
@@ -432,14 +432,14 @@ function SecaoCards({ data }: { data: OrcamentoTemplateData }) {
 
       {/* Card 3: ENDEREÇO DE ENTREGA — sempre visível */}
       <article className="border border-slate-200 shadow-sm rounded-md overflow-hidden bg-white">
-        <div className="bg-[#e8f5e8] text-slate-700 px-3 py-2 flex items-center gap-2">
+        <div className="bg-[#F2D0C7] text-[#1a4873] px-3 py-2 flex items-center gap-2">
           <IconeCaminhao />
           <h2 className="text-[12px] font-bold tracking-wide">ENDEREÇO DE ENTREGA</h2>
         </div>
-        <div className="p-4 flex flex-col gap-1">
+        <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
           <CampoRotulo rotulo="Nome / Destinatário" valor={cliente?.nome} />
           <CampoRotulo rotulo="Telefone" valor={formatPhone(data.contato?.telefone)} />
-          <div className="flex flex-col gap-0.5">
+          <div className="flex flex-col gap-0.5 sm:col-span-2">
             <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wide leading-tight">Endereço</span>
             <span className="text-[11px] text-slate-800 whitespace-pre-wrap break-words leading-snug">
               {(() => {
@@ -468,13 +468,13 @@ function SecaoProdutosHub({ itens }: { itens: OrcamentoItem[] }) {
   const resumoPortfolios = resumirPortfolios(itens.map((i) => ({ portfolio_id: i.portfolio_id, portfolio_nome: i.portfolio_nome })))
   return (
     <section data-pdf-products className="flex flex-col gap-0">
-      <div className="bg-[#e8f5e8] text-slate-700 px-4 py-2.5 rounded-t-md flex items-center justify-between gap-2 shadow-sm">
+      <div className="bg-[#F2D0C7] text-[#1a4873] px-4 py-2.5 rounded-t-md flex items-center justify-between gap-2 shadow-sm">
         <span className="flex items-center gap-2">
           <IconeCarrinho />
           <h2 className="text-[14px] font-extrabold tracking-wide">PRODUTOS</h2>
         </span>
         {resumoPortfolios && (
-          <span className="text-[11px] font-bold text-slate-600">{resumoPortfolios}</span>
+          <span className="text-[11px] font-bold text-[#1a4873]">{resumoPortfolios}</span>
         )}
       </div>
       <div className="border border-t-0 border-slate-200 rounded-b-md overflow-hidden bg-white">
@@ -524,7 +524,7 @@ function SecaoProdutosHub({ itens }: { itens: OrcamentoItem[] }) {
 function SecaoProdutos({ itens, fornecedor }: { itens: OrcamentoItem[]; fornecedor: OrcamentoTemplateData['fornecedor'] }) {
   return (
     <section data-pdf-products className="flex flex-col gap-0">
-      <div className="bg-[#e8f5e8] text-slate-700 px-4 py-3 rounded-t-md flex items-center gap-2 shadow-sm">
+      <div className="bg-[#F2D0C7] text-[#1a4873] px-4 py-3 rounded-t-md flex items-center gap-2 shadow-sm">
         <IconeCarrinho />
         <h2 className="text-[14px] font-extrabold tracking-wide">PRODUTOS</h2>
       </div>
@@ -595,7 +595,7 @@ function SecaoTotais({ data }: { data: OrcamentoTemplateData }) {
           <span className="font-semibold">FRETE</span>
           <span className="font-bold">{formatBRL(data.frete)}</span>
         </div>
-        <div className="bg-slate-800 text-white px-5 py-4 flex justify-between items-center">
+        <div className="bg-[#1a4873] text-white px-5 py-4 flex justify-between items-center">
           <span className="text-[15px] font-black tracking-[0.2em]">TOTAL</span>
           <span className="text-[26px] font-black leading-none">{formatBRL(data.valor_total)}</span>
         </div>
@@ -637,7 +637,7 @@ function SecaoComercial({ data, isHub }: { data: OrcamentoTemplateData; isHub: b
     <section className="grid grid-cols-1 md:grid-cols-2 gap-4 print:break-inside-avoid">
       {temComercial && (
         <article className="border border-slate-200 shadow-sm rounded-md bg-white overflow-hidden">
-          <div className="bg-[#e8f5e8] text-slate-700 px-3 py-2.5 flex items-center gap-2">
+          <div className="bg-[#F2D0C7] text-[#1a4873] px-3 py-2.5 flex items-center gap-2">
             <IconeDocTexto />
             <h2 className="text-[12px] font-bold tracking-wide">DADOS COMERCIAIS</h2>
           </div>
@@ -663,7 +663,7 @@ function SecaoComercial({ data, isHub }: { data: OrcamentoTemplateData; isHub: b
       )}
       {observacoes && observacoes.trim() && (
         <article className="border border-slate-200 shadow-sm rounded-md bg-white">
-          <div className="bg-[#e8f5e8] text-slate-700 px-3 py-2.5 flex items-center gap-2">
+          <div className="bg-[#F2D0C7] text-[#1a4873] px-3 py-2.5 flex items-center gap-2">
             <IconeBalao />
             <h2 className="text-[12px] font-bold tracking-wide">OBSERVAÇÕES</h2>
           </div>

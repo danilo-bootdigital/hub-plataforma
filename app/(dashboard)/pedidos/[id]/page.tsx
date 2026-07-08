@@ -96,7 +96,7 @@ export default async function PedidoDetalhePage({ params }: { params: Promise<{ 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
         {/* Left: Back + Title */}
         <div className="space-y-1">
-          <Link href="/pedidos" className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-emerald-600 transition-colors">
+          <Link href="/pedidos" className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-[var(--brand-primary)] transition-colors">
             <ChevronLeft className="h-4 w-4" />
             Voltar para Pedidos
           </Link>
@@ -111,7 +111,7 @@ export default async function PedidoDetalhePage({ params }: { params: Promise<{ 
           {/* Cliente Info Row */}
           {cliente && (
             <div className="flex items-center gap-2 text-sm text-slate-500">
-              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-[10px] font-semibold text-emerald-700">
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--brand-accent)] text-[10px] font-semibold text-[var(--brand-primary)]">
                 {nomeCliente.charAt(0).toUpperCase()}
               </div>
               <span className="font-medium text-slate-700">{nomeCliente}</span>
@@ -159,8 +159,8 @@ export default async function PedidoDetalhePage({ params }: { params: Promise<{ 
         {/* Valor Total */}
         <div className="rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm">
           <div className="flex items-center gap-2.5 mb-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-50">
-              <span className="text-base font-bold text-emerald-600">R$</span>
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--brand-accent)]">
+              <span className="text-base font-bold text-[var(--brand-primary)]">R$</span>
             </div>
             <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">Valor Total</span>
           </div>
@@ -217,8 +217,8 @@ export default async function PedidoDetalhePage({ params }: { params: Promise<{ 
           <Card className="overflow-hidden">
             <CardHeader className="pb-3 bg-slate-50/50">
               <div className="flex items-center gap-2.5">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100">
-                  <Package className="h-4 w-4 text-emerald-600" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--brand-accent)]">
+                  <Package className="h-4 w-4 text-[var(--brand-primary)]" />
                 </div>
                 <div>
                   <CardTitle className="text-sm font-semibold text-slate-700">Itens do Pedido</CardTitle>
@@ -279,11 +279,11 @@ export default async function PedidoDetalhePage({ params }: { params: Promise<{ 
           </Card>
 
           {/* Resumo Financeiro - Card com destaque */}
-          <Card className="overflow-hidden border-2 border-emerald-100">
-            <CardHeader className="pb-3 bg-emerald-50/30">
+          <Card className="overflow-hidden border-2 border-[var(--brand-accent)]">
+            <CardHeader className="pb-3 bg-[var(--brand-accent)]/30">
               <div className="flex items-center gap-2.5">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100">
-                  <FileText className="h-4 w-4 text-emerald-600" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--brand-accent)]">
+                  <FileText className="h-4 w-4 text-[var(--brand-primary)]" />
                 </div>
                 <CardTitle className="text-sm font-semibold text-slate-700">Resumo Financeiro</CardTitle>
               </div>
@@ -322,7 +322,7 @@ export default async function PedidoDetalhePage({ params }: { params: Promise<{ 
                 {/* Coluna direita: total */}
                 <div className="sm:w-48 flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-2">
                   <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">Valor Total</span>
-                  <span className="text-2xl font-bold text-emerald-600">
+                  <span className="text-2xl font-bold text-[var(--brand-primary)]">
                     {Number(pedido.valor_total).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                   </span>
                 </div>
@@ -350,7 +350,7 @@ export default async function PedidoDetalhePage({ params }: { params: Promise<{ 
                     return (
                       <div key={h.id} className="flex items-start gap-4">
                         <div className="flex flex-col items-center">
-                          <div className="h-2.5 w-2.5 rounded-full bg-emerald-500 shrink-0 mt-1.5" />
+                          <div className="h-2.5 w-2.5 rounded-full bg-[var(--brand-primary)] shrink-0 mt-1.5" />
                           {historico.indexOf(h) < historico.length - 1 && (
                             <div className="w-px h-8 bg-slate-200 mt-2" />
                           )}
@@ -384,8 +384,8 @@ export default async function PedidoDetalhePage({ params }: { params: Promise<{ 
           <Card className="overflow-hidden">
             <CardHeader className="pb-3 bg-slate-50/50">
               <div className="flex items-center gap-2.5">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100">
-                  <User className="h-4 w-4 text-emerald-600" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--brand-accent)]">
+                  <User className="h-4 w-4 text-[var(--brand-primary)]" />
                 </div>
                 <CardTitle className="text-sm font-semibold text-slate-700">Cliente</CardTitle>
               </div>
@@ -468,7 +468,7 @@ export default async function PedidoDetalhePage({ params }: { params: Promise<{ 
                 </div>
               </CardHeader>
               <CardContent className="pt-4">
-                <Link href={`/orcamentos/${pedido.quote_id}`} className="inline-flex items-center gap-2 text-sm text-emerald-600 hover:text-emerald-700 font-medium transition-colors">
+                <Link href={`/orcamentos/${pedido.quote_id}`} className="inline-flex items-center gap-2 text-sm text-[var(--brand-primary)] hover:text-[var(--brand-primary)] font-medium transition-colors">
                   <FileText className="h-4 w-4" />
                   Ver orçamento
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
