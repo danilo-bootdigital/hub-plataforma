@@ -82,3 +82,23 @@ export async function atualizarLogo(formData: FormData) {
   revalidatePath('/configuracoes/empresa')
   return { url: publicUrl }
 }
+
+export async function removerLogo() {
+  const { supabase, perfil } = await getAdmin()
+  const adminClient = createAdminClient()
+
+  // Remove o(s) arquivo(s) do storage (o upload usa a org como nome; a extensão
+  // pode variar entre trocas, então limpamos as extensões conhecidas).
+  const paths = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'].map(
+    (ext) => `logos/${perfil.organization_id}.${ext}`,
+  )
+  await adminClient.storage.from('public-assets').remove(paths)
+
+  const { error } = await supabase
+    .from('organizations')
+    .update({ logo_url: null })
+    .eq('id', perfil.organization_id)
+
+  if (error) throw new Error(`Erro ao remover logo: ${error.message}`)
+  revalidatePath('/configuracoes/empresa')
+}

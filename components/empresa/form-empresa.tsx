@@ -7,8 +7,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { atualizarEmpresa, atualizarLogo } from '@/app/(dashboard)/configuracoes/empresa/actions'
-import { Building2, Upload } from 'lucide-react'
+import { atualizarEmpresa, atualizarLogo, removerLogo } from '@/app/(dashboard)/configuracoes/empresa/actions'
+import { Building2, Upload, Trash2 } from 'lucide-react'
 
 type Props = {
   organizationId: string
@@ -28,6 +28,7 @@ export function FormEmpresa({ organizationId, defaultValues }: Props) {
   const [isPending, startTransition] = useTransition()
   const [logoUrl, setLogoUrl] = useState(defaultValues.logo_url)
   const [uploading, setUploading] = useState(false)
+  const [removing, setRemoving] = useState(false)
   const router = useRouter()
 
   function handleSubmit(formData: FormData) {
@@ -70,6 +71,21 @@ export function FormEmpresa({ organizationId, defaultValues }: Props) {
     }
   }
 
+  async function handleLogoRemove() {
+    if (!confirm('Excluir o logotipo da empresa?')) return
+    setRemoving(true)
+    try {
+      await removerLogo()
+      setLogoUrl('')
+      toast.success('Logo removido.')
+      router.refresh()
+    } catch (e: unknown) {
+      toast.error(e instanceof Error ? e.message : 'Erro ao remover o logo.')
+    } finally {
+      setRemoving(false)
+    }
+  }
+
   return (
     <div className="grid gap-6 lg:grid-cols-3">
       {/* Logo */}
@@ -98,6 +114,19 @@ export function FormEmpresa({ organizationId, defaultValues }: Props) {
               disabled={uploading}
             />
           </label>
+          {logoUrl && (
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handleLogoRemove}
+              disabled={removing || uploading}
+              className="text-red-600 hover:text-red-700 hover:bg-red-50"
+            >
+              <Trash2 className="h-4 w-4" />
+              {removing ? 'Excluindo...' : 'Excluir logo'}
+            </Button>
+          )}
           <p className="text-xs text-slate-400 text-center">PNG ou JPG, máx. 2MB</p>
         </CardContent>
       </Card>
